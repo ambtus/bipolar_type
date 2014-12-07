@@ -1,0 +1,106 @@
+- content_for(:title, 'Depression')
+%p
+  Depression, whether triggered by organic causes, sedatives, or an illness, makes the object appear less important so they produce less. At the same time the external resources appear more appealing so they consume more. If depression lasts too long their internal resources are in danger of overflowing — and triggering mania.
+%h2 IP: addiction
+-[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="I#{t(:mbti)}P:"
+        =t :name
+        addiction
+    %p
+      They are always
+      =t(:needy)
+      “enough” to
+      =t :consume
+      =t :appealing
+      =t(:external_resources)
+      but they will soon have more
+      =t :internal_resources
+      than they want or need
+      when they don't feel
+      =t(:competent)
+      and they think the
+      =t(:object).pluralize
+      are too
+      =t(:unimportant)
+      and they stop
+      =t(:producing)
+      them.
+      When they misidentify the problem as
+      =t(:consuming).split.first
+      too much and try to restrict their access to
+      =t(:appealing)
+      =t(:external_resources)
+      they will just binge on other
+
+      =t(:external_resources).punctuate
+      The real problem is that they have stopped
+      =t(:producing)
+      =t(:output).punctuate
+%h2 IJ: invisible depression
+-[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="I#{t(:mbti)}J:"
+        =t :name
+        invisible depression
+    %p
+      They are never
+      =t(:needy)
+      “enough”
+      to
+      =t :consume
+      =t :unappealing
+      =t(:external_resources)
+      so the depression has to last a very long time before they have more
+      =t :internal_resources
+      than they want or need despite the fact that they have stopped
+      =t(:producing)
+      =t(:output).punctuate
+%h2 EJ: anxious depression
+-[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="E#{t(:mbti)}J:"
+        =t :name
+        anxious depression
+    %p
+      They are never
+      =t(:competent)
+      “enough” to
+      =t :produce
+      =t :unimportant
+      =t(:output)
+      and the longer their depression lasts, the more
+      =t(:output).pluralize
+      appear to be
+      =t(:unimportant)
+      and they begin to feel less and less
+      =t(:competent).punctuate
+%h2 EP: lethargic depression
+-[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="E#{t(:mbti)}P:"
+        =t :name
+        lethargic depression
+    %p
+      They are always
+      =t(:competent)
+      “enough” to
+      =t :produce
+      =t :important
+      =t(:output)
+      but the longer their depression lasts, the more
+      =t(:output).pluralize
+      appear to be
+      =t(:unimportant)
+      and they just stop
+      =t(:producing)
+      =t(:output).punctuate
+%p=link_to "Rapid Cycling", type_path("rapid")

@@ -1,0 +1,13 @@
+- content_for(:title, 'BipolarTypes')
+%p
+  Unlike the MBTI&reg; which says that you are either an ISFP or an ENTJ, BipolarType asserts that you can be both at the same time. 
+%p
+  In fact, BipolarType asserts that everyone has a subtype in each of the four domains. 
+  For example, my BipolarType is ISFP-ESTP-INFJ-ENTJ. 
+=I18n.with_locale(:aerobic) {render "ip"}
+=I18n.with_locale(:anaerobic) {render "ep"}
+=I18n.with_locale(:interpersonal) {render "ij"}
+=I18n.with_locale(:cognitive) {render "ej"}
+%p
+  Mania and depression interact with each subtype in a different way as “enough” starts to shift. 
+%p=link_to "Mania", type_path("mania")

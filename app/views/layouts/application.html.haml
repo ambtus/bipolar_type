@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %title="BipolarType: " + yield(:title)
+    %meta{:content => "text/html; charset=utf-8"}
+    %meta{:name => "viewport", :content=>"width=device-width"}
+    =stylesheet_link_tag 'application'
+  %body
+    %p.small
+      =link_to_unless_current "Introduction", root_path
+      |
+      =link_to_unless_current "Overview", type_path("overview")
+      |
+      =link_to_unless_current "Go Places", type_path("aerobic")
+      |
+      =link_to_unless_current "Do Things", type_path("anaerobic")
+      |
+      =link_to_unless_current "Win Friends", type_path("interpersonal")
+      |
+      =link_to_unless_current "Influence People", type_path("cognitive")
+      |
+      =link_to_unless_current "BipolarTypes", type_path("bipolar")
+      |
+      =link_to_unless_current "Mania", type_path("mania")
+      |
+      =link_to_unless_current "Depression", type_path("depression")
+      |
+      =link_to_unless_current "Rapid Cycling", type_path("rapid")
+      |
+      =link_to_unless_current "Terminology", type_path("terms")
+    %h1="BipolarType: " + yield(:title)
+    =yield

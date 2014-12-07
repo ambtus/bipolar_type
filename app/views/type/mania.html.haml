@@ -1,0 +1,124 @@
+- content_for(:title, 'Mania')
+%p
+  Mania, whether triggered by organic causes, stimulants, or an emergency, makes the object appear more important so they produce more. At the same time the external resources appear less appealing so they consume less. If mania lasts too long they are in danger of running out of internal resources — and triggering depression.
+%h2 IP: invisible mania
+-[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="I#{t(:mbti)}P:"
+        =t :name
+        invisible mania
+    %p
+      They are always
+      =t(:needy)
+      “enough” to
+      =t :consume
+      =t :appealing
+      =t(:external_resources)
+      and they know where all the
+      =t(:most_appealing)
+      =t :external_resources
+      are located so they are not forced to consume
+      =t :unappealing
+      ones and they are in no danger of
+      =t(:running_out)
+      no matter how long they
+      =t(:continue_producing).punctuate
+%h2 IJ: suicidal “depression”
+-[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="I#{t(:mbti)}J:"
+        =t :name
+        suicidal “depression”
+    %p
+      They are never
+      =t(:needy)
+      “enough”
+      to
+      =t :consume
+      =t :unappealing
+      =t(:external_resources)
+      and have very
+      =t(:few)
+      unnecessary
+      =t(:internal_resources)
+      so they are in real danger of
+      =t(:running_out)
+      long before anyone notices that they are manic as is evidenced by the fact that they won’t stop
+      =t :producing
+      =t(:output).punctuate
+      When they are “encouraged” to
+      =t :consume
+      more
+      =t(:external_resources)
+      — which are appearing more and more
+      =t(:unappealing)
+      — they may choose a less painful death.
+%h2 EJ: irritable mania
+-[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="E#{t(:mbti)}J:"
+        =t :name
+        irritable mania
+    %p
+      They are never
+      =t(:competent)
+      “enough” to
+      =t :produce
+      =t :unimportant
+      =t(:output)
+      which limits their exposure and they have enough
+      =t(:internal_resources)
+      that they are in little danger of
+      =t(:running_out)
+      but they keep having to reject
+      =t(:unappealing)
+      =t :external_resources
+      which makes them irritable and they may eventually
+      =t :run_out
+      if they can’t locate a better source of
+      =t(:external_resources).punctuate
+%h2 EP: euphoric mania
+-[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="E#{t(:mbti)}P:"
+        =t :name
+        euphoric mania
+    %p
+      They are always
+      =t(:competent)
+      “enough” to
+      =t :produce
+      =t :important
+      =t(:output)
+      and have enough
+      =t(:internal_resources)
+      that they can
+      =t(:continue_producing)
+      for a while, but
+      %em no-one
+      is
+      =t :competent
+      enough to allow them to
+      =t :continue_producing
+      indefinitely without
+      =t :running_out
+      sooner or later when they think the
+      =t(:object)
+      is so
+      =t(:important)
+      that they won’t stop
+      =t(:producing).split.first
+      long enough to
+      =t(:consume)
+      =t(:external_resources)
+      and repair their strained
+      =t(:internal_resources).punctuate
+%p=link_to "Depression", type_path("depression")
