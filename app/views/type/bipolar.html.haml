@@ -1,9 +1,15 @@
 - content_for(:title, 'BipolarTypes')
 %p
-  Unlike the MBTI&reg; which says that you are either an ISFP or an ENTJ, BipolarType asserts that you can be both at the same time. 
+  Unlike the MBTI&reg; which says that you are either an ISFP or an ENTJ, BipolarType asserts that you can be both at the same time.
 %p
-  In fact, BipolarType asserts that everyone has a subtype in each of the four domains and each of the four attitudes depending on your relative levels of each neurotransmitter.
+  In fact, BipolarType asserts that everyone has a subtype in each of the four domains which depends on their relative levels of each neurotransmitter.
+%p
   For example, my BipolarType is ISFP-ESTP-ENTJ-INFJ
+  which means that my
+  =I18n.with_locale(:aerobic) {t :neurotransmitter}
+  levels are the lowest and my
+  =I18n.with_locale(:interpersonal) {t :neurotransmitter}
+  levels are the highest.
 %p
-  Mania and depression interact with each subtype in a different way as your neurotransmitter levels change. 
+  Mania and depression interact with each subtype in a different way as your neurotransmitter levels change.
 %p=link_to "Mania", type_path("mania")

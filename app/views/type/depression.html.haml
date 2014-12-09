@@ -6,55 +6,44 @@
 %h2 IP: addiction
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
-    -unless t(:mbti).blank?
-      %h3
-        ="I#{t(:mbti)}P:"
-        =t :name
-        addiction
     %p
+      -unless t(:mbti).blank?
+        ="I#{t(:mbti)}P:"
       Their addiction to
+      =t :consuming
       =t :external_sources
       becomes worse and they become more and more
       =t :overfull
-%h2 EP: agitated depression
+%h2 EP: severe depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
-    -unless t(:mbti).blank?
-      %h3
-        ="E#{t(:mbti)}P:"
-        =t :name
-        agitated depression
     %p
+      -unless t(:mbti).blank?
+        ="E#{t(:mbti)}P:"
       They keep trying to
       =t :produce
       more but it’s no longer enough, and they slowly become
       =t :overfull
-%h2 EJ: lethargic depression
+%h2 EJ: mild depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
-    -unless t(:mbti).blank?
-      %h3
-        ="E#{t(:mbti)}J:"
-        =t :name
-        lethargic depression
     %p
-      They don’t have to
-      =t :produce
-      as long before they can
+      -unless t(:mbti).blank?
+        ="E#{t(:mbti)}J:"
+      They can
       =t :consume
+      more
       =t :external_sources
-      but they may go too far and stop
-      =t :producing
-      altogether
+      without feeling
+      =t :bad
+      but they may go too far and become
+      =t :overfull
 %h2 IJ: invisible depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
-    -unless t(:mbti).blank?
-      %h3
-        ="I#{t(:mbti)}J:"
-        =t :name
-        invisible depression
     %p
+      -unless t(:mbti).blank?
+        ="I#{t(:mbti)}J:"
       They can
       =t :consume
       =t :external_sources

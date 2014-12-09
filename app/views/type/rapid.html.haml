@@ -1,110 +1,125 @@
 - content_for(:title, 'Rapid Cycling')
 %p
-  Rapid cycling, or kindling, happens over time if your mania is not controlled. Your mania is not controlled when your invisible mania is highly desired, your irritable mania is misdiagnosed as depression, your suicidal “depression” is misdiagnosed as depression, your addiction is misdiagnosed as addiction, your agitated depression is misdiagnosed as mania, and your invisible depression is highly desired. In other words, when the psychiatric community throws drugs at you without having any clear idea what your problem is or what the drugs actually do.
+  Rapid cycling, or kindling, happens over time if your mania is not controlled.
 %p
-  Over time, mania becomes easier and easier to trigger, but it also lasts a shorter time before the inevitable depression.
+  Your mania will not be controlled when everyone is rejoicing so much that you have stopped consuming too many external resources, that they completely miss the fact that you are manic, and when the mania finally ends on its own, as it always does, the rebound depression is treated aggressively instead of being allowed to run its course.
 %p
-  I am a rapid cycler, and my cycle lasts about six days on average: three manic days, a crash, three depressed days, and then another manic episode. Manic episodes can be triggered sooner or last longer if I’m under a lot of stress, but six days is typical. Mania is also worse in the spring and fall, and depression is worse in the summer and winter, but the shorter cycle tends to be more of a problem for me.
+  Over time, mania becomes easier and easier to trigger, but it also lasts a shorter time before the inevitable rebound depression.
 %p
-  The following are my recommendations for dealing with rapid cycling, but I only know that they work for my own subtypes (ISFP-ESTP-ENTJ-INFJ).
+  I am a rapid cycler, and my cycle lasts about six days on average: three manic days, a crash, three depressed days, and then another manic episode. Manic episodes can be triggered sooner or last longer if I’m under a lot of stress, but six days is typical. Mania is also worse in the morning, spring and fall, and depression is worse in the evening, summer and winter, but the six-day cycle predominates.
+%p
+  The following are my recommendations for dealing with rapid cycling, but although they work for me (ISFP-ESTP-ENTJ-INFJ) the recommendations for the other subtypes are based on analogy and may do more harm than good. Caveat emptor.
 %h2 IP: invisible mania & addiction
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
       %h3
-        ="I#{t(:mbti)}P:"
-        =t :name
-        invisible mania & addiction
+        ="I#{t(:mbti)}P"
       %p
-        =t(:produce).capitalize
-        as much as you can, whenever you can. The more you
+        Unless they are
+        =t :professional_producers
+        they should try to
+        =t(:produce)
+        as much as they can, whenever they can. The more they
         =t :produce
-        the more you will be able to
-        =t :consume
+        the more
         =t :external_sources
+        they will be able to
+        =t :consume
         without becoming
         =t :overfull
       %p
-        May find small amounts of
+        They may find small amounts of short acting
         =t :neurotransmitter
-        agonists helpful but
-        too much can trigger euphoric mania and cause you to
+        stimulants helpful but long acting ones can trigger euphoric mania.
+        Although they are unlikely to
         =t :run_out
-        and if you don’t
-        =t :run_out
-        you will feel
+        they will feel
         =t :bad
-        when you start
+        when they start
         =t :consuming
         =t :external_sources
-        again
-%h2 EP: euphoric mania and agitated depression
+        again when they feel
+        =t :good
+        “enough” but are still taking the meds.
+%h2 EP: severe mania & depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
       %h3
-        ="E#{t(:mbti)}P:"
-        =t :name
-        euphoric mania and agitated depression
+        ="E#{t(:mbti)}P"
       %p
-        =t(:produce).capitalize
-        when you feel
-        =t :overfull
-        but stop as soon as you feel
-        =t :agile
-        enough; if you
-        =t :produce
-        too much you will
-        =t :run_out
-      %p
-        =t(:neurotransmitter).capitalize
-        agonists can alleviate the agitated depression but will aggravate the mania
-      %p
-        =t(:neurotransmitter).capitalize
-        antagonists can curtail the euphoric mania but will aggravate the depression.
-%h2 EJ: irritable mania and lethargic depression
--[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
-  -I18n.with_locale(local) do
-    -unless t(:mbti).blank?
-      %h3
-        ="E#{t(:mbti)}J:"
-        =t :name
-        irritable mania and anxious depression
-      %p
-        =t(:consume)
-        =t(:external_sources)
-        when you are depressed and
+        Should
         =t(:produce)
-        when you are manic.
+        longer whenever they feel
+        =t :overfull
+        but stop as soon as they feel
+        =t :good
+        enough; if they
+        =t :produce
+        too much they will either have to
+        =t :consume
+        even more
+        =t :external_sources
+        — and feel
+        =t :bad
+        — or they will
+        =t :run_out
       %p
         =t(:neurotransmitter).capitalize
-        agonists can alleviate the anxious depression but will aggravate the mania
-      %p
+        stimulants can alleviate the depression but will aggravate the mania.
         =t(:neurotransmitter).capitalize
-        antagonists can curtail the irritable mania but will aggravate the depression.
-%h2 IJ: suicidal “depression” and invisible depression
+        sedatives can curtail the mania but will aggravate the depression.
+%h2 EJ: mixed states & mild depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
       %h3
-        ="I#{t(:mbti)}J:"
-        =t :name
-        suicidal “depression” and invisible depression
+        ="E#{t(:mbti)}J"
       %p
+        Should try to
         =t(:consume)
+        more
         =t(:external_sources)
-        when you are
-        %em actually
-        depressed and avoid unfamiliar
-        =t(:external_sources)
-        when you are feeling suicidal.
+        when they are depressed and
+        =t(:produce)
+        longer when they are manic.
       %p
-        May find small amounts of
-        =t :neurotransmitter
-        antagonists helpful but you can also become addicted to them. If you continue
-        =t :consuming
-        =t :external_sources
-        even after the drug has worn off you will feel beyond
+        =t(:neurotransmitter).capitalize
+        stimulants can alleviate the depression but will aggravate the mania.
+        =t(:neurotransmitter).capitalize
+        sedatives can curtail the mania but will aggravate the depression.
+%h2 IJ: suicidal “depression” & invisible depression
+-[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
+  -I18n.with_locale(local) do
+    -unless t(:mbti).blank?
+      %h3
+        ="I#{t(:mbti)}J"
+      %p
+        If they can’t be
+        =t :an_aversive_consumer
+        they should try to
+        =t(:consume)
+        as many
+        =t(:external_sources)
+        as they can when they are
+        %em actually
+        depressed (not when they are actually manic but everyone
+        %em thinks
+        they are depressed because they are feeling suicidal) and avoid
+        =t(:consuming)
+        =t(:external_sources)
+        as soon as they start to feel
         =t :bad
-        and the rebound suicidal ideation can be fatal
+        before they feel
+        =t :worse
+      %p
+        May find small amounts of long-acting
+        =t :neurotransmitter
+        sedatives helpful but there are always side-effects and if they get used to being able to
+        =t :consume
+        =t :external_sources
+        and the drug wears off or they become acclimated they will feel so
+        =t :bad
+        they may take a lethal overdose.
 %p=link_to "Terminology", type_path("terms")
