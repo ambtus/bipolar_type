@@ -1,165 +1,75 @@
 - content_for(:title, 'Rapid Cycling')
 %p
-  Rapid cycling, or kindling, happens over time if your mania is not controlled. Mania becomes easier and easier to trigger, but it also lasts a shorter time before the inevitable depression.
+  Rapid cycling, or kindling, happens over time if your mania is not controlled. Your mania is not controlled when your invisible mania is highly desired and your suicidal “depression” is misdiagnosed as depression and your depression is misdiagnosed as addiction and your invisible depression is highly desired. In other words, when you are extremely unlucky.
 %p
-  I am a rapid cycler, and my cycle lasts about six days on average: three manic days, a crash, three depressed days, and then another manic episode. Manic episodes can be triggered sooner or last longer if I’m under a lot of stress, but six days is typical.
+  Over time, mania becomes easier and easier to trigger, but it also lasts a shorter time before the inevitable depression.
 %p
-  The following are my recommendations for dealing with rapid cycling, but I only know that they work for my own subtypes (ISFP-ESTP-INFJ-ENTJ).
+  I am a rapid cycler, and my cycle lasts about six days on average: three manic days, a crash, three depressed days, and then another manic episode. Manic episodes can be triggered sooner or last longer if I’m under a lot of stress, but six days is typical. Mania is also worse in the spring and fall, and depression is worse in the summer and winter, but the shorter cycle tends to be more of a problem for me.
+%p
+  The following are my recommendations for dealing with rapid cycling, but I only know that they work for my own subtypes (ISFP-ESTP-ENTJ-INFJ).
 %h2 IP: invisible mania & addiction
--[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+-[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
       %h3
         ="I#{t(:mbti)}P:"
         =t :name
         invisible mania & addiction
-    %p
-      Your biggest problem is that you have more
-      =t :internal_resources
-      than you want or need.
-    %p
-      When you are depressed and craving
-      =t :appealing
-      =t :external_resources
-      go for the
-      =t :most_appealing
-      ones you can find: if you try to restrict yourself you will just binge on the
-      =t :external_resources
-      you do
-      =t(:consume)
-      and end up with even more
-      =t(:internal_resources).punctuate
-    %p
-      Remind yourself that the more
-      =t(:needy)
-      you feel, the more pleasure you will get when you do
-      =t(:consume)
-      them, and try to
-      =t(:continue_producing)
-      until you feel
-      =t(:needy)
-      again. If you must
-      =t(:consume)
-      something and you don’t feel
-      =t(:needy).punctuate(",")
-      =t(:consume)
-      =t(:alternatives)
-      which you undoubtably need more of.
-    %p
-      But if you can’t, don’t stress out about it. You have more
-      =t(:internal_resources)
-      than you want or need, but that’s better than having too
-      =t(:few)
-      and you will be manic again soon enough and will be able to
-      =t :continue_producing
-      much longer and use your
-      =t(:internal_resources).punctuate
-%h2 IJ: suicidal “depression” and invisible depression
--[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+      %p
+        =t(:produce).capitalize
+        as much as you can, whenever you can. The more you
+        =t :produce
+        the more you will be able to
+        =t :consume
+        =t :external_sources
+        without becoming
+        =t :overfull
+%h2 EP: euphoric mania and agitated depression
+-[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
       %h3
-        ="I#{t(:mbti)}J:"
+        ="E#{t(:mbti)}P:"
         =t :name
-        suicidal “depression” and invisible depression
-    %p
-      You always run the risk of
-      =t(:running_out)
-      but as long as you stop
-      =t :consuming
-      =t(:unappealing)
-      =t(:external_resources)
-      as soon as you feel suicidal, you should be okay because you almost never
-      =t(:produce)
-      =t(:output)
-      anyway, which means you have enough
-      =t :internal_resources
-      even if you have
-      =t :fewer
-      than most people.
-    %p
-      When you are depressed, spend more time
-      =t(:consuming)
-      =t(:external_resources)
-      to build up your store of
-      =t(:internal_resources)
-      as they won’t seem as
-      =t(:unappealing)
-      then. And then remember the best sources so you can return to them later when you are manic and can not tolerate any
-      =t(:unappealing)
-      =t(:external_resources)
-      but are feeling
-      =t(:needy).punctuate
-%h2 EJ: irritable mania and anxious depression
--[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+        euphoric mania and agitated depression
+      %p
+        =t(:produce).capitalize
+        when you feel
+        =t :overfull
+        but stop as soon as you feel
+        =t :agile
+        enough; if you
+        =t :produce
+        too much you will
+        =t :run_out
+%h2 EJ: irritable mania and lethargic depression
+-[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
       %h3
         ="E#{t(:mbti)}J:"
         =t :name
         irritable mania and anxious depression
-    %p
-      Recognize that you are
-      %em not
-      =t(:empty)
-      and you probably never will be as long as you continue to seek out
-      =t(:appealing)
-      =t(:external_resources)
-      to
-      =t(:consume).punctuate
-      Don’t let anyone convince you that
-      %em you
-      are at fault because you can’t tolerate their
-      =t(:unappealing)
-      =t(:external_resources).punctuate
-    %p
-      If you feel like you are not
-      =t(:competent)
-      enough to
-      =t(:produce)
-      =t(:output)
-      it’s only becuase you don’t actually think those
-      =t(:object).pluralize
-      seem
-      =t(:important)
-      right now. They will seem more
-      =t(:important)
-      when you are manic so wait until then to
-      =t(:produce)
-      them.
-%h2 EP: euphoric mania and lethargic depression
--[:generic, :aerobic, :anaerobic, :interpersonal, :cognitive].each do |local|
+      %p
+        =t(:consume)
+        =t(:external_sources)
+        when you are depressed and
+        =t(:produce)
+        when you are manic.
+%h2 IJ: suicidal “depression” and invisible depression
+-[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
       %h3
-        ="E#{t(:mbti)}P:"
+        ="I#{t(:mbti)}J:"
         =t :name
-        euphoric mania and lethargic depression
-    %p
-      Recognize that you are
-      %em not
-      as
-      =t(:competent)
-      as you think you are, and you probably never will be unless you seek out more
-      =t(:external_resources)
-      to
-      =t(:consume).punctuate
-      You don’t need
-      =t(:appealing)
-      =t(:external_resources)
-      so just
-      =t(:consume)
-      whatever you can get.
-    %p
-      If you feel like you have to
-      =t(:produce)
-      =t(:output)
-      it’s only becuase you think those
-      =t(:object).pluralize
-      seem
-      =t(:important)
-      right now. They will seem less
-      =t(:important)
-      when you are depressed so wait until then to re-evaluate them and see whether you still think they need to be
-      =t(:produced).punctuate
+        suicidal “depression” and invisible depression
+      %p
+        =t(:consume)
+        =t(:external_sources)
+        when you are
+        %em actually
+        depressed and avoid unfamiliar
+        =t(:external_sources)
+        when you are feeling suicidal.
 %p=link_to "Terminology", type_path("terms")
