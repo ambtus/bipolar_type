@@ -1,6 +1,6 @@
 - content_for(:title, 'Rapid Cycling')
 %p
-  Rapid cycling, or kindling, happens over time if your mania is not controlled. Your mania is not controlled when your invisible mania is highly desired and your suicidal “depression” is misdiagnosed as depression and your depression is misdiagnosed as addiction and your invisible depression is highly desired. In other words, when you are extremely unlucky.
+  Rapid cycling, or kindling, happens over time if your mania is not controlled. Your mania is not controlled when your invisible mania is highly desired, your irritable mania is misdiagnosed as depression, your suicidal “depression” is misdiagnosed as depression, your addiction is misdiagnosed as addiction, your agitated depression is misdiagnosed as mania, and your invisible depression is highly desired. In other words, when the psychiatric community throws drugs at you without having any clear idea what your problem is or what the drugs actually do.
 %p
   Over time, mania becomes easier and easier to trigger, but it also lasts a shorter time before the inevitable depression.
 %p
@@ -24,6 +24,20 @@
         =t :external_sources
         without becoming
         =t :overfull
+      %p
+        May find small amounts of
+        =t :neurotransmitter
+        agonists helpful but
+        too much can trigger euphoric mania and cause you to
+        =t :run_out
+        and if you don’t
+        =t :run_out
+        you will feel
+        =t :bad
+        when you start
+        =t :consuming
+        =t :external_sources
+        again
 %h2 EP: euphoric mania and agitated depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
@@ -42,6 +56,12 @@
         =t :produce
         too much you will
         =t :run_out
+      %p
+        =t(:neurotransmitter).capitalize
+        agonists can alleviate the agitated depression but will aggravate the mania
+      %p
+        =t(:neurotransmitter).capitalize
+        antagonists can curtail the euphoric mania but will aggravate the depression.
 %h2 EJ: irritable mania and lethargic depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
@@ -56,6 +76,12 @@
         when you are depressed and
         =t(:produce)
         when you are manic.
+      %p
+        =t(:neurotransmitter).capitalize
+        agonists can alleviate the anxious depression but will aggravate the mania
+      %p
+        =t(:neurotransmitter).capitalize
+        antagonists can curtail the irritable mania but will aggravate the depression.
 %h2 IJ: suicidal “depression” and invisible depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
@@ -72,4 +98,13 @@
         depressed and avoid unfamiliar
         =t(:external_sources)
         when you are feeling suicidal.
+      %p
+        May find small amounts of
+        =t :neurotransmitter
+        antagonists helpful but you can also become addicted to them. If you continue
+        =t :consuming
+        =t :external_sources
+        even after the drug has worn off you will feel beyond
+        =t :bad
+        and the rebound suicidal ideation can be fatal
 %p=link_to "Terminology", type_path("terms")
