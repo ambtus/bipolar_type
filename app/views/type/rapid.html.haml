@@ -2,9 +2,9 @@
 %p
   Rapid cycling, or kindling, happens over time if your mania is not controlled.
 %p
-  Your mania will not be controlled when everyone is rejoicing so much that you have stopped consuming too many external resources, that they completely miss the fact that you are manic, and when the mania finally ends on its own, as it always does, the rebound depression is treated aggressively instead of being allowed to run its course.
+  Your mania will not be controlled when everyone is rejoicing so much about your invisible mania, that they completely miss the fact that you are suffering from potentially fatal mania, and when the mania finally ends on its own, as it always does, the rebound depression is treated aggressively instead of being allowed to run its course.
 %p
-  Over time, mania becomes easier and easier to trigger, but it also lasts a shorter time before the inevitable rebound depression.
+  Over time, mania becomes easier and easier to trigger, but it also lasts a shorter time before your self-preservation instincts kick in and trigger depression before your mania becomes fatal.
 %p
   I am a rapid cycler, and my cycle lasts about six days on average: three manic days, a crash, three depressed days, and then another manic episode. Manic episodes can be triggered sooner or last longer if I’m under a lot of stress, but six days is typical. Mania is also worse in the morning, spring and fall, and depression is worse in the evening, summer and winter, but the six-day cycle predominates.
 %p
@@ -29,9 +29,11 @@
         without becoming
         =t :overfull
       %p
-        They may find small amounts of short acting
+        They may find small amounts of short acting meds that
+        =t :increase
         =t :neurotransmitter
-        stimulants helpful but long acting ones can trigger euphoric mania.
+        helpful, but long acting ones are likely to trigger euphoric mania (see
+        ="E#{t(:mbti)}P)."
         Although they are unlikely to
         =t :run_out
         they will feel
@@ -42,7 +44,7 @@
         again when they feel
         =t :good
         “enough” but are still taking the meds.
-%h2 EP: severe mania & depression
+%h2 EP: euphoric mania & severe depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
@@ -66,11 +68,13 @@
         — or they will
         =t :run_out
       %p
-        =t(:neurotransmitter).capitalize
-        stimulants can alleviate the depression but will aggravate the mania.
-        =t(:neurotransmitter).capitalize
-        sedatives can curtail the mania but will aggravate the depression.
-%h2 EJ: mixed states & mild depression
+        Meds that increase
+        =t(:neurotransmitter)
+        can alleviate the depression but will aggravate the mania.
+        Meds that decrease
+        =t(:neurotransmitter)
+        can curtail the mania but will aggravate the depression.
+%h2 EJ: hypomania & mild depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
@@ -85,11 +89,13 @@
         =t(:produce)
         longer when they are manic.
       %p
-        =t(:neurotransmitter).capitalize
-        stimulants can alleviate the depression but will aggravate the mania.
-        =t(:neurotransmitter).capitalize
-        sedatives can curtail the mania but will aggravate the depression.
-%h2 IJ: suicidal “depression” & invisible depression
+        Meds that increase
+        =t(:neurotransmitter)
+        can alleviate the depression but will aggravate the mania.
+        Meds that decrease
+        =t(:neurotransmitter)
+        can curtail the mania but will aggravate the depression.
+%h2 IJ: fatal mania & invisible depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     -unless t(:mbti).blank?
@@ -100,26 +106,22 @@
         =t :an_aversive_consumer
         they should try to
         =t(:consume)
-        as many
         =t(:external_sources)
-        as they can when they are
-        %em actually
-        depressed (not when they are actually manic but everyone
-        %em thinks
-        they are depressed because they are feeling suicidal) and avoid
+        when they are depressed to store up
+        =t :enough_storage
+        while they can and avoid
         =t(:consuming)
         =t(:external_sources)
         as soon as they start to feel
         =t :bad
-        before they feel
+        and before they feel
         =t :worse
       %p
-        May find small amounts of long-acting
+        May find small amounts of long-acting meds that
+        =t :decrease
         =t :neurotransmitter
-        sedatives helpful but there are always side-effects and if they get used to being able to
-        =t :consume
-        =t :external_sources
-        and the drug wears off or they become acclimated they will feel so
+        helpful but there are always side-effects or they become acclimated and feel
         =t :bad
-        they may take a lethal overdose.
+        because they have stopped avoiding
+        =t :external_sources
 %p=link_to "Terminology", type_path("terms")

@@ -14,7 +14,7 @@
       =t :external_sources
       dries up and everyone rejoices as they become less
       =t :overfull
-%h2 EP: severe mania
+%h2 EP: euphoric mania
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     %p
@@ -26,22 +26,36 @@
       =t(:consume).split.first
       even less,
       =t :produce
-      even more, and
+      even more, don’t have
+      =t :enough_storage
+      and
       =t :run_out
-%h2 EJ: mixed states
+      and have to stop
+      =t :producing
+%h2 EJ: hypomania
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     %p
       -unless t(:mbti).blank?
         ="E#{t(:mbti)}J:"
-      They keep trying to
-      =t(:consume).split.first
-      more but they just feel
+      At first they try to
+      =t(:consume)
+      the same
+      =t :external_sources
+      they always have, but they feel
+      =t :bad
+      so they try to find better
+      =t :external_sources
+      and feel
       =t :worse
-      so they try to 
+      so they
+      =t :consume
+      fewer
+      =t :external_sources
+      and
       =t :produce
-      less and feel lazy
-%h2 IJ: suicidal “depression”
+      less
+%h2 IJ: fatal mania
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     %p
@@ -51,8 +65,9 @@
       =t :bad
       they stop
       =t :consuming
+      any
       =t :external_sources
-      entirely and if other people try to force them to do so — because they are about to
+      and
       =t :run_out
-      — they may choose a less painful death.
+      — fatally.
 %p=link_to "Depression", type_path("depression")
