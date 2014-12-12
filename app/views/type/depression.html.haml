@@ -1,53 +1,113 @@
 - content_for(:title, 'Depression')
 %p
-  Depression, whether triggered by organic causes, sedatives, or an illness, decreases the levels of
-  %em all
-  your neurotransmitters.
-%h2 IP: addiction
+  Depression, whether triggered by drugs or by producing too much too fast, decreases the levels of your neurotransmitters; you will stop producing and consume more and more until the neurotransmitters return to normal. 
+%h2 IP chronic depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     %p
-      -unless t(:mbti).blank?
-        ="I#{t(:mbti)}P:"
-      Their addiction to
-      =t :consuming
-      =t :external_sources
-      becomes worse and they become more and more
-      =t :overfull
-%h2 EP: severe depression
--[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
-  -I18n.with_locale(local) do
-    %p
-      -unless t(:mbti).blank?
-        ="E#{t(:mbti)}P:"
-      They keep trying to
+      ="I#{t(:mbti)}P:" unless t(:mbti).blank?
+      Their depression is initially invisible because they can’t
+      =t :consume
+      many more
+      =t :externals
+      than they already do, or
       =t :produce
-      more but it’s no longer enough, and they slowly become
+      much less, as their
+      =t :neurotransmitter
+      levels are already tanked.
+      They become more and more
       =t :overfull
-%h2 EJ: mild depression
+      but they have always been
+      =t :overfull
+      so it’s only an increase in quantity not quality and they may not seek treatment until it has become severe. On the one hand, it usually takes a long time to die from being
+      =t(:overfull).punctuate(",")
+      on the other hand it is extremely difficult to treat, since the treatment is usually to reduce how many
+      =t :externals
+      they
+      =t :consume
+      which decreases their motivation to
+      =t(:produce).punctuate
+%h2 EP acute depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     %p
-      -unless t(:mbti).blank?
-        ="E#{t(:mbti)}J:"
-      They can
+      ="E#{t(:mbti)}P:" unless t(:mbti).blank?
+      They have been
+      =t :overfull
+      before, but when they are depressed they won't be able to
+      =t :produce
+      enough to fix it for the first time in their life even if they 
+      =t :consume
+      as many
+      =t :externals
+      as they want to. As this is completely out of character for them, they will probably get treatment for being
+      =t :overfull
+      before it becomes chronic. As they have always tried to fix it by
+      =t :producing
+      more, a treatment which reduces how many
+      =t :externals
+      they
+      =t :consume
+      won't completely tank their motivation to
+      =t(:produce)
+      and aggravate the problem too much. 
+%h2 EJ recurrent depression
+-[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
+  -I18n.with_locale(local) do
+    %p
+      ="E#{t(:mbti)}J:" unless t(:mbti).blank?
+      When they are depressed they find it easier to
       =t :consume
       more
-      =t :external_sources
-      without feeling
+      =t :externals
+      without ever feeling
       =t :bad
-      but they may go too far and become
+      and they 
+      =t :produce 
+      less. 
+      When they inevitably become
       =t :overfull
-%h2 IJ: invisible depression
+      they will try to stop
+      =t :consuming
+      so many
+      =t :externals
+      which will make them more and more disinclined to
+      =t :produce
+      and more and more
+      =t(:overfull).punctuate
+      Eventually the depression will end and they will start to 
+      =t :produce
+      again but they will continue to try and avoid
+      =t :consuming 
+      =t :externals
+      and will soon start
+      =t :running_out
+      which will inevitably trigger another depression. 
+%h2 IJ invisible depression
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     %p
-      -unless t(:mbti).blank?
-        ="I#{t(:mbti)}J:"
-      They can
+      ="I#{t(:mbti)}J:" unless t(:mbti).blank?
+      When they are depressed they find it easier to
       =t :consume
-      =t :external_sources
+      =t :externals
       without feeling
       =t :bad
-      and everyone rejoices
-%p=link_to "Rapid Cycling", type_path("rapid")
+      and are a little less interested in
+      =t :producing
+      but they still don’t become
+      =t :overfull
+      because although they are
+      =t :producing
+      less often, they are still
+      =t :producing
+      enough and they still feel
+      =t :bad
+      if they
+      =t :consume
+      too many
+      =t :externals
+      too fast; their
+      =t :neurotransmitter
+      levels are lower, but still high.
+%p=link_to "Recommendations", type_path("recommend")

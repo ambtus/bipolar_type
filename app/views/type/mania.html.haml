@@ -1,73 +1,116 @@
 - content_for(:title, 'Mania')
 %p
-  Mania, whether triggered by organic causes, stimulants, or an emergency, increases the levels of
-  %em all
-  your neurotransmitters.
-%h2 IP: invisible mania
+  Mania, whether triggered by drugs or by consuming too many external resources too fast, increases the levels of your neurotransmitters; you will stop consuming and produce more and more until the neurotransmitters return to normal. 
+%h2 IP invisible mania
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     %p
-      -unless t(:mbti).blank?
-        ="I#{t(:mbti)}P:"
-      Their addiction to
-      =t :consuming
-      =t :external_sources
-      dries up and everyone rejoices as they become less
-      =t :overfull
-%h2 EP: euphoric mania
--[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
-  -I18n.with_locale(local) do
-    %p
-      -unless t(:mbti).blank?
-        ="E#{t(:mbti)}P:"
-      They may become so euphoric at the thought of finally becoming
-      =t(:good)
-      that they
-      =t(:consume).split.first
-      even less,
+      ="I#{t(:mbti)}P:" unless t(:mbti).blank?
+      When they are manic they find it easier to
       =t :produce
-      even more, don’t have
-      =t :enough_storage
-      and
-      =t :run_out
-      and have to stop
-      =t :producing
-%h2 EJ: hypomania
--[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
-  -I18n.with_locale(local) do
-    %p
-      -unless t(:mbti).blank?
-        ="E#{t(:mbti)}J:"
-      At first they try to
-      =t(:consume)
-      the same
-      =t :external_sources
-      they always have, but they feel
+      and they may even feel
       =t :bad
-      so they try to find better
-      =t :external_sources
-      and feel
-      =t :worse
-      so they
+      for the first time in their life if they aren't currently restricting how many
+      =t :externals
+      they 
       =t :consume
+      but will learn quickly which types of
+      =t :externals
+      to avoid.  
+      They are in no danger of
+      =t :running_out
+      because although they are
+      =t :consuming
       fewer
-      =t :external_sources
-      and
-      =t :produce
-      less
-%h2 IJ: fatal mania
+      =t :externals
+      they are still
+      =t :consuming
+      plenty and although they are
+      =t :producing
+      more they are still relatively unmotivated; their
+      =t :neurotransmitter
+      levels are higher, but still low.
+%h2 EP recurrent mania
 -[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
   -I18n.with_locale(local) do
     %p
-      -unless t(:mbti).blank?
-        ="I#{t(:mbti)}J:"
-      They feel so
+      ="E#{t(:mbti)}P:" unless t(:mbti).blank?
+      When they are manic they find it easier to
+      =t :produce
+      and they will feel
       =t :bad
-      they stop
+      for the first time in their life if they 
+      =t :consume
+      as many
+      =t :externals
+      as they normally do out of habit.
+      They are in severe danger of
+      =t :running_out
+      if they stop
       =t :consuming
-      any
-      =t :external_sources
-      and
+      =t :externals
+      because they feel so
+      =t(:bad).punctuate
+      On the other hand, the shock of
+      =t :running_out
+      will get them to start
+      =t :consuming
+      =t :externals
+      again even though they feel
+      =t :bad
+      so they won't
       =t :run_out
-      — fatally.
+      more than a few times before they start
+      =t :consuming
+      =t :externals
+      even when they feel
+      =t(:bad)
+      which will inevitably trigger another mania. 
+%h2 EJ severe mania
+-[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
+  -I18n.with_locale(local) do
+    %p
+      ="E#{t(:mbti)}J:" unless t(:mbti).blank?
+      They have felt
+      =t :bad
+      before, but when they are manic they will suffer from
+      =t :something_worse
+      for the first time in their life if they 
+      =t :consume
+      as many
+      =t :externals
+      as they normally do out of habit.
+      They won't be able to start
+      =t :consuming
+      =t :externals
+      again because they feel so
+      =t(:bad).punctuate
+      They will
+      =t :run_out
+      over and over. As this is completely out of character for them, they will probably get treatment for the
+      =t(:something_worse)
+      before they die from
+      =t :running_out
+      so many times.
+%h2 IJ acute mania
+-[:generic, :aerobic, :anaerobic, :cognitive, :interpersonal].each do |local|
+  -I18n.with_locale(local) do
+    %p
+      ="I#{t(:mbti)}J:" unless t(:mbti).blank?
+      Their mania is initially invisible because they can’t
+      =t :produce
+      much more than they already do, or
+      =t :consume
+      many fewer
+      =t :externals
+      as their
+      =t :neurotransmitter
+      levels are already maxed out.
+      They suffer from
+      =t :something_worse
+      but they always feel
+      =t :bad
+      so it’s only an increase in quantity not quality and they may not seek treatment until it’s too late and they
+      =t :run_out
+      so often they die.
 %p=link_to "Depression", type_path("depression")

@@ -2,30 +2,31 @@
   If you
   =t :consume
   too many
-  =t :external_sources
+  =t :externals
   without
   =t :producing
-  enough you will aquire too
-  =t :much_storage
+  you will have too many
+  =t :internals
   and become
-  =t :overfull
+  =t(:overfull).punctuate
 %p
   If you
   =t :produce
-  too much
   without
-  =t(:consuming).split.first
+  =t(:consuming)
   enough
-  you will not have
-  =t :enough_storage
+  =t(:externals)
+  you will not have any
+  =t :internals
   and will
-  =t :run_out
+  =t(:run_out).punctuate
 %p
-  Some people are more at risk for one than the other.
+  Some people are more at risk for one than the other depending on their
+  =t :neurotransmitter
+  levels.
 %h1
-  =t(:mbti).punctuate(":") unless t(:mbti).blank?
   The
-  =t(:name).capitalize
+  =t(:mbti)
   Attitudes
 =render "ip"
 =render "ep"
