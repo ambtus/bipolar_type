@@ -3,17 +3,17 @@ class TypeController < ApplicationController
     if params[:id].blank?
       @next = "behave"
       render :start
-    elsif %w{behave st sf nt nf}.include?(params[:id])
+    elsif %w{behave sf st nf nt}.include?(params[:id])
       @next = case params[:id]
               when "behave"
-                "st"
-              when "st"
                 "sf"
               when "sf"
-                "nt"
-              when "nt"
+                "st"
+              when "st"
                 "nf"
               when "nf"
+                "nt"
+              when "nt"
                 "bipolar"
               end
       I18n.with_locale(params[:id]) { render "behave" }

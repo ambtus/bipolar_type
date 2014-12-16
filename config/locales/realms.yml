@@ -5,7 +5,7 @@ behave:
 
 st:
   mbti: "ST"
-  title: "Achieve"
+  title: "Do Things"
   neurotransmitter: "dopamine"
   naturally_less: "content"
   do_more: "try harder"
@@ -18,7 +18,7 @@ st:
 
 sf:
   mbti: "SF"
-  title: "Walk"
+  title: "Go Places"
   neurotransmitter: "serotonin"
   naturally_less: "restful"
   do_more: "hurry up"
@@ -26,12 +26,12 @@ sf:
   overdone: "anorexic"
   naturally_more: "restless"
   do_less: "sit down"
-  less: "seated"
+  less: "still"
   underdone: "fat and lazy"
 
 nt:
   mbti: "NT"
-  title: "Talk"
+  title: "Influence People"
   neurotransmitter: "norepinephrine"
   naturally_less: "bored"
   do_more: "answer the question"
@@ -44,7 +44,7 @@ nt:
 
 nf:
   mbti: "NF"
-  title: "Emote"
+  title: "Win Friends"
   neurotransmitter: "oxytocin"
   naturally_less: "paranoid"
   do_more: "be nice"

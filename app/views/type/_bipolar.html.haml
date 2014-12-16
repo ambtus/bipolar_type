@@ -1,100 +1,110 @@
 -I18n.with_locale(subtypes.first) do
-  %h3="E#{t(:mbti)}P Euphoric Mania and Agitated Depression"
+  %h3="E#{t(:mbti)}P Euphoric Mania with Unbearable Depression"
   %p
     ="E#{t(:mbti)}Ps"
+    enjoy their mania. At first. Their brain is telling them to
+    =t :do_more
+    and be
+    =t :more
+    and they stop receiving the constant signals from outside telling them that they are not
+    =t :more
+    enough. Unfortunately, they are no longer relieved to have the opportunity to
+    =t :do_less
+    and to be
+    =t :less
+    and they are apt to ignore those signals until they become extreme. When the mania ends, and they no longer want to
+    =t :do_more
+    they can’t understand why they didn’t stop sooner when all the signals were there. Euphoric mania tends to become less and less severe over the years, as you learn to pay attention to the signals to
+    =t(:do_less).punctuate
+  %p
+    They
     are so
     =t :naturally_less
-    to start with that they find depression unbearable. They just cannot
-    =t(:title).downcase
-    — even though they know they “should” - no matter how hard they try (Agitated Depression).
-    Although they need
-    =t :neurotransmitter
-    stimulating drugs or activities in order to make it through their depressions, they need to remember that being
-    =t :more
-    is a social construct and not inherently better than being
-    =t(:less).punctuate
-  %p
-    They also need to be careful that they don’t enjoy the ability to
-    =t :do_more
-    so much (Euphoric Mania) that they continue the drugs or activities after the depression ends or embrace mania and never allow themselves to
-    =t(:do_less).punctuate
-    They have a natural ability to be
+    to start with that they find the subsequent depression unbearable. Their brain is telling them to
+    =t :do_less
+    and be
     =t :less
-    that many other people envy.
+    but the world around them hasn’t changed. They get constant and unending signals both tacit and overt that they must
+    =t :do_more
+    and be
+    =t :more
+    and even though they know they “should” — they just can’t.
+    They need
+    =t :neurotransmitter
+    stimulating drugs or activities in order to make it through their depressions but not so much that it triggers mania.
 -I18n.with_locale(subtypes.second) do
-  %h3="I#{t(:mbti)}P Mixed States"
+  %h3="I#{t(:mbti)}P Hypomania with Major Depression"
   %p
     ="I#{t(:mbti)}Ps"
-    find depression a mixed bag. It takes a lot more effort to
-    =t(:title).downcase
-    when they “should”. On the other hand, they are less apt to feel
-    =t :naturally_more
-    which may be a relief.
+    don’t have a problem with mania, because they are receiving fewer signals that they should
+    =t :do_more
+    and they pay attention to the signals that they should
+    =t :do_less
+    so they don’t get into trouble.
+  %p
+    They find the subsequent depression much worse. Their brain is telling them to
+    =t :do_less
+    but the world is still telling them to
+    =t :do_more
+    and although they don’t want to start, they know they “should”, so they do. The depression is somewhat mitigated by the fact that they are receiving a lot fewer signals that they should
+    =t(:do_less).punctuate
     Although small amounts of
     =t :neurotransmitter
-    stimulating drugs or activities are helpful, too much may make them feel too
+    stimulating drugs or activities are helpful, too much may make them feel
     =t(:naturally_more)
     or trigger mania.
-  %p
-    Mania is also a mixed bag as they feel too
-    =t :naturally_more
-    and find it harder to
-    =t(:do_less)
-    but it takes less effort to
-    =t(:title).downcase
-    which makes life easier.
-    Although small amounts of
-    =t :neurotransmitter
-    sedating drugs or activities are helpful, too much will make it hard to
-    =t(:do_more)
-    and may trigger depression.
 -I18n.with_locale(subtypes.third) do
-  %h3="E#{t(:mbti)}J Mixed States"
+  %h3="E#{t(:mbti)}J Irritable Mania with Mild Depression"
   %p
     ="E#{t(:mbti)}Js"
-    find mania a mixed bag. It takes a lot more effort to not
-    =t(:title).downcase
-    when they “shouldn’t”. On the other hand, they are less apt to feel
-    =t :naturally_less
-    which may be a relief.
+    don’t enjoy their mania. Their brain is telling them to
+    =t :do_more
+    but the world is still telling them to
+    =t :do_less
+    and although they don’t want to stop, they know they “should”, so they do. The mania is somewhat mitigated by the fact that they are receiving a lot fewer signals that they should
+    =t(:do_more).punctuate
     Although small amounts of
     =t :neurotransmitter
-    sedating drugs or activities are helpful, too much may make them feel too
+    sedating drugs or activities are helpful, too much may make them feel
     =t(:naturally_less)
-    and may trigger depression.
+    or trigger depression.
   %p
-    Depression is also a mixed bag as they feel too
-    =t :naturally_less
-    and find it harder to
-    =t(:do_more)
-    but it takes less effort to not
-    =t(:title).downcase
-    when they don’t want to.
-    Although small amounts of
-    =t :neurotransmitter
-    stimulating drugs or activities are helpful, too much may make it too hard to
-    =t(:do_less)
-    and may trigger mania.
+    They find the subsequent depression better, because they are receiving fewer signals that they should
+    =t :do_less
+    and they pay attention to the signals that they should
+    =t :do_more
+    so they don’t get into trouble.
 -I18n.with_locale(subtypes.fourth) do
-  %h3="I#{t(:mbti)}J Irritable Mania and Lethargic Depression"
+  %h3="I#{t(:mbti)}J Unbearable Mania with Euphoric Depression"
   %p
     ="I#{t(:mbti)}Js"
     are so
     =t :naturally_more
-    to start with that they find mania unbearable (and may be misdiagnosed as depressed if the diagnostic criteria for depression include insomnia and those for mania require elevated mood). They just have to
-    =t(:title).downcase
-    — even though they know they “shouldn’t” - no matter how hard they try not to (Irritable Mania).
-    Although they need
-    =t :neurotransmitter
-    sedating drugs or activities in order to make it through their manias, they need to remember that being
-    =t :less
-    is a social construct and not inherently better than being
-    =t(:more).punctuate
-  %p
-    They also need to be careful that they don’t enjoy the ability to
-    =t :do_less
-    so much (Lethargic Depression) that they continue the drugs or activities after the mania ends or embrace depression and never allow themselves to be
-    =t(:naturally_more).punctuate
-    They have a natural ability to
+    to start with that they find mania unbearable. Their brain is telling them to
     =t :do_more
-    that many other people envy.
+    and be
+    =t :more
+    but the world around them hasn’t changed. They get constant and unending signals both tacit and overt that they must
+    =t :do_less
+    and be
+    =t :less
+    and even though they know they “should” — they just can’t.
+    They need
+    =t :neurotransmitter
+    sedating drugs or activities in order to make it through their manias but not so much that it triggers depression.
+  %p
+    They
+    enjoy their depression. At first. Their brain is telling them to
+    =t :do_less
+    and be
+    =t :less
+    and they stop receiving the constant signals from outside telling them that they are not
+    =t :less
+    enough. Unfortunately, they are no longer relieved to have the opportunity to
+    =t :do_more
+    and to be
+    =t :more
+    and they are apt to ignore those signals until they become extreme. When the depression ends, and they no longer want to
+    =t :do_less
+    they can’t understand why they didn’t start sooner when all the signals were there. Euphoric depression tends to become less and less severe over the years, as you learn to pay attention to the signals to
+    =t(:do_more).punctuate

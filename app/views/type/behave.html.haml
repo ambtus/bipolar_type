@@ -1,24 +1,17 @@
 - content_for(:title, t(:title))
 -if t(:mbti).blank?
   %p
-    One of the most amazing things about the human race is that we are born not just helpless but malleable. Although we learn to walk and talk, we don’t do it without example and guidance.
+    One of the most amazing things about the human race is that we are born not just helpless but malleable. Although we learn to walk and talk, we don’t do it without example and guidance. The examples and guidance we get normalize us, and makes us as close to “average” as it is possible for us to be.
   %p
-    BipolarType asserts that people are
-    %em not
-    born equal, but that the examples and guidance we get normalizes us, and makes us as close to “equal” as it is possible for us to be.
-  %p
-    If you were born naturally “too much” you will get both tacit and overt messages to be less and if you were born naturally “not enough” you will get messages to be more.
-  %p
+    If you were born naturally “too much” you will get both tacit and overt signals to be less and if you were born naturally “not enough” you will get signals to be more.
     What constitutes “too much” and “not enough” is socially and culturally dependent, but the result is one of four attitudes about yourself, and your place in society.
 =render "attitudes"
 -if t(:mbti).blank?
   %h2 The Four Realms
   %p
-    Words don’t always mean the same thing to different people. BipolarType is about the patterns of behavior, not the words used to define those behaviors.
+    Words mean different things to different people and in different contexts. BipolarType is about the patterns of behavior, not the words used to define those behaviors.
   %p
     If you inspect the
     =link_to "source code", "https://github.com/ambtus/bipolar_type/blob/master/config/locales/realms.yml", :class=> "external"
-    you can see the words I chose for the four realms. The words I chose are based on the society and culture I grew up in. If they are not appropriate for the society and culture you live in, feel free to substitute your own words. 
-  %p
-    Also, I am not a psychopharmacologist and the neurotransmitters and neurohormone listed are only my best guesses based on my own reactions to the psychotropic drugs that have been prescribed for me over the last 30 years and what I have read.
+    you can see the words I chose for the four realms I am about to describe. The words I chose are based on the society and culture I grew up in and the signals I received and didn’t receive. If they are not appropriate for the society and culture you live in, feel free to substitute your own words.
 %p=I18n.with_locale(@next) {link_to t(:title), type_path(@next)}
