@@ -1,0 +1,30 @@
+- content_for(:title, 'BipolarTypes')
+%p
+  Unlike the MBTI&reg; which says that a person is either an ISFP or an ENTJ, BipolarType asserts that everyone has an attitude in each of the four domains and thus has four four-letter subtypes.
+%p
+  For example, my BipolarType is ESTP-ISFP-ENTJ-INFJ. I am an introvert and although I have ENTJ and ESTP as BipolarType subtypes, I am neither an
+  =render "mbti", :mbti => "ESTP"
+  nor an
+  =render "mbti", :mbti => "ENTJ", :punctuate => "."
+  I have, however, self-identified as all of the following at one time or another:
+  =succeed "." do
+    -%w(ISTP ISFP INTJ INFJ).each do |type|
+      =render "mbti", :mbti => type
+%p
+  Generally speaking, introverts suffer more from mania and extroverts from depression, but BipolarType doesn’t differentiate between introverts and extroverts. An extrovert with my BipolarType would self-identify as one or all of the following:
+  =succeed "," do
+    -%w(ESTP ESFP ENTJ ENFJ).each do |type|
+      =render "mbti", :mbti => type
+  and would be neither an ISFP nor an INFJ but would still have the ESTP-ISFP-ENTJ-INFJ BipolarType.
+%p
+  Boys and girls also tend to get different messages, but again, BipolarType doesn’t differentiate based on which of the four subtypes you primarily self-identify with.
+%p
+  For example, an extroverted ESTP-ISFP-ENTJ-INFJ boy might get more “try harder” messages and self-identify as an ESTP whereas an introverted ESTP-ISFP-ENTJ-INFJ girl might get more “beware stranger” messages and self-identify as an INFJ, but both would get far more “try harder” messages than “stop fighting” messages and far more “beware strangers” than “be nice” messages and manifest similar symptoms when manic or depressed and use the same sorts of self-medication drugs and activities.
+%p
+  I do not know if all of the following are possible, as physiology and social conditioning  may interact in such a way as to prohibit some combinations, but the following is a list of all twenty-four potential BipolarTypes and the messages they have internalized.
+%ul
+  -%w{st sf nt nf}.permutation(4).each do |array|
+    %li
+      =link_to "E#{array.first.upcase}P-I#{array.second.upcase}P-E#{array.third.upcase}J-I#{array.fourth.upcase}J", type_path(array.join)
+      =render "short", :subtypes => array
+=link_to "Appendix", type_path("appendix")

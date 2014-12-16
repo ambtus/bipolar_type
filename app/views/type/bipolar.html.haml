@@ -1,15 +1,9 @@
-- content_for(:title, 'BipolarTypes')
+- content_for(:title, 'Bipolar')
 %p
-  Unlike the MBTI&reg; which says that you are either an ISFP or an ENTJ, BipolarType asserts that you can be both at the same time.
+  Mania — an increase in neurotransmitter levels — is always associated with a decreased ability to sleep, but the other symptoms which manifest depend on whether you embrace, or fight against, the increase. Similarly, depression — a decrease in neurotransmitter levels — is always associated with an increased ability to sleep — but the other symptoms which manifest depend on whether you embrace, or fight against, the decrease.
 %p
-  In fact, BipolarType asserts that everyone has a subtype in each of the four domains which depends on their relative levels of each neurotransmitter.
+  Complicating the matter, everyone uses legal (and sometimes illegal) drugs and activities to stimulate or sedate their neurotransmitters without realizing it, and these drugs and activities may aggravate or alleviate the mania or depression.
 %p
-  For example, my BipolarType is ISFP-ESTP-ENTJ-INFJ
-  which means that my
-  =I18n.with_locale(:aerobic) {t :neurotransmitter}
-  levels are the lowest and my
-  =I18n.with_locale(:interpersonal) {t :neurotransmitter}
-  levels are the highest.
-%p
-  Mania and depression interact with each subtype in a different way as your neurotransmitter levels change.
-%p=link_to "Mania", type_path("mania")
+  Further complicating the issue, few drugs or activities affect only one system in the brain, and your receptors can and will downregulate or upregulate in order maintain the status quo — even if that status is abnormal for you. 
+=render "bipolar", :subtypes => 4.times.collect{|t| "behave"}
+=link_to "BipolarTypes", type_path("bipolartypes")

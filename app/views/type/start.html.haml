@@ -5,5 +5,4 @@
   The theory is scientific (it is falsifiable) but it has not been validated by the medical, psychiatric, psychological, or type communities.
 %p
   I developed it for my own personal use and it works for me.
-%p
-  =link_to "Overview", type_path("overview")
+%p=I18n.with_locale(@next) {link_to t(:title), type_path(@next)}

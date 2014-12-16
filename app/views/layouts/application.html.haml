@@ -9,24 +9,14 @@
     %p.small
       =link_to_unless_current "Introduction", root_path
       |
-      =link_to_unless_current "Overview", type_path("overview")
+      -%w{behave st sf nt nf}.each do |locale|
+        -I18n.with_locale(locale) do
+          =link_to_unless_current t(:title), type_path(locale)
+          |
+      =link_to_unless_current "Bipolar", type_path("bipolar")
       |
-      =link_to_unless_current "Serotonin", type_path("aerobic")
+      =link_to_unless_current "BipolarTypes", type_path("bipolartypes")
       |
-      =link_to_unless_current "Dopamine", type_path("anaerobic")
-      |
-      =link_to_unless_current "Norepinephrine", type_path("cognitive")
-      |
-      =link_to_unless_current "Ocytoxin", type_path("interpersonal")
-      |
-      =link_to_unless_current "BipolarTypes", type_path("bipolar")
-      |
-      =link_to_unless_current "Mania", type_path("mania")
-      |
-      =link_to_unless_current "Depression", type_path("depression")
-      |
-      =link_to_unless_current "Recommendations", type_path("recommend")
-      |
-      =link_to_unless_current "Terminology", type_path("terms")
+      =link_to_unless_current "Appendix", type_path("appendix")
     %h1="BipolarType: " + yield(:title)
     =yield

@@ -14,10 +14,3 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
-
-
-# weird...
-ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular 'stomach', 'stomachs'
-  inflect.irregular 'down', 'down'
-end

@@ -1,0 +1,17 @@
+- content_for(:title, "E#{@subtypes.first.upcase}P-I#{@subtypes.second.upcase}P-E#{@subtypes.third.upcase}J-I#{@subtypes.fourth.upcase}J")
+%h2 Subtypes
+-I18n.with_locale(@subtypes.first) do
+  %h3="E#{t:mbti}P"
+  =render "ep"
+-I18n.with_locale(@subtypes.second) do
+  %h3="I#{t:mbti}P"
+  =render "ip"
+
+-I18n.with_locale(@subtypes.third) do
+  %h3="E#{t:mbti}J"
+  =render "ej"
+-I18n.with_locale(@subtypes.fourth) do
+  %h3="I#{t:mbti}J"
+  =render "ij"
+%h2 Bipolar Episodes
+=render "bipolar", :subtypes => @subtypes
