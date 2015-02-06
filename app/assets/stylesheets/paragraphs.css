@@ -1,3 +1,7 @@
 p.small {
   font-size: small;
 }
+p.group {
+  font-style: italic;
+  text-align: center;
+}

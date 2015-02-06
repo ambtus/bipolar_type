@@ -1,27 +1,17 @@
 class TypeController < ApplicationController
+
+  ARRAY=%w{attitudes d s n o bipolar}
+
   def show
     if params[:id].blank?
-      @next = "behave"
+      @next = ARRAY.first
       render :start
-    elsif %w{behave sf st nf nt}.include?(params[:id])
-      @next = case params[:id]
-              when "behave"
-                "sf"
-              when "sf"
-                "st"
-              when "st"
-                "nf"
-              when "nf"
-                "nt"
-              when "nt"
-                "bipolar"
-              end
-      I18n.with_locale(params[:id]) { render "behave" }
-    elsif %w{st sf nt nf}.permutation(4).map(&:join).include?(params[:id])
-      @subtypes=params[:id].scan(/../)
-      render "type"
+    elsif ARRAY[1,4].include?(params[:id])
+      @next = ARRAY[ARRAY.index(params[:id]).next]
+      I18n.with_locale(params[:id]) { render :type }
     else
-      render params[:id]
+      @next = ARRAY[ARRAY.index(params[:id]).next]
+      I18n.with_locale(params[:id]) { render params[:id] }
     end
   end
 

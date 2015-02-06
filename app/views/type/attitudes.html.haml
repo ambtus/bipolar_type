@@ -1,0 +1,26 @@
+- content_for(:title, t(:title))
+%p
+  BipolarType defines six attitudes.
+%h2 Depressed (or sedated)
+%p
+  Neurotransmitter levels are abnormally low. Natural behaviors associated with high neurotransmitter levels are absent. 
+%h2 Extrovert (EP)
+%p
+  Low neurotransmitter levels. Even when manic (or on stimulants), neurotransmitter levels don't rise above average. Behaviors associated with high neurotransmitter levels are 
+  %em learned,
+  not instinctive. 
+%h2 Introverted Extrovert (IP)
+%p
+  Moderately low neurotransmitter levels. Mania is clear and present: the individual “flips” from lower than average to higher than average. Capable of behaviors associated with both high and low levels, but the high level behaviors are more infrequent, and thus more highly prized by the individual. 
+%h2 Extroverted Introvert (EJ)
+%p
+  Moderately high neurotransmitter levels. Depression is clear and present: the individual “flips” from higher than average to lower than average. Capable of behaviors associated with both high and low levels, but the low level behaviors are more infrequent, and thus more highly prized by the individual. 
+%h2 Introvert (IJ)
+%p
+  High neurotransmitter levels. Even when depressed (or sedated), neurotransmitter levels don't fall below average. Behaviors associated with low neurotransmitter levels are 
+  %em learned,
+  not instinctive. 
+%h2 Manic (or stimulated)
+%p
+  Neurotransmitter levels are abnormally high. Natural behaviors associated with low neurotransmitter levels are absent. 
+%p=I18n.with_locale(@next) {link_to t(:title), type_path(@next)}

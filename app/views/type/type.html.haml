@@ -1,17 +1,78 @@
-- content_for(:title, "E#{@subtypes.first.upcase}P-I#{@subtypes.second.upcase}P-E#{@subtypes.third.upcase}J-I#{@subtypes.fourth.upcase}J")
-%h2 Subtypes
--I18n.with_locale(@subtypes.first) do
-  %h3="E#{t(:mbti)}P"
-  =render "ep"
--I18n.with_locale(@subtypes.second) do
-  %h3="I#{t(:mbti)}P"
-  =render "ip"
-
--I18n.with_locale(@subtypes.third) do
-  %h3="E#{t(:mbti)}J"
-  =render "ej"
--I18n.with_locale(@subtypes.fourth) do
-  %h3="I#{t(:mbti)}J"
-  =render "ij"
-%h2 Bipolar Episodes
-=render "bipolar", :subtypes => @subtypes
+- content_for(:title, t(:title))
+%h2="E#{t(:mbti)}P: low #{t(:neurotransmitter)}"
+%p
+  they never 
+  %em want
+  to
+  =t :high 
+  even when manic; most of the time they
+  =t :low
+  and depression is just more of the same. 
+%p
+  although it is much harder to
+  =t :high
+  when depressed, they are nonetheless better at it than
+  %em most
+  depressed people as it is primarily a learned behavior and not dependent on high
+  =t :neurotransmitter 
+  levels
+  =surround "(", ")" do
+    feeling
+    =t :feeling
+%h2="I#{t(:mbti)}P: moderately low #{t(:neurotransmitter)}"
+%p
+  mania — when they find it much easier to
+  =t :high
+  — is highly desired right up to the point where they realize they can no longer
+  =t :low
+  because they feel
+  =t :feeling
+  all the time
+  %p
+  depression — when all they can do is 
+  =t :low
+  and are unable to
+  =t :high
+  — is horrible. If they want to maintain their self image they will have to learn how to
+  =t :high
+  even when they don't feel
+  =t :feeling
+%h2="E#{t(:mbti)}J: moderately high #{t(:neurotransmitter)}"
+%p
+  depression — when they find it much easier to
+  =t :low
+  — is highly desired right up to the point where they realize they can no longer
+  =t :high
+  because they are not feeling
+  =t :feeling
+  enough 
+%p
+  mania — when all they can do is 
+  =t :high
+  and are unable to
+  =t :low
+  — is horrible. If they want to maintain their self image they will have to learn how to
+  =t :low
+  even when they feel
+  =t :feeling
+%h2="I#{t(:mbti)}J: high #{t(:neurotransmitter)}"
+%p
+  they never 
+  %em want
+  to
+  =t :low 
+  even when depressed; most of the time they
+  =t :high
+  and mania is just more of the same. 
+%p
+  although it is much harder to
+  =t :low
+  when manic, they are nevertheless better at it than
+  %em most
+  manic people as it is primarily a learned behavior and not dependent on low
+  =t :neurotransmitter 
+  levels 
+  =surround "(", ")" do
+    not feeling
+    =t :feeling
+%p=I18n.with_locale(@next) {link_to t(:title), type_path(@next)}

@@ -1,59 +1,38 @@
-behave:
-  mbti: ""
-  title: "Behave"
-  neurotransmitter: "Neurotransmitter"
-
-st:
-  mbti: "ST"
-  title: "Do Things"
-  neurotransmitter: "dopamine"
-  naturally_less: "content"
-  do_more: "try harder"
-  more: "competitive"
-  overdone: "aggressive"
-  naturally_more: "goal oriented"
-  do_less: "stop fighting"
-  less: "cooperative"
-  underdone: "submissive"
-
-sf:
-  mbti: "SF"
-  title: "Go Places"
-  neurotransmitter: "serotonin"
-  naturally_less: "restful"
-  do_more: "hurry up"
-  more: "active"
-  overdone: "anorexic"
-  naturally_more: "restless"
-  do_less: "sit down"
-  less: "still"
-  underdone: "fat and lazy"
-
-nt:
-  mbti: "NT"
-  title: "Influence People"
-  neurotransmitter: "norepinephrine"
-  naturally_less: "bored"
-  do_more: "answer the question"
-  more: "interested"
-  overdone: "nosy"
-  naturally_more: "curious"
-  do_less: "shut up"
-  less: "quiet"
-  underdone: "silent"
-
-nf:
-  mbti: "NF"
-  title: "Win Friends"
-  neurotransmitter: "oxytocin"
-  naturally_less: "paranoid"
-  do_more: "be nice"
-  more: "social"
-  overdone: "gullible"
-  naturally_more: "trusting"
-  do_less: "beware strangers"
-  less: "independent"
-  underdone: "antisocial"
+attitudes:
+  title: "Attitudes"
 
 bipolar:
-  title: "Bipolar"
+  title: "BipolarTypes"
+
+s:
+  title: "Serotonin"
+  neurotransmitter: "serotonin"
+  mbti: "SF"
+  low: "eat and sleep"
+  high: "get up and walk"
+  feeling: "restless"
+
+d:
+  title: "Dopamine"
+  neurotransmitter: "dopamine"
+  mbti: "ST"
+  low: "give in and submit"
+  high: "fight and win"
+  feeling: "angry"
+
+n:
+  title: "Norepinephrine"
+  neurotransmitter: "norepinephrine"
+  mbti: "NT"
+  low: "ignore small details"
+  high: "worry and fix problems"
+  feeling: "afraid"
+
+o:
+  title: "Oxytocin"
+  neurotransmitter: "oxytocin"
+  mbti: "NF"
+  low: "ignore crying babies"
+  high: "take care of people"
+  feeling: "responsible"
+  

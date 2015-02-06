@@ -1,9 +1,35 @@
-- content_for(:title, 'Bipolar')
+- content_for(:title, t(:title))
+%h2 BipolarType vs the MBTI
 %p
-  Mania — an increase in neurotransmitter levels — is always associated with a decreased ability to sleep, but the other symptoms which manifest depend on whether you embrace, or fight against, the increase. The inevitable depression — a decrease in neurotransmitter levels — is always associated with an increased ability to sleep — but the other symptoms which manifest depend on whether you embrace, or fight against, the decrease.
+  Unlike the MBTI&reg; which says that a person has only one type, BipolarType asserts that everyone has an attitude in each of the four behavioral realms and thus has four subtypes which makes up their BipolarType. 
 %p
-  Complicating the matter, everyone uses legal (and sometimes illegal) drugs and activities to stimulate or sedate their neurotransmitters without realizing it, and these drugs and activities may aggravate or alleviate the mania or depression.
+  Your MBTI true type may or not be one of your four BipolarType subtypes and you may or may not have a subtype in each of the four attitudes. 
 %p
-  Further complicating the issue, few drugs or activities affect only one system in the brain, and your receptors can and will downregulate or upregulate in order maintain the status quo — even if that status is abnormal for you.
-=render "bipolar", :subtypes => 4.times.collect{|t| "behave"}
-=link_to "BipolarTypes", type_path("bipolartypes")
+  My BipolarType is ESTP-ISFP-ENTJ-INFJ amd I currently self-identify as an MBTI
+  =render "mbti", :mbti => "ISFP", :punctuate => "."
+%p
+  I believe your overall attitude is nature (your neurotransmitter levels are innate) and I am an IP (introverted extrovert) 
+  %em overall
+  (although not in every realm), but  the behavioral realm you identify with is nurture and depends on the issues you consistently have the most trouble with. 
+%h2 BipolarType and mania
+%p
+  Mania, when your neurotransmitter levels soar, does not affect all subtypes equally. 
+%p
+  EPs and IJs are relatively unchanged although EPs may find it easier to behave “normally” which may be a relief and IJs may find “normal” behavior even
+  %em more 
+  difficult than it usually is. 
+%p
+  IPs are initially grateful, but eventually realize what everyone else has already noticed: that there is something really wrong with them and that they are acting “out of character”. (euphoric mania)
+%p
+  EJs do not act out of character, but the fact that it never ends is stressful and injurious to their self-image, and they must learn how to compensate (as IJs do) or just wait it out and hope it doesn't last too long. (irritable mania)
+%h2 BipolarType and depression
+%p
+  Depression, when your neurotransmitter levels tank, does not affect all subtypes equally. 
+%p
+  EPs and IJs are relatively unchanged although IJs may find it easier to behave “normally” which may be a relief and EPs may find “normal” behavior even
+  %em more 
+  difficult than it usually is. 
+%p
+  EJs are initially grateful, but eventually realize what everyone else has already noticed: that there is something really wrong with them and that they are acting “out of character”. (lethargic depression)
+%p
+  IPs do not act out of character, but the fact that it never ends is stressful and injurious to their self-image, and they must learn how to compensate (as EPs do) or just wait it out and hope it doesn't last too long. (agitated depression)
