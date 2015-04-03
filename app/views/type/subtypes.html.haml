@@ -1,0 +1,15 @@
+- content_for(:title, 'Sixteen Subtypes')
+%h2 Subtypes by Realm
+%ul
+  -Realm.all.each do |realm|
+    %li
+      =link_to "The Four " + realm.description + " Subtypes", type_path(realm.letter)
+      =surround "(", ")" do
+        =realm.mbti
+%h2 Subtypes by Attitude
+%ul
+  -Attitude.all.each do |attitude|
+    %li
+      =link_to "The Four " + attitude.description + " Subtypes", type_path(attitude.letter)
+      =surround "(", ")" do
+        =attitude.mbti.upcase

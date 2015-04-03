@@ -1,0 +1,16 @@
+- content_for(:title, "Choice ##{@answer.number}")
+%p
+  Choose the one statement from the following sixteen which you believe is the most true for you. 
+%table
+  %tr
+    %th
+    -Realm.all.each do |realm|
+      %th
+        =realm.description
+  -Subtype.all.in_groups_of(4).each_with_index do |group, index|
+    %tr
+      %th
+        -attitude=Attitude.all[index]
+        =attitude.description
+      -group.each do |subtype|
+        %td=link_to subtype.short, discover_path(@answer.next(subtype.letters))

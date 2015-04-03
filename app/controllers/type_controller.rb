@@ -1,17 +1,19 @@
 class TypeController < ApplicationController
 
-  ARRAY=%w{attitudes d s n o bipolar}
-
   def show
     if params[:id].blank?
-      @next = ARRAY.first
       render :start
-    elsif ARRAY[1,4].include?(params[:id])
-      @next = ARRAY[ARRAY.index(params[:id]).next]
-      I18n.with_locale(params[:id]) { render :type }
+    elsif %w{sad subtypes}.include?(params[:id])
+      render params[:id]
+    elsif %w{a b c d}.include?(params[:id])
+      @attitude=Attitude.find(params[:id])
+      render "attitude"
+    elsif %w{e f g h}.include?(params[:id])
+      @realm=Realm.find(params[:id])
+      render "realm"
     else
-      @next = ARRAY[ARRAY.index(params[:id]).next]
-      I18n.with_locale(params[:id]) { render params[:id] }
+      @type = Type.new(params[:id])
+      @basic = @type.basic
     end
   end
 

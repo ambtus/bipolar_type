@@ -8,10 +8,14 @@
   %body
     %p.small
       =link_to_unless_current "Introduction", root_path
-      -TypeController::ARRAY.each do |locale|
-        -I18n.with_locale(locale) do
-          |
-          =link_to_unless_current t(:title), type_path(locale)
+      |
+      =link_to_unless_current "SAD", type_path("sad")
+      |
+      =link_to_unless_current "My BipolarType", type_path("iaebfcgdh")
+      |
+      =link_to_unless_current "BipolarTypes", discover_path("Q1")
+      |
+      =link_to_unless_current "Subtypes", type_path("subtypes")
       |
       =link_to "Source Code", "https://github.com/ambtus/bipolar_type", :class => "external"
     %h1="BipolarType: " + yield(:title)

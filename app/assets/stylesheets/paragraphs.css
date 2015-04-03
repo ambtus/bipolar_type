@@ -1,7 +1,11 @@
 p.small {
   font-size: small;
 }
-p.group {
+p.heading {
   font-style: italic;
   text-align: center;
+}
+p.red {
+  font-style: bold;
+  color: red;
 }

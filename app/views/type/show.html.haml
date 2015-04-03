@@ -1,0 +1,26 @@
+- content_for(:title, @type.mbtis)
+%h1
+  =Realm.all.third.resources.capitalize
+  you need to
+  =Realm.all.third.consume
+  about your BipolarType in order to
+  =Realm.all.third.produce.punctuate
+%h2
+  10 crucial
+  =Realm.all.third.resources
+=render @type.basic
+%h2
+  10 less crucial, but still useful,
+  =Realm.all.third.resources
+=render @type.other
+%h1
+  =Realm.all.fourth.resources.capitalize
+  you need to
+  =Realm.all.fourth.consume
+  about your BipolarType in order to
+  =Realm.all.fourth.produce.punctuate
+-@type.subtypes.each do |subtype|
+  %h2
+    =subtype.description.punctuate(":")
+    =subtype.mbti
+  =render subtype.attitude.season, :realm => subtype.realm

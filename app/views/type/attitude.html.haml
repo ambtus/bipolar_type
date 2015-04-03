@@ -1,0 +1,28 @@
+- content_for(:title, @attitude.description)
+%h1
+  =Realm.all.third.resources.capitalize
+  you need to
+  =Realm.all.third.consume
+  about
+  =@attitude.season
+  subtypes in order to
+  =Realm.all.third.produce.punctuate
+-Realm.all.each do |realm|
+  %h2
+    5 crucial
+    =realm.realm
+    =Realm.all.third.resources
+  =render "#{@attitude.season}5", :realm => realm
+%h1
+  =Realm.all.fourth.resources.capitalize
+  you need to
+  =Realm.all.fourth.consume
+  about
+  =@attitude.season
+  subtypes in order to
+  =Realm.all.fourth.produce.punctuate
+-@attitude.subtypes.each do |subtype|
+  %h2
+    =subtype.description.punctuate(":")
+    =render "mbti", :mbti => subtype.mbti
+  =render @attitude.season, :realm => subtype.realm
