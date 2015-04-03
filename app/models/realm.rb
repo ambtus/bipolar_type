@@ -29,7 +29,7 @@ class Realm
   def organ; %w{stomach purse head heart}[@index]; end
   def full; %w{fat wealthy smart hopeful}[@index]; end
   def internal; %w{fat savings knowledge hope}[@index]; end
-  def external; %w{larder workroom database library}[@index]; end
+  def external; %w{larder workroom code library}[@index]; end
   def death; %w{starvation poverty stupidity suicide}[@index]; end
   def produce; %w{walk buy make\ decisions influence\ people}[@index]; end
 
