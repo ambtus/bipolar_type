@@ -21,7 +21,7 @@ class Realm
   def neuro; %w{serotonin dopamine GABA oxytocin}[@index]; end
   def neuro_up; neuro.slice(0).upcase + neuro.slice(1..-1); end
 
-  def realm; %w{physical financial rational motivational}[@index]; end
+  def realm; %w{physical financial rational interpersonal}[@index]; end
   def description; realm.capitalize; end
   def empty; %w{hungry purse\ pinched unsure hopeless}[@index]; end
   def consume; %w{eat work learn listen\ to}[@index]; end
