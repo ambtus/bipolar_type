@@ -10,10 +10,10 @@
   =Realm.all.third.produce.punctuate
 -Attitude.all.each do |attitude|
   %h2
-    5 crucial
+    crucial
     =attitude.season
     =Realm.all.third.resources
-  =render "#{attitude.season}5", :realm => @realm
+  =render "#{attitude.season}_rules", :realm => @realm
 %h1
   =Realm.all.fourth.resources.capitalize
   you need to
@@ -23,7 +23,5 @@
   subtypes in order to
   =Realm.all.fourth.produce.punctuate
 -@realm.subtypes.each do |subtype|
-  %h2
-    =subtype.description.punctuate(":")
-    =render "mbti", :mbti => subtype.mbti
+  %h2=@realm.send(subtype.attitude.season)
   =render subtype.attitude.season, :realm => @realm

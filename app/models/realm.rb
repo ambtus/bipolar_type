@@ -21,15 +21,15 @@ class Realm
   def neuro; %w{serotonin dopamine GABA oxytocin}[@index]; end
   def neuro_up; neuro.slice(0).upcase + neuro.slice(1..-1); end
 
-  def realm; %w{physical financial rational interpersonal}[@index]; end
+  def realm; %w{physical financial rational motivational}[@index]; end
   def description; realm.capitalize; end
   def empty; %w{hungry purse\ pinched unsure hopeless}[@index]; end
-  def consume; %w{eat work learn listen\ to}[@index]; end
+  def consume; %w{eat do remember listen\ to}[@index]; end
   def resources; %w{foods jobs rules stories}[@index]; end
   def organ; %w{stomach purse head heart}[@index]; end
   def full; %w{fat wealthy smart hopeful}[@index]; end
   def internal; %w{fat savings knowledge hope}[@index]; end
-  def external; %w{larder workroom code library}[@index]; end
+  def external; %w{larder todo\ list code library}[@index]; end
   def death; %w{starvation poverty stupidity suicide}[@index]; end
   def produce; %w{walk buy make\ decisions influence\ people}[@index]; end
 
@@ -38,4 +38,6 @@ class Realm
   def autumn(weak=false); "I am not #{full} enough"; end
   def winter(weak=false); "I am barely #{full} enough"; end
 
+  def summer_adjectives; "(fresh, energizing, temporary)"; end
+  def winter_adjectives; "(durable, reliable, timeless)"; end
 end

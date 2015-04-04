@@ -1,0 +1,4 @@
+- content_for(:title, "The Stories")
+-Subtype.all.each do |subtype|
+  %h2=subtype.realm.send(subtype.attitude.season)
+  =render subtype.attitude.season, :realm => subtype.realm

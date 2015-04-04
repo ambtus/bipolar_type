@@ -6,11 +6,11 @@
   about your BipolarType in order to
   =Realm.all.third.produce.punctuate
 %h2
-  10 crucial
+  crucial
   =Realm.all.third.resources
 =render @type.basic
 %h2
-  10 less crucial, but still useful,
+  less crucial, but still useful,
   =Realm.all.third.resources
 =render @type.other
 %h1
@@ -20,7 +20,5 @@
   about your BipolarType in order to
   =Realm.all.fourth.produce.punctuate
 -@type.subtypes.each do |subtype|
-  %h2
-    =subtype.description.punctuate(":")
-    =subtype.mbti
+  %h2=subtype.realm.send(subtype.attitude.season)
   =render subtype.attitude.season, :realm => subtype.realm

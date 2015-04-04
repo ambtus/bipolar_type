@@ -3,7 +3,7 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{sad subtypes}.include?(params[:id])
+    elsif %w{sad subtypes rules stories}.include?(params[:id])
       render params[:id]
     elsif %w{a b c d}.include?(params[:id])
       @attitude=Attitude.find(params[:id])
