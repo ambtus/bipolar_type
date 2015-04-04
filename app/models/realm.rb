@@ -31,7 +31,7 @@ class Realm
   def internal; %w{fat savings knowledge hope}[@index]; end
   def external; %w{larder todo\ list code library}[@index]; end
   def death; %w{starvation poverty stupidity suicide}[@index]; end
-  def produce; %w{walk buy make\ decisions influence\ people}[@index]; end
+  def produce; %w{walk buy\ tools make\ decisions influence\ people}[@index]; end
 
   def spring(weak=false); "I am too #{full}"; end
   def summer(weak=false); "I am not overly #{full}"; end
