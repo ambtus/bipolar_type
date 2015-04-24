@@ -2,20 +2,26 @@ class Type
 
   def initialize(string)
     @path = string
-    @basic = string.first
-    @subtypes = string[1..-1].scan(/../).collect{|x| Subtype.find(x)}
+    @realms = string.scan(/./).collect{|x| Realm.find(x)}
   end
 
-  attr_reader :path, :subtypes, :basic
+  attr_reader :path, :realms
 
-  def other; @basic == "i" ? "e" : "i"; end
+  def subtypes
+    Attitude::LETTERS.each_with_index.collect do |attitude_letter, index|
+      Subtype.find(attitude_letter + @realms[index].letter)
+    end
+  end
 
-  def mbtis; subtypes.collect{|s| s.mbti(s.basic == basic)}.join("-"); end
-  def realms; @subtypes.map(&:realm); end
 
-  def spring; realms.first; end
-  def summer; realms.second; end
-  def autumn; realms.third; end
-  def winter; realms.fourth; end
+  def mbtis; subtypes.map(&:mbti).join("-"); end
+  def opposite; Type.new(@path.reverse); end
 
+  def truetypes
+    subtypes.collect do |dominant|
+      (subtypes - [dominant]).collect do |auxiliary|
+       Truetype.new(dominant.letters+auxiliary.letters)
+      end
+    end.flatten
+  end
 end

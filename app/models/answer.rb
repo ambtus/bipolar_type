@@ -12,11 +12,6 @@ class Answer
 
   def chosen?(subtype); subtypes.include?(subtype); end
   def free?(subtype); ! subtype.wing?(subtypes); end
-  def weak?(subtype); subtypes.third == subtype; end
-
-  def basic; subtypes.first.attitude.basic; end
-
-  def basic?(subtype); subtype.attitude.basic == basic; end
 
   def next(letters);
     subtype =  Subtype.find(letters)
@@ -31,5 +26,5 @@ class Answer
     end
   end
 
-  def type_path(last); basic + (@letters + last).scan(/../).sort_by{|x| x.first}.join; end
+  def type_path(last); (@letters + last).scan(/../).sort_by{|x| x.first}.map(&:last).join; end
 end

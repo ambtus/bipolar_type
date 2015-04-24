@@ -22,7 +22,9 @@ class String
     target = self.split.first
     transformation = if target == "fat"
       "fatter"
-    elsif %w{rich smart}.include?(target)
+    elsif target == "thin"
+      "thinner"
+    elsif %w{rich poor smart stupid}.include?(target)
       target + "er"
     else
       "more " + target
@@ -45,12 +47,12 @@ class String
 
   def s
     target = self.split.first
-    transformation = if target == "go"
-      target + "es"
-    elsif target == "die"
-      target # they die => they die (not they die => he dies)
+    transformation = if target == "die"
+      target # singular they: they die => they die (not they die => he dies)
     elsif target == "are"
-      "is" # they are disproven => it is disproven
+      "is" # they are => it is
+    elsif %w{do go express}.include?(target)
+      target + "es"
     else
       target + "s"
     end
@@ -60,22 +62,28 @@ class String
   def ed
     target = self.split.first
     transformation = if target == "eat"
-      "eaten"
+      "ate"
     elsif target == "are"
-      "been"
+      "were"
     elsif target == "think"
       "thought"
     elsif target == "go"
-      "gone"
+      "went"
     elsif target == "break"
-      "broken"
-     elsif target == "buy"
+      "broke"
+    elsif target == "buy"
       "bought"
-     elsif target == "do"
-      "done"
-   elsif target.end_with?("y")
+    elsif target == "do"
+      "did"
+    elsif target == "find"
+      "found"
+    elsif target == "spend"
+      "spent"
+    elsif target == "teach"
+      "taught"
+    elsif target.end_with?("y")
       target.chop + "ied"
-   elsif target.end_with?("e")
+    elsif target.end_with?("e")
       target + "d"
     else
       target + "ed"

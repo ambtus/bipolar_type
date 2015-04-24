@@ -1,0 +1,54 @@
+- content_for(:title, "Choice ##{@answer.number}")
+%p
+  -if @answer.number == 1
+    A BipolarType is one choice from each row and column.
+  -if @answer.number == 2
+    Links which are bold will not reset your previous (green) choice.
+  -if [3, 4].include?(@answer.number)
+    Links which are bold will not reset some of your previous (green) choices.
+  -if @answer.number ==  4
+    The remaining bold link will take you to the full desciption for one of the 24 BipolarTypes. If you don’t like the result, feel free to come back and change your answers.
+
+%table
+  %tr
+    %th &nbsp;
+    -Realm.all.each_with_index do |realm, index|
+      -if index == 2
+        %th Generic
+      %th=realm.description
+  -Subtype.all.in_groups_of(4).each_with_index do |group, index|
+    -if index == 2
+      %tr
+        %th Average
+        -Realm.all.each_with_index do |realm, index|
+          -if index == 2
+            %td
+              %em three average-sized units
+          %td
+            %em=realm.short
+    %tr
+      -attitude=Attitude.all[index]
+      %th=attitude.description
+      -group.each_with_index do |subtype, index|
+        -if index == 2
+          %td
+            %em=attitude.short
+        %td
+          -if @answer.chosen?(subtype)
+            %span.green
+              =subtype.short
+              =surround "(", ")" do
+                =subtype.mbti
+          -elsif @answer.free?(subtype)
+            - if @answer.number < 4
+              %b=link_to subtype.short, discover_path(@answer.next(subtype.letters))
+            -else
+              %b
+                =link_to subtype.short, type_path(@answer.type_path(subtype.letters))
+                =surround "(", ")" do
+                  =subtype.mbti
+          -else
+            =link_to subtype.short, discover_path(@answer.next(subtype.letters))
+
+-unless @answer.number == 1
+  %p=link_to "Start over", discover_path("Q1")

@@ -1,27 +1,6 @@
-- content_for(:title, @realm.description)
-=render "realm", :realm => @realm
-%h1
-  =Realm.all.third.resources.capitalize
-  you need to
-  =Realm.all.third.consume
-  about
-  =@realm.realm
-  subtypes in order to
-  =Realm.all.third.produce.punctuate
--Attitude.all.each do |attitude|
-  %h2
-    crucial
-    =attitude.season
-    =Realm.all.third.resources
-  =render "#{attitude.season}_rules", :realm => @realm
-%h1
-  =Realm.all.fourth.resources.capitalize
-  you need to
-  =Realm.all.fourth.consume
-  about
-  =@realm.realm
-  subtypes in order to
-  =Realm.all.fourth.produce.punctuate
+- content_for(:title, @realm.description_with_mbti)
+%p=render "realm", :realm => @realm
 -@realm.subtypes.each do |subtype|
-  %h2=@realm.send(subtype.attitude.season)
-  =render subtype.attitude.season, :realm => @realm
+  %h2=subtype.description_with_mbti
+  %p=render "subtype", :subtype => subtype
+  =render subtype.attitude.adjective, :subtype => subtype

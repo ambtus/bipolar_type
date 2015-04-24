@@ -1,24 +1,26 @@
 - content_for(:title, @type.mbtis)
-%h1
-  =Realm.all.third.resources.capitalize
-  you need to
-  =Realm.all.third.consume
-  about your BipolarType in order to
-  =Realm.all.third.produce.punctuate
-%h2
-  crucial
-  =Realm.all.third.resources
-=render @type.basic
-%h2
-  less crucial, but still useful,
-  =Realm.all.third.resources
-=render @type.other
-%h1
-  =Realm.all.fourth.resources.capitalize
-  you need to
-  =Realm.all.fourth.consume
-  about your BipolarType in order to
-  =Realm.all.fourth.produce.punctuate
+%h2 Subtypes
 -@type.subtypes.each do |subtype|
-  %h2=subtype.realm.send(subtype.attitude.season)
-  =render subtype.attitude.season, :realm => subtype.realm
+  %h3=subtype.description_with_mbti
+  %p
+    =render "subtype", :subtype => subtype
+    An average adult
+    =subtype.realm.short.s.punctuate
+    =render subtype.attitude.adjective, :subtype => subtype
+%h2 BipolarType vs the MBTI&reg;
+%p
+  Every BipolarType is associated with twelve four letter types. A type is made up of a dominant function, and an auxiliary function. Some types match the MBTI whole types better than others, and some don’t fit at all.
+%dl
+  -@type.truetypes.each do |truetype|
+    %dt=render "mbti", :mbti => truetype.mbti
+    %dd
+      Dominant
+      =truetype.dominant.mbti
+      with Auxiliary
+      =truetype.auxiliary.mbti.punctuate(":")
+      loves to
+      =truetype.love
+      and likes to
+      =truetype.like
+      but not as interested in
+      =truetype.indifferent.map(&:ing).join(" or ")
