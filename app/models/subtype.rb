@@ -37,25 +37,42 @@ class Subtype
   def mbti; [@attitude.mbti, @realm.mbti].join.mbti_order; end
   def description_with_mbti; "#{description} (#{mbti})"; end
 
-  delegate :consume, :energy, :average, :median, :produce, :produce_we, :things, :unproduced, :unit, :full, :empty, :adjective, :shorter, to: :realm
+  #delegate :get, :energy, :etc, to: :realm
+  # delegate is cleaner but too hard to maintain at the moment
+  def method_missing(sym, *args, &block)
+    @realm.send sym, *args, &block
+  end
+  def chunks; number == 1 ? chunk : chunk.pluralize; end
+  def energy_chunks; number == 1 ? energy_chunk : energy_chunk.pluralize; end
 
   def number; attitude.send(realm.adjective); end
-  def amount; realm.send(attitude.adjective); end
-  def total; number*amount; end
-  def rounded; Float("%.1g" % (total)).to_i; end # Subtype.all.map(&:rounded).uniq.size < 5
+  def number_chunks; [number.word, chunks].join(" "); end
+  def size; realm.send(attitude.adjective); end
+  def size_chunks; [size, energy_chunks].join("-"); end
 
-  def units; number == 1 ? @realm.unit : @realm.unit.pluralize; end
-  def energy_units; number == 1 ? @realm.energy_unit : @realm.energy_unit.pluralize; end
+  def too_much; @attitude.index < 2 ? median_chunks * size : median_size * number; end
+  def too_few; @attitude.index < 2 ? median_size * number : median_chunks * size ; end
 
-  def averaged
-    if @attitude.index < 2
-      median * amount
-    else
-      number * average
-    end
+  def just_right; number*size; end
+  # if the numbers are all more or less equivalent then the following is true
+  # Subtype.all.map(&:rounded).uniq.size < 5
+  def rounded; Float("%.1g" % (just_right)).to_i; end
+
+  # best for the subtype
+  def act_best; "#{get} #{number.word} #{size_chunks}"; end
+
+  # for the discovery
+  def choice
+    case @attitude.index
+    when 0
+      "usually #{full} enough"
+    when 1
+      "too #{full}"
+    when 2
+      "too #{empty}"
+    when 3
+      "usually #{empty} enough"
+   end
   end
 
-  def amount_units; [amount, energy_units].join("-"); end
-  def number_units; [number.word, amount_units].join(" "); end
-  def short; "#{consume} #{number_units}"; end
 end

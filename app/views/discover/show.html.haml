@@ -12,43 +12,29 @@
 %table
   %tr
     %th &nbsp;
-    -Realm.all.each_with_index do |realm, index|
-      -if index == 2
-        %th Generic
+    -Realm.all.each do |realm|
       %th=realm.description
   -Subtype.all.in_groups_of(4).each_with_index do |group, index|
-    -if index == 2
-      %tr
-        %th Average
-        -Realm.all.each_with_index do |realm, index|
-          -if index == 2
-            %td
-              %em three average-sized units
-          %td
-            %em=realm.short
+    -attitude=Attitude.all[index]
     %tr
-      -attitude=Attitude.all[index]
       %th=attitude.description
-      -group.each_with_index do |subtype, index|
-        -if index == 2
-          %td
-            %em=attitude.short
+      -group.each do |subtype|
         %td
           -if @answer.chosen?(subtype)
             %span.green
-              =subtype.short
+              =subtype.choice
               =surround "(", ")" do
                 =subtype.mbti
           -elsif @answer.free?(subtype)
             - if @answer.number < 4
-              %b=link_to subtype.short, discover_path(@answer.next(subtype.letters))
+              %b=link_to subtype.choice, discover_path(@answer.next(subtype.letters))
             -else
               %b
-                =link_to subtype.short, type_path(@answer.type_path(subtype.letters))
+                =link_to subtype.choice, type_path(@answer.type_path(subtype.letters))
                 =surround "(", ")" do
                   =subtype.mbti
           -else
-            =link_to subtype.short, discover_path(@answer.next(subtype.letters))
+            =link_to subtype.choice, discover_path(@answer.next(subtype.letters))
 
 -unless @answer.number == 1
   %p=link_to "Start over", discover_path("Q1")

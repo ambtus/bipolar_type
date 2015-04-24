@@ -1,5 +1,12 @@
 - content_for(:title, @realm.description_with_mbti)
-%p=render "realm", :realm => @realm
+%p
+  A “normal”
+  =@realm.description
+  =@realm.act_normally.s
+  and
+  =@realm.use.s
+  =(@realm.median_chunks * @realm.median_size).word
+  =@realm.energy.pluralize.punctuate
 -@realm.subtypes.each do |subtype|
   %h2=subtype.description_with_mbti
   %p=render "subtype", :subtype => subtype

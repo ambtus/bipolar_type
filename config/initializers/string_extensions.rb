@@ -24,7 +24,7 @@ class String
       "fatter"
     elsif target == "thin"
       "thinner"
-    elsif %w{rich poor smart stupid}.include?(target)
+    elsif %w{rich poor smart stupid loud quiet}.include?(target)
       target + "er"
     else
       "more " + target
@@ -65,6 +65,10 @@ class String
       "ate"
     elsif target == "are"
       "were"
+     elsif target == "say"
+      "said"
+   elsif target == "hear"
+      "heard"
     elsif target == "think"
       "thought"
     elsif target == "go"

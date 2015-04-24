@@ -13,7 +13,6 @@ class Type
     end
   end
 
-
   def mbtis; subtypes.map(&:mbti).join("-"); end
   def opposite; Type.new(@path.reverse); end
 

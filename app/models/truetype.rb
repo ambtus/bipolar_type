@@ -14,7 +14,7 @@ class Truetype
 
   def mbti; (dominant.mbti + auxiliary.realm.mbti).mbti_order; end
 
-  def love; dominant.shorter; end
-  def like; auxiliary.shorter; end
-  def indifferent; non_realms.map(&:shorter) ;end
+  def love; dominant.act; end
+  def like; auxiliary.act; end
+  def indifferent; non_realms.map(&:act) ;end
 end

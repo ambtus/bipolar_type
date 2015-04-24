@@ -1,15 +1,13 @@
 - content_for(:title, @attitude.description_with_mbti)
 %p
-  A stable generic
-  =@attitude.description
-  needs
-  =@attitude.short
-  =@attitude.units
-  to get the three required units.
+  =@attitude.description.pluralize
+  use
+  =@attitude.generic_chunks
+  to get the three chunks they require.
 -@attitude.subtypes.each do |subtype|
   %h2=subtype.description_with_mbti
   %p
     =render "subtype", :subtype => subtype
-    An average adult
-    =subtype.realm.short.s.punctuate
+    A “normal” adult
+    =subtype.act_normally.s.punctuate
     =render subtype.attitude.adjective, :subtype => subtype
