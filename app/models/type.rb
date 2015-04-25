@@ -23,4 +23,12 @@ class Type
     return false if mbti?
     (dominant.mbti + tertiary.realm.mbti).mbti_order
   end
+
+  DYNAMICS = %w{IFP ISJ ITP INJ ESP EFJ ETJ ENP}
+
+  def dynamic?
+    return false unless DYNAMICS.include?(dominant.mbti)
+    return false unless DYNAMICS.include?(auxiliary.mbti)
+    dominant.mbti.last == auxiliary.mbti.last
+  end
 end

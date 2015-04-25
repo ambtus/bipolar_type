@@ -37,7 +37,7 @@
   =render subtype.attitude.adjective, :subtype => subtype
 %h2 BipolarType vs the MBTI&reg;
 %p
-  Some BipolarType types match the MBTI type dynamics better than others, and some don’t match an MBTI type at all. The four letter type for this BipolarType
+  The four letter type for this BipolarType is
   =render "mbti", :mbti => @type.mbti
   which
   =@type.mbti? ? "is" : "is not"
@@ -45,3 +45,7 @@
   -if @type.closest
     The MBTI type closest to this BipolarType is
     =render "mbti", :mbti => @type.closest, :punctuate => "."
+  -else
+    It
+    =@type.dynamic? ? "even fits well" : "does not, however, fit"
+    into the MBTI type dynamic theory.

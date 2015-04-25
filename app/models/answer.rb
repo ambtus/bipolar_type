@@ -12,6 +12,9 @@ class Answer
 
   def chosen?(subtype); subtypes.include?(subtype); end
   def free?(subtype); ! subtype.wing?(subtypes); end
+  def love?(subtype); subtypes.first == subtype; end
+  def like?(subtype); subtypes.second == subtype; end
+  def okay?(subtype); subtypes.third == subtype; end
 
   def next(letters);
     subtype =  Subtype.find(letters)
