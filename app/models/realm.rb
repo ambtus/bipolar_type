@@ -18,7 +18,7 @@ class Realm
   def neuro_up; neuro.slice(0).upcase + neuro.slice(1..-1); end
 
   def mbti; %w{T S N F}[@index]; end
-  def adjective; %w{financial physical cognitive motivational}[@index]; end
+  def adjective; %w{financial physical cognitive verbal}[@index]; end
   def sick; %w{poor hungry unsure suicidal}[@index]; end
   def death; %w{poverty starvation stupidity suicide}[@index]; end
   def description; adjective.capitalize; end

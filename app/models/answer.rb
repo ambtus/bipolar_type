@@ -26,5 +26,5 @@ class Answer
     end
   end
 
-  def type_path(last); (@letters + last).scan(/../).sort_by{|x| x.first}.map(&:last).join; end
+  def type_path(last); (@letters + last); end
 end

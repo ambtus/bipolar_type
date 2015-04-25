@@ -1,23 +1,47 @@
 - content_for(:title, @type.mbtis)
 %p
-  =@type.subtypes.map(&:choice).to_sentence.capitalize.punctuate
+  They love to
+  =@type.dominant.act
+  and find it difficult to avoid
+  %em=@type.dominant.react("more").punctuate("!")
+  signals; they are the most apt to suffer from
+  =@type.dominant.adjective
+  mania.
+%p
+  Although they like to
+  =@type.auxiliary.act.punctuate(",")
+  they find it a little easier to avoid
+  %em=@type.auxiliary.react("more").punctuate("!")
+  signals and are a little less apt to suffer from
+  =@type.auxiliary.adjective
+  mania.
+%p
+  They find it a little easier to avoid
+  %em=@type.tertiary.react("more").punctuate("!")
+  signals and
+  =@type.tertiary.adjective
+  mania, because they will have to
+  =@type.tertiary.act("more").punctuate(",")
+  which they don’t always want to do.
+%p
+  They find it easiest to avoid
+  %em=@type.inferior.react("more").punctuate("!")
+  signals and
+  =@type.inferior.adjective
+  mania, because they will have to
+  =@type.inferior.act("more").punctuate(",")
+  which they rarely want to do.
 -@type.subtypes.each do |subtype|
   %h2=subtype.description_with_mbti
+  %p.heading=subtype.choice
   =render subtype.attitude.adjective, :subtype => subtype
 %h2 BipolarType vs the MBTI&reg;
 %p
-  Every BipolarType is associated with twelve four letter types. A type is made up of a dominant function, and an auxiliary function. Some types match the MBTI whole types better than others, and some don’t fit at all.
-%dl
-  -@type.truetypes.each do |truetype|
-    %dt=render "mbti", :mbti => truetype.mbti
-    %dd
-      Dominant
-      =truetype.dominant.mbti
-      with Auxiliary
-      =truetype.auxiliary.mbti.punctuate(":")
-      loves to
-      =truetype.love
-      and likes to
-      =truetype.like
-      but not as interested in
-      =truetype.indifferent.map(&:ing).join(" or ")
+  Some BipolarType types match the MBTI type dynamics better than others, and some don’t match an MBTI type at all. The four letter type for this BipolarType
+  =render "mbti", :mbti => @type.mbti
+  which
+  =@type.mbti? ? "is" : "is not"
+  an actual MBTI type.
+  -if @type.closest
+    The MBTI type closest to this BipolarType is
+    =render "mbti", :mbti => @type.closest, :punctuate => "."
