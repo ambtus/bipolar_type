@@ -18,14 +18,14 @@ class Realm
   def neuro_up; neuro.slice(0).upcase + neuro.slice(1..-1); end
 
   def mbti; %w{T S N F}[@index]; end
-  def adjective; %w{financial physical cognitive interpersonal}[@index]; end
+  def adjective; %w{financial physical cognitive motivational}[@index]; end
   def sick; %w{poor hungry unsure suicidal}[@index]; end
   def death; %w{poverty starvation stupidity suicide}[@index]; end
   def description; adjective.capitalize; end
   def description_with_mbti; "#{description} (#{mbti})"; end
 
-  def full; %w{rich fat factual submissive}[@index]; end
-  def empty; %w{indebted thin hypothetical dominant}[@index]; end
+  def full; %w{rich fat factual optimistic}[@index]; end
+  def empty; %w{indebted thin hypothetical pessimistic  }[@index]; end
 
   # size of chunks
   # make the numbers look reasonable and equivalent
@@ -39,7 +39,7 @@ class Realm
   def hypomanic; over * 3; end
   def manic; bursty * 3; end
 
-  def energy; %w{dollar kcal piece viewpoint}[@index]; end
+  def energy; %w{dollar kcal piece happy-ending}[@index]; end
   def energies; energy.pluralize; end
   def chunk; %w{paid-hour meal puzzle story}[@index]; end
   def chunks; chunk.pluralize; end

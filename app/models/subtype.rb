@@ -71,13 +71,13 @@ class Subtype
   def choice
     case @attitude.index
     when 0
-      "rarely #{empty}"
+      "rarely too #{empty}"
     when 1
       "usually too #{full}"
     when 2
       "usually too #{empty}"
     when 3
-      "rarely #{full}"
+      "rarely too #{full}"
    end
   end
 
