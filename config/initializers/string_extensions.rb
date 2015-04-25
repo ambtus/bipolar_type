@@ -36,6 +36,8 @@ class String
     target = self.split.first
     transformation = if target == "die"
       "dying"
+    elsif %w{fit put}.include?(target)
+      target + "ting"
     elsif target.end_with?("e")
       target.chop + "ing"
     else

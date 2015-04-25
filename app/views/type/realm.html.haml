@@ -1,13 +1,8 @@
 - content_for(:title, @realm.description_with_mbti)
-%p
-  A “normal”
+%h2
   =@realm.description
-  =@realm.act_normally.s
-  and
-  =@realm.use.s
-  =(@realm.median_chunks * @realm.median_size).word
-  =@realm.energy.pluralize.punctuate
+  Mania and Depression
+%p=render "normal", :realm => @realm
 -@realm.subtypes.each do |subtype|
   %h2=subtype.description_with_mbti
-  %p=render "subtype", :subtype => subtype
   =render subtype.attitude.adjective, :subtype => subtype

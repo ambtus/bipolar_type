@@ -37,41 +37,47 @@ class Subtype
   def mbti; [@attitude.mbti, @realm.mbti].join.mbti_order; end
   def description_with_mbti; "#{description} (#{mbti})"; end
 
-  #delegate :get, :energy, :etc, to: :realm
-  # delegate is cleaner but too hard to maintain at the moment
+  delegate :number, to: :attitude
+
+  # delegate everything else to realm
   def method_missing(sym, *args, &block)
     @realm.send sym, *args, &block
   end
-  def chunks; number == 1 ? chunk : chunk.pluralize; end
-  def energy_chunks; number == 1 ? energy_chunk : energy_chunk.pluralize; end
 
-  def number; attitude.send(realm.adjective); end
+  def energy_chunks; number == 1 ? energy_chunk : energy_chunk.pluralize; end
+  def chunks; number == 1 ? chunk : chunk.pluralize; end
+
   def number_chunks; [number.word, chunks].join(" "); end
   def size; realm.send(attitude.adjective); end
   def size_chunks; [size, energy_chunks].join("-"); end
 
-  def too_much; @attitude.index < 2 ? median_chunks * size : median_size * number; end
-  def too_few; @attitude.index < 2 ? median_size * number : median_chunks * size ; end
-
-  def just_right; number*size; end
-  # if the numbers are all more or less equivalent then the following is true
-  # Subtype.all.map(&:rounded).uniq.size < 5
-  def rounded; Float("%.1g" % (just_right)).to_i; end
+  def too_much; @attitude.index < 2 ? 3 * size : median_size * number; end
+  def too_few; @attitude.index < 2 ? median_size * number : 3 * size ; end
+  def just_right; (number*size).to_i; end
+  # check that the numbers are all within the same ballpark
+  def Subtype.check_equivalencies
+    Realm.all.each do |realm|
+     print realm.subtypes.map(&:just_right)
+     print " "
+     puts realm.median_size * 3
+    end;true
+  end
 
   # best for the subtype
-  def act_best; "#{get} #{number.word} #{size_chunks}"; end
+  def natural_chunks; "#{number.word} #{size_chunks}".squish; end
+  def act_naturally(modifier=""); "#{get} #{modifier} #{natural_chunks} a day".squish; end
 
   # for the discovery
   def choice
     case @attitude.index
     when 0
-      "usually #{full} enough"
+      "rarely #{empty}"
     when 1
-      "too #{full}"
+      "usually too #{full}"
     when 2
-      "too #{empty}"
+      "usually too #{empty}"
     when 3
-      "usually #{empty} enough"
+      "rarely #{full}"
    end
   end
 

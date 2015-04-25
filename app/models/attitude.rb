@@ -26,13 +26,9 @@ class Attitude
   # number of chunks
   # make the numbers look reasonable and all equal about the same
   # when multiplied by the realm.send(attitude)
-  def physical; [1, 2, 4, 6][@index]; end # median_chunks 3
-  def interpersonal; [1, 2, 4, 8][@index]; end # median_chunks 3
-  def cognitive; [1, 2, 7, 20][@index]; end # median_chunks 4
-  def financial; [1, 4, 10, 12][@index]; end # median_chunks 8
-
-  def size; %w{triple 150% 75% half}[@index]; end
-  def chunks; adjective == "bursty" ? "chunk" : "chunks"; end
-  def generic_chunks; "#{physical.word} #{size}-sized #{chunks}"; end
+  def number; [1, 2, 4, 6][@index]; end # median 3
+  def size; %w{triple 150% 75% half}[@index]; end # median 100%
+  def chunks; number == 1 ? "chunk" : "chunks"; end
+  def number_chunks; "#{number.word} #{size}-sized #{chunks}"; end
 
 end

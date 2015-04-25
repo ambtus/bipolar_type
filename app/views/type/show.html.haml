@@ -1,12 +1,9 @@
 - content_for(:title, @type.mbtis)
-%h2 Subtypes
+%p
+  =@type.subtypes.map(&:choice).to_sentence.capitalize.punctuate
 -@type.subtypes.each do |subtype|
-  %h3=subtype.description_with_mbti
-  %p
-    =render "subtype", :subtype => subtype
-    A “normal” adult
-    =subtype.act_normally.s.punctuate
-    =render subtype.attitude.adjective, :subtype => subtype
+  %h2=subtype.description_with_mbti
+  =render subtype.attitude.adjective, :subtype => subtype
 %h2 BipolarType vs the MBTI&reg;
 %p
   Every BipolarType is associated with twelve four letter types. A type is made up of a dominant function, and an auxiliary function. Some types match the MBTI whole types better than others, and some don’t fit at all.
