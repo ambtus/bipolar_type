@@ -14,7 +14,7 @@ class Realm
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
 
-  def neuro; %w{serotonin dopamine GABA oxytocin}[@index]; end
+  def neuro; %w{dopamine serotonin GABA oxytocin}[@index]; end
   def neuro_up; neuro.slice(0).upcase + neuro.slice(1..-1); end
 
   def mbti; %w{T S N F}[@index]; end
