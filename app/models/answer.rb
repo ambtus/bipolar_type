@@ -8,13 +8,20 @@ class Answer
 
   def number; @question.last.to_i ; end
 
-  def subtypes; @letters.scan(/../).collect{|x| Subtype.find(x)}; end
+  def subtypes; @letters.scan(/.../).collect{|x| Subtype.find(x)}; end
 
-  def chosen?(subtype); subtypes.include?(subtype); end
+  def attitude_realms; subtypes.map(&:attitude_realm); end
+
+  def choices
+    Preference.all[number - 1].subtypes.collect do |subtype|
+      chosen?(subtype) ? chosen(subtype) : subtype
+    end
+  end
+
+  def chosen?(subtype); attitude_realms.include?(subtype.attitude_realm); end
+  def chosen(subtype); subtypes.select{|s| s.attitude_realm == subtype.attitude_realm}.first; end
+
   def free?(subtype); ! subtype.wing?(subtypes); end
-  def love?(subtype); subtypes.first == subtype; end
-  def like?(subtype); subtypes.second == subtype; end
-  def okay?(subtype); subtypes.third == subtype; end
 
   def next(letters);
     subtype =  Subtype.find(letters)

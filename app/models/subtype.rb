@@ -1,14 +1,15 @@
 class Subtype
-  LETTERS = (Attitude::LETTERS.product(Realm::LETTERS)).map(&:join)
+  LETTERS = Preference::LETTERS.product((Attitude::LETTERS.product(Realm::LETTERS))).map(&:join)
 
   def initialize(string)
     @index = LETTERS.index(string)
     raise "#{string} isn't a Subtype" unless @index
     @letters = string
-    @attitude = Attitude.find(letters.first)
-    @realm = Realm.find(letters.last)
+    @preference = Preference.find(letters[0])
+    @attitude = Attitude.find(letters[1])
+    @realm = Realm.find(letters[2])
   end
-  attr_reader :letters, :attitude, :realm
+  attr_reader :letters, :preference, :attitude, :realm
 
   SUBTYPES = LETTERS.collect{|choice| Subtype.new(choice)}
   def self.all; SUBTYPES; end
@@ -24,51 +25,49 @@ class Subtype
     return false
   end
 
-  def description
-   [
-    attitude.ed,
-    realm.adjective,
-    attitude.vert,
-   ].map(&:capitalize).join(" ")
-  end
-
-  def description; [attitude.description, realm.description].join; end
+  def description; [preference.description, attitude.adjective, realm.description, attitude.noun].join; end
 
   def mbti; [@attitude.mbti, @realm.mbti].join.mbti_order; end
   def description_with_mbti; "#{description} (#{mbti})"; end
 
-  delegate :number, to: :attitude
+  delegate :get?, :get_how_many, :get_what, :use_how_many, :use_what, to: :attitude
 
   # delegate everything else to realm
   def method_missing(sym, *args, &block)
     @realm.send sym, *args, &block
   end
 
-  def energy_chunks; number == 1 ? energy_chunk : energy_chunk.pluralize; end
-  def chunks; number == 1 ? chunk : chunk.pluralize; end
-
-  def number_chunks; [number.word, chunks].join(" "); end
-  def size; realm.send(attitude.adjective); end
-  def size_chunks; [size, energy_chunks].join("-"); end
-
-  def too_much; @attitude.index < 2 ? 3 * size : median_size * number; end
-  def too_few; @attitude.index < 2 ? median_size * number : 3 * size ; end
-  def just_right; (number*size).to_i; end
-  # check that the numbers are all within the same ballpark
-  def Subtype.check_equivalencies
+  def get_daily; get_how_many * realm.send(get_what); end
+  def use_daily; use_how_many * realm.send(use_what); end
+  def daily_difference; get_daily - use_daily; end
+  # check that the numbers all look right
+  def Subtype.check_numbers
     Realm.all.each do |realm|
-     print realm.subtypes.map(&:just_right)
-     print " "
-     puts realm.median_size * 3
-    end;true
+     print realm.medium * 2
+     print realm.subtypes.map(&:get_daily)
+     print realm.subtypes.map(&:use_daily)
+     print realm.subtypes.map(&:daily_difference)
+     puts ""
+     end;true
   end
 
-  # best for the subtype
-  def natural_chunks; "#{number.word} #{size_chunks}".squish; end
-  def act_naturally(modifier=""); "#{get} #{modifier} #{natural_chunks} a day".squish; end
+  def get_or_use; get? ? realm.get : realm.use; end
+  def get_or_use_resources; [get_or_use, generic_resources].join(" "); end
 
-  # for the discovery
-  def choice
+  def preference_attitude
+    case @preference.index
+    when 0
+      "love to #{get_or_use_resources}"
+    when 1
+      "like to #{get_or_use_resources}"
+    when 2
+      "don’t mind #{get_or_use_resources.ing}"
+    when 3
+      "can sometimes #{get_or_use_resources}"
+   end
+  end
+
+  def attitude_realm
     case @attitude.index
     when 0
       "rarely too #{empty}"
@@ -80,5 +79,8 @@ class Subtype
       "rarely too #{full}"
    end
   end
+
+  # for the discovery
+  def choice; "I #{preference_attitude} and I am #{attitude_realm}"; end
 
 end

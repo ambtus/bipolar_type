@@ -1,38 +1,17 @@
 - content_for(:title, "Choice ##{@answer.number}")
-%p
-  -if @answer.number == 1
-    A BipolarType is one choice from each row and column.
-  -if @answer.number == 2
-    Links which are bold will not reset your previous (green) choice.
-  -if @answer.number == 3
-    Links which are bold will not reset your previous (green) choices.
-  -if @answer.number ==  4
-    The remaining bold link will take you to the full description for one of the 576 BipolarTypes, the other links will reset (some of) your previous answers. 
-    If you don’t like the result, feel free to come back and change your answers.
-    Or you can
-    =link_to "start over", discover_path("Q1")
-    now that you can see how the choices work.
 %table
   %tr
     %th &nbsp;
     -Realm.all.each do |realm|
-      %th=realm.description
-  -Subtype.all.in_groups_of(4).each_with_index do |group, index|
+      %th=realm.mbti
+  -@answer.choices.in_groups_of(4).each_with_index do |group, index|
     -attitude=Attitude.all[index]
     %tr
-      %th=attitude.description
+      %th=attitude.mbti
       -group.each do |subtype|
         %td
           -if @answer.chosen?(subtype)
             %span.green
-              -if @answer.love?(subtype)
-                I love to
-              -if @answer.like?(subtype)
-                I like to
-              -if @answer.okay?(subtype)
-                I sometimes like to
-              =subtype.act.punctuate(";")
-              I am
               =subtype.choice
               =surround "(", ")" do
                 =subtype.mbti
@@ -41,9 +20,6 @@
               %b=link_to subtype.choice, discover_path(@answer.next(subtype.letters))
             - if @answer.number == 4
               %b
-                I often do not like to
-                =subtype.act.punctuate(";")
-                I am
                 =link_to subtype.choice, type_path(@answer.type_path(subtype.letters))
                 =surround "(", ")" do
                   =subtype.mbti

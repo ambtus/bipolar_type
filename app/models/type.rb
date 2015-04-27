@@ -2,7 +2,7 @@ class Type
 
   def initialize(string)
     @path = string
-    @subtypes = string.scan(/../).collect{|x| Subtype.find(x)}
+    @subtypes = string.scan(/.../).collect{|x| Subtype.find(x)}
   end
 
   attr_reader :path, :subtypes

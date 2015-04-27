@@ -1,15 +1,24 @@
-- content_for(:title, 'Sixteen Subtypes')
-%h2 Subtypes by Realm
+- content_for(:title, 'The Theory')
+%p
+  Every BipolarType is made up of four non-overlapping subtypes. Each subtype is made up of three aspects. Thus every BipolarType will have each of the following twelve aspects.
+%h2 The Four Realms
 %ul
   -Realm.all.each do |realm|
     %li
-      =link_to "The Four " + realm.description + " Subtypes", type_path(realm.letter)
+      =link_to realm.description, theory_path(realm.letter)
       =surround "(", ")" do
         =realm.mbti
-%h2 Subtypes by Attitude
+%h2 The Four Attitudes
 %ul
   -Attitude.all.each do |attitude|
     %li
-      =link_to "The Four " + attitude.description + " Subtypes", type_path(attitude.letter)
+      =link_to attitude.description, theory_path(attitude.letter)
       =surround "(", ")" do
-        =attitude.mbti.upcase
+        =attitude.mbti
+%h2 The Four Preferences
+%ul
+  -Preference.all.each do |preference|
+    %li
+      =link_to preference.description, theory_path(preference.letter)
+      =surround "(", ")" do
+        =preference.mbti

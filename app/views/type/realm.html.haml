@@ -1,8 +1,0 @@
-- content_for(:title, @realm.description_with_mbti)
-%h2
-  =@realm.description
-  Mania and Depression
-%p=render "normal", :realm => @realm
--@realm.subtypes.each do |subtype|
-  %h2=subtype.description_with_mbti
-  =render subtype.attitude.adjective, :subtype => subtype

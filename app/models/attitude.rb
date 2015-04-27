@@ -19,16 +19,18 @@ class Attitude
   def previous; Attitude.all[(@index + 3).modulo(4)]; end
 
   def mbti; %w{EP IP EJ IJ}[@index]; end
-  def adjective; %w{bursty over under steady}[@index]; end
-  def description; adjective.capitalize; end
+  def adjective; @index.even? ? "Extroverted" : "Introverted"; end
+  def noun; @index < 2 ? "Extrovert" : "Introvert"; end
+  def description; [adjective, noun].join; end
   def description_with_mbti; "#{description} (#{mbti})"; end
 
-  # number of chunks
-  # make the numbers look reasonable and all equal about the same
-  # when multiplied by the realm.send(attitude)
-  def number; [1, 2, 4, 6][@index]; end # median 3
-  def size; %w{triple 150% 75% half}[@index]; end # median 100%
-  def chunks; number == 1 ? "chunk" : "chunks"; end
-  def number_chunks; "#{number.word} #{size}-sized #{chunks}"; end
+  # used in Subtype.check_numbers
+  # must match the phrases in realm.rb
+  def get_how_many; [1, 2, 2, 3][@index]; end
+  def get_what; %w{large large medium small}[@index]; end
+  def use_how_many; [3, 2, 2, 1][@index]; end
+  def use_what; %w{small medium large large}[@index]; end
+
+  def get?; @index < 2 ? true : false; end
 
 end

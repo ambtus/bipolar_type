@@ -1,9 +1,0 @@
-- content_for(:title, @attitude.description_with_mbti)
-%p
-  =@attitude.description.pluralize
-  prefer
-  =@attitude.number_chunks
-  to get the three chunks a day they need.
--@attitude.subtypes.each do |subtype|
-  %h2=subtype.description_with_mbti
-  =render subtype.attitude.adjective, :subtype => subtype

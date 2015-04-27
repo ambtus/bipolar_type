@@ -1,40 +1,8 @@
 - content_for(:title, @type.mbtis)
-%p
-  They love to
-  =@type.dominant.act
-  and find it difficult to avoid
-  %em=@type.dominant.react("more").punctuate("!")
-  signals; they are the most apt to suffer from
-  =@type.dominant.adjective
-  mania and the subsequent depression.
-%p
-  Although they like to
-  =@type.auxiliary.act.punctuate(",")
-  they find it a little easier to avoid
-  %em=@type.auxiliary.react("more").punctuate("!")
-  signals and are a little less apt to suffer from
-  =@type.auxiliary.adjective
-  mania and the subsequent depression.
-%p
-  They find it a little easier to avoid
-  %em=@type.tertiary.react("more").punctuate("!")
-  signals and the associated
-  =@type.tertiary.adjective
-  mania and depression, because they will have to
-  =@type.tertiary.act("more").punctuate(",")
-  which they don’t always want to do.
-%p
-  They find it easiest to avoid
-  %em=@type.inferior.react("more").punctuate("!")
-  signals and the associated
-  =@type.inferior.adjective
-  mania and depression, because they will have to
-  =@type.inferior.act("more").punctuate(",")
-  which they rarely want to do.
 -@type.subtypes.each do |subtype|
   %h2=subtype.description_with_mbti
   %p.heading=subtype.choice
-  =render subtype.attitude.adjective, :subtype => subtype
+
 %h2 BipolarType vs the MBTI&reg;
 %p
   The four letter type for this BipolarType is
@@ -43,7 +11,7 @@
   =@type.mbti? ? "is" : "is not"
   an actual MBTI type.
   -if @type.closest
-    The MBTI type closest to this BipolarType is
+    The closest MBTI type is
     =render "mbti", :mbti => @type.closest, :punctuate => "."
   -else
     It
