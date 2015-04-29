@@ -1,9 +1,9 @@
 - content_for(:title, @type.mbtis)
 -@type.subtypes.each do |subtype|
   %h2=subtype.description_with_mbti
-  %p.heading=subtype.choice
-
-%h2 BipolarType vs the MBTI&reg;
+  %p.heading=subtype.short
+  =link_to "not right?", discover_path(@type.q4_path_without(subtype))
+%h2 Type Dynamics
 %p
   The four letter type for this BipolarType is
   =render "mbti", :mbti => @type.mbti
@@ -17,3 +17,11 @@
     It
     =@type.dynamic? ? "even fits well" : "does not, however, fit"
     into the MBTI type dynamic theory.
+%p
+  BipolarTypes are not static. The older you are, the more apt your BipolarType is to be stable — as your priorities have stabilized — but a change in environment or circumstance can temporarily, or even permenanently, change your BipolarType to one of the following associated BipolarTypes:
+%dl
+  -@type.alternatives.each do |type|
+    %dt=link_to type.mbtis, type_path(type.path)
+    %dd
+      =type.states.join("; ")
+      =type.with_mbti

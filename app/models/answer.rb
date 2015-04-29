@@ -9,19 +9,23 @@ class Answer
   def number; @question.last.to_i ; end
 
   def subtypes; @letters.scan(/.../).collect{|x| Subtype.find(x)}; end
+  def priorities; subtypes.map(&:priority); end
 
-  def attitude_realms; subtypes.map(&:attitude_realm); end
+  def chosen?(subtype); subtype.wing?([subtype]); end
+  def free?(subtype); ! subtype.wing?(subtypes); end
 
-  def choices
-    Preference.all[number - 1].subtypes.collect do |subtype|
-      chosen?(subtype) ? chosen(subtype) : subtype
+  def priority;
+    return Priority.all.first if priorities.empty?
+    priority = priorities.last.next
+    while priorities.include?(priority)
+      priority = priority.next
     end
+    priority
   end
 
-  def chosen?(subtype); attitude_realms.include?(subtype.attitude_realm); end
-  def chosen(subtype); subtypes.select{|s| s.attitude_realm == subtype.attitude_realm}.first; end
+  def descriptions; subtypes.sort_by{|s| s.priority.index}.map(&:short); end
 
-  def free?(subtype); ! subtype.wing?(subtypes); end
+  def css(subtype); free?(subtype) ? "free" : "chosen"; end
 
   def next(letters);
     subtype =  Subtype.find(letters)
@@ -36,5 +40,5 @@ class Answer
     end
   end
 
-  def type_path(last); (@letters + last); end
+  def type_path(last); (@letters + last).scan(/.../).sort.join; end
 end

@@ -18,19 +18,25 @@ class Attitude
   def next; Attitude.all[(@index + 1).modulo(4)]; end
   def previous; Attitude.all[(@index + 3).modulo(4)]; end
 
+  def get?; @index.odd? ? true : false; end
+  def rational?; [1,2].include?(@index) ? true : false; end
+  def bursty?; @index < 2 ? true : false; end
+
+
+  def adjective; rational? ? "chronic" : "acute"; end
+  def noun; get? ? "depression" : "mania"; end
+  def description; [adjective, noun].map(&:capitalize).join(" "); end
   def mbti; %w{EP IP EJ IJ}[@index]; end
-  def adjective; @index.even? ? "Extroverted" : "Introverted"; end
-  def noun; @index < 2 ? "Extrovert" : "Introvert"; end
-  def description; [adjective, noun].join; end
-  def description_with_mbti; "#{description} (#{mbti})"; end
+  def with_mbti; "(#{mbti})"; end
+  def description_with_mbti; [description, with_mbti].join(" "); end
 
-  # used in Subtype.check_numbers
-  # must match the phrases in realm.rb
-  def get_how_many; [1, 2, 2, 3][@index]; end
-  def get_what; %w{large large medium small}[@index]; end
-  def use_how_many; [3, 2, 2, 1][@index]; end
-  def use_what; %w{small medium large large}[@index]; end
 
-  def get?; @index < 2 ? true : false; end
+  def do_or_do_not; bursty? ? "" : "do not"; end
+  def too_much_or_enough; bursty? ? "too much" : "enough"; end
+  def generic; get? ? "get" : "use"; end
+
+
+  def trait(get_or_use=generic); "#{do_or_do_not} #{get_or_use} #{too_much_or_enough}".squish; end
+
 
 end
