@@ -18,25 +18,26 @@ class Attitude
   def next; Attitude.all[(@index + 1).modulo(4)]; end
   def previous; Attitude.all[(@index + 3).modulo(4)]; end
 
+
+  def mbti; %w{EP IJ EJ IP}[@index]; end
   def get?; @index.odd? ? true : false; end
-  def rational?; [1,2].include?(@index) ? true : false; end
-  def bursty?; @index < 2 ? true : false; end
+  def too_full?; @index > 1 ? true : false; end
+  def too_much?; [0, 3].include?(@index) ? true : false; end
 
+  def issue; too_full? ? "chronic problem" : "acute emergency"; end
 
-  def adjective; rational? ? "chronic" : "acute"; end
-  def noun; get? ? "depression" : "mania"; end
+  def adjective; issue.split.first; end
+  def noun; get? ? "depression" : "mania" ; end
   def description; [adjective, noun].map(&:capitalize).join(" "); end
-  def mbti; %w{EP IP EJ IJ}[@index]; end
   def with_mbti; "(#{mbti})"; end
   def description_with_mbti; [description, with_mbti].join(" "); end
 
-
-  def do_or_do_not; bursty? ? "" : "do not"; end
-  def too_much_or_enough; bursty? ? "too much" : "enough"; end
-  def generic; get? ? "get" : "use"; end
-
+  def do_or_do_not; too_much? ? "" : "do not"; end
+  def too_much_or_enough; too_much? ? "too much" : "enough"; end
+  def generic; get? ? "get energy" : "use energy"; end
 
   def trait(get_or_use=generic); "#{do_or_do_not} #{get_or_use} #{too_much_or_enough}".squish; end
 
+  def +(realm); Behavior.find(self.letter + realm.letter); end
 
 end

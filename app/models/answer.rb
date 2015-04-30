@@ -40,5 +40,5 @@ class Answer
     end
   end
 
-  def type_path(last); (@letters + last).scan(/.../).sort.join; end
+  def type_path(last); (@letters + last).scan(/.../).sort.collect{|s| s[1,2]}.join; end
 end

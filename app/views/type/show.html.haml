@@ -5,23 +5,30 @@
   =link_to "not right?", discover_path(@type.q4_path_without(subtype))
 %h2 Type Dynamics
 %p
-  The four letter type for this BipolarType is
+  The four letter type for this BipolarType
+  =@type.mbti? ? "is" : "would be"
   =render "mbti", :mbti => @type.mbti
-  which
-  =@type.mbti? ? "is" : "is not"
-  an actual MBTI type.
-  -if @type.closest
-    The closest MBTI type is
+  -if @type.closest != @type.mbti
+    which isn’t an MBTI type; the closest MBTI type is
     =render "mbti", :mbti => @type.closest, :punctuate => "."
   -else
-    It
-    =@type.dynamic? ? "even fits well" : "does not, however, fit"
-    into the MBTI type dynamic theory.
+    =@type.dynamic? ? "and follows" : "but does not follow"
+    the MBTI type dynamic theory.
 %p
-  BipolarTypes are not static. The older you are, the more apt your BipolarType is to be stable — as your priorities have stabilized — but a change in environment or circumstance can temporarily, or even permenanently, change your BipolarType to one of the following associated BipolarTypes:
-%dl
-  -@type.alternatives.each do |type|
-    %dt=link_to type.mbtis, type_path(type.path)
-    %dd
-      =type.states.join("; ")
-      =type.with_mbti
+  BipolarTypes are not static. Any change in environment or circumstance can change your BipolarType to one of the following associated BipolarTypes. They all have the same basic underlying personality —
+  =@type.traits.to_sentence
+  — and the solutions which allow them to be
+  =@type.ideal_states.to_sentence
+  are the same for all.
+-@type.alternatives.in_groups_of(6) do |attitude_group|
+  %h3=attitude_group.first.dominant.attitude.description
+  -state=attitude_group.first.dominant.state
+  %p=state
+  %dl
+    -attitude_group.sort_by{|t| [t.closest, t.also_state]}.each do |type|
+      %dt=link_to type.mbtis, type_path(type.path)
+      %dd
+        =type.with_closest
+        =type.non_ideal_states.reject{|s| s == state}.first
+        but
+        =type.ideal_state
