@@ -6,7 +6,7 @@ class Type
   end
   attr_reader :path, :behaviors
 
-  def self.my_path; "hbgceafd"; end
+  def self.my_path; "gbecfahd"; end
   def self.my_type; Type.new(my_path); end
 
   def subtypes; @behaviors.add(Priority.all); end
@@ -41,11 +41,11 @@ class Type
   end
 
 
-  def subtypes_without(subtype)
-    raise "not my subtype" unless subtypes.include?(subtype)
-    subtypes - [subtype]
+  def behaviors_without(behavior)
+    behaviors.reject{|b| b == behavior}
   end
-  def q4_path_without(subtype); "Q4_#{subtypes_without(subtype).map(&:letters).join}"; end
+  def q4_path_without(subtype); "Q4_#{behaviors_without(subtype).map(&:letters).join}"; end
+  def q5_path; "Q5_#{behaviors.map(&:letters).join}"; end
 
   def ==(another); another.path == self.path; end
   def alternatives; personality.types; end

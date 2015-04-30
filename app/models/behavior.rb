@@ -15,9 +15,9 @@ class Behavior
 
   def self.find(letters); BEHAVIORS[LETTERS.index(letters)]; end
 
-  def wing?(subtypes)
-    subtypes.each{|s| return true if s.attitude == self.attitude}
-    subtypes.each{|s| return true if s.realm == self.realm}
+  def wing?(behaviors)
+    behaviors.each{|b| return true if b.attitude == self.attitude}
+    behaviors.each{|b| return true if b.realm == self.realm}
     return false
   end
 
@@ -31,7 +31,11 @@ class Behavior
   def get_or_use; attitude.get? ? realm.get : realm.use; end
   def trait; attitude.trait(get_or_use); end
 
-  def default_state; attitude.too_full? ? "too #{realm.full}" : realm.empty; end
+  def full_or_empty; attitude.too_full? ? realm.full : realm.empty; end
+
+  def short; "I #{trait}"; end
+
+  def default_state; attitude.too_full? ? realm.too_full : realm.too_empty; end
 
   def +(priority); Subtype.find(priority.letter + self.letters); end
 

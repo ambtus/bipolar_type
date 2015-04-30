@@ -1,0 +1,28 @@
+- content_for(:title, "Choice ##{@answer.number}")
+-if @answer.number > 1
+  %p.chosen.center
+    Selecting the same row or column again (shown in green) will reset
+    - if @answer.number == 2
+      your previous choice
+    - else
+      one or more of your previous choices
+%p.center
+  If you let your guard down, would you have
+  =@answer.realm.full_or_empty.punctuate("?")
+  Why?
+%table.center
+  %tr
+    %th
+      I will become too
+      =@answer.realm.too_full
+    %th
+      I will become too
+      =@answer.realm.too_empty
+  -@answer.realm.behaviors.in_groups_of(2).each_with_index do |row, index|
+    %tr
+      -row.each do |behavior|
+        %td
+          =link_to behavior.short, (@answer.next(behavior.letters)), :class => @answer.css(behavior)
+          =behavior.with_mbti
+-unless @answer.number == 1
+  %p=link_to "Start over", discover_path("Q1")

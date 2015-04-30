@@ -19,10 +19,10 @@ class Attitude
   def previous; Attitude.all[(@index + 3).modulo(4)]; end
 
 
-  def mbti; %w{EP IJ EJ IP}[@index]; end
-  def get?; @index.odd? ? true : false; end
-  def too_full?; @index > 1 ? true : false; end
-  def too_much?; [0, 3].include?(@index) ? true : false; end
+  def mbti; %w{EJ EP IP IJ}[@index]; end
+  def too_full?; @index.even? ? true : false; end
+  def get?; @index > 1 ? true : false; end
+  def too_much?; [1,2].include?(@index) ? true : false; end
 
   def issue; too_full? ? "chronic problem" : "acute emergency"; end
 
@@ -32,7 +32,7 @@ class Attitude
   def with_mbti; "(#{mbti})"; end
   def description_with_mbti; [description, with_mbti].join(" "); end
 
-  def do_or_do_not; too_much? ? "" : "do not"; end
+  def do_or_do_not; too_much? ? "" : "don’t"; end
   def too_much_or_enough; too_much? ? "too much" : "enough"; end
   def generic; get? ? "get energy" : "use energy"; end
 

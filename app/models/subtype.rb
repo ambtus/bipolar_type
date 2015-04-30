@@ -24,7 +24,7 @@ class Subtype
   def behavior_letters; @behavior.letters; end
   def alternatives; Priority.all.collect{|p| Subtype.find(p.letter + behavior_letters)};end
 
-  delegate :mbti, :default_state, :trait, :attitude, :realm, to: :behavior
+  delegate :mbti, :default_state, :trait, :attitude, :realm, :aka, to: :behavior
   delegate :now_or_never, :because_or_although, to: :priority
 
   def function; realm.mbti; end
@@ -34,7 +34,8 @@ class Subtype
   def with_mbti; "(#{mbti_with_priority})"; end
   def description_with_mbti; [description, with_mbti].join(" "); end
 
-  def state; "#{now_or_never} #{default_state}"; end
-  def short; "I am #{state} #{because_or_although} I #{trait}"; end
+  def state; "#{now_or_never} too #{default_state}"; end
+
+  def short; "I am #{state}"; end
 
 end

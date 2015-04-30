@@ -1,0 +1,23 @@
+- content_for(:title, "Choice ##{@answer.number}")
+-if @answer.number > 5
+  %p.chosen.center
+    Selecting the same row or column again (shown in green) will reset
+    - if @answer.number == 2
+      your previous choice
+    - else
+      one or more of your previous choices
+%h2
+  =@answer.priority.description
+  State
+%table.center
+  -@answer.choices.in_groups_of(2).each_with_index do |row, index|
+    %tr
+      -row.each do |subtype|
+        %td
+          =link_to subtype.short, (@answer.next(subtype.letters)), :class => @answer.css(subtype)
+          =subtype.with_mbti
+%p
+  =link_to "Start over", discover_path("Q1")
+  -unless @answer.number == 5
+    |
+    =link_to "Reset current states", discover_path(@answer.reset_path)
