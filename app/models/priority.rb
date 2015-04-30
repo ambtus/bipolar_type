@@ -26,7 +26,7 @@ class Priority
   def strong?; @index < 2 ? true : false; end
   def differentiated?; [1,2].include?(@index) ? false : true; end
 
-  def now_or_never; %w{currently also no\ longer definitely\ not}[@index]; end
+  def now_or_never; %w{currently often rarely never}[@index]; end
   def because_or_although; strong? ? "because" : "although"; end
 
   def +(behavior); Subtype.find(self.letter + behavior.letters); end

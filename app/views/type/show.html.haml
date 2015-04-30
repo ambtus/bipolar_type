@@ -7,10 +7,10 @@
 %p
   The four letter type for this BipolarType
   =@type.mbti? ? "is" : "would be"
-  =render "mbti", :mbti => @type.mbti
-  -if @type.closest != @type.mbti
+  =render "mbti", :mbti => @type.fla
+  -if ! @type.mbti?
     which isn’t an MBTI type; the closest MBTI type is
-    =render "mbti", :mbti => @type.closest, :punctuate => "."
+    =render "mbti", :mbti => @type.mbti, :punctuate => "."
   -else
     =@type.dynamic? ? "and follows" : "but does not follow"
     the MBTI type dynamic theory.
@@ -20,5 +20,5 @@
   Although you will always have the same basic personality of
   =@type.mbtis
   — albeit in a different order — your MBTI type can be any of the following:
-  =@type.alternatives.map(&:closest).uniq.to_sentence(:last_word_connector => ", or ").punctuate
+  =@type.alternative_mbtis.to_sentence(:last_word_connector => ", or ").punctuate
 =link_to "reset priorities?", discover_path(@type.q5_path)

@@ -6,7 +6,7 @@ class Type
   end
   attr_reader :path, :behaviors
 
-  def self.my_path; "gbecfahd"; end
+  def self.my_path; "gbechafd"; end
   def self.my_type; Type.new(my_path); end
 
   def subtypes; @behaviors.add(Priority.all); end
@@ -21,17 +21,14 @@ class Type
   def tertiary; subtypes.third; end
   def inferior; subtypes.fourth; end
 
-  def mbti; (dominant.mbti + auxiliary.function).mbti_order; end
-  def with_mbti; "(#{mbti})"; end
-
+  def fla; (dominant.mbti + auxiliary.function).mbti_order; end
   MBTIS = %w{ISFP ISFJ ISTP ISTJ INFP INFJ INTP INTJ ESFP ESFJ ESTP ESTJ ENFP ENFJ ENTP ENTJ}
-  def mbti?; MBTIS.include?(mbti); end
-
-  def closest;
-    return mbti if mbti?
-    (dominant.mbti + inferior.function).mbti_order
+  def mbti?; MBTIS.include?(fla); end
+  def mbti;
+    return fla if mbti?
+    (dominant.mbti + tertiary.function).mbti_order
   end
-  def with_closest; "(#{closest})"; end
+  def with_mbti; "(#{mbti})"; end
 
   DYNAMICS = %w{IFP ISJ ITP INJ ESP EFJ ETJ ENP}
   def dynamic?
@@ -49,6 +46,7 @@ class Type
 
   def ==(another); another.path == self.path; end
   def alternatives; personality.types; end
+  def alternative_mbtis; alternatives.map(&:mbti).uniq; end
 
   def states; subtypes.map(&:state); end
   def current_state; states.first; end

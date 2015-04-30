@@ -34,7 +34,7 @@ class Subtype
   def with_mbti; "(#{mbti_with_priority})"; end
   def description_with_mbti; [description, with_mbti].join(" "); end
 
-  def state; "#{now_or_never} too #{default_state}"; end
+  def state; "#{now_or_never} #{default_state}"; end
 
   def short; "I am #{state}"; end
 
