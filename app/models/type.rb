@@ -14,7 +14,7 @@ class Type
   def self.find(letters); TYPES[LETTERS.index(letters)]; end
 
   def attitudes; letters.scan(/./).collect{|l| Attitude.find(l)}; end
-  def behaviors; attitudes.add(Realm.all); end
+  def behaviors; attitudes.add(Realm.all).sort_by{|b| b.attitude.index}; end
 
   def mbti; behaviors.map(&:mbti).join("-"); end
 

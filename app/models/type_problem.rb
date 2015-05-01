@@ -9,7 +9,7 @@ class TypeProblem
 
   def attitude_problems; letters.scan(/../).collect{|ap| AttitudeProblem.find(ap)}; end
   def attitudes; attitude_problems.map(&:attitude); end
-  def behavior_problems; attitude_problems.add(Realm.all); end
+  def behavior_problems; attitude_problems.add(Realm.all).sort_by{|b| b.attitude.index}; end
   def behaviors; behavior_problems.map(&:behavior); end
   def type; Type.find(attitudes.map(&:letter).join); end
   def mbtis; type.mbtis; end

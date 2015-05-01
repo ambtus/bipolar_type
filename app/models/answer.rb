@@ -32,8 +32,8 @@ class Answer
   end
   def next(letters);
     if number < 5
-      behavior =  Behavior.find(letters)
-      old_behaviors = behaviors.reject{|b| chosen?(behavior)}
+      new_behavior =  Behavior.find(letters)
+      old_behaviors = behaviors.reject{|b| b.attitude == new_behavior.attitude}
       "Q" + old_behaviors.size.to_s.next.next + "_" + old_behaviors.map(&:letters).join + letters
     else
       @question.next + "_" + @letters + letters
