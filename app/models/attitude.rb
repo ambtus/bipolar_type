@@ -27,4 +27,9 @@ class Attitude
 
   def +(realm); Behavior.find(realm.letter + self.letter); end
   def behaviors; Realm.all.collect{|realm| self + realm}; end
+
+  def short; %w{output steady bursty input}[@index]; end
+  def with_mbti; "(#{mbti})"; end
+  def short_with_mbti; [short, with_mbti].join(" "); end
+
 end

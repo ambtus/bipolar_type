@@ -1,58 +1,39 @@
 - content_for(:title, @type.mbti)
+%h2 Subtypes
 -@type.behavior_problems.each do |behavior_problem|
-  %h2=behavior_problem.mbti
-  =link_to "attitude not right?", discover_path(@type.discover_path_without_behavior(behavior_problem))
-  =link_to "problem not right?", discover_path(@type.discover_path_without_problem(behavior_problem))
-%h2 Type Dynamics
+  %h3=behavior_problem.generic_with_mbti
+  %p
+    There is absolutely nothing wrong with
+    =behavior_problem.aka.ing.punctuate(",")
+    but to be happy and balanced in the
+    =behavior_problem.realm_adjective
+    realm,
+    you need a lot less of
+    =behavior_problem.problem_behavior.aka_with_mbti
+    and a lot more of
+    =behavior_problem.solution_behavior.aka_with_mbti
+  %p.small
+    =link_to "#{behavior_problem.attitude.mbti} not right?", discover_path(@type.discover_path_without_behavior(behavior_problem))
+    |
+    =link_to "#{behavior_problem.problem_letter} not right?", discover_path(@type.discover_path_without_problem(behavior_problem))
+%h2 Bipolar States
 %h3
-  =render "mbti", :mbti => @type.manic_mbti
-  Mania
-%ul
-  -@type.manic_behaviors.each do |behavior_problem|
-    -if behavior_problem.manic?
-      %li
-        =behavior_problem.mbti
-        aggravates mania
-    - else
-      %li
-        =behavior_problem.mbti
-        mitigates mania
+  =render "mbti", :mbti => @type.acute_mania_mbti
+  Acute Mania: excessive bursty
+  =@type.acute_mania_behaviors.map(&:realm_adjective).to_sentence
+  output
 %h3
-  =render "mbti", :mbti => @type.hypomanic_mbti
-  Hypomania
-%ul
-  -@type.hypomanic_behaviors.each do |behavior_problem|
-    -if behavior_problem.manic?
-      %li
-        =behavior_problem.mbti
-        aggravates hypomania
-    - else
-      %li
-        =behavior_problem.mbti
-        mitigates hypomania
+  =render "mbti", :mbti => @type.chronic_mania_mbti
+  Chronic Mania: excessive steady
+  =@type.chronic_mania_behaviors.map(&:realm_adjective).to_sentence
+  output
 %h3
-  =render "mbti", :mbti => @type.dysthymic_mbti
-  Dysthymia
-%ul
-  -@type.dysthymic_behaviors.each do |behavior_problem|
-    -if behavior_problem.manic?
-      %li
-        =behavior_problem.mbti
-        mitigates dysthymia
-    - else
-      %li
-        =behavior_problem.mbti
-        aggravates dysthymia
+  =render "mbti", :mbti => @type.chronic_depression_mbti
+  Chronic Depression: excessive steady
+  =@type.chronic_depression_behaviors.map(&:realm_adjective).to_sentence
+  input
 %h3
-  =render "mbti", :mbti => @type.depressed_mbti
-  Depression
-%ul
-  -@type.depressed_behaviors.each do |behavior_problem|
-    -if behavior_problem.manic?
-      %li
-        =behavior_problem.mbti
-        mitigates depression
-    - else
-      %li
-        =behavior_problem.mbti
-        aggravates depression
+  =render "mbti", :mbti => @type.acute_depression_mbti
+  Acute Depression: excessive bursty
+  =@type.acute_depression_behaviors.map(&:realm_adjective).to_sentence
+  input

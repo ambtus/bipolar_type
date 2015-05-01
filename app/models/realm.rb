@@ -21,4 +21,8 @@ class Realm
   def +(attitude); Behavior.find(self.letter + attitude.letter); end
   def behaviors; Attitude.all.collect{|attitude| self + attitude}; end
 
+  def short; %w{financial physical mental interpersonal}[@index]; end
+  def with_mbti; "(#{mbti})"; end
+  def short_with_mbti; [short, with_mbti].join(" "); end
+
 end

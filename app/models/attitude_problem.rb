@@ -16,14 +16,19 @@ class AttitudeProblem
   def self.find(letters); ATTITUDE_PROBLEMS[LETTERS.index(letters)]; end
 
   def attitude; Attitude.find(attitude_letter); end
-  def problem; Attitude.find(problem_letter); end
-  def solution; problem.opposite; end
+  def stressor; Attitude.find(problem_letter); end
+  def problem; AttitudeProblem.find(attitude.opposite.letter + stressor.letter); end
+  def solution; AttitudeProblem.find(attitude.letter + stressor.opposite.letter); end
 
   def mbti; letters.capitalize.mbti_order; end
 
   def +(realm); BehaviorProblem.find(realm.letter + self.letters); end
   def behavior_problems; Realm.all.collect{|realm| self + realm}; end
 
-  def manic?; %w{e p}.include?(problem_letter); end
+  def manic?; letters.match(/e/); end
+
+  def short; [attitude.short, stressor.short].join(", "); end
+  def with_mbti; "(#{mbti})"; end
+  def short_with_mbti; [short, with_mbti].join(" "); end
 
 end

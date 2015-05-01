@@ -24,4 +24,48 @@ class Behavior
 
   def behavior_problems; attitude_problems.collect{|ap| ap + realm}; end
 
+  def realm_adjective; realm.short; end
+
+  def generic; [realm.short, attitude.short].join(" "); end
+  def short; "#{generic}: #{aka}"; end
+  def with_mbti; "(#{mbti})"; end
+  def short_with_mbti; [short, with_mbti].join(" "); end
+  def aka_with_mbti; [aka, with_mbti].join(" "); end
+
+  def aka
+    case generic
+    when "financial output"
+      "spend rewards (buy goods and services)"
+    when "mental output"
+      "synthesize (put the puzzles together)"
+    when "physical output"
+      "walk (burn calories)"
+    when "interpersonal output"
+      "emote (win friends and influence people)"
+    when "financial steady"
+      "lots of small earnings and expenditures"
+    when "mental steady"
+      "lots of small problems and puzzles"
+    when "physical steady"
+      "lots of small meals and short walks"
+    when "interpersonal steady"
+      "lots of short stories and songs"
+    when "financial bursty"
+      "a few large earnings and expenditures"
+    when "mental bursty"
+      "a few large problems and puzzles"
+    when "physical bursty"
+      "a few large meals and long walks"
+    when "interpersonal bursty"
+      "a few long novels and concerts"
+    when "financial input"
+      "earn rewards (work or compete)"
+    when "mental input"
+      "analyze (take the puzzles apart)"
+    when "physical input"
+      "eat (consume calories)"
+    when "interpersonal input"
+      "listen (understand people)"
+    end
+  end
 end

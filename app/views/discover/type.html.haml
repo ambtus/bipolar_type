@@ -1,4 +1,6 @@
 - content_for(:title, "Choice ##{@answer.number}")
+%h2
+  =@answer.attitude.short_with_mbti
 -if @answer.number > 1
   %p.chosen.center
     Selecting the same row or column again (shown in green) will reset
@@ -8,9 +10,9 @@
       one or more of your previous choices
 %table.center
   %tr
-  -@answer.realm.behaviors.in_groups_of(2).each do |row|
+  -@answer.attitude.behaviors.in_groups_of(2).each do |row|
     %tr
       -row.each do |behavior|
-        %td=link_to behavior.mbti, (@answer.next(behavior.letters)), :class => @answer.css(behavior)
+        %td=link_to behavior.short_with_mbti, (@answer.next(behavior.letters)), :class => @answer.css(behavior)
 -unless @answer.number == 1
   %p=link_to "Start over", discover_path("Q1")

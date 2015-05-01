@@ -18,15 +18,15 @@ class Type
 
   def mbti; behaviors.map(&:mbti).join("-"); end
 
-  def manic_behaviors; behaviors[0,2]; end
-  def manic_mbti; manic_behaviors.map(&:mbti).join.mbti_order; end
+  def acute_mania_behaviors; [behaviors.first, behaviors.third]; end
+  def acute_mania_mbti; acute_mania_behaviors.map(&:mbti).join.mbti_order; end
 
-  def hypomanic_behaviors; [behaviors.first, behaviors.third]; end
-  def hypomanic_mbti; hypomanic_behaviors.map(&:mbti).join.mbti_order; end
+  def chronic_mania_behaviors; behaviors[0,2]; end
+  def chronic_mania_mbti; chronic_mania_behaviors.map(&:mbti).join.mbti_order; end
 
-  def dysthymic_behaviors; [behaviors.second, behaviors.fourth]; end
-  def dysthymic_mbti; dysthymic_behaviors.map(&:mbti).join.mbti_order; end
+  def acute_depression_behaviors; [behaviors.third, behaviors.fourth]; end
+  def acute_depression_mbti; acute_depression_behaviors.map(&:mbti).join.mbti_order; end
 
-  def depressed_behaviors; [behaviors.third, behaviors.fourth]; end
-  def depressed_mbti; depressed_behaviors.map(&:mbti).join.mbti_order; end
+  def chronic_depression_behaviors; [behaviors.second, behaviors.fourth]; end
+  def chronic_depression_mbti; chronic_depression_behaviors.map(&:mbti).join.mbti_order; end
 end
