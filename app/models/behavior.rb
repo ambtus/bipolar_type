@@ -24,16 +24,8 @@ class Behavior
 
   def subtypes; Subtype.all.select{|s| s.behavior == self}; end
 
-  def description; [attitude.adjective, realm.adjective, attitude.noun].map(&:capitalize).join; end
   def mbti; [attitude.mbti, realm.mbti].join.mbti_order; end
-  def with_mbti; "(#{mbti})"; end
-  def description_with_mbti; [description, with_mbti].join(" "); end
 
   def +(priority); Subtype.find(priority.letter + self.letters); end
-
-  delegate :get, :waste, :full, to: :realm
-  delegate :stop_or_continue, :possibly_not, :conjunction, to: :attitude
-
-  def short; "I would #{stop_or_continue} #{get.ing} #{conjunction("would")} start #{waste.ing}"; end
 
 end

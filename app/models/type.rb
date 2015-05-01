@@ -7,7 +7,7 @@ class Type
 
   def behaviors; path.scan(/../).collect{|x| Behavior.find(x)}; end
 
-  def self.my_path; "hbfaedgc"; end
+  def self.my_path; "haebfcgd"; end
   def self.my_type; Type.new(my_path); end
 
   def subtypes; behaviors.add(Priority.all); end
@@ -49,15 +49,4 @@ class Type
   def alternatives; personality.types; end
   def alternative_mbtis; alternatives.map(&:mbti).uniq; end
 
-  def states; subtypes.map(&:state); end
-  def current_state; states.first; end
-  def also_state; states.second; end
-  def bad_states; states[0,2]; end
-  def good_states; states[2,2]; end
-  def traits; subtypes.map(&:trait); end
-
-  def ideal_subtypes; behaviors.collect{|b| b + Priority.ideal}; end
-  def ideal_states; ideal_subtypes.map(&:state); end
-  def ideal_state; tertiary.state; end
-  def non_ideal_states; states - [ideal_state]; end
 end

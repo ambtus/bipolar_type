@@ -20,22 +20,6 @@ class Attitude
   def stop_consuming?; @index.even? ? true : false; end
   def waste?; @index < 2 ? true : false; end
 
-  def stop_or_continue; stop_consuming? ? "stop" : "continue"; end
-  def possibly_not; stop_consuming? ? "not" : ""; end
-  def conjunction(verb)
-     if stop_consuming?
-       waste? ? "and #{verb}" : "but #{verb} also not"
-     else
-       waste? ? "but #{verb} also" : "and #{verb} not"
-     end
-  end
-
-  def adjective; stop_consuming? ? "acute" : "chronic"; end
-  def noun; waste? ? "mania" : "depression" ; end
-  def description; [adjective, noun].map(&:capitalize).join(" "); end
-  def with_mbti; "(#{mbti})"; end
-  def description_with_mbti; [description, with_mbti].join(" "); end
-
   def +(realm); Behavior.find(self.letter + realm.letter); end
   def behaviors; Realm.all.collect{|r| self + r}; end
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end

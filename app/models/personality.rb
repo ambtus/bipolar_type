@@ -17,10 +17,6 @@ class Personality
 
   def mbtis; behaviors.map(&:mbti).join("-"); end
 
-  def default_states; behaviors.map(&:default_state); end
-  def traits; behaviors.map(&:trait); end
-
-
   def type_letters; behaviors.permutation(4).collect{|p| p.map(&:letters)}.map(&:join);end
   def types; type_letters.collect{|l| Type.new(l)}; end
 

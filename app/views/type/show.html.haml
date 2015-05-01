@@ -1,8 +1,6 @@
 - content_for(:title, @type.mbtis)
 -@type.subtypes.each do |subtype|
-  %h2=subtype.description_with_mbti
-  %p.heading=subtype.short
-  =render subtype.attitude.mbti.downcase, :realm => subtype.realm
+  %h2=subtype.mbti
   =link_to "not right?", discover_path(@type.q4_path_without(subtype.behavior))
 %h2 Type Dynamics
 %p
