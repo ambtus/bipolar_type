@@ -16,9 +16,7 @@ class Attitude
   def next; Attitude.all[(@index + 1).modulo(4)]; end
   def previous; Attitude.all[(@index + 3).modulo(4)]; end
 
-  def mbti; %w{EP IJ EJ IP}[@index]; end
-  def stop_consuming?; @index.even? ? true : false; end
-  def waste?; @index < 2 ? true : false; end
+  def mbti; %w{I P J E}[@index]; end
 
   def +(realm); Behavior.find(self.letter + realm.letter); end
   def behaviors; Realm.all.collect{|r| self + r}; end

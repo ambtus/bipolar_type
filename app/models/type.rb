@@ -7,7 +7,7 @@ class Type
 
   def behaviors; path.scan(/../).collect{|x| Behavior.find(x)}; end
 
-  def self.my_path; "haebfcgd"; end
+  def self.my_path; "fbgceahd"; end
   def self.my_type; Type.new(my_path); end
 
   def subtypes; behaviors.add(Priority.all); end
@@ -22,22 +22,16 @@ class Type
   def tertiary; subtypes.third; end
   def inferior; subtypes.fourth; end
 
-  def fla; (dominant.mbti + auxiliary.function).mbti_order; end
+  def first_try; (dominant.mbti + auxiliary.mbti).mbti_order; end
+  def second_try; (dominant.mbti + tertiary.mbti).mbti_order; end
+  def last_try; (dominant.mbti + inferior.mbti).mbti_order; end
   MBTIS = %w{ISFP ISFJ ISTP ISTJ INFP INFJ INTP INTJ ESFP ESFJ ESTP ESTJ ENFP ENFJ ENTP ENTJ}
-  def mbti?; MBTIS.include?(fla); end
+  def mbti?; MBTIS.include?(first_try); end
   def mbti;
-    return fla if mbti?
-    (dominant.mbti + tertiary.function).mbti_order
+    [first_try, second_try, last_try].each do |try|
+      return try if MBTIS.include?(try)
+    end
   end
-  def with_mbti; "(#{mbti})"; end
-
-  DYNAMICS = %w{IFP ISJ ITP INJ ESP EFJ ETJ ENP}
-  def dynamic?
-    return false unless DYNAMICS.include?(dominant.mbti)
-    return false unless DYNAMICS.include?(auxiliary.mbti)
-    dominant.mbti.last == auxiliary.mbti.last
-  end
-
 
   def behaviors_without(behavior)
     behaviors.reject{|b| b == behavior}

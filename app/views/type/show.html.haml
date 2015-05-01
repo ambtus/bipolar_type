@@ -6,18 +6,17 @@
 %p
   The four letter type for this BipolarType
   =@type.mbti? ? "is" : "would be"
-  =render "mbti", :mbti => @type.fla
+  =render "mbti", :mbti => @type.first_try
   -if ! @type.mbti?
     which isn’t an MBTI type; the closest MBTI type is
-    =render "mbti", :mbti => @type.mbti, :punctuate => "."
-  -else
-    =@type.dynamic? ? "and follows" : "but does not follow"
-    the MBTI type dynamic theory.
+    =render "mbti", :mbti => @type.mbti
 %p
   BipolarTypes are not static. Any change in environment or circumstance can change your priorities, which will change your BipolarType and your MBTI type.
 %p
   Although you will always have the same basic personality of
   =@type.mbtis
-  — albeit in a different order — your MBTI type can be any of the following:
+  — albeit in a different order — your MBTI type can be
+  =@type.mbti == @type.last_try ? "either" : "any"
+  of the following:
   =@type.alternative_mbtis.to_sentence(:last_word_connector => ", or ").punctuate
 =link_to "reset priorities?", discover_path(@type.q5_path)

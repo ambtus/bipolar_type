@@ -27,6 +27,4 @@ class Subtype
 
   delegate :mbti, :realm, :attitude, to: :behavior
 
-  def function; realm.mbti; end
-
 end
