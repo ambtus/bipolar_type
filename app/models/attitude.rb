@@ -2,8 +2,8 @@ class Attitude
   LETTERS = %w{e f g h}
 
   def initialize(string)
+    raise "#{string} isn't an Attitude" unless LETTERS.include?(string)
     @index = LETTERS.index(string)
-    raise "#{string} isn't an Attitude" unless @index
     @letter = string
   end
   attr_reader :letter, :index
@@ -13,31 +13,31 @@ class Attitude
 
   def self.find(letter); ATTITUDES[LETTERS.index(letter)]; end
 
-  def subtypes; Subtype.all.select{|s| s.attitude == self}; end
-
   def next; Attitude.all[(@index + 1).modulo(4)]; end
   def previous; Attitude.all[(@index + 3).modulo(4)]; end
 
+  def mbti; %w{EP IJ EJ IP}[@index]; end
+  def stop_consuming?; @index.even? ? true : false; end
+  def waste?; @index < 2 ? true : false; end
 
-  def mbti; %w{EJ EP IP IJ}[@index]; end
-  def too_full?; @index.even? ? true : false; end
-  def get?; @index > 1 ? true : false; end
-  def too_much?; [1,2].include?(@index) ? true : false; end
+  def stop_or_continue; stop_consuming? ? "stop" : "continue"; end
+  def possibly_not; stop_consuming? ? "not" : ""; end
+  def conjunction(verb)
+     if stop_consuming?
+       waste? ? "and #{verb}" : "but #{verb} also not"
+     else
+       waste? ? "but #{verb} also" : "and #{verb} not"
+     end
+  end
 
-  def issue; too_full? ? "chronic problem" : "acute emergency"; end
-
-  def adjective; issue.split.first; end
-  def noun; get? ? "depression" : "mania" ; end
+  def adjective; stop_consuming? ? "acute" : "chronic"; end
+  def noun; waste? ? "mania" : "depression" ; end
   def description; [adjective, noun].map(&:capitalize).join(" "); end
   def with_mbti; "(#{mbti})"; end
   def description_with_mbti; [description, with_mbti].join(" "); end
 
-  def do_or_do_not; too_much? ? "" : "don’t"; end
-  def too_much_or_enough; too_much? ? "too much" : "enough"; end
-  def generic; get? ? "get energy" : "use energy"; end
-
-  def trait(get_or_use=generic); "#{do_or_do_not} #{get_or_use} #{too_much_or_enough}".squish; end
-
   def +(realm); Behavior.find(self.letter + realm.letter); end
+  def behaviors; Realm.all.collect{|r| self + r}; end
+  def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
 end

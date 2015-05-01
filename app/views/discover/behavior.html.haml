@@ -7,17 +7,15 @@
     - else
       one or more of your previous choices
 %p.center
-  If you let your guard down, would you have
-  =@answer.realm.full_or_empty.punctuate("?")
-  Why?
+  If you woke up one morning and were feeling
+  =@answer.realm.empty 
+  but were inexplicably full of
+  =@answer.realm.adjective
+  energy and were objectively very
+  =@answer.realm.full
+  what would you do?
 %table.center
   %tr
-    %th
-      I will become too
-      =@answer.realm.too_full
-    %th
-      I will become too
-      =@answer.realm.too_empty
   -@answer.realm.behaviors.in_groups_of(2).each_with_index do |row, index|
     %tr
       -row.each do |behavior|

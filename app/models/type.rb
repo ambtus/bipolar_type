@@ -2,15 +2,16 @@ class Type
 
   def initialize(string)
     @path = string
-    @behaviors = string.scan(/../).collect{|x| Behavior.find(x)}
   end
-  attr_reader :path, :behaviors
+  attr_reader :path
 
-  def self.my_path; "gbechafd"; end
+  def behaviors; path.scan(/../).collect{|x| Behavior.find(x)}; end
+
+  def self.my_path; "hbfaedgc"; end
   def self.my_type; Type.new(my_path); end
 
-  def subtypes; @behaviors.add(Priority.all); end
-  def behaviors_descending; @behaviors.sort_by{|b| b.attitude.index}; end
+  def subtypes; behaviors.add(Priority.all); end
+  def behaviors_descending; behaviors.sort_by{|b| b.attitude.index}; end
   def personality_string; behaviors_descending.map(&:realm).map(&:letter).join; end
   def personality; Personality.find(personality_string); end
 
@@ -41,7 +42,7 @@ class Type
   def behaviors_without(behavior)
     behaviors.reject{|b| b == behavior}
   end
-  def q4_path_without(subtype); "Q4_#{behaviors_without(subtype).map(&:letters).join}"; end
+  def q4_path_without(behavior); "Q4_#{behaviors_without(behavior).map(&:letters).join}"; end
   def q5_path; "Q5_#{behaviors.map(&:letters).join}"; end
 
   def ==(another); another.path == self.path; end

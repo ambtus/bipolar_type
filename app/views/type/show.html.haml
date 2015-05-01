@@ -2,7 +2,8 @@
 -@type.subtypes.each do |subtype|
   %h2=subtype.description_with_mbti
   %p.heading=subtype.short
-  =link_to "not right?", discover_path(@type.q4_path_without(subtype))
+  =render subtype.attitude.mbti.downcase, :realm => subtype.realm
+  =link_to "not right?", discover_path(@type.q4_path_without(subtype.behavior))
 %h2 Type Dynamics
 %p
   The four letter type for this BipolarType
