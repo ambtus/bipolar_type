@@ -1,31 +1,27 @@
 class Behavior
-  LETTERS = (Attitude::LETTERS.product(Realm::LETTERS)).map(&:join)
+  LETTERS = (Realm::LETTERS.product(Attitude::LETTERS)).map(&:join)
 
   def initialize(string)
     raise "#{string} isn't a Behavior" unless LETTERS.include?(string)
     @index = LETTERS.index(string)
     @letters = string
+    @realm_letter = string[0]
+    @attitude_letter = string[1]
   end
-  attr_reader :letters
+  attr_reader :letters, :realm_letter, :attitude_letter
 
   BEHAVIORS = LETTERS.collect{|choice| Behavior.new(choice)}
   def self.all; BEHAVIORS; end
 
   def self.find(letters); BEHAVIORS[LETTERS.index(letters)]; end
 
-  def attitude; Attitude.find(letters[0]); end
-  def realm; Realm.find(letters[1]); end
+  def realm; Realm.find(realm_letter); end
+  def attitude; Attitude.find(attitude_letter); end
 
-  def wing?(behaviors)
-    behaviors.each{|b| return true if b.attitude == self.attitude}
-    behaviors.each{|b| return true if b.realm == self.realm}
-    return false
-  end
+  def mbti; @letters.mbti_order.upcase; end
 
-  def subtypes; Subtype.all.select{|s| s.behavior == self}; end
+  delegate :attitude_problems, to: :attitude
 
-  def mbti; [attitude.mbti, realm.mbti].join.mbti_order; end
-
-  def +(priority); Subtype.find(priority.letter + self.letters); end
+  def behavior_problems; attitude_problems.collect{|ap| ap + realm}; end
 
 end

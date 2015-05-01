@@ -1,22 +1,58 @@
-- content_for(:title, @type.mbtis)
--@type.subtypes.each do |subtype|
-  %h2=subtype.mbti
-  =link_to "not right?", discover_path(@type.q4_path_without(subtype.behavior))
+- content_for(:title, @type.mbti)
+-@type.behavior_problems.each do |behavior_problem|
+  %h2=behavior_problem.mbti
+  =link_to "attitude not right?", discover_path(@type.discover_path_without_behavior(behavior_problem))
+  =link_to "problem not right?", discover_path(@type.discover_path_without_problem(behavior_problem))
 %h2 Type Dynamics
-%p
-  The four letter type for this BipolarType
-  =@type.mbti? ? "is" : "would be"
-  =render "mbti", :mbti => @type.first_try
-  -if ! @type.mbti?
-    which isn’t an MBTI type; the closest MBTI type is
-    =render "mbti", :mbti => @type.mbti
-%p
-  BipolarTypes are not static. Any change in environment or circumstance can change your priorities, which will change your BipolarType and your MBTI type.
-%p
-  Although you will always have the same basic personality of
-  =@type.mbtis
-  — albeit in a different order — your MBTI type can be
-  =@type.mbti == @type.last_try ? "either" : "any"
-  of the following:
-  =@type.alternative_mbtis.to_sentence(:last_word_connector => ", or ").punctuate
-=link_to "reset priorities?", discover_path(@type.q5_path)
+%h3
+  =render "mbti", :mbti => @type.manic_mbti
+  Mania
+%ul
+  -@type.manic_behaviors.each do |behavior_problem|
+    -if behavior_problem.manic?
+      %li
+        =behavior_problem.mbti
+        aggravates mania
+    - else
+      %li
+        =behavior_problem.mbti
+        mitigates mania
+%h3
+  =render "mbti", :mbti => @type.hypomanic_mbti
+  Hypomania
+%ul
+  -@type.hypomanic_behaviors.each do |behavior_problem|
+    -if behavior_problem.manic?
+      %li
+        =behavior_problem.mbti
+        aggravates hypomania
+    - else
+      %li
+        =behavior_problem.mbti
+        mitigates hypomania
+%h3
+  =render "mbti", :mbti => @type.dysthymic_mbti
+  Dysthymia
+%ul
+  -@type.dysthymic_behaviors.each do |behavior_problem|
+    -if behavior_problem.manic?
+      %li
+        =behavior_problem.mbti
+        mitigates dysthymia
+    - else
+      %li
+        =behavior_problem.mbti
+        aggravates dysthymia
+%h3
+  =render "mbti", :mbti => @type.depressed_mbti
+  Depression
+%ul
+  -@type.depressed_behaviors.each do |behavior_problem|
+    -if behavior_problem.manic?
+      %li
+        =behavior_problem.mbti
+        mitigates depression
+    - else
+      %li
+        =behavior_problem.mbti
+        aggravates depression

@@ -1,5 +1,6 @@
 class Attitude
-  LETTERS = %w{e f g h}
+  LETTERS = %w{e j p i}
+  def opposite_letter; %w{i p j e}[@index]; end
 
   def initialize(string)
     raise "#{string} isn't an Attitude" unless LETTERS.include?(string)
@@ -16,10 +17,14 @@ class Attitude
   def next; Attitude.all[(@index + 1).modulo(4)]; end
   def previous; Attitude.all[(@index + 3).modulo(4)]; end
 
-  def mbti; %w{I P J E}[@index]; end
+  def opposite; Attitude.find(opposite_letter); end
 
-  def +(realm); Behavior.find(self.letter + realm.letter); end
-  def behaviors; Realm.all.collect{|r| self + r}; end
-  def subtypes; Subtype.all.select{|s| s.attitude == self}; end
+  def problem_letters; LETTERS - [letter, opposite_letter]; end
 
+  def attitude_problems; problem_letters.collect{|pl| AttitudeProblem.find(letter + pl)}; end
+
+  def mbti; letter.upcase; end
+
+  def +(realm); Behavior.find(realm.letter + self.letter); end
+  def behaviors; Realm.all.collect{|realm| self + realm}; end
 end

@@ -8,10 +8,9 @@
       one or more of your previous choices
 %table.center
   %tr
-  -@answer.realm.behaviors.in_groups_of(2).each_with_index do |row, index|
+  -@answer.realm.behaviors.in_groups_of(2).each do |row|
     %tr
       -row.each do |behavior|
-        %td
-          =link_to behavior.mbti, (@answer.next(behavior.letters)), :class => @answer.css(behavior)
+        %td=link_to behavior.mbti, (@answer.next(behavior.letters)), :class => @answer.css(behavior)
 -unless @answer.number == 1
   %p=link_to "Start over", discover_path("Q1")

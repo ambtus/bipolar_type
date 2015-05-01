@@ -7,8 +7,8 @@ class Answer
   attr_reader :question
 
   def number; @question.last.to_i ; end
-
-  def behaviors; @letters[0,8].scan(/../).collect{|ar| Behavior.find(ar)}; end
+  def behavior_letters; @letters[0,8]; end
+  def behaviors; behavior_letters.scan(/../).collect{|ra| Behavior.find(ra)}; end
   def realms; behaviors.map(&:realm); end
   def realm
     return Realm.all.first if realms.empty?
@@ -18,43 +18,29 @@ class Answer
     end
     realm
   end
-
-  def subtypes; @letters[8..-1].scan(/.../).collect{|par| Subtype.find(par)}; end
-  def priorities; subtypes.map(&:priority); end
-  def priority
-    return Priority.all.first if priorities.empty?
-    priority = priorities.last.next
-    while priorities.include?(priority)
-      priority = priority.next
-    end
-    priority
-  end
-
-  def choices; behaviors.sort_by{|b| b.attitude.index}.collect{|b| b + priority}; end
-
-  def css(thing); free?(thing) ? "free" : "chosen"; end
-  def free?(thing)
-    if thing.is_a?(Behavior)
-      ! thing.wing?(behaviors)
-    elsif thing.is_a?(Subtype)
-      ! thing.wing?(subtypes)
-    end
-  end
-
-  def behavior_letters; behaviors.map(&:letters).join; end
+  def attitudes; behaviors.map(&:attitude); end
+  def chosen?(behavior); attitudes.include?(behavior.attitude); end
+  def css(behavior); chosen?(behavior) ? "chosen" : "free"; end
   def reset_path; "Q5_" + behavior_letters; end
 
-  def next(letters);
-    if number < 5
-      choice =  Behavior.find(letters)
-      old_behaviors = behaviors.reject{|b| b.wing?([choice])}
-      "Q" + old_behaviors.size.to_s.next.next + "_" + old_behaviors.map(&:letters).join + letters
-    else
-      choice =  Subtype.find(letters)
-      old_subtypes = subtypes.reject{|s| s.wing?([choice])}
-      "Q" + (old_subtypes.size + 4).to_s.next.next + "_" + behavior_letters +  old_subtypes.map(&:letters).join + letters
+  def behavior_problem_letters; @letters[8,14]; end
+  def behavior_problems; behavior_problem_letters.scan(/.../).collect{|rap| BehaviorProblem.find(rap)}; end
+  def behavior
+    behaviors.each do |behavior|
+      return behavior unless behavior_problems.map(&:behavior).include?(behavior)
     end
   end
-
-  def type_path; subtypes.sort_by{|s| s.priority.index}.map(&:behavior).map(&:letters).join; end
+  def next(letters);
+    if number < 5
+      behavior =  Behavior.find(letters)
+      old_behaviors = behaviors.reject{|b| chosen?(behavior)}
+      "Q" + old_behaviors.size.to_s.next.next + "_" + old_behaviors.map(&:letters).join + letters
+    else
+      @question.next + "_" + @letters + letters
+    end
+  end
+  def behavior_problem_letters; @letters[8,14]; end
+  def behavior_problems; behavior_problem_letters.scan(/.../).collect{|rap| BehaviorProblem.find(rap)}; end
+  def attitude_problems; behavior_problems.sort_by{|bp| bp.realm.index}.map(&:attitude_problem); end
+  def type_path; attitude_problems.map(&:letters).join ; end
 end

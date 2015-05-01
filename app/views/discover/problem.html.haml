@@ -1,0 +1,12 @@
+- content_for(:title, "Choice ##{@answer.number}")
+%h2
+  =@answer.behavior.mbti
+%table.center
+  %tr
+  -@answer.behavior.behavior_problems.each do |behavior_problem|
+    %td=link_to behavior_problem.mbti, (@answer.next(behavior_problem.letters))
+%p
+  =link_to "Start over", discover_path("Q1")
+  -unless @answer.number == 5
+    |
+    =link_to "Reset problems", discover_path(@answer.reset_path)
