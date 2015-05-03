@@ -1,32 +1,32 @@
-- content_for(:title, "Discovery ##{@answer.number}")
+- content_for(:title, "Choice ##{@answer.number}")
 %p
   Being
-  =@answer.depressed.behavior
+  =@answer.depressed
   is worse than being
-  =@answer.manic.behavior.punctuate
+  =@answer.manic.punctuate
   If I am
-  =@answer.depressed.behavior
-  for too long I could die, but if I am
-  =@answer.manic.behavior
+  =@answer.depressed
+  for too long I will be in real trouble, but if I am
+  =@answer.manic
   I just have to
-  =@answer.manic.output
+  =@answer.output
   less and I will soon be
-  =@answer.manic.opposite.behavior.punctuate
+  =@answer.on_the_bottom.punctuate
   %br
-  =link_to @answer.introvert.mbti, type_path(@answer.introvert.path)
+  =link_to @answer.introvert.mbti_with_mbtis, type_path(@answer.introvert.path)
 %p
   Being
-  =@answer.manic.behavior
+  =@answer.manic
   is worse than being
-  =@answer.depressed.behavior.punctuate
+  =@answer.depressed.punctuate
   If I am
-  =@answer.manic.behavior
-  for too long I could die, but if I am
-  =@answer.depressed.behavior
+  =@answer.manic
+  for too long I will be in real trouble, but if I am
+  =@answer.depressed
   I just have to
-  =@answer.depressed.input
+  =@answer.input
   less and I will soon be
-  =@answer.depressed.opposite.behavior.punctuate
+  =@answer.on_top.punctuate
   %br
-  =link_to @answer.extrovert.mbti, type_path(@answer.extrovert.path)
+  =link_to @answer.extrovert.mbti_with_mbtis, type_path(@answer.extrovert.path)
 %p.center=link_to "Start over", discover_path("Q1")

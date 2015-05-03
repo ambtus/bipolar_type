@@ -9,20 +9,20 @@
 %h2 The Four Attitudes
 %table.center
   %tr
-  -Attitude.all.each do |attitude|
+  -Attitude.all_reordered.each do |attitude|
     %tr
       %td=attitude.short_with_mbti
 %h2 The Sixteen States
 %table.center
   %tr
-  -State.all.in_groups_of(4).each do |row|
+  -State.all_reordered.in_groups_of(4).each do |row|
     %tr
       -row.each do |state|
-        %td=state.short_with_mbti
+        %td=link_to state.short_with_mbti, discover_path("Q2_#{state.letters}")
 %h2 The Forty Eight Bipolar Types
 %table.center
   %tr
   -Type.all.in_groups_of(2).each do |row|
     %tr
       -row.each do |type|
-        %td=link_to type.short_with_mbti, type_path(type.path)
+        %td=link_to type.short_with_mbtis, type_path(type.path)

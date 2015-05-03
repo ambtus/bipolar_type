@@ -1,12 +1,13 @@
 %p
   You know you are
-  =state.high_or_low
+  =state.top_or_bottom
   because you have a
   =state.objective_measure
   which tells you so.
 %p
   Your brain “knows” you are
-  =state.high
+  =state.top
 %p
   Your brain “knows” you are
-  =state.low
+  =state.bottom
+%p.small=link_to "not right?", discover_path(@type.qpath_without_state(state))

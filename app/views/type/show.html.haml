@@ -1,4 +1,9 @@
 - content_for(:title, @type.mbti)
 -@type.ordered_states.each do |state|
-  %h2=state.short_with_mbti
+  %h2=state.generic_with_mbti
+  %p.heading=state.short_without_generic
   =render "state", :state => state
+%h2 Possible MBTI&reg Types
+%ul
+  -@type.likelies.each do |mbti|
+    %li=render "mbti", :mbti => mbti

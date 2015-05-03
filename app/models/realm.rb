@@ -14,20 +14,20 @@ class Realm
 
   def mbti; letter.upcase; end
 
-  def +(attitude); State.find(attitude.letters + letter); end
+  def +(attitude); State.find(attitude.letter + letter); end
   def states; Attitude.all.add(self); end
 
-  def short; %w{financial physical mental interpersonal}[@index]; end
+  def short; %w{financial physical mental emotional}[@index]; end
   def with_mbti; "(#{mbti})"; end
   def short_with_mbti; [short, with_mbti].join(" "); end
 
-  def output; %w{buy walk synthesize talk}[@index]; end
-  def mania; %w{in\ debt anorexic an\ idiot homicidal}[@index]; end
-  def high; %w{poor thin stupid dominant}[@index]; end
-  def low; %w{rich fat smart submissive}[@index]; end
-  def depression; %w{a\ lender obese a\ genius suicidal}[@index]; end
-  def input; %w{work eat analyze listen}[@index]; end
-  def objective_measure; %w{bank\ statement mirror diploma job\ title}[@index]; end
-  def high_or_low; [high, low].join(" or "); end
+  def output; %w{buy walk synthesize influence}[@index]; end
+  def dom; %w{a\ borrower anorexic theoretical bossy}[@index]; end
+  def top; %w{poor thin stupid homicidal}[@index]; end
+  def bottom; %w{rich fat smart suicidal}[@index]; end
+  def sub; %w{a\ lender obese critical submissive}[@index]; end
+  def input; %w{work eat analyze empathize}[@index]; end
+  def objective_measure; %w{bank\ statement mirror diploma stance}[@index]; end
+  def top_or_bottom; [top, bottom].join(" or "); end
 
 end

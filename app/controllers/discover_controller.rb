@@ -5,6 +5,8 @@ class DiscoverController < ApplicationController
       render :state
     elsif @answer.number == 5
       render :type
+    elsif @answer.number == 6
+      render :realm
     end
   end
 
