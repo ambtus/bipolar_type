@@ -1,6 +1,6 @@
 class Attitude
-  LETTERS = %w{e j p i}
-  def opposite_letter; %w{i p j e}[@index]; end
+  LETTERS = %w{e j i p}
+  def opposite_letter; %w{i p e j}[@index]; end
 
   def initialize(string)
     raise "#{string} isn't an Attitude" unless LETTERS.include?(string)
@@ -19,17 +19,18 @@ class Attitude
 
   def opposite; Attitude.find(opposite_letter); end
 
-  def problem_letters; LETTERS - [letter, opposite_letter]; end
-
-  def attitude_problems; problem_letters.collect{|pl| AttitudeProblem.find(letter + pl)}; end
+  def bias_letters; LETTERS - [letter, opposite_letter]; end
+  def biases; bias_letters.collect{|l| Attitude.find(l)}; end
 
   def mbti; letter.upcase; end
 
-  def +(realm); Behavior.find(realm.letter + self.letter); end
-  def behaviors; Realm.all.collect{|realm| self + realm}; end
+  def +(realm); Trait.find(realm.letter + self.letter); end
+  def traits; Realm.all.add(self); end
 
-  def short; %w{output steady bursty input}[@index]; end
+  def short; %w{output steadiness input burstiness}[@index]; end
   def with_mbti; "(#{mbti})"; end
   def short_with_mbti; [short, with_mbti].join(" "); end
+
+  def adjective; %w{extroverted steady introverted bursty}[@index]; end
 
 end

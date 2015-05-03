@@ -6,7 +6,7 @@ class TypeController < ApplicationController
     elsif %w{subtypes}.include?(params[:id])
       render params[:id]
     else
-      @type = TypeProblem.new(params[:id])
+      @type = Type.new(params[:id])
     end
   end
 

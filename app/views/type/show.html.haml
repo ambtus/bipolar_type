@@ -1,39 +1,18 @@
 - content_for(:title, @type.mbti)
 %h2 Subtypes
--@type.behavior_problems.each do |behavior_problem|
-  %h3=behavior_problem.generic_with_mbti
+-@type.subtypes.each do |subtype|
+  %h3=subtype.mbti
+  =render "subtype", :subtype => subtype
+%h2 BipolarType and the MBTI
+%p BipolarType is dynamic. As your priorities change, so will your four letter type.
+-@type.priorities.each do |priority|
+  %h3=render "mbti", :mbti => priority.mbti
   %p
-    There is absolutely nothing wrong with
-    =behavior_problem.aka.ing.punctuate(",")
-    but to be happy and balanced in the
-    =behavior_problem.realm_adjective
-    realm,
-    you need a lot less of
-    =behavior_problem.problem_behavior.aka_with_mbti
-    and a lot more of
-    =behavior_problem.solution_behavior.aka_with_mbti
-  %p.small
-    =link_to "#{behavior_problem.attitude.mbti} not right?", discover_path(@type.discover_path_without_behavior(behavior_problem))
-    |
-    =link_to "#{behavior_problem.problem_letter} not right?", discover_path(@type.discover_path_without_problem(behavior_problem))
-%h2 Bipolar States
-%h3
-  =render "mbti", :mbti => @type.acute_mania_mbti
-  Acute Mania: excessive bursty
-  =@type.acute_mania_behaviors.map(&:realm_adjective).to_sentence
-  output
-%h3
-  =render "mbti", :mbti => @type.chronic_mania_mbti
-  Chronic Mania: excessive steady
-  =@type.chronic_mania_behaviors.map(&:realm_adjective).to_sentence
-  output
-%h3
-  =render "mbti", :mbti => @type.chronic_depression_mbti
-  Chronic Depression: excessive steady
-  =@type.chronic_depression_behaviors.map(&:realm_adjective).to_sentence
-  input
-%h3
-  =render "mbti", :mbti => @type.acute_depression_mbti
-  Acute Depression: excessive bursty
-  =@type.acute_depression_behaviors.map(&:realm_adjective).to_sentence
-  input
+    You are
+    =priority.adjectively
+    stable: neither too
+    =priority.manic
+    nor too
+    =priority.depressed.punctuate
+  %p
+    As an unintended consequence, you are also

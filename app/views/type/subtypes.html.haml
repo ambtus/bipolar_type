@@ -13,33 +13,26 @@
     %tr
       -row.each do |attitude|
         %td=attitude.short_with_mbti
+%h2 The Sixteen Traits
+%table.center
+  %tr
+  -Trait.all.in_groups_of(4).each do |row|
+    %tr
+      -row.each do |trait|
+        %td=trait.short_with_mbti
+%h2 The Four States
+%table.center
+  %tr
+  -State.all.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |state|
+        %td=state.short_with_mbti
 %h2 The Sixteen Behaviors
 %table.center
   %tr
-  -Behavior.all.sort_by{|b| [b.attitude.index, b.realm.index]}.in_groups_of(4).each do |row|
+  -Behavior.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |behavior|
         %td=behavior.short_with_mbti
-%h2 The Twenty Four Types
-%table.center
-  %tr
-  -Type.all.in_groups_of(6).each do |row|
-    %tr
-      -row.each do |type|
-        %td=type.mbti
-%h2 The Eight Attitude Problems
-%table.center
-  %tr
-  -AttitudeProblem.all.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |attitude_problem|
-        %td=attitude_problem.short_with_mbti
-%h2 The Thirty Two Behavior Problems
-%table.center
-  %tr
-  -BehaviorProblem.all.sort_by{|b| [b.attitude.index, b.realm.index]}.in_groups_of(8).each do |row|
-    %tr
-      -row.each do |behavior_problem|
-        %td=behavior_problem.short_with_mbti
 %h2
-  =link_to "The Three Hundred and Eighty Four Bipolar Types", discover_path("Q1")
+  =link_to "The Forty Eight Bipolar Types", discover_path("Q1")

@@ -15,6 +15,7 @@ class Array
 
   def add(target, method=:+)
     a = Array.new
+    target = Array.new(self.size, target) unless target.is_a?(Array)
     self.each_with_index do |row,index|
       a << row.send(method, target[index])
     end

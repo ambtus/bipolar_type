@@ -1,32 +1,23 @@
 class Type
-  LETTERS = Attitude::LETTERS.permutation(4).map(&:join)
+  def self.my_path; "tespnjfip"; end
+  def self.my_type; Type.new(my_path); end
 
   def initialize(string)
-    raise "#{string} isn't a Type" unless LETTERS.include?(string)
-    @index = LETTERS.index(string)
-    @letters = string
+    @path = string
+    @trait_letters = string[0,8]
+    @direction = string[8] == "n" ? :next_subtype : :previous_subtype
   end
-  attr_reader :letters
+  attr_reader :path
 
-  TYPES = LETTERS.collect{|choice| Type.new(choice)}
-  def self.all; TYPES; end
+  def traits; @trait_letters[0,8].scan(/../).collect{|ra| Trait.find(ra)}; end
+  def subtypes; traits.map(&@direction); end
+  def mbti; subtypes.map(&:mbti).join("-"); end
 
-  def self.find(letters); TYPES[LETTERS.index(letters)]; end
+  def without_trait(subtype); (subtypes - [subtype]).map(&:trait).map(&:letters).join; end
+  def discover_path_without_trait(subtype); "Q4_#{without_trait(subtype)}"; end
+  def discover_path_change_direction; "Q5_#{@trait_letters}"; end
 
-  def attitudes; letters.scan(/./).collect{|l| Attitude.find(l)}; end
-  def behaviors; attitudes.add(Realm.all).sort_by{|b| b.attitude.index}; end
-
-  def mbti; behaviors.map(&:mbti).join("-"); end
-
-  def acute_mania_behaviors; [behaviors.first, behaviors.third]; end
-  def acute_mania_mbti; acute_mania_behaviors.map(&:mbti).join.mbti_order; end
-
-  def chronic_mania_behaviors; behaviors[0,2]; end
-  def chronic_mania_mbti; chronic_mania_behaviors.map(&:mbti).join.mbti_order; end
-
-  def acute_depression_behaviors; [behaviors.third, behaviors.fourth]; end
-  def acute_depression_mbti; acute_depression_behaviors.map(&:mbti).join.mbti_order; end
-
-  def chronic_depression_behaviors; [behaviors.second, behaviors.fourth]; end
-  def chronic_depression_mbti; chronic_depression_behaviors.map(&:mbti).join.mbti_order; end
+  def+(state); Priority.new(@path + state.letters); end
+  def priorities; State.all.collect{|s| self + s}; end
+  def priority_mbtis; priorities.map(&:mbti).join("-"); end 
 end
