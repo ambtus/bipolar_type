@@ -1,18 +1,4 @@
 - content_for(:title, @type.mbti)
-%h2 Subtypes
--@type.subtypes.each do |subtype|
-  %h3=subtype.mbti
-  =render "subtype", :subtype => subtype
-%h2 BipolarType and the MBTI
-%p BipolarType is dynamic. As your priorities change, so will your four letter type.
--@type.priorities.each do |priority|
-  %h3=render "mbti", :mbti => priority.mbti
-  %p
-    You are
-    =priority.adjectively
-    stable: neither too
-    =priority.manic
-    nor too
-    =priority.depressed.punctuate
-  %p
-    As an unintended consequence, you are also
+-@type.ordered_states.each do |state|
+  %h2=state.short_with_mbti
+  =render "state", :state => state

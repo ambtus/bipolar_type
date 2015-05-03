@@ -7,29 +7,31 @@ class Answer
   attr_reader :question
 
   def number; @question.last.to_i ; end
-  def trait_letters; @letters[0,8]; end
-  def traits; trait_letters.scan(/../).collect{|ra| Trait.find(ra)}; end
+  def state_letters; @letters[0,12]; end
+  def states; state_letters.scan(/.../).collect{|ar| State.find(ar)}; end
 
-  def attitudes; traits.map(&:attitude); end
+  def attitudes; states.map(&:attitude); end
   def attitude
     return Attitude.all.first if attitudes.empty?
-    attitude = attitudes.last.next
-    while attitudes.include?(attitude); attitude = attitude.next; end
+    attitude = attitudes.last.lower
+    while attitudes.include?(attitude); attitude = attitude.lower; end
     return attitude
   end
 
-  def realms; traits.map(&:realm); end
-  def css(trait); realms.include?(trait.realm) ? "chosen" : "free"; end
+  def realms; states.map(&:realm); end
+  def css(state); realms.include?(state.realm) ? "chosen" : "free"; end
 
   def next(letters);
-    new_trait =  Trait.find(letters)
-    old_traits = traits.reject{|t| t.realm == new_trait.realm}
-    "Q" + old_traits.size.to_s.next.next + "_" + old_traits.map(&:letters).join + letters
+    new_state = State.find(letters)
+    old_states = states.reject{|s| s.realm == new_state.realm}
+    "Q" + old_states.size.to_s.next.next + "_" + old_states.map(&:letters).join + letters
   end
 
-  def sorted_traits; traits.sort_by{|t| t.realm.index}; end
-  def sorted_letters; sorted_traits.map(&:letters).join; end
-  def clockwise; Type.new(sorted_letters + "n"); end
-  def counterclockwise; Type.new(sorted_letters + "p"); end
+  def sorted_states; states.sort_by{|s| s.attitude.index}; end
+  def manic; sorted_states.first; end
+  def depressed; sorted_states.last; end
+  def sorted_letters; sorted_states.map(&:realm).map(&:letter).join; end
+  def introvert; Type.new("i" + sorted_letters); end
+  def extrovert; Type.new("e" + sorted_letters); end
 
 end

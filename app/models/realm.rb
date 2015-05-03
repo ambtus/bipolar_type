@@ -6,38 +6,28 @@ class Realm
     @index = LETTERS.index(string)
     @letter = string
   end
-  attr_reader :letter, :index
+  attr_reader :letter
 
-  REALMS = LETTERS.collect{|choice| Realm.new(choice)}
+  REALMS = LETTERS.collect{|letter| Realm.new(letter)}
   def self.all; REALMS; end
-
   def self.find(letter); REALMS[LETTERS.index(letter)]; end
-
-  def next; Realm.all[(@index + 1).modulo(4)]; end
-  def previous; Realm.all[(@index + 3).modulo(4)]; end
 
   def mbti; letter.upcase; end
 
-  def +(attitude); Trait.find(self.letter + attitude.letter); end
-  def behaviors; State.all.add(self); end
+  def +(attitude); State.find(attitude.letters + letter); end
+  def states; Attitude.all.add(self); end
 
   def short; %w{financial physical mental interpersonal}[@index]; end
   def with_mbti; "(#{mbti})"; end
   def short_with_mbti; [short, with_mbti].join(" "); end
 
-  def output; %w{buy take put\ together influence}[@index]; end
-  def big_output; %w{expensive long hard unfamiliar}[@index]; end
-  def small_output; %w{cheap short easy familiar }[@index]; end
-  def productions; %w{tools walks pieces people}[@index]; end
-  def input; %w{earn eat analyze hear}[@index]; end
-  def big_input; %w{large high-calorie complex emotional}[@index]; end
-  def small_input; %w{small low-calorie simple unemotional }[@index]; end
-  def resources; %w{rewards meals puzzles stories}[@index]; end
-
-  def manic; %w{poor thin stupid dominant}[@index]; end
-  def depressed; %w{rich fat smart submissive}[@index]; end
-
-  def manic_or_depressed; [manic, depressed].join(" or "); end
-  def objective_measure; %w{bank\ statement scale test\ score social\ position}[@index]; end
+  def output; %w{buy walk synthesize talk}[@index]; end
+  def mania; %w{in\ debt anorexic an\ idiot homicidal}[@index]; end
+  def high; %w{poor thin stupid dominant}[@index]; end
+  def low; %w{rich fat smart submissive}[@index]; end
+  def depression; %w{a\ lender obese a\ genius suicidal}[@index]; end
+  def input; %w{work eat analyze listen}[@index]; end
+  def objective_measure; %w{bank\ statement mirror diploma job\ title}[@index]; end
+  def high_or_low; [high, low].join(" or "); end
 
 end

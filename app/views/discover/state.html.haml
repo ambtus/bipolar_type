@@ -1,0 +1,22 @@
+- content_for(:title, "Discovery ##{@answer.number}")
+%h2
+  =@answer.attitude.short_with_mbti
+-if @answer.number > 1
+  %p.chosen.center
+    Feel free to select the same row or column again (shown in green) to change
+    - if @answer.number == 2
+      your previous choice
+    - else
+      one or more of your previous choices
+    of
+    %ul.chosen.center
+      -@answer.sorted_states.each do |state|
+        %li=state.short_with_mbti
+%table.center
+  %tr
+  -@answer.attitude.states.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |state|
+        %td=link_to state.short_with_mbti, (@answer.next(state.letters)), :class => @answer.css(state)
+-unless @answer.number == 1
+  %p.center=link_to "Start over", discover_path("Q1")

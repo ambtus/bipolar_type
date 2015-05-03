@@ -1,7 +1,32 @@
-- content_for(:title, "Choice ##{@answer.number}")
+- content_for(:title, "Discovery ##{@answer.number}")
 %p
-  =link_to @answer.clockwise.mbti, type_path(@answer.clockwise.path)
+  Being
+  =@answer.depressed.behavior
+  is worse than being
+  =@answer.manic.behavior.punctuate
+  If I am
+  =@answer.depressed.behavior
+  for too long I could die, but if I am
+  =@answer.manic.behavior
+  I just have to
+  =@answer.manic.output
+  less and I will soon be
+  =@answer.manic.opposite.behavior.punctuate
+  %br
+  =link_to @answer.introvert.mbti, type_path(@answer.introvert.path)
 %p
-  =link_to @answer.counterclockwise.mbti, type_path(@answer.counterclockwise.path)
-%p
-  =link_to "Start over", discover_path("Q1")
+  Being
+  =@answer.manic.behavior
+  is worse than being
+  =@answer.depressed.behavior.punctuate
+  If I am
+  =@answer.manic.behavior
+  for too long I could die, but if I am
+  =@answer.depressed.behavior
+  I just have to
+  =@answer.depressed.input
+  less and I will soon be
+  =@answer.depressed.opposite.behavior.punctuate
+  %br
+  =link_to @answer.extrovert.mbti, type_path(@answer.extrovert.path)
+%p.center=link_to "Start over", discover_path("Q1")
