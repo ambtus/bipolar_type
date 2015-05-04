@@ -21,13 +21,17 @@ class Realm
   def with_mbti; "(#{mbti})"; end
   def short_with_mbti; [short, with_mbti].join(" "); end
 
-  def output; %w{buy walk synthesize influence}[@index]; end
-  def dom; %w{a\ borrower anorexic theoretical bossy}[@index]; end
-  def top; %w{poor thin stupid homicidal}[@index]; end
-  def bottom; %w{rich fat smart suicidal}[@index]; end
-  def sub; %w{a\ lender obese critical submissive}[@index]; end
-  def input; %w{work eat analyze empathize}[@index]; end
-  def objective_measure; %w{bank\ statement mirror diploma stance}[@index]; end
-  def top_or_bottom; [top, bottom].join(" or "); end
+  def empty; %w{poor anorexic stupid dominant}[@index]; end
+  def underfull; %w{lower-middle-class thin wrong homicidal}[@index]; end
+  def overfull; %w{upper-middle-class fat right suicidal}[@index]; end
+  def stuffed; %w{rich obese smart submissive}[@index]; end
 
+  def objective_measures; %w{bank\ statements mirrors made\ mistakes plans}[@index]; end
+
+  def input; %w{work eat analyze understand}[@index]; end
+  def large; %w{80-dollar 2100-calorie 1000-piece 3-viewpoint}[@index];end
+  def small; %w{27-dollar 700-calorie 300-piece 1-viewpoint}[@index];end
+  def chunk; %w{hour meal puzzle story}[@index];end
+  def chunks; chunk.pluralize; end
+  def output; %w{buy move synthesize influence}[@index]; end
 end

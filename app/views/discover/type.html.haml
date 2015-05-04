@@ -1,32 +1,33 @@
 - content_for(:title, "Choice ##{@answer.number}")
 %p
   Being
-  =@answer.depressed
+  =@answer.stuffed
   is worse than being
-  =@answer.manic.punctuate
+  =@answer.empty.punctuate
   If I am
-  =@answer.depressed
+  =@answer.stuffed
   for too long I will be in real trouble, but if I am
-  =@answer.manic
+  =@answer.empty
   I just have to
   =@answer.output
   less and I will soon be
-  =@answer.on_the_bottom.punctuate
+  =@answer.overfull
+  again.
   %br
   =link_to @answer.introvert.mbti_with_mbtis, type_path(@answer.introvert.path)
 %p
   Being
-  =@answer.manic
+  =@answer.empty
   is worse than being
-  =@answer.depressed.punctuate
+  =@answer.stuffed.punctuate
   If I am
-  =@answer.manic
+  =@answer.empty
   for too long I will be in real trouble, but if I am
-  =@answer.depressed
+  =@answer.stuffed
   I just have to
   =@answer.input
   less and I will soon be
-  =@answer.on_top.punctuate
+  =@answer.underfull.punctuate
   %br
   =link_to @answer.extrovert.mbti_with_mbtis, type_path(@answer.extrovert.path)
 %p.center=link_to "Start over", discover_path("Q1")

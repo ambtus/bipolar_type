@@ -21,7 +21,7 @@ class Type
   def ordered_states; @nurture == "i" ? states.reverse : states; end
   def mbti; ordered_states.map(&:mbti).join("-"); end
 
-  def short; ordered_states.map(&:behavior).to_sentence; end
+  def short; ordered_states.map(&:state).to_sentence; end
   def with_mbti; "(#{mbti})"; end
   def short_with_mbti; [short, with_mbti].join(" "); end
 

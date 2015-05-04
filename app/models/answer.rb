@@ -38,12 +38,12 @@ class Answer
 
   def sorted_states; states.sort_by{|s| s.attitude.index}; end
 
-  def manic; sorted_states.first.top; end
-  def output; sorted_states.first.output; end
-  def on_the_bottom; sorted_states.first.sub; end
-  def depressed; sorted_states.last.bottom; end
-  def input; sorted_states.last.input; end
-  def on_top; sorted_states.last.dom; end
+  def stuffed; sorted_states.first.stuffed; end
+  def input; sorted_states.first.input; end
+  def underfull; sorted_states.first.underfull; end
+  def empty; sorted_states.last.empty; end
+  def output; sorted_states.last.output; end
+  def overfull; sorted_states.last.overfull; end
 
   def sorted_letters; sorted_states.map(&:realm).map(&:letter).join; end
   def introvert; Type.new("i" + sorted_letters); end

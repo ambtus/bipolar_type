@@ -29,11 +29,11 @@ class State
   def generic; [attitude.acute_or_chronic, realm.short, attitude.mania_or_depression].join(" "); end
   def with_mbti; "(#{mbti})"; end
   def generic_with_mbti; [generic, with_mbti].join(" "); end
-  def behavior; realm.send(attitude.short); end
-  def behavior_with_mbti; [behavior, with_mbti].join(" "); end
-  def short; [generic, behavior, issue].join(" — "); end
+  def state; realm.send(attitude.state); end
+  def behavior_with_mbti; [state, with_mbti].join(" "); end
+  def short; [generic, state, issue].join(" — "); end
   def short_with_mbti; [short, with_mbti,].join(" "); end
-  def short_without_generic; [behavior, issue].join(" — "); end
+  def short_without_generic; [state, issue].join(" — "); end
 
   def issue
     case attitude.mbti
@@ -48,6 +48,21 @@ class State
     end
   end
   def issue_with_mbti; [issue, with_mbti,].join(" "); end
+
+  def problem
+    case attitude.index
+    when 0
+      "you are #{input.ing} three #{large} #{chunks}"
+    when 1
+      "you are #{input.ing} three #{small} #{chunks}"
+    when 2
+      "you are #{input.ing} one #{large} #{chunk}"
+    when 3
+      "you are #{input.ing} one #{small} #{chunk}"
+    end
+  end
+
+  def solution; attitude.one? ? "you need to #{input} one #{large} #{chunk}" : "you need to #{input} three #{small} #{chunks}"; end
 
   private
   def method_missing(method, *args, &block)
