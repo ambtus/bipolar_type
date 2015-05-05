@@ -1,5 +1,5 @@
 class Type
-  def self.my_path; "itsnf"; end
+  def self.my_path; "istnf"; end
   def self.my_type; Type.find(my_path); end
 
   LETTERS = Realm::LETTERS.permutation(4).map(&:join).multiply(%w{i e}).flatten.map(&:reverse)

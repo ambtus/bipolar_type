@@ -50,14 +50,14 @@ class State
   def issue_with_mbti; [issue, with_mbti,].join(" "); end
 
   def problem
-    case attitude.index
-    when 0
+    case attitude.mbti
+    when "E"
       "you are #{input.ing} three #{large} #{chunks}"
-    when 1
+    when "P"
       "you are #{input.ing} three #{small} #{chunks}"
-    when 2
+    when "J"
       "you are #{input.ing} one #{large} #{chunk}"
-    when 3
+    when "I"
       "you are #{input.ing} one #{small} #{chunk}"
     end
   end
