@@ -1,0 +1,5 @@
+-states.each do |state|
+  %h2=state.short_with_mbti
+  =render state.attitude.letter, :realm => state.realm
+  -if @type
+    %p.small=link_to "not right?", discover_path(@type.qpath(state))

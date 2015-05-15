@@ -1,6 +1,4 @@
-- content_for(:title, "Choice ##{@answer.number}")
-%h2
-  =@answer.realm.short_with_mbti
+- content_for(:title, "Replace Previous Choice")
 %p.chosen.center
   Please replace one or more of your previous choices (shown in green)
   %ul.chosen.center
@@ -11,5 +9,6 @@
   -@answer.realm.states.in_groups_of(2).each do |row|
     %tr
       -row.each do |state|
-        %td=link_to state.short_with_mbti, (@answer.fixme(state.letters)), :class => @answer.fixme_css(state)
+        %td
+          =link_to state.short_with_mbti, (@answer.fixme(state.letters)), :class => @answer.attitude_replace?(state)
 %p.center=link_to "Start over", discover_path("Q1")

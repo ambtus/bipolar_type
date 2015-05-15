@@ -1,14 +1,12 @@
 class Type
-  def self.my_path; "istnf"; end
+  def self.my_path; "ntsf"; end
   def self.my_type; Type.find(my_path); end
 
-  LETTERS = Realm::LETTERS.permutation(4).map(&:join).multiply(%w{i e}).flatten.map(&:reverse)
+  LETTERS = Realm::LETTERS.permutation(4).map(&:join)
 
   def initialize(string)
     raise "#{string} isn't a Type" unless LETTERS.include?(string)
     @path = string
-    @nurture = string[0]
-    @nature = string[1,4]
   end
   attr_reader :path
 
@@ -16,24 +14,29 @@ class Type
   def self.all; TYPES; end
   def self.find(letters); TYPES[LETTERS.index(letters)]; end
 
-  def realms; @nature.scan(/./).collect{|r| Realm.find(r)}; end
-  def states; Attitude.all.add(realms); end
-  def ordered_states; @nurture == "i" ? states.reverse : states; end
-  def mbti; ordered_states.map(&:mbti).join("-"); end
 
-  def short; ordered_states.map(&:state).to_sentence; end
+  def realms; path.scan(/./).collect{|r| Realm.find(r)}; end
+  def states; Attitude.all.add(realms); end
+  def short; states.map(&:short).to_sentence; end
+
+  def mbti; states.map(&:mbti).join("‑"); end
   def with_mbti; "(#{mbti})"; end
-  def short_with_mbti; [short, with_mbti].join(" "); end
 
   def states_without_state(state); states - [state]; end
-  def qpath_without_state(state); "Q6_#{states_without_state(state).map(&:letters).join}"; end
+  def qpath(state); "Q6_#{states_without_state(state).map(&:letters).join}"; end
 
-  MBTIS =["ISFP", "ISFJ", "ISTP", "ISTJ", "INFP", "INFJ", "INTP", "INTJ", "ESFP", "ESFJ", "ESTP", "ESTJ", "ENFP", "ENFJ", "ENTP", "ENTJ"]
-  def mbtis; ordered_states.permutation(2).collect{|p|p.map(&:mbti)}.map(&:join).map(&:mbti_order) & MBTIS; end
-  def likelies; @nurture == "i" ? mbtis.collect{|m| m.gsub(/E/, "I")} : mbtis.collect{|m| m.gsub(/I/, "E")};  end
+  def j_state; states.first; end
+  def e_state; states.second; end
+  def p_state; states.third; end
+  def i_state; states.fourth; end
 
-  def with_mbtis; likelies.join("/"); end
-  def mbti_with_mbtis; "#{mbti} (#{with_mbtis})"; end
-  def short_with_mbtis; "#{short} (#{mbti}: #{with_mbtis})"; end
+  private
+  def method_missing(method, *args, &block)
+    if method.to_s =~ /^(.*)_with_mbti$/
+      [self.send($1, *args, &block), with_mbti].join(" ")
+    else
+      super
+    end
+  end
 
 end

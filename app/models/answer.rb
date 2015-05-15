@@ -7,22 +7,13 @@ class Answer
   attr_reader :question
 
   def number; @question.last.to_i ; end
+
   def state_letters; @letters[0,8]; end
   def states; state_letters.scan(/../).collect{|ar| State.find(ar)}; end
 
   def attitudes; states.map(&:attitude); end
-  def attitude
-    return Attitude.all.first if attitudes.empty?
-    attitude = attitudes.last.lower
-    while attitudes.include?(attitude); attitude = attitude.lower; end
-    return attitude
-  end
-
-  def realms; states.map(&:realm); end
-  def css(state); realms.include?(state.realm) ? "chosen" : "free"; end
-  def fixme_css(state); attitudes.include?(state.attitude) ? "chosen" : "free"; end
-
-  def realm; (Realm.all - realms).first; end
+  def unchosen; Attitude.all - attitudes; end
+  def random_attitude; unchosen.sample; end
 
   def next(letters);
     new_state = State.find(letters)
@@ -30,23 +21,18 @@ class Answer
     "Q" + old_states.size.to_s.next.next + "_" + old_states.map(&:letters).join + letters
   end
 
-  def fixme(letters)
+  def realms; states.map(&:realm); end
+  def realm_chosen?(state); realms.include?(state.realm) ? "chosen" : "free"; end
+
+  def realm; (Realm.all - realms).first; end
+  def fixme(letters);
     new_state = State.find(letters)
     old_states = states.reject{|s| s.attitude == new_state.attitude}
     "Q" + old_states.size.to_s.next.next + "_" + old_states.map(&:letters).join + letters
   end
+  def attitude_replace?(state); attitudes.include?(state.attitude) ? "free" : "chosen"; end
 
   def sorted_states; states.sort_by{|s| s.attitude.index}; end
-
-  def stuffed; sorted_states.first.stuffed; end
-  def input; sorted_states.first.input; end
-  def underfull; sorted_states.first.underfull; end
-  def empty; sorted_states.last.empty; end
-  def output; sorted_states.last.output; end
-  def overfull; sorted_states.last.overfull; end
-
-  def sorted_letters; sorted_states.map(&:realm).map(&:letter).join; end
-  def introvert; Type.new("i" + sorted_letters); end
-  def extrovert; Type.new("e" + sorted_letters); end
+  def path; sorted_states.map(&:realm).map(&:letter).join; end
 
 end

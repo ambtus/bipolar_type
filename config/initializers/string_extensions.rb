@@ -15,7 +15,7 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income internal\ logic affection conflict power animosity sugar knowledge}
+  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income internal\ logic affection conflict power animosity sugar knowledge money}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
   def er
@@ -36,6 +36,8 @@ class String
     target = self.split.first
     transformation = if target == "die"
       "dying"
+    elsif target == "see"
+      "seeing"
     elsif %w{fit put}.include?(target)
       target + "ting"
     elsif target.end_with?("e")

@@ -1,5 +1,9 @@
 class State
-  LETTERS = Attitude::LETTERS.product(Realm::LETTERS).map(&:join)
+  #LETTERS = Attitude::LETTERS.product(Realm::LETTERS).map(&:join)
+  LETTERS = ["jn", "jt", "en", "et",
+             "js", "jf", "es", "ef",
+             "pn", "pt", "in", "it",
+             "ps", "pf", "is", "if"]
 
   def initialize(string)
     raise "#{string} isn't a State" unless LETTERS.include?(string)
@@ -14,59 +18,20 @@ class State
   def self.all; STATES; end
   def self.find(letters); STATES[LETTERS.index(letters)]; end
 
-  def self.all_reordered; Attitude.all_reordered.multiply(Realm.all).flatten; end
-
-  def lower; State.find(attitude.lower.letter + @realm_letter); end
-  def opposite; State.find(attitude.opposite.letter + @realm_letter); end
-  def higher; State.find(attitude.higher.letter + @realm_letter); end
-
   def mbti; letters.mbti_order.upcase; end
+  def with_mbti; "(#{mbti})"; end
 
   def attitude; Attitude.find(@attitude_letter); end
   def realm; Realm.find(@realm_letter); end
 
-
-  def generic; [attitude.acute_or_chronic, realm.short, attitude.mania_or_depression].join(" "); end
-  def with_mbti; "(#{mbti})"; end
-  def generic_with_mbti; [generic, with_mbti].join(" "); end
-  def state; realm.send(attitude.state); end
-  def behavior_with_mbti; [state, with_mbti].join(" "); end
-  def short; [generic, state, issue].join(" — "); end
-  def short_with_mbti; [short, with_mbti,].join(" "); end
-  def short_without_generic; [state, issue].join(" — "); end
-
-  def issue
-    case attitude.mbti
-    when "E"
-      "cannot #{realm.input} enough"
-    when "P"
-      "#{realm.input} too much"
-    when "J"
-      "#{realm.output} too much"
-    when "I"
-      "cannot #{realm.output} enough"
-    end
-  end
-  def issue_with_mbti; [issue, with_mbti,].join(" "); end
-
-  def problem
-    case attitude.mbti
-    when "E"
-      "you are #{input.ing} three #{large} #{chunks}"
-    when "P"
-      "you are #{input.ing} three #{small} #{chunks}"
-    when "J"
-      "you are #{input.ing} one #{large} #{chunk}"
-    when "I"
-      "you are #{input.ing} one #{small} #{chunk}"
-    end
-  end
-
-  def solution; attitude.one? ? "you need to #{input} one #{large} #{chunk}" : "you need to #{input} three #{small} #{chunks}"; end
+  def short; realm.send(attitude.short); end
 
   private
   def method_missing(method, *args, &block)
-    realm.send(method, *args, &block)
+    if method.to_s =~ /^(.*)_with_mbti$/
+      [self.send($1, *args, &block), with_mbti].join(" ")
+    else
+      realm.send(method, *args, &block)
+    end
   end
-
 end
