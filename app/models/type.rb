@@ -1,3 +1,4 @@
+# Encoding: utf-8
 class Type
   def self.my_path; "ntsf"; end
   def self.my_type; Type.find(my_path); end
