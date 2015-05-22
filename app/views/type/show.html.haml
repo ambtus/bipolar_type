@@ -1,2 +1,97 @@
 - content_for(:title, @type.mbti)
 =render "states", :states => @type.states
+%h2 Manic Subtypes
+%p
+  Willing to live with being
+  =@type.j_state.underfull
+  if it means they don’t have to be
+  =@type.p_state.overfull.punctuate
+  Induces a mild state of mania with general stimulants such as caffeine, antidepressants, or sensory overload and sleep deprivation in order to be able to
+  =@type.p_state.lose.punctuate
+%h3=render "mbti", :mbti => @type.ep
+%p
+  Cuts back on the stimulants when they can no longer
+  =@type.e_state.gain
+  and become too
+  =@type.e_state.underfull
+  to
+  =@type.e_state.lose.punctuate
+%h3=render "mbti", :mbti => @type.ip.gsub("I", "E")
+%p
+  Cuts back on the stimulants when they can no longer
+  =@type.i_state.gain.punctuate
+%h2 Depressed Subtypes
+%p
+  Willing to live with being
+  =@type.p_state.overfull
+  if it means they don’t have to be
+  =@type.j_state.underfull.punctuate
+  Induces a mild state of depression with general sedatives such as alcohol, mood stabilizers, or sensory deprivation and sleep overload in order to be able to
+  =@type.j_state.gain.punctuate
+%h3=render "mbti", :mbti => @type.ej.gsub("E", "I")
+%p
+  Cuts back on the sedatives when they can no longer
+  =@type.e_state.lose.punctuate
+%h3=render "mbti", :mbti => @type.ij
+%p
+  Cuts back on the sedatives when they can no longer
+  =@type.i_state.lose
+  and become too
+  =@type.i_state.overfull
+  to
+  =@type.i_state.gain.punctuate
+%h2 Bipolar Subtypes
+%p
+  Wants to be manic so they can be
+  =@type.p_state.underfull.er.punctuate(",")
+  but depressed so they can be
+  =@type.j_state.overfull.er.punctuate
+  Would also like to be
+  =@type.e_state.overfull
+  enough to
+  =@type.e_state.lose
+  without having to
+  =@type.e_state.gain
+  and
+  =@type.i_state.underfull
+  enough to
+  =@type.i_state.gain
+  without having to
+  =@type.i_state.lose.punctuate
+%h3=render "mbti", :mbti => @type.ej
+%p
+  Being
+  =@type.p_state.overfull
+  is worse than being
+  =@type.j_state.underfull.punctuate
+  Sticks to stimulants most of the time until can no longer bear being unable to
+  =@type.j_state.gain
+  and then switches to sedatives until they lose the ability to
+  =@type.p_state.lose.punctuate
+  Regrets not being able to
+  =@type.i_state.gain
+  as often as they would like but is compensated by not having to
+  =@type.i_state.lose.punctuate
+  Doesn’t enjoy
+  =@type.e_state.gain.ing
+  so much, but at least they can always
+  =@type.e_state.lose.punctuate
+%h3=render "mbti", :mbti => @type.ip
+%p
+  Being
+  =@type.j_state.underfull
+  is worse than being
+  =@type.p_state.overfull.punctuate
+  Sticks to sedatives most of the time until can no longer bear being unable to
+  =@type.p_state.lose
+  and then switch to stimulants until they lose the ability to
+  =@type.j_state.lose.punctuate
+  Regrets not being able to
+  =@type.e_state.lose
+  as often as they would like but is compensated by not having to
+  =@type.e_state.gain.punctuate
+  Doesn’t enjoy
+  =@type.i_state.lose.ing
+  so much, but at least they can always
+  =@type.i_state.gain.punctuate
+

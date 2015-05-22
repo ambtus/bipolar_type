@@ -1,7 +1,8 @@
 -ending = defined?(punctuate) ? punctuate : ""
--mbti = mbti.upcase.mbti_order
 -case mbti
 -when "ISTP"
   =(link_to mbti, "http://en.wikipedia.org/wiki/#{mbti}_(personality_type)", :class => "external") + ending
 -when "ISFP", "ISFJ", "ISTP", "ISTJ", "INFP", "INFJ", "INTP", "INTJ", "ESFP", "ESFJ", "ESTP", "ESTJ", "ENFP", "ENFJ", "ENTP", "ENTJ"
   =(link_to mbti, "http://en.wikipedia.org/wiki/#{mbti}", :class => "external") + ending
+- else
+  =mbti + ending

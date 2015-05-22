@@ -1,8 +1,8 @@
 class State
   #LETTERS = Attitude::LETTERS.product(Realm::LETTERS).map(&:join)
-  LETTERS = ["jn", "jt", "en", "et",
-             "js", "jf", "es", "ef",
-             "pn", "pt", "in", "it",
+  LETTERS = ["et", "en", "jt", "jn", 
+             "es", "ef", "js", "jf", 
+             "pt", "pn", "it", "in",
              "ps", "pf", "is", "if"]
 
   def initialize(string)
@@ -24,7 +24,7 @@ class State
   def attitude; Attitude.find(@attitude_letter); end
   def realm; Realm.find(@realm_letter); end
 
-  def short; realm.send(attitude.short); end
+  def short; realm.send(attitude.adjective); end
 
   private
   def method_missing(method, *args, &block)

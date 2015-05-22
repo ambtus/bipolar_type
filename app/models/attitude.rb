@@ -1,5 +1,5 @@
 class Attitude
-  LETTERS = %w{j e p i}
+  LETTERS = %w{e j p i}
 
   def initialize(string)
     raise "#{string} isn't an Attitude" unless LETTERS.include?(string)
@@ -18,7 +18,9 @@ class Attitude
   def mbti; letter.upcase; end
   def with_mbti; "(#{mbti})"; end
 
-  def short; %w{extroverted manic depressed introverted}[@index]; end
+  def adjective; %w{  extroverted manic depressed introverted}[@index]; end
+
+ def short; adjective; end
 
   private
   def method_missing(method, *args, &block)

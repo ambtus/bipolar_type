@@ -10,9 +10,7 @@
     -@answer.sorted_states.each do |state|
       %li=state.short_with_mbti
 -if @answer.number < 4
-  %p.center You can refresh this page to get a different set of choices
--else
-  %p.center Please select the only remaining choice if it has been true in the past, even if it is not currently true.
+  %p.center You can refresh this page to get a different set of choices (it may take more than one refresh)
 %table.center
   %tr
   -@attitude.states.in_groups_of(2).each do |row|

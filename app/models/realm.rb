@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{n t s f}
+  LETTERS = %w{t n s f}
 
   def initialize(string)
     raise "#{string} isn't an Realm" unless LETTERS.include?(string)
@@ -18,20 +18,21 @@ class Realm
   def mbti; letter.upcase; end
   def with_mbti; "(#{mbti})"; end
 
-  def adjective; %w{mental financial physical emotional}[@index]; end
+  def adjective; %w{ financial mental physical emotional}[@index]; end
   def adverb; adjective + "ly"; end
-  def gain; %w{see earn eat hear}[@index]; end
-  def energy; %w{colors dividends carbs tragedies}[@index]; end
-  def strength; %w{shapes interest protein happy\ endings}[@index]; end
-  def use_energy; %w{synthesize spend move emote}[@index]; end
-
+  def input; %w{work look\ or\ learn eat\ or\ drink listen\ or\ sympathize}[@index]; end
+  def gain; %w{ beg,\ borrow,\ or\ steal believe\ or\ trust feast\ or\ binge empathize\ or\ care}[@index]; end
+  def output; %w{ buy choose walk talk}[@index]; end
+  def lose; %w{ splurge\ or\ gift decide\ or\ solve\ problems run\ or\ jump cry\ or\ whine}[@index]; end
+  def energy; %w{ money information calories emotions}[@index]; end
+  def overfull; %w{rich smart fat emotional}[@index]; end
+  def underfull; %w{poor stupid thin unemotional}[@index]; end
   def short; adjective; end
 
-  def extroverted; "needs to #{use_energy}"; end
-  def manic; "wants to #{use_energy}"; end
-  def depressed; "wants to #{gain} #{energy}"; end
-  def introverted; "needs to #{gain} #{strength}"; end
-
+  def extroverted; "#{lose.s} but #{gain.s} after"; end
+  def manic; "#{lose.s} but can’t #{gain}"; end
+  def depressed; "#{gain.s} but can’t #{lose}"; end
+  def introverted; "#{gain.s} but #{lose.s} after"; end
 
   private
   def method_missing(method, *args, &block)

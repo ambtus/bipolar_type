@@ -19,7 +19,9 @@
     %tr
       -row.each do |state|
         %td
-          =link_to state.short_with_mbti, discover_path("Q2_#{state.letters}")
+          =state.short
+          %br
+          =link_to state.mbti, discover_path("Q2_#{state.letters}")
 %h2 The Twenty Four Bipolar Types
 %table.center
   %tr
@@ -27,4 +29,6 @@
     %tr
       -row.each do |type|
         %td
-          =link_to type.short_with_mbti, type_path(type.path)
+          =type.subtypes.to_sentence(:last_word_connector => ", or ")
+          %br
+          =link_to type.mbti, type_path(type.path)

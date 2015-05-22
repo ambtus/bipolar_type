@@ -33,6 +33,9 @@ class String
   end
 
   def ing
+    return "begging, borrowing, or stealing" if self == "beg, borrow, or steal"
+    return [self.split(" or ").first.ing, self.split(" or ").last.ing].join(" or ") if self.match(" or ")
+
     target = self.split.first
     transformation = if target == "die"
       "dying"
@@ -40,6 +43,8 @@ class String
       "seeing"
     elsif %w{fit put}.include?(target)
       target + "ting"
+    elsif %w{run}.include?(target)
+      target + "ning"
     elsif target.end_with?("e")
       target.chop + "ing"
     else
@@ -50,6 +55,8 @@ class String
 
 
   def s
+    return "begs, borrows, or steals" if self == "beg, borrow, or steal"
+    return [self.split(" or ").first.s, self.split(" or ").last.s].join(" or ") if self.match(" or ")
     target = self.split.first
     transformation = if target == "die"
       target # singular they: they die => they die (not they die => he dies)
@@ -57,6 +64,12 @@ class String
       "is" # they are => it is
     elsif %w{do go express}.include?(target)
       target + "es"
+    elsif target.end_with?("y")
+      if target == "buy"
+        "buys"
+      else
+        target.chop + "ies"
+      end
     else
       target + "s"
     end
@@ -64,6 +77,8 @@ class String
   end
 
   def ed
+    return "begged, borrowed, or stole" if self == "beg, borrow, or steal"
+    return [self.split(" or ").first.ed, self.split(" or ").last.ed].join(" or ") if self.match(" or ")
     target = self.split.first
     transformation = if target == "eat"
       "ate"
