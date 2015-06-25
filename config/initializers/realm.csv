@@ -1,0 +1,24 @@
+# touch realm.rb to reload methods in development mode
+
+path,s,f,t,n
+
+neuro,serotonin,oxytocin,dopamine,GABA
+adjective,physical,emotional,financial,mental
+adverb,physically,emotionally,financially,mentally
+sensory,olfactory,auditory,tactile,visual
+sensorily,olfactorily,auditorily,tactilely,visually
+
+bursty output,run,emote,shop,decide
+alt bursty output,aerobic exercise,laugh or cry or shout,acquire new tools or toys,synthesize or jump to conclusions
+
+steady output,lift weights,talk,buy,choose
+alt steady output,anaerobic exercise,speak or write or whisper,restock ingredients or consumables,combine or put the pieces together
+
+input,eat,hear,do,see
+alt input,eat,understand,earn,remember
+
+bursty input,carbs,music,jobs,details
+alt bursty input,potatoes or breads or sweets,expressive tones or harmonic series,bonuses or dividends,flashes of local color
+
+steady input,protein,stories,chores,generalities
+alt steady input,meats or cheese or nuts,lexical meaning or narrative words,salary or interest,shapes or outlines

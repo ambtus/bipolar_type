@@ -1,6 +1,11 @@
+ol {
+  text-align: left;
+}
 ul {
   list-style-type: none;
+  text-align: left;
 }
+
 dt, dd { display: inline; margin: 0; }
 dt:after {
   content: ":";

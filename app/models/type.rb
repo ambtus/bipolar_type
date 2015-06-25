@@ -1,50 +1,32 @@
-# Encoding: utf-8
 class Type
-  def self.my_path; Realm::LETTERS.join; end
-  def self.my_type; Type.find(my_path); end
+  LETTERS = Nature::LETTERS.product(Nurture::LETTERS).map(&:join)
 
-  LETTERS = Realm::LETTERS.permutation(4).map(&:join)
+  def self.my_path; Nature.first.path + Nurture.first.path ; end
+  def self.first; Type.new(my_path); end
 
-  def initialize(string)
-    raise "#{string} isn't a Type" unless LETTERS.include?(string)
-    @path = string
+  def initialize(letters)
+    raise "#{letters} isn't a Type" unless LETTERS.include?(letters)
+    @index = LETTERS.index(letters)
+    @path = letters
   end
   attr_reader :path
 
-  TYPES = LETTERS.collect{|choice| Type.new(choice)}
+  TYPES = LETTERS.collect{|letters| Type.new(letters)}
   def self.all; TYPES; end
   def self.find(letters); TYPES[LETTERS.index(letters)]; end
 
 
-  def realms; path.scan(/./).collect{|r| Realm.find(r)}; end
-  def states; Attitude.all.add(realms); end
-  def short; states.map(&:short).to_sentence; end
-
-  def mbti; states.map(&:mbti).join("‑"); end
-  def with_mbti; "(#{mbti})"; end
-
-  def states_without_state(state); states - [state]; end
-  def qpath(state); "Q6_#{states_without_state(state).map(&:letters).join}"; end
+  def nature; Nature.find(path[0,4]); end
+  def nurture; Nurture.find(path[4,4]); end
 
 
-  def e_state; states.first; end
-  def j_state; states.second; end
-  def p_state; states.third; end
-  def i_state; states.fourth; end
+  def messages; nurture.messages; end
+  def stages; nurture.stages; end
+  def sensitivities; nature.sensitivities; end
+  def subtypes; nurture.subtypes.values_at(*nature.realms.map(&:index)); end
 
-  def ep; [e_state, p_state].map(&:mbti).join.mbti_order; end
-  def ij; [i_state, j_state].map(&:mbti).join.mbti_order; end
-  def ej; [e_state, j_state].map(&:mbti).join.mbti_order; end
-  def ip; [i_state, p_state].map(&:mbti).join.mbti_order; end
-  def subtypes; [ep, ip.gsub("I", "E"), ij, ej.gsub("E", "I"), ej, ip]; end
+  def mbti; subtypes.map(&:mbti).join("–"); end
 
-  private
-  def method_missing(method, *args, &block)
-    if method.to_s =~ /^(.*)_with_mbti$/
-      [self.send($1, *args, &block), with_mbti].join(" ")
-    else
-      super
-    end
-  end
+  def pairs; subtypes.combination(2); end
 
 end

@@ -21,4 +21,8 @@ class Array
     end
     a
   end
+
+  def to_mbti
+    self.map(&:mbti).join.mbti_order
+  end
 end

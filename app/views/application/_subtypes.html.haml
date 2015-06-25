@@ -1,0 +1,7 @@
+%table.center
+  -subtypes.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half
+          %h3=subtype.stage_with_mbti
+          =render "subtype", :subtype => subtype

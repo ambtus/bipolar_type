@@ -1,0 +1,25 @@
+- content_for(:title, @nature.mbti + " Nature")
+%h2 AM
+Wake
+%h3 Morning (first wind)
+=render "schedule", :subtypes => @nature.realms.values_at(0,3,2,1).add(Attitude.all)
+%h3 Midday (slow down)
+=render "schedule", :subtypes => @nature.realms.values_at(1,0,3,2).add(Attitude.all)
+Quick nap or micronap
+%h2 PM
+Wake
+%h3 Afternoon (second wind)
+=render "schedule", :subtypes => @nature.realms.values_at(2,1,0,3).add(Attitude.all)
+%h3 Evening (slow down)
+=render "schedule", :subtypes => @nature.realms.values_at(3,2,1,0).add(Attitude.all)
+Deep sleep
+%h2 BipolarTypes
+%table.center
+  -@nature.types.in_groups_of(6).each do |row|
+    %tr
+      -row.each do |type|
+        %td.sixth
+          -type.messages.each do |message|
+            =message.punctuate("!")
+            %br
+          =link_to type.mbti, type_path(type.path)

@@ -1,5 +1,6 @@
 .center { text-align: center; }
 .small { font-size: small;}
 .heading {font-style: italic; text-align: center; }
-.chosen {color: green; font-style: italic}
-.free {color: black; font-style: bold}
+.constrained {color: green; font-style: italic}
+.free {color: black; font-weight: bold}
+.chosen {color: grey; font-style: italic}

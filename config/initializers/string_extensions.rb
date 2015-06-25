@@ -3,6 +3,13 @@
 class String
 
   def punctuate(punctuation = "."); self + punctuation; end
+  def parenthetical; "(#{self})"; end
+
+  MBTIS = ["ISFP", "ISFJ", "ISTP", "ISTJ", "INFP", "INFJ", "INTP", "INTJ", "ESFP", "ESFJ", "ESTP", "ESTJ", "ENFP", "ENFJ", "ENTP", "ENTJ"]
+
+  def is_mbti?; MBTIS.include?(self); end
+
+  
 
   def mbti_order
     letters = self.scan(/./)
@@ -11,52 +18,59 @@ class String
      letters & mbti_letters.second,
      letters & mbti_letters.third,
      letters & mbti_letters.fourth
-    ].flatten.compact.join
+    ].map(&:sort).flatten.compact.join
   end
+
+  def attitude_letters
+    letters = self.scan(/./)
+    attitudes = [%w{I E i e}, %w{J P j p}]
+    [letters & attitudes.first,
+     letters & attitudes.second,
+    ].map(&:sort).flatten.map(&:downcase)
+  end
+
+  def attitudes; attitude_letters.collect{|l| Attitude.find(l)}; end
+
+  def realm_letters
+    letters = self.scan(/./)
+    realms = [%w{N S n s}, %w{T F t f}]
+    [letters & realms.first,
+     letters & realms.second,
+    ].map(&:sort).flatten.map(&:downcase)
+  end
+
+  def realms; realm_letters.collect{|l| Realm.find(l)}; end
+
+  def a_or_an
+    if self.mbti_order.length == self.length
+      %w{I E i e N S n s F f}.include?(self.first) ? "an" : "a"
+    else
+      %w{a e i o u}.include?(self.first) ? "an" : "a"
+    end
+  end
+
+  def an; [a_or_an, self].join(" "); end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income internal\ logic affection conflict power animosity sugar knowledge money}
-  def uncountable?; UNCOUNTABLE.include?(self); end
+  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone}
+  def uncountable?; UNCOUNTABLE.include?(self.split.first); end
 
-  def er
-    target = self.split.first
-    transformation = if target == "fat"
-      "fatter"
-    elsif target == "thin"
-      "thinner"
-    elsif %w{rich poor smart stupid loud quiet}.include?(target)
-      target + "er"
-    else
-      "more " + target
+  def few; self.uncountable? ? "little #{self}" : "few #{self}"; end
+  def many; self.uncountable? ? "much #{self}" : "many #{self}"; end
+  def fewer; self.uncountable? ? "less #{self}" : "fewer #{self}"; end
+  def they; self.uncountable? ? "it" : "they"; end
+  def them; self.uncountable? ? "it" : "them"; end
+  def were; self.uncountable? ? "was" : "were"; end
+  def are; self.uncountable? ? "is" : "are"; end
+
+  def s(word="hope")
+    return self unless word.uncountable?
+    set, third = self.split(" or ")
+    if third
+      first, second = set.split(/, ?/)
+      return [first, third].map(&:s).join(" or ") unless second
+      return [first, second, third].map(&:s).to_sentence(:last_word_connector => ", or ")
     end
-    self.gsub(target, transformation)
-  end
-
-  def ing
-    return "begging, borrowing, or stealing" if self == "beg, borrow, or steal"
-    return [self.split(" or ").first.ing, self.split(" or ").last.ing].join(" or ") if self.match(" or ")
-
-    target = self.split.first
-    transformation = if target == "die"
-      "dying"
-    elsif target == "see"
-      "seeing"
-    elsif %w{fit put}.include?(target)
-      target + "ting"
-    elsif %w{run}.include?(target)
-      target + "ning"
-    elsif target.end_with?("e")
-      target.chop + "ing"
-    else
-      target + "ing"
-    end
-    self.gsub(target, transformation)
-  end
-
-
-  def s
-    return "begs, borrows, or steals" if self == "beg, borrow, or steal"
-    return [self.split(" or ").first.s, self.split(" or ").last.s].join(" or ") if self.match(" or ")
     target = self.split.first
     transformation = if target == "die"
       target # singular they: they die => they die (not they die => he dies)
@@ -76,34 +90,57 @@ class String
     self.gsub(target, transformation)
   end
 
-  def ed
-    return "begged, borrowed, or stole" if self == "beg, borrow, or steal"
-    return [self.split(" or ").first.ed, self.split(" or ").last.ed].join(" or ") if self.match(" or ")
+  def er
     target = self.split.first
-    transformation = if target == "eat"
-      "ate"
-    elsif target == "are"
-      "were"
-     elsif target == "say"
-      "said"
-   elsif target == "hear"
-      "heard"
-    elsif target == "think"
-      "thought"
-    elsif target == "go"
-      "went"
-    elsif target == "break"
-      "broke"
-    elsif target == "buy"
-      "bought"
-    elsif target == "do"
-      "did"
-    elsif target == "find"
-      "found"
-    elsif target == "spend"
-      "spent"
-    elsif target == "teach"
-      "taught"
+    transformation = if target == "fat"
+      "fatter"
+    elsif target == "thin"
+      "thinner"
+    elsif %w{rich poor smart stupid loud quiet}.include?(target)
+      target + "er"
+    else
+      "more " + target
+    end
+    self.gsub(target, transformation)
+  end
+
+  def ing
+    set, third = self.split(" or ")
+    if third
+      first, second = set.split(/, ?/)
+      return [first, third].map(&:ing).join(" or ") unless second
+      return [first, second, third].map(&:ing).to_sentence(:last_word_connector => ", or ")
+    end
+    target = self.split.first
+    transformation = if target == "die"
+      "dying"
+    elsif target == "see"
+      "seeing"
+    elsif %w{fit put run beg forget shop}.include?(target)
+      target + target.last + "ing"
+    elsif target.end_with?("e")
+      target.chop + "ing"
+    else
+      target + "ing"
+    end
+    self.gsub(target, transformation)
+  end
+
+
+  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach beg steal}
+  def irregular?; IRREGULAR.include?(self); end
+  def past; %w{saw ate were said heard thought went broke bought did found spent taught begged stole}[IRREGULAR.index(self)]; end
+
+  def ed
+    set, third = self.split(" or ")
+    if third
+      first, second = set.split(/, ?/)
+      return [first, third].map(&:ed).join(" or ") unless second
+      return [first, second, third].map(&:ed).to_sentence(:last_word_connector => ", or ")
+    end
+    target = self.split.first
+    transformation = if target.irregular?
+      target.past
     elsif target.end_with?("y")
       target.chop + "ied"
     elsif target.end_with?("e")
