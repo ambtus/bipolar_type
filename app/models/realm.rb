@@ -20,7 +20,6 @@ class Realm
 
   def name; [sensory, adjective].join("/") ; end
 
-  private
 
   require 'csv'
   arr_of_arrs = CSV.read("config/initializers/realm.csv", :skip_blanks => true, :skip_lines => /^#/)
