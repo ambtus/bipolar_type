@@ -4,12 +4,15 @@ class String
 
   def punctuate(punctuation = "."); self + punctuation; end
   def parenthetical; "(#{self})"; end
+  def parenthetical?; self.match(/\(/); end
+  def nonparenthetical; self.split(" (").first; end
+  def parenthetical_part; self.split(" (").second.chop; end
 
   MBTIS = ["ISFP", "ISFJ", "ISTP", "ISTJ", "INFP", "INFJ", "INTP", "INTJ", "ESFP", "ESFJ", "ESTP", "ESTJ", "ENFP", "ENFJ", "ENTP", "ENTJ"]
 
   def is_mbti?; MBTIS.include?(self); end
 
-  
+
 
   def mbti_order
     letters = self.scan(/./)
@@ -51,8 +54,16 @@ class String
 
   def an; [a_or_an, self].join(" "); end
 
+  def ly
+    if self.last == "y"
+      self.chop + "ily"
+    else
+      self + "ly"
+    end
+  end
+
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone}
+  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary}
   def uncountable?; UNCOUNTABLE.include?(self.split.first); end
 
   def few; self.uncountable? ? "little #{self}" : "few #{self}"; end
@@ -90,6 +101,14 @@ class String
     self.gsub(target, transformation)
   end
 
+  def more
+    if self.match(" or ")
+      [self, "more"].join(" ")
+    else
+      self.split.insert(1, "more").join(" ")
+    end
+  end
+
   def er
     target = self.split.first
     transformation = if target == "fat"
@@ -105,6 +124,9 @@ class String
   end
 
   def ing
+    if self.parenthetical?
+      return [nonparenthetical.ing, parenthetical_part.ing.parenthetical].join(" ")
+    end
     set, third = self.split(" or ")
     if third
       first, second = set.split(/, ?/)
@@ -116,6 +138,8 @@ class String
       "dying"
     elsif target == "see"
       "seeing"
+    elsif %w{lexical expressive local universal black salaried aerobic anaerobic}.include?(target)
+      target
     elsif %w{fit put run beg forget shop}.include?(target)
       target + target.last + "ing"
     elsif target.end_with?("e")

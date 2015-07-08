@@ -95,6 +95,3 @@ DEPENDENCIES
   rails (~> 4.1.0)
   thin
   unicorn
-
-BUNDLED WITH
-   1.10.5

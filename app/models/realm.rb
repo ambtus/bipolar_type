@@ -1,28 +1,24 @@
 class Realm
-  LETTERS = %w{s f t n}
+  LETTERS = %w{n t f s}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
     @index = LETTERS.index(letter)
     @path = letter
   end
-  attr_reader :index
+  attr_reader :index, :path
+  def <=>(other); self.index <=> other.index; end
 
   REALMS = LETTERS.collect{|letter| Realm.new(letter)}
   def self.all; REALMS; end
   def self.find(letter); REALMS[LETTERS.index(letter)]; end
 
-  def +(attitude); Subtype.find(attitude.path + self.path); end
-  def subtypes; Attitude.all.add(self); end
-  Attitude.all.each {|a| define_method(a.path) {self + a}}
+  def +(attitude); Behavior.find(attitude.path + self.path); end
+  def behaviors; Attitude.all.add(self); end
 
-  def mbti; @path.upcase; end
-
-  def name; [sensory, adjective].join("/") ; end
-
-
+  # touch realm.rb to reload realm.csv in development mode
   require 'csv'
-  arr_of_arrs = CSV.read("config/initializers/realm.csv", :skip_blanks => true, :skip_lines => /^#/)
+  arr_of_arrs = CSV.read("config/initializers/realm.csv")
   first = arr_of_arrs.shift
   raise "realm.csv needs to start with path" unless first.first == "path"
   raise "realm.csv needs to be re-ordered" unless LETTERS == first.drop(1)
@@ -36,5 +32,9 @@ class Realm
       super
     end
   end
+
+  def mbti; @path.upcase; end
+  def name; [sensory, adjective].join("/") ; end
+  def description; [consume, produce].join(" & "); end
 
 end

@@ -4,43 +4,36 @@
   -Realm.all.in_groups_of(2).each do |row|
     %tr
       -row.each do |realm|
-        %td.half=link_to realm.name_with_mbti, type_path(realm.path)
+        %td.half
+          =realm.description
+          %br
+          =link_to realm.name_with_mbti, type_path(realm.path)
 %h2 The Four Attitudes
 %table.center
-  -Attitude.matrix_ordered.in_groups_of(2).each do |row|
+  -Attitude.all.in_groups_of(2).each do |row|
     %tr
       -row.each do |attitude|
-        %td.half=link_to attitude.name_with_mbti, type_path(attitude.path)
-%h2 The Sixteen Subtypes
+        %td.half
+          =link_to attitude.name_with_mbti, type_path(attitude.path)
+%h2 The Sixteen Behaviors by Realm
 %table.center
-  -Subtype.all.in_groups_of(4).each do |row|
+  -Behavior.by_realm.in_groups_of(4).each do |row|
     %tr
-      -row.each do |subtype|
-        %td.quarter
-          =subtype.description
+      -row.each do |behavior|
+        %td.fourth
+          =behavior.description
           %br
-          =link_to subtype.name_with_mbti, type_path(subtype.path)
+          =behavior.alt.parenthetical
           %br
-          =subtype.alt.parenthetical
-%h2 The Twenty-Four Natures
+          =link_to behavior.name_with_mbti, type_path(behavior.path)
+%h2 The Sixteen Behaviors by Attitude
 %table.center
-  %tr
-  -Nature.all.in_groups_of(3).each do |row|
+  -Behavior.by_attitude.in_groups_of(4).each do |row|
     %tr
-      -row.each do |nature|
-        %td
-          %ul
-            -nature.sensitivities.each do |sensitivity|
-              %li=sensitivity
-          =link_to nature.mbti, type_path(nature.path)
-%h2 The Twenty-Four Nurtures
-%table.center
-  %tr
-  -Nurture.all.sort_by{|n| n.stages}.in_groups_of(3).each do |row|
-    %tr
-      -row.each do |nurture|
-        %td
-          %ul
-            -nurture.stages.each do |stage|
-              %li=stage
-          =link_to nurture.mbti, type_path(nurture.path)
+      -row.each do |behavior|
+        %td.fourth
+          =behavior.description
+          %br
+          =behavior.alt.parenthetical
+          %br
+          =link_to behavior.name_with_mbti, type_path(behavior.path)

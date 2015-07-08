@@ -1,48 +1,40 @@
 class Attitude
-  LETTERS = %w{e p j i}
+  LETTERS = %w{ep ej ip ij}
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
     @index = LETTERS.index(letter)
     @path = letter
   end
-  attr_reader :path, :index
+  attr_reader :index, :path
+  def <=>(other); self.index <=> other.index; end
 
   ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
   def self.all; ATTITUDES; end
   def self.find(letter); ATTITUDES[LETTERS.index(letter)]; end
 
-  def <=>(other); self.index <=> other.index; end
+  def opposite_kind; Attitude.find(%w{j e i p}[@index]) ; end
+  def opposite_direction; Attitude.find(%w{p i e j}[@index]) ; end
+  def opposite; Attitude.find(%w{i p j e}[@index]) ; end
 
-  def self.matrix_ordered; %w{e j p i}.collect{|l| Attitude.find(l)}; end
+  def sequence; [self, opposite_direction, opposite, opposite_kind]; end
 
-  def +(realm); Subtype.find(self.path + realm.path); end
-  def subtypes; Realm.all.add(self); end
+  def +(realm); Behavior.find(self.path + realm.path); end
+  def behaviors; Realm.all.add(self); end
 
-  def after; ATTITUDES[(@index + 1).modulo(4)]; end
-  def opposite; ATTITUDES[(@index + 2).modulo(4)]; end
-  def before; ATTITUDES[(@index - 1).modulo(4)]; end
+  # touch attitude.rb to reload attitude.csv in development mode
+  require 'csv'
+  arr_of_arrs = CSV.read("config/initializers/attitude.csv")
+  first = arr_of_arrs.shift
+  raise "attitude.csv needs to start with path" unless first.first == "path"
+  raise "attitude.csv needs to be re-ordered" unless LETTERS == first.drop(1)
+  define_method("path") {LETTERS[@index]}
+  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row.drop(1)[@index]}}
 
 
-  def mbti; path.upcase; end
+  def name; [direction, power].join(" ") ; end
 
-  def attitude; %w{bursty_output bursty_input steady_output steady_input}[@index]; end
-  def name; attitude.gsub("_", " "); end
-  def stage; %w{infancy childhood adolescence adulthood}[@index]; end
-  def state; %w{thin fat weak strong}[@index]; end
-
-  def output?; @index.even?; end
-  def direction; output? ? "loss" : "gain"; end
-
-  def fast?; @index < 2; end
-  def speed; fast? ? "quick" : "slow"; end
-
-  def ordered_sequence; [self, after, opposite, before]; end
-  def output_sequence; [self, after, before, opposite]; end
-  def input_sequence; [self, before, after, opposite]; end
-  def sequence; output? ? output_sequence : input_sequence; end
-
-  private
+  def mbti; @path.upcase; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")
