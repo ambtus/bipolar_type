@@ -13,9 +13,9 @@ class Attitude
   def self.all; ATTITUDES; end
   def self.find(letter); ATTITUDES[LETTERS.index(letter)]; end
 
-  def opposite_kind; Attitude.find(%w{j e i p}[@index]) ; end
-  def opposite_direction; Attitude.find(%w{p i e j}[@index]) ; end
-  def opposite; Attitude.find(%w{i p j e}[@index]) ; end
+  def opposite_kind; Attitude.find(%w{ej ep ij ip}[@index]) ; end
+  def opposite_direction; Attitude.find(%w{ip ij ep ej}[@index]) ; end
+  def opposite; Attitude.find(%w{ij ip ej ep}[@index]) ; end
 
   def sequence; [self, opposite_direction, opposite, opposite_kind]; end
 

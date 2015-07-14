@@ -9,6 +9,7 @@ class Behavior
   attr_reader :path
 
   BEHAVIORS = LETTERS.collect{|letters| Behavior.new(letters)}
+  def self.all; BEHAVIORS; end
   def self.by_attitude; BEHAVIORS.values_at(0,1,4,5,2,3,6,7,8,9,12,13,10,11,14,15); end
   def self.by_realm; BEHAVIORS.values_at(0,4,1,5,8,12,9,13,2,6,3,7,10,14,11,15); end
   def self.find(letters); BEHAVIORS[LETTERS.index(letters)]; end
@@ -18,11 +19,23 @@ class Behavior
   def attitude; Attitude.find(path[0,2]); end
   def realm; Realm.find(path.last); end
 
-  def description; [attitude.direction, adjective, attitude.power].join(" ") ; end
-  def name; realm.send(attitude.path); end
-  def alt; realm.send(attitude.path + "2"); end
-
   def sequence; attitude.sequence.add(realm); end
+  def second; sequence.second; end
+  def third; sequence.third; end
+  def fourth; sequence.fourth; end
+
+  def description; [attitude.direction, adjective, attitude.power].join(" ") ; end
+  def action; realm.send(attitude.path); end
+  def alt; realm.send(attitude.path + "2"); end
+  def motivation; realm.send(attitude.motivation); end
+  def issue; [action, "“too much”"].join(" "); end
+  def name; issue; end
+  def stuck; attitude.stuck; end
+  def power; [adjective, attitude.power].join(" ");end
+
+  def episode; [attitude.modifier, adjective, attitude.episode].join(" "); end
+
+  def natures; Nature.all.select{|n| n.behaviors.include?(self)}; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

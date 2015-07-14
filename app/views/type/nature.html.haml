@@ -1,0 +1,7 @@
+- content_for(:title, @nature.mbti)
+%table.center
+  -@nature.behaviors.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |behavior|
+        %td.half
+          =render "behavior", :behavior => behavior

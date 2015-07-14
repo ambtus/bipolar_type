@@ -8,7 +8,7 @@ class String
   def nonparenthetical; self.split(" (").first; end
   def parenthetical_part; self.split(" (").second.chop; end
 
-  MBTIS = ["ISFP", "ISFJ", "ISTP", "ISTJ", "INFP", "INFJ", "INTP", "INTJ", "ESFP", "ESFJ", "ESTP", "ESTJ", "ENFP", "ENFJ", "ENTP", "ENTJ"]
+  MBTIS = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ISTP", "ISFP", "INFP", "INTP", "ESTP", "ESFP", "ENFP", "ENTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
 
   def is_mbti?; MBTIS.include?(self); end
 
@@ -109,6 +109,16 @@ class String
     end
   end
 
+  def less
+    end_word = self.split.last
+    if self.match(" or ")
+      [self, "less"].join(" ")
+    else
+      [self.split.first, end_word.fewer].join(" ")
+    end
+  end
+
+
   def er
     target = self.split.first
     transformation = if target == "fat"
@@ -151,9 +161,9 @@ class String
   end
 
 
-  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach beg steal}
+  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell}
   def irregular?; IRREGULAR.include?(self); end
-  def past; %w{saw ate were said heard thought went broke bought did found spent taught begged stole}[IRREGULAR.index(self)]; end
+  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold}[IRREGULAR.index(self)]; end
 
   def ed
     set, third = self.split(" or ")
@@ -165,6 +175,8 @@ class String
     target = self.split.first
     transformation = if target.irregular?
       target.past
+    elsif %w{fit beg shop}.include?(target)
+      target + target.last + "ed"
     elsif target.end_with?("y")
       target.chop + "ied"
     elsif target.end_with?("e")

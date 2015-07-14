@@ -6,7 +6,10 @@ ul {
   text-align: left;
 }
 
-dt, dd { display: inline; margin: 0; }
+dt, dd {
+  display: inline;
+  margin: 0;
+  }
 dt:after {
   content: ":";
 }

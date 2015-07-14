@@ -14,9 +14,9 @@ class TypeController < ApplicationController
     elsif Behavior::LETTERS.include?(params[:id])
       @behavior = Behavior.find(params[:id])
       render :behavior
-    else
-      @type = Type.new(params[:id])
-      render :type
+    elsif Nature::LETTERS.include?(params[:id])
+      @nature = Nature.find(params[:id])
+      render :nature
     end
   end
 

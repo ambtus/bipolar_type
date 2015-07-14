@@ -1,20 +1,21 @@
-path,n,t,f,s
-neuro,GABA,dopamine,oxytocin,serotonin
-adjective,cognitive,financial,interpersonal,physical
-produce,think,acquire tools,communicate,move
-sensory,visual,tactile,auditory,olfactory
-consume,see sights,use tools,hear stories,eat foods
-energetic,knowledgeable,rich,emotional,restless
-ep,synthesize,shop,emote,walk
-ep2,jump to conclusions,spend wages,use tone of voice,aerobic exercise
-empty,unsure,cash poor,lonely,hungry
-ip,see colors,earn wages,hear tones,eat carbs
-ip2,specifics,work,expressive meaning,glycogen
-potential,memories,credit,values,fat
-powerful,smart,wealthy,interesting,strong
-ej,solve,buy,talk,labor
-ej2,put the pieces together,spend interest,use words,anaerobic exercise
-worn,stupid,asset poor,incoherent,sore
-ij,see shapes,earn interest,hear words,eat protein
-ij2,generalities,invest,lexical meaning,amino acids
-strength,mental models,capital,vocabulary,muscles
+path,t,n,s,f
+neuro,dopamine,GABA,serotonin,oxytocin
+adjective,financial,cognitive,physical,interpersonal
+produce,spend money,decide,move,communicate
+sensory,tactile,visual,olfactory,auditory
+consume,generate income,see sights,eat foods,hear stories
+energetic,rich,knowledgeable,restless,loved
+ep,shop,synthesize,walk,emote
+ep2,spend wages,jump to conclusions,aerobic exercise,use tone of voice
+empty,indebted,unsure,hungry,lonely
+ip,work,see colors,eat carbs,empathize
+ip2,earned income,specifics,and fat,expressive meaning
+kinetic,cash,short term memories,glycogen,emotions
+potential,good credit,long term memories,fat,motivation
+powerful,wealthy,smart,strong,interesting
+ej,sell,solve problems,hit,talk
+ej2,spend profits,put the pieces together,anaerobic exercise,use words
+worn,poor,stupid,sore,ostracized
+ij,invest,see shapes,eat protein,listen
+ij2,unearned income,generalities,and calcium,lexical meaning
+strength,capital,mental models,muscles and bones,vocabulary and grammar

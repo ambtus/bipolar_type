@@ -15,7 +15,7 @@
       -row.each do |attitude|
         %td.half
           =link_to attitude.name_with_mbti, type_path(attitude.path)
-%h2 The Sixteen Behaviors by Realm
+%h2 The Sixteen Behaviors
 %table.center
   -Behavior.by_realm.in_groups_of(4).each do |row|
     %tr
@@ -26,14 +26,13 @@
           =behavior.alt.parenthetical
           %br
           =link_to behavior.name_with_mbti, type_path(behavior.path)
-%h2 The Sixteen Behaviors by Attitude
+%h2 The Twenty-Four BipolarTypes
 %table.center
-  -Behavior.by_attitude.in_groups_of(4).each do |row|
+  -Nature.all.in_groups_of(6).each do |row|
     %tr
-      -row.each do |behavior|
-        %td.fourth
-          =behavior.description
-          %br
-          =behavior.alt.parenthetical
-          %br
-          =link_to behavior.name_with_mbti, type_path(behavior.path)
+      -row.each do |nature|
+        %td.sixth
+          -nature.names.each do |name|
+            =name
+            %br
+          =link_to nature.mbti, type_path(nature.path)

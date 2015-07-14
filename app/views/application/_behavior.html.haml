@@ -1,6 +1,76 @@
-%dt=behavior.mbti
-%dd
-  =behavior.name
-  =behavior.alt.parenthetical
-  =surround "[", "]" do
-    =behavior.description
+%p.heading=link_to behavior.issue_with_mbti, type_path(behavior.path)
+%p
+  This is because they do not
+  =behavior.second.action
+  when they feel
+  =behavior.second.motivation
+  and they do
+  =behavior.action
+  when they feel
+  =behavior.fourth.motivation
+%p
+  Not “I feel
+  =behavior.second.motivation
+  so I should stop
+  =behavior.action.ing
+  and
+  =behavior.second.action.punctuate('”')
+  but “I feel
+  =behavior.second.motivation.punctuate(";")
+  I should stop
+  =behavior.action.ing
+  and
+  %em sleep!”
+  (suppressed reaction because it was inconvenient for the parent that they be
+  =behavior.second.action.ing
+  right then)
+%p
+  If they are not
+  %em able
+  to sleep, they will not be able to stop
+  =behavior.action.ing
+  as they have been taught not to
+  =behavior.second.action
+  until after they sleep.
+%p
+  Someone with
+  =behavior.mbti
+  in their BipolarType just has to take a nap or quick break, and can
+  =behavior.second.action
+  in the afternoon, someone with
+  =behavior.mbti
+  as their MBTI dominant type has to sleep or take a long break after they
+  =behavior.action
+  and will usually only
+  =behavior.second.action
+  first thing in the morning. On the bright side, if they are manic, and cannot sleep,
+  =behavior.action.ing
+  will always calm them down and usually put them right to sleep.
+%p
+  Not “I feel
+  =behavior.fourth.motivation
+  I should
+  =behavior.fourth.action.punctuate("”")
+  but “I feel
+  =behavior.fourth.motivation.punctuate(";")
+  I should
+  =behavior.third.action.punctuate("”")
+  (undifferentiated because they almost never feel
+  =behavior.motivation
+  because they don’t
+  =behavior.second.action
+  enough)
+%p
+  They do
+  =behavior.third.action
+  and were even taught
+  %em how
+  to
+  =behavior.third.action
+  and not just that they “shouldn’t”
+  =behavior.third.action
+  like
+  =link_to(behavior.fourth.mbti.an, type_path(behavior.fourth.path)).punctuate
+  They were just not taught to
+  =behavior.fourth.action
+  and have to learn to do so on their own.

@@ -1,2 +1,7 @@
 - content_for(:title, @behavior.name_with_mbti)
 =render "behavior", :behavior => @behavior
+%h2 BipolarTypes
+%dl
+  -@behavior.natures.each do |nature|
+    %dt=link_to nature.mbti, type_path(nature.path)
+    %dd=nature.names.join(", ")
