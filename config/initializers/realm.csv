@@ -1,21 +1,16 @@
 path,t,n,s,f
 neuro,dopamine,GABA,serotonin,oxytocin
 adjective,financial,cognitive,physical,interpersonal
-produce,spend money,decide,move,communicate
 sensory,tactile,visual,olfactory,auditory
-consume,generate income,see sights,eat foods,hear stories
-energetic,rich,knowledgeable,restless,loved
-ep,shop,synthesize,walk,emote
-ep2,spend wages,jump to conclusions,aerobic exercise,use tone of voice
-empty,indebted,unsure,hungry,lonely
-ip,work,see colors,eat carbs,empathize
-ip2,earned income,specifics,and fat,expressive meaning
-kinetic,cash,short term memories,glycogen,emotions
-potential,good credit,long term memories,fat,motivation
-powerful,wealthy,smart,strong,interesting
-ej,sell,solve problems,hit,talk
-ej2,spend profits,put the pieces together,anaerobic exercise,use words
-worn,poor,stupid,sore,ostracized
-ij,invest,see shapes,eat protein,listen
-ij2,unearned income,generalities,and calcium,lexical meaning
-strength,capital,mental models,muscles and bones,vocabulary and grammar
+sense,touch,look,smell,listen
+utilize,use,learn,eat,understand
+resources,tools,information,food,stories
+produce,spend rewards,decide,walk,talk
+appears,feels,looks,smells,sounds
+good,pleasure,symmetry,fragrance,harmony
+bad,pain,ugliness,odor,discord
+empty,loss,doubt,hunger,loneliness
+full,gain,certainty,satiety,popularity
+thin,poor,wrong,anorexic,alone
+fat,filthy rich,trivial,obese,hounded
+zeitgeber,work,decision,meal,story

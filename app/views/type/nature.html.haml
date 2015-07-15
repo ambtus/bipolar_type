@@ -1,7 +1,12 @@
 - content_for(:title, @nature.mbti)
-%table.center
-  -@nature.behaviors.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |behavior|
-        %td.half
-          =render "behavior", :behavior => behavior
+%h2 Subtypes
+=render "subtypes", :subtypes => @nature.subtypes.in_groups_of(2)
+%h2 Behaviors
+=render "behaviors", :behaviors => @nature.behaviors.in_groups_of(2)
+%h2 BipolarTypes
+%dl
+  -@nature.types.each do |type|
+    %dt=link_to type.name, type_path(type.path)
+    %dd
+      =type.trumps
+      =type.mbtis.join("-").parenthetical

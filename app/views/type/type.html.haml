@@ -1,0 +1,18 @@
+- content_for(:title, @type.name)
+%h2=link_to @type.nature.mbti, type_path(@type.nature.path)
+=render "subtypes", :subtypes => @type.subtypes.in_groups_of(2)
+%h2 Behaviors
+=render "behaviors", :behaviors => @type.behaviors.in_groups_of(2)
+%h2 MBTI four letter types
+%p
+  Since
+  =@type.trumps
+  the following are possible MBTI types for this BipolarType:
+%ul
+  -@type.mbtis.each_with_index do |mbti, index|
+    %li
+      =render "mbti", :mbti => mbti, :punctuate => ":"
+      =link_to @type.trump_subtypes[index].mbti, type_path(@type.trump_subtypes[index].path)
+      with
+      =link_to @type.trump_additions[index].mbti, type_path(@type.trump_additions[index].path)
+

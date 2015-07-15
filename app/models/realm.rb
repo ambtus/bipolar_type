@@ -13,8 +13,10 @@ class Realm
   def self.all; REALMS; end
   def self.find(letter); REALMS[LETTERS.index(letter)]; end
 
-  def +(attitude); Behavior.find(attitude.path + self.path); end
-  def behaviors; Attitude.all.add(self); end
+  def +(attitude); Subtype.find(attitude.path + self.path); end
+  def subtypes; Attitude.all.add(self); end
+
+  def behaviors; Behavior.all.select{|b| b.realm == self}; end
 
   # touch realm.rb to reload realm.csv in development mode
   require 'csv'
@@ -35,6 +37,19 @@ class Realm
 
   def mbti; @path.upcase; end
   def name; [sensory, adjective].join("/") ; end
+  def consume; [utilize, resources].join(" "); end
   def description; [consume, produce].join(" & "); end
+  def emptiness; [empty, full].join("/"); end
+  def quality; [good, bad].join("/"); end
+  def result; [thin, fat].join("/"); end
+  def zeitgebers; [zeitgeber, "times"].join(" "); end
 
+  def replace(string)
+    string.
+    gsub("consumes", consume.s).
+    gsub("produces", produce.s).
+    gsub(/emptiness|quantity/, emptiness).
+    gsub("quality", quality).
+    gsub("zeitgebers", zeitgebers)
+  end
 end

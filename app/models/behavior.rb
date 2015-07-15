@@ -1,5 +1,5 @@
 class Behavior
-  LETTERS = Attitude::LETTERS.product(Realm::LETTERS).map(&:join)
+  LETTERS = Qua::LETTERS.product(Realm::LETTERS).map(&:join)
 
   def initialize(letters)
     raise "#{letters} isn't a Behavior" unless LETTERS.include?(letters)
@@ -16,32 +16,16 @@ class Behavior
 
   def mbti; path.mbti_order.upcase; end
 
-  def attitude; Attitude.find(path[0,2]); end
   def realm; Realm.find(path.last); end
-
-  def sequence; attitude.sequence.add(realm); end
-  def second; sequence.second; end
-  def third; sequence.third; end
-  def fourth; sequence.fourth; end
-
-  def description; [attitude.direction, adjective, attitude.power].join(" ") ; end
-  def action; realm.send(attitude.path); end
-  def alt; realm.send(attitude.path + "2"); end
-  def motivation; realm.send(attitude.motivation); end
-  def issue; [action, "“too much”"].join(" "); end
-  def name; issue; end
-  def stuck; attitude.stuck; end
-  def power; [adjective, attitude.power].join(" ");end
-
-  def episode; [attitude.modifier, adjective, attitude.episode].join(" "); end
-
-  def natures; Nature.all.select{|n| n.behaviors.include?(self)}; end
+  def qua; Qua.find(path.first); end
+  def description; realm.replace(qua.description); end
+  def name; realm.replace(qua.name); end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")
     else
-      realm.send(method, *args, &block)
+      super
     end
   end
 end

@@ -1,40 +1,67 @@
 class Attitude
-  LETTERS = %w{ep ej ip ij}
+  LETTERS = Quality::LETTERS.product(Quantity::LETTERS).map(&:join)
 
-  def initialize(letter)
-    raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
-    @index = LETTERS.index(letter)
-    @path = letter
+  def initialize(letters)
+    raise "#{letters} isn't an Attitude" unless LETTERS.include?(letters)
+    @index = LETTERS.index(letters)
+    @path = letters
   end
-  attr_reader :index, :path
-  def <=>(other); self.index <=> other.index; end
+  attr_reader :path
 
-  ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
+  ATTITUDES = LETTERS.collect{|letters| Attitude.new(letters)}
   def self.all; ATTITUDES; end
-  def self.find(letter); ATTITUDES[LETTERS.index(letter)]; end
+  def self.find(letters); ATTITUDES[LETTERS.index(letters)]; end
 
-  def opposite_kind; Attitude.find(%w{ej ep ij ip}[@index]) ; end
-  def opposite_direction; Attitude.find(%w{ip ij ep ej}[@index]) ; end
-  def opposite; Attitude.find(%w{ij ip ej ep}[@index]) ; end
+  def mbti; path.upcase; end
 
-  def sequence; [self, opposite_direction, opposite, opposite_kind]; end
+  def quality; Quality.find(path.first); end
+  def quantity; Quantity.find(path.last); end
+  def quas; [quality, quantity]; end
 
-  def +(realm); Behavior.find(self.path + realm.path); end
-  def behaviors; Realm.all.add(self); end
+  def +(attitude); Subtype.find(self.path + attitude.path); end
+  def subtypes; Realm.all.add(self); end
 
-  # touch attitude.rb to reload attitude.csv in development mode
-  require 'csv'
-  arr_of_arrs = CSV.read("config/initializers/attitude.csv")
-  first = arr_of_arrs.shift
-  raise "attitude.csv needs to start with path" unless first.first == "path"
-  raise "attitude.csv needs to be re-ordered" unless LETTERS == first.drop(1)
-  define_method("path") {LETTERS[@index]}
-  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row.drop(1)[@index]}}
+  def short
+    case path
+      when "ej"
+        "dominant"
+      when "ij"
+        "receptive"
+      when "ip"
+        "submissive"
+      when "ep"
+        "uncontrollable"
+    end
+  end
 
+  def descriptive_name; [quality.name, quantity.name].join(" & "); end
+  def description; [descriptive_name, short.parenthetical].join(" "); end
+  def name
+    case path
+      when "ej"
+        "Dom"
+      when "ij"
+         "Bottom"
+      when "ip"
+        "Sub"
+      when "ep"
+        "Top"
+    end
+  end
 
-  def name; [direction, power].join(" ") ; end
+  def trumps
+    case path
+      when "ej"
+        "zeitgebers trump internal signals of emptiness which trump external signals of quality"
+      when "ij"
+        "both external signals of quality and zeitgebers trump internal signals of emptiness"
+      when "ip"
+        "external signals of quality trump internal signals of emptiness which trump zeitgebers"
+      when "ep"
+        "internal signals of emptiness trump both external signals of quality and zeitgebers"
+    end
+  end
 
-  def mbti; @path.upcase; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")
@@ -42,5 +69,4 @@ class Attitude
       super
     end
   end
-
 end

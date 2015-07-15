@@ -1,5 +1,5 @@
 %table.center
-  -behaviors.in_groups_of(2).each do |row|
+  -behaviors.each do |row|
     %tr
       -row.each do |behavior|
-        %td.left=render "behavior", :behavior => behavior
+        %td.fourth=render "behavior", :behavior => behavior

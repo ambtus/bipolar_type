@@ -1,3 +1,6 @@
 - content_for(:title, @realm.name_with_mbti)
 =render "realm", :realm => @realm
-=render "behaviors", :behaviors => @realm.behaviors
+%h2 Behaviors
+=render "behaviors", :behaviors => @realm.behaviors.in_groups_of(2)
+%h2 Subtypes
+=render "subtypes", :subtypes => @realm.subtypes.in_groups_of(2)

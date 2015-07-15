@@ -1,0 +1,7 @@
+- content_for(:title, @subtype.name_with_mbti)
+=render "subtype", :subtype => @subtype
+%h2 BipolarTypes
+%dl
+  -@subtype.natures.each do |nature|
+    %dt=link_to nature.mbti, type_path(nature.path)
+    %dd=nature.names.join(", ")

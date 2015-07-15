@@ -19,10 +19,12 @@ class Nature
   def letters; path.scan(/./); end
 
   def realms; letters.collect{|letter| Realm.find(letter)}; end
-  def behaviors; realms.add(Attitude.all); end
-  def names; behaviors.map(&:name); end
+  def subtypes; realms.add(Attitude.all); end
+  def names; subtypes.map(&:name); end
+  def behaviors; subtypes.map(&:behaviors).flatten;end
+  def types; Type.all.select{|n| n.nature == self}; end
 
-  def mbti; behaviors.map(&:mbti).join("–"); end
+  def mbti; subtypes.map(&:mbti).join("–"); end
   def name; mbti; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
