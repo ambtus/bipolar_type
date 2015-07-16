@@ -14,6 +14,8 @@ class Behavior
   def self.by_realm; BEHAVIORS.values_at(0,4,1,5,8,12,9,13,2,6,3,7,10,14,11,15); end
   def self.find(letters); BEHAVIORS[LETTERS.index(letters)]; end
 
+  def wings; realm.behaviors + attitude.behaviors - [self]; end
+
   def mbti; path.mbti_order.upcase; end
 
   def realm; Realm.find(path.last); end

@@ -1,1 +1,9 @@
 - content_for(:title, @behavior.name_with_mbti)
+%table.center
+  -@behavior.wings.in_groups_of(3).each do |row|
+    %tr
+      -row.each do |behavior|
+        %td.quarter
+          =render "behavior", :behavior => behavior
+          %br
+          =link_to "dominant", discover_path("Q3_#{@behavior.path}#{behavior.path}")

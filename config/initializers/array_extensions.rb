@@ -29,4 +29,12 @@ class Array
   def sixth; self[5]; end
   def seventh; self[6]; end
   def eighth; self[7]; end
+
+  def dupes
+    dups = {}
+    self.each_with_index do |val, idx|
+      (dups[val] ||= []) << idx
+    end
+    dups.delete_if {|k,v| v.size == 1}.keys
+  end
 end

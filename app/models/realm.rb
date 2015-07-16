@@ -39,10 +39,10 @@ class Realm
   def description; [consume, produce].join(" & "); end
   def imbalance; [empty, full].join("/"); end
 
-  def quality; [good, bad].join(" vs "); end
-  def quantity; [abundance, scarcity].join(" vs "); end
-  def needs; [gaining, losing].join(" vs "); end
-  def zeitgebers; [ctime, ptime].join(" vs "); end
+  def quality; [good, bad].join(" & "); end
+  def quantity; [abundance, scarcity].join(" & "); end
+  def needs; [gaining, losing].join(" & "); end
+  def zeitgebers; [ctime, ptime].join(" & "); end
 
   def replace(string)
     string.

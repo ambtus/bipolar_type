@@ -1,0 +1,16 @@
+- content_for(:title, "Question ##{@answer.number}")
+-if @answer.number > 1
+  %p.heading
+    Choosing something in
+    %span.restart red
+    will start over with that one as first choice.
+%table.center
+  -Behavior.by_realm.in_groups_of(4).each do |row|
+    %tr
+      -row.each do |behavior|
+        %td.quarter
+          %div(class="#{@answer.css(behavior)}")
+            %p
+              =behavior.name
+              %br
+              =link_to behavior.mbti, discover_path(@answer.next(behavior.path))

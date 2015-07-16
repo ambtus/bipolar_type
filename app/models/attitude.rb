@@ -34,7 +34,7 @@ class Attitude
     end
   end
 
-  def name; "sensitivity to #{sensitivity}"; end
+  def name; "sensitive to #{sensitivity}"; end
 
 
 end

@@ -1,1 +1,6 @@
 - content_for(:title, @realm.name_with_mbti)
+%table.center
+  -@realm.behaviors.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |behavior|
+        %td.quarter=render "behavior", :behavior => behavior

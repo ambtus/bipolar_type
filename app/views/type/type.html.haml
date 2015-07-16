@@ -30,3 +30,4 @@
     %td=render "behavior", :behavior => @type.behaviors.first
     %td
     %td=render "mbti", :mbti => @type.mbtis.third
+%p=link_to "opposite type", type_path(@type.opposite.path)

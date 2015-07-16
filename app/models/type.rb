@@ -25,7 +25,7 @@ class Type
     ]
   end
 
-  def mbti; behaviors.map(&:mbti).join; end
+  def mbti; @realm_letters.add(@attitude_letters).join.upcase.scan(/..../).map(&:mbti_order).join("/"); end
 
   def mbtis
     [
@@ -40,5 +40,6 @@ class Type
     ].map(&:to_mbti)
   end
 
+  def opposite; Type.new(@realm_letters.join + @attitude_letters.reverse.join); end
 end
 
