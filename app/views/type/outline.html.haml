@@ -1,10 +1,4 @@
 - content_for(:title, 'Overview')
-%h2 The Four Sensitivities
-%table.center
-  -Qua.all.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |qua|
-        %td.half=link_to qua.name_with_mbti, type_path(qua.path)
 %h2 The Four Attitudes
 %table.center
   -Attitude.all.in_groups_of(2).each do |row|
@@ -22,31 +16,4 @@
   -Behavior.by_realm.in_groups_of(4).each do |row|
     %tr
       -row.each do |behavior|
-        %td.quarter=link_to behavior.name_with_mbti, type_path(behavior.path)
-%h2 The Sixteen Subtypes
-%table.center
-  -Subtype.by_realm.in_groups_of(4).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td.quarter=link_to subtype.name_with_mbti, type_path(subtype.path)
-%h2 The Twenty-Four Subtype Sets
-%table.center
-  -Nature.all.in_groups_of(4).each do |row|
-    %tr
-      -row.each do |nature|
-        %td.fourth
-          -nature.names.each do |name|
-            =name
-            %br
-          =link_to nature.mbti, type_path(nature.path)
-%h2 The Forty-Eight BipolarTypes
-%table.center
-  -Type.all.in_groups_of(4).each do |row|
-    %tr
-      -row.each do |type|
-        %td.fourth
-          -type.nature.names.each do |name|
-            =name
-            %br
-          =type.trumps
-          =link_to type.mbtis.join(" "), type_path(type.path)
+        %td.quarter=render "behavior", :behavior => behavior

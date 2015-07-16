@@ -1,5 +1,5 @@
 class Behavior
-  LETTERS = Qua::LETTERS.product(Realm::LETTERS).map(&:join)
+  LETTERS = Attitude::LETTERS.product(Realm::LETTERS).map(&:join)
 
   def initialize(letters)
     raise "#{letters} isn't a Behavior" unless LETTERS.include?(letters)
@@ -17,9 +17,9 @@ class Behavior
   def mbti; path.mbti_order.upcase; end
 
   def realm; Realm.find(path.last); end
-  def qua; Qua.find(path.first); end
-  def description; realm.replace(qua.description); end
-  def name; realm.replace(qua.name); end
+  def attitude; Attitude.find(path.first); end
+  def description; realm.replace(attitude.description); end
+  def name; realm.replace(attitude.name); end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

@@ -25,4 +25,8 @@ class Array
   def to_mbti
     self.map(&:mbti).join.mbti_order
   end
+
+  def sixth; self[5]; end
+  def seventh; self[6]; end
+  def eighth; self[7]; end
 end

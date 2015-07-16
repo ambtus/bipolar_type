@@ -1,16 +1,19 @@
-path,t,n,s,f
-neuro,dopamine,GABA,serotonin,oxytocin
-adjective,financial,cognitive,physical,interpersonal
-sensory,tactile,visual,olfactory,auditory
-sense,touch,look,smell,listen
-utilize,use,learn,eat,understand
-resources,tools,information,food,stories
-produce,spend rewards,decide,walk,talk
-appears,feels,looks,smells,sounds
-good,pleasure,symmetry,fragrance,harmony
-bad,pain,ugliness,odor,discord
-empty,loss,doubt,hunger,loneliness
-full,gain,certainty,satiety,popularity
-thin,poor,wrong,anorexic,alone
-fat,filthy rich,trivial,obese,hounded
-zeitgeber,work,decision,meal,story
+path,s,f,t,n
+neuro,serotonin,oxytocin,dopamine,GABA
+adjective,physical,interpersonal,financial,cognitive
+sense,smell,listen,touch,look
+appears,smells,sounds,feels,looks
+sensory,olfactory,auditory,tactile,visual
+get,eat,hear,use,see
+resources,foods,stories,tools,facts
+produce,walk,talk,spend rewards,decide
+empty,thin,alone,poor,clueless
+full,fat,surrounded,rich,knowledgeable
+good,fragrance,harmony,pleasure,symmetry
+bad,odor,discord,pain,ugliness
+losing,hungry,lonely,borrowing,doubt
+gaining,full,popular,lending,certainty
+abundance,feast,loud,workbench,bright
+scarcity,famine,quiet,museum,dark
+ctime,meal time,story time,work time,class time
+ptime,gym time,speech time,mall time,decision time

@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{t n s f}
+  LETTERS = %w{s f t n}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
@@ -13,10 +13,8 @@ class Realm
   def self.all; REALMS; end
   def self.find(letter); REALMS[LETTERS.index(letter)]; end
 
-  def +(attitude); Subtype.find(attitude.path + self.path); end
-  def subtypes; Attitude.all.add(self); end
-
-  def behaviors; Behavior.all.select{|b| b.realm == self}; end
+  def +(attitude); Behavior.find(attitude.path + self.path); end
+  def behaviors; Attitude.all.add(self); end
 
   # touch realm.rb to reload realm.csv in development mode
   require 'csv'
@@ -27,6 +25,7 @@ class Realm
   define_method("path") {LETTERS[@index]}
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row.drop(1)[@index]}}
 
+  def mbti; @path.upcase; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")
@@ -35,21 +34,23 @@ class Realm
     end
   end
 
-  def mbti; @path.upcase; end
   def name; [sensory, adjective].join("/") ; end
-  def consume; [utilize, resources].join(" "); end
+  def consume; [get, resources].join(" "); end
   def description; [consume, produce].join(" & "); end
-  def emptiness; [empty, full].join("/"); end
-  def quality; [good, bad].join("/"); end
-  def result; [thin, fat].join("/"); end
-  def zeitgebers; [zeitgeber, "times"].join(" "); end
+  def imbalance; [empty, full].join("/"); end
+
+  def quality; [good, bad].join(" vs "); end
+  def quantity; [abundance, scarcity].join(" vs "); end
+  def needs; [gaining, losing].join(" vs "); end
+  def zeitgebers; [ctime, ptime].join(" vs "); end
 
   def replace(string)
     string.
     gsub("consumes", consume.s).
     gsub("produces", produce.s).
-    gsub(/emptiness|quantity/, emptiness).
     gsub("quality", quality).
+    gsub("quantity", quantity).
+    gsub("needs", needs).
     gsub("zeitgebers", zeitgebers)
   end
 end

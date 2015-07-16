@@ -1,18 +1,32 @@
-- content_for(:title, @type.name)
-%h2=link_to @type.nature.mbti, type_path(@type.nature.path)
-=render "subtypes", :subtypes => @type.subtypes.in_groups_of(2)
-%h2 Behaviors
-=render "behaviors", :behaviors => @type.behaviors.in_groups_of(2)
-%h2 MBTI four letter types
-%p
-  Since
-  =@type.trumps
-  the following are possible MBTI types for this BipolarType:
-%ul
-  -@type.mbtis.each_with_index do |mbti, index|
-    %li
-      =render "mbti", :mbti => mbti, :punctuate => ":"
-      =link_to @type.trump_subtypes[index].mbti, type_path(@type.trump_subtypes[index].path)
-      with
-      =link_to @type.trump_additions[index].mbti, type_path(@type.trump_additions[index].path)
-
+- content_for(:title, @type.mbti)
+%table.center
+  %tr
+    %td=render "mbti", :mbti => @type.mbtis.sixth
+    %td
+    %td=render "behavior", :behavior => @type.behaviors.eighth
+    %td
+    %td=render "mbti", :mbti => @type.mbtis.seventh
+  %tr
+    %td
+    %td=render "behavior", :behavior => @type.behaviors.sixth
+    %td=render "mbti", :mbti => @type.mbtis.eighth
+    %td=render "behavior", :behavior => @type.behaviors.seventh
+    %td
+  %tr
+    %td=render "behavior", :behavior => @type.behaviors.fourth
+    %td=(render "mbti", :mbti => @type.mbtis.fourth) if @type.mbtis.fourth.is_mbti?
+    %td
+    %td=render "mbti", :mbti => @type.mbtis.fifth
+    %td=render "behavior", :behavior => @type.behaviors.fifth
+  %tr
+    %td
+    %td=render "behavior", :behavior => @type.behaviors.second
+    %td=render "mbti", :mbti => @type.mbtis.first
+    %td=render "behavior", :behavior => @type.behaviors.third
+    %td
+  %tr
+    %td=render "mbti", :mbti => @type.mbtis.second
+    %td
+    %td=render "behavior", :behavior => @type.behaviors.first
+    %td
+    %td=render "mbti", :mbti => @type.mbtis.third
