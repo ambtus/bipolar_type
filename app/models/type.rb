@@ -25,7 +25,7 @@ class Type
     ]
   end
 
-  def mbti; @realm_letters.add(@attitude_letters).join.upcase.scan(/..../).map(&:mbti_order).join("/"); end
+  def mbti; @realm_letters.add(@attitude_letters).map(&:upcase).map(&:mbti_order).join("–"); end
 
   def mbtis
     [
@@ -40,6 +40,23 @@ class Type
     ].map(&:to_mbti)
   end
 
+  def subtypes
+   [
+    Subtype.find(behaviors.values_at(0,1).to_mbti.downcase),
+    Subtype.find(behaviors.values_at(0,2).to_mbti.downcase),
+    Subtype.find(behaviors.values_at(1,3).to_mbti.downcase),
+    Subtype.find(behaviors.values_at(2,4).to_mbti.downcase),
+    Subtype.find(behaviors.values_at(3,5).to_mbti.downcase),
+    Subtype.find(behaviors.values_at(4,6).to_mbti.downcase),
+    Subtype.find(behaviors.values_at(5,7).to_mbti.downcase),
+    Subtype.find(behaviors.values_at(6,7).to_mbti.downcase),
+   ]
+  end
+
   def opposite; Type.new(@realm_letters.join + @attitude_letters.reverse.join); end
+  def left; Type.new(@realm_letters.values_at(0,2,1,3).join + @attitude_letters.values_at(1,0,3,2).join); end
+  def left2; left.right; end
+  def right; Type.new(@realm_letters.values_at(1,0,3,2).join + @attitude_letters.values_at(0,2,1,3).join); end
+  def right2; right.left; end
 end
 

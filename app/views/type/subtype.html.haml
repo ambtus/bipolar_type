@@ -1,0 +1,5 @@
+- content_for(:title, @subtype.name_with_mbti.html_safe)
+%table.center
+  %tr
+    -@subtype.behaviors.each do |behavior|
+      %td.half.behavior=render "behavior", :behavior => behavior

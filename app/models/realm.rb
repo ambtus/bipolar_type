@@ -42,7 +42,7 @@ class Realm
   def quality; [good, bad].join(" & "); end
   def quantity; [abundance, scarcity].join(" & "); end
   def needs; [gaining, losing].join(" & "); end
-  def zeitgebers; [ctime, ptime].join(" & "); end
+  def cycles; [ctime, ptime].join(" & "); end
 
   def replace(string)
     string.
@@ -51,6 +51,6 @@ class Realm
     gsub("quality", quality).
     gsub("quantity", quantity).
     gsub("needs", needs).
-    gsub("zeitgebers", zeitgebers)
+    gsub("cycles", cycles)
   end
 end

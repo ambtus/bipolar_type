@@ -1,33 +1,113 @@
 - content_for(:title, @type.mbti)
 %table.center
   %tr
-    %td=render "mbti", :mbti => @type.mbtis.sixth
+    %td.others
+      =link_to @type.left2.mbti, type_path(@type.left2.path)
+      %br
+      =surround "(", ")" do
+        dominant
+        =@type.behaviors.fourth.mbti
     %td
-    %td=render "behavior", :behavior => @type.behaviors.eighth
     %td
-    %td=render "mbti", :mbti => @type.mbtis.seventh
+    %td.behavior
+      Inferior
+      %br
+      =render "behavior", :behavior => @type.behaviors.eighth
+    %td
+    %td
+    %td.others
+      =link_to @type.right2.mbti, type_path(@type.right2.path)
+      %br
+      =surround "(", ")" do
+        dominant
+        =@type.behaviors.fifth.mbti
   %tr
     %td
-    %td=render "behavior", :behavior => @type.behaviors.sixth
-    %td=render "mbti", :mbti => @type.mbtis.eighth
-    %td=render "behavior", :behavior => @type.behaviors.seventh
+    %td.behavior=render "behavior", :behavior => @type.behaviors.sixth
+    %td.subtype=render "subtype", :subtype => @type.subtypes.seventh
+    %td.stress
+      Extreme stress (“In the Grip”)
+      %br
+      =render "mbti", :mbti => @type.mbtis.eighth
+    %td.subtype=render "subtype", :subtype => @type.subtypes.eighth
+    %td.behavior=render "behavior", :behavior => @type.behaviors.seventh
     %td
   %tr
-    %td=render "behavior", :behavior => @type.behaviors.fourth
-    %td=(render "mbti", :mbti => @type.mbtis.fourth) if @type.mbtis.fourth.is_mbti?
     %td
-    %td=render "mbti", :mbti => @type.mbtis.fifth
-    %td=render "behavior", :behavior => @type.behaviors.fifth
+    %td.subtype=render "subtype", :subtype => @type.subtypes.fifth
+    %td.stress
+      Extra Realm Stress
+      %br
+      =render "mbti", :mbti => @type.mbtis.sixth
+    %td
+    %td.stress
+      Extra Attitude Stress
+      %br
+      =render "mbti", :mbti => @type.mbtis.seventh
+    %td.subtype=render "subtype", :subtype => @type.subtypes.sixth
+    %td
+  %tr
+    %td.behavior=render "behavior", :behavior => @type.behaviors.fourth
+    %td.stress
+      Add Attitude Stress to Realm Stress
+      %br
+      =render "mbti", :mbti => @type.mbtis.fourth
+    %td
+    %td.others
+      =link_to @type.opposite.mbti, type_path(@type.opposite.path)
+      %br
+      (complete opposite)
+    %td
+    %td.stress
+      Add Realm Stress to Attitude Stress
+      %br
+      =render "mbti", :mbti => @type.mbtis.fifth
+    %td.behavior=render "behavior", :behavior => @type.behaviors.fifth
   %tr
     %td
-    %td=render "behavior", :behavior => @type.behaviors.second
-    %td=render "mbti", :mbti => @type.mbtis.first
-    %td=render "behavior", :behavior => @type.behaviors.third
+    %td.subtype=render "subtype", :subtype => @type.subtypes.third
+    %td.stress
+      Mild Realm Stress
+      %br
+      =render "mbti", :mbti => @type.mbtis.second
+    %td
+    %td.stress
+      Mild Attitude Stress
+      %br
+      =render "mbti", :mbti => @type.mbtis.third
+    %td.subtype=render "subtype", :subtype => @type.subtypes.fourth
     %td
   %tr
-    %td=render "mbti", :mbti => @type.mbtis.second
     %td
-    %td=render "behavior", :behavior => @type.behaviors.first
+    %td.behavior=render "behavior", :behavior => @type.behaviors.second
+    %td.subtype=render "subtype", :subtype => @type.subtypes.first
+    %td.stress
+      No stress
+      %br
+      =render "mbti", :mbti => @type.mbtis.first
+    %td.subtype=render "subtype", :subtype => @type.subtypes.second
+    %td.behavior=render "behavior", :behavior => @type.behaviors.third
     %td
-    %td=render "mbti", :mbti => @type.mbtis.third
-%p=link_to "opposite type", type_path(@type.opposite.path)
+  %tr
+    %td.others
+      =link_to @type.left.mbti, type_path(@type.left.path)
+      %br
+      =surround "(", ")" do
+        dominant
+        =@type.behaviors.second.mbti
+    %td
+    %td
+    %td.behavior
+      Dominant
+      %br
+      =render "behavior", :behavior => @type.behaviors.first
+    %td
+    %td
+    %td.others
+      =link_to @type.right.mbti, type_path(@type.right.path)
+      %br
+      =surround "(", ")" do
+        dominant
+        =@type.behaviors.third.mbti
+
+

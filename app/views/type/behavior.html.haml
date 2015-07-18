@@ -1,9 +1,11 @@
-- content_for(:title, @behavior.name_with_mbti)
+- content_for(:title, @behavior.name_with_mbti.html_safe)
+%h2 Subtypes
 %table.center
   -@behavior.wings.in_groups_of(3).each do |row|
     %tr
       -row.each do |behavior|
-        %td.quarter
-          =render "behavior", :behavior => behavior
+        %td.third.subtype
+          =link_to @behavior.subtype(behavior).mbti, type_path(@behavior.subtype(behavior).path)
           %br
-          =link_to "dominant", discover_path("Q3_#{@behavior.path}#{behavior.path}")
+          =@behavior.subtype(behavior).name
+          .div.behavior=render "behavior", :behavior => behavior

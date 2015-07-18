@@ -1,20 +1,10 @@
-td {
-  border: 1px solid grey;
-}
 table.center {
   margin-left:auto;
   margin-right:auto;
 }
-table.narrow {
-  width: 75%
-}
-table.half {
-  width: 50%
-}
-td.left {
-  padding-left: 5%;
-  text-align: left;
-  width: 50%
+td {
+  border: 1px solid grey;
+  width: 14%
 }
 td.half {
   width: 50%
@@ -22,6 +12,7 @@ td.half {
 td.quarter {
   width: 25%
 }
-td.sixth {
-  width: 16.6%
-}
+td.behavior {background-color: #FAF0E6;}
+td.subtype {background-color: #F0F8FF;}
+td.stress {background-color: #E0FFFF;}
+td.others {background-color: #EEEEEE;}

@@ -14,6 +14,9 @@ class TypeController < ApplicationController
     elsif Behavior::LETTERS.include?(params[:id])
       @behavior = Behavior.find(params[:id])
       render :behavior
+    elsif Subtype::LETTERS.include?(params[:id])
+      @subtype = Subtype.find(params[:id])
+      render :subtype
     else
       @type = Type.new(params[:id])
       render :type

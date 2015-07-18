@@ -23,6 +23,8 @@ class Behavior
   def description; realm.replace(attitude.description); end
   def name; realm.replace(attitude.name); end
 
+  def subtype(behavior); Subtype.find((path + behavior.path).squish.mbti_order); end
+
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")

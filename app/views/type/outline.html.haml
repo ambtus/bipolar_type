@@ -16,4 +16,10 @@
   -Behavior.by_realm.in_groups_of(4).each do |row|
     %tr
       -row.each do |behavior|
-        %td.quarter=render "behavior", :behavior => behavior
+        %td.quarter.behavior=render "behavior", :behavior => behavior
+%h2 The Forty-Eight Subtypes
+%table.center
+  -Subtype.all.in_groups_of(6).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td.sixth.subtype=render "subtype", :subtype => subtype

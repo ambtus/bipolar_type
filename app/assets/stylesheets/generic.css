@@ -5,3 +5,10 @@
 .free {color: black; font-weight: bold}
 .chosen {color: grey; font-style: italic}
 .restart {color: red; font-style: bold}
+div.behavior {
+  background-color: #FAF0E6;
+  border: 1px solid grey;
+  width: 80%;
+  margin-left:auto;
+  margin-right:auto;
+}
