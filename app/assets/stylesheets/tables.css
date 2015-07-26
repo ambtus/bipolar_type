@@ -3,16 +3,25 @@ table.center {
   margin-right:auto;
 }
 td {
+  vertical-align: top;
   border: 1px solid grey;
-  width: 14%
+  width: 16%
 }
 td.half {
-  width: 50%
+  width: 40%
 }
 td.quarter {
-  width: 25%
+  width: 20%
 }
-td.behavior {background-color: #FAF0E6;}
-td.subtype {background-color: #F0F8FF;}
-td.stress {background-color: #E0FFFF;}
-td.others {background-color: #EEEEEE;}
+td.bottom {
+  vertical-align: bottom;
+}
+td.narrow {
+  width: 4%
+}
+td.middle {
+  vertical-align: middle;
+}
+td.subtype {
+  vertical-align: middle;
+}

@@ -1,0 +1,52 @@
+- content_for(:title, @quad.mbti)
+%table.center
+  %tr
+    %td.narrow
+    %td{:colspan => 6} Production (E)
+    %td.narrow
+  %tr
+    %td.narrow.middle{:rowspan => 6}
+      -"Energetic".each_char do |char|
+        =char
+        %br
+      %br
+      (P)
+    %td.narrow== rarely #{@quad.subtypes.fourth.alt.s}
+    %td{:colspan => 4}=@quad.e
+    %td.narrow== rarely #{@quad.subtypes.third.alt.s}
+    %td.narrow.middle{:rowspan => 6}
+      -"Strong".each_char do |char|
+        =char
+        %br
+      %br
+      (J)
+  %tr
+    %td.middle.narrow{:rowspan => 4}=@quad.p
+    %td.middle=render "chronic", :subtype => @quad.subtypes.first
+    %td=render "type", :type => @quad.types.first
+    %td=render "type", :type => @quad.types.second
+    %td.middle=render "chronic", :subtype => @quad.subtypes.second
+    %td.middle.narrow{:rowspan => 4}=@quad.j
+  %tr
+    %td=render "type", :type => @quad.types.third
+    %td.subtype=@quad.subtypes.first.description
+    %td.subtype=@quad.subtypes.second.description
+    %td=render "type", :type => @quad.types.fourth
+  %tr
+    %td=render "type", :type => @quad.types.fifth
+    %td.subtype=@quad.subtypes.third.description
+    %td.subtype=@quad.subtypes.fourth.description
+    %td=render "type", :type => @quad.types.sixth
+  %tr
+    %td.middle=render "chronic", :subtype => @quad.subtypes.third
+    %td=render "type", :type => @quad.types.seventh
+    %td=render "type", :type => @quad.types.eighth
+    %td.middle=render "chronic", :subtype => @quad.subtypes.fourth
+  %tr
+    %td.narrow== rarely #{@quad.subtypes.second.alt.s}
+    %td.bottom{:colspan => 4}=@quad.i
+    %td.narrow== rarely #{@quad.subtypes.first.alt.s}
+  %tr
+    %td.narrow
+    %td{:colspan => 6} consumption (I)
+    %td.narrow

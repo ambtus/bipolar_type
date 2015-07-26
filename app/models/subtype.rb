@@ -1,5 +1,5 @@
 class Subtype
-  LETTERS = Behavior.all.collect{|b| b.wings.map(&:path).add(b.path)}.flatten.map(&:mbti_order).uniq
+  LETTERS = Realm::LETTERS.multiply(Attitude::LETTERS).flatten
 
   def initialize(letters)
     raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
@@ -12,26 +12,34 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def mbti; @path.upcase; end
+  def realm; Realm.find(path.first); end
+  def attitude; Attitude.find(path[1,2]); end
+
+  def self.by_realm; SUBTYPES.values_at(0,1,4,5,2,3,6,7,8,9,12,13,10,11,14,15); end
+  def self.by_attitude; SUBTYPES.values_at(0,4,1,5,8,12,9,13,2,6,3,7,10,14,11,15); end
+
+  def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
+
+  def mbti; @path.upcase.mbti_order; end
+#   def mbti; [attitude.first, adjective, attitude.second].map(&:first).join.upcase; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")
     else
-      super
+      realm.send(method, *args, &block)
     end
   end
 
-  def realm_letters; path.scan(/./).select{|l| Realm::LETTERS.include?(l)}; end
-  def attitude_letters; path.scan(/./).select{|l| Attitude::LETTERS.include?(l)}; end
-  def realms; realm_letters.collect{|l| Realm.find(l)}; end
-  def attitudes; attitude_letters.collect{|l| Attitude.find(l)}; end
-  def behaviors; realms.multiply(attitudes).flatten; end
+  def description; realm.send(attitude.path); end
+  def alt; realm.send(attitude.path + "_alt"); end
+  def action; realm.send(attitude.action); end
+  def name; [attitude.first, adjective, attitude.second].join(" ").titleize; end
 
-  def attitude?; realms.size > attitudes.size; end
+  def episode; [attitude.length, adjective, attitude.episode].join(" "); end
 
-  def realm_adjectives; realms.map(&:adjective).join(" & "); end
-  def attitude_sensitivities; attitudes.map(&:sensitivity).join(" & "); end
+  def resources; attitude.path.last == "j" ? strength : energy; end
+  def productions; attitude.path.last == "j" ? better : more; end
 
-  def name; "sensitive to #{realm_adjectives} #{attitude_sensitivities}"; end
+  def result; attitude.send(realm.path); end
 
 end

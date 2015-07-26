@@ -1,14 +1,8 @@
-- content_for(:title, "Question ##{@answer.number}")
--if @answer.number > 1
-  %p.heading.constrained
-    Choices in red will reset
-    %span.chosen earlier choices.
--else
-  %p.heading &nbsp;
+- content_for(:title, "The Sixteen Subtypes")
 -if @resort
-  =link_to "Sort by Attitude", discover_path(@answer.path)
+  =link_to "Sort by Attitude", type_path("subtypes")
 -else
-  =link_to "Sort by Realm", discover_path(@answer.path, :sort_by => "realm")
+  =link_to "Sort by Realm", type_path("subtypes", :sort_by => "realm")
 %table.center
   %tr
     -if @resort
@@ -22,10 +16,7 @@
   -subtypes.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
-        %td{:class => @answer.css(subtype)}
-          =render "subtype", :subtype => subtype
-          %br
-          =link_to subtype.mbti, discover_path(@answer.next(subtype.path))
+        %td.quarter=render "subtype/subtype", :subtype => subtype
   %tr
     -if @resort
       %th{:colspan => 2}=Realm.all.third.name_with_mbti

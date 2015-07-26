@@ -1,62 +1,64 @@
-# Encoding: utf-8
 class Type
-  def self.my_path; Realm::LETTERS.join + Attitude::LETTERS.join; end
-  def self.first; Type.new(my_path); end
+  def self.my_path; "sftnsf"; end
+  def self.first; Type.find(my_path); end
+
+  LETTERS = Quad.all.map(&:type_paths).flatten
 
   def initialize(letters)
+    raise "#{letters} isn't a Type" unless LETTERS.include?(letters)
+    @index = LETTERS.index(letters)
     @path = letters
-    @realm_letters = letters[0,4].scan(/./)
-    @attitude_letters = letters[4,4].scan(/./)
   end
   attr_reader :path
 
-  def realms; @realm_letters.collect{|letter| Realm.find(letter)}; end
-  def attitudes; @attitude_letters.collect{|letter| Attitude.find(letter)}; end
-  def behaviors
-    [
-      attitudes.first + realms.first,
-      attitudes.second + realms.first,
-      attitudes.first + realms.second,
-      attitudes.second + realms.third,
-      attitudes.third + realms.second,
-      attitudes.fourth + realms.third,
-      attitudes.third + realms.fourth,
-      attitudes.fourth + realms.fourth
-    ]
+  TYPES = LETTERS.collect{|letters| Type.new(letters)}
+  def self.all; TYPES; end
+  def self.find(letters); TYPES[LETTERS.index(letters)]; end
+
+  def self.by_mbti; all.sort_by{|t| [t.mbti, t.theoretical_count]}; end
+
+  def quad; Quad.find(path[2,4]); end
+  def subtypes; quad.subtypes; end
+
+  def dominant; subtypes.find{|s| s.realm.path == path.first}; end
+  def auxiliary; subtypes.find{|s| s.realm.path == path[1]}; end
+  def inferior; subtypes.find{|s| s.attitude == dominant.attitude.opposite}; end
+  def tertiary; (subtypes - [dominant, auxiliary, inferior]).first; end
+
+  def ordered_subtypes; [dominant, auxiliary, tertiary, inferior]; end
+
+  def descriptions; ordered_subtypes.map(&:description); end
+  def results; %w{always usually sometimes rarely}.add(" ").add(ordered_subtypes.map(&:result)); end
+
+  def mbtis; ordered_subtypes.map(&:mbti).join("–"); end
+  def parentheticals; ordered_subtypes.map(&:mbti).map(&:parenthetical); end
+
+  def partials; ordered_subtypes.map(&:path).map(&:mbti_order).join("–").upcase; end
+
+  def try1; (dominant.path + auxiliary.realm.path).mbti_order; end
+  def try2; (dominant.path + inferior.realm.path).mbti_order; end
+  def mbti; try1.upcase.is_mbti? ? try1.upcase : try2.upcase ; end
+
+
+  def test1; mbti.dominant != dominant.path.mbti_order.upcase; end
+  def test2; subtypes.map(&:path).select{|m| m.mbti_order.upcase.is_theoretical?}.count == 2; end
+  def test3; ! mbti.chars.include?(auxiliary.realm.path.upcase); end
+  def test4; mbti.last != auxiliary.path.last.upcase; end
+
+  def theoretical_count
+    (test1 ? 6 : 0) +
+    (test2 ? 1 : 0) +
+    (test3 ? 1 : 0) +
+    (test4 ? 3 : 0)
   end
 
-  def mbti; @realm_letters.add(@attitude_letters).map(&:upcase).map(&:mbti_order).join("–"); end
-
-  def mbtis
-    [
-     behaviors.values_at(1,2),
-     behaviors.values_at(0,3),
-     behaviors.values_at(0,4),
-     behaviors.values_at(1,5),
-     behaviors.values_at(6,2),
-     behaviors.values_at(7,3),
-     behaviors.values_at(7,4),
-     behaviors.values_at(6,5),
-    ].map(&:to_mbti)
+  def method_missing(method, *args, &block)
+    if method.to_s =~ /^(.*)_with_mbtis$/
+      self.send($1, *args, &block).add(" ").add(parentheticals)
+    else
+      super
+    end
   end
 
-  def subtypes
-   [
-    Subtype.find(behaviors.values_at(0,1).to_mbti.downcase),
-    Subtype.find(behaviors.values_at(0,2).to_mbti.downcase),
-    Subtype.find(behaviors.values_at(1,3).to_mbti.downcase),
-    Subtype.find(behaviors.values_at(2,4).to_mbti.downcase),
-    Subtype.find(behaviors.values_at(3,5).to_mbti.downcase),
-    Subtype.find(behaviors.values_at(4,6).to_mbti.downcase),
-    Subtype.find(behaviors.values_at(5,7).to_mbti.downcase),
-    Subtype.find(behaviors.values_at(6,7).to_mbti.downcase),
-   ]
-  end
-
-  def opposite; Type.new(@realm_letters.join + @attitude_letters.reverse.join); end
-  def left; Type.new(@realm_letters.values_at(0,2,1,3).join + @attitude_letters.values_at(1,0,3,2).join); end
-  def left2; left.right; end
-  def right; Type.new(@realm_letters.values_at(1,0,3,2).join + @attitude_letters.values_at(0,2,1,3).join); end
-  def right2; right.left; end
 end
 

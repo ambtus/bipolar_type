@@ -1,19 +1,19 @@
-path,s,f,t,n
-neuro,serotonin,oxytocin,dopamine,GABA
-adjective,physical,interpersonal,financial,cognitive
-sense,smell,listen,touch,look
-appears,smells,sounds,feels,looks
-sensory,olfactory,auditory,tactile,visual
-get,eat,hear,use,see
-resources,foods,stories,tools,facts
-produce,walk,talk,spend rewards,decide
-empty,thin,alone,poor,clueless
-full,fat,surrounded,rich,knowledgeable
-good,fragrance,harmony,pleasure,symmetry
-bad,odor,discord,pain,ugliness
-losing,hungry,lonely,borrowing,doubt
-gaining,full,popular,lending,certainty
-abundance,feast,loud,workbench,bright
-scarcity,famine,quiet,museum,dark
-ctime,meal time,story time,work time,class time
-ptime,gym time,speech time,mall time,decision time
+path,t,n,s,f
+adjective,financial,mental,physical,verbal
+appears,feels,looks,smells,sounds
+sensory,tactile,visual,gustatory,auditory
+organ,fingers,eyes,nose,ears
+energetic,rich,knowledgeable,energetic,motivated
+strong,wealthy,smart,strong,coherent
+produce,buy,predict,do,communicate
+ep,spend cash,make short term predictions,aerobic exercise,express emotion
+ep_alt,shop,gamble,sweat,cry
+ej,??,make long term predictions,anaerobic exercise,express concepts
+ej_alt,??,prove,hit,talk
+sense,touch,see,taste,hear
+consume,use,believe,eat,understand
+resources,tools,information,food,stories
+ip,acquire money,see color,eat carbs,hear expressive tone of voice
+ip_alt,earn wages,see details,eat potatoes,hear harmony
+ij,acquire land,see shapes,eat protein,hear lexical meaning
+ij_alt,inherit wealth,see patterns,eat meat,hear lyrics

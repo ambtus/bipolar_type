@@ -2,17 +2,34 @@
 
 class String
 
+  def chip; self[1..-1]; end
+
   def punctuate(punctuation = "."); self + punctuation; end
   def parenthetical; "(#{self})"; end
   def parenthetical?; self.match(/\(/); end
   def nonparenthetical; self.split(" (").first; end
   def parenthetical_part; self.split(" (").second.chop; end
 
-  MBTIS = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ISTP", "ISFP", "INFP", "INTP", "ESTP", "ESFP", "ENFP", "ENTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
+  MBTIS = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ESTP", "ESFP", "ENFP", "ENTP", "ISTP", "ISFP", "INFP", "INTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
 
   def is_mbti?; MBTIS.include?(self); end
 
+  def dominant
+    raise unless is_mbti?
+    letters = self.scan(/./)
+    index = MBTIS.index(self)
+    (index < 8 ? letters.values_at(0,1,3) : letters.values_at(0,2,3)).join
+  end
+  def auxiliary
+    raise unless is_mbti?
+    letters = self.scan(/./)
+    index = MBTIS.index(self)
+    first = letters.first == "I" ? "E" : "I"
+    first + (index < 8 ? letters.values_at(2,3) : letters.values_at(1,3)).join
+  end
 
+  THEORETICALS = ["ISJ", "INJ", "ITP", "IFP", "ENP", "ESP", "EFJ", "ETJ"]
+  def is_theoretical?; THEORETICALS.include?(self) ; end
 
   def mbti_order
     letters = self.scan(/./)
@@ -63,7 +80,7 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary}
+  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat}
   def uncountable?; UNCOUNTABLE.include?(self.split.first); end
 
   def few; self.uncountable? ? "little #{self}" : "few #{self}"; end
@@ -74,8 +91,7 @@ class String
   def were; self.uncountable? ? "was" : "were"; end
   def are; self.uncountable? ? "is" : "are"; end
 
-  def s(word="hope")
-    return self unless word.uncountable?
+  def s
     set, third = self.split(" or ")
     if third
       first, second = set.split(/, ?/)
@@ -83,22 +99,25 @@ class String
       return [first, second, third].map(&:s).to_sentence(:last_word_connector => ", or ")
     end
     target = self.split.first
-    transformation = if target == "die"
+    transformation =
+    if target == "die"
       target # singular they: they die => they die (not they die => he dies)
+    elsif target.uncountable?
+      target
     elsif target == "are"
       "is" # they are => it is
     elsif %w{do go express}.include?(target)
       target + "es"
     elsif target.end_with?("y")
-      if target == "buy"
-        "buys"
+      if %w{buy pay}.include?(target)
+        target + "s"
       else
         target.chop + "ies"
       end
     else
       target + "s"
     end
-    self.gsub(target, transformation)
+    [transformation, self.split - [target]].join(" ").squish
   end
 
   def more
@@ -118,6 +137,17 @@ class String
     end
   end
 
+  def too_much
+    if self.match(" or ") || self.split.count == 1
+      [self, "too much"].join(" ")
+    else
+      if self.split.last.uncountable?
+        self.split.insert(1, "too much").join(" ")
+      else
+        self.split.insert(1, "too many").join(" ")
+      end
+    end
+  end
 
   def er
     target = self.split.first
@@ -150,7 +180,7 @@ class String
       "seeing"
     elsif %w{lexical expressive local universal black salaried aerobic anaerobic}.include?(target)
       target
-    elsif %w{fit put run beg forget shop}.include?(target)
+    elsif %w{fit put run beg forget shop hit}.include?(target)
       target + target.last + "ing"
     elsif target.end_with?("e")
       target.chop + "ing"

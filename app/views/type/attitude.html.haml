@@ -1,6 +1,9 @@
 - content_for(:title, @attitude.name_with_mbti)
 %table.center
-  -@attitude.behaviors.in_groups_of(2).each do |row|
+  -@attitude.subtypes.in_groups_of(2).each do |row|
     %tr
-      -row.each do |behavior|
-        %td.quarter.behavior=render "behavior", :behavior => behavior
+      -row.each do |subtype|
+        %td
+          =link_to subtype.mbti, type_path(subtype.path)
+          =render "subtype", :subtype=> subtype
+          =render "subtype/subtype", :subtype => subtype

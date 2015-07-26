@@ -1,25 +1,41 @@
 - content_for(:title, 'Overview')
-%h2 The Four Attitudes
-%table.center
-  -Attitude.all.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |attitude|
-        %td.half=link_to attitude.name_with_mbti, type_path(attitude.path)
 %h2 The Four Realms
 %table.center
   -Realm.all.in_groups_of(2).each do |row|
     %tr
       -row.each do |realm|
-        %td.half=link_to realm.name_with_mbti, type_path(realm.path)
-%h2 The Sixteen Behaviors
+        %td.half
+          =realm.description
+          %br
+          =link_to realm.name_with_mbti, type_path(realm.path)
+%h2 The Four Attitudes
 %table.center
-  -Behavior.by_realm.in_groups_of(4).each do |row|
+  -Attitude.all.in_groups_of(2).each do |row|
     %tr
-      -row.each do |behavior|
-        %td.quarter.behavior=render "behavior", :behavior => behavior
-%h2 The Forty-Eight Subtypes
+      -row.each do |attitude|
+        %td.half
+          =attitude.description
+          %br
+          =link_to attitude.name_with_mbti, type_path(attitude.path)
+%h2=link_to "The Sixteen Subtypes", type_path("subtypes")
 %table.center
-  -Subtype.all.in_groups_of(6).each do |row|
+  -Subtype.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
-        %td.sixth.subtype=render "subtype", :subtype => subtype
+        %td.quarter
+          =subtype.description
+          %br
+          =subtype.alt.parenthetical
+          %br
+          =link_to subtype.name_with_mbti, type_path(subtype.path)
+%h2 The Twenty-Four Patterns
+%table.center
+  -Quad.all.in_groups_of(6).each do |row|
+    %tr
+      -row.each do |quad|
+        %td
+          -quad.subtypes.each do |subtype|
+            =subtype.description
+            %br
+          =link_to quad.mbti, type_path(quad.path)
+%h2=link_to "The 192 BipolarTypes", type_path("types")

@@ -1,5 +1,6 @@
--if false
--elsif mbti == "ISTP"
-  =link_to mbti.parenthetical, "http://en.wikipedia.org/wiki/#{mbti}_(personality_type)", :class => "external"
+-if mbti == "ISTP"
+  =link_to mbti, "http://en.wikipedia.org/wiki/#{mbti}_(personality_type)", :class => "external"
 -elsif mbti.is_mbti?
-  =link_to mbti.parenthetical, "http://en.wikipedia.org/wiki/#{mbti}", :class => "external"
+  =link_to mbti, "http://en.wikipedia.org/wiki/#{mbti}", :class => "external"
+-else
+  =mbti

@@ -1,2 +1,13 @@
-path,i,p,j,e
-sensitivity,quality,quantity,cycles,needs
+path,ep,ej,ip,ij
+not_path,ip,ij,ep,ej
+opposite_path,ij,ip,ej,ep
+first,energetic,strong,consume,consume
+second,production,production,energy,strength
+action,produce,produce,consume,consume
+length,acute,chronic,acute,chronic
+episode,mania,mania,depression,depression
+episodic,manic,manic,depressed,depressed
+n,inconstant,wrong,trivial,smart
+s,anorexic,sore,obese,strong
+t,broke,indebted,rich,wealthy
+f,suicidal,boring,submissive,understanding

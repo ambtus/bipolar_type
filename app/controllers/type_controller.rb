@@ -3,7 +3,10 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{outline theory}.include?(params[:id])
+    elsif %w{types_static}.include?(params[:id])
+      render params[:id], :layout => false
+    elsif %w{outline theory types subtypes}.include?(params[:id])
+      @resort = params[:sort_by]
       render params[:id]
     elsif Realm::LETTERS.include?(params[:id])
       @realm = Realm.find(params[:id])
@@ -11,14 +14,14 @@ class TypeController < ApplicationController
     elsif Attitude::LETTERS.include?(params[:id])
       @attitude = Attitude.find(params[:id])
       render :attitude
-    elsif Behavior::LETTERS.include?(params[:id])
-      @behavior = Behavior.find(params[:id])
-      render :behavior
     elsif Subtype::LETTERS.include?(params[:id])
       @subtype = Subtype.find(params[:id])
       render :subtype
-    else
-      @type = Type.new(params[:id])
+    elsif Quad::LETTERS.include?(params[:id])
+      @quad = Quad.find(params[:id])
+      render :quad
+    elsif Type::LETTERS.include?(params[:id])
+      @type = Type.find(params[:id])
       render :type
     end
   end
