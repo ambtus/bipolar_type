@@ -109,7 +109,7 @@ class String
     elsif %w{do go express}.include?(target)
       target + "es"
     elsif target.end_with?("y")
-      if %w{buy pay}.include?(target)
+      if %w{buy pay repay}.include?(target)
         target + "s"
       else
         target.chop + "ies"

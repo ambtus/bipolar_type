@@ -1,0 +1,21 @@
+- content_for(:title, "Question #2")
+%p
+  You get there, and the following have not been provided after all.
+%ol
+  -@answer.unchosen.each do |realm|
+    %li
+      There are no
+      =realm.resources
+      to
+      =realm.consume
+%p
+  The authority figures do not try to rectify one of the problems, since you
+  %em obviously
+-@answer.unchosen.each do |realm|
+  %p
+    have more than enough
+    =realm.potential
+    to make it a few days without being
+    =realm.provided
+    %em more
+    =link_to realm.resources_with_mbti, discover_path(@answer.next(realm.path))

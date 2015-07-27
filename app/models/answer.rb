@@ -9,42 +9,13 @@ class Answer
 
   def number; @question.last.to_i ; end
 
-  def subtypes; @letters.scan(/.../).collect{|l| Subtype.find(l)}; end
-  def chosen?(subtype); subtypes.include?(subtype); end
+  def realms; @letters.scan(/./).collect{|l| Realm.find(l)}; end
 
-  def attitudes; subtypes.map(&:attitude); end
-  def chosen_attitude?(subtype); attitudes.include?(subtype.attitude); end
+  def subtypes; realms.add(Attitude.all.values_at(0,2,1)) + [unchosen.first + Attitude.find("ij")]; end
 
-  def realms; subtypes.map(&:realm); end
-  def chosen_realm?(subtype); realms.include?(subtype.realm); end
+  def unchosen; Realm.all - realms; end
 
-  def constrained?(subtype); chosen_attitude?(subtype) || chosen_realm?(subtype); end
-
-  def css(subtype)
-    if chosen?(subtype)
-      "chosen"
-    elsif constrained?(subtype)
-      "constrained"
-    else
-      "free"
-    end
-  end
-
-  def subtypes_to_keep(string)
-    new_subtype = Subtype.find(string)
-    subtypes.select{|s| s.attitude != new_subtype.attitude && s.realm != new_subtype.realm}
-  end
-
-  def next(string)
-    if css(Subtype.find(string)) == "constrained"
-      number = subtypes_to_keep(string).size + 2
-      "Q#{number}_" + subtypes_to_keep(string).map(&:path).join + string
-    elsif css(Subtype.find(string)) == "chosen"
-      question + "_" + letters
-    else
-      question.next + "_" + letters + string
-    end
-  end
+  def next(string); question.next + "_" + letters + string; end
 
   def quad_path; subtypes[0,4].sort_by{|s| s.attitude}.map(&:realm).map(&:path).join; end
 

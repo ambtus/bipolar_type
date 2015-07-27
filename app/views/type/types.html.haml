@@ -8,4 +8,4 @@
   %dl
     -group.each do |type|
       %dt=link_to type.partials, type_path(type.path)
-      %dd=type.results_with_mbtis.to_sentence
+      %dd=type.names_with_mbtis.join(', ')

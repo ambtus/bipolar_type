@@ -1,17 +1,16 @@
 - content_for(:title, @subtype.name_with_mbti.html_safe)
-=render "subtype/subtype", :subtype => @subtype
+=render "subtype", :subtype => @subtype
 %h2 Subtype in different positions
 -%w{dominant auxiliary tertiary inferior}.each do |function|
   %h3
     This subtype in the
     =function
     position
-  =render "subtype/#{function}", :subtype => @subtype
   %h4 Associated BipolarTypes
   %ul
     -Type.all.select{|t| t.send(function) == @subtype}.sort_by{|t| t.mbti}.each do |type|
       %li
-        =link_to type.mbtis_with_mbti, type_path(type.path)
+        =link_to type.mbti, type_path(type.path)
         =type.quad.mbti
 %h2 Associated Subtype Sets
 %table.center

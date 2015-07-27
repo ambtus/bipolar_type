@@ -25,8 +25,12 @@ class Realm
   define_method("path") {LETTERS[@index]}
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row.drop(1)[@index]}}
 
+  def name; adjective.capitalize; end
+  def description; sensory; end
+
   def mbti; @path.upcase; end
 #   def mbti; adjective.first.upcase; end
+
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")
@@ -34,8 +38,5 @@ class Realm
       super
     end
   end
-
-  def description; sensory; end
-  def name; adjective.capitalize; end
 
 end

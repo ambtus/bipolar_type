@@ -1,5 +1,5 @@
 %ul
-  -type.results.each do |result|
-    %li=result
+  -type.actions.each do |action|
+    %li=action
 -unless current_page?(type_path(type.path))
   =link_to type.mbti, type_path(type.path)

@@ -27,13 +27,14 @@ class Attitude
   define_method("path") {LETTERS[@index]}
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row.drop(1)[@index]}}
 
-  def description; [length, episode].join(" ") ; end
   def name; [first, second].join(" ").titleize; end
-
-  def inverse; Attitude.find(not_path); end
-  def opposite; Attitude.find(opposite_path); end
+  def description; [length, episode].join(" ") ; end
 
   def mbti; @path.upcase; end
+
+  def inverse; Attitude.find(inverse_path); end
+  def opposite; Attitude.find(opposite_path); end
+
 #   def mbti; [first, second].map(&:first).join.upcase; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

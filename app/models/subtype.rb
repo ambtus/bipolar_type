@@ -20,8 +20,14 @@ class Subtype
 
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
+  def name; [attitude.first, adjective, attitude.second].join(" ").titleize; end
+  def description; [attitude.length, adjective, attitude.episode].join(" "); end
+  def action; attitude.send(realm.path); end
+  def short; attitude.send(realm.path + "_short"); end
+
   def mbti; @path.upcase.mbti_order; end
 #   def mbti; [attitude.first, adjective, attitude.second].map(&:first).join.upcase; end
+
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")
@@ -29,17 +35,5 @@ class Subtype
       realm.send(method, *args, &block)
     end
   end
-
-  def description; realm.send(attitude.path); end
-  def alt; realm.send(attitude.path + "_alt"); end
-  def action; realm.send(attitude.action); end
-  def name; [attitude.first, adjective, attitude.second].join(" ").titleize; end
-
-  def episode; [attitude.length, adjective, attitude.episode].join(" "); end
-
-  def resources; attitude.path.last == "j" ? strength : energy; end
-  def productions; attitude.path.last == "j" ? better : more; end
-
-  def result; attitude.send(realm.path); end
 
 end

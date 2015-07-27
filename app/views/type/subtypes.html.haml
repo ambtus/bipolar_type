@@ -16,7 +16,7 @@
   -subtypes.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
-        %td.quarter=render "subtype/subtype", :subtype => subtype
+        %td.quarter=render "subtype", :subtype => subtype
   %tr
     -if @resort
       %th{:colspan => 2}=Realm.all.third.name_with_mbti

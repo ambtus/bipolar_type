@@ -1,5 +1,5 @@
 class Type
-  def self.my_path; "sftnsf"; end
+  def self.my_path; "sffnst"; end
   def self.first; Type.find(my_path); end
 
   LETTERS = Quad.all.map(&:type_paths).flatten
@@ -28,7 +28,8 @@ class Type
   def ordered_subtypes; [dominant, auxiliary, tertiary, inferior]; end
 
   def descriptions; ordered_subtypes.map(&:description); end
-  def results; %w{always usually sometimes rarely}.add(" ").add(ordered_subtypes.map(&:result)); end
+  def names; %w{Typical Usual Occasional Rare}.add(": ").add(ordered_subtypes.map(&:name)); end
+  def actions; %w{always often sometimes rarely}.add(": ").add(ordered_subtypes.map(&:action)); end
 
   def mbtis; ordered_subtypes.map(&:mbti).join("–"); end
   def parentheticals; ordered_subtypes.map(&:mbti).map(&:parenthetical); end

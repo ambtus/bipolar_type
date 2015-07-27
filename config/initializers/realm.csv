@@ -1,19 +1,10 @@
 path,t,n,s,f
-adjective,financial,mental,physical,verbal
-appears,feels,looks,smells,sounds
+adjective,financial,mental,physical,interpersonal
 sensory,tactile,visual,gustatory,auditory
-organ,fingers,eyes,nose,ears
-energetic,rich,knowledgeable,energetic,motivated
-strong,wealthy,smart,strong,coherent
-produce,buy,predict,do,communicate
-ep,spend cash,make short term predictions,aerobic exercise,express emotion
-ep_alt,shop,gamble,sweat,cry
-ej,??,make long term predictions,anaerobic exercise,express concepts
-ej_alt,??,prove,hit,talk
+provided,given,shown,fed,told
+resources,tools,pictures,foods,stories
 sense,touch,see,taste,hear
 consume,use,believe,eat,understand
-resources,tools,information,food,stories
-ip,acquire money,see color,eat carbs,hear expressive tone of voice
-ip_alt,earn wages,see details,eat potatoes,hear harmony
-ij,acquire land,see shapes,eat protein,hear lexical meaning
-ij_alt,inherit wealth,see patterns,eat meat,hear lyrics
+produce,spend money,make decisions,move,tell stories
+potential,possessions,memories,fat,values
+strength,lines of credit,mental models,muscles,ideas

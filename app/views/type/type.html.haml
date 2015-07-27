@@ -8,8 +8,7 @@
   %h2
     =function.capitalize
     =link_to subtype.mbti, type_path(subtype.path)
-  =render "subtype/subtype", :subtype => subtype
-  =render "subtype/#{function}", :subtype => subtype
+  =render "subtype", :subtype => subtype
 %h2
   -unless @type.theoretical_count == 0
     Closest
