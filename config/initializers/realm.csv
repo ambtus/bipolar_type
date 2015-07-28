@@ -1,10 +1,10 @@
-path,t,n,s,f
-adjective,financial,mental,physical,interpersonal
-sensory,tactile,visual,gustatory,auditory
-provided,given,shown,fed,told
-resources,tools,pictures,foods,stories
-sense,touch,see,taste,hear
-consume,use,believe,eat,understand
-produce,spend money,make decisions,move,tell stories
-potential,possessions,memories,fat,values
-strength,lines of credit,mental models,muscles,ideas
+path,f,n,s,t
+adjective,interpersonal,mental,physical,financial
+sensory,auditory,visual,gustatory,tactile
+provided,told,shown,fed,given
+resources,stories,pictures,foods,tools
+sense,hear,see,taste,touch
+consume,understand,believe,eat,use
+produce,tell stories,make decisions,move,spend money
+potential,values,memories,fat,possessions
+strength,ideas,mental models,muscles,lines of credit

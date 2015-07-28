@@ -24,14 +24,14 @@ class Quad
 
   def type_paths;
     [
-      realm_letters.values_at(0,1).join,
-      realm_letters.values_at(1,0).join,
+      realm_letters.values_at(0,3).join,
+      realm_letters.values_at(1,2).join,
       realm_letters.values_at(0,2).join,
       realm_letters.values_at(1,3).join,
       realm_letters.values_at(2,0).join,
       realm_letters.values_at(3,1).join,
-      realm_letters.values_at(2,3).join,
-      realm_letters.values_at(3,2).join,
+      realm_letters.values_at(2,1).join,
+      realm_letters.values_at(3,0).join,
     ].add(path)
   end
 

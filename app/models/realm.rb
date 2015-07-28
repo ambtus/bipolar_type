@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{t n s f}
+  LETTERS = %w{f n s t}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)

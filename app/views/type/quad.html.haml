@@ -11,9 +11,9 @@
         %br
       %br
       (P)
-    %td.narrow== rarely #{@quad.subtypes.fourth.short.s}
+    %td.narrow== always #{@quad.subtypes.first.short.s}
     %td{:colspan => 4}=@quad.e
-    %td.narrow== rarely #{@quad.subtypes.third.short.s}
+    %td.narrow== always #{@quad.subtypes.second.short.s}
     %td.narrow.middle{:rowspan => 6}
       -"Strong".each_char do |char|
         =char
@@ -43,9 +43,9 @@
     %td=render "type", :type => @quad.types.eighth
     %td.middle=render "subtype", :subtype => @quad.subtypes.fourth
   %tr
-    %td.narrow== rarely #{@quad.subtypes.second.short.s}
+    %td.narrow== always #{@quad.subtypes.third.short.s}
     %td.bottom{:colspan => 4}=@quad.i
-    %td.narrow== rarely #{@quad.subtypes.first.short.s}
+    %td.narrow== always #{@quad.subtypes.fourth.short.s}
   %tr
     %td.narrow
     %td{:colspan => 6} consumption (I)

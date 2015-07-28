@@ -3,7 +3,7 @@ inverse_path,ip,ij,ep,ej
 opposite_path,ij,ip,ej,ep
 first,energetic,strong,consume,consume
 second,production,production,energy,strength
-length,suicidal,irritable,agitated,lethargic
+length,suicidal,irritable,unhealthy,lethargic
 episode,mania,mania,depression,depression
 f,express emotions,express concepts,understand tone of voice,understand lexical meaning
 f_short,cry,talk,empathize,listen

@@ -1,5 +1,5 @@
 class Type
-  def self.my_path; "sffnst"; end
+  def self.my_path; "snfnst"; end
   def self.first; Type.find(my_path); end
 
   LETTERS = Quad.all.map(&:type_paths).flatten
@@ -22,8 +22,8 @@ class Type
 
   def dominant; subtypes.find{|s| s.realm.path == path.first}; end
   def auxiliary; subtypes.find{|s| s.realm.path == path[1]}; end
-  def inferior; subtypes.find{|s| s.attitude == dominant.attitude.opposite}; end
-  def tertiary; (subtypes - [dominant, auxiliary, inferior]).first; end
+  def tertiary; (subtypes.select{|s| s.attitude.path.first == dominant.attitude.path.first} - [dominant]).first; end
+  def inferior; (subtypes - [dominant, auxiliary, tertiary]).first; end
 
   def ordered_subtypes; [dominant, auxiliary, tertiary, inferior]; end
 
