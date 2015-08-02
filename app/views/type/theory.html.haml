@@ -1,10 +1,21 @@
 - content_for(:title, 'Theory')
-%h2 Normal Personality
 %p
   Normal personality theories validate individual differences without abnormality: you are not the same as everyone else, but there are other people just like you.
+%h2 BipolarType vs the MBTI&reg;
 %p
-  Jungian personality theory asserts that people are not just introverted or extroverted, they are introverted and extroverted in different realms. Jungian personality theory describes the four realms (thinking, feeling, sensing and intuiting), and thus describes eight types: four extroverted types and four introverted types.
+  Jungian personality theory asserts that people are not just introverted or extroverted, they are introverted and extroverted in different realms. Jungian personality theory describes the four realms (thinking, feeling, sensing and intuiting) and thus eight function-attitudes. For example, extraverted feeling, which he described as a judging function, is usually designated as Fe, but can also be designated using MBTI symbols as EFJ. There are eight Jungian function-attitudes: Si, Ni, Ti, Fi, Ne, Se, Fe, and Te
+  =String::THEORETICALS.to_sentence.parenthetical.punctuate
 %p
-  The MBTI is an extension of Jungian personality theory, which says that if you are extroverted in one realm, then you must necessarily be introverted in another, and vice versa. It also describes two different kinds of extroversion: perceptive and judging. The MBTI constrains possible combinations in such a way as to create sixteen MBTI types.
+  The MBTI is an extension of Jungian personality theory, which says that if you are introverted in one realm, then you must necessarily be extroverted in another, and that you must have a realm in each of the four attitudes (IJ, EJ, IP, EJ). For example, an ISFP is someone with introverted feeling (IFP), extroverted sensing (ESP), introverted intuition (INJ), and extroverted thinking (ETJ). ESFP, INTJ, and ENTJ have the same function-attitudes as ISFP, but in a different order. 
 %p
-  BipolarType lifts the constraints but does not differentiate between extroverts with introversion and introverts with extroversion, giving 24 BipolarTypes. BipolarType uses the same symbols as the MBTI but uses different words to describe concepts which are similar but not identical. For this reason, BipolarType symbols are not acronymic.
+  BipolarType does not care what the order of your function-attitudes is, and thus defines the following four BipolarTypes:
+  %dl
+    -Quad.officials.each do |quad|
+      %dt=link_to quad.mbti, type_path(quad.path)
+      %dd=quad.mbtis.join(", ")
+%p
+  BipolarType then doubles number of function-attitudes by asserting that, for example, extroverted feeling can be a perceptive function (that is, EFP is just as valid a function-attitude as EFJ). There are thus twenty-four BipolarTypes: the above four and twenty more: 
+  %dl
+    -Quad.not_official.each do |quad|
+      %dt=link_to quad.mbti, type_path(quad.path)
+      %dd=quad.mbtis.join(", ")

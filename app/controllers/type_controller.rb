@@ -4,7 +4,7 @@ class TypeController < ApplicationController
     if params[:id].blank?
       render :start
     elsif %w{outline theory types subtypes}.include?(params[:id])
-      @resort = params[:sort_by]
+      @resort = params[:group_by]
       render params[:id]
     elsif Realm::LETTERS.include?(params[:id])
       @realm = Realm.find(params[:id])

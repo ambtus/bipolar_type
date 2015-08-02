@@ -1,7 +1,0 @@
-path,ij,ep,ej,ip
-name,Bottom,Top,Dom,Sub
-wannabe,depressed,low,high,manic
-drug,strong sedatives,mild sedatives,mild stimulants,strong stimulants
-auxiliary_path,ep,ej,ep,ej
-tertiary_path,ej,ip,ij,ep
-inferior_path,ip,ej,ip,ij

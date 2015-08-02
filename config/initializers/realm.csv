@@ -1,6 +1,11 @@
-path,t,f,n,s
-neuro,dopamine,oxytocin,norepinephrine,serotonin
-name,Financial,Verbal,Mental,Physical
-produce,buy,talk,believe,walk
-sensory,tactile,auditory,visual,olfactory
-consume,earn,hear,see,eat
+s,f,n,t
+physical,verbal,mental,financial
+walk,talk,decide,buy
+eat,listen,look,earn
+run,emote,choose,pay with cash
+hungry,unloved,wrong,poor
+eat carbs,hear tone of voice,see bright colors,earn wages
+lift weights,tell stories,predict,buy on credit
+sore,misunderstood,stupid,indebted
+eat protein,hear words,see black and white outlines,repay debts
+muscles,vocabulary,mental models,credit rating

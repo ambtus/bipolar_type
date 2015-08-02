@@ -1,8 +1,8 @@
 - content_for(:title, "The Sixteen Subtypes")
 -if @resort
-  =link_to "Sort by Attitude", type_path("subtypes")
+  =link_to "Group by Attitude", type_path("subtypes")
 -else
-  =link_to "Sort by Realm", type_path("subtypes", :sort_by => "realm")
+  =link_to "Group by Realm", type_path("subtypes", :group_by => "realm")
 %table.center
   %tr
     -if @resort
@@ -17,11 +17,11 @@
     %tr
       -row.each do |subtype|
         %td.quarter
-          %em normal
-          =render subtype.attitude.path, :realm => subtype.realm
-          %br
-          %em pathological
-          =render "bipolar/#{subtype.attitude.path}", :realm => subtype.realm
+          %div.heading=link_to subtype.name_with_mbti, type_path(subtype.path)
+          %div.heading balanced
+          =render "balanced", :subtype => subtype
+          %div.heading unbalanced
+          =render "unbalanced", :subtype => subtype
   %tr
     -if @resort
       %th{:colspan => 2}=Realm.all.third.name_with_mbti

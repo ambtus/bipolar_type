@@ -13,22 +13,22 @@
       -row.each do |attitude|
         %td
           =link_to attitude.name_with_mbti, type_path(attitude.path)
-%h2=link_to "The Sixteen Subtypes", type_path("subtypes")
-%table.center.half
+%h2 The Sixteen Subtypes
+%p.center
+  =link_to "grouped by realm", type_path("subtypes", :group_by=>"realm")
+  |
+  =link_to "grouped by attitude", type_path("subtypes")
+%table.center
   -Subtype.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
-        %td.quarter
-          =subtype.name
-          %br
-          =link_to subtype.mbti.parenthetical, type_path(subtype.path)
+        %td
+          =link_to subtype.name_with_mbti, type_path(subtype.path)
 %h2 The Twenty-Four BipolarTypes
 %table.center
   -Quad.all.in_groups_of(6).each do |row|
     %tr
       -row.each do |quad|
         %td
-          -quad.subtypes.each do |subtype|
-            =subtype.name
-            %br
+          =quad.names.join(" ")
           =link_to quad.mbti, type_path(quad.path)

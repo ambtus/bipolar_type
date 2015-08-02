@@ -6,9 +6,9 @@
 -else
   %p.heading &nbsp;
 -if @resort
-  =link_to "Sort by Attitude", discover_path(@answer.path)
+  =link_to "Group by Attitude", discover_path(@answer.path)
 -else
-  =link_to "Sort by Realm", discover_path(@answer.path, :sort_by => "realm")
+  =link_to "Group by Realm", discover_path(@answer.path, :group_by => "realm")
 %table.center
   %tr
     -if @resort
@@ -23,8 +23,8 @@
     %tr
       -row.each do |subtype|
         %td{:class => @answer.css(subtype)}
-          =render "subtype", :subtype => subtype
-          =link_to subtype.mbti, discover_path(@answer.next(subtype.path))
+          =render "balanced", :subtype => subtype
+          =link_to subtype.name_with_mbti, discover_path(@answer.next(subtype.path))
   %tr
     -if @resort
       %th{:colspan => 2}=Realm.all.third.name_with_mbti
