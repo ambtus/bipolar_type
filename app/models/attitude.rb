@@ -1,12 +1,12 @@
 class Attitude
-  LETTERS = %w{ep ej ip ij}
+  LETTERS = %w{ij ep ej ip}
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
     @index = LETTERS.index(letter)
     @path = letter
   end
-  attr_reader :index, :path
+  attr_reader :index
   def <=>(other); self.index <=> other.index; end
 
   ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
@@ -15,8 +15,6 @@ class Attitude
 
   def +(realm); Subtype.find(realm.path + self.path); end
   def subtypes; Realm.all.add(self); end
-
-  def letters; path.scan(/./); end
 
   # touch attitude.rb to reload attitude.csv in development mode
   require 'csv'
@@ -27,15 +25,13 @@ class Attitude
   define_method("path") {LETTERS[@index]}
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row.drop(1)[@index]}}
 
-  def name; [first, second].join(" ").titleize; end
-  def description; [length, episode].join(" ") ; end
+  def auxiliary; Attitude.find(auxiliary_path); end
+  def tertiary; Attitude.find(tertiary_path); end
+  def inferior; Attitude.find(inferior_path); end
 
-  def mbti; @path.upcase; end
+  def mbti; path.upcase; end
 
-  def inverse; Attitude.find(inverse_path); end
-  def opposite; Attitude.find(opposite_path); end
-
-#   def mbti; [first, second].map(&:first).join.upcase; end
+#   def mbti; name.first; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")

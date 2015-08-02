@@ -1,7 +1,10 @@
 - content_for(:title, @subtype.name_with_mbti.html_safe)
-=render "subtype", :subtype => @subtype
-%h2 Associated Subtype Sets
-%table.center
+%h2 Normal
+=render @subtype.attitude.path, :realm => @subtype.realm
+%h2 Pathological
+=render "bipolar/#{@subtype.attitude.path}", :realm => @subtype.realm
+%h2 Associated BipolarTypes
+%table.center.half
   -@subtype.quads.in_groups_of(2).each do |row|
     %tr
       -row.each do |quad|
@@ -10,14 +13,3 @@
             =subtype.name
             %br
           =link_to quad.mbti, type_path(quad.path)
-%h2 Associate Bipolar Types
--%w{dominant auxiliary tertiary inferior}.each do |function|
-  %h3
-    This subtype in the
-    =function
-    position
-  %ul
-    -Type.all.select{|t| t.send(function) == @subtype}.sort_by{|t| t.mbti}.each do |type|
-      %li
-        =link_to type.mbti, type_path(type.path)
-        =type.quad.mbti

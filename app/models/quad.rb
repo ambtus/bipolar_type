@@ -19,30 +19,7 @@ class Quad
   def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
-  def actions; subtypes.map(&:action); end
   def mbti; subtypes.map(&:mbti).join("‑"); end
-
-  def type_paths;
-    [
-      realm_letters.values_at(0,3).join,
-      realm_letters.values_at(1,2).join,
-      realm_letters.values_at(0,2).join,
-      realm_letters.values_at(1,3).join,
-      realm_letters.values_at(2,0).join,
-      realm_letters.values_at(3,1).join,
-      realm_letters.values_at(2,1).join,
-      realm_letters.values_at(3,0).join,
-    ].add(path)
-  end
-
-  def types; type_paths.collect{|l| Type.find(l)}; end
-
-  def mbtis; types.map(&:mbti); end
-
-  def e; "E" + realms.values_at(0,1).to_mbti + ": " + actions.values_at(0,1).join(" & "); end
-  def p; realms.values_at(0,2).to_mbti + "P: " + actions.values_at(0,2).join(" & "); end
-  def j; realms.values_at(1,3).to_mbti + "J: " + actions.values_at(1,3).join(" & "); end
-  def i; "I" + realms.values_at(2,3).to_mbti + ": " + actions.values_at(2,3).join(" & "); end
 
 end
 

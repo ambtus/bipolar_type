@@ -1,13 +1,12 @@
 class Realm
-  LETTERS = %w{f n s t}
+  LETTERS = %w{t f n s}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
     @index = LETTERS.index(letter)
     @path = letter
   end
-  attr_reader :index, :path
-  def <=>(other); self.index <=> other.index; end
+  attr_reader :index
 
   REALMS = LETTERS.collect{|letter| Realm.new(letter)}
   def self.all; REALMS; end
@@ -25,12 +24,12 @@ class Realm
   define_method("path") {LETTERS[@index]}
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row.drop(1)[@index]}}
 
-  def name; adjective.capitalize; end
-  def description; sensory; end
+  def mbti; path.upcase; end
 
-  def mbti; @path.upcase; end
-#   def mbti; adjective.first.upcase; end
+  def adjective; name.downcase; end
+  def adverb; adjective.ly; end
 
+#   def mbti; name.first; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")

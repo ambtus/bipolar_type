@@ -80,7 +80,7 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope work food information fat confidence glucose cash income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat}
+  UNCOUNTABLE = %w{hope food information fat confidence glucose cash income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat}
   def uncountable?; UNCOUNTABLE.include?(self.split.first); end
 
   def few; self.uncountable? ? "little #{self}" : "few #{self}"; end
@@ -151,11 +151,11 @@ class String
 
   def er
     target = self.split.first
-    transformation = if target == "fat"
-      "fatter"
-    elsif target == "thin"
-      "thinner"
-    elsif %w{rich poor smart stupid loud quiet}.include?(target)
+    transformation = if %w{fat thin}.include?(target)
+      target + target.last + "er"
+    elsif target.end_with?("y")
+      target.chop + "ier"
+    elsif %w{rich poor smart stupid loud quiet sweet}.include?(target)
       target + "er"
     else
       "more " + target

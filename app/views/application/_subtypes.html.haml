@@ -1,0 +1,18 @@
+%h2 Normal
+%table.center.half
+  -subtypes.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td
+          =link_to subtype.name_with_mbti, type_path(subtype.path)
+          %br
+          =render subtype.attitude.path, :realm => subtype.realm
+%h2 Pathological
+%table.center.half
+  -subtypes.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td
+          =link_to subtype.name_with_mbti, type_path(subtype.path)
+          %br
+          =render "bipolar/#{subtype.attitude.path}", :realm => subtype.realm

@@ -1,8 +1,2 @@
 - content_for(:title, @realm.name_with_mbti)
-%table.center
-  -@realm.subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td
-          =link_to_unless_current subtype.mbti, type_path(subtype.path)
-          =render "subtype", :subtype => subtype
+=render "subtypes", :subtypes => @realm.subtypes

@@ -1,15 +1,7 @@
-path,ep,ej,ip,ij
-inverse_path,ip,ij,ep,ej
-opposite_path,ij,ip,ej,ep
-first,energetic,strong,consume,consume
-second,production,production,energy,strength
-length,suicidal,irritable,unhealthy,lethargic
-episode,mania,mania,depression,depression
-f,express emotions,express concepts,understand tone of voice,understand lexical meaning
-f_short,cry,talk,empathize,listen
-t,buy with cash,buy on credit,earn cash,earn credit
-t_short,shop,borrow,work,repay debts
-n,predict short term,predict long term,see colorful details,see black and white outlines
-n_short,gamble,decide,watch,believe
-s,exercise aerobically,exercise anaerobically,eat carbs,eat protein
-s_short,sweat,hit,bake,grill
+path,ij,ep,ej,ip
+name,Bottom,Top,Dom,Sub
+wannabe,depressed,low,high,manic
+drug,strong sedatives,mild sedatives,mild stimulants,strong stimulants
+auxiliary_path,ep,ej,ep,ej
+tertiary_path,ej,ip,ij,ep
+inferior_path,ip,ej,ip,ij

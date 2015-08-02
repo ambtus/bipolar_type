@@ -7,11 +7,8 @@ td {
   border: 1px solid grey;
   width: 16%
 }
-td.half {
-  width: 40%
-}
-td.quarter {
-  width: 20%
+table.half {
+  width: 50%
 }
 td.bottom {
   vertical-align: bottom;

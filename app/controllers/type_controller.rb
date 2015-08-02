@@ -3,8 +3,6 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{types_static}.include?(params[:id])
-      render params[:id], :layout => false
     elsif %w{outline theory types subtypes}.include?(params[:id])
       @resort = params[:sort_by]
       render params[:id]
@@ -20,9 +18,6 @@ class TypeController < ApplicationController
     elsif Quad::LETTERS.include?(params[:id])
       @quad = Quad.find(params[:id])
       render :quad
-    elsif Type::LETTERS.include?(params[:id])
-      @type = Type.find(params[:id])
-      render :type
     end
   end
 
