@@ -1,2 +1,78 @@
 - content_for(:title, @quad.mbti)
-=render "subtypes", :subtypes => @quad.subtypes
+-@quad.subtypes.each do |subtype|
+  %h3=link_to subtype.name_with_mbti, type_path(subtype.path)
+  =render "subtype", :subtype => subtype
+%h2 Mania
+%p
+  When manic, you become more sensitive to stimulation.
+%p
+  It is extremely unlikely that you will have to
+  %em seek out
+  =@quad.ep.carbs.punctuate(";")
+  the problem will be in avoiding them so that you can sleep enough.
+%p
+  Your worst symptom is that you
+  =@quad.ij.hit
+  too much and become more and more
+  =@quad.ij.sore.punctuate
+  You keep promising yourself that you will not
+  =@quad.ij.hit
+  %em tomorrow
+  but you do. “I must have been manic”. Over time, your manic attacks become less destructive as you learn how to avoid
+  =@quad.ij.hit.ing
+  so much while manic.
+%p
+  The primary “advantage” of mania is that you need far fewer
+  =@quad.ip.carbs
+  to fall asleep. In fact, a large dose of
+  =@quad.ip.carbs
+  in the middle of the day is a good way to take a nap when manic.
+%h2 Depression
+%p
+  After mania, comes the crash into depression when you become less sensitive to stimulation.
+%p
+  If you do not make an effort to seek out
+  =@quad.ep.carbs
+  you will sleep “too much”. However, you probably need the sleep after the manic attack, and seeking out more
+  =@quad.ep.carbs
+  is likely to precipitated another manic attack.
+%p
+  During depression you will “automagically”
+  =@quad.ij.hit
+  less and become less
+  =@quad.ij.sore
+  as you
+  =@quad.ij.eat
+  more
+  =@quad.ij.protein.punctuate
+%p
+  The primary “disadvantage” of depression is that you need far more
+  =@quad.ip.carbs
+  to fall asleep. “I must be depressed”.
+%h2 Suicidal Mania
+%p
+  If you cannot avoid the
+  =@quad.ep.carbs
+  and you cannot
+  =@quad.ip.eat
+  =@quad.ip.carbs
+  then you will not be able to sleep when manic.
+%p
+  If you cannot have the “little death”, you may opt for the “eternal sleep”.
+%p
+  Stop
+  =@quad.ep.eat.ing
+  =@quad.ep.carbs
+  and
+  =@quad.ep.run
+  until you run out of
+  =@quad.ep.glycogen
+  and
+  =@quad.ip.eat
+  as many
+  =@quad.ip.carbs
+  as you need to: it’s much better to
+  =@quad.ip.eat
+  “too much”
+  than to be dead.
+

@@ -23,7 +23,7 @@ class Realm
   raise "realm.csv needs to be re-ordered" unless LETTERS == first
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index]}}
 
-  def name; physical.capitalize; end
+  def name; gustatory.capitalize; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

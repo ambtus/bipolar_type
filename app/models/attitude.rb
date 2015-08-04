@@ -1,5 +1,5 @@
 class Attitude
-  LETTERS = %w{ep ej ip ij}
+  LETTERS = %w{ep ej ij ip}
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
@@ -7,9 +7,9 @@ class Attitude
     @path = letter
   end
   attr_reader :index, :path
-  def mbti; path.upcase; end
-  def name; %w{Top Dom Sub Bottom}[@index]; end
   def <=>(other); self.index <=> other.index; end
+  def mbti; path.upcase; end
+  def name; %w{Morning Midday Afternoon Evening}[@index]; end
 
   ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
   def self.all; ATTITUDES; end

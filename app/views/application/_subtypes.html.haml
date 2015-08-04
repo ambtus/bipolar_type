@@ -1,20 +1,23 @@
-%table.center.half
-  -subtypes.in_groups_of(2).each do |row|
+%table.center
+  %tr
+    -if @resort
+      %th{:colspan => 2}=Realm.all.first.name_with_mbti
+      %th{:colspan => 2}=Realm.all.second.name_with_mbti
+    -else
+      %th{:colspan => 2}=Attitude.all.first.name_with_mbti
+      %th{:colspan => 2}=Attitude.all.second.name_with_mbti
+  -subtypes.each do |row|
     %tr
       -row.each do |subtype|
         %td
           =link_to subtype.name_with_mbti, type_path(subtype.path)
-%h2 Balanced
-%table.center.half
-  -subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td
-          =render "balanced", :subtype => subtype
-%h2 Unbalanced
-%table.center.half
-  -subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td
-          =render "unbalanced", :subtype => subtype
+          %br
+          =render "subtype", :subtype => subtype
+  %tr
+    -if @resort
+      %th{:colspan => 2}=Realm.all.third.name_with_mbti
+      %th{:colspan => 2}=Realm.all.fourth.name_with_mbti
+    -else
+      %th{:colspan => 2}=Attitude.all.third.name_with_mbti
+      %th{:colspan => 2}=Attitude.all.fourth.name_with_mbti
+

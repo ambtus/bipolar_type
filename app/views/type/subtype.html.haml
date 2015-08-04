@@ -1,8 +1,5 @@
 - content_for(:title, @subtype.name_with_mbti.html_safe)
-%h2 Balanced
-=render "balanced", :subtype => @subtype
-%h2 Unbalanced
-=render "unbalanced", :subtype => @subtype
+=render "subtype", :subtype => @subtype
 %h2 Associated BipolarTypes
 %dl
   -@subtype.quads.each do |quad|

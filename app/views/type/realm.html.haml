@@ -1,2 +1,5 @@
 - content_for(:title, @realm.name_with_mbti)
-=render "subtypes", :subtypes => @realm.subtypes
+=render "realm", :realm => @realm
+-@realm.subtypes.each do |subtype|
+  %h3=link_to subtype.name_with_mbti, type_path(subtype.path)
+  =render "subtype", :subtype => subtype

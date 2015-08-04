@@ -2,23 +2,17 @@ table.center {
   margin-left:auto;
   margin-right:auto;
 }
+table.narrow {
+  width: 16%
+}
 td {
   vertical-align: top;
   border: 1px solid grey;
   width: 16%
 }
-table.half {
-  width: 50%
-}
 td.bottom {
   vertical-align: bottom;
 }
-td.narrow {
-  width: 4%
-}
 td.middle {
-  vertical-align: middle;
-}
-td.subtype {
   vertical-align: middle;
 }

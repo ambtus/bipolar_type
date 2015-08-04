@@ -7,12 +7,13 @@ class Subtype
     @path = letters
   end
   attr_reader :path
+  def mbti; path.upcase.mbti_order; end
 
   SUBTYPES = LETTERS.collect{|letters| Subtype.new(letters)}
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def realm; Realm.find(path.first); end
+  def realm; Realm.find(path[0,1]); end
   def attitude; Attitude.find(path[1,2]); end
 
   def self.by_realm; SUBTYPES.values_at(0,1,4,5,2,3,6,7,8,9,12,13,10,11,14,15); end
@@ -21,9 +22,6 @@ class Subtype
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
   def name; [realm, attitude].map(&:name).join; end
-
-  def mbti; path.upcase.mbti_order; end
-#   def mbti; [realm.name, attitude.name].map(&:first).join; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

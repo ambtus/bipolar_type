@@ -90,6 +90,7 @@ class String
   def them; self.uncountable? ? "it" : "them"; end
   def were; self.uncountable? ? "was" : "were"; end
   def are; self.uncountable? ? "is" : "are"; end
+  def they_are; [they, are].join(" "); end
 
   def s
     set, third = self.split(" or ")
@@ -123,6 +124,8 @@ class String
   def more
     if self.match(" or ")
       [self, "more"].join(" ")
+    elsif %w{to at}.include?(self.split.second)
+      self.split.insert(2, "more").join(" ")
     else
       self.split.insert(1, "more").join(" ")
     end
@@ -132,6 +135,8 @@ class String
     end_word = self.split.last
     if self.match(" or ")
       [self, "less"].join(" ")
+    elsif %w{to at}.include?(self.split.second)
+      [self.split.first, self.split.second, end_word.fewer].join(" ")
     else
       [self.split.first, end_word.fewer].join(" ")
     end
@@ -155,12 +160,12 @@ class String
       target + target.last + "er"
     elsif target.end_with?("y")
       target.chop + "ier"
-    elsif %w{rich poor smart stupid loud quiet sweet}.include?(target)
+    elsif %w{rich poor smart stupid loud quiet sweet strong weak}.include?(target)
       target + "er"
     else
       "more " + target
     end
-    self.gsub(target, transformation)
+    [transformation, self.split - [target]].join(" ").squish
   end
 
   def ing
@@ -180,20 +185,21 @@ class String
       "seeing"
     elsif %w{lexical expressive local universal black salaried aerobic anaerobic}.include?(target)
       target
-    elsif %w{fit put run beg forget shop hit}.include?(target)
+    elsif %w{fit put sweat beg forget shop hit run}.include?(target)
       target + target.last + "ing"
     elsif target.end_with?("e")
       target.chop + "ing"
     else
       target + "ing"
     end
-    self.gsub(target, transformation)
+    [transformation, self.split - [target]].join(" ").squish
   end
 
 
   IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell}
   def irregular?; IRREGULAR.include?(self); end
   def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold}[IRREGULAR.index(self)]; end
+  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold}[IRREGULAR.index(self)]; end
 
   def ed
     set, third = self.split(" or ")
@@ -208,14 +214,43 @@ class String
     elsif %w{fit beg shop}.include?(target)
       target + target.last + "ed"
     elsif target.end_with?("y")
-      target.chop + "ied"
+      if %w{buy pay repay}.include?(target)
+        target.chop + "id"
+      else
+        target.chop + "ied"
+      end
     elsif target.end_with?("e")
       target + "d"
     else
       target + "ed"
     end
-    self.gsub(target, transformation)
+    [transformation, self.split - [target]].join(" ").squish
   end
 
+  def en
+    set, third = self.split(" or ")
+    if third
+      first, second = set.split(/, ?/)
+      return [first, third].map(&:en).join(" or ") unless second
+      return [first, second, third].map(&:en).to_sentence(:last_word_connector => ", or ")
+    end
+    target = self.split.first
+    transformation = if target.irregular?
+      target.perfect
+    elsif %w{fit beg shop}.include?(target)
+      target + target.last + "ed"
+    elsif target.end_with?("y")
+      if %w{buy pay repay}.include?(target)
+        target.chop + "id"
+      else
+        target.chop + "ied"
+      end
+    elsif target.end_with?("e")
+      target + "d"
+    else
+      target + "ed"
+    end
+    [transformation, self.split - [target]].join(" ").squish
+  end
 
 end

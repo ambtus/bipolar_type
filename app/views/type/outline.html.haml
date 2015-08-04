@@ -1,34 +1,34 @@
 - content_for(:title, 'Overview')
-%h2 The Four Realms
-%table.center.half
-  -Realm.all.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |realm|
-        %td
-          =link_to realm.name_with_mbti, type_path(realm.path)
 %h2 The Four Attitudes
-%table.center.half
-  -Attitude.all.in_groups_of(2).each do |row|
+%table.center.narrow
+  -Attitude.all.in_groups_of(1).each do |row|
     %tr
       -row.each do |attitude|
         %td
           =link_to attitude.name_with_mbti, type_path(attitude.path)
+%h2 The Four Realms
+%table
+  -Realm.all.in_groups_of(4).each do |row|
+    %tr
+      -row.each do |realm|
+        %td
+          =link_to realm.name_with_mbti, type_path(realm.path)
+          =render "realm", :realm => realm
 %h2 The Sixteen Subtypes
-%p.center
-  =link_to "grouped by realm", type_path("subtypes", :group_by=>"realm")
-  |
-  =link_to "grouped by attitude", type_path("subtypes")
 %table.center
   -Subtype.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
         %td
           =link_to subtype.name_with_mbti, type_path(subtype.path)
+          =render "subtype", :subtype => subtype
 %h2 The Twenty-Four BipolarTypes
 %table.center
   -Quad.all.in_groups_of(6).each do |row|
     %tr
       -row.each do |quad|
         %td
-          =quad.names.join(" ")
           =link_to quad.mbti, type_path(quad.path)
+          -quad.names.each do |name|
+            %br
+            =name

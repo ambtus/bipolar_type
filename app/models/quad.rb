@@ -1,6 +1,6 @@
 # Encoding: utf-8
 class Quad
-  def self.my_path; "fnst"; end
+  def self.my_path; "fnts"; end
   def self.first; Quad.find(my_path); end
 
   LETTERS = Realm::LETTERS.permutation(4).map(&:join)
@@ -22,9 +22,10 @@ class Quad
   def mbti; subtypes.map(&:mbti).join("‑"); end
   def names; subtypes.map(&:name); end
 
+  Attitude.all.each {|attitude| define_method(attitude.path) {subtypes[attitude.index]}}
+
   def official?; subtypes.each{|s| return false unless s.mbti.is_theoretical?}; end
   def self.officials; all.select{|q| q.official?}.sort_by{|q| q.mbti}; end
-  def self.not_official; all.sort_by{|q| q.mbti} - officials; end
 
   def judging_subtypes; subtypes.select{|s| s.mbti.last == "J"}; end
   def perceiving_subtypes; subtypes.select{|s| s.mbti.last == "P"}; end

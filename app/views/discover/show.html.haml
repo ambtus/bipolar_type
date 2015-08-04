@@ -5,30 +5,10 @@
     %span.chosen earlier choices.
 -else
   %p.heading &nbsp;
--if @resort
-  =link_to "Group by Attitude", discover_path(@answer.path)
--else
-  =link_to "Group by Realm", discover_path(@answer.path, :group_by => "realm")
 %table.center
-  %tr
-    -if @resort
-      %th{:colspan => 2}=Realm.all.first.name_with_mbti
-      %th{:colspan => 2}=Realm.all.second.name_with_mbti
-      -subtypes = Subtype.by_realm
-    -else
-      %th{:colspan => 2}=Attitude.all.first.name_with_mbti
-      %th{:colspan => 2}=Attitude.all.second.name_with_mbti
-      -subtypes = Subtype.by_attitude
-  -subtypes.in_groups_of(4).each do |row|
+  -@subtypes.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
         %td{:class => @answer.css(subtype)}
-          =render "balanced", :subtype => subtype
           =link_to subtype.name_with_mbti, discover_path(@answer.next(subtype.path))
-  %tr
-    -if @resort
-      %th{:colspan => 2}=Realm.all.third.name_with_mbti
-      %th{:colspan => 2}=Realm.all.fourth.name_with_mbti
-    -else
-      %th{:colspan => 2}=Attitude.all.third.name_with_mbti
-      %th{:colspan => 2}=Attitude.all.fourth.name_with_mbti
+          =render "subtype", :subtype => subtype
