@@ -137,6 +137,10 @@ class String
       [self, "less"].join(" ")
     elsif %w{to at}.include?(self.split.second)
       [self.split.first, self.split.second, end_word.fewer].join(" ")
+    elsif self == "fat"
+      "thin"
+    elsif self.split.count > 1
+      self.fewer
     else
       [self.split.first, end_word.fewer].join(" ")
     end
@@ -158,9 +162,11 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "er"
+    elsif target == "trustworthy"
+      "more " + target
     elsif target.end_with?("y")
       target.chop + "ier"
-    elsif %w{rich poor smart stupid loud quiet sweet strong weak}.include?(target)
+    elsif %w{rich poor smart stupid loud quiet sweet strong weak clever}.include?(target)
       target + "er"
     else
       "more " + target
@@ -196,10 +202,10 @@ class String
   end
 
 
-  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell}
+  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit}
   def irregular?; IRREGULAR.include?(self); end
-  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold}[IRREGULAR.index(self)]; end
-  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold}[IRREGULAR.index(self)]; end
+  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit}[IRREGULAR.index(self)]; end
+  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit}[IRREGULAR.index(self)]; end
 
   def ed
     set, third = self.split(" or ")

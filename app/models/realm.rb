@@ -13,7 +13,7 @@ class Realm
   def self.all; REALMS; end
   def self.find(letter); REALMS[LETTERS.index(letter)]; end
 
-  def +(attitude); Subtype.find(self.path + attitude.path); end
+  def +(attitude); Subtype.find(attitude.path + self.path); end
   def subtypes; Attitude.all.add(self); end
 
   # touch realm.rb to reload realm.csv in development mode
@@ -24,6 +24,8 @@ class Realm
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index]}}
 
   def name; gustatory.capitalize; end
+  def restrained; "#{physical.ly}‑restrained"; end
+  def over_energetic; "over‑#{energetic}"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

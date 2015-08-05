@@ -1,7 +1,7 @@
 - content_for(:title, 'Theory')
+%h2 The Type in BipolarType
 %p
   Normal personality theories validate individual differences without abnormality: you are not the same as everyone else, but there are other people just like you.
-%h2 BipolarType vs the MBTI&reg;
 %p
   Jungian personality theory asserts that people are not just introverted or extroverted, they are introverted and extroverted in different realms. Jungian personality theory describes four realms (Thinking, Feeling, Sensing and iNtuiting) and thus eight function-attitudes. For example, extraverted feeling, which he described as a judging function, is usually designated as Fe, but can also be designated using MBTI symbols as EFJ. There are eight Jungian function-attitudes: Si, Ni, Ti, Fi, Ne, Se, Fe, and Te
   =String::THEORETICALS.to_sentence.parenthetical.punctuate
@@ -9,7 +9,7 @@
   The MBTI is an extension of Jungian personality theory, which asserts that if you are introverted in one realm, then you must necessarily be extroverted in another, and that you must have a realm in each of the four attitudes (IJ, EJ, IP, EJ). For example, an ISFP is someone with introverted feeling (Fi/IFP), extroverted sensing (Se/ESP), introverted intuition (Ni/INJ), and extroverted thinking (Te/ETJ).
 %p
   ESFP, INTJ, and ENTJ have the same function-attitudes as ISFP, but in a different order.
-  BipolarType does not care what the order of your function-attitudes is, and thus defines the following four BipolarTypes:
+  BipolarType does not care about the order of preference of your function-attitudes, and thus defines the following four BipolarTypes:
   %dl
     -Quad.officials.each do |quad|
       %dt=link_to quad.mbti, type_path(quad.path)
@@ -19,4 +19,30 @@
   =link_to Quad.first.mbti, type_path(Quad.my_path)
   and although I claim
   =render "mbti", :mbti => "ISFP"
-  as my MBTI true-type, it does not actually fit very well.
+  as my MBTI true-type — as it is closer than anything else — it does not actually fit very well.
+%h2 The Bipolar in BipolarType
+%p
+  BipolarType orders the realms in order by sensitivity to the related neurotransmitter, not by which realms you prefer.
+%p
+  When manic or on general stimulants (such as caffeine), you become more sensitive to stimulation and more energetic. All of your behaviors become more extroverted. Your most extroverted behavior (EP) may become so extraverted that it becomes pathological (or “manic”).
+%p
+  When depressed or on general sedatives (such as alcohol), you become less sensitive to stimulation and more tired. All of your behaviors become more introverted. Your most introverted behavior (IP) may become so introverted that it becomes pathological (or “depressed”).
+%p
+  While using general sedatives or stimulants can be effective during a manic or depressive episode, they aggravate the other state.
+  Using targeted sedatives and stimulants can alleviate the problem to some extent.
+%p
+  For example, as an
+  =Quad.first.mbti
+  I have “overactive”
+  =Quad.first.ep.serotonin
+  and “underactive”
+  =Quad.first.ip.serotonin
+  and when I was taking prescription medications, Prozac and Haldol were the most efficacious.
+%p
+  BipolarType explains how I can manage without  the Haldol (and its side effects) by
+  =Quad.first.ep.eat.ing
+  fewer
+  =Quad.first.ep.carbs
+  and although I still take melatonin every night and 5-HTP when I am binging on
+  =Quad.first.ip.carbs
+  I no longer require prescription SSRIs (with their side effects).

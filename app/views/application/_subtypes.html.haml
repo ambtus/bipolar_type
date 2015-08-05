@@ -1,23 +1,6 @@
 %table.center
-  %tr
-    -if @resort
-      %th{:colspan => 2}=Realm.all.first.name_with_mbti
-      %th{:colspan => 2}=Realm.all.second.name_with_mbti
-    -else
-      %th{:colspan => 2}=Attitude.all.first.name_with_mbti
-      %th{:colspan => 2}=Attitude.all.second.name_with_mbti
-  -subtypes.each do |row|
+  -subtypes.each do |subtype|
     %tr
-      -row.each do |subtype|
-        %td
-          =link_to subtype.name_with_mbti, type_path(subtype.path)
-          %br
-          =render "subtype", :subtype => subtype
-  %tr
-    -if @resort
-      %th{:colspan => 2}=Realm.all.third.name_with_mbti
-      %th{:colspan => 2}=Realm.all.fourth.name_with_mbti
-    -else
-      %th{:colspan => 2}=Attitude.all.third.name_with_mbti
-      %th{:colspan => 2}=Attitude.all.fourth.name_with_mbti
-
+      %td=render "depressed/subtype", :subtype => subtype
+      %td=render "subtype", :subtype => subtype
+      %td=render "manic/subtype", :subtype => subtype

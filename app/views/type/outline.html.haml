@@ -6,14 +6,17 @@
       -row.each do |attitude|
         %td
           =link_to attitude.name_with_mbti, type_path(attitude.path)
+          %br
+          =attitude.result
 %h2 The Four Realms
-%table
+%table.center
   -Realm.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |realm|
         %td
           =link_to realm.name_with_mbti, type_path(realm.path)
-          =render "realm", :realm => realm
+          %br
+          =realm.physical
 %h2 The Sixteen Subtypes
 %table.center
   -Subtype.all.in_groups_of(4).each do |row|
@@ -21,7 +24,11 @@
       -row.each do |subtype|
         %td
           =link_to subtype.name_with_mbti, type_path(subtype.path)
-          =render "subtype", :subtype => subtype
+          %br
+          =subtype.result
+%p.heading=link_to "Normal behaviors", type_path("subtypes")
+%p.heading=link_to "Manic behaviors", type_path("mania")
+%p.heading=link_to "Depressed behaviors", type_path("depression")
 %h2 The Twenty-Four BipolarTypes
 %table.center
   -Quad.all.in_groups_of(6).each do |row|
@@ -29,6 +36,6 @@
       -row.each do |quad|
         %td
           =link_to quad.mbti, type_path(quad.path)
-          -quad.names.each do |name|
+          -quad.results.each do |result|
             %br
-            =name
+            =result

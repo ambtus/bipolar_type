@@ -1,5 +1,5 @@
 class Subtype
-  LETTERS = Realm::LETTERS.multiply(Attitude::LETTERS).flatten
+  LETTERS = Attitude::LETTERS.multiply(Realm::LETTERS).flatten
 
   def initialize(letters)
     raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
@@ -13,15 +13,17 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def realm; Realm.find(path[0,1]); end
-  def attitude; Attitude.find(path[1,2]); end
-
-  def self.by_realm; SUBTYPES.values_at(0,1,4,5,2,3,6,7,8,9,12,13,10,11,14,15); end
-  def self.by_attitude; SUBTYPES.values_at(0,4,1,5,8,12,9,13,2,6,3,7,10,14,11,15); end
+  def realm; Realm.find(path[2,1]); end
+  def attitude; Attitude.find(path[0,2]); end
 
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
   def name; [realm, attitude].map(&:name).join; end
+  def result; realm.send(attitude.result); end
+  def manic_result; realm.send(attitude.manic_result); end
+  def depressed_result; realm.send(attitude.depressed_result); end
+  def next_mbti; [attitude.next, realm].to_mbti; end
+  def previous_mbti; [attitude.previous, realm].to_mbti; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

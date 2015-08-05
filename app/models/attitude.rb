@@ -10,12 +10,18 @@ class Attitude
   def <=>(other); self.index <=> other.index; end
   def mbti; path.upcase; end
   def name; %w{Morning Midday Afternoon Evening}[@index]; end
+  def depressed_result; %w{restrained restrained fat obese }[@index]; end
+  def result; %w{energetic strong restrained fat }[@index]; end
+  def manic_result; %w{over_energetic energetic strong strong}[@index]; end
+
+  def next; Attitude.find(%w{ep ep ej ej}[@index]); end
+  def previous; Attitude.find(%w{ij ij ip ip}[@index]); end
 
   ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
   def self.all; ATTITUDES; end
   def self.find(letter); ATTITUDES[LETTERS.index(letter)]; end
 
-  def +(realm); Subtype.find(realm.path + self.path); end
+  def +(realm); Subtype.find(self.path + realm.path); end
   def subtypes; Realm.all.add(self); end
 
   def method_missing(method, *args, &block)

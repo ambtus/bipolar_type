@@ -1,6 +1,6 @@
 # Encoding: utf-8
 class Quad
-  def self.my_path; "fnts"; end
+  def self.my_path; "tnfs"; end
   def self.first; Quad.find(my_path); end
 
   LETTERS = Realm::LETTERS.permutation(4).map(&:join)
@@ -21,6 +21,7 @@ class Quad
   def subtypes; realms.add(Attitude.all); end
   def mbti; subtypes.map(&:mbti).join("‑"); end
   def names; subtypes.map(&:name); end
+  def results; subtypes.map(&:result); end
 
   Attitude.all.each {|attitude| define_method(attitude.path) {subtypes[attitude.index]}}
 

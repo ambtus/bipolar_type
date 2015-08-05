@@ -1,78 +1,65 @@
 - content_for(:title, @quad.mbti)
--@quad.subtypes.each do |subtype|
-  %h3=link_to subtype.name_with_mbti, type_path(subtype.path)
-  =render "subtype", :subtype => subtype
-%h2 Mania
-%p
-  When manic, you become more sensitive to stimulation.
-%p
-  It is extremely unlikely that you will have to
-  %em seek out
-  =@quad.ep.carbs.punctuate(";")
-  the problem will be in avoiding them so that you can sleep enough.
-%p
-  Your worst symptom is that you
-  =@quad.ij.hit
-  too much and become more and more
-  =@quad.ij.sore.punctuate
-  You keep promising yourself that you will not
-  =@quad.ij.hit
-  %em tomorrow
-  but you do. “I must have been manic”. Over time, your manic attacks become less destructive as you learn how to avoid
-  =@quad.ij.hit.ing
-  so much while manic.
-%p
-  The primary “advantage” of mania is that you need far fewer
-  =@quad.ip.carbs
-  to fall asleep. In fact, a large dose of
-  =@quad.ip.carbs
-  in the middle of the day is a good way to take a nap when manic.
-%h2 Depression
-%p
-  After mania, comes the crash into depression when you become less sensitive to stimulation.
-%p
-  If you do not make an effort to seek out
-  =@quad.ep.carbs
-  you will sleep “too much”. However, you probably need the sleep after the manic attack, and seeking out more
-  =@quad.ep.carbs
-  is likely to precipitated another manic attack.
-%p
-  During depression you will “automagically”
-  =@quad.ij.hit
-  less and become less
-  =@quad.ij.sore
-  as you
-  =@quad.ij.eat
-  more
-  =@quad.ij.protein.punctuate
-%p
-  The primary “disadvantage” of depression is that you need far more
-  =@quad.ip.carbs
-  to fall asleep. “I must be depressed”.
+=render "subtypes", :subtypes => @quad.subtypes
 %h2 Suicidal Mania
 %p
-  If you cannot avoid the
-  =@quad.ep.carbs
-  and you cannot
+  If you won’t allow yourself to
   =@quad.ip.eat
   =@quad.ip.carbs
-  then you will not be able to sleep when manic.
+  because you hate yourself for
+  =@quad.ip.eat.split.first.ing
+  so much when you were depressed, then you will not be able to sleep the next time you are manic.
 %p
-  If you cannot have the “little death”, you may opt for the “eternal sleep”.
+  If you cannot have the “little death”, you may opt for the “eternal sleep”. You might as well, since you already hate yourself, and assume everyone else does too.
 %p
-  Stop
+  First: stop
   =@quad.ep.eat.ing
+  so many
   =@quad.ep.carbs
-  and
-  =@quad.ep.run
-  until you run out of
+  — that’s what is keeping you awake. You don’t need the
   =@quad.ep.glycogen
-  and
+  because you have learned how to be
+  =@quad.ep.restrained.er.punctuate
+  Just because the
+  =@quad.ep.carbs
+  are dropping out of the sky to fall at your feet doesn’t mean you have to
+  =@quad.ep.eat
+  them.
+%p
+  Second:
   =@quad.ip.eat
   as many
   =@quad.ip.carbs
   as you need to: it’s much better to
   =@quad.ip.eat
-  “too much”
-  than to be dead.
-
+  too much and be
+  =@quad.ip.obese
+  than to be dead. And
+  %em nobody else
+  hates you for
+  =@quad.ip.eat.split.first.ing
+  as much as you hate yourself so even if other people disapprove, they do
+  %em not
+  disapprove as much as you
+  %em think
+  they disapprove, and they do
+  %em not
+  wish that you were
+  %em dead
+  instead of
+  =@quad.ip.eat.split.first.ing.punctuate
+%p
+  Third: avoid
+  =@quad.ip.carbs
+  when you are
+  %em not
+  tired — for example, first thing in the morning — and save them for when you need to sleep.
+  =@quad.ip.eat.capitalize
+  =@quad.ip.proteins
+  the rest of the time as they won’t make you
+  =@quad.ip.fat.punctuate
+%p
+  Fourth:
+  =@quad.ip.move
+  as much as you can, especially when you cannot sleep and do not
+  %em have
+  to sleep.
