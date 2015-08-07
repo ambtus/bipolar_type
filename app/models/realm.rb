@@ -25,7 +25,7 @@ class Realm
 
   def name; physical.capitalize; end
   def overweight; "lots of #{fat}"; end
-  def sensitive; "#{olfactory.ly}‑sensitive"; end
+  def sensitive; "feels #{sore}"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
