@@ -1,6 +1,6 @@
 %table.center
   -subtypes.each do |subtype|
     %tr
-      %td=render "depressed/subtype", :subtype => subtype
-      %td=render "subtype", :subtype => subtype
+      %td=render "normal/subtype", :subtype => subtype
       %td=render "manic/subtype", :subtype => subtype
+      %td=render "depressed/subtype", :subtype => subtype

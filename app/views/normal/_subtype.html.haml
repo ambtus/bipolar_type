@@ -3,4 +3,4 @@
     =link_to subtype.name_with_mbti, type_path(subtype.path)
   %br
   =subtype.result
-%p=render subtype.attitude.path, :realm => subtype.realm
+=render "normal/#{subtype.attitude.path}", :realm => subtype.realm

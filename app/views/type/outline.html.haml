@@ -1,7 +1,7 @@
 - content_for(:title, 'Overview')
 %h2 The Four Attitudes
 %table.center.narrow
-  -Attitude.all.in_groups_of(1).each do |row|
+  -Attitude.all.in_groups_of(2).each do |row|
     %tr
       -row.each do |attitude|
         %td
@@ -9,14 +9,14 @@
           %br
           =attitude.result
 %h2 The Four Realms
-%table.center
-  -Realm.all.in_groups_of(4).each do |row|
+%table.center.narrow
+  -Realm.all.in_groups_of(2).each do |row|
     %tr
       -row.each do |realm|
         %td
           =link_to realm.name_with_mbti, type_path(realm.path)
           %br
-          =realm.physical
+          =realm.olfactory
 %h2 The Sixteen Subtypes
 %table.center
   -Subtype.all.in_groups_of(4).each do |row|

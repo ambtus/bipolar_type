@@ -3,7 +3,4 @@
     depression
   -else
     =link_to subtype.mbti + " depression", type_path(subtype.path)
-  %br
-  =subtype.depressed_result
-  =subtype.previous_mbti.parenthetical unless subtype.previous_mbti == subtype.mbti
 %p=render "depressed/#{subtype.attitude.path}", :realm => subtype.realm

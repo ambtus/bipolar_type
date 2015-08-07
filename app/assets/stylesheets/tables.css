@@ -3,7 +3,10 @@ table.center {
   margin-right:auto;
 }
 table.narrow {
-  width: 16%
+  width: 30%
+}
+table.half {
+  width: 50%
 }
 td {
   vertical-align: top;

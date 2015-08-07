@@ -1,18 +1,20 @@
-s,f,n,t
-serotonin,oxytocin,?,dopamine
-gustatory,auditory,visual,tactile
-eat,listen to,look at,work
-carbs,tones,colors,hours
-taste,sound,look,feel
-run,emote,choose,pay cash
-glycogen,emotions,options,money
-hit,talk,decide,charge
-sore,misunderstood,stupid,indebted
-digest,understand,believe,complete
-proteins,words,patterns,chores
-energetic,demonstrative,clever,industrious
-strong,eloquent,smart,trustworthy
-physical,interpersonal,mental,financial
-fat,musical,artistic,rich
-obese,gothic,trivial,miserly
-move,communicate,predict,buy
+s,n,t,f
+serotonin,?,dopamine,oxytocin
+olfactory,visual,tactile,auditory
+eat,look at,earn,listen to
+carbs,details,wages,tones of voice
+taste,look,feel,sound
+walk,choose,shop,cry
+glycogen,details,cash,emotions
+hit,decide,borrow,talk
+sore,stupid,indebted,misunderstood
+digest,believe,complete,understand
+protein,patterns,a salary,words
+energetic,clever,materialistic,demonstrative
+strong,smart,trustworthy,eloquent
+physical,mental,financial,interpersonal
+fat,memories,savings,values
+obese,trivial,miserly,gothic
+move,think,buy,communicate
+muscles,mental models,credit,vocabulary
+hungry,curious,poor,lonely

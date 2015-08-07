@@ -1,5 +1,2 @@
 - content_for(:title, @attitude.name_with_mbti)
-%table.center
-  %tr
-    -@attitude.subtypes.each do |subtype|
-      %td=render "subtype", :subtype => subtype
+=render "subtypes", :subtypes => @attitude.subtypes

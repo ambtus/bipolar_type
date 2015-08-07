@@ -20,10 +20,6 @@ class Subtype
 
   def name; [realm, attitude].map(&:name).join; end
   def result; realm.send(attitude.result); end
-  def manic_result; realm.send(attitude.manic_result); end
-  def depressed_result; realm.send(attitude.depressed_result); end
-  def next_mbti; [attitude.next, realm].to_mbti; end
-  def previous_mbti; [attitude.previous, realm].to_mbti; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{s f n t}
+  LETTERS = %w{s n t f}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
@@ -23,9 +23,9 @@ class Realm
   raise "realm.csv needs to be re-ordered" unless LETTERS == first
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index]}}
 
-  def name; gustatory.capitalize; end
-  def restrained; "#{physical.ly}‑restrained"; end
-  def over_energetic; "over‑#{energetic}"; end
+  def name; physical.capitalize; end
+  def overweight; "lots of #{fat}"; end
+  def sensitive; "#{olfactory.ly}‑sensitive"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

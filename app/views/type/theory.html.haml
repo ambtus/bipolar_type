@@ -6,43 +6,65 @@
   Jungian personality theory asserts that people are not just introverted or extroverted, they are introverted and extroverted in different realms. Jungian personality theory describes four realms (Thinking, Feeling, Sensing and iNtuiting) and thus eight function-attitudes. For example, extraverted feeling, which he described as a judging function, is usually designated as Fe, but can also be designated using MBTI symbols as EFJ. There are eight Jungian function-attitudes: Si, Ni, Ti, Fi, Ne, Se, Fe, and Te
   =String::THEORETICALS.to_sentence.parenthetical.punctuate
 %p
-  The MBTI is an extension of Jungian personality theory, which asserts that if you are introverted in one realm, then you must necessarily be extroverted in another, and that you must have a realm in each of the four attitudes (IJ, EJ, IP, EJ). For example, an ISFP is someone with introverted feeling (Fi/IFP), extroverted sensing (Se/ESP), introverted intuition (Ni/INJ), and extroverted thinking (Te/ETJ).
+  The MBTI is an extension of Jungian personality theory, which asserts that if you are introverted in one realm, then you must necessarily be extroverted in another. MBTI theoretical type dynamics also asserts that you must have each of the four attitudes (IJ, EJ, IP, EJ) in varying degrees. For example, an ISFP is someone with dominant introverted feeling (Fi/IFP), auxiliary extroverted sensing (Se/ESP), tertiary introverted intuition (Ni/INJ), and inferior extroverted thinking (Te/ETJ).
 %p
   ESFP, INTJ, and ENTJ have the same function-attitudes as ISFP, but in a different order.
-  BipolarType does not care about the order of preference of your function-attitudes, and thus defines the following four BipolarTypes:
+  Since BipolarType does not care about the order of the function-attitudes, the sixteen MBTI types correspond to the following four BipolarTypes:
   %dl
     -Quad.officials.each do |quad|
       %dt=link_to quad.mbti, type_path(quad.path)
       %dd=quad.mbtis.join(", ")
 %p
-  BipolarType doubles the number of function-attitudes by asserting that, for example, extroverted feeling can be a perceptive function (EFP). There are thus twenty-four BipolarTypes: the above four and twenty more which do not have associated MBTI types. For example, my BipolarType is
-  =link_to Quad.first.mbti, type_path(Quad.my_path)
-  and although I claim
-  =render "mbti", :mbti => "ISFP"
-  as my MBTI true-type — as it is closer than anything else — it does not actually fit very well.
+  BipolarType then doubles the number of function-attitudes by asserting that, for example, extroverted feeling can be a perceptive function (EFP). There are thus twenty-four BipolarTypes: the above four and twenty more which do not follow MBTI theoretical type dynamics.
 %h2 The Bipolar in BipolarType
 %p
-  BipolarType orders the realms in order by sensitivity to the related neurotransmitter, not by which realms you prefer.
+  BipolarType is my attempt to explain what happens when you are manic or depressed, and how you can handle unaccustomed sensitivity or insensitivity to stimulation without exhibiting pathological behaviors that require medication or hospitalization.
 %p
-  When manic or on general stimulants (such as caffeine), you become more sensitive to stimulation and more energetic. All of your behaviors become more extroverted. Your most extroverted behavior (EP) may become so extraverted that it becomes pathological (or “manic”).
+  While using general sedatives or stimulants can be used to treat a manic or depressive episode, they usually have side effects. Worse, they will aggravate the other episode if they are not stopped as soon as the episode ends and before the other starts.
 %p
-  When depressed or on general sedatives (such as alcohol), you become less sensitive to stimulation and more tired. All of your behaviors become more introverted. Your most introverted behavior (IP) may become so introverted that it becomes pathological (or “depressed”).
+  Using targeted sedatives and stimulants can alleviate the problem to some extent because they usually have fewer side effects and there is no critical need to stop them at the end of an episode. For example, if you sedate pathological sensitivity into normal sensitivity, and continue the sedatives after the mania ends, the normal sensitivity will be sedated into normal insensitivity which is not pathological but merely unusual for that individual.
 %p
-  While using general sedatives or stimulants can be effective during a manic or depressive episode, they aggravate the other state.
-  Using targeted sedatives and stimulants can alleviate the problem to some extent.
-%p
-  For example, as an
-  =Quad.first.mbti
-  I have “overactive”
+  For example, I am sensitive in the realm associated with
   =Quad.first.ep.serotonin
-  and “underactive”
-  =Quad.first.ip.serotonin
-  and when I was taking prescription medications, Prozac and Haldol were the most efficacious.
+  and when I was taking prescription medications, Haldol was very helpful for my mania: it prevented the
+  =Quad.first.ep.olfactory
+  hallucinations of mania and also prevented me from
+  =Quad.first.ep.move.ing
+  too much, but did not cause me to
+  =Quad.first.ep.eat
+  compulsively when depressed: I
+  =Quad.first.ep.eat.ed
+  more than would be normal for an
+  =Quad.first.ep.mbti
+  in my
+  =Quad.first.ep.physical
+  condition, but not more than would have been normal for an
+  ="I" + Quad.first.ep.mbti.chip.punctuate
 %p
-  BipolarType explains how I can manage without  the Haldol (and its side effects) by
-  =Quad.first.ep.eat.ing
-  fewer
-  =Quad.first.ep.carbs
-  and although I still take melatonin every night and 5-HTP when I am binging on
+  Similarly, I am insensitive in the realm associated with
+  =Quad.first.ip.serotonin
+  and when I was taking prescription medications, Prozac was very helpful for my depression: it prevented me from binging on
   =Quad.first.ip.carbs
-  I no longer require prescription SSRIs (with their side effects).
+  while depressed but did not give me
+  =Quad.first.ip.olfactory
+  hallucinations when manic or cause me to
+  =Quad.first.ip.move
+  too much: I
+  =Quad.first.ip.move.ed
+  more than would be normal for an
+  =Quad.first.ip.mbti
+  in my
+  =Quad.first.ip.physical
+  condition, but not more than is normal for an
+  ="E" + Quad.first.ip.mbti.chip.punctuate
+%p
+  Unfortunately, both medications have side effects, and we never did find a sedative that made my
+  =Quad.first.ij.physical
+  realm less sensitive to
+  =Quad.first.ij.carbs
+  without making it impossible for me to
+  =Quad.first.ej.move
+  although I now think that
+  =Quad.first.ij.serotonin
+  sedatives might be helpful.
+
