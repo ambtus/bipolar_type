@@ -24,8 +24,8 @@ class Realm
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index]}}
 
   def name; physical.capitalize; end
-  def overweight; "lots of #{fat}"; end
-  def sensitive; "feels #{sore}"; end
+  def overweight; "low #{serotonin}"; end
+  def sensitive; "high #{serotonin}"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

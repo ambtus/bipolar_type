@@ -1,5 +1,5 @@
 class Attitude
-  LETTERS = %w{ ep ej ip ij}
+  LETTERS = %w{ ij ep ej ip}
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
@@ -9,8 +9,8 @@ class Attitude
   attr_reader :index, :path
   def <=>(other); self.index <=> other.index; end
   def mbti; path.upcase; end
-  def name; %w{ Top  Dom  Sub Bottom}[@index]; end
-  def result; %w{ energetic strong overweight sensitive }[@index]; end
+  def name; %w{ Bottom Top  Dom  Sub }[@index]; end
+  def result; %w{ sensitive energetic strong overweight  }[@index]; end
 
   ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
   def self.all; ATTITUDES; end

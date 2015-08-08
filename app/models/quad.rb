@@ -1,6 +1,6 @@
 # Encoding: utf-8
 class Quad
-  def self.my_path; "tnsf"; end
+  def self.my_path; "tfns"; end
   def self.first; Quad.find(my_path); end
 
   LETTERS = Realm::LETTERS.permutation(4).map(&:join)
