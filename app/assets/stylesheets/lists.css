@@ -1,10 +1,6 @@
-ol {
+ol, ul, dl {
   text-align: left;
 }
-ul {
-  text-align: left;
-}
-
 dt, dd {
   display: inline;
   margin: 0;

@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{s n t f}
+  LETTERS = %w{sf nt st nf}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
@@ -23,9 +23,11 @@ class Realm
   raise "realm.csv needs to be re-ordered" unless LETTERS == first
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index]}}
 
+  Attitude.all.each {|a| define_method(a.path) {[self,a].to_mbti}}
+
   def name; physical.capitalize; end
-  def overweight; "low #{serotonin}"; end
-  def sensitive; "high #{serotonin}"; end
+  def consume; [eat, meals].join(" "); end
+  def description; [consume, walk].join(" & "); end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

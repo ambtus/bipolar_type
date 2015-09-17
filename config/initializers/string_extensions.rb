@@ -3,6 +3,7 @@
 class String
 
   def chip; self[1..-1]; end
+  def second; self.chars.second; end
 
   def punctuate(punctuation = "."); self + punctuation; end
   def parenthetical; "(#{self})"; end
@@ -80,7 +81,7 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope food information fat confidence glucose cash income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat}
+  UNCOUNTABLE = %w{hope food information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain stomach heart head optimism pessimism focus trivia laughter discomfort tragedy comedy romance}
   def uncountable?; UNCOUNTABLE.include?(self.split.first); end
 
   def few; self.uncountable? ? "little #{self}" : "few #{self}"; end
@@ -90,6 +91,7 @@ class String
   def them; self.uncountable? ? "it" : "them"; end
   def were; self.uncountable? ? "was" : "were"; end
   def are; self.uncountable? ? "is" : "are"; end
+  def does; self.uncountable? ? "does" : "do"; end
   def they_are; [they, are].join(" "); end
 
   def s
@@ -191,7 +193,7 @@ class String
       "seeing"
     elsif %w{lexical expressive local universal black salaried aerobic anaerobic}.include?(target)
       target
-    elsif %w{fit put sweat beg forget shop hit run}.include?(target)
+    elsif %w{fit put sweat beg forget shop hit run drop}.include?(target)
       target + target.last + "ing"
     elsif target.end_with?("e")
       target.chop + "ing"
@@ -202,10 +204,10 @@ class String
   end
 
 
-  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit}
+  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make}
   def irregular?; IRREGULAR.include?(self); end
-  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit}[IRREGULAR.index(self)]; end
-  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit}[IRREGULAR.index(self)]; end
+  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made}[IRREGULAR.index(self)]; end
+  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made}[IRREGULAR.index(self)]; end
 
   def ed
     set, third = self.split(" or ")

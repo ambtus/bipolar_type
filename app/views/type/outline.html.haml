@@ -1,22 +1,22 @@
 - content_for(:title, 'Overview')
-%h2 The Four Attitudes
-%table.center.narrow
-  -Attitude.all.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |attitude|
-        %td
-          =link_to attitude.name_with_mbti, type_path(attitude.path)
-          %br
-          =attitude.result
 %h2 The Four Realms
-%table.center.narrow
-  -Realm.all.in_groups_of(2).each do |row|
+%table.center.half
+  -Realm.all.in_groups_of(2) do |row|
     %tr
       -row.each do |realm|
         %td
           =link_to realm.name_with_mbti, type_path(realm.path)
           %br
-          =realm.olfactory
+          =realm.description
+%h2 The Four Attitudes
+%table.center.half
+  -Attitude.all.in_groups_of(2) do |row|
+    %tr
+      -row.each do |attitude|
+        %td
+          =link_to attitude.name_with_mbti, type_path(attitude.path)
+          %br
+          =attitude.description
 %h2 The Sixteen Subtypes
 %table.center
   -Subtype.all.in_groups_of(4).each do |row|
@@ -25,17 +25,15 @@
         %td
           =link_to subtype.name_with_mbti, type_path(subtype.path)
           %br
-          =subtype.result
-%p.heading=link_to "Normal behaviors", type_path("subtypes")
-%p.heading=link_to "Manic behaviors", type_path("mania")
-%p.heading=link_to "Depressed behaviors", type_path("depression")
+          =subtype.description
+%p.heading=link_to "Advice", type_path("subtypes")
 %h2 The Twenty-Four BipolarTypes
 %table.center
-  -Quad.all.in_groups_of(6).each do |row|
+  -Quad.ordered.in_groups_of(4).each do |row|
     %tr
       -row.each do |quad|
         %td
           =link_to quad.mbti, type_path(quad.path)
-          -quad.results.each do |result|
+          -quad.subtypes.each do |subtype|
             %br
-            =result
+            =subtype.name

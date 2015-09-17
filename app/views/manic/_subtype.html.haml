@@ -1,6 +1,0 @@
-%p.heading
-  -if current_page? type_path(subtype.path)
-    mania
-  -else
-    =link_to subtype.mbti + " mania", type_path(subtype.path)
-%p=render "manic/#{subtype.attitude.path}", :realm => subtype.realm

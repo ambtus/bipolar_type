@@ -1,7 +1,7 @@
 - content_for(:title, @subtype.name_with_mbti.html_safe)
-=render "subtypes", :subtypes => [@subtype]
+=render "subtype", :subtype => @subtype
 %h2 Associated BipolarTypes
 %dl
   -@subtype.quads.each do |quad|
     %dt=link_to quad.mbti, type_path(quad.path)
-    %dd=quad.results.join(", ")
+    %dd=quad.subtypes.map(&:name).join(", ")

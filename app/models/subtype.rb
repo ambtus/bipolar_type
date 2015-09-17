@@ -13,13 +13,13 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def realm; Realm.find(path[2,1]); end
+  def realm; Realm.find(path[2,2]); end
   def attitude; Attitude.find(path[0,2]); end
 
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
-  def name; [realm, attitude].map(&:name).join; end
-  def result; realm.send(attitude.result); end
+  def name; [attitude.names.first,realm.name,attitude.names.second].join; end
+  def description; [attitude.description,"to",realm.simple_carbs].join(" "); end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

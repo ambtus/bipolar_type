@@ -1,5 +1,5 @@
 class Attitude
-  LETTERS = %w{ ij ep ej ip}
+  LETTERS = %w{ep ej ij ip}
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
@@ -9,8 +9,6 @@ class Attitude
   attr_reader :index, :path
   def <=>(other); self.index <=> other.index; end
   def mbti; path.upcase; end
-  def name; %w{ Bottom Top  Dom  Sub }[@index]; end
-  def result; %w{ sensitive energetic strong overweight  }[@index]; end
 
   ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
   def self.all; ATTITUDES; end
@@ -18,6 +16,19 @@ class Attitude
 
   def +(realm); Subtype.find(self.path + realm.path); end
   def subtypes; Realm.all.add(self); end
+
+  # touch attitude.rb to reload attitude.csv in development mode
+  require 'csv'
+  arr_of_arrs = CSV.read("config/initializers/attitude.csv")
+  first = arr_of_arrs.shift
+  raise "attitude.csv needs to be re-ordered" unless LETTERS == first
+  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index]}}
+
+  Realm.all.each {|r| define_method(r.path) {[self,r].to_mbti}}
+
+  def names; [extreme, extrovert].map(&:capitalize); end
+  def name; names.join; end
+  def description; [most, insensitive].join(" "); end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

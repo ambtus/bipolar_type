@@ -1,6 +1,0 @@
-%p.heading
-  -if current_page? type_path(subtype.path)
-    depression
-  -else
-    =link_to subtype.mbti + " depression", type_path(subtype.path)
-%p=render "depressed/#{subtype.attitude.path}", :realm => subtype.realm

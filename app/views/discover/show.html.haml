@@ -10,6 +10,7 @@
     %tr
       -row.each do |subtype|
         %td{:class => @answer.css(subtype)}
-          =subtype.result
+          =subtype.description
           %br
-          =link_to subtype.name_with_mbti, discover_path(@answer.next(subtype.path))
+          =link_to subtype.mbti, discover_path(@answer.next(subtype.path))
+

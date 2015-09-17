@@ -9,7 +9,7 @@ class Answer
 
   def number; @question.last.to_i ; end
 
-  def subtypes; @letters.scan(/.../).collect{|l| Subtype.find(l)}; end
+  def subtypes; @letters.scan(/..../).collect{|l| Subtype.find(l)}; end
   def chosen?(subtype); subtypes.include?(subtype); end
 
   def attitudes; subtypes.map(&:attitude); end

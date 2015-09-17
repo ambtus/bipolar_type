@@ -1,70 +1,103 @@
 - content_for(:title, 'Theory')
-%h2 The Type in BipolarType
+%h2 Intrapersonal
 %p
-  Normal personality theories validate individual differences without abnormality: you are not the same as everyone else, but there are other people just like you.
+  Most personality theories compare one person to another person. BipolarType compares you to yourself.
 %p
-  Jungian personality theory asserts that people are not just introverted or extroverted, they are introverted and extroverted in different realms. Jungian personality theory describes four realms (Thinking, Feeling, Sensing and iNtuiting) and thus eight function-attitudes. For example, extraverted feeling, which he described as a judging function, is usually designated as Fe, but can also be designated using MBTI symbols as EFJ. There are eight Jungian function-attitudes: Si, Ni, Ti, Fi, Ne, Se, Fe, and Te
-  =String::THEORETICALS.to_sentence.parenthetical.punctuate
+  BipolarType asserts that there are four main sensory systems each associated with a different realms of behavior: smell and taste are treated as a single system associated with the physical realm; pain, temperature, and touch are treated as a single system associated with the material realm, vision is associated with the mental realm, and hearing is associated with the spiritual realm.
 %p
-  The MBTI is an extension of Jungian personality theory, which asserts that if you are introverted in one realm, then you must necessarily be extroverted in another. MBTI theoretical type dynamics also asserts that you must have each of the four attitudes (IJ, EJ, IP, EJ) in varying degrees. For example, an ISFP is someone with dominant introverted feeling (Fi/IFP), auxiliary extroverted sensing (Se/ESP), tertiary introverted intuition (Ni/INJ), and inferior extroverted thinking (Te/ETJ).
+  BipolarType further asserts that an individual’s attitude toward each of the four realms is driven by their relative sensitivity to that system: most sensitive in their introverted introvert attitude, sensitive in their extroverted introvert attitude, insensitive in their introverted extrovert attitude, and most insensitive in their extroverted extrovert attitude.
 %p
-  ESFP, INTJ, and ENTJ have the same function-attitudes as ISFP, but in a different order.
-  Since BipolarType does not care about the order of the function-attitudes, the sixteen MBTI types correspond to the following four BipolarTypes:
-  %dl
-    -Quad.officials.each do |quad|
-      %dt=link_to quad.mbti, type_path(quad.path)
-      %dd=quad.mbtis.join(", ")
+  Whether, compared to other people, you are sensitive or insensitive (introverted or extroverted), you are not equally sensitive in every realm. Thus, everyone has a BipolarType which is the differentiation of each of the four realms into each of the four attitudes: most insensitive in one realm, insensitive in another realm, sensitive in a third realm, and the most sensitive in the remaining realm.
+%h2 Dynamic
 %p
-  BipolarType then doubles the number of function-attitudes by asserting that, for example, extroverted feeling can be a perceptive function (EFP). There are thus twenty-four BipolarTypes: the above four and twenty more which do not follow MBTI theoretical type dynamics.
-%h2 The Bipolar in BipolarType
+  BipolarType also asserts that everyone is the least sensitive in every realm early in the morning on the first day of the week in the first part of the year (which is why they are then most in need of the most common general stimulant caffeine) and most sensitive in every realm late in the evening on the last day of the week in the last part of the year (which is why they are then most in need of the most common general stimulant alcohol).
 %p
-  BipolarType is my attempt to explain what happens when you are manic or depressed, and how you can handle unaccustomed sensitivity or insensitivity to stimulation without exhibiting pathological behaviors that require medication or hospitalization.
+  Your “first thing in the morning on the first day of the week in the first part of the year” may or may not be 5am on Monday in January. It can be any time of the day/week/year as long as it’s the time immediately succeeding the time when you were asleep after a vacation weekend.
 %p
-  While using general sedatives or stimulants can be used to treat a manic or depressive episode, they usually have side effects. Worse, they will aggravate the other episode if they are not stopped as soon as the episode ends and before the other starts.
+  =image_tag("cycle.png", :alt => "cycle")
 %p
-  Using targeted sedatives and stimulants can alleviate the problem to some extent because they usually have fewer side effects and there is no critical need to stop them at the end of an episode. For example, if you sedate pathological sensitivity into normal sensitivity, and continue the sedatives after the mania ends, the normal sensitivity will be sedated into normal insensitivity which is not pathological but merely unusual for that individual.
+  Without strong stimulants, unusual and strong stimuli, or critical needs, you will sleep (daily), take a day off work (weekly) or take a few weeks off work (annually) during level 0. Cold and dark, few sounds or smells. Nothing needs to be said or decided, and nothing needs to be built and there is nowhere you need to go. Nothing needs to be heard, seen, tasted or touched. And if there is, there shouldn’t be. Level 0 was historically the dead of winter, the middle of the night, and the Sabbath for everyone, but in modern times — with the advent of artificial lights and changing social norms — it can be any date or time and may be different for everyone.
 %p
-  For example, I am sensitive in the realm associated with
-  =Quad.first.ep.serotonin
-  and when I was taking prescription medications, Haldol was very helpful for my mania: it prevented the
-  =Quad.first.ep.olfactory
-  hallucinations of mania and also prevented me from
-  =Quad.first.ep.move.ing
-  too much, but did not cause me to
-  =Quad.first.ep.eat
-  compulsively when depressed: I
-  =Quad.first.ep.eat.ed
-  more than would be normal for an
-  =Quad.first.ep.mbti
-  in my
-  =Quad.first.ep.physical
-  condition, but not more than would have been normal for an
-  ="I" + Quad.first.ep.mbti.chip.punctuate
+  Without stimulants, strong stimuli, or strong needs, you will find it difficult to wake up and be alert enough to work during level 1. Was historically early spring, pre dawn, and the first day of the week.
 %p
-  Similarly, I am insensitive in the realm associated with
-  =Quad.first.ip.serotonin
-  and when I was taking prescription medications, Prozac was very helpful for my depression: it prevented me from binging on
-  =Quad.first.ip.carbs
-  while depressed but did not give me
-  =Quad.first.ip.olfactory
-  hallucinations when manic or cause me to
-  =Quad.first.ip.move
-  too much: I
-  =Quad.first.ip.move.ed
-  more than would be normal for an
-  =Quad.first.ip.mbti
-  in my
-  =Quad.first.ip.physical
-  condition, but not more than is normal for an
-  ="E" + Quad.first.ip.mbti.chip.punctuate
+  You can work during level 2, but will find it easier to work given stimulants, strong stimuli, or strong needs. Was historically late spring and early autumn, morning and afternoon, and the second and fourth days of the week.
 %p
-  Unfortunately, both medications have side effects, and we never did find a sedative that made my
-  =Quad.first.ij.physical
-  realm less sensitive to
-  =Quad.first.ij.carbs
-  without making it impossible for me to
-  =Quad.first.ej.move
-  although I now think that
-  =Quad.first.ij.serotonin
-  sedatives might be helpful.
-
+  You can work during level 3, but will find it easier to work given sedatives, weak stimuli, or strong cravings. Hot and sunny and/or lots of stories and food. Was historically summer and late autumn, midday and evening, and the third and fifth days of the week.
+%p
+  Without sedatives, weak stimuli, or strong cravings, you will find it difficult to relax and be calm enough to work during level 4. Was historically early winter, sunset, and market day.
+%h2 BipolarType vs the DSM-5
+%p
+  The DSM-5 labels you manic or addicted to sedatives if you cannot stop working (irritable mania) or playing (euphoric mania) long enough to sleep at night without sedatives. BipolarType asserts that your cycle has become unentrained and recommends you stop bombarding yourself with strong stimuli in the realm to which you are most sensitive.
+%p
+  The DSM-5 labels you depressed or ADHD or addicted to stimulants if you cannot work or play without stimulants. BipolarType asserts that either you have been manic, and
+  %em need the rest
+  or that the needs of other people are just not strong enough to motivate you. In other words,
+  %em other people
+  want you to work for them or play with them, but you would rather do something else. If you are an adult, do what you want. If you have children, stop feeding them drugs and start feeding them stronger stimuli in the realms in which they are least sensitive.
+%h2 BipolarType vs the MBTI&reg;
+%p
+  BipolarType grew out of the MBTI and uses the same symbols, but the symbols are no longer acronymic.
+%p
+  The four realms correlate with the MBTI as follows:
+%dl
+  %dt physical (SF)
+  %dd Sensing with Feeling.
+  %dt material (ST)
+  %dd Sensing with Thinking.
+  %dt spiritual (NF)
+  %dd iNtuition with Feeling.
+  %dt mental (NT)
+  %dd iNtuition with Thinking.
+%p
+  The four attitudes correlate with the MBTI as follows:
+%dl
+  %dt most sensitive (IP)
+  %dd Introversion with Perceiving.
+  %dt somewhat sensitive (IJ)
+  %dd Introversion with Judging.
+  %dt somewhat insensitive (EJ)
+  %dd Extroversion with Judging.
+  %dt most insensitive (EP)
+  %dd Extroversion with Perceiving.
+%p
+  In the MBTI, an
+  =render "mbti", :mbti => "ENTJ"
+  is someone who is moderately extroverted compared to the general population, and prefers to spend most of their time in the mental realm.
+%p
+  In BipolarType, an
+  =link_to "ENTJ", type_path("ejnt")
+  is someone who is relatively insensitive in the mental realm, although there is one realm in which they are even less sensitive, and two realms in which they are more sensitive. How sensitive they are
+  %em compared with other people
+  is unknown (they may or may not be an extrovert), as is whether they
+  %em enjoy
+  spending time in the mental realm.
+%p
+  Although it is possible for someone’s MBTI true type to be one of their four BipolarType subtypes, it is by no means guaranteed.
+%p
+  For example, my BipolarType is
+  =link_to Quad.first.mbti, type_path(Quad.first.path)
+  but despite the fact that I am an
+  =link_to "INFP", type_path("ipnf")
+  I am not an
+  =render "mbti", :mbti => "INFP"
+  because although I
+  %em am
+  an introverted introvert (IP), I do
+  %em not
+  prefer the spiritual realm (NF). And despite the fact that I am an
+  =link_to "ESFP", type_path("epsf")
+  I am not an
+  =render "mbti", :mbti => "ESFP"
+  because although I
+  %em do
+  prefer the physical realm (SF)
+  I am
+  %em not
+  an extroverted extrovert (EP).
+  Instead, I self-identify as an
+  =render "mbti", :mbti => "ISFP"
+  even though
+  =link_to "ISFP", type_path("ipsf")
+  is
+  %em not
+  one of my four BipolarType subtypes.

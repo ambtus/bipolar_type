@@ -5,7 +5,7 @@ table.center {
 table.narrow {
   width: 30%
 }
-table.half {
+.half {
   width: 50%
 }
 td {

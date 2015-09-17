@@ -1,4 +1,5 @@
 %table.center
-  -subtypes.each do |subtype|
+  -subtypes.in_groups_of(2) do |row|
     %tr
-      %td=render "normal/subtype", :subtype => subtype
+      -row.each do |subtype|
+        %td.half=render "subtype", :subtype => subtype
