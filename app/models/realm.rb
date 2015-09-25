@@ -26,7 +26,7 @@ class Realm
   Attitude.all.each {|a| define_method(a.path) {[self,a].to_mbti}}
 
   def name; physical.capitalize; end
-  def consume; [eat, food].join(" "); end
+  def consume; [eat, meals].join(" "); end
   def description; [consume, walk].join(" & "); end
 
   def method_missing(method, *args, &block)

@@ -84,7 +84,7 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope food information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain stomach heart head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain stomach heart head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
   def few(inject=''); self.uncountable? ? "little #{inject}#{self}" : "few #{inject} #{self}"; end
@@ -99,12 +99,6 @@ class String
   def they_are; [they, are].join(" "); end
 
   def s
-    set, third = self.split(" or ")
-    if third
-      first, second = set.split(/, ?/)
-      return [first, third].map(&:s).join(" or ") unless second
-      return [first, second, third].map(&:s).to_sentence(:last_word_connector => ", or ")
-    end
     target = self.split.first
     transformation =
     if target == "die"
@@ -113,6 +107,8 @@ class String
       target
     elsif target == "are"
       "is" # they are => it is
+    elsif target == "where"
+      "places" # go somewhere => go places
     elsif %w{do go express}.include?(target)
       target + "es"
     elsif target.end_with?("y")
