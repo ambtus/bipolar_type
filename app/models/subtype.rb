@@ -1,5 +1,5 @@
 class Subtype
-  LETTERS = Attitude::LETTERS.multiply(Realm::LETTERS).flatten
+  LETTERS = Realm::LETTERS.multiply(Attitude::LETTERS).flatten
 
   def initialize(letters)
     raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
@@ -13,13 +13,31 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def realm; Realm.find(path[2,2]); end
-  def attitude; Attitude.find(path[0,2]); end
+  def realm; Realm.find(path[0,2]); end
+  def attitude; Attitude.find(path[2,2]); end
 
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
-  def name; [attitude.names.first,realm.name,attitude.names.second].join; end
-  def description; [attitude.description,"to",realm.simple_carbs].join(" "); end
+  def name; realm.send(attitude.fat); end
+
+  def short; [attitude.insensitive, realm.physical, attitude.consumer].join(" "); end
+  def long
+    case attitude.path
+    when "ep"
+      "lots of useless #{realm.fat_deposits}"
+    when "ej"
+      "lots of #{realm.muscles}"
+    when "ip"
+      "not enough #{realm.muscles}"
+    when "ij"
+      "only essential #{realm.fat_deposits}"
+    end
+  end
+
+  def description; [short, long].join('<br />').html_safe; end
+  def self.ordered
+    all.values_at(0,1,4,5,2,3,6,7,8,9,12,13,10,11,14,15)
+  end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{sf nt st nf}
+  LETTERS = %w{sf nt nf st}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
@@ -13,7 +13,7 @@ class Realm
   def self.all; REALMS; end
   def self.find(letter); REALMS[LETTERS.index(letter)]; end
 
-  def +(attitude); Subtype.find(attitude.path + self.path); end
+  def +(attitude); Subtype.find(self.path + attitude.path); end
   def subtypes; Attitude.all.add(self); end
 
   # touch realm.rb to reload realm.csv in development mode
@@ -26,11 +26,13 @@ class Realm
   Attitude.all.each {|a| define_method(a.path) {[self,a].to_mbti}}
 
   def name; physical.capitalize; end
-  def consume; [eat, meals].join(" "); end
+  def consume; [eat, food].join(" "); end
   def description; [consume, walk].join(" & "); end
 
   def method_missing(method, *args, &block)
-    if method.to_s =~ /^(.*)_with_mbti$/
+    if method.to_s =~ /^(.*)where$/
+      $1 + where
+    elsif method.to_s =~ /^(.*)_with_mbti$/
       [self.send($1, *args, &block), mbti.parenthetical].join(" ")
     else
       super

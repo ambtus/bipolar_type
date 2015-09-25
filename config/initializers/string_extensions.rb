@@ -6,6 +6,9 @@ class String
   def second; self.chars.second; end
 
   def punctuate(punctuation = "."); self + punctuation; end
+  def period; self.punctuate; end
+  def comma; self.punctuate(","); end
+
   def parenthetical; "(#{self})"; end
   def parenthetical?; self.match(/\(/); end
   def nonparenthetical; self.split(" (").first; end
@@ -81,11 +84,12 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope food information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain stomach heart head optimism pessimism focus trivia laughter discomfort tragedy comedy romance}
-  def uncountable?; UNCOUNTABLE.include?(self.split.first); end
+  UNCOUNTABLE = %w{hope food information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain stomach heart head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation}
+  def uncountable?; UNCOUNTABLE.include?(self); end
 
-  def few; self.uncountable? ? "little #{self}" : "few #{self}"; end
-  def many; self.uncountable? ? "much #{self}" : "many #{self}"; end
+  def few(inject=''); self.uncountable? ? "little #{inject}#{self}" : "few #{inject} #{self}"; end
+  def some; self.uncountable? ? "some #{self}" : "a few #{self}"; end
+  def many(inject=''); self.uncountable? ? "much #{inject} #{self}" : "many #{inject} #{self}"; end
   def fewer; self.uncountable? ? "less #{self}" : "fewer #{self}"; end
   def they; self.uncountable? ? "it" : "they"; end
   def them; self.uncountable? ? "it" : "them"; end
@@ -121,43 +125,6 @@ class String
       target + "s"
     end
     [transformation, self.split - [target]].join(" ").squish
-  end
-
-  def more
-    if self.match(" or ")
-      [self, "more"].join(" ")
-    elsif %w{to at}.include?(self.split.second)
-      self.split.insert(2, "more").join(" ")
-    else
-      self.split.insert(1, "more").join(" ")
-    end
-  end
-
-  def less
-    end_word = self.split.last
-    if self.match(" or ")
-      [self, "less"].join(" ")
-    elsif %w{to at}.include?(self.split.second)
-      [self.split.first, self.split.second, end_word.fewer].join(" ")
-    elsif self == "fat"
-      "thin"
-    elsif self.split.count > 1
-      self.fewer
-    else
-      [self.split.first, end_word.fewer].join(" ")
-    end
-  end
-
-  def too_much
-    if self.match(" or ") || self.split.count == 1
-      [self, "too much"].join(" ")
-    else
-      if self.split.last.uncountable?
-        self.split.insert(1, "too much").join(" ")
-      else
-        self.split.insert(1, "too many").join(" ")
-      end
-    end
   end
 
   def er

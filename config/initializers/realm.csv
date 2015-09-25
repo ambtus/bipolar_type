@@ -1,21 +1,19 @@
-sf,nt,st,nf
-physical,mental,material,spiritual
-serotonin,norepinephrine,dopamine,oxytocin
-olfactory,visual,tactile,auditory
-hungry,curious,uncomfortable,lonely
-taste,see,touch,hear
-eat,look at,handle,listen to
-smells,lights,heat,sounds
-binge,snoop,cut,eavesdrop
-protein,foreground shapes,enclosed spaces,romance
-fats,middle ground,safety features,comedy
-simple carbs,background details,fire,tragedy
-sweet,colorful,dangerous,horrible
-meals,pictures,tools,stories
-walk,decide,build,talk
-sick,worried,injured,hysterical
-anorexic,panicked,disabled,suicidal
-fat,trivia,junk,emotions
-stomach,head,hands,heart
-muscles,focus,assets,hope
-seated,undecided,unproductive,silent
+sf,nt,nf,st
+physical,mental,spiritual,material
+serotonin,norepinephrine,oxytocin,dopamine
+taste,see,hear,touch
+where,thing,thing,thing
+go,decide,say,buy
+walk,choose,talk,shop
+eat,look at,listen to,collect
+food,pictures,stories,rewards
+carbs,specifics,tragedies,wages
+fats,categories,humor,automatic deductions
+protein,outlines,happy endings,unearned income
+fat,trivial,social,rich
+strong,smart,optimistic,wealthy
+weak,stupid,suicidal,indebted
+thin,theoretical,independent,poor
+fat deposits,information,relationships,cash
+muscles,mental models,hope,assets
+hungry,curious,lonely,purse-pinched

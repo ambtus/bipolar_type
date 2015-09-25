@@ -37,4 +37,8 @@ class Array
     end
     dups.delete_if {|k,v| v.size == 1}.keys
   end
+
+  def without(element)
+    self.reject{|x| x == element}
+  end
 end

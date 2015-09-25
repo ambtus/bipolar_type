@@ -1,5 +1,5 @@
 class Attitude
-  LETTERS = %w{ep ej ij ip}
+  LETTERS = %w{ep ej ip ij }
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
@@ -14,7 +14,7 @@ class Attitude
   def self.all; ATTITUDES; end
   def self.find(letter); ATTITUDES[LETTERS.index(letter)]; end
 
-  def +(realm); Subtype.find(self.path + realm.path); end
+  def +(realm); Subtype.find(realm.path + self.path); end
   def subtypes; Realm.all.add(self); end
 
   # touch attitude.rb to reload attitude.csv in development mode
@@ -26,9 +26,8 @@ class Attitude
 
   Realm.all.each {|r| define_method(r.path) {[self,r].to_mbti}}
 
-  def names; [extreme, extrovert].map(&:capitalize); end
-  def name; names.join; end
-  def description; [most, insensitive].join(" "); end
+  def name; fat.titleize; end
+  def description; [insensitive, consumer].join(" "); end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

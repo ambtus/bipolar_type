@@ -2,5 +2,5 @@
 .small { font-size: small;}
 .heading {font-style: italic; text-align: center; }
 .constrained {color: red; font-style: italic}
-.free {color: black; font-weight: bold}
+.free {color: black; font-weight: normal}
 .chosen {color: blue; font-style: italic}

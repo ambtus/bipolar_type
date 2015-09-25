@@ -1,2 +1,3 @@
 - content_for(:title, @attitude.name)
+%p.heading=@attitude.description
 =render "subtypes", :subtypes => @attitude.subtypes
