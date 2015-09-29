@@ -1,2 +1,2 @@
 - content_for(:title, @quad.mbti)
-=render "subtypes", :subtypes => @quad.subtypes
+=render "shorts", :subtypes => @quad.subtypes, :center => (render "advice", :quad => @quad)

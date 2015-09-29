@@ -1,5 +1,5 @@
 class Attitude
-  LETTERS = %w{ep ej ip ij }
+  LETTERS = %w{ep ej ij ip}
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
@@ -27,11 +27,15 @@ class Attitude
   Realm.all.each {|r| define_method(r.path) {[self,r].to_mbti}}
 
   def name; fat.titleize; end
-  def description; [insensitive, consumer].join(" "); end
+  def consume; insensitive == "insensitive" ? "consuming is relaxing" : "consuming is stressful"; end
+  def produce; consumer == "consumer" ? "producing was discouraged" : "producing was encouraged"; end
+  def description; [consume, produce].join('<br />').html_safe; end
+
+  def self.square; all.values_at(0,1,3,2); end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
-      [self.send($1, *args, &block), mbti.parenthetical].join(" ")
+      [self.send($1, *args, &block).gsub('<br />', " & "), mbti.parenthetical].join(" ")
     else
       super
     end

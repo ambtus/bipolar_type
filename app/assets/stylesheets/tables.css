@@ -2,11 +2,14 @@ table.center {
   margin-left:auto;
   margin-right:auto;
 }
-table.narrow {
+.narrow {
   width: 30%
 }
 .half {
   width: 50%
+}
+.wide {
+  width: 75%
 }
 td {
   vertical-align: top;
@@ -18,4 +21,7 @@ td.bottom {
 }
 td.middle {
   vertical-align: middle;
+}
+td.empty {
+  border: none
 }

@@ -1,19 +1,30 @@
-sf,nt,nf,st
-physical,mental,spiritual,material
-serotonin,norepinephrine,oxytocin,dopamine
-taste,see,hear,touch
-where,thing,thing,thing
-go,decide,say,buy
-walk,choose,talk,shop
-eat,look at,listen to,collect
-meals,pictures,stories,rewards
-carbs,local colors,tragedies,wages
-fats,categories,humor,automatic deductions
-protein,black and white outlines,happy endings,unearned income
-fat,trivial,social,rich
-strong,smart,optimistic,wealthy
-weak,stupid,suicidal,indebted
-thin,theoretical,independent,poor
-fat deposits,information,relationships,cash
-muscles,mental models,hope,assets
-hungry,curious,lonely,purse-pinched
+s,n,t,f
+serotonin,norepinephrine,dopamine,oxytocin
+physical,mental,material,spiritual
+ingest,see,earn,hear
+eat,look at,earn,listen to
+digest,identify,collect,understand
+food,pictures,income,stories
+fat,trivial,rich,popular
+strong,smart,wealthy,dominant
+thin,theoretical,poor,independent
+weak,stupid,indebted,submissive
+amino acids,correlations,net worth,hope
+protein,results,assets,happy endings
+muscles,mental models,credit,self esteem
+glycogen,details,cash,emotions
+fats,outlines,profits,humor
+carbs,specifics,wages,tragedies
+fat deposits,facts,savings,prejudices
+stomach,mind,soul,heart
+throw up,panic,angry,cry
+sick,anxious,frustrated,unhappy
+walk,choose,shop,talk
+hungry,unsure,overdrawn,lonely
+lift,solve,buy,influence
+light,simple,cheap,open minded
+heavy,complex,expensive,close minded
+weight,problem,tool,person
+sore,wrong,unequipped,ignored
+seated,undecided,unencumbered,silent
+around, ,for,about

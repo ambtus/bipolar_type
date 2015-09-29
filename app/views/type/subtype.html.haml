@@ -1,22 +1,21 @@
 - content_for(:title, @subtype.name_with_mbti.html_safe)
-=render "subtype", :subtype => @subtype
+=render "long", :subtype => @subtype
 %h2 Same Realm
 %p.heading=link_to @subtype.realm.description_with_mbti, type_path(@subtype.realm.path)
 %dl
   -@subtype.realm.subtypes.without(@subtype).each do |subtype|
-    %dt=link_to subtype.name_with_mbti, type_path(subtype.path)
+    %dt=link_to subtype.name, type_path(subtype.path)
     %dd
-      =subtype.attitude.description.comma
-      =subtype.long
+      =subtype.description_with_mbti
 %h2 Same Attitude
 %p.heading=link_to @subtype.attitude.description_with_mbti, type_path(@subtype.attitude.path)
 %dl
   -@subtype.attitude.subtypes.without(@subtype).each do |subtype|
-    %dt=link_to subtype.name_with_mbti, type_path(subtype.path)
+    %dt=link_to subtype.name, type_path(subtype.path)
     %dd
-      =subtype.realm.physical.comma
-      =subtype.long
+      =subtype.description_with_mbti
 %h2 Associated BipolarTypes
+%p.heading=link_to "Discover", discover_path("Q2_#{@subtype.path}")
 %dl
   -@subtype.quads.each do |quad|
     %dt=link_to quad.mbti, type_path(quad.path)

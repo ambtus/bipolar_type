@@ -1,4 +1,5 @@
 .center { text-align: center; }
+.left { text-align: left; }
 .small { font-size: small;}
 .heading {font-style: italic; text-align: center; }
 .constrained {color: red; font-style: italic}

@@ -1,0 +1,19 @@
+%p.heading
+  -unless current_page? type_path(subtype.path)
+    =link_to subtype.name_with_mbti, type_path(subtype.path)
+%p.heading=subtype.description
+%ul
+  %li
+    when you were
+    =subtype.sore
+    as a child after trying &mdash; and failing &mdash; to
+    =subtype.lift
+    =subtype.heavy.an
+    =subtype.weight
+    you
+    =subtype.eat1.ed
+    more
+  =render "long/" + subtype.attitude.path.first, :realm => subtype.realm
+  =render "long/" + subtype.attitude.path.second, :realm => subtype.realm
+  =render subtype.attitude.path.second, :realm => subtype.realm
+  =render subtype.attitude.path, :realm => subtype.realm

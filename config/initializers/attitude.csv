@@ -1,4 +1,4 @@
-ep,ej,ip,ij
-fat,strong,weak,thin
+ep,ej,ij,ip
+fat,strong,thin,weak
 insensitive,insensitive,sensitive,sensitive
-consumer,producer,consumer,producer
+consumer,producer,producer,consumer

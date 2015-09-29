@@ -2,4 +2,6 @@
   -unless current_page? type_path(subtype.path)
     =link_to subtype.name_with_mbti, type_path(subtype.path)
 %p.heading=subtype.description
-%ul=render subtype.attitude.path, :realm => subtype.realm
+%ul
+  =render subtype.attitude.path.second, :realm => subtype.realm
+  =render subtype.attitude.path, :realm => subtype.realm

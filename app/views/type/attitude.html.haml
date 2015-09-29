@@ -1,3 +1,7 @@
 - content_for(:title, @attitude.name)
 %p.heading=@attitude.description
-=render "subtypes", :subtypes => @attitude.subtypes
+%table.center
+  -@attitude.subtypes.in_groups_of(2). each do |row|
+    %tr
+      -row.each do |subtype|
+        %td=render "long", :subtype => subtype

@@ -18,23 +18,6 @@ class String
 
   def is_mbti?; MBTIS.include?(self); end
 
-  def dominant
-    raise unless is_mbti?
-    letters = self.scan(/./)
-    index = MBTIS.index(self)
-    (index < 8 ? letters.values_at(0,1,3) : letters.values_at(0,2,3)).join
-  end
-  def auxiliary
-    raise unless is_mbti?
-    letters = self.scan(/./)
-    index = MBTIS.index(self)
-    first = letters.first == "I" ? "E" : "I"
-    first + (index < 8 ? letters.values_at(2,3) : letters.values_at(1,3)).join
-  end
-
-  THEORETICALS = ["ISJ", "INJ", "ITP", "IFP", "ENP", "ESP", "EFJ", "ETJ"]
-  def is_theoretical?; THEORETICALS.include?(self) ; end
-
   def mbti_order
     letters = self.scan(/./)
     mbti_letters = [%w{I E i e}, %w{N S n s}, %w{T F t f}, %w{J P j p}]
@@ -44,26 +27,6 @@ class String
      letters & mbti_letters.fourth
     ].map(&:sort).flatten.compact.join
   end
-
-  def attitude_letters
-    letters = self.scan(/./)
-    attitudes = [%w{I E i e}, %w{J P j p}]
-    [letters & attitudes.first,
-     letters & attitudes.second,
-    ].map(&:sort).flatten.map(&:downcase)
-  end
-
-  def attitudes; attitude_letters.collect{|l| Attitude.find(l)}; end
-
-  def realm_letters
-    letters = self.scan(/./)
-    realms = [%w{N S n s}, %w{T F t f}]
-    [letters & realms.first,
-     letters & realms.second,
-    ].map(&:sort).flatten.map(&:downcase)
-  end
-
-  def realms; realm_letters.collect{|l| Realm.find(l)}; end
 
   def a_or_an
     if self.mbti_order.length == self.length
@@ -84,19 +47,24 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain stomach heart head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
-  def few(inject=''); self.uncountable? ? "little #{inject}#{self}" : "few #{inject} #{self}"; end
-  def some; self.uncountable? ? "some #{self}" : "a few #{self}"; end
+  def few(inject=''); self.uncountable? ? "little #{inject} #{self}" : "few #{inject} #{self}"; end
   def many(inject=''); self.uncountable? ? "much #{inject} #{self}" : "many #{inject} #{self}"; end
-  def fewer; self.uncountable? ? "less #{self}" : "fewer #{self}"; end
+  def fewer(inject=''); self.uncountable? ? "less #{inject} #{self}" : "fewer #{inject} #{self}"; end
+  def dont; self.uncountable? ? "#{self} doesn’t" : "#{self} don’t"; end
+  def those; self.uncountable? ? "that #{self}" : "those #{self}"; end
+  def have; self.uncountable? ? "#{self} has" : "#{self} have"; end
   def they; self.uncountable? ? "it" : "they"; end
   def them; self.uncountable? ? "it" : "them"; end
   def were; self.uncountable? ? "was" : "were"; end
   def are; self.uncountable? ? "is" : "are"; end
   def does; self.uncountable? ? "does" : "do"; end
   def they_are; [they, are].join(" "); end
+
+  def it; self == "person" ? "them" : "it"; end
+  def that; self == "people" ? "who" : "that"; end
 
   def s
     target = self.split.first
@@ -127,14 +95,34 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "er"
-    elsif target == "trustworthy"
+    elsif %w{trustworthy expensive valuable hostile}.include?(target)
       "more " + target
     elsif target.end_with?("y")
       target.chop + "ier"
-    elsif %w{rich poor smart stupid loud quiet sweet strong weak clever}.include?(target)
+    elsif target.end_with?("e")
+      target + "r"
+    elsif %w{rich poor smart stupid loud quiet sweet strong weak clever light cheap}.include?(target)
       target + "er"
     else
       "more " + target
+    end
+    [transformation, self.split - [target]].join(" ").squish
+  end
+
+  def est
+    target = self.split.first
+    transformation = if %w{fat thin}.include?(target)
+      target + target.last + "est"
+    elsif %w{trustworthy expensive valuable hostile}.include?(target)
+      "most " + target
+    elsif target.end_with?("y")
+      target.chop + "iest"
+    elsif target.end_with?("e")
+      target + "st"
+    elsif %w{rich poor smart stupid loud quiet sweet strong weak clever light cheap}.include?(target)
+      target + "est"
+    else
+      "most " + target
     end
     [transformation, self.split - [target]].join(" ").squish
   end
@@ -156,7 +144,7 @@ class String
       "seeing"
     elsif %w{lexical expressive local universal black salaried aerobic anaerobic}.include?(target)
       target
-    elsif %w{fit put sweat beg forget shop hit run drop}.include?(target)
+    elsif %w{fit put sweat beg forget shop hit run drop grab}.include?(target)
       target + target.last + "ing"
     elsif target.end_with?("e")
       target.chop + "ing"
@@ -167,10 +155,10 @@ class String
   end
 
 
-  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make}
+  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose}
   def irregular?; IRREGULAR.include?(self); end
-  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made}[IRREGULAR.index(self)]; end
-  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made}[IRREGULAR.index(self)]; end
+  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose}[IRREGULAR.index(self)]; end
+  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen}[IRREGULAR.index(self)]; end
 
   def ed
     set, third = self.split(" or ")
@@ -182,7 +170,7 @@ class String
     target = self.split.first
     transformation = if target.irregular?
       target.past
-    elsif %w{fit beg shop}.include?(target)
+    elsif %w{fit beg shop grab}.include?(target)
       target + target.last + "ed"
     elsif target.end_with?("y")
       if %w{buy pay repay}.include?(target)
@@ -208,7 +196,7 @@ class String
     target = self.split.first
     transformation = if target.irregular?
       target.perfect
-    elsif %w{fit beg shop}.include?(target)
+    elsif %w{fit beg shop grab}.include?(target)
       target + target.last + "ed"
     elsif target.end_with?("y")
       if %w{buy pay repay}.include?(target)

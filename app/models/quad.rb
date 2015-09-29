@@ -16,7 +16,7 @@ class Quad
   def self.all; QUADS; end
   def self.find(letters); QUADS[LETTERS.index(letters)]; end
 
-  def realm_letters; path.scan(/../); end
+  def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
   def mbti; subtypes.map(&:mbti).join("-"); end
@@ -26,8 +26,6 @@ class Quad
     every_sixth = 6.times.to_a.multiply([0,6,12,18]).flatten
     self.all.values_at(*every_sixth)
   end
-
-  Attitude.all.each {|attitude| define_method(attitude.path) {subtypes[attitude.index]}}
 
 end
 

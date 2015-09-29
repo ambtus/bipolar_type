@@ -13,35 +13,37 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def realm; Realm.find(path[0,2]); end
-  def attitude; Attitude.find(path[2,2]); end
+  def realm; Realm.find(path[0,1]); end
+  def attitude; Attitude.find(path[1,2]); end
 
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
-  def name; realm.send(attitude.fat); end
+  def long_name; [realm.physical.ly, attitude.fat].join(" "); end
 
-  def short; [attitude.insensitive, realm.physical, attitude.consumer].join(" "); end
-  def long
+  def name; realm.send(attitude.fat).titleize; end
+
+  def result
     case attitude.path
     when "ep"
-      "lots of useless #{realm.fat_deposits}"
+      "plenty of #{realm.fat_deposits}"
     when "ej"
-      "lots of #{realm.muscles}"
+      "plenty of #{realm.muscles}"
     when "ip"
-      "not enough #{realm.muscles}"
+      "very #{realm.muscles.few}"
     when "ij"
-      "only essential #{realm.fat_deposits}"
+      "very #{realm.fat_deposits.few}"
     end
   end
 
-  def description; [short, long].join('<br />').html_safe; end
-  def self.ordered
-    all.values_at(0,1,4,5,2,3,6,7,8,9,12,13,10,11,14,15)
-  end
+  def long
+     attitude.description.gsub('consuming', "#{realm.eat1.ing}").gsub('producing', "#{realm.produce.ing}")
+ end
+
+  def description; [long, result].join('<br />').html_safe; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
-      [self.send($1, *args, &block), mbti.parenthetical].join(" ")
+      [self.send($1, *args, &block).gsub('<br />', " & "), mbti.parenthetical].join(" ")
     else
       realm.send(method, *args, &block)
     end

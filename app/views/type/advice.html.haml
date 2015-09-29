@@ -1,0 +1,12 @@
+- content_for(:title, 'Advice')
+%table.center
+  -Quad.all.in_groups_of(6).each do |row|
+    %tr
+      -row.each do |quad|
+        %td
+          =link_to quad.mbti.upcase, type_path(quad.path)
+          -quad.names.each do |name|
+            %br
+            =name
+          =render "advice", :quad => quad
+
