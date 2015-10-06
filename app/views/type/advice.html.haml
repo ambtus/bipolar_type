@@ -5,8 +5,6 @@
       -row.each do |quad|
         %td
           =link_to quad.mbti.upcase, type_path(quad.path)
-          -quad.names.each do |name|
-            %br
-            =name
-          =render "advice", :quad => quad
-
+          %ul
+            -quad.subtypes.each do |subtype|
+              %li=subtype.advice

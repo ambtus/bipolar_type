@@ -1,20 +1,26 @@
 - content_for(:title, "Question ##{@answer.number}")
 %p.heading
   Most personality theories compare you to other people. BipolarType compares you to yourself.
--if @answer.number > 1
+-if @answer.number < 2
+  %p
+    Even if everyone else thinks you are too fat or too thin compared to
+    %em them,
+    please answer based on whether you are too fat or too thin compared to whether you are too rich or too poor, etc.
+  %p
+    In other words, which “too” bothers you the most, and would be the first you would “fix” if given a magic pill. And if you were given a magic pill to make you thinner, for example, would it do so by magically making you eat less, or walk more?
+  %p.heading.constrained
+    Choose four: one from each row and column.
+-else
   %p.heading.constrained
     Choices in red will reset
     %span.chosen earlier choices.
--else
-  %p.heading.constrained
-    Choose four: one from each row and column.
 %table.center
   -@subtypes.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
         %td{:class => @answer.css(subtype)}
-          =link_to subtype.name_with_mbti, discover_path(@answer.next(subtype.path))
-          %br
           =subtype.description
+          %br
+          =link_to subtype.name_with_mbti, discover_path(@answer.next(subtype.path))
 
 

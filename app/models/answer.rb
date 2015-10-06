@@ -46,6 +46,6 @@ class Answer
     end
   end
 
-  def quad_path; subtypes[0,4].sort_by{|s| s.attitude}.map(&:realm).map(&:path).join; end
+  def quad_path; subtypes[0,4].sort_by{|s| s.attitude.index}.map(&:realm).map(&:path).join; end
 
 end

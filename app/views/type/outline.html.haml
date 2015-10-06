@@ -5,28 +5,28 @@
     %tr
       -row.each do |realm|
         %td
-          =link_to realm.name_with_mbti, type_path(realm.path)
-          %br
           =realm.description
+          %br
+          =link_to realm.name_with_mbti, type_path(realm.path)
 %p.heading=link_to "specifics", type_path("realms")
 %h2 The Four Attitudes
 %table.center.half
-  -Attitude.square.in_groups_of(2) do |row|
+  -Attitude.all.in_groups_of(2) do |row|
     %tr
       -row.each do |attitude|
         %td
-          =link_to attitude.name_with_mbti, type_path(attitude.path)
-          %br
           =attitude.description
+          %br
+          =link_to attitude.name_with_mbti, type_path(attitude.path)
 %h2 The Sixteen Subtypes
-%table.center.wide
+%table.center
   -Subtype.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
         %td
-          =link_to subtype.name_with_mbti, type_path(subtype.path)
-          %br
           =subtype.description
+          %br
+          =link_to subtype.name_with_mbti, type_path(subtype.path)
 %p.heading=link_to "specifics", type_path("subtypes")
 %h2 The Twenty-Four BipolarTypes
 %table.center
@@ -35,7 +35,7 @@
       -row.each do |quad|
         %td
           =link_to quad.mbti.upcase, type_path(quad.path)
-          -quad.names.each do |name|
+          -quad.subtypes.each do |subtype|
             %br
-            =name
+            =subtype.name
 %p.heading=link_to "advice", type_path("advice")

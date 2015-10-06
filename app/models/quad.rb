@@ -27,5 +27,7 @@ class Quad
     self.all.values_at(*every_sixth)
   end
 
+  def mbtis; realms.add(Attitude.all.reverse).map(&:mbti); end
+
 end
 

@@ -1,2 +1,3 @@
 - content_for(:title, @realm.name)
-=render "longs", :subtypes => @realm.subtypes, :center => (render "realm", :realm => @realm)
+=render "realm", :realm => @realm
+=render "subtypes", :subtypes => @realm.subtypes

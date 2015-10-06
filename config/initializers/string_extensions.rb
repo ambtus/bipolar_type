@@ -41,13 +41,15 @@ class String
   def ly
     if self.last == "y"
       self.chop + "ily"
+    elsif self.last == "c"
+      self + "ally"
     else
       self + "ly"
     end
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem food}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
   def few(inject=''); self.uncountable? ? "little #{inject} #{self}" : "few #{inject} #{self}"; end
@@ -95,7 +97,7 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "er"
-    elsif %w{trustworthy expensive valuable hostile}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable}.include?(target)
       "more " + target
     elsif target.end_with?("y")
       target.chop + "ier"
@@ -109,11 +111,19 @@ class String
     [transformation, self.split - [target]].join(" ").squish
   end
 
+  def erer
+    if self.er.starts_with?("more ")
+      "more and more #{self}"
+    else
+      "#{self.er} and #{self.er}"
+    end
+  end
+
   def est
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "est"
-    elsif %w{trustworthy expensive valuable hostile}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable}.include?(target)
       "most " + target
     elsif target.end_with?("y")
       target.chop + "iest"
@@ -131,12 +141,8 @@ class String
     if self.parenthetical?
       return [nonparenthetical.ing, parenthetical_part.ing.parenthetical].join(" ")
     end
-    set, third = self.split(" or ")
-    if third
-      first, second = set.split(/, ?/)
-      return [first, third].map(&:ing).join(" or ") unless second
-      return [first, second, third].map(&:ing).to_sentence(:last_word_connector => ", or ")
-    end
+    first, second = self.split("/")
+    return [first, second].map(&:ing).join("/") if second
     target = self.split.first
     transformation = if target == "die"
       "dying"
@@ -155,18 +161,14 @@ class String
   end
 
 
-  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose}
+  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show}
   def irregular?; IRREGULAR.include?(self); end
-  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose}[IRREGULAR.index(self)]; end
-  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen}[IRREGULAR.index(self)]; end
+  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed}[IRREGULAR.index(self)]; end
+  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown}[IRREGULAR.index(self)]; end
 
   def ed
-    set, third = self.split(" or ")
-    if third
-      first, second = set.split(/, ?/)
-      return [first, third].map(&:ed).join(" or ") unless second
-      return [first, second, third].map(&:ed).to_sentence(:last_word_connector => ", or ")
-    end
+    first, second = self.split("/")
+    return [first, second].map(&:ed).join("/") if second
     target = self.split.first
     transformation = if target.irregular?
       target.past
@@ -187,12 +189,8 @@ class String
   end
 
   def en
-    set, third = self.split(" or ")
-    if third
-      first, second = set.split(/, ?/)
-      return [first, third].map(&:en).join(" or ") unless second
-      return [first, second, third].map(&:en).to_sentence(:last_word_connector => ", or ")
-    end
+    first, second = self.split("/")
+    return [first, second].map(&:en).join("/") if second
     target = self.split.first
     transformation = if target.irregular?
       target.perfect

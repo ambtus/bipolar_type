@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{s n t f}
+  LETTERS = %w{s n f t }
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
@@ -26,17 +26,27 @@ class Realm
   Attitude.all.each {|a| define_method(a.path) {[self,a].to_mbti}}
 
   def name; physical.capitalize; end
-  def eat1; eat.split.first; end
-  def eat2; path == "s" ? "eat" : ingest; end
-  def consume; [eat, food].join(" "); end
-  def produce; [lift, weight.pluralize].join(" "); end
-  def description; [consume, walk].join(" & "); end
+  def description; chemosensory; end
+
+  def introverted; "doesn’t #{eat} much or #{walk} much"; end
+  def extroverted; "#{eat.s} a lot and #{walk.s} a lot"; end
+  def gsub(string)
+    string.gsub('extroverted', extroverted).
+    gsub('introverted', introverted).
+    gsub('consume', eat).
+    gsub('produce', walk)
+  end
+
+  def run; "start #{walk.ing} and do #{eat} when you feel #{hungry}"; end
+  def binge; "start #{eat.ing} and do #{walk} when you feel #{restless}"; end
+  def sit; "stop #{walk.ing} and don’t #{eat} unless you feel #{hungry}"; end
+  def fast; "stop #{eat.ing} and don’t #{walk} unless you feel #{restless}"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)where$/
-      $1 + where
+      index == 0 ? $1+"where" : $1+"thing"
     elsif method.to_s =~ /^(.*)_with_mbti$/
-      [self.send($1, *args, &block), mbti.parenthetical].join(" ")
+      [self.send($1, *args, &block).gsub('<br />', " & "), mbti.parenthetical].join(" ")
     else
       super
     end

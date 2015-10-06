@@ -15,31 +15,9 @@ class Subtype
 
   def realm; Realm.find(path[0,1]); end
   def attitude; Attitude.find(path[1,2]); end
+  def pair; [realm, attitude]; end
 
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
-
-  def long_name; [realm.physical.ly, attitude.fat].join(" "); end
-
-  def name; realm.send(attitude.fat).titleize; end
-
-  def result
-    case attitude.path
-    when "ep"
-      "plenty of #{realm.fat_deposits}"
-    when "ej"
-      "plenty of #{realm.muscles}"
-    when "ip"
-      "very #{realm.muscles.few}"
-    when "ij"
-      "very #{realm.fat_deposits.few}"
-    end
-  end
-
-  def long
-     attitude.description.gsub('consuming', "#{realm.eat1.ing}").gsub('producing', "#{realm.produce.ing}")
- end
-
-  def description; [long, result].join('<br />').html_safe; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/
@@ -49,4 +27,14 @@ class Subtype
     end
   end
 
+  def nature; realm.gsub(attitude.nature); end
+  def subconscious; realm.gsub(attitude.subconscious); end
+  def result; realm.send(attitude.result); end
+  def conscious; realm.gsub(attitude.conscious); end
+
+  def advice; realm.send(attitude.advice); end
+
+  def name; pair.map(&:name).join; end
+
+  def description; ["I am too #{result}","I should #{conscious}"].join('<br />').html_safe; end
 end

@@ -1,5 +1,5 @@
 - content_for(:title, @subtype.name_with_mbti.html_safe)
-=render "long", :subtype => @subtype
+=render "subtype", :subtype => @subtype
 %h2 Same Realm
 %p.heading=link_to @subtype.realm.description_with_mbti, type_path(@subtype.realm.path)
 %dl

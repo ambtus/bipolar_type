@@ -1,30 +1,13 @@
-s,n,t,f
-serotonin,norepinephrine,dopamine,oxytocin
-physical,mental,material,spiritual
-ingest,see,earn,hear
-eat,look at,earn,listen to
-digest,identify,collect,understand
-food,pictures,income,people
-fat,knowledgeable,rich,popular
-strong,smart,wealthy,influential
-thin,theoretical,poor,solitary
-weak,stupid,indebted,suicidal
-amino acids,correlations,credit,hope
-protein,results,assets,happy endings
-muscles,mental models,net worth,self esteem
-glycogen,details,cash,emotions
-fats,outlines,profits,humor
-carbs,specifics,wages,tragedies
-fat deposits,facts,savings,relationship
-stomach,mind,soul,heart
-throw up,panic,angry,cry
-sick,anxious,frustrated,unhappy
-walk,choose,shop,talk
-hungry,unsure,overdrawn,lonely
-lift,solve,buy,tell
-light,simple,cheap,true
-heavy,complex,expensive,fictional
-weight,problem,tool,story
-sore,wrong,unequipped,ignored
-seated,undecided,unencumbered,silent
-around, ,for,about
+s,n,f,t
+chemosensory,visual,auditory,tactile
+physical,mental,spiritual,material
+hungry,curious,lonely,indebted
+feed,show,talk to,reward
+eat,look,listen,earn
+walk,decide,talk,buy
+fat,smart,submissive,rich
+thin,stupid,dominant,poor
+seated,undecided,silent,unprovisioned
+go,decide,say,own
+starving,being wrong,losing friends,going broke
+restless,sure,loved,needy
