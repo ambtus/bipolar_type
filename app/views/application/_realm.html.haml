@@ -1,4 +1,59 @@
+%p.heading=realm.description
+%ul
+  %li
+    when you feel
+    =realm.hungry
+    you need to
+    =realm.eat
+  %li
+    after you have been
+    =realm.feed.en
+    you will feel
+    =realm.restless
+    and will want to
+    =realm.walk
+    even if you have
+    =realm.nowhere
+    you need to
+    =realm.go
+  %li
+    if you continually
+    =realm.walk
+    more than you
+    =realm.eat
+    you will become too
+    =realm.thin.punctuate(";")
+    if you want to be
+    =realm.fat.er
+    you can&hellip;
+    %ul
+      %li
+        =realm.walk
+        less
+      %li
+        =realm.eat
+        more
+  %li
+    if you continually
+    =realm.eat
+    more than you
+    =realm.walk
+    you will become too
+    =realm.fat.punctuate(";")
+    if you want to be
+    =realm.thin.er
+    you can&hellip;
+    %ul
+      %li
+        =realm.walk
+        more
+      %li
+        =realm.eat
+        less
+  %li
+    if you have tried and failed to find balance in the
+    =realm.physical
+    realm, you have probably chosen the wrong option
 %p.heading
   -unless current_page? type_path(realm.path)
     =link_to realm.name_with_mbti, type_path(realm.path)
-%p.heading=realm.description
