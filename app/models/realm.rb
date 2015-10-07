@@ -39,8 +39,8 @@ class Realm
 
   def run; "start #{walk.ing} more and do #{eat} when you feel #{hungry}"; end
   def binge; "start #{eat.ing} more and do #{walk} when you feel #{restless}"; end
-  def sit; "stop #{walk.ing} and don’t #{eat} more unless you feel #{hungry}"; end
-  def fast; "stop #{eat.ing} and don’t #{walk} more unless you feel #{restless}"; end
+  def sit; "stop #{walk.ing} and don’t #{eat} more until you feel #{hungry}"; end
+  def fast; "stop #{eat.ing} and don’t #{walk} more until you feel #{restless}"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)where$/
