@@ -28,19 +28,19 @@ class Realm
   def name; physical.capitalize; end
   def description; chemosensory; end
 
-  def introverted; "doesn’t #{eat} much or #{walk} much"; end
-  def extroverted; "#{eat.s} a lot and #{walk.s} a lot"; end
+  def introverted; "doesn’t #{eat} much or #{move} much"; end
+  def extroverted; "#{eat.s} a lot and #{move.s} a lot"; end
   def gsub(string)
     string.gsub('extroverted', extroverted).
     gsub('introverted', introverted).
     gsub('consume', eat).
-    gsub('produce', walk)
+    gsub('produce', move)
   end
 
-  def run; "start #{walk.ing} more and do #{eat} when you feel #{hungry}"; end
-  def binge; "start #{eat.ing} more and do #{walk} when you feel #{restless}"; end
-  def sit; "stop #{walk.ing} and don’t #{eat} more until you feel #{hungry}"; end
-  def fast; "stop #{eat.ing} and don’t #{walk} more until you feel #{restless}"; end
+  def run; "start #{move.ing} more and do #{eat} when you feel #{hungry}"; end
+  def binge; "start #{eat.ing} more and do #{move} when you feel #{restless}"; end
+  def sit; "stop #{move.ing} and don’t #{eat} more until you feel #{hungry}"; end
+  def fast; "stop #{eat.ing} and don’t #{move} more until you feel #{restless}"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)where$/
