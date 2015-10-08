@@ -97,7 +97,7 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "er"
-    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable defensive}.include?(target)
       "more " + target
     elsif target.end_with?("y")
       target.chop + "ier"
@@ -123,7 +123,7 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "est"
-    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable defensive}.include?(target)
       "most " + target
     elsif target.end_with?("y")
       target.chop + "iest"
@@ -161,10 +161,10 @@ class String
   end
 
 
-  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show}
+  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose}
   def irregular?; IRREGULAR.include?(self); end
-  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed}[IRREGULAR.index(self)]; end
-  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown}[IRREGULAR.index(self)]; end
+  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost}[IRREGULAR.index(self)]; end
+  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost}[IRREGULAR.index(self)]; end
 
   def ed
     first, second = self.split("/")

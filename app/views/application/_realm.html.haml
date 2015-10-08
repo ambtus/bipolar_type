@@ -1,26 +1,24 @@
-%p.heading=realm.description
+%p.heading
+  -unless current_page? type_path(realm.path)
+    =link_to realm.name_with_mbti, type_path(realm.path)
+    %br
+  =realm.description
 %ul
   %li
-    when you feel
+    feeling
     =realm.hungry
-    you need to
-    =realm.eat
+    is a natural signal telling you to
+    =realm.eat1
   %li
-    after you have been
-    =realm.feed.en
-    you will feel
+    feeling
     =realm.restless
-    and will want to
+    is a natural signal telling you to
     =realm.move
-    even if you have
-    =realm.nowhere
-    you need to
-    =realm.go
   %li
-    if you continually
+    if you
     =realm.move
     more than you
-    =realm.eat
+    =realm.eat1
     you will become too
     =realm.thin.punctuate(";")
     if you want to be
@@ -31,12 +29,12 @@
         =realm.move
         less
       %li
-        =realm.eat
+        =realm.eat1
         more
   %li
-    if you continually
-    =realm.eat
-    more than you
+    if you
+    =realm.eat1
+    more than you 
     =realm.move
     you will become too
     =realm.fat.punctuate(";")
@@ -48,12 +46,10 @@
         =realm.move
         more
       %li
-        =realm.eat
+        =realm.eat1
         less
   %li
     if you have tried and failed to find balance in the
     =realm.physical
     realm, you have probably chosen the wrong option
-%p.heading
-  -unless current_page? type_path(realm.path)
-    =link_to realm.name_with_mbti, type_path(realm.path)
+

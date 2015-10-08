@@ -1,5 +1,33 @@
-%table.center
+%table.center.half
+  %caption When in Doubt
   -subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
-        %td=render "subtype", :subtype => subtype
+        %td
+          =link_to subtype.name_with_mbti, type_path(subtype.path)
+          %br
+          =subtype.advice
+%table.center.half
+  %caption Self Image
+  -subtypes.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td
+          =link_to subtype.name_with_mbti, type_path(subtype.path)
+          %br
+          =subtype.description
+-%w{role normal abnormal}.each do |section|
+  -if section == "abnormal"
+    %table.center.half
+      %tr
+        %td
+          %ul=render "abnormal/cause"
+  %table.center.wide
+    %caption=section.capitalize
+    -subtypes.in_groups_of(2).each do |row|
+      %tr
+        -row.each do |subtype|
+          %td
+            =link_to subtype.name_with_mbti, type_path(subtype.path)
+            %br
+            =render [section,subtype.attitude.path].join('/'), :realm => subtype.realm

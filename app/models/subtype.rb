@@ -36,5 +36,5 @@ class Subtype
 
   def name; pair.map(&:name).join; end
 
-  def description; ["I am too #{result}","I should #{conscious}"].join('<br />').html_safe; end
+  def description; ["I am too #{result}","I should #{conscious}!"].join('<br />').html_safe; end
 end

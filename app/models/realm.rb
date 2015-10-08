@@ -16,31 +16,36 @@ class Realm
   def +(attitude); Subtype.find(self.path + attitude.path); end
   def subtypes; Attitude.all.add(self); end
 
+  LETTERS.each {|r| define_singleton_method(r) {find(r)}}
+
+  Attitude.all.each {|a| define_method(a.path) {[self,a].to_mbti}}
+
+
   # touch realm.rb to reload realm.csv in development mode
   require 'csv'
   arr_of_arrs = CSV.read("config/initializers/realm.csv")
   first = arr_of_arrs.shift
   raise "realm.csv needs to be re-ordered" unless LETTERS == first
-  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || [physical,row.first].join(" ")}}
-
-  Attitude.all.each {|a| define_method(a.path) {[self,a].to_mbti}}
+  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || [physical.ly,row.first].join(" ")}}
 
   def name; physical.capitalize; end
   def description; chemosensory; end
+  def eat1; eat.split.first; end
 
   def introverted; "doesn’t #{eat} much or #{move} much"; end
   def extroverted; "#{eat.s} a lot and #{move.s} a lot"; end
+
   def gsub(string)
     string.gsub('extroverted', extroverted).
     gsub('introverted', introverted).
-    gsub('consume', eat).
+    gsub('consume', eat1).
     gsub('produce', move)
   end
 
-  def run; "start #{move.ing} more and do #{eat} when you feel #{hungry}"; end
-  def binge; "start #{eat.ing} more and do #{move} when you feel #{restless}"; end
-  def sit; "stop #{move.ing} and don’t #{eat} more until you feel #{hungry}"; end
-  def fast; "stop #{eat.ing} and don’t #{move} more until you feel #{restless}"; end
+  def run; "start #{move.ing}!"; end
+  def binge; "start #{eat1.ing}!"; end
+  def sit; "stop #{move.ing}!"; end
+  def fast; "stop #{eat1.ing}!"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)where$/

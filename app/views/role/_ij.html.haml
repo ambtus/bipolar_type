@@ -1,0 +1,22 @@
+%ul
+  =render "role/i", :realm => realm
+  %ul
+    %li
+      relative to your other sensitive realm, there were more times when you were
+      encouraged to
+      =realm.move
+      when you did not feel
+      =realm.restless
+      than there were times when you were
+      =realm.feed.en
+      when you did not feel
+      =realm.hungry
+    %li
+      this cemented your “attitude” towards the
+      =realm.physical
+      realm: you are a
+      ==#{realm.physical.capitalize}#{Attitude.ij.name}
+      and your role in life is to start
+      =realm.move.ing
+      whenever anyone else wants you to
+      =realm.move

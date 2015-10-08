@@ -16,6 +16,8 @@ class Attitude
   def +(realm); Subtype.find(realm.path + self.path); end
   def subtypes; Realm.all.add(self); end
 
+  LETTERS.each {|r| define_singleton_method(r) {find(r)}}
+
   Realm.all.each {|r| define_method(r.path) {[self,r].to_mbti}}
 
   def nature; index < 2 ? "extroverted" : "introverted"; end
@@ -23,13 +25,13 @@ class Attitude
   def subconscious
     case path
     when "ep"
-      "produce less!"
+      "produce less"
     when "ej"
-      "consume less!"
+      "consume less"
     when "ip"
-      "consume more!"
+      "consume more"
     when "ij"
-      "produce more!"
+      "produce more"
     end
   end
 
@@ -38,19 +40,19 @@ class Attitude
   def conscious
     case path
     when "ep"
-      "consume less!"
+      "consume less"
     when "ej"
-      "produce less!"
+      "produce less"
     when "ip"
-      "produce more!"
+      "produce more"
     when "ij"
-      "consume more!"
+      "consume more"
     end
   end
 
   def name; %w{Top Dom Sub Bottom}[@index]; end
 
-  def description; ["I am too #{result}","I should #{conscious}"].join('<br />').html_safe; end
+  def description; ["I am too #{result}","I should #{conscious}!"].join('<br />').html_safe; end
 
   def advice; %w{run binge fast sit}[@index]; end
   def method_missing(method, *args, &block)

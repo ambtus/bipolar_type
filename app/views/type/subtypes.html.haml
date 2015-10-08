@@ -1,6 +1,3 @@
 - content_for(:title, 'Subtypes')
-%table.center
-  -Subtype.all.in_groups_of(4).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td=render "subtype", :subtype => subtype
+-Subtype.all.in_groups_of(4).each do |group|
+  =render "subtypes", :subtypes => group

@@ -1,6 +1,13 @@
 - content_for(:title, @subtype.name_with_mbti.html_safe)
-=render "subtype", :subtype => @subtype
-%p.heading=@subtype.advice
+%p
+  %em=@subtype.description
+-%w{role normal abnormal}.each do |section|
+  %h3=section.capitalize
+  -if section == "abnormal"
+    =render "abnormal/cause"
+  =render [section,@subtype.attitude.path].join('/'), :realm => @subtype.realm
+%p
+  %em=@subtype.advice
 %h2 Same Realm
 %p.heading=link_to @subtype.realm.description_with_mbti, type_path(@subtype.realm.path)
 %dl

@@ -1,8 +1,2 @@
 - content_for(:title, @quad.mbti)
-%p
-  When in doubt
-  %ul
-    -@quad.subtypes.each do |subtype|
-      %li=subtype.advice
-
 =render "subtypes", :subtypes => @quad.subtypes
