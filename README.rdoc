@@ -7,15 +7,3 @@
 * Configuration: none that I know of
 
 * Database creation: none
-
-* Pull requests:
-
-  feel free to fork and modify
-
-  please be advised that I will reject any pull requests that don't work for me
-
-  That includes any changes to the theory or wording that make me
-  1. more suicidal
-  2. poorer
-  3. fatter
-  4. more theoretical
