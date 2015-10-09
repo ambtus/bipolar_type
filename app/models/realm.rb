@@ -38,14 +38,16 @@ class Realm
   def gsub(string)
     string.gsub('extroverted', extroverted).
     gsub('introverted', introverted).
+    gsub('consuming', eat1.ing).
+    gsub('producing', move.ing).
     gsub('consume', eat1).
     gsub('produce', move)
   end
 
-  def run; "start #{move.ing}!"; end
-  def binge; "start #{eat1.ing}!"; end
-  def sit; "stop #{move.ing}!"; end
-  def fast; "stop #{eat1.ing}!"; end
+  def run; "keep #{move.ing}"; end
+  def binge; "keep #{eat1.ing}"; end
+  def sit; "stop #{move.ing}"; end
+  def fast; "stop #{eat1.ing}"; end
 
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)where$/

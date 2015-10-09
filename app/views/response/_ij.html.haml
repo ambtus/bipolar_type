@@ -1,0 +1,16 @@
+%ul
+  =render "response/generic", :subtype => subtype
+  %li
+    if you are not sure, here are a few tips to make it easier to
+    =subtype.advice
+    %ul=render "response/produce_less", :realm => subtype.realm
+  %li
+    if you are absolutely sure that you cannot
+    =subtype.advice.comma
+    then you will have to
+    =subtype.eat
+    more
+    %em if and only if
+    you are still too
+    =subtype.thin
+    %ul=render "response/consume_more", :realm => subtype.realm

@@ -20,11 +20,8 @@
       =realm.physical
       realm: you are a
       ==#{realm.physical.capitalize}#{Attitude.ip.name}
-      and your role in life is to start
-      =realm.eat1.ing
-      whenever anyone else wants to
-      =realm.feed
-      you
+      and your role in life is to
+      =realm.gsub(Attitude.ip.role)
     %li
       luckily most people stop
       =realm.feed.ing

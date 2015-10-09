@@ -54,6 +54,20 @@ class Attitude
 
   def description; ["I am too #{result}","I should #{conscious}!"].join('<br />').html_safe; end
 
+  def role
+    case path
+    when "ej"
+      "stop consuming whenever anyone or anything wants you to stop consuming"
+    when "ep"
+      "stop producing whenever anyone or anything wants you to stop producing"
+    when "ip"
+      "keep consuming whenever anyone or anything wants you to keep consuming"
+    when "ij"
+      "keep producing whenever anyone or anything wants you to keep producing"
+    end
+  end
+
+
   def advice; %w{run binge fast sit}[@index]; end
   def method_missing(method, *args, &block)
     if method.to_s =~ /^(.*)_with_mbti$/

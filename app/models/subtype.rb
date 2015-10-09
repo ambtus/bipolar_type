@@ -31,6 +31,7 @@ class Subtype
   def subconscious; realm.gsub(attitude.subconscious); end
   def result; realm.send(attitude.result); end
   def conscious; realm.gsub(attitude.conscious); end
+  def role; realm.gsub(attitude.role); end
 
   def advice; realm.send(attitude.advice); end
 

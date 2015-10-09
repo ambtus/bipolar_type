@@ -1,8 +1,20 @@
-%table.center.half
+%h2 Overview
+%table.center
   -subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
         %td
           =link_to subtype.name_with_mbti, type_path(subtype.path)
-          %p.heading=subtype.advice
+          %p.heading=subtype.advice.punctuate("!")
           %p=render ["abnormal",subtype.attitude.path].join('/'), :realm => subtype.realm
+%h2 Discussion
+%table.center
+  -subtypes.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td
+          =link_to subtype.name_with_mbti, type_path(subtype.path)
+          %p.heading
+            But I cannot
+            =subtype.advice.punctuate("!")
+          %p=render ["response",subtype.attitude.path].join('/'), :subtype => subtype

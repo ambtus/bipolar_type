@@ -16,7 +16,5 @@
       =realm.physical
       realm: you are a
       ==#{realm.physical.capitalize}#{Attitude.ij.name}
-      and your role in life is to start
-      =realm.move.ing
-      whenever anyone else wants you to
-      =realm.move
+      and your role in life is to
+      =realm.gsub(Attitude.ij.role)
