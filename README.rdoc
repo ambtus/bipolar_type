@@ -11,8 +11,11 @@
 * Pull requests:
 
   feel free to fork and modify
-  please be advised that I will reject any pull request that
-  1. make me more suicidal
-  2. make me poorer
-  3. make me fatter
-  4. make me more theoretical
+
+  please be advised that I will reject any pull requests that don't work for me
+
+  That includes any changes to the theory or wording that make me
+  1. more suicidal
+  2. poorer
+  3. fatter
+  4. more theoretical
