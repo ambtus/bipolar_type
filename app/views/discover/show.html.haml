@@ -6,7 +6,9 @@
   %em them,
   please answer based on whether you are too fat or too thin compared to whether you are too rich or too poor, etc.
 %p
-  In other words, which “too” bothers you the most, and would be the first you would “fix” if given a magic pill. And if you were given a magic pill to make you thinner, for example, would it do so by magically making you want to eat less, or move more?
+  In other words, which “too” bothers you the most, and would be the first you would “fix” if given a magic pill.
+%p
+  And if you were given a magic pill to make you thinner, for example, would it do so by magically making you want to eat less, or move more?
 -if @answer.number < 2
   %p.heading.constrained
     Choose four: one from each row and column.
@@ -19,8 +21,6 @@
     %tr
       -row.each do |subtype|
         %td{:class => @answer.css(subtype)}
-          =subtype.description
-          %br
           =link_to subtype.name_with_mbti, discover_path(@answer.next(subtype.path))
-
-
+          %br
+          =subtype.description

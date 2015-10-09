@@ -52,7 +52,12 @@ class Attitude
 
   def name; %w{Top Dom Sub Bottom}[@index]; end
 
-  def description; ["I am too #{result}","I should #{conscious}!"].join('<br />').html_safe; end
+  def ip_only
+    return "" unless path == "ip"
+    "or<br />I am anorexic"
+  end
+
+  def description; ["I am too #{result}","I should #{conscious}!",ip_only].join('<br />').html_safe; end
 
   def role
     case path
