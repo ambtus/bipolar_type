@@ -1,55 +1,40 @@
 %ul
   =render "response/generic", :subtype => subtype
   %li
-    as an
-    =subtype.mbti
-    the generic tips on how to
-    =subtype.advice
-    will make you
-    =subtype.throw_up
-    and cause you to toss out the good
-    =subtype.foods
-    with the bad
-    %ul
-      %li
-        in environments in which you cannot buffer the
-        =subtype.carbs
-        with enough
-        =subtype.fats
-        you may
-        =subtype.throw_up
-        continuously
-      %li
-        if you become so sensitized to
-        =subtype.carbs
-        that you cannot stop
-        =subtype.throw_up.ing
-        you may become dangerously
-        =subtype.anorexic
-      %li
-        in which case you must
-        %em immediately
-        stop
-        =subtype.move.ing
-        and
-        =subtype.eat
-        only
-        =subtype.protein
-      %li
-        do not
-        =subtype.eat
-        %em any
-        =subtype.carbs.gsub(" and ", " or ")
-        &mdash; even those buffered with
-        =subtype.fats
-        &mdash; until you have recovered
-  %li
-    if you are absolutely sure that you cannot
-    =subtype.advice.comma
-    then you will have to
+    if you are 
+    %em unable  
+    to
+    =subtype.eat1
+    as little as you want, then
     =subtype.move
     more
-    %em if and only if
-    you are still too
-    =subtype.fat
-    %ul=render "response/produce_more", :realm => subtype.realm
+    %em immediately
+    %ul
+      %li
+        don’t 
+        =subtype.eat1
+        again until you feel
+        =subtype.hungry
+        %ul
+          %li
+            if you
+            =subtype.eat
+            more
+            =subtype.carbs
+            you will 
+            =subtype.throw_up
+          %li
+            not having to
+            =subtype.move
+            afterwards is
+            %em not
+            worth the risk of becoming
+            =subtype.anorexic.punctuate("!")
+      %li
+        do not wait until you are so
+        =subtype.fat
+        that you are forced to start
+        =subtype.move.ing
+        when you don’t have enough
+        =subtype.physical
+        strength to do so

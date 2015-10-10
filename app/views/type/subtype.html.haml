@@ -1,13 +1,16 @@
 - content_for(:title, @subtype.name_with_mbti.html_safe)
-%p
-  %em=@subtype.description
+%h3 Self Identify
+=@subtype.description
 -%w{role normal abnormal}.each do |section|
   %h3=section.capitalize
   -if section == "abnormal"
     =render "abnormal/cause"
   =render [section,@subtype.attitude.path].join('/'), :realm => @subtype.realm
+%h2 Discussion
 %p
-  %em=@subtype.advice
+  But I cannot
+  =@subtype.advice.punctuate("!")
+=render "response/" + @subtype.attitude.path, :subtype => @subtype
 %h2 Same Realm
 %p.heading=link_to @subtype.realm.description_with_mbti, type_path(@subtype.realm.path)
 %dl

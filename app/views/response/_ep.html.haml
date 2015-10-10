@@ -1,16 +1,25 @@
 %ul
   =render "response/generic", :subtype => subtype
   %li
-    if you are not sure, here are a few tips to make it easier to
-    =subtype.advice
-    %ul=render "response/produce_more", :realm => subtype.realm
-  %li
-    if you are absolutely sure that you cannot
-    =subtype.advice.comma
-    then you will have to
-    =subtype.eat
+    if you are 
+    %em unable  
+    to
+    =subtype.move
+    as much as you want, then
+    =subtype.eat1
     less
-    %em if and only if
-    you are still too
-    =subtype.fat
-    %ul=render "response/consume_less", :realm => subtype.realm
+    %em immediately
+    %ul
+      %li
+        don’t 
+        =subtype.eat1
+        again until you feel
+        =subtype.hungry
+      %li
+        do not wait until you are so
+        =subtype.fat
+        that you are forced to stop
+        =subtype.eat.ing
+        the
+        =subtype.carbs
+        you love
