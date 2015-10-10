@@ -59,6 +59,7 @@ class String
   def those; self.uncountable? ? "that #{self}" : "those #{self}"; end
   def have; self.uncountable? ? "#{self} has" : "#{self} have"; end
   def they; self.uncountable? ? "it" : "they"; end
+  def their; self.uncountable? ? "it’s" : "their"; end
   def them; self.uncountable? ? "it" : "them"; end
   def were; self.uncountable? ? "was" : "were"; end
   def are; self.uncountable? ? "is" : "are"; end

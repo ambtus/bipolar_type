@@ -6,14 +6,48 @@
 %ul
   %li
     feeling
-    =realm.hungry
-    is a natural signal telling you to
-    =realm.eat1
-  %li
-    feeling
     =realm.restless
     is a natural signal telling you to
     =realm.move
+  %li
+    feeling
+    =realm.hungry
+    is a natural signal telling you to
+    =realm.eat1
+    %ul
+      %li
+        =realm.protein
+        =realm.protein.uncountable? ? "provides" : "provide"
+        =realm.physical
+        strength 
+      %li
+        =realm.carbs
+        =realm.carbs.uncountable? ? "provides" : "provide" 
+        =realm.physical
+        energy
+      %li
+        =realm.fats
+        can buffer the
+        =realm.carbs
+        and slow
+        =realm.carbs.their
+        absorption
+      %li
+        overloading on
+        =realm.carbs
+        without enough 
+        =realm.fats
+        will make some people 
+        =realm.throw_up
+      %li
+        you become 
+        =realm.anorexic
+        when you have developed an aversion to
+        =realm.eat.ing
+        anything &mdash; no matter how
+        =realm.hungry
+        you feel &mdash; because you don’t want to
+        =realm.throw_up 
   %li
     if you
     =realm.move

@@ -16,7 +16,7 @@ class Quad
   def self.all; QUADS; end
   def self.find(letters); QUADS[LETTERS.index(letters)]; end
 
-  def realm_letters; path.scan(/../); end
+  def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
   def mbti; subtypes.map(&:mbti).join("-"); end

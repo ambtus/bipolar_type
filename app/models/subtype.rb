@@ -13,8 +13,8 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def realm; Realm.find(path[0,2]); end
-  def attitude; Attitude.find(path[2,2]); end
+  def realm; Realm.find(path[0,1]); end
+  def attitude; Attitude.find(path[1,2]); end
   def pair; [realm, attitude]; end
 
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
