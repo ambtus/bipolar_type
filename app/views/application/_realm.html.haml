@@ -1,6 +1,6 @@
 %p.heading
   -unless current_page? type_path(realm.path)
-    =link_to realm.name_with_mbti, type_path(realm.path)
+    =link_to realm.name, type_path(realm.path)
     %br
   =realm.description
 %ul
@@ -19,36 +19,36 @@
         =realm.protein
         =realm.protein.uncountable? ? "provides" : "provide"
         =realm.physical
-        strength 
+        strength
       %li
         =realm.carbs
-        =realm.carbs.uncountable? ? "provides" : "provide" 
+        =realm.carbs.uncountable? ? "provides" : "provide"
         =realm.physical
         energy
       %li
         =realm.fats
-        can buffer the
+        can slow the absorption of
         =realm.carbs
-        and slow
+        and buffer
         =realm.carbs.their
-        absorption
+        attack 
       %li
         overloading on
         =realm.carbs
-        without enough 
+        without enough
         =realm.fats
-        will make some people 
+        will make some people
         =realm.throw_up
       %li
-        you become 
+        someone becomes
         =realm.anorexic
-        when you have developed an aversion to
+        when they have developed an aversion to
         =realm.eat.ing
         anything &mdash; no matter how
         =realm.hungry
-        you feel &mdash; because you have
-        =realm.throw_up.en
-        once too often
+        they feel &mdash; because they don’t want to
+        =realm.throw_up
+        again
   %li
     if you
     =realm.move
@@ -69,7 +69,7 @@
   %li
     if you
     =realm.eat1
-    more than you 
+    more than you
     =realm.move
     you will become too
     =realm.fat.punctuate(";")

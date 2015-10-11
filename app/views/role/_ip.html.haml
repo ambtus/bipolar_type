@@ -20,61 +20,60 @@
       =realm.physical
       realm: you are a
       ==#{realm.physical.capitalize}#{Attitude.ip.name}
-      and your role in life is to
-      =realm.gsub(Attitude.ip.role)
-    %li
-      luckily most people stop
-      =realm.feed.ing
-      you when you
-      =realm.throw_up
-      %ul
-        %li
-          this has the added benefit of your not having to
-          =realm.move
-          in order to get rid of all the other
-          =realm.foods
-          you’ve
-          =realm.eat.en
-          because you’ve already
-          =realm.throw_up.en
-          and you have no
-          =realm.foods
-          left to
-          =realm.move
-          with
-        %li
-          ==I#{realm.mbti}Ps
-          are the only
-          =realm.physical
-          subtype that can and will deliberately try to
-          =realm.eat1
-          too much, knowing that they will eventually
-          =realm.throw_up.punctuate(":")
-          ==E#{realm.mbti}s
-          cannot
-          =realm.throw_up
-          just by
-          =realm.eat.ing
-          too many
-          =realm.foods
-          and
-          ==I#{realm.mbti}Js
-          need the
-          =realm.foods
-          too much to risk
-          =realm.throw_up.ing
-          by
-          =realm.eat1.ing
-          more
-        %li
-          unfortunately, when you 
-          =realm.throw_up
-          you get rid of all the good
-          =realm.protein
-          as well as the toxic
-          =realm.carbs
-        %li
-          worse, you may become so averse to
-          =realm.sweets
-          that you become
-          =realm.anorexic
+  %li
+    your role in life is to
+    =realm.gsub(Attitude.ip.role)
+  %li
+    luckily most people stop
+    =realm.feed.ing
+    you when you
+    =realm.throw_up
+    %ul
+      %li
+        this has the added benefit of your not having to
+        =realm.move
+        in order to get rid of all the other
+        =realm.meals
+        you’ve
+        =realm.eat.en
+        because you’ve already
+        =realm.throw_up.en
+        and you have no
+        =realm.meals
+        left to
+        =realm.move
+        with
+      %li
+        =realm.physical
+        =Attitude.ip.name.pluralize
+        are the only
+        =realm.physical
+        subtype that can and will deliberately try to
+        =realm.eat1
+        too much, knowing that they will eventually
+        =realm.throw_up.punctuate(":")
+        some cannot
+        =realm.throw_up
+        just by
+        =realm.eat.ing
+        too many
+        =realm.meals
+        and some need the
+        =realm.meals
+        too much to risk
+        =realm.throw_up.ing
+        by
+        =realm.eat1.ing
+        more
+      %li
+        unfortunately, when you
+        =realm.throw_up
+        you get rid of all the good
+        =realm.protein
+        as well as the toxic
+        =realm.carbs
+      %li
+        worse, you may become so averse to
+        =realm.sweets
+        that you become
+        =realm.anorexic

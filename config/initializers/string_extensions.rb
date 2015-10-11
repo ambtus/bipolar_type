@@ -14,27 +14,7 @@ class String
   def nonparenthetical; self.split(" (").first; end
   def parenthetical_part; self.split(" (").second.chop; end
 
-  MBTIS = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ESTP", "ESFP", "ENFP", "ENTP", "ISTP", "ISFP", "INFP", "INTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
-
-  def is_mbti?; MBTIS.include?(self); end
-
-  def mbti_order
-    letters = self.scan(/./)
-    mbti_letters = [%w{I E i e}, %w{N S n s}, %w{T F t f}, %w{J P j p}]
-    [letters & mbti_letters.first,
-     letters & mbti_letters.second,
-     letters & mbti_letters.third,
-     letters & mbti_letters.fourth
-    ].map(&:sort).flatten.compact.join
-  end
-
-  def a_or_an
-    if self.mbti_order.length == self.length
-      %w{I E i e N S n s F f}.include?(self.first) ? "an" : "a"
-    else
-      %w{a e i o u}.include?(self.first) ? "an" : "a"
-    end
-  end
+  def a_or_an; %w{a e i o u}.include?(self.first) ? "an" : "a"; end
 
   def an; [a_or_an, self].join(" "); end
 
@@ -49,7 +29,7 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem food}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem food intonation}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
   def few(inject=''); self.uncountable? ? "little #{inject} #{self}" : "few #{inject} #{self}"; end
@@ -59,7 +39,7 @@ class String
   def those; self.uncountable? ? "that #{self}" : "those #{self}"; end
   def have; self.uncountable? ? "#{self} has" : "#{self} have"; end
   def they; self.uncountable? ? "it" : "they"; end
-  def their; self.uncountable? ? "it’s" : "their"; end
+  def their; self.uncountable? ? "its" : "their"; end
   def them; self.uncountable? ? "it" : "them"; end
   def were; self.uncountable? ? "was" : "were"; end
   def are; self.uncountable? ? "is" : "are"; end
@@ -98,7 +78,7 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "er"
-    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone}.include?(target)
       "more " + target
     elsif target.end_with?("y")
       target.chop + "ier"
@@ -124,7 +104,7 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "est"
-    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative  defensive}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone}.include?(target)
       "most " + target
     elsif target.end_with?("y")
       target.chop + "iest"
@@ -162,10 +142,10 @@ class String
   end
 
 
-  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose}
+  IRREGULAR = %w{see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose give}
   def irregular?; IRREGULAR.include?(self); end
-  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost}[IRREGULAR.index(self)]; end
-  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost}[IRREGULAR.index(self)]; end
+  def past; %w{saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost gave}[IRREGULAR.index(self)]; end
+  def perfect; %w{seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost given}[IRREGULAR.index(self)]; end
 
   def ed
     first, second = self.split("/")

@@ -7,7 +7,6 @@ class Attitude
     @path = letter
   end
   attr_reader :index, :path
-  def mbti; path.upcase; end
 
   ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
   def self.all; ATTITUDES; end
@@ -18,9 +17,10 @@ class Attitude
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  Realm.all.each {|r| define_method(r.path) {[self,r].to_mbti}}
-
   def nature; index < 2 ? "extroverted" : "introverted"; end
+
+  def opposite_path; LETTERS.reverse[@index]; end
+  def opposite; Attitude.find(opposite_path); end
 
   def subconscious
     case path
@@ -53,11 +53,18 @@ class Attitude
   def name; %w{Top Dom Sub Bottom}[@index]; end
 
   def ip_only
-    return "" unless path == "ip"
-    "or<br />I am anorexic"
+    return nil unless path == "ip"
+    "I am averse to resources"
+  end
+  def ej_only
+    return nil unless path == "ej"
+    "I increase the resources I am given"
   end
 
-  def description; ["I am too #{result}","I should #{conscious}!",ip_only].join('<br />').html_safe; end
+  def only; [ip_only,ej_only].flatten.compact.first; end
+
+  def i_am; "I am too #{result}"; end
+  def i_should; "I should #{conscious}"; end
 
   def role
     case path
@@ -74,12 +81,5 @@ class Attitude
 
 
   def advice; %w{run binge fast sit}[@index]; end
-  def method_missing(method, *args, &block)
-    if method.to_s =~ /^(.*)_with_mbti$/
-      [self.send($1, *args, &block).gsub('<br />', " & "), mbti.parenthetical].join(" ")
-    else
-      super
-    end
-  end
 
 end

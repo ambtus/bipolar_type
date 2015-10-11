@@ -19,5 +19,53 @@
       =realm.physical
       realm: you are a
       ==#{realm.physical.capitalize}#{Attitude.ej.name}
-      and your role in life is to
-      =realm.gsub(Attitude.ej.role)
+  %li
+    your role in life is to
+    =realm.gsub(Attitude.ej.role)
+    %ul
+      %li
+        =realm.physical
+        =Attitude.ej.name.pluralize
+        are the only
+        =realm.physical
+        subtype that can and will deliberately try to
+        %em improve
+        the
+        =realm.meals
+        they are
+        =realm.feed.en.punctuate(":")
+        they have to keep adding their own
+        =realm.courses
+        until they no longer feel
+        =realm.hungry
+      %li
+        =realm.physical
+        =Attitude.ip.name.pluralize
+        cannot
+        =realm.feed
+        others because they are too busy being
+        =realm.feed.en
+      %li
+        =realm.physical
+        =Attitude.ij.name.pluralize
+        would be willing to share the
+        =realm.meals
+        they create, but they usually need the
+        =realm.meals
+        too much to
+        =realm.feed
+        =realm.meals.them
+        to others
+      %li
+        =realm.physical
+        =Attitude.ep.name.pluralize
+        are usually willing to share the
+        =realm.meals
+        they create, but their
+        =realm.meals
+        are usually too
+        =realm.sweet
+        for some
+        and don’t contain enough
+        =realm.protein
+        for others

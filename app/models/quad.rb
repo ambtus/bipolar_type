@@ -19,15 +19,13 @@ class Quad
   def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
-  def mbti; subtypes.map(&:mbti).join("-"); end
   def names; subtypes.map(&:name); end
+  def name; names.join("-");end
 
   def self.ordered
     every_sixth = 6.times.to_a.multiply([0,6,12,18]).flatten
     self.all.values_at(*every_sixth)
   end
-
-  def mbtis; realms.add(Attitude.all.reverse).map(&:mbti); end
 
 end
 

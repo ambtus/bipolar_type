@@ -1,33 +1,32 @@
-- content_for(:title, @subtype.name_with_mbti.html_safe)
-%h3 Self Identify
-=@subtype.description
+- content_for(:title, @subtype.name.html_safe)
+%h2 Self Identity
+%p.heading=render "description", :object => @subtype
 -%w{role normal abnormal}.each do |section|
-  %h3=section.capitalize
   -if section == "abnormal"
+    %h3 Stress
     =render "abnormal/cause"
+  %h3=section.capitalize
   =render [section,@subtype.attitude.path].join('/'), :realm => @subtype.realm
-%h2 Discussion
+%h3 Discussion
 %p
   But I cannot
   =@subtype.advice.punctuate("!")
 =render "response/" + @subtype.attitude.path, :subtype => @subtype
 %h2 Same Realm
-%p.heading=link_to @subtype.realm.description_with_mbti, type_path(@subtype.realm.path)
+%p.heading=link_to @subtype.realm.description, type_path(@subtype.realm.path)
 %dl
   -@subtype.realm.subtypes.without(@subtype).each do |subtype|
     %dt=link_to subtype.name, type_path(subtype.path)
-    %dd
-      =subtype.description_with_mbti
+    %dd=render "description", :object => subtype
 %h2 Same Attitude
-%p.heading=link_to @subtype.attitude.description_with_mbti, type_path(@subtype.attitude.path)
+%p.heading=link_to @subtype.attitude.name, type_path(@subtype.attitude.path)
 %dl
   -@subtype.attitude.subtypes.without(@subtype).each do |subtype|
     %dt=link_to subtype.name, type_path(subtype.path)
-    %dd
-      =subtype.description_with_mbti
+    %dd=render "description", :object => subtype
 %h2 Associated BipolarTypes
 %p.heading=link_to "Discover", discover_path("Q2_#{@subtype.path}")
 %dl
   -@subtype.quads.each do |quad|
-    %dt=link_to quad.mbti, type_path(quad.path)
+    %dt=link_to quad.name, type_path(quad.path)
     %dd=quad.subtypes.map(&:name).join(", ")

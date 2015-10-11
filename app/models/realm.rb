@@ -7,7 +7,6 @@ class Realm
     @path = letter
   end
   attr_reader :index, :path
-  def mbti; path.upcase; end
 
   REALMS = LETTERS.collect{|letter| Realm.new(letter)}
   def self.all; REALMS; end
@@ -17,9 +16,6 @@ class Realm
   def subtypes; Attitude.all.add(self); end
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
-
-  Attitude.all.each {|a| define_method(a.path) {[self,a].to_mbti}}
-
 
   # touch realm.rb to reload realm.csv in development mode
   require 'csv'
@@ -48,15 +44,5 @@ class Realm
   def binge; "keep #{eat1.ing}"; end
   def sit; "stop #{move.ing}"; end
   def fast; "stop #{eat1.ing}"; end
-
-  def method_missing(method, *args, &block)
-    if method.to_s =~ /^(.*)where$/
-      index == 0 ? $1+"where" : $1+"thing"
-    elsif method.to_s =~ /^(.*)_with_mbti$/
-      [self.send($1, *args, &block).gsub('<br />', " & "), mbti.parenthetical].join(" ")
-    else
-      super
-    end
-  end
 
 end

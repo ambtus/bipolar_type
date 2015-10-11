@@ -1,8 +1,8 @@
 %ul
   =render "response/generic", :subtype => subtype
   %li
-    if you are 
-    %em unable  
+    if you are
+    %em unable
     to
     =subtype.eat1
     as much as you want, then
@@ -11,10 +11,23 @@
     %em immediately
     %ul
       %li
-        don’t 
+        don’t
         =subtype.move
         again until you feel
         =subtype.restless
+        %ul
+          %li
+            if you can,
+            =subtype.eat
+            =subtype.courses
+            that you create
+            %em yourself
+          %li
+            being able to
+            =subtype.move
+            afterwards is worth the effort of having to
+            =subtype.feed
+            yourself
       %li
         do not wait until you are so
         =subtype.thin
