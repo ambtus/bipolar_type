@@ -1,19 +1,20 @@
-s,n,f,t
-chemosensory,visual,auditory,tactile
-physical,mental,spiritual,material
-hungry,curious,lonely,needy
-restless,sure,ignored,entitled
-feed,show,tell,give
-throw up,turn away,cry,throw it away
-eat,look at,listen to,earn
-meals,reasons,stories,tools
-move,decide,talk,acquire
-fat,trivial,popular,rich
-thin,ignorant,unpopular,poor
-carbs,colorful details,intonation,wages
-protein,outlines,words,assets
-fats,symmetry,rhythm,automatic deductions
-anorexic,close minded,suicidal,destitute
-sweets,reality,people,work
-sweet,abstract,loud,dangerous
-courses,logic,sequels,features
+x,s,n,f,t
+additions,courses,,tragedies,features
+adjective,physical,mental,spiritual,material
+buffers,fats,symmetry,rhythm,automatic deductions
+consume,eat,look at,listen to,earn
+process,digest,believe,care about,collect
+energetic,sweet,chaotic,horrible,complex
+energy,carbs,specifics,intonation,wages
+high on energy,restless,sure,loved,competent
+low on energy,hungry,curious,disliked,incompetent
+overfull,fat,smart,empathetic,rich
+phobic,anorexic,paranoid,suicidal,destitute
+produce,move,decide,talk,try
+provide,feed,show,tell,give
+reject energy,throw up,criticize,cry,throw it away
+resources,meals,diagrams,stories,tools
+sensory,chemosensory,visual,auditory,tactile
+stimulus,food,facts,people,rewards
+strength,protein,general outlines,words,assets
+underfull,thin,stupid,uncaring,poor

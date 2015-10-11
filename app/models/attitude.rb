@@ -35,7 +35,7 @@ class Attitude
     end
   end
 
-  def result; %w{fat thin fat thin}[@index]; end
+  def result; %w{overfull underfull overfull underfull}[@index]; end
 
   def conscious
     case path
@@ -54,11 +54,11 @@ class Attitude
 
   def ip_only
     return nil unless path == "ip"
-    "I am averse to resources"
+    "the resources are toxic"
   end
   def ej_only
     return nil unless path == "ej"
-    "I increase the resources I am given"
+    "I create my own resources"
   end
 
   def only; [ip_only,ej_only].flatten.compact.first; end

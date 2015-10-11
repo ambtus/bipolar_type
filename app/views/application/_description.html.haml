@@ -1,5 +1,21 @@
 %ul
-  %li=object.i_should
-  %li=object.i_am
-  - if object.only
-    %li==except when #{object.only}
+  -if [Attitude, Subtype].include?(object.class)
+    %li=object.i_am
+    - if object.only
+      %li==except when #{object.only}
+    - else
+      %li=object.i_should
+  -elsif object.class == Realm
+    %li=object.produce
+    %li
+      be
+      =object.provide.en
+      =object.resources
+    %li
+      =object.consume
+      and
+      =object.process
+      =object.stimulus
+    %li
+      become
+      =object.overfull

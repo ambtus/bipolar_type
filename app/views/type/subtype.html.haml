@@ -12,14 +12,14 @@
   But I cannot
   =@subtype.advice.punctuate("!")
 =render "response/" + @subtype.attitude.path, :subtype => @subtype
-%h2 Same Realm
-%p.heading=link_to @subtype.realm.description, type_path(@subtype.realm.path)
+%h2=link_to "Same Realm", type_path(@subtype.realm.path)
+%p.heading=render "description", :object => @subtype.realm
 %dl
   -@subtype.realm.subtypes.without(@subtype).each do |subtype|
     %dt=link_to subtype.name, type_path(subtype.path)
     %dd=render "description", :object => subtype
-%h2 Same Attitude
-%p.heading=link_to @subtype.attitude.name, type_path(@subtype.attitude.path)
+%h2=link_to "Same Attitude", type_path(@subtype.attitude.path)
+%p.heading=render "description", :object => @subtype.attitude
 %dl
   -@subtype.attitude.subtypes.without(@subtype).each do |subtype|
     %dt=link_to subtype.name, type_path(subtype.path)

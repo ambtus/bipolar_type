@@ -6,8 +6,7 @@
       -row.each do |realm|
         %td
           =link_to realm.name, type_path(realm.path)
-          %br
-          =realm.description
+          =render "description", :object => realm
 %p.heading=link_to "the four realms compared", type_path("realms")
 %h2 The Four Attitudes
 %table.center.half

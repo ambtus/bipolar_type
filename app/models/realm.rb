@@ -21,28 +21,27 @@ class Realm
   require 'csv'
   arr_of_arrs = CSV.read("config/initializers/realm.csv")
   first = arr_of_arrs.shift
-  raise "realm.csv needs to be re-ordered" unless LETTERS == first
-  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || [physical.ly,row.first].join(" ")}}
+  raise "realm.csv needs to be re-ordered" unless LETTERS == first[1,4]
+  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index + 1] || [adjective.ly,row.first].join(" ")}}
 
-  def name; physical.capitalize; end
-  def description; chemosensory; end
-  def eat1; eat.split.first; end
+  def name; sensory.capitalize; end
+  def consume1; consume.split.first; end
 
-  def introverted; "doesn’t #{eat} much or #{move} much"; end
-  def extroverted; "#{eat.s} a lot and #{move.s} a lot"; end
+  def introverted; "doesn’t #{consume} much or #{produce} much"; end
+  def extroverted; "#{consume.s} a lot and #{produce.s} a lot"; end
 
   def gsub(string)
     string.gsub('extroverted', extroverted).
     gsub('introverted', introverted).
-    gsub('consuming', eat1.ing).
-    gsub('producing', move.ing).
-    gsub('consume', eat1).
-    gsub('produce', move)
+    gsub('consuming', consume1.ing).
+    gsub('producing', produce.ing).
+    gsub('consume', consume1).
+    gsub('produce', produce)
   end
 
-  def run; "keep #{move.ing}"; end
-  def binge; "keep #{eat1.ing}"; end
-  def sit; "stop #{move.ing}"; end
-  def fast; "stop #{eat1.ing}"; end
+  def run; "keep #{produce.ing}"; end
+  def binge; "keep #{consume1.ing}"; end
+  def sit; "stop #{produce.ing}"; end
+  def fast; "stop #{consume1.ing}"; end
 
 end
