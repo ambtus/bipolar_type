@@ -1,3 +1,6 @@
 - content_for(:title, @attitude.name)
-%p.heading=render "description", :object => @attitude
+%h2 Self Image
+%table.center.narrow
+  %tr
+    %td=render "description", :object => @attitude
 =render "subtypes", :subtypes => @attitude.subtypes

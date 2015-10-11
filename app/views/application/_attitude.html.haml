@@ -2,5 +2,4 @@
   -unless current_page? type_path(attitude.path)
     =link_to attitude.name, type_path(attitude.path)
     %br
-%p
-  TBD
+  =render "description", :object => attitude

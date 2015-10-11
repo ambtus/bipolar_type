@@ -1,14 +1,6 @@
 - content_for(:title, "Question ##{@answer.number}")
 %p.heading
   Most personality theories compare you to other people. BipolarType compares you to yourself.
-%p
-  Even if everyone else thinks you are too fat or too thin compared to
-  %em them,
-  please answer based on whether you are too fat or too thin compared to whether you are too rich or too poor, etc.
-%p
-  In other words, which “too” bothers you the most, and would be the first you would “fix” if given a magic pill.
-%p
-  And if you were given a magic pill to make you thinner, for example, would it do so by magically making you want to consume less, or produce more?
 -if @answer.number < 2
   %p.heading.constrained
     Choose four: one from each row and column.

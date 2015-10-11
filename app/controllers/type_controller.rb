@@ -3,7 +3,7 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{outline realms attitudes advice}.include?(params[:id])
+    elsif %w{outline realms attitudes subtypes quads}.include?(params[:id])
       @resort = params[:group_by]
       render params[:id]
     elsif Realm::LETTERS.include?(params[:id])

@@ -1,28 +1,26 @@
 - content_for(:title, 'Outline')
-%h2 The Four Realms
-%table.center.half
+%h2=link_to "The Four Realms", type_path("realms")
+%table.center.narrow
   -Realm.all.in_groups_of(2) do |row|
     %tr
       -row.each do |realm|
-        %td
-          =link_to realm.name, type_path(realm.path)
-          =render "description", :object => realm
-%p.heading=link_to "the four realms compared", type_path("realms")
-%h2 The Four Attitudes
-%table.center.half
+        %td=link_to realm.name, type_path(realm.path)
+%h2=link_to "The Four Attitudes", type_path("attitudes")
+%table.center.narrow
   -Attitude.all.in_groups_of(2) do |row|
     %tr
       -row.each do |attitude|
-        %td
-          =link_to attitude.name, type_path(attitude.path)
-          =render "description", :object => attitude
-%p.heading=link_to "the four attitudes compared", type_path("attitudes")
-%h2 The Sixteen Subtypes
+        %td=link_to attitude.name, type_path(attitude.path)
+%h2=link_to "The Sixteen Subtypes", type_path("subtypes")
 %table.center
   -Subtype.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
+        %td=link_to subtype.name, type_path(subtype.path)
+%h2=link_to "The Twenty-Four BipolarTypes", type_path("quads")
+%table.center
+  -Quad.all.in_groups_of(6).each do |row|
+    %tr
+      -row.each do |quad|
         %td
-          =link_to subtype.name, type_path(subtype.path)
-          =render "description", :object => subtype
-%h2=link_to "The Twenty-Four BipolarTypes", type_path("advice")
+          =link_to quad.name, type_path(quad.path)

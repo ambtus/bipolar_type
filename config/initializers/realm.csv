@@ -1,20 +1,21 @@
 x,s,n,f,t
-additions,courses,,tragedies,features
+additions,courses,proofs,tragedies,features
 adjective,physical,mental,spiritual,material
-buffers,fats,symmetry,rhythm,automatic deductions
-consume,eat,look at,listen to,earn
-process,digest,believe,care about,collect
+buffers,fats,symmetry,humor,automatic deductions
+consume,eat,look,listen,earn
+consume_wo,eat,see,hear,earn
+process,digest,believe,understand,appreciate
 energetic,sweet,chaotic,horrible,complex
-energy,carbs,specifics,intonation,wages
-high on energy,restless,sure,loved,competent
-low on energy,hungry,curious,disliked,incompetent
-overfull,fat,smart,empathetic,rich
+energy,carbs,specifics,hate,cash
+high on energy,restless,confident,loved,entitled
+low on energy,hungry,unsure,lonely,indebted
+overfull,fat,pedantic,morbid,rich
 phobic,anorexic,paranoid,suicidal,destitute
-produce,move,decide,talk,try
+produce,move,decide,talk,shop
 provide,feed,show,tell,give
 reject energy,throw up,criticize,cry,throw it away
-resources,meals,diagrams,stories,tools
-sensory,chemosensory,visual,auditory,tactile
-stimulus,food,facts,people,rewards
-strength,protein,general outlines,words,assets
+resources,meals,truths,stories,rewards
+sensory,gustatory,visual,auditory,tactile
+stored strength,muscles,mental models,family,net worth
+strength,protein,general outlines,love,assets
 underfull,thin,stupid,uncaring,poor

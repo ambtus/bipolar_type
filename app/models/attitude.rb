@@ -54,11 +54,11 @@ class Attitude
 
   def ip_only
     return nil unless path == "ip"
-    "the resources are toxic"
+    "I consume resources"
   end
   def ej_only
     return nil unless path == "ej"
-    "I create my own resources"
+    "I provide resources"
   end
 
   def only; [ip_only,ej_only].flatten.compact.first; end

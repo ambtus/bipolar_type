@@ -34,11 +34,11 @@ class Subtype
 
   def ip_only
     return nil unless attitude.path == "ip"
-    "I am #{phobic}"
+    "I #{consume_wo} your #{resources}"
   end
   def ej_only
     return nil unless attitude.path == "ej"
-    "I create my own #{resources}"
+    "I #{provide} you #{resources}"
   end
 
   def only; [ip_only,ej_only].flatten.compact.first; end

@@ -1,5 +1,5 @@
 - content_for(:title, @subtype.name.html_safe)
-%h2 Self Identity
+%h3 Self Identity
 %p.heading=render "description", :object => @subtype
 -%w{role normal abnormal}.each do |section|
   -if section == "abnormal"
@@ -8,25 +8,23 @@
   %h3=section.capitalize
   =render [section,@subtype.attitude.path].join('/'), :realm => @subtype.realm
 %h3 Discussion
-%p
-  But I cannot
-  =@subtype.advice.punctuate("!")
+%ul
+  %li
+    But I can’t
+    =@subtype.advice.punctuate("!")
 =render "response/" + @subtype.attitude.path, :subtype => @subtype
 %h2=link_to "Same Realm", type_path(@subtype.realm.path)
-%p.heading=render "description", :object => @subtype.realm
 %dl
   -@subtype.realm.subtypes.without(@subtype).each do |subtype|
     %dt=link_to subtype.name, type_path(subtype.path)
     %dd=render "description", :object => subtype
 %h2=link_to "Same Attitude", type_path(@subtype.attitude.path)
-%p.heading=render "description", :object => @subtype.attitude
 %dl
   -@subtype.attitude.subtypes.without(@subtype).each do |subtype|
     %dt=link_to subtype.name, type_path(subtype.path)
     %dd=render "description", :object => subtype
 %h2 Associated BipolarTypes
 %p.heading=link_to "Discover", discover_path("Q2_#{@subtype.path}")
-%dl
+%ul
   -@subtype.quads.each do |quad|
-    %dt=link_to quad.name, type_path(quad.path)
-    %dd=quad.subtypes.map(&:name).join(", ")
+    %li=link_to quad.name, type_path(quad.path)
