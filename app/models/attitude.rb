@@ -17,69 +17,57 @@ class Attitude
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  def nature; index < 2 ? "extroverted" : "introverted"; end
-
   def opposite_path; LETTERS.reverse[@index]; end
   def opposite; Attitude.find(opposite_path); end
 
-  def subconscious
-    case path
-    when "ep"
-      "produce less"
-    when "ej"
-      "consume less"
-    when "ip"
-      "consume more"
-    when "ij"
-      "produce more"
-    end
-  end
-
-  def result; %w{overfull underfull overfull underfull}[@index]; end
-
-  def conscious
-    case path
-    when "ep"
-      "consume less"
-    when "ej"
-      "produce less"
-    when "ip"
-      "produce more"
-    when "ij"
-      "consume more"
-    end
-  end
-
-  def name; %w{Top Dom Sub Bottom}[@index]; end
-
-  def ip_only
-    return nil unless path == "ip"
-    "I consume resources"
-  end
-  def ej_only
-    return nil unless path == "ej"
-    "I provide resources"
-  end
-
-  def only; [ip_only,ej_only].flatten.compact.first; end
-
+  def name; %w{Collect Provide Reject Use}[@index]; end
+  def result; %w{full empty full empty}[@index]; end
   def i_am; "I am too #{result}"; end
-  def i_should; "I should #{conscious}"; end
+
+  def should
+    case path
+    when "ep"
+      "fill up less"
+    when "ej"
+      "go less"
+    when "ip"
+      "go more"
+    when "ij"
+      "fill up more"
+    end
+  end
+  def i_should; "I should #{should}"; end
+
+  def short_role
+    case path
+    when "ej"
+      "stop filling up"
+    when "ep"
+      "stop going"
+    when "ip"
+      "keep filling up"
+    when "ij"
+      "keep going"
+    end
+  end
 
   def role
-    case path
-    when "ej"
-      "stop consuming whenever anyone or anything wants you to stop consuming"
-    when "ep"
-      "stop producing whenever anyone or anything wants you to stop producing"
-    when "ip"
-      "keep consuming whenever anyone or anything wants you to keep consuming"
-    when "ij"
-      "keep producing whenever anyone or anything wants you to keep producing"
-    end
+    "#{short_role} whenever anyone or anything wants you to #{short_role}"
   end
 
 
-  def advice; %w{run binge fast sit}[@index]; end
+
+  def advice
+    case path
+    when "ep"
+      "keep going"
+    when "ej"
+      "keep filling up"
+    when "ip"
+      "stop filling up"
+    when "ij"
+      "stop going"
+    end
+  end
 
 end

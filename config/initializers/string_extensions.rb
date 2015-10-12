@@ -29,14 +29,14 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem food intonation the\ right\ answer}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem food intonation the\ right\ answer rhythm}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
   def few(inject=''); self.uncountable? ? "little #{inject} #{self}" : "few #{inject} #{self}"; end
   def many(inject=''); self.uncountable? ? "much #{inject} #{self}" : "many #{inject} #{self}"; end
   def fewer(inject=''); self.uncountable? ? "less #{inject} #{self}" : "fewer #{inject} #{self}"; end
+  def those(inject=''); self.uncountable? ? "that #{inject} #{self}" : "those #{inject} #{self}"; end
   def dont; self.uncountable? ? "#{self} doesn’t" : "#{self} don’t"; end
-  def those; self.uncountable? ? "that #{self}" : "those #{self}"; end
   def have; self.uncountable? ? "#{self} has" : "#{self} have"; end
   def they; self.uncountable? ? "it" : "they"; end
   def their; self.uncountable? ? "its" : "their"; end
@@ -78,13 +78,13 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "er"
-    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone sure}.include?(target)
       "more " + target
     elsif target.end_with?("y")
       target.chop + "ier"
     elsif target.end_with?("e")
       target + "r"
-    elsif %w{rich poor smart stupid loud quiet sweet strong weak clever light cheap}.include?(target)
+    elsif %w{rich poor smart stupid loud quiet sweet strong weak clever light cheap calm}.include?(target)
       target + "er"
     else
       "more " + target
@@ -104,13 +104,13 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "est"
-    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone sure}.include?(target)
       "most " + target
     elsif target.end_with?("y")
       target.chop + "iest"
     elsif target.end_with?("e")
       target + "st"
-    elsif %w{rich poor smart stupid loud quiet sweet strong weak clever light cheap}.include?(target)
+    elsif %w{rich poor smart stupid loud quiet sweet strong weak clever light cheap calm}.include?(target)
       target + "est"
     else
       "most " + target

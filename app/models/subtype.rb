@@ -1,5 +1,5 @@
 class Subtype
-  LETTERS = Realm::LETTERS.multiply(Attitude::LETTERS).flatten
+  LETTERS = Realm::LETTERS[1,4].multiply(Attitude::LETTERS.values_at(0,2,3,1)).flatten
 
   def initialize(letters)
     raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
@@ -22,27 +22,13 @@ class Subtype
 
   def method_missing(method, *args, &block); realm.send(method, *args, &block); end
 
-  def nature; realm.gsub(attitude.nature); end
-  def subconscious; realm.gsub(attitude.subconscious); end
+  def name; pair.reverse.map(&:name).join; end
   def result; realm.send(attitude.result); end
-  def conscious; realm.gsub(attitude.conscious); end
-  def role; realm.gsub(attitude.role); end
-
-  def advice; realm.send(attitude.advice); end
-
-  def name; pair.map(&:name).join; end
-
-  def ip_only
-    return nil unless attitude.path == "ip"
-    "I #{consume_wo} your #{resources}"
-  end
-  def ej_only
-    return nil unless attitude.path == "ej"
-    "I #{provide} you #{resources}"
-  end
-
-  def only; [ip_only,ej_only].flatten.compact.first; end
   def i_am; "I am too #{result}"; end
-  def i_should; "I should #{conscious}"; end
+  def should; realm.gsub(attitude.should); end
+  def i_should; "I should #{should}"; end
+  def short_role; realm.gsub(attitude.short_role); end
+  def role; realm.gsub(attitude.role); end
+  def advice; realm.gsub(attitude.advice); end
 
 end

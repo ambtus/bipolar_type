@@ -1,6 +1,16 @@
 - content_for(:title, "Question ##{@answer.number}")
 %p.heading
   Most personality theories compare you to other people. BipolarType compares you to yourself.
+-if @answer.number < 3
+  %p.heading
+    Choose a
+    %span.free green box
+    where both statements are true.
+-else
+  %p.heading
+    Choose a
+    %span.free green box
+    where at least one statement is true.
 -if @answer.number < 2
   %p.heading.constrained
     Choose four: one from each row and column.

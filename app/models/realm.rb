@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{s n f t }
+  LETTERS = %w{x s n f t}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
@@ -9,7 +9,8 @@ class Realm
   attr_reader :index, :path
 
   REALMS = LETTERS.collect{|letter| Realm.new(letter)}
-  def self.all; REALMS; end
+  def self.all; REALMS[1,4]; end
+  def self.first; REALMS.first; end
   def self.find(letter); REALMS[LETTERS.index(letter)]; end
 
   def +(attitude); Subtype.find(self.path + attitude.path); end
@@ -21,26 +22,17 @@ class Realm
   require 'csv'
   arr_of_arrs = CSV.read("config/initializers/realm.csv")
   first = arr_of_arrs.shift
-  raise "realm.csv needs to be re-ordered" unless LETTERS == first[1,4]
-  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index + 1] || [adjective.ly,row.first].join(" ")}}
+  raise "realm.csv needs to be re-ordered" unless LETTERS == first
+  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || [generic.ly,row.first].join(" ")}}
 
-  def name; sensory.capitalize; end
+  def name; resources.capitalize; end
 
-  def introverted; "doesn’t #{consume} much or #{produce} much"; end
-  def extroverted; "#{consume.s} a lot and #{produce.s} a lot"; end
-
-  def gsub(string)
-    string.gsub('extroverted', extroverted).
-    gsub('introverted', introverted).
-    gsub('consuming', consume.ing).
-    gsub('producing', produce.ing).
-    gsub('consume', consume).
-    gsub('produce', produce)
+  def gsub(attitude_string)
+    attitude_string.
+    gsub('filling up', fill_up.ing).
+    gsub('going', go.ing).
+    gsub('fill up', fill_up).
+    gsub('go', go)
   end
-
-  def run; "keep #{produce.ing}"; end
-  def binge; "keep #{consume.ing}"; end
-  def sit; "stop #{produce.ing}"; end
-  def fast; "stop #{consume.ing}"; end
 
 end
