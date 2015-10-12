@@ -1,4 +1,13 @@
-%h2 Advice
+-if defined?(generic)
+  %table.center.narrow
+    %tr
+      %td=render "description", :object => generic
+%h2 When in Doubt
+-if defined?(generic) && generic.class == Attitude
+  %table.center.narrow
+    %tr
+      %td
+        %p.heading=subtypes.first.attitude.advice.punctuate("!")
 %table.center.half
   -subtypes.in_groups_of(2).each do |row|
     %tr
@@ -6,11 +15,16 @@
         %td
           =link_to subtype.name, type_path(subtype.path)
           %p.heading=subtype.advice.punctuate("!")
-%h2 Reason
+%h2 Reason for the Advice
+-if defined?(generic) && generic.class == Attitude
+  %table.center.half
+    %tr
+      %td
+        %p=render ["stress",subtypes.first.attitude.path].join('/'), :realm => Realm.first
 %table.center
   -subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
         %td
           =link_to subtype.name, type_path(subtype.path)
-          %p=render ["abnormal",subtype.attitude.path].join('/'), :realm => subtype.realm
+          %p=render ["stress",subtype.attitude.path].join('/'), :realm => subtype.realm

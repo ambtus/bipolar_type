@@ -2,12 +2,17 @@
   are you sure?
   %ul
     %li
-      is the reason real? or just an excuse to stick to your “role” as the one who has to
+      is the reason real or just an excuse?
+    %li
+      must
+      %em you
+      be the one who has to
       =subtype.role.punctuate("?")
     %li
       does the person who wants you to
       =subtype.opposite.advice
       have real authority?
+    %li
       do they understand that you are not trying to get
       %em them
       to
@@ -15,3 +20,22 @@
       you just want to
       =subtype.advice
       yourself?
+    %li
+      can’t they
+      =subtype.short_role
+      without you?
+    -if subtype.attitude.path == "ip"
+      %ul
+        %li
+          isn’t there anyone
+          %em else
+          to whom they can
+          =subtype.provide
+          =subtype.resources
+          if they really
+          %em must
+          =subtype.provide
+          =subtype.resources.punctuate("?")
+        %li
+          alternatively, can they save it for later when you are
+          =subtype.low_on_energy.er.punctuate("?")

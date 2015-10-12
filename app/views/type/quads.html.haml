@@ -1,10 +1,9 @@
 %h2 The Twenty-Four BipolarTypes
 %table.center
-  -Quad.all.in_groups_of(6).each do |row|
+  -Quad.ordered.in_groups_of(4).each do |row|
     %tr
       -row.each do |quad|
         %td
           =link_to quad.name, type_path(quad.path)
-          %ul
-            -quad.subtypes.each do |subtype|
-              %li=subtype.advice
+          -quad.subtypes.each do |subtype|
+            =render "description", :object => subtype

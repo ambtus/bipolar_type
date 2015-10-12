@@ -1,21 +1,19 @@
 x,s,n,f,t
-additions,courses,proofs,tragedies,features
-adjective,physical,mental,spiritual,material
-buffers,fats,symmetry,humor,automatic deductions
-consume,eat,look,listen,earn
-consume_wo,eat,see,hear,earn
-process,digest,believe,understand,appreciate
-energetic,sweet,chaotic,horrible,complex
-energy,carbs,specifics,hate,cash
-high on energy,restless,confident,loved,entitled
-low on energy,hungry,unsure,lonely,indebted
-overfull,fat,pedantic,morbid,rich
+generic,physical,mental,spiritual,material
+sensory,olfactory,visual,auditory,tactile
 phobic,anorexic,paranoid,suicidal,destitute
-produce,move,decide,talk,shop
+empty,thin,forgetful,calm,poor
+low on energy,hungry,curious,interested,indebted
+energy,carbs,specifics,intonations,cash
+high on energy,restless,sure,upset,flush with cash
+full,fat,knowledgeable,emotional,rich
+fill up,eat,look,listen,earn
+process,digest,believe,understand,appreciate
+fill up with,eat,see,hear,earn
 provide,feed,show,tell,give
-reject energy,throw up,criticize,cry,throw it away
 resources,meals,truths,stories,rewards
-sensory,gustatory,visual,auditory,tactile
-stored strength,muscles,mental models,family,net worth
-strength,protein,general outlines,love,assets
-underfull,thin,stupid,uncaring,poor
+strength,protein,general outlines,words,assets
+buffers,fats,symmetry,rhythm,automatic deductions
+energetic,sweet,chaotic,dissonant,unearned
+go,move,decide,talk,shop
+reject energy,throw up,disbelieve,cry,throw it away

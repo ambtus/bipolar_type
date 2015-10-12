@@ -1,17 +1,8 @@
 - content_for(:title, 'Subtypes')
-%h2 Advice
-%table.center.wide
-  -Subtype.all.in_groups_of(4).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td
-          =link_to subtype.name, type_path(subtype.path)
-          %p.heading=subtype.advice.punctuate("!")
-%h2 Reason
 %table.center
   -Subtype.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
         %td
           =link_to subtype.name, type_path(subtype.path)
-          %p=render ["abnormal",subtype.attitude.path].join('/'), :realm => subtype.realm
+          =render "description", :object => subtype

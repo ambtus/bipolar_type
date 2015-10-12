@@ -1,23 +1,20 @@
 %ul
   -if [Attitude, Subtype].include?(object.class)
-    -if object.only
-      %li=object.only
-    -else
-      %li=object.i_am
-      %li=object.i_should
+    %li=object.i_am
+    %li=object.i_should
   -elsif object.class == Realm
     %li
-      wake feeling alert and
+      feel alert and
       =object.high_on_energy
     %li
-      =object.produce
+      =object.go
     %li
       feel tired and
       =object.low_on_energy
     %li
-      =object.consume_wo
-      =object.resources
-    %li
-      sleep and
+      =object.fill_up_with
+      and
       =object.process
-      =object.resources.them
+      =object.resources
+
+

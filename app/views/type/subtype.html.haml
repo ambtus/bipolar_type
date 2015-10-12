@@ -1,11 +1,10 @@
 - content_for(:title, @subtype.name.html_safe)
-%h3 Self Identity
+%h3 Self Image
 %p.heading=render "description", :object => @subtype
--%w{role normal abnormal}.each do |section|
-  -if section == "abnormal"
-    %h3 Stress
-    =render "abnormal/cause"
+-%w{role normal stress}.each do |section|
   %h3=section.capitalize
+  -if section == "stress"
+    =render "stress/cause", :subtype => @subtype
   =render [section,@subtype.attitude.path].join('/'), :realm => @subtype.realm
 %h3 Discussion
 %ul

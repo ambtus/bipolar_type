@@ -1,9 +1,9 @@
 # Encoding: utf-8
 class Quad
-  def self.my_path; Realm::LETTERS.join; end
+  def self.my_path; Realm::LETTERS[1,4].join; end
   def self.first; Quad.find(my_path); end
 
-  LETTERS = Realm::LETTERS.permutation(4).map(&:join)
+  LETTERS = Realm::LETTERS[1,4].permutation(4).map(&:join)
 
   def initialize(letters)
     raise "#{letters} isn't a Quad" unless LETTERS.include?(letters)
