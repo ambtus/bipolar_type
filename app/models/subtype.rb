@@ -14,21 +14,22 @@ class Subtype
 
   def realm; Realm.find(path[0,1]); end
   def attitude; Attitude.find(path[1,2]); end
-  def pair; [realm, attitude]; end
 
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
-  def opposite; Subtype.find(realm.path + attitude.opposite_path); end
+  def high; 4 - attitude.index; end
+  def emergency; "EMERGENCY" + "!" * high;end
+  def low; attitude.index + 1; end
+  def recovery; "WAIT" + "!" * low;end
+
+
+  %w{nature nurture role result i_am goal should i_should advice}.each do |method|; define_method(method.to_sym) {realm.gsub(attitude.send(method))}; end
+
+  def name; nature.s.split.map(&:capitalize).join; end
+
+  alias_method :remember_your_should, :should
+  alias_method :forget_your_role, :advice
 
   def method_missing(method, *args, &block); realm.send(method, *args, &block); end
-
-  def name; pair.reverse.map(&:name).join; end
-  def result; realm.send(attitude.result); end
-  def i_am; "I am too #{result}"; end
-  def should; realm.gsub(attitude.should); end
-  def i_should; "I should #{should}"; end
-  def short_role; realm.gsub(attitude.short_role); end
-  def role; realm.gsub(attitude.role); end
-  def advice; realm.gsub(attitude.advice); end
 
 end

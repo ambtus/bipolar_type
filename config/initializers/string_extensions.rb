@@ -3,6 +3,7 @@
 class String
 
   def chip; self[1..-1]; end
+  def squash; self.gsub(" ", "");end
   def second; self.chars.second; end
 
   def punctuate(punctuation = "."); self + punctuation; end
@@ -78,7 +79,7 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "er"
-    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone sure}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone sure miserly}.include?(target)
       "more " + target
     elsif target.end_with?("y")
       target.chop + "ier"
@@ -104,7 +105,7 @@ class String
     target = self.split.first
     transformation = if %w{fat thin}.include?(target)
       target + target.last + "est"
-    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone sure}.include?(target)
+    elsif %w{trustworthy expensive valuable hostile obese submissive knowledgeable creative defensive alone sure miserly}.include?(target)
       "most " + target
     elsif target.end_with?("y")
       target.chop + "iest"

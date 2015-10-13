@@ -1,19 +1,20 @@
-x,s,n,f,t
-generic,physical,mental,spiritual,material
-sensory,olfactory,visual,auditory,tactile
-phobic,anorexic,paranoid,suicidal,destitute
-empty,thin,forgetful,calm,poor
-low on energy,hungry,curious,interested,indebted
-energy,carbs,specifics,intonations,cash
-high on energy,restless,sure,upset,flush with cash
-full,fat,knowledgeable,emotional,rich
-fill up,eat,look,listen,earn
-process,digest,believe,understand,appreciate
-fill up with,eat,see,hear,earn
-provide,feed,show,tell,give
-resources,meals,truths,stories,rewards
-strength,protein,general outlines,words,assets
-buffers,fats,symmetry,rhythm,automatic deductions
-energetic,sweet,chaotic,dissonant,unearned
-go,move,decide,talk,shop
-reject energy,throw up,disbelieve,cry,throw it away
+x,f,t,n,s
+sensory,auditory,tactile,visual,olfactory
+neurochemical,oxytocin,dopamine,norepinephrine,serotonin
+stimulus,sounds,touch,sights,smells
+phobic,suicidal,destitute,paranoid,anorexic
+empty,unemotional,poor,stupid,skinny
+low on energy,lonely,indebted,anxious,hungry
+energy,intonations,cash,specifics,carbs
+high on energy,upset,flush with cash,sure,restless
+full,hysterical,miserly,trivial,fat
+fill up,listen,earn,look,eat
+process,understand,appreciate,believe,digest
+fill up with,hear,earn,see,eat
+provide,tell,give,show,feed
+resources,stories,rewards,truths,meals
+strength,words,assets,general outlines,protein
+buffers,rhythm,automatic deductions,symmetry,fats
+energetic,dissonant,unearned,chaotic,sweet
+go,talk,spend,decide,walk
+reject energy,cry,gamble,criticize,throw up

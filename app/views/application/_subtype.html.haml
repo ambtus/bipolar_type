@@ -1,0 +1,17 @@
+%ul
+  %li=subtype.i_am
+  %li=subtype.i_should
+  %li
+    -case subtype.attitude.path
+    -when "ip"
+      =subtype.phobic
+      when manic
+    -when "ep"
+      =subtype.full
+      when depressed
+    -when "ij"
+      =subtype.empty
+      when manic
+    -when "ej"
+      =subtype.empty
+      when depressed

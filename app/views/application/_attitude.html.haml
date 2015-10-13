@@ -1,5 +1,6 @@
 %p.heading
   -unless current_page? type_path(attitude.path)
     =link_to attitude.name, type_path(attitude.path)
-    %br
-  =render "description", :object => attitude
+  %ul
+    %li=attitude.i_am
+    %li=attitude.i_should

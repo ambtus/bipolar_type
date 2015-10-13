@@ -19,7 +19,7 @@ class Quad
   def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
-  def names; subtypes.map(&:name); end
+  def names; subtypes.map(&:result).map(&:capitalize); end
   def name; names.join("-");end
 
   def self.ordered

@@ -1,30 +1,39 @@
--if defined?(generic)
-  %table.center.narrow
-    %tr
-      %td=render "description", :object => generic
-%h2 When in Doubt
--if defined?(generic) && generic.class == Attitude
-  %table.center.narrow
-    %tr
-      %td
-        %p.heading=subtypes.first.attitude.advice.punctuate("!")
+%h2 When Manic
+%p.heading Don’t take sedatives to sleep; if you cannot sleep, then your psyche thinks there’s an emergency.
+%p.heading Take care of the emergency and you will be able to sleep.
 %table.center.half
   -subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
         %td
           =link_to subtype.name, type_path(subtype.path)
-          %p.heading=subtype.advice.punctuate("!")
-%h2 Reason for the Advice
--if defined?(generic) && generic.class == Attitude
-  %table.center.half
-    %tr
-      %td
-        %p=render ["stress",subtypes.first.attitude.path].join('/'), :realm => Realm.first
-%table.center
+          %p.heading=subtype.forget_your_role.punctuate("!")
+          %p.heading
+            =subtype.emergency
+            %br
+            you are too
+            =subtype.result.punctuate("!")
+            %br
+            =subtype.emergency
+%h2 When Depressed
+%p.heading Don’t take stimulants to wake up; if you cannot wake up, then your psyche doesn’t think there is an emergency.
+%p.heading If there really were an emergency, you would wake up. Since you are not waking up, you clearly need more sleep.
+%p.heading Once you are awake&hellip;
+%table.center.half
   -subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
         %td
           =link_to subtype.name, type_path(subtype.path)
-          %p=render ["stress",subtype.attitude.path].join('/'), :realm => subtype.realm
+          %p.heading=subtype.remember_your_should
+          %p.heading
+            =subtype.recovery
+            %br
+            you are still too
+            =subtype.result
+            %br
+            you cannot
+            =subtype.nature
+            yet
+            %br
+            =subtype.recovery

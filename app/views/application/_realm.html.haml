@@ -1,5 +1,17 @@
 %p.heading
   -unless current_page? type_path(realm.path)
     =link_to realm.name, type_path(realm.path)
-    %br
-  =render "description", :object => realm
+  %ul
+    %li
+      alert and
+      =realm.high_on_energy
+    %li
+      =realm.go
+    %li
+      tired and
+      =realm.low_on_energy
+    %li
+      =realm.fill_up_with
+      and
+      =realm.process
+      =realm.resources

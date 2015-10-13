@@ -1,5 +1,5 @@
 class Realm
-  LETTERS = %w{x s n f t}
+  LETTERS = %w{x f t n s}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
@@ -25,14 +25,16 @@ class Realm
   raise "realm.csv needs to be re-ordered" unless LETTERS == first
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || [generic.ly,row.first].join(" ")}}
 
-  def name; resources.capitalize; end
+  def name; sensory.capitalize; end
 
   def gsub(attitude_string)
     attitude_string.
     gsub('filling up', fill_up.ing).
     gsub('going', go.ing).
     gsub('fill up', fill_up).
-    gsub('go', go)
+    gsub('go', go).
+    gsub('full', full).
+    gsub('empty', empty)
   end
 
 end

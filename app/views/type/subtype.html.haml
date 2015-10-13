@@ -1,6 +1,6 @@
 - content_for(:title, @subtype.name.html_safe)
 %h3 Self Image
-%p.heading=render "description", :object => @subtype
+%p.heading=render "subtype", :subtype => @subtype
 -%w{role normal stress}.each do |section|
   %h3=section.capitalize
   -if section == "stress"
@@ -16,12 +16,12 @@
 %dl
   -@subtype.realm.subtypes.without(@subtype).each do |subtype|
     %dt=link_to subtype.name, type_path(subtype.path)
-    %dd=render "description", :object => subtype
+    %dd=render "subtype", :subtype => subtype
 %h2=link_to "Same Attitude", type_path(@subtype.attitude.path)
 %dl
   -@subtype.attitude.subtypes.without(@subtype).each do |subtype|
     %dt=link_to subtype.name, type_path(subtype.path)
-    %dd=render "description", :object => subtype
+    %dd=render "subtype", :subtype => subtype
 %h2 Associated BipolarTypes
 %p.heading=link_to "Discover", discover_path("Q2_#{@subtype.path}")
 %ul

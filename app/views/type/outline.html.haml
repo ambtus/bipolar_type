@@ -4,23 +4,17 @@
   -Realm.all.in_groups_of(2) do |row|
     %tr
       -row.each do |realm|
-        %td=link_to realm.name, type_path(realm.path)
+        %td.empty=link_to realm.name, type_path(realm.path)
 %h2=link_to "The Four Attitudes", type_path("attitudes")
 %table.center.narrow
   -Attitude.all.in_groups_of(2) do |row|
     %tr
       -row.each do |attitude|
-        %td=link_to attitude.name, type_path(attitude.path)
+        %td.empty=link_to attitude.name, type_path(attitude.path)
 %h2=link_to "The Sixteen Subtypes", type_path("subtypes")
 %table.center
   -Subtype.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
-        %td=link_to subtype.name, type_path(subtype.path)
+        %td.empty=link_to subtype.name, type_path(subtype.path)
 %h2=link_to "The Twenty-Four BipolarTypes", type_path("quads")
-%table.center
-  -Quad.ordered.in_groups_of(4).each do |row|
-    %tr
-      -row.each do |quad|
-        %td
-          =link_to quad.names.join("<br>").html_safe, type_path(quad.path)

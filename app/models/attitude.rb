@@ -1,5 +1,5 @@
 class Attitude
-  LETTERS = %w{ep ej ip ij}
+  LETTERS = %w{ip ij ej ep}
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
@@ -17,57 +17,26 @@ class Attitude
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  def opposite_path; LETTERS.reverse[@index]; end
-  def opposite; Attitude.find(opposite_path); end
+  MESSAGES =
+    [
+      "stop going",
+      "stop filling up",
+      "start going",
+      "start filling up",
+    ]
 
-  def name; %w{Consume Provide Reject Use}[@index]; end
-  def result; %w{full empty full empty}[@index]; end
+  def nature; MESSAGES[@index]; end
+  def name; nature.s.split.map(&:capitalize).join; end
+
+  def nurture; MESSAGES.values_at(3,2,1,0)[@index]; end
+  def role; "#{nurture} whenever anyone or anything wants you to #{nurture}"; end
+
+  def result; %w{full empty empty full}[@index]; end
   def i_am; "I am too #{result}"; end
+  def goal; %w{empty full full empty}[@index]; end
 
-  def should
-    case path
-    when "ep"
-      "fill up less"
-    when "ej"
-      "go less"
-    when "ip"
-      "go more"
-    when "ij"
-      "fill up more"
-    end
-  end
+  def should; MESSAGES.values_at(2,3,0,1)[@index]; end
   def i_should; "I should #{should}"; end
 
-  def short_role
-    case path
-    when "ej"
-      "stop filling up"
-    when "ep"
-      "stop going"
-    when "ip"
-      "keep filling up"
-    when "ij"
-      "keep going"
-    end
-  end
-
-  def role
-    "#{short_role} whenever anyone or anything wants you to #{short_role}"
-  end
-
-
-
-  def advice
-    case path
-    when "ep"
-      "keep going"
-    when "ej"
-      "keep filling up"
-    when "ip"
-      "stop filling up"
-    when "ij"
-      "stop going"
-    end
-  end
-
+  def advice; MESSAGES.values_at(1,0,3,2)[@index]; end
 end

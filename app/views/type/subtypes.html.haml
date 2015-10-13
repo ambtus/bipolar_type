@@ -5,4 +5,4 @@
       -row.each do |subtype|
         %td
           =link_to subtype.name, type_path(subtype.path)
-          =render "description", :object => subtype
+          =render "subtype", :subtype => subtype
