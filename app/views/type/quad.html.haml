@@ -1,13 +1,2 @@
 - content_for(:title, @quad.name)
-%h2 Manic-Depression
-%p
-  Depression always follows mania.
-%p
-  If you can prevent the mania
-  =surround "(", ")," do
-    by not
-    =@quad.subtypes.first.fill_up.ing
-  you won’t become depressed
-  =surround "(", ")." do
-    =@quad.subtypes[2,2].map(&:result).join(" and ")
 =render "subtypes", :subtypes => @quad.subtypes
