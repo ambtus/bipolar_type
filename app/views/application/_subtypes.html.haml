@@ -7,10 +7,12 @@
       -row.each do |subtype|
         %td
           =link_to subtype.name, type_path(subtype.path)
-          %p.heading=subtype.forget_your_role.punctuate("!" * subtype.high)
           %p.heading
             you are too
             =subtype.result
+            %br
+            =subtype.forget_your_role
+            ="immediately".punctuate("!" * subtype.high)
 %h2 When Depressed
 %p.heading Your psyche doesn’t think there is an emergency.
 %p.heading Find the emergency and you will be able to wake up.
@@ -20,11 +22,10 @@
       -row.each do |subtype|
         %td
           =link_to subtype.name, type_path(subtype.path)
-          %p.heading=subtype.remember_your_should.punctuate("!" * subtype.low)
           %p.heading
             you are still too
             =subtype.result
             %br
             you cannot
             =subtype.nature
-            yet
+            ="yet".punctuate("!" * subtype.low)
