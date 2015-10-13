@@ -1,5 +1,5 @@
 class Attitude
-  LETTERS = %w{ip ij ej ep}
+  LETTERS = %w{ip ij ep ej }
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
@@ -21,21 +21,21 @@ class Attitude
     [
       "stop going",
       "stop filling up",
-      "start going",
       "start filling up",
+      "start going",
     ]
 
   def nature; MESSAGES[@index]; end
   def name; nature.s.split.map(&:capitalize).join; end
 
-  def nurture; MESSAGES.values_at(3,2,1,0)[@index]; end
+  def nurture; MESSAGES.values_at(2,3,0,1)[@index]; end
   def role; "#{nurture} whenever anyone or anything wants you to #{nurture}"; end
 
-  def result; %w{full empty empty full}[@index]; end
+  def result; %w{full empty full empty }[@index]; end
   def i_am; "I am too #{result}"; end
-  def goal; %w{empty full full empty}[@index]; end
+  def goal; %w{empty full empty full }[@index]; end
 
-  def should; MESSAGES.values_at(2,3,0,1)[@index]; end
+  def should; MESSAGES.values_at(3,2,1,0)[@index]; end
   def i_should; "I should #{should}"; end
 
   def advice; MESSAGES.values_at(1,0,3,2)[@index]; end

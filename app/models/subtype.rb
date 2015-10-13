@@ -18,14 +18,24 @@ class Subtype
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
   def high; 4 - attitude.index; end
-  def emergency; "EMERGENCY" + "!" * high;end
   def low; attitude.index + 1; end
-  def recovery; "WAIT" + "!" * low;end
 
 
   %w{nature nurture role result i_am goal should i_should advice}.each do |method|; define_method(method.to_sym) {realm.gsub(attitude.send(method))}; end
 
-  def name; nature.s.split.map(&:capitalize).join; end
+#  def name; nature.s.split.map(&:capitalize).join; end
+  def name
+    case attitude.path
+    when "ip"
+      realm.phobic.capitalize
+    when "ej"
+      realm.provide.s.capitalize + realm.resources.capitalize
+    when "ij"
+      realm.empty.capitalize
+    when "ep"
+      realm.full.capitalize
+    end
+  end
 
   alias_method :remember_your_should, :should
   alias_method :forget_your_role, :advice

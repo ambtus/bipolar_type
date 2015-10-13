@@ -1,2 +1,43 @@
 - content_for(:title, @quad.name)
 =render "subtypes", :subtypes => @quad.subtypes
+%h2 Medication
+%p
+  If you are an introvert, then you are
+  =@quad.subtypes[0,2].map(&:result).join(" and ")
+  but not too
+  =@quad.subtypes[2,2].map(&:result).join(" or ").punctuate
+  You may require sedatives if you cannot avoid the
+  =@quad.subtypes.first.stimulus
+  but you will become
+  =@quad.subtypes[2,2].map(&:result).map(&:er).join(" and ").punctuate
+  Still, that’s better than becoming
+  =@quad.subtypes.first.phobic.punctuate
+%p
+  If you are an extrovert, then you are
+  =@quad.subtypes[2,2].map(&:result).join(" and ")
+  but not too
+  =@quad.subtypes[0,2].map(&:result).join(" or ").punctuate
+  You may require stimulants if you cannot perceive the
+  =@quad.subtypes.last.stimulus
+  but you will become
+  =@quad.subtypes[0,2].map(&:result).map(&:er).join(" and ").punctuate
+  Still, you’ll become
+  =@quad.subtypes.third.empty.er.punctuate(",")
+  which you will like.
+%p
+  If you are an ambivert, then you are
+  =@quad.subtypes.map(&:result).to_sentence.punctuate
+  Sedatives will make you
+  =@quad.subtypes[2,2].map(&:result).map(&:er).join(" and ")
+  and stimulants will make you
+  =@quad.subtypes[0,2].reverse.map(&:result).map(&:er).join(" and ")
+  and eventually
+  =@quad.subtypes.first.phobic.punctuate
+%p
+  If you can get hold of
+  =@quad.subtypes[2,2].map(&:neurochemical).join(" and ")
+  stimulants
+  and
+  =@quad.subtypes[0,2].reverse.map(&:neurochemical).join(" and ")
+  sedatives, you may be able to adjust your personality.
+  Personally, I find that adjusting my environment has fewer side effects.
