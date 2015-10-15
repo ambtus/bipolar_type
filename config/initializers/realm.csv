@@ -1,20 +1,20 @@
-x,f,t,s,n
-sensory,auditory,tactile,olfactory,visual
-neurochemical,oxytocin,dopamine,serotonin,norepinephrine
-stimulus,sounds,pains,smells,sights
-phobic,suicidal,destitute,anorexic,paranoid
-empty,unemotional,poor,skinny,stupid
-low on energy,lonely,indebted,hungry,anxious
-energy,intonations,cash,carbs,specifics
-high on energy,upset,flush with cash,restless,sure
-full,hysterical,miserly,fat,trivial
-fill up,listen,earn,eat,look
-process,understand,appreciate,digest,believe
-fill up with,hear,earn,eat,see
-provide,tell,give,feed,show
-resources,stories,rewards,meals,truths
-strength,words,assets,protein,general outlines
-buffers,rhythm,automatic deductions,fats,symmetry
-energetic,dissonant,unearned,sweet,chaotic
-go,talk,spend,walk,decide
-reject energy,cry,gamble,throw up,criticize
+x,s,n,f,t
+sensory,olfactory,visual,auditory,tactile
+neurochemical,serotonin,norepinephrine,oxytocin,dopamine
+stimulus,smells,sights,sounds,pains
+phobic,anorexic,paranoid,suicidal,destitute
+empty,skinny,stupid,apathetic,poor
+low on energy,hungry,anxious,lonely,indebted
+energy,carbs,specifics,intonations,money
+generically,physically,mentally,emotionally,financially
+full,fat,smart,hysterical,rich
+fill up,eat,look,listen,earn
+process,digest,believe,understand,appreciate
+fill up with,eat,see,hear,earn
+provide,feed,show,tell,give
+resources,meals,truths,stories,rewards
+strength,protein,general outlines,words,assets
+buffers,fats,symmetry,rhythm,automatic investments
+energetic,sweet,chaotic,dissonant,cash
+go,walk,decide,talk,spend
+reject energy,throw up,criticize,cry,splurge

@@ -1,31 +1,18 @@
-%h2 When Manic
-%p.heading Your psyche thinks there’s an emergency.
-%p.heading Get rid of the emergency and you will be able to sleep.
-%table.center.wide
+%table
+  %caption
+    %h2 Mania
+    %p Your psyche thinks there a crisis is imminent: you must stay awake and alert and prepare for anything. 
+    %p Unfortunately, in an emergency you don’t know what you will need, so you stock up on everything.
   -subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
-        %td
-          =link_to subtype.name, type_path(subtype.path)
-          %p.heading
-            you are too
-            =subtype.result
-            %br
-            =subtype.forget_your_role
-            ="immediately".punctuate("!" * subtype.high)
-%h2 When Depressed
-%p.heading Your psyche doesn’t think there is an emergency.
-%p.heading Find the emergency and you will be able to wake up.
-%table.center.wide
+        %td=render "mania", :subtype => subtype
+%table
+  %caption
+    %h2 Depression
+    %p Your psyche thinks the crisis is over: you can relax and fall asleep. 
+    %p Nothing is urgent; everything can wait until tomorrow. 
   -subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
-        %td
-          =link_to subtype.name, type_path(subtype.path)
-          %p.heading
-            you are still too
-            =subtype.result
-            %br
-            you cannot
-            =subtype.nature
-            ="yet".punctuate("!" * subtype.low)
+        %td=render "depression", :subtype => subtype

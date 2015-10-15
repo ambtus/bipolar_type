@@ -1,2 +1,33 @@
 - content_for(:title, @realm.name)
-=render "subtypes", :subtypes => @realm.subtypes, :generic => @realm
+%h2 Mania
+%p.heading Your psyche thinks there’s an emergency because it’s being overloaded with stimuli.
+%p.heading This may be because you are taking stimulants, or it may because you are manic, or it may be because you are in a new environment.
+%p.heading Get rid of the stimuli and you will be able to sleep.
+%p.heading If you are taking stimulants, stop taking them; don’t just add sedatives to the mix.
+%table
+  %tr
+    %td
+      %h3
+        Euphoric mania:
+        I am
+        =@realm.ep.go.ing.punctuate("!")
+      =render "mania/ep", :subtype => @realm.ep
+    %td
+      %h3
+        Invisible mania:
+        I cannot stop
+        =@realm.ej.go.ing.punctuate("!")
+      =render "mania/ej", :subtype => @realm.ej
+  %tr
+    %td
+      %h3
+        Acute mania:
+        I cannot stop
+        =@realm.ip.reject_energy.ing.punctuate("!")
+      =render "mania/ip", :subtype => @realm.ip
+    %td
+      %h3
+        Irritable mania:
+        I am
+        =@realm.ij.reject_energy.ing.punctuate("!")
+      =render "mania/ij", :subtype => @realm.ij

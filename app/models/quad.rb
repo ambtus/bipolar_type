@@ -22,6 +22,9 @@ class Quad
   def names; subtypes.map(&:name); end
   def name; names.join("-");end
 
+  Attitude::LETTERS.each_with_index { |path, index| define_method(path) {subtypes[index]}}
+  
+
   def self.ordered
     every_sixth = 6.times.to_a.multiply([0,6,12,18]).flatten
     self.all.values_at(*every_sixth)

@@ -1,5 +1,5 @@
 class Subtype
-  LETTERS = Realm::LETTERS[1,4].multiply(Attitude::LETTERS.values_at(0,2,3,1)).flatten
+  LETTERS = Realm::LETTERS[1,4].multiply(Attitude::LETTERS).flatten
 
   def initialize(letters)
     raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
@@ -14,32 +14,13 @@ class Subtype
 
   def realm; Realm.find(path[0,1]); end
   def attitude; Attitude.find(path[1,2]); end
-
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
-  def high; 4 - attitude.index; end
-  def low; attitude.index + 1; end
+  LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-
-  %w{nature nurture role result i_am goal should i_should advice}.each do |method|; define_method(method.to_sym) {realm.gsub(attitude.send(method))}; end
-
-#  def name; nature.s.split.map(&:capitalize).join; end
-  def name
-    case attitude.path
-    when "ip"
-      realm.phobic.capitalize
-    when "ej"
-      realm.provide.s.capitalize + realm.resources.capitalize
-    when "ij"
-      realm.empty.capitalize
-    when "ep"
-      realm.full.capitalize
-    end
-  end
-
-  alias_method :remember_your_should, :should
-  alias_method :forget_your_role, :advice
-
+  delegate :first, :second, to: :attitude
   def method_missing(method, *args, &block); realm.send(method, *args, &block); end
+
+  def name; [first, sensory, second].map(&:capitalize).join; end
 
 end
