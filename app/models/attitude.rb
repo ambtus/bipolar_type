@@ -21,4 +21,60 @@ class Attitude
   def second; path.second == "p" ? "consumer" : "producer"; end
   def name; [first,second].map(&:capitalize).join; end
 
+  def goal; path.second == "p" ? "lose potential energy" : "gain potential energy"; end
+
+  def change; path.second == "p" ? "consume less and produce more" : "consume more and produce less"; end
+
+  def morning
+    case path
+    when "ep"
+      "consume less"
+    when "ej"
+      "produce less"
+    when "ip"
+      "produce more"
+    when "ij"
+      "consume more"
+    end
+  end
+
+  def morning_backfire
+    case path
+    when "ep"
+      "consume more"
+    when "ej"
+      "produce more"
+    when "ip"
+      "produce less"
+    when "ij"
+      "consume less"
+    end
+  end
+
+  def evening
+    case path
+    when "ep"
+      "produce more"
+    when "ej"
+      "consume more"
+    when "ip"
+      "consume less"
+    when "ij"
+      "produce less"
+    end
+  end
+
+def evening_backfire
+    case path
+    when "ep"
+      "produce less"
+    when "ej"
+      "consume less"
+    when "ip"
+      "consume more"
+    when "ij"
+      "produce more"
+    end
+  end
+
 end

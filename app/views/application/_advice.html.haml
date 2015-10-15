@@ -1,0 +1,32 @@
+%p.heading
+  -unless current_page? type_path(object.path)
+    =link_to object.name, type_path(object.path)
+%ul
+  %li
+    goal:
+    =object.goal
+    %ul
+      %li
+        =object.change
+  %li
+    morning/midday
+    %ul
+      %li
+        =object.morning
+      %li
+        don’t bother to
+        =object.evening.comma
+        you’ll just
+        =object.evening_backfire
+        later in the day
+  %li
+    afternoon/evening
+    %ul
+      %li
+        =object.evening
+      %li
+        don’t bother to
+        =object.morning.comma
+        you’ll just
+        =object.morning_backfire
+        the next day

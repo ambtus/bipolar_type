@@ -1,20 +1,14 @@
 x,s,n,f,t
-sensory,olfactory,visual,auditory,tactile
-neurochemical,serotonin,norepinephrine,oxytocin,dopamine
-stimulus,smells,sights,sounds,pains
-phobic,anorexic,paranoid,suicidal,destitute
-empty,skinny,stupid,apathetic,poor
-low on energy,hungry,anxious,lonely,indebted
-energy,carbs,specifics,intonations,money
-generically,physically,mentally,emotionally,financially
-full,fat,smart,hysterical,rich
-fill up,eat,look,listen,earn
-process,digest,believe,understand,appreciate
-fill up with,eat,see,hear,earn
-provide,feed,show,tell,give
-resources,meals,truths,stories,rewards
-strength,protein,general outlines,words,assets
-buffers,fats,symmetry,rhythm,automatic investments
-energetic,sweet,chaotic,dissonant,cash
-go,walk,decide,talk,spend
-reject energy,throw up,criticize,cry,splurge
+generic,physical,mental,spiritual,material
+produce,walk,predict,talk,spend
+low on energy,hungry,curious,lonely,indebted
+perceive,smell,see,hear,feel
+consume,eat,believe,understand,use
+resources,food,truths,stories,pain
+kinetic energy,glycogen,facts,emotions,cash
+potential energy,fat,memories,relationships,savings
+strength,protein,results,words,credit
+power,muscles,mental models,vocabulary,storage containers
+consume without object,eat,look,listen,work
+energy,carbs,details,intonations,wages
+reject,sick,criticize,cry,splurge

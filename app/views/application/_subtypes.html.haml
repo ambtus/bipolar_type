@@ -1,18 +1,6 @@
-%table
-  %caption
-    %h2 Mania
-    %p Your psyche thinks there a crisis is imminent: you must stay awake and alert and prepare for anything. 
-    %p Unfortunately, in an emergency you don’t know what you will need, so you stock up on everything.
+%table.center.wide
   -subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
-        %td=render "mania", :subtype => subtype
-%table
-  %caption
-    %h2 Depression
-    %p Your psyche thinks the crisis is over: you can relax and fall asleep. 
-    %p Nothing is urgent; everything can wait until tomorrow. 
-  -subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td=render "depression", :subtype => subtype
+        %td=render "advice", :object => subtype
+

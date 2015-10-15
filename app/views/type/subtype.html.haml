@@ -1,29 +1,13 @@
-- content_for(:title, @subtype.name.html_safe)
-%h3 Self Image
-%p.heading=render "subtype", :subtype => @subtype
--%w{role normal stress}.each do |section|
-  %h3=section.capitalize
-  -if section == "stress"
-    =render "stress/cause", :subtype => @subtype
-  =render [section,@subtype.attitude.path].join('/'), :realm => @subtype.realm
-%h3 Discussion
-%ul
-  %li
-    But I can’t
-    =@subtype.advice.punctuate("!")
-=render "response/" + @subtype.attitude.path, :subtype => @subtype
-%h2=link_to "Same Realm", type_path(@subtype.realm.path)
-%dl
-  -@subtype.realm.subtypes.without(@subtype).each do |subtype|
-    %dt=link_to subtype.name, type_path(subtype.path)
-    %dd=render "subtype", :subtype => subtype
-%h2=link_to "Same Attitude", type_path(@subtype.attitude.path)
-%dl
-  -@subtype.attitude.subtypes.without(@subtype).each do |subtype|
-    %dt=link_to subtype.name, type_path(subtype.path)
-    %dd=render "subtype", :subtype => subtype
-%h2 Associated BipolarTypes
-%p.heading=link_to "Discover", discover_path("Q2_#{@subtype.path}")
+- content_for(:title, @subtype.name)
+%h2 Realm
+=render "realm", :realm => @subtype.realm
+%h2 Attitude
+=render "advice", :object => @subtype.attitude
+%h2 Subtype
+=render "advice", :object => @subtype
+%h2 BipolarTypes
+%p.heading=link_to "discover", discover_path("Q2_#{@subtype.path}")
 %ul
   -@subtype.quads.each do |quad|
     %li=link_to quad.name, type_path(quad.path)
+

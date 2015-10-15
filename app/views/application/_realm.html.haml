@@ -1,17 +1,73 @@
 %p.heading
   -unless current_page? type_path(realm.path)
     =link_to realm.name, type_path(realm.path)
-  %ul
-    %li
-      alert and
-      =realm.high_on_energy
-    %li
-      =realm.go
-    %li
-      tired and
-      =realm.low_on_energy
-    %li
-      =realm.fill_up_with
-      and
-      =realm.process
-      =realm.resources
+%ul
+  %li
+    =realm.produce
+  %li
+    tired and
+    =realm.low_on_energy
+  %li
+    =realm.perceive
+    and
+    =realm.consume
+    =realm.resources
+  %li
+    =realm.consume
+    =realm.strength
+    to build
+    =realm.power
+    %ul
+      %li
+        the bigger your
+        =realm.power.comma
+        the easier it is to
+        =realm.produce
+      %li
+        more
+        =realm.strength
+        doesn’t automatically give you bigger
+        =realm.power
+      %li
+        you have to have
+        =realm.produce.ed
+        more first
+  %li
+    store excess
+    =realm.kinetic_energy
+    as
+    =realm.potential_energy
+    %ul
+      %li
+        the more
+        =realm.potential_energy
+        you have,
+        the less often you have to stop and
+        =realm.consume_without_object
+      %li
+        too
+        =realm.potential_energy.few
+        can be deadly
+      %li
+        too
+        =realm.potential_energy.many
+        is usually just an unwanted burden
+  %li
+    =realm.strength.are
+    necessary, but
+    =realm.energy.are
+    optional if you don’t
+    =realm.produce
+    much
+    %ul
+      %li
+        =realm.strength.are
+        necessary to build essential
+        =realm.power
+      %li
+        it’s much easer to get
+        =realm.kinetic_energy
+        from
+        =realm.energy
+        than from
+        =realm.strength

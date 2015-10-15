@@ -36,14 +36,15 @@ class String
   def few(inject=''); self.uncountable? ? "little #{inject} #{self}" : "few #{inject} #{self}"; end
   def many(inject=''); self.uncountable? ? "much #{inject} #{self}" : "many #{inject} #{self}"; end
   def fewer(inject=''); self.uncountable? ? "less #{inject} #{self}" : "fewer #{inject} #{self}"; end
+  def more(inject=''); self.uncountable? ? "more #{inject} #{self}" : "more #{inject} #{self}"; end
   def those(inject=''); self.uncountable? ? "that #{inject} #{self}" : "those #{inject} #{self}"; end
+  def are(inject=''); self.uncountable? ? "#{self} #{inject} is" : "#{self} #{inject} are"; end
   def dont; self.uncountable? ? "#{self} doesn’t" : "#{self} don’t"; end
   def have; self.uncountable? ? "#{self} has" : "#{self} have"; end
   def they; self.uncountable? ? "it" : "they"; end
   def their; self.uncountable? ? "its" : "their"; end
   def them; self.uncountable? ? "it" : "them"; end
   def were; self.uncountable? ? "was" : "were"; end
-  def are; self.uncountable? ? "is" : "are"; end
   def does; self.uncountable? ? "does" : "do"; end
   def they_are; [they, are].join(" "); end
 

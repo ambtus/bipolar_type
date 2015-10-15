@@ -1,2 +1,4 @@
 - content_for(:title, @attitude.name)
-=render "subtypes", :subtypes => @attitude.subtypes, :generic => @attitude
+=render "advice", :object => @attitude
+%h2 subtypes
+=render "subtypes", :subtypes => @attitude.subtypes

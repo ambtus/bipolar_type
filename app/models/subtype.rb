@@ -18,9 +18,15 @@ class Subtype
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
+  %w{goal change morning evening evening_backfire morning_backfire}.each { |method| define_method(method) {realm.gsub(attitude.send(method)) }}
+
   delegate :first, :second, to: :attitude
   def method_missing(method, *args, &block); realm.send(method, *args, &block); end
 
-  def name; [first, sensory, second].map(&:capitalize).join; end
+  def name; [first, generic, second].map(&:capitalize).join; end
+  def mbti; [attitude.path.first, realm.path, attitude.path.second].map(&:upcase).join; end
+
+
+  def makes; energy.does + (attitude.path.first == "i" ? " " : " not ") + "make" ; end
 
 end
