@@ -1,16 +1,16 @@
-x,s,n,f,t,t2
-generic,physical,mental,spiritual,material,material
-produce,walk,predict,talk,achieve,buy
-low on energy,hungry,curious,lonely,unsuccessful,broke
-worn out,sore,wrong,misunderstood,injured,indebted
-perceive,smell,see,hear,touch,feel
-consume,taste,believe,understand,use,use
-resources,food,truths,stories,tools,pain
-input,calories,information,compassion,practice,rewards
-kinetic energy,glycogen,facts,intonations,ingredients,cash
-potential energy,fat,memories,emotions,stockpiles,savings
-strength,protein,results,words,care,payments
-power,muscles,mental models,vocabulary,tools,net worth
-consume without object,eat,look,listen,handle,work
-energy,carbs,details,intonations,pieces,wages
-reject,sick,criticize,cry,break things,splurge
+x,s,n,f,t
+generic,physical,mental,emotional,financial
+produce,walk,predict,talk,buy
+low on energy,hungry,curious,lonely,broke
+worn out,sore,wrong,misunderstood,indebted
+perceive,smell,see,hear,feel
+consume,taste,believe,understand,use
+resources,food,truths,stories,pain
+input,calories,information,compassion,rewards
+kinetic energy,glycogen,facts,intonations,cash
+potential energy,fat,memories,emotions,savings
+strength,protein,results,words,payments
+power,muscles,mental models,vocabulary,net worth
+consume without object,eat,look,listen,work
+energy,carbs,details,intonations,wages
+reject,sick,criticize,cry,splurge
