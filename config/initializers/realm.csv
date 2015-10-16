@@ -1,18 +1,15 @@
 x,s,n,f,t
 generic,physical,mental,spiritual,material
-produce,walk,predict,talk,shelter
-low on energy,hungry,unsure,lonely,cold
+consume without object,eat,look,listen,buy tools
+produce,walk,predict,talk,use tools
+kinetic energy,glycogen,specifics,emotions,consumables
+potential energy,fat,memories,values,supplies
+converting energy,hungry,unsure,bored,running out
+power,muscles,rules,vocabulary,assets
 worn out,sore,wrong,misunderstood,homeless
-perceive,smell,see,hear,feel
 sensory,olfactory,visual,auditory,tactile
-consume,eat,believe,understand,use
-resources,food,truths,stories,tools
-input,calories,information,opinions,leverage
-kinetic energy,glycogen,working memory,emotions,clothes
-potential energy,fat,long term memories,values,wardrobes
-strength,protein,results,words,heavy machinery
-power,muscles,rules,vocabulary,houses
-consume without object,eat,look,listen,work
-energy,carbs,facts,intonations,hand tools
-born,weak as a kitten,not knowing what will happen if you drop a rock on your foot,unable to string two words together,cold and naked
-bred,strong as an ox,able to land on the moon,fluent in several languages,warm and comfortable
+perceive,smell,see,hear,touch
+consume,eat,believe,understand,own
+resources,food,sights,stories,tools
+strength,protein,results,words,durable goods
+energy,carbs,details,intonations,soft goods
