@@ -1,16 +1,35 @@
 - content_for(:title, @quad.name)
+%table.center.half
+  %tr
+    %td
+      %p.heading Monday Morning Depression
+      %p
+        You won’t need caffeine if you
+        %br
+        =@quad.ordered_subtypes.map(&:morning).to_sentence
+  %tr
+    %td
+      %p.heading Saturday Evening Mania
+      %p
+        You won’t need alcohol if you
+        %br
+        =@quad.ordered_subtypes.map(&:evening).to_sentence
+%h2 Subtypes
 =render "subtypes", :subtypes => @quad.subtypes
 %h2 Goals vs. Priorities
 %p
   Your priorities can and do change over time. For example, you may go for years desperately trying to
   =@quad.ej.goal
-  just to wake up one morning and discover that it’s no longer something that you need to worry so much about. Conversely, you may not be particularly worried about
-  =@quad.ep.goal.ing
-  for years, and then something changes and it’s your number one priority.   
+  just to wake up one morning and discover that things have changed and
+  =@quad.ej.goal.ing
+  isn’t very important any more. Conversely, you may not be particularly worried about
+  =@quad.ep.goal.ing.comma
+  and then things change and it’s your number one priority.
 %p
-  Your goals, on the other hand, never change. If you suddenly decide, due to some unusual circumstances, that 
-  =@quad.ep.realm.ej.goal.ing
-  is something that you need or want to do, you don't have to set it as a new goal, you merely have to stop trying to
-  =@quad.ep.goal
-  and you will automagically
-  =@quad.ep.realm.ej.goal.punctuate
+  Your goals, on the other hand, never change. If you suddenly decide, due to some unusual circumstances, that
+  =@quad.ip.realm.ej.goal.ing
+  is something that you need or want to do, you don’t have to set it as a new goal, you merely have to stop trying to
+  =@quad.ip.goal
+  and you will quickly
+  =@quad.ip.realm.ej.goal.split.first
+  =@quad.ip.realm.ej.goal.split.second.them.punctuate

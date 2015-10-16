@@ -19,6 +19,7 @@ class Quad
   def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
+  def ordered_subtypes; subtypes.values_at(1,3,0,2); end
   def name; subtypes.map(&:mbti).join("-");end
 
   Attitude::LETTERS.each_with_index { |path, index| define_method(path) {subtypes[index]}}

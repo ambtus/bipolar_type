@@ -1,14 +1,16 @@
 x,s,n,f,t
 generic,physical,mental,spiritual,material
-produce,walk,predict,talk,spend
-low on energy,hungry,curious,lonely,indebted
+produce,walk,predict,talk,buy
+low on energy,hungry,curious,lonely,broke
+worn out,sore,wrong,misunderstood,indebted
 perceive,smell,see,hear,feel
-consume,eat,believe,understand,use
+consume,taste,believe,understand,use
 resources,food,truths,stories,pain
-kinetic energy,glycogen,facts,emotions,cash
-potential energy,fat,memories,prejudices,savings
-strength,protein,results,words,credit
-power,muscles,mental models,vocabulary,storage containers
+input,calories,information,compassion,rewards
+kinetic energy,glycogen,facts,intonations,cash
+potential energy,fat,memories,emotions,savings
+strength,protein,results,words,payments
+power,muscles,mental models,vocabulary,net worth
 consume without object,eat,look,listen,work
 energy,carbs,details,intonations,wages
 reject,sick,criticize,cry,splurge

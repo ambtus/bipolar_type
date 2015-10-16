@@ -3,77 +3,36 @@
     =link_to realm.name, type_path(realm.path)
 %ul
   %li
+    use
+    =realm.power
+    and
+    =realm.kinetic_energy
+    to
     =realm.produce
   %li
-    tired and
+    be
+    =realm.worn_out
+    and/or
     =realm.low_on_energy
   %li
     =realm.perceive
     and
     =realm.consume
     =realm.resources
-  %li
-    =realm.consume
-    =realm.strength
-    to build
-    =realm.power
-    %ul
-      %li
-        the bigger your
-        =realm.power.comma
-        the easier it is to
-        =realm.produce
-      %li
-        =realm.consume.ing
-        more
-        =realm.strength
-        doesn’t automatically give you bigger
-        =realm.power
-      %li
-        you also have to
-        =realm.produce
-        more
-  %li
-    store excess
-    =realm.kinetic_energy
-    as
-    =realm.potential_energy
-    %ul
-      %li
-        the more
-        =realm.potential_energy
-        you have,
-        the less often you have to stop and
-        =realm.consume_without_object
-      %li
-        too
-        =realm.potential_energy.few
-        can be deadly
-      %li
-        too
-        =realm.potential_energy.many
-        is usually just an unwanted burden as long as your
-        =realm.power.are
-        big enough to still
-        =realm.produce
-  %li
-    =realm.consume.ing
-    =realm.strength
-    is necessary, but
-    =realm.energy.are
-    optional if you don’t
-    =realm.produce
-    much
-    %ul
-      %li
-        =realm.consume.ing
-        =realm.strength
-        is necessary to build essential
-        =realm.power
-      %li
-        it’s much easer to get
-        =realm.kinetic_energy
-        from
-        =realm.energy
-        than from
-        =realm.strength
+    to gain
+    =realm.input
+  %ul
+    %li
+      use
+      =realm.strength
+      to build
+      =realm.power
+      if you were
+      =realm.worn_out
+    %li
+      store unused
+      =realm.kinetic_energy
+      as
+      =realm.potential_energy
+      if you were not
+      =realm.low_on_energy
