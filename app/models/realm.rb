@@ -25,13 +25,14 @@ class Realm
 
   Attitude::LETTERS.each_with_index { |path, index| define_method(path) {subtypes[index]}}
 
-  def name; generic.capitalize; end
+  def name; sensory.capitalize; end
 
   def gsub(attitude_string)
     attitude_string.
     gsub("potential energy", potential_energy).
-    gsub("consume less", consume_without_object + " less").
-    gsub("consume more", consume_without_object + " more").
+    gsub("consuming", consume_without_object.ing).
+    gsub("producing", produce.ing).
+    gsub("consume", consume_without_object).
     gsub("produce", produce)
   end
 

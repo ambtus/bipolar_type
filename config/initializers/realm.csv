@@ -1,16 +1,19 @@
 x,s,n,f,t
-generic,physical,mental,emotional,financial
+generic,physical,mental,interpersonal,financial
 produce,walk,predict,talk,buy
-low on energy,hungry,curious,lonely,broke
+low on energy,hungry,curious,ignored,purse-pinched
 worn out,sore,wrong,misunderstood,indebted
-perceive,smell,see,hear,feel
+perceive,smell,see,hear,touch
+sensory,olfactory,visual,auditory,tactile
 consume,taste,believe,understand,use
-resources,food,truths,stories,pain
-input,calories,information,compassion,rewards
-kinetic energy,glycogen,facts,intonations,cash
-potential energy,fat,memories,emotions,savings
-strength,protein,results,words,payments
-power,muscles,mental models,vocabulary,net worth
-consume without object,eat,look,listen,work
-energy,carbs,details,intonations,wages
+resources,food,truths,stories,tools
+input,calories,information,ideas,income
+kinetic energy,glycogen,details,emotions,cash
+potential energy,fat,memories,values,liquid assets
+strength,protein,results,words,repayments
+power,muscles,mental models,vocabulary,credit
+consume without object,eat,look,listen,earn
+energy,carbs,facts,intonations,consumables
 reject,sick,criticize,cry,splurge
+born,weak as a kitten,not knowing what will happen if you drop a rock on your foot,unable to string two words together,unable to borrow a penny from anyone
+bred,strong as an ox,able to land on the moon,fluent in several languages,able to borrow a million dollars on your signature alone

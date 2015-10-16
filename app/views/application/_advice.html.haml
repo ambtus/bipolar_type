@@ -3,18 +3,23 @@
     =link_to object.name, type_path(object.path)
 %ul
   %li
-    goal:
-    =object.goal
-    %ul
-      %li
-        =object.change
+    in a toss-up between
+    =object.in_or_out.comma
+    you
+    =object.default
+  %ul
+    %li
+      eventually, you will want to
+      =object.goal
+    %li
+      you will have to
+      =object.change
   %li
     morning/midday
     %ul
+      %li=object.morning
       %li
-        =object.morning
-      %li
-        don’t bother to
+        don’t force yourself to
         =object.evening.comma
         you’ll just
         =object.evening_backfire
@@ -22,11 +27,10 @@
   %li
     afternoon/evening
     %ul
+      %li=object.evening
       %li
-        =object.evening
-      %li
-        don’t bother to
+        don’t force yourself to
         =object.morning.comma
         you’ll just
         =object.morning_backfire
-        the next day
+        the next morning

@@ -18,7 +18,7 @@ class Subtype
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  %w{goal change morning evening evening_backfire morning_backfire}.each { |method| define_method(method) {realm.gsub(attitude.send(method)) }}
+  %w{in_or_out goal change morning evening evening_backfire morning_backfire default}.each { |method| define_method(method) {realm.gsub(attitude.send(method)) }}
 
   delegate :first, :second, to: :attitude
   def method_missing(method, *args, &block); realm.send(method, *args, &block); end
@@ -28,5 +28,14 @@ class Subtype
 
 
   def makes; energy.does + (attitude.path.first == "i" ? " " : " not ") + "make" ; end
+
+
+
+def self.ordered
+   self.all.values_at(0,1,4,5,
+                               2,3,6,7,
+                               8,9,12,13,
+                               10,11,14,15)
+  end
 
 end

@@ -4,32 +4,69 @@
     %td
       %p.heading Monday Morning Depression
       %p
-        You won’t need caffeine if you
-        %br
-        =@quad.ordered_subtypes.map(&:morning).to_sentence
+        =@quad.ordered_subtypes.map(&:morning).join(", ")
   %tr
     %td
       %p.heading Saturday Evening Mania
       %p
-        You won’t need alcohol if you
-        %br
-        =@quad.ordered_subtypes.map(&:evening).to_sentence
+        =@quad.ordered_subtypes.map(&:evening).join(", ")
 %h2 Subtypes
 =render "subtypes", :subtypes => @quad.subtypes
-%h2 Goals vs. Priorities
+%h2 Priorities, Goals, and Strength
+%h3 Priorities
 %p
-  Your priorities can and do change over time. For example, you may go for years desperately trying to
-  =@quad.ej.goal
+  Your priorities can and do change over time.
+%p
+  For example, you may go for years desperately trying to
+  =@quad.ep.goal
   just to wake up one morning and discover that things have changed and
+  =@quad.ep.goal.ing
+  isn’t as important as
+  =@quad.ej.goal.ing.punctuate
+  Years later things change again and
   =@quad.ej.goal.ing
-  isn’t very important any more. Conversely, you may not be particularly worried about
-  =@quad.ep.goal.ing.comma
-  and then things change and it’s your number one priority.
+  becomes less critical and you start trying to
+  =@quad.ip.goal.punctuate
+  You wake up one morning and all of a sudden
+  =@quad.ij.goal.ing
+  is critical.
+  Years after that things change again and you start trying to
+  =@quad.ep.goal
+  again.
 %p
-  Your goals, on the other hand, never change. If you suddenly decide, due to some unusual circumstances, that
-  =@quad.ip.realm.ej.goal.ing
-  is something that you need or want to do, you don’t have to set it as a new goal, you merely have to stop trying to
-  =@quad.ip.goal
-  and you will quickly
-  =@quad.ip.realm.ej.goal.split.first
-  =@quad.ip.realm.ej.goal.split.second.them.punctuate
+  That’s not to say that you don’t always have all four goals, but changing circumstances determines both how easy or hard they are to reach, and how critical it is to reach them.
+%h3 Goals
+%p
+  Your goals are a combination of your nature (how relatively sensitive you are to different stimuli) and your nurture (whether you were nurtured as an infant to consume or produce more) and are extremely resistant to change without psychopharmacology (changing your nature) or brainwashing (changing your nurture).
+%p
+  Don’t envy the
+  =link_to @quad.opposite.name, type_path(@quad.opposite.path)
+  for having it “easy”. They can and do easily
+  =@quad.ordered_subtypes.map(&:goal).to_sentence.comma
+  but they find it extremely difficult to
+  =@quad.opposite.ordered_subtypes.map(&:goal).to_sentence
+  all of which are easy for you.
+%p
+  If you managed through some combination of drugs and therapy to become your opposite, you wouldn’t be able to relax and take it easy; you’d merely have different problems and have to learn a whole new set of solutions. 
+  That’s not to say that drugs or therapy are not necessary or helpful in some cases, it’s just to say that you cannot change a tendency to gain or lose potential energy into a tendency to lose or gain potential energy, and expect to remain stable.
+%h3 Strength
+%p
+  BipolarType says nothing about how strong you are in any realm or which realms you may need or want to become stronger in.
+-@quad.subtypes.each do |subtype|
+  %p
+    You may start out
+    =subtype.born
+    and become
+    =subtype.bred
+    by
+    =subtype.produce.ing
+    a lot and switching from
+    =subtype.energy
+    to
+    =subtype.strength.punctuate
+    But although stronger
+    =subtype.power.are
+    almost always a good thing, you’ll still have to
+    =subtype.change
+    if you want to
+    =subtype.goal.punctuate

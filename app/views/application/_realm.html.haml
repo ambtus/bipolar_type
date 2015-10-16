@@ -15,6 +15,11 @@
     and/or
     =realm.low_on_energy
   %li
+    stop
+    =realm.produce.ing
+    and start
+    =realm.consume_without_object.ing
+  %li
     =realm.perceive
     and
     =realm.consume
@@ -23,16 +28,34 @@
     =realm.input
   %ul
     %li
-      use
-      =realm.strength
-      to build
-      =realm.power
-      if you were
+      if you stopped because you were
       =realm.worn_out
+      %ul
+        %li
+          use the
+          =realm.strength
+          to build stronger
+          =realm.power
+        %li
+          store the
+          =realm.kinetic_energy
+          as
+          =realm.potential_energy
+          so you can
+          =realm.produce
+          later
     %li
-      store unused
-      =realm.kinetic_energy
-      as
-      =realm.potential_energy
-      if you were not
+      if you stopped because you were
       =realm.low_on_energy
+      %ul
+        %li
+          use the
+          =realm.strength
+          to bolster existing
+          =realm.power
+        %li
+          use the
+          =realm.kinetic_energy
+          to keep
+          =realm.produce.ing
+          now
