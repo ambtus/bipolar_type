@@ -2,18 +2,8 @@
   -unless current_page? type_path(object.path)
     =link_to object.name, type_path(object.path)
 %ul
-  %li
-    in a toss-up between
-    =object.in_or_out.comma
-    you
-    =object.default
+  %li=object.goal
   %ul
-    %li
-      eventually, you will want to
-      =object.goal
-    %li
-      you will have to
-      =object.change
   %li
     morning/midday
     %ul

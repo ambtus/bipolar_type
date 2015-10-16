@@ -17,13 +17,3 @@
     %tr
       -row.each do |subtype|
         %td=link_to subtype.name, type_path(subtype.path)
-%h2=link_to "The Twenty-Four BipolarTypes", type_path("quads")
-%table.center.wide
-  -Quad.ordered.in_groups_of(4).each do |row|
-    %tr
-      -row.each do |quad|
-        %td
-          =link_to quad.name, type_path(quad.path)
-          %ul
-            -quad.subtypes.each do |subtype|
-              %li=subtype.name

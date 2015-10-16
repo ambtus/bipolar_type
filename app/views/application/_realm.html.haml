@@ -14,48 +14,32 @@
     =realm.worn_out
     and/or
     =realm.low_on_energy
+    and/or
+    =realm.perceive
+    =realm.resources
   %li
     stop
     =realm.produce.ing
     and start
     =realm.consume_without_object.ing
   %li
-    =realm.perceive
-    and
     =realm.consume
     =realm.resources
     to gain
     =realm.input
-  %ul
-    %li
-      if you stopped because you were
-      =realm.worn_out
-      %ul
-        %li
-          use the
-          =realm.strength
-          to build stronger
-          =realm.power
-        %li
-          store the
-          =realm.kinetic_energy
-          as
-          =realm.potential_energy
-          so you can
-          =realm.produce
-          later
-    %li
-      if you stopped because you were
-      =realm.low_on_energy
-      %ul
-        %li
-          use the
-          =realm.strength
-          to bolster existing
-          =realm.power
-        %li
-          use the
-          =realm.kinetic_energy
-          to keep
-          =realm.produce.ing
-          now
+    %ul
+      %li
+        =realm.consume
+        =realm.strength
+        to build strong
+        =realm.power
+      %li
+        =realm.consume
+        =realm.energy
+        for
+        =realm.kinetic_energy
+      %li
+        store excess
+        =realm.kinetic_energy
+        as
+        =realm.potential_energy

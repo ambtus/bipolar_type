@@ -13,8 +13,7 @@ table.center {
 }
 td {
   vertical-align: top;
-  border: 1px solid grey;
-  width: 16%
+  border: none
 }
 td.bottom {
   vertical-align: bottom;
@@ -22,6 +21,6 @@ td.bottom {
 td.middle {
   vertical-align: middle;
 }
-td.empty {
-  border: none
+td.bordered {
+  border: 1px solid grey;
 }
