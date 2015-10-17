@@ -2,7 +2,11 @@
   -unless current_page? type_path(object.path)
     =link_to object.name, type_path(object.path)
 %ul
-  %li=object.goal
+  %li
+    to
+    =object.goal
+    you must
+    =object.change
   %ul
   %li
     morning/midday
@@ -23,4 +27,4 @@
         =object.morning.comma
         you’ll just
         =object.morning_backfire
-        the next morning
+        tomorrow 

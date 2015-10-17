@@ -18,7 +18,7 @@ class Subtype
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  %w{in_or_out goal change morning evening evening_backfire morning_backfire default}.each { |method| define_method(method) {realm.gsub(attitude.send(method)) }}
+  %w{love_or_hate in_or_out goal change morning evening evening_backfire morning_backfire default}.each { |method| define_method(method) {realm.gsub(attitude.send(method)) }}
 
   delegate :first, :second, to: :attitude
   def method_missing(method, *args, &block); realm.send(method, *args, &block); end
