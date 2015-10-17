@@ -3,38 +3,59 @@
     =link_to realm.name, type_path(realm.path)
 %ul
   %li
-    use
-    =realm.power
-    and
-    =realm.kinetic_energy
-    to
-    =realm.produce
-  %li
-    be
-    =realm.worn_out.comma
-    =realm.converting_energy.comma
-    and/or
-    =realm.perceive
-    =realm.resources
-  %li
-    stop
+    start
     =realm.produce.ing
-    and start
-    =realm.consume_without_object.ing
-  %li
-    =realm.consume
-    =realm.resources
     %ul
       %li
-        =realm.strength
-        to build strong
+        use
         =realm.power
-      %li
-        =realm.energy
         for
-        =realm.kinetic_energy
+        =realm.generic
+        strength
       %li
-        store excess
+        use
         =realm.kinetic_energy
-        as
+        for
+        =realm.generic
+        energy
+      %li
+        run out of
+        =realm.kinetic_energy
+        and feel
+        =realm.generic.ly
+        tired
+        %ul
+          %li
+            continue to
+            =realm.produce
+          %li
+            feel
+            =realm.losing_potential.erer
+          %li
+            =realm.potential_energy.are
+            being converted back to
+            =realm.kinetic_energy
+    %li
+      stop
+      =realm.produce.ing
+  %li
+    start
+    =realm.consume_without_object.ing
+    %ul
+      %li
+        if you were
+        =realm.weak.comma
+        =realm.strength
+        will make your
+        =realm.power
+        stronger
+      %li
+        if you are
+        =realm.generic.ly
+        full,
+        =realm.energy
+        will be stored as
         =realm.potential_energy
+    %li
+      stop
+      =realm.consume_without_object.ing

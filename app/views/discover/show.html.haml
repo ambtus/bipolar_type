@@ -1,15 +1,20 @@
 - content_for(:title, "Question ##{@answer.number}")
 -if @answer.number < 2
   %p.heading.constrained
-    Choose four: one from each row and column.
+    You will be choosing four: one from each realm and attitude.
 -else
-  %p.heading.constrained
-    Choices in red will reset
+  %p.heading
+    Choices in
+    %span.constrained red
+    will reset
     %span.chosen earlier choices.
+    Choices in
+    %span.free green
+    are in free realms and attitudes.
 %table.center
   -@subtypes.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
         %td{:class => @answer.css(subtype)}
           =link_to subtype.name, discover_path(@answer.next(subtype.path))
-          %p=subtype.short
+          =render "subtype", :subtype => subtype

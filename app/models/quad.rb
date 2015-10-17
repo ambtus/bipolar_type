@@ -23,6 +23,8 @@ class Quad
   def name; subtypes.map(&:mbti).join("‑");end
 
   def opposite; Quad.find(path.reverse); end
+  def twin; Quad.find(realm_letters.values_at(1,0,3,2).join); end
+  def sibling; Quad.find(realm_letters.values_at(2,3,0,1).join); end
 
   Attitude::LETTERS.each_with_index { |path, index| define_method(path) {subtypes[index]}}
 

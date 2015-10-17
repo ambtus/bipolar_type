@@ -1,15 +1,14 @@
 x,s,n,f,t
-generic,physical,mental,spiritual,material
-consume without object,eat,look,listen,earn
-produce,walk,decide,talk,buy
-kinetic energy,glycogen,specifics,emotions,cash
-potential energy,fat,memories,values,savings
-converting energy,hungry,curious,ignored,use savings
-power,muscles,mental models,vocabulary,credit
-worn out,sore,wrong,misunderstood,indebted
 sensory,olfactory,visual,auditory,tactile
-perceive,smell,see,hear,be given
+generic,physical,mental,emotional,financial
+consume without object,eat,look,listen,work
+produce,walk,decide,talk,buy
+power,muscles,mental models,language,credit
+weak,sore,wrong,misunderstood,indebted
 consume,eat,believe,understand,do
-resources,food,sights,stories,work
-strength,protein,results,words,payment plans
+resources,food,sights,stories,tools
+strength,protein,results,words,payments
 energy,carbs,details,intonations,wages
+kinetic energy,glycogen,facts,emotions,cash
+potential energy,fat,knowledge,public opinions,savings
+losing potential,hungry,unsure,trite,poor

@@ -29,6 +29,7 @@ class Realm
 
   def gsub(attitude_string)
     attitude_string.
+    gsub("less potential energy", potential_energy.fewer).
     gsub("potential energy", potential_energy).
     gsub("consuming", consume_without_object.ing).
     gsub("producing", produce.ing).

@@ -35,7 +35,9 @@ class Attitude
 
   def short; "I #{love_or_hate} to #{in_or_out}"; end
 
-  def goal; path.second == "p" ? "lose unwanted potential energy" : "gain wanted potential energy"; end
+  def goal; path.second == "p" ? "lose potential energy" : "gain potential energy"; end
+
+  def want; path.second == "p" ? "less potential energy" : "more potential energy"; end
 
   def change; path.second == "p" ? "consume less and produce more" : "consume more and produce less"; end
 
@@ -78,7 +80,7 @@ class Attitude
     end
   end
 
-  def evening_backfire
+  def evening_relax
     case path
     when "ep"
       "consume more"
