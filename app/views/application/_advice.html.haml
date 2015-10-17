@@ -2,6 +2,7 @@
   -unless current_page? type_path(object.path)
     =link_to object.name, type_path(object.path)
 %ul
+  %li=object.short
   %li
     to
     =object.goal
@@ -9,22 +10,22 @@
     =object.change
   %ul
   %li
-    morning/midday
-    %ul
-      %li=object.morning
-      %li
-        don’t force yourself to
-        =object.evening.comma
-        you’ll just
-        =object.evening_backfire
-        later in the day
-  %li
     afternoon/evening
     %ul
       %li=object.evening
       %li
-        don’t force yourself to
-        =object.morning.comma
-        you’ll just
+        if you force yourself to
+        =object.morning
+        today you will only
         =object.morning_backfire
-        tomorrow 
+        tomorrow
+  %li
+    morning/midday
+    %ul
+      %li=object.morning
+      %li
+        if you can
+        =object.evening.comma
+        you will be able to
+        =object.evening_backfire
+        later in the day

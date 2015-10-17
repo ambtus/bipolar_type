@@ -2,29 +2,31 @@
 %table.center.half
   %tr
     %td
-      %p.heading Monday Morning Depression
-      %p
-        =@quad.ordered_subtypes.map(&:morning).join(", ")
-  %tr
-    %td
       %p.heading Saturday Evening Mania
       %p
         =@quad.ordered_subtypes.map(&:evening).join(", ")
+  %tr
+    %td
+      %p.heading Monday Morning Depression
+      %p
+        =@quad.ordered_subtypes.map(&:morning).join(", ")
 %h2 Subtypes
 =render "subtypes", :subtypes => @quad.subtypes
 %h3 Priorities
 %p
   Your priorities can and do change over time.
-  You always have the same four goals, but changing circumstances determines both how easy or hard they are to reach, and how critical it is to reach them.
-%h3 Envy
+  You always have the same four goals, but circumstances determine how hard or easy they are to reach, and how critical it is to reach them.
+%h3 Manic-Depression
+%p
+  Depression always follows mania.
+  If you can mitigate the mania by following the afternoon/evening suggestions, you may not become depressed enough to need to follow the morning/midday suggestions.
+%h3 Your Opposite
 %p
   Don’t envy the
   =link_to @quad.opposite.name, type_path(@quad.opposite.path)
-  for having it “easy”. They can and do easily
-  =@quad.ordered_subtypes.map(&:goal).to_sentence.comma
-  but they find it extremely difficult to
-  =@quad.opposite.ordered_subtypes.map(&:goal).to_sentence
-  all of which are easy for you.
+  for having it “easy”. They can easily reach
+  %em your
+  goals, but they find it just as difficult to reach their own goals.
 %h3 Strength
 %p
   BipolarType says nothing about how strong you are in any realm or which realms you may need or want to become stronger in.

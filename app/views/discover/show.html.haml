@@ -12,4 +12,4 @@
       -row.each do |subtype|
         %td{:class => @answer.css(subtype)}
           =link_to subtype.name, discover_path(@answer.next(subtype.path))
-          =render "subtype", :subtype => subtype
+          %p=subtype.short

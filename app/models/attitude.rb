@@ -22,7 +22,7 @@ class Attitude
   def default; path.second == "p" ? "consume" : "produce"; end
   def name; [first,second].map(&:capitalize).join; end
 
-  def in_or_out; 
+  def in_or_out;
     case path
     when "ep", "ij"
       "consume"
@@ -32,6 +32,8 @@ class Attitude
   end
 
   def love_or_hate; path.first == "i" ? "hate" : "love"; end
+
+  def short; "I #{love_or_hate} to #{in_or_out}"; end
 
   def goal; path.second == "p" ? "lose unwanted potential energy" : "gain wanted potential energy"; end
 
