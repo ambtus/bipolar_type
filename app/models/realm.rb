@@ -4,7 +4,7 @@ class Realm
   require 'csv'
   arr_of_arrs = CSV.read("config/initializers/realm.csv")
   LETTERS = arr_of_arrs.shift
-  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || [generic.ly,row.first].join(" ")}}
+  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || [generic,row.first].join(" ")}}
 
   def initialize(letter)
     raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
@@ -25,7 +25,7 @@ class Realm
 
   Attitude::LETTERS.each_with_index { |path, index| define_method(path) {subtypes[index]}}
 
-  def name; sensory.capitalize; end
+  def name; generic.capitalize; end
 
   def gsub(attitude_string)
     attitude_string.

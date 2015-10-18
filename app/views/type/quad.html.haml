@@ -1,28 +1,14 @@
 - content_for(:title, @quad.name)
 %h2 Bipolar
-%h3 Mania
-%p=@quad.subtypes.map(&:evening).to_sentence.capitalize.punctuate
-%h3 Depression
-%p
-  Depression always follows mania.
-%p
-  If you didn’t
-  =@quad.subtypes.map(&:evening).to_sentence
-  when you were manic, you will have to
-  =@quad.subtypes.map(&:morning).to_sentence
-  now that you are depressed.
+%p.heading
+  %b When manic:
+  =@quad.subtypes.reverse.map(&:advice).map(&:a_lot).join(", ")
+%p.heading
+  %b When depressed:
+  =@quad.subtypes.map(&:stress).map(&:a_little).join(", ")
 %h2 Type
 =render "subtypes", :subtypes => @quad.subtypes
-%h3 Priorities
-%p
-  Your priorities can and do change over time.
-  You always have the same four subtypes, but your circumstances determine how critical it is to
-  =@quad.subtypes.map(&:goal).to_sentence(:last_word_connector => ", and/or ").comma
-  and your environment determines how difficult it is to do so.
-%h3 Strength
-%p
-  BipolarType is concerned only with energy, and the storage of energy; it says nothing about how strong you are in any realm or in which realms you may need or want to develop more strength.
-%h3 Quick links to other BipolarTypes
+%h3 Quick links to related BipolarTypes
 %dl
   %dt=link_to @quad.opposite.name, type_path(@quad.opposite.path)
   %dd opposite nature, opposite nurture

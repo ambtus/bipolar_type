@@ -2,31 +2,45 @@
   -unless current_page? type_path(object.path)
     =link_to object.name, type_path(object.path)
 %ul
-  %li=object.short
   %li
     I wish I had
     =object.want
+  %li
+    I should
+    =object.stress
+    but
+    =object.obstacle
+%ul
+  %li
+    if you just
+    =object.stress.comma
+    you will also
+    =object.stress_backfire
+    and will only stress yourself out without
+    =object.goal.ing
   %ul
   %li
-    evening (craving alcohol)
+    whenever you can, but especially in the evening:
     %ul
       %li
-        =object.evening
-      %li
-        if you
-        =object.morning
-        now you will only
-        =object.morning_backfire
-        tomorrow
-  %li
-    morning (craving caffeine)
-    %ul
-      %li
-        =object.morning
+        =object.advice
       %li
         the
-        =object.evening.split.second
-        you
-        =object.evening.split.first.comma
-        the sooner you will be able to
-        =object.evening_relax
+        =object.advice.more_you.comma
+        the
+        =object.relax.more_you(object.can_or_must)
+  %li
+    when you have to
+    =object.goal.punctuate(":")
+    %ul
+      %li
+        =object.advice.even
+      %li
+        =object.stress.a_little.comma
+        but mostly in the morning
+      %li
+        the
+        =object.stress.more_you(object.can_or_must).comma
+        the more stressed you will become
+      %li
+        the more stressed you are, the more likely you are to become manic

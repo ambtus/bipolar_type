@@ -32,16 +32,18 @@ class Attitude
   end
 
   def love_or_hate; path.first == "i" ? "hate" : "love"; end
+  def can_or_must; path.first == "i" ? "have to" : "can"; end
 
-  def short; "I #{love_or_hate} to #{in_or_out}"; end
+  def obstacle; "I #{love_or_hate} to #{in_or_out}"; end
 
   def goal; path.second == "p" ? "lose potential energy" : "gain potential energy"; end
+  def anti_goal; path.second == "j" ? "lose potential energy" : "gain potential energy"; end
 
   def want; path.second == "p" ? "less potential energy" : "more potential energy"; end
 
   def change; path.second == "p" ? "consume less and produce more" : "consume more and produce less"; end
 
-  def morning
+  def stress
     case path
     when "ep"
       "consume less"
@@ -54,7 +56,7 @@ class Attitude
     end
   end
 
-  def morning_backfire
+  def stress_backfire
     case path
     when "ep"
       "produce less"
@@ -67,7 +69,7 @@ class Attitude
     end
   end
 
-  def evening
+  def advice
     case path
     when "ep"
       "produce more"
@@ -80,7 +82,7 @@ class Attitude
     end
   end
 
-  def evening_relax
+  def relax
     case path
     when "ep"
       "consume more"

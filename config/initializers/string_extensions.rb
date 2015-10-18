@@ -15,6 +15,12 @@ class String
   def nonparenthetical; self.split(" (").first; end
   def parenthetical_part; self.split(" (").second.chop; end
 
+  def more_you(inject=""); [self.split.last, "you", inject, self.split.first].join(" ").squish; end
+
+  def a_lot; [self.split.first, "a lot", self.split.last].join(" "); end
+  def a_little; [self.split.first, "a little", self.split.last].join(" "); end
+  def even; [self.split.first, "even", self.split.last].join(" "); end
+
   def a_or_an; %w{a e i o u}.include?(self.first) ? "an" : "a"; end
 
   def an; [a_or_an, self].join(" "); end
@@ -30,7 +36,7 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem food intonation the\ right\ answer rhythm public\ opinion}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income hate love influence self\ esteem food intonation the\ right\ answer rhythm public\ opinion shame guilt empathy}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
   def few(inject=''); self.uncountable? ? "little #{inject} #{self}" : "few #{inject} #{self}"; end
