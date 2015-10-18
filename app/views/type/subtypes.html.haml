@@ -3,5 +3,4 @@
   -Subtype.ordered.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
-        %td
-          =render "advice", :object => subtype
+        %td.quarter=render "full", :object => subtype

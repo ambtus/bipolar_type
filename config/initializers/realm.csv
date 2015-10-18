@@ -1,14 +1,22 @@
 x,s,n,f,t
-sensory,olfactory,visual,auditory,tactile
-generic,physical,mental,spiritual,material
-consume without object,eat,look,listen,work
-produce,walk,decide,talk,buy
+generic,physical,mental,musical,financial
+input,eat,look,listen,work
+output,move,predict,communicate,buy
 power,muscles,mental models,vocabulary,credit
-weak,sore,wrong,misunderstood,indebted
-consume,eat,believe,understand,do
-resources,food,sights,stories,tools
-strength,protein,results,lexical meaning,payments
-energy,carbs,details,expressive meaning,wages
+out of strength,sore,wrong,misunderstood,indebted
+consume,eat,see,hear,earn
+strength,protein,results,lyrics,debt repayments
+energy,carbs,details,music,spending money
 kinetic energy,glycogen,facts,emotions,cash
-potential energy,fat,information,values,savings
-losing potential,hungry,unsure,amoral,poor
+potential energy,fat,memories,values,savings
+out of energy,hungry,unsure,bored,purse-pinched
+be strong,lift weights,make decisions,talk,borrow
+be stronger,lift heavier weights,make harder decisions,express more concepts,borrow more money
+be that strong,lift that weight,make that decision,express that concept,borrow that money
+be energetic,walk,choose,emote,shop
+too much energy,fat,trivial,overemotional,loaded
+too little energy,thin,theoretical,bored,broke
+too much strength,strong,smart,eloquent,wealthy
+too little strength,weak,stupid,inarticulate,indebted
+provide for yourself,learn how to cook,turn on the lights,turn on the radio,find a new job
+take care of yourself,stop cooking,turn off the lights,turn off the radio,quit your job

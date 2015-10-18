@@ -1,6 +1,2 @@
 - content_for(:title, 'Attitudes')
-%table.center.wide
-  -Attitude.all.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |attitude|
-        %td=render "advice", :object => attitude
+=render "objects", :objects => Attitude.all

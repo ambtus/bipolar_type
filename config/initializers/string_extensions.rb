@@ -15,12 +15,6 @@ class String
   def nonparenthetical; self.split(" (").first; end
   def parenthetical_part; self.split(" (").second.chop; end
 
-  def more_you(inject=""); [self.split.last, "you", inject, self.split.first].join(" ").squish; end
-
-  def a_lot; [self.split.first, "a lot", self.split.last].join(" "); end
-  def a_little; [self.split.first, "a little", self.split.last].join(" "); end
-  def even; [self.split.first, "even", self.split.last].join(" "); end
-
   def a_or_an; %w{a e i o u}.include?(self.first) ? "an" : "a"; end
 
   def an; [a_or_an, self].join(" "); end
@@ -52,7 +46,7 @@ class String
   def them; self.uncountable? ? "it" : "them"; end
   def were; self.uncountable? ? "was" : "were"; end
   def does; self.uncountable? ? "does" : "do"; end
-  def they_are; [they, are].join(" "); end
+  def they_are; [they, are.split.last].join(" "); end
 
   def it; self == "person" ? "them" : "it"; end
   def that; self == "people" ? "who" : "that"; end

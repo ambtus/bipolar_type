@@ -20,7 +20,7 @@ class Quad
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
   def ordered_subtypes; subtypes.values_at(0,2,1,3); end
-  def name; subtypes.map(&:mbti).join("‑");end
+  def name; subtypes.map(&:name).join("‑");end
 
   def opposite; Quad.find(path.reverse); end
   def twin; Quad.find(realm_letters.values_at(1,0,3,2).join); end

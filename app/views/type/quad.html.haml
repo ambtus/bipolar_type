@@ -2,17 +2,14 @@
 %h2 Bipolar
 %p.heading
   %b When manic:
-  =@quad.subtypes.reverse.map(&:advice).map(&:a_lot).join(", ")
+  =@quad.subtypes.reverse.map(&:relax).join(", ")
 %p.heading
   %b When depressed:
-  =@quad.subtypes.map(&:stress).map(&:a_little).join(", ")
+  =@quad.subtypes.map(&:short_mtboi).join(", ")
 %h2 Type
-=render "subtypes", :subtypes => @quad.subtypes
+=render "objects", :objects => @quad.subtypes
 %h3 Quick links to related BipolarTypes
-%dl
-  %dt=link_to @quad.opposite.name, type_path(@quad.opposite.path)
-  %dd opposite nature, opposite nurture
-  %dt=link_to @quad.twin.name, type_path(@quad.twin.path)
-  %dd same nature, opposite nurture
-  %dt=link_to @quad.sibling.name, type_path(@quad.sibling.path)
-  %dd same nurture, opposite nature
+%ul
+  %li=link_to @quad.opposite.name, type_path(@quad.opposite.path)
+  %li=link_to @quad.twin.name, type_path(@quad.twin.path)
+  %li=link_to @quad.sibling.name, type_path(@quad.sibling.path)

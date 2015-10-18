@@ -18,21 +18,20 @@ class Subtype
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  %w{obstacle goal anti_goal want can_or_must change stress advice relax stress_backfire default time_of_day other_time}.each { |method| define_method(method) {realm.gsub(attitude.send(method)) }}
+  def method_missing(method, *args, &block)
+    if attitude.respond_to? method
+      realm.gsub(attitude.send(method))
+    elsif realm.respond_to? method
+      realm.send(method, *args, &block)
+   else
+     super
+   end
+  end
 
-  delegate :first, :second, to: :attitude
-  def method_missing(method, *args, &block); realm.send(method, *args, &block); end
+  def name; result.capitalize; end
 
-  def name; [first, generic, second].map(&:capitalize).join; end
-  def mbti; [attitude.path.first, realm.path, attitude.path.second].map(&:upcase).join; end
-
-
-  def makes; energy.does + (attitude.path.first == "i" ? " " : " not ") + "make" ; end
-
-
-
-def self.ordered
-   self.all.values_at(0,1,4,5,
+  def self.ordered
+    self.all.values_at(0,1,4,5,
                                2,3,6,7,
                                8,9,12,13,
                                10,11,14,15)

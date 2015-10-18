@@ -1,6 +1,6 @@
 - content_for(:title, @realm.name)
-%table.center.half
+%table.center
   %tr
     %td=render "realm", :realm => @realm
-%h2 subtypes 
-=render "subtypes", :subtypes => @realm.subtypes
+%h2 subtypes
+=render "objects", :objects => @realm.subtypes

@@ -17,82 +17,97 @@ class Attitude
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  def first; path.first == "i" ? "sensitive" : "insensitive"; end
-  def second; path.second == "p" ? "consumer" : "producer"; end
-  def default; path.second == "p" ? "consume" : "produce"; end
-  def name; [first,second].map(&:capitalize).join; end
-
-  def in_or_out;
+  def consumption_preference
     case path
-    when "ep", "ij"
-      "consume"
-    when "ej", "ip"
-       "produce"
-     end
+    when "ep", "ip"
+      "energy"
+    when "ej", "ij"
+      "strength"
+    end
   end
 
-  def love_or_hate; path.first == "i" ? "hate" : "love"; end
-  def can_or_must; path.first == "i" ? "have to" : "can"; end
+  def out_of_something
+    case path
+    when "ep", "ij"
+      "out of strength"
+    when "ej", "ip"
+      "out of energy"
+    end
+  end
 
-  def obstacle; "I #{love_or_hate} to #{in_or_out}"; end
+  def result
+    case path
+    when "ip"
+      "too much energy"
+    when "ej"
+      "too much strength"
+    when "ij"
+      "too little energy"
+    when "ep"
+      "too little strength"
+    end
+  end
 
-  def goal; path.second == "p" ? "lose potential energy" : "gain potential energy"; end
-  def anti_goal; path.second == "j" ? "lose potential energy" : "gain potential energy"; end
-
-  def want; path.second == "p" ? "less potential energy" : "more potential energy"; end
-
-  def change; path.second == "p" ? "consume less and produce more" : "consume more and produce less"; end
+  def name; result.split.map(&:capitalize).join; end
 
   def stress
     case path
     when "ep"
-      "consume less"
+      "input less"
     when "ej"
-      "produce less"
+      "output less"
     when "ip"
-      "produce more"
+      "output more"
     when "ij"
-      "consume more"
+      "input more"
     end
   end
-
-  def stress_backfire
-    case path
-    when "ep"
-      "produce less"
-    when "ej"
-      "consume less"
-    when "ip"
-      "consume more"
-    when "ij"
-      "produce more"
-    end
-  end
-
-  def advice
-    case path
-    when "ep"
-      "produce more"
-    when "ej"
-      "consume more"
-    when "ip"
-      "consume less"
-    when "ij"
-      "produce less"
-    end
-  end
-
   def relax
-    case path
+  case path
     when "ep"
-      "consume more"
+      "output more"
     when "ej"
-      "produce more"
+      "input more"
     when "ip"
-      "produce less"
+      "input less"
     when "ij"
-      "consume less"
+      "output less"
     end
+  end
+  def more_you_relax; [relax.split.last, "you", relax.split.first].join(" "); end
+  def more_you_can_play
+  case path
+    when "ep"
+      "more you will be able to input"
+    when "ej"
+      "more you will be able to output"
+    when "ip"
+      "less you will have to output"
+    when "ij"
+      "less you will have to input"
+    end
+  end
+  def play; [more_you_can_play.split.last, more_you_can_play.split.first].join(" "); end
+  def make_the_best_of_it
+  case path
+    when "ep", "ij"
+      "stop consuming energy and just consume strength"
+    when "ej"
+      "provide for yourself"
+    when "ip"
+      "take care of yourself"
+    end
+  end
+  def short_mtboi
+    make_the_best_of_it.split(" and ").first
+  end
+
+  def method_missing(method, *args, &block)
+    if Realm.generic.respond_to? method
+      Realm.generic.send(method, *args, &block)
+   else
+     super
+   end
   end
 
 end

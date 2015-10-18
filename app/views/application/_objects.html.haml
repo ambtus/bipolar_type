@@ -1,0 +1,5 @@
+%table.center
+  -objects.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |object|
+        %td.half=render "full", :object => object

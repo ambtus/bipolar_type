@@ -2,14 +2,14 @@ table.center {
   margin-left:auto;
   margin-right:auto;
 }
-.narrow {
-  width: 33%
+.quarter {
+  width: 25%
 }
 .half {
   width: 50%
 }
 .wide {
-  width: 70%
+  width: 75%
 }
 td {
   vertical-align: top;

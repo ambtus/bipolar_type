@@ -2,12 +2,11 @@
 %h2 Realm
 =render "realm", :realm => @subtype.realm
 %h2 Attitude
-=render "advice", :object => @subtype.attitude
+=render "full", :object => @subtype.attitude
 %h2 Subtype
-=render "advice", :object => @subtype
+=render "full", :object => @subtype
 %h2 BipolarTypes
 %p.heading=link_to "discover", discover_path("Q2_#{@subtype.path}")
 %ul
   -@subtype.quads.each do |quad|
     %li=link_to quad.name, type_path(quad.path)
-

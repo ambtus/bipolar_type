@@ -1,0 +1,4 @@
+-unless current_page? type_path(object.path)
+  %p.heading=link_to object.name, type_path(object.path)
+%ul=render "object", :object => object
+=render "advice", :object => object
