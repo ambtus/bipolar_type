@@ -3,19 +3,21 @@ generic,physical,mental,musical,financial
 input,eat,look,listen,work
 output,move,predict,communicate,buy
 power,muscles,mental models,vocabulary,credit
-out of strength,sore,wrong,misunderstood,indebted
-consume,eat,see,hear,earn
-strength,protein,results,lyrics,debt repayments
-energy,carbs,details,music,spending money
-kinetic energy,glycogen,facts,emotions,cash
-potential energy,fat,memories,values,savings
-out of energy,hungry,unsure,bored,purse-pinched
+weak,sore,wrong,misunderstood,dunned
+consume,eat,see,hear,make
+strength,protein,patterns,words,payments
+energy,carbs,details,music,money
+kinetic energy,glycogen,facts,notes,cash
+potential energy,fat,memories,tunes,savings
+empty,hungry,unsure,bored,poor
+full,restless,sure,upset,rich
 be strong,lift weights,make decisions,talk,borrow
 be stronger,lift heavier weights,make harder decisions,express more concepts,borrow more money
 be that strong,lift that weight,make that decision,express that concept,borrow that money
+energetic,active,decisive,influential,liquid
 be energetic,walk,choose,emote,shop
-too much energy,fat,trivial,overemotional,loaded
-too little energy,thin,theoretical,bored,broke
+too much energy,fat,trivial,musical,rich
+too little energy,thin,theoretical,bored,poor
 too much strength,strong,smart,eloquent,wealthy
 too little strength,weak,stupid,inarticulate,indebted
 provide for yourself,learn how to cook,turn on the lights,turn on the radio,find a new job

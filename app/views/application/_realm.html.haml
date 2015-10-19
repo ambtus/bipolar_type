@@ -2,111 +2,28 @@
   %p.heading=link_to realm.name, type_path(realm.path)
 %ul
   %li
-    =realm.output.ing
-    %ul
-      %li
-        use
-        =realm.power
-        %ul
-          %li
-            if your
-            =realm.power.are
-            not strong enough, you will not be able to
-            =realm.be_that_strong
-            at all
-          %li
-            if
-            =realm.power.they_are
-            not quite strong enough, you will be able to
-            =realm.be_that_strong.comma
-            but you will be
-            =realm.out_of_strength
-          %li
-            if you never
-            =realm.be_strong.comma
-            your unused
-            =realm.power
-            will eventually atrophy
-      %li
-        use
-        =realm.kinetic_energy
-        %ul
-          %li
-            if you have
-            =realm.potential_energy
-            but no
-            =realm.kinetic_energy.comma
-            you will feel
-            =realm.out_of_energy.erer
-            the longer you
-            =realm.output
-            as your stored
-            =realm.potential_energy.are
-            being converted back to
-            =realm.kinetic_energy
-          %li
-            if you do not have any
-            =realm.kinetic_energy
-            or stored
-            =realm.potential_energy.comma
-            but you continue to
-            =realm.output.comma
-            you will have to cannibalize your
-            =realm.power
-            for
-            =realm.kinetic_energy
-          %li
-            if you cannibalize essential
-            =realm.power
-            and cannot
-            =realm.output.comma
-            you will be
-            =realm.generic.ly
-            dead
+    feeling 
+    =realm.empty
+    means you're burning through 
+    =realm.kinetic_energy
+    and tapping into your
+    =realm.potential_energy
   %li
-    =realm.input.ing
-    %ul
-      %li
-        =realm.consume
-        =realm.strength
-        %ul
-          %li
-            if you were
-            =realm.out_of_strength.comma
-            =realm.consume.ing
-            =realm.strength
-            will make your
-            =realm.power
-            stronger so you can
-            =realm.be_that_strong
-            in the future without being
-            =realm.out_of_strength
-            again
-          %li
-            if you were not
-            =realm.out_of_strength.comma
-            your
-            =realm.power
-            will not become stronger, but neither will
-            =realm.power.they
-            atrophy
-      %li
-        =realm.consume
-        =realm.energy
-        %ul
-          %li
-            the
-            =realm.energy
-            will be converted to
-            =realm.kinetic_energy
-            for current needs
-          %li
-            if you continue to
-            =realm.input
-            after you are
-            =realm.generic.ly
-            full, the excess
-            =realm.kinetic_energy
-            will be stored as
-            =realm.potential_energy
-            for future needs
+    feeling
+    =realm.full
+    means you're full of 
+    =realm.kinetic_energy
+    and need to 
+    =realm.output
+    before you
+    =realm.input
+    again or you will store the excess
+    =realm.kinetic_energy
+    as 
+    =realm.potential_energy
+  %li
+    being 
+    =realm.weak
+    means you need to
+    =realm.consume
+    =realm.strength

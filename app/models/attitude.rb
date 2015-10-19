@@ -37,13 +37,13 @@ class Attitude
 
   def result
     case path
-    when "ip"
+    when "ep"
       "too much energy"
     when "ej"
       "too much strength"
     when "ij"
       "too little energy"
-    when "ep"
+    when "ip"
       "too little strength"
     end
   end

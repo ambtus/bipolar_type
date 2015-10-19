@@ -37,8 +37,8 @@ class Realm
     gsub("input", input).
     gsub("outputting", output.ing).
     gsub("output", output).
-    gsub("out of energy", out_of_energy).
-    gsub("out of strength", out_of_strength).
+    gsub("empty", empty).
+    gsub("weak", weak).
     gsub("be energetic", be_energetic).
     gsub("be strong", be_strong).
     gsub("being energetic", be_energetic.ing).

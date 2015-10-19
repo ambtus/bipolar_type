@@ -28,7 +28,7 @@ class Subtype
    end
   end
 
-  def name; result.capitalize; end
+  def name; result.split.map(&:capitalize).join; end
 
   def self.ordered
     self.all.values_at(0,1,4,5,
