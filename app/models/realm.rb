@@ -29,10 +29,7 @@ class Realm
 
   def gsub(attitude_string)
     attitude_string.
-    gsub("too much energy", too_much_energy).
-    gsub("just enough strength", just_enough_strength).
-    gsub("just enough energy", just_enough_energy).
-    gsub("too little strength", too_little_strength)
+    gsub("generic", generic)
   end
 
 end

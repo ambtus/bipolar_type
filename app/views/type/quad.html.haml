@@ -2,10 +2,8 @@
 %h2 Bipolar
 %p.heading
   %b When manic:
-  =@quad.subtypes.reverse.map(&:relax).join(", ")
 %p.heading
   %b When depressed:
-  =@quad.subtypes.map(&:try_harder).join(", ")
 %h2 Type
 =render "objects", :objects => @quad.subtypes
 %h3 Quick links to related BipolarTypes

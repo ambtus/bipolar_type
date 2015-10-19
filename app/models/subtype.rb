@@ -28,7 +28,7 @@ class Subtype
    end
   end
 
-  def name; result.split.map(&:capitalize).join; end
+  def name; attitude.path.scan(/./).insert(1,realm.path).join.upcase;end
 
   def self.ordered
     self.all.values_at(0,1,4,5,

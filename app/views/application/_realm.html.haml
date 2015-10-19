@@ -2,32 +2,20 @@
   %p.heading=link_to realm.name, type_path(realm.path)
 %ul
   %li
-    feeling
-    =realm.empty
-    means you’re burning through
-    =realm.kinetic_energy
-    and tapping into your
-    =realm.potential_energy
-  %li
-    feeling
-    =realm.full
-    means you’re full of
-    =realm.kinetic_energy
-    and need to
+    output:
     =realm.output
-    before you
-    =realm.consume
-    more
-    =realm.energy
-    or you will store the excess
-    =realm.kinetic_energy
-    as
-    =realm.potential_energy
   %li
-    being
-    =realm.weak
-    means you need to
-    =realm.consume
-    =realm.strength
-    to build
-    =realm.power
+    input:
+    =realm.input
+    %ul
+      %li
+        resources:
+        =realm.resources
+      %li
+        energy:
+        =realm.energy
+      %li
+        strength:
+        =realm.strength
+  
+    

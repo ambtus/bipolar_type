@@ -17,4 +17,4 @@
       -row.each do |subtype|
         %td.quarter{:class => @answer.css(subtype)}
           =link_to subtype.name, discover_path(@answer.next(subtype.path))
-          %ul=render "object", :object => subtype
+          =render "object", :object => subtype

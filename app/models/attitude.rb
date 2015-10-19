@@ -17,46 +17,8 @@ class Attitude
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  def result
-    case path
-    when "ep"
-      "too much energy"
-    when "ej"
-      "just enough strength"
-    when "ij"
-      "just enough energy"
-    when "ip"
-      "too little strength"
-    end
-  end
+  def name; path.upcase; end
 
-  def name; result.split.map(&:capitalize).join; end
-
-  def relax
-    case path
-    when "ep"
-      "output more"
-    when "ej"
-      "input more"
-    when "ij"
-      "output less"
-    when "ip"
-      "input less"
-    end
-  end
-
-  def try_harder
-    case path
-    when "ep"
-      "consume less energy"
-    when "ej"
-      "consume less strength"
-    when "ij"
-      "consume more strength"
-    when "ip"
-      "consume more energy"
-    end
-  end
 
   def method_missing(method, *args, &block)
     if Realm.generic.respond_to? method

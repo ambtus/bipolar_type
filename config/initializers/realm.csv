@@ -1,19 +1,8 @@
 x,s,n,f,t
 generic,physical,mental,spiritual,material
-potential_energy,fat,memories,emotions,savings
-kinetic_energy,glycogen,current facts,??,cash
-empty,hungry,unsure,??,purse-pinched
-full,restless,sure,upset,flush with cash
-power,muscles,mental models,language skills,credit
-consume,eat,look at,listen to,make
-strength,protein,results,words,payments
-energy,carbs,details,intonations,spending money
-output,move,decide,communicate,buy
-input,eat,look,listen,work
-too much energy,fat,knowledgeable,emotional,rich
-just enough strength,strong,smart,eloquent,wealthy
-just enough energy,thin,theoretical,calm,poor
-too little strength,weak,stupid,inarticulate,destitute
-weak,sore,wrong,misunderstood,dunned
-energetic,active,decisive,influential,liquid
-be strong,lift weights,make predictions,express concepts,borrow money
+output,walk,make decisions,talk,achieve goals
+input,eat,look,listen,use tools
+consume,eat,look at,listen to,use
+resources,calories,information,motivation,tools
+energy,carbs,specifics,music,extra features
+strength,protein,patterns,stories,basic functionality
