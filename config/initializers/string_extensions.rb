@@ -6,6 +6,8 @@ class String
   def squash; self.gsub(" ", "");end
   def second; self.chars.second; end
 
+  def insert_word(string); self.split.insert(1,string).join(" "); end
+
   def punctuate(punctuation = "."); self + punctuation; end
   def period; self.punctuate; end
   def comma; self.punctuate(","); end

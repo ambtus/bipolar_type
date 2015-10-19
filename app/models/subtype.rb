@@ -32,9 +32,9 @@ class Subtype
 
   def self.ordered
     self.all.values_at(0,1,4,5,
-                               2,3,6,7,
-                               8,9,12,13,
-                               10,11,14,15)
+                       2,3,6,7,
+                       8,9,12,13,
+                       10,11,14,15)
   end
 
 end

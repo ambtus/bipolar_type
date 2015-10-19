@@ -27,30 +27,12 @@ class Realm
 
   def name; generic.capitalize; end
 
-  def consume_strength; [consume, strength].join(" "); end
-
   def gsub(attitude_string)
     attitude_string.
-    gsub("consume", consume).
-    gsub("consuming", consume.ing).
-    gsub("inputting", input.ing).
-    gsub("input", input).
-    gsub("outputting", output.ing).
-    gsub("output", output).
-    gsub("empty", empty).
-    gsub("weak", weak).
-    gsub("be energetic", be_energetic).
-    gsub("be strong", be_strong).
-    gsub("being energetic", be_energetic.ing).
-    gsub("being strong", be_strong.ing).
     gsub("too much energy", too_much_energy).
-    gsub("too little energy", too_little_energy).
-    gsub("too much strength", too_much_strength).
-    gsub("too little strength", too_little_strength).
-    gsub("provide for yourself", provide_for_yourself).
-    gsub("take care of yourself", take_care_of_yourself).
-    gsub("energy", energy).
-    gsub("strength", strength)
+    gsub("just enough strength", just_enough_strength).
+    gsub("just enough energy", just_enough_energy).
+    gsub("too little strength", too_little_strength)
   end
 
 end
