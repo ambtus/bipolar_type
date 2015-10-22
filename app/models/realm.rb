@@ -18,7 +18,7 @@ class Realm
   def self.generic; REALMS.first; end
   def self.find(letter); REALMS[LETTERS.index(letter)]; end
 
-  def +(attitude); Subtype.find(self.path + attitude.path); end
+  def +(attitude); Subtype.find(attitude.path + self.path); end
   def subtypes; Attitude.all.add(self); end
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
@@ -29,7 +29,13 @@ class Realm
 
   def gsub(attitude_string)
     attitude_string.
-    gsub("generic", generic)
+    gsub("generic", generic).
+    gsub("outputter", outputter).
+    gsub("inputter", inputter).
+    gsub("outputting", output.ing).
+    gsub("inputting", input.ing).
+    gsub("input", input).
+    gsub("stimulus", stimulus)
   end
 
 end

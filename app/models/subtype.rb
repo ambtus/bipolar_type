@@ -1,5 +1,5 @@
 class Subtype
-  LETTERS = Realm::LETTERS[1,4].multiply(Attitude::LETTERS).flatten
+  LETTERS = Attitude::LETTERS.multiply(Realm::LETTERS[1,4]).flatten
 
   def initialize(letters)
     raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
@@ -12,8 +12,8 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def realm; Realm.find(path[0,1]); end
-  def attitude; Attitude.find(path[1,2]); end
+  def realm; Realm.find(path[2,1]); end
+  def attitude; Attitude.find(path[0,2]); end
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
@@ -28,13 +28,6 @@ class Subtype
    end
   end
 
-  def name; attitude.path.scan(/./).insert(1,realm.path).join.upcase;end
-
-  def self.ordered
-    self.all.values_at(0,1,4,5,
-                       2,3,6,7,
-                       8,9,12,13,
-                       10,11,14,15)
-  end
+  def name; short.titleize.squash; end
 
 end
