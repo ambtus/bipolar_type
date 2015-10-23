@@ -1,5 +1,10 @@
 class Attitude
-  LETTERS = %w{ep ej ij ip}
+
+  # touch attitude.rb to reload attitude.csv in development mode
+  require 'csv'
+  arr_of_arrs = CSV.read("config/initializers/attitude.csv")
+  LETTERS = arr_of_arrs.shift
+  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || row.first}}
 
   def initialize(letter)
     raise "#{letter} isn't an Attitude" unless LETTERS.include?(letter)
@@ -9,61 +14,17 @@ class Attitude
   attr_reader :index, :path
 
   ATTITUDES = LETTERS.collect{|letter| Attitude.new(letter)}
-  def self.all; ATTITUDES; end
+  def self.all; ATTITUDES[1,4]; end
   def self.find(letter); ATTITUDES[LETTERS.index(letter)]; end
 
-  def +(realm); Subtype.find(self.path + realm.path); end
+  def +(realm); Subtype.find(realm.path + self.path); end
   def subtypes; Realm.all.add(self); end
 
   LETTERS.each {|r| define_singleton_method(r) {find(r)}}
 
-  def short
-    case path
-    when "ep"
-      "willing inputter"
-    when "ej"
-      "willing outputter"
-     when "ij"
-      "unwilling outputter"
-     when "ip"
-      "unwilling inputter"
-    end
-  end
+  def short; [sensitivity, preference].join(" "); end
+  def result; "#{how_much} stored energy"; end
 
   def name; short.titleize.squash; end
-
-  def manic_advice
-    case path
-    when "ep"
-      "keep outputting"
-    when "ej"
-      "turn down the stimulus"
-     when "ij"
-      "stop outputting"
-     when "ip"
-      "turn off the stimulus"
-    end
-  end
-
-def depressed_advice
-    case path
-    when "ep"
-      "start outputting"
-    when "ej"
-      "turn up the stimulus"
-     when "ij"
-      "start outputting"
-     when "ip"
-      "turn on the stimulus"
-    end
-  end
-
-  def method_missing(method, *args, &block)
-    if Realm.generic.respond_to? method
-      Realm.generic.send(method, *args, &block)
-   else
-     super
-   end
-  end
 
 end

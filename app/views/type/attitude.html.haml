@@ -1,6 +1,4 @@
 - content_for(:title, @attitude.name)
-%table.center.half
-  %tr
-    %td=render "full", :object => @attitude
+=render "attitude", :attitude => @attitude
 %h2 subtypes
-=render "objects", :objects => @attitude.subtypes
+=render "subtypes", :subtypes => @attitude.subtypes

@@ -1,17 +1,11 @@
 - content_for(:title, @quad.name)
 %h2 Bipolar
-%p.heading
-  %b When manic:
-  (last thing Saturday night)
-  %br
-  =@quad.manic_advice.join(", ")
-%p.heading
-  %b When depressed:
-  (first thing Monday morning)
-  %br
-  =@quad.depressed_advice.join(", ")
+%h3 Mania
+=render "manias", :subtypes => @quad.subtypes
+%h3 Depression
+=render "depressions", :subtypes => @quad.subtypes
 %h2 Type
-=render "objects", :objects => @quad.subtypes
+=render "subtypes", :subtypes => @quad.subtypes
 %h3 Quick links to related BipolarTypes
 %ul
   %li=link_to @quad.opposite.name, type_path(@quad.opposite.path)

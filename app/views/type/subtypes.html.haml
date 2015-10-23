@@ -1,6 +1,6 @@
 - content_for(:title, 'Subtypes')
 %table.center
-  -Subtype.ordered.in_groups_of(4).each do |row|
+  -Subtype.all.in_groups_of(4).each do |row|
     %tr
       -row.each do |subtype|
-        %td.quarter=render "full", :object => subtype
+        %td.quarter=render "subtype", :subtype => subtype

@@ -1,0 +1,41 @@
+%p
+  Don't 
+  =subtype.should
+  =subtype.should_action.ing.comma
+  just
+  =subtype.alternative
+  =subtype.alternative_action.ing.punctuate
+%p
+  You 
+  =subtype.strong
+  to
+  =subtype.action.punctuate
+  You only
+  =subtype.weak
+  to
+  =subtype.reaction.punctuate
+%p
+  It’s crazy to 
+  =subtype.should
+  doing something you 
+  =subtype.strong
+  just to 
+  =subtype.alternative_opposite
+  something you only 
+  =subtype.weak.punctuate
+%p
+  Yes, you want to 
+  =subtype.action
+  =subtype.delta
+  than 
+  %em average,
+  but you are also willing to 
+  %em=subtype.reaction
+  =subtype.delta  
+  than average.
+%p
+  Just
+  =subtype.alternative
+  =subtype.reaction.ing.punctuate
+-unless current_page? type_path(subtype.path)
+  %p.heading=link_to subtype.name, type_path(subtype.path)

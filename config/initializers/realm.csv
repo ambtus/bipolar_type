@@ -1,12 +1,5 @@
-x,s,n,t,f
-generic,physical,mental,material,spiritual
-output,walk,use your head,use your hands,talk
-outputter,walker,thinker,worker,talker
-input,eat,look,feel,listen
-inputter,eater,looker,achiever,listener
-consume,eat,look at,feel,listen to
-resources,calories,information,pressure,motivation
-energy,carbs,specifics,pain,music
-empty,hungry,curious,free of pain,bored
-strength,protein,patterns,pleasure,stories
-stimulus,smells,lights,heat,sound
+x,s,n,f,t
+generic,physical,mental,spiritual,material
+consume,eat,look,listen,work
+produce,walk,decide,talk,shop
+energy,fat,facts,emotions,savings

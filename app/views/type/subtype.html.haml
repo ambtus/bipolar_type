@@ -2,9 +2,9 @@
 %h2 Realm
 =render "realm", :realm => @subtype.realm
 %h2 Attitude
-=render "full", :object => @subtype.attitude
+=render "attitude", :attitude => @subtype.attitude
 %h2 Subtype
-=render "full", :object => @subtype
+=render "subtype", :subtype => @subtype
 %h2 BipolarTypes
 %p.heading=link_to "discover", discover_path("Q2_#{@subtype.path}")
 %ul

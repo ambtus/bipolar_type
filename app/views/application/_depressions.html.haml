@@ -1,0 +1,7 @@
+%table.center
+  %caption
+    %p.half Depression (being understimulated without the actual use of sedatives) is a time when you are much less sensitive to stimulation, which makes you feel like you have much less energy. For this reason, despite consuming more, you produce less.
+  -subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half=render "depression", :subtype => subtype
