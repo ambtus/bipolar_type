@@ -1,4 +1,12 @@
 - content_for(:title, @quad.name)
+%h2 Take Away Messages
+%table.center
+  -@quad.subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half
+          =subtype.alternative
+          =subtype.reaction.ing
 %h2 Bipolar
 %h3 Mania
 =render "manias", :subtypes => @quad.subtypes
