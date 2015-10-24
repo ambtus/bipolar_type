@@ -19,7 +19,7 @@ class Quad
   def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
-  def name; subtypes.map(&:mbti).join("-");end
+  def name; subtypes.map(&:name).join("-");end
 
   def manic_advice; subtypes.reverse.map(&:manic_advice) + ["don’t try to sleep until you are so tired you cannot #{ep.produce} any more"] ; end
 

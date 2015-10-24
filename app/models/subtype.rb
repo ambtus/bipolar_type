@@ -23,9 +23,7 @@ class Subtype
   def attitude; Attitude.find(path[1,2]); end
   def quads; Quad.all.select{|q| q.subtypes.include?(self)}; end
 
-  def mbti; [attitude.path.first,realm.path,attitude.path.second].join.upcase; end
-
-  def name; mbti; end
+  def name; [attitude.path.first,realm.path,attitude.path.second].join.upcase; end
 
   def short; [attitude.sensitivity,realm.generic,attitude.preference].join(" "); end
 

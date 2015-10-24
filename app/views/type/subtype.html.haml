@@ -1,10 +1,13 @@
 - content_for(:title, @subtype.name)
+=render "subtype", :subtype => @subtype
 %h2 Realm
 =render "realm", :realm => @subtype.realm
 %h2 Attitude
 =render "attitude", :attitude => @subtype.attitude
-%h2 Subtype
-=render "subtype", :subtype => @subtype
+%h2 Mania
+=render "mania", :subtype => @subtype
+%h2 Depression
+=render "depression", :subtype => @subtype
 %h2 BipolarTypes
 %p.heading=link_to "discover", discover_path("Q2_#{@subtype.path}")
 %ul

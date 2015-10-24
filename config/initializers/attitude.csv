@@ -14,8 +14,8 @@ alternative_opposite,avoid,avoid,continue,continue
 delta,more than,more than,less than,less than
 energy affect,excess,needed,unneeded,critical
 mania effect,great,bad,good,terrible
-mania output affect,dislike,love,hate,like
-mania input affect,hate,like,dislike,love
+mania output affect,sore,competent,irritable,euphoric
+mania input affect,hungry,powerful,ungrateful,independent
 depression effect,terrible,good,bad,great
-depression input affect,love,dislike,like,hate
-depression output affect,like,hate,love,dislike
+depression input affect,bored,weak,grateful,dependent
+depression output affect,boring,incompetent,loved,stifled

@@ -1,5 +1,4 @@
 - content_for(:title, @quad.name)
-%h2 Take Away Messages
 %table.center
   -@quad.subtypes.in_groups_of(2) do |row|
     %tr
@@ -7,14 +6,14 @@
         %td.half
           =subtype.alternative
           =subtype.reaction.ing
+%h2 Type
+=render "subtypes", :subtypes => @quad.subtypes
 %h2 Bipolar
 %h3 Mania
 =render "manias", :subtypes => @quad.subtypes
 %h3 Depression
 =render "depressions", :subtypes => @quad.subtypes
-%h2 Type
-=render "subtypes", :subtypes => @quad.subtypes
-%h3 Quick links to related BipolarTypes
+%h2 Some related BipolarTypes
 %ul
   %li=link_to @quad.opposite.name, type_path(@quad.opposite.path)
   %li=link_to @quad.twin.name, type_path(@quad.twin.path)
