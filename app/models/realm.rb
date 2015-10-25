@@ -28,7 +28,7 @@ class Realm
   def name; sensory.capitalize; end
 
   def strong_input; strength.split(/ instead of /).first.split.last; end
-  def energetic_input; strength.split(/ instead of /).last; end
+  def energetic_input; strength.split(/ instead of /).last.split.last; end
 
   def gsub(attitude_string)
     attitude_string.
