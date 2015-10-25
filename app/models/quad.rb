@@ -19,11 +19,7 @@ class Quad
   def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
-  def name; subtypes.map(&:name).join("-");end
-
-  def manic_advice; subtypes.reverse.map(&:manic_advice) + ["don’t try to sleep until you are so tired you cannot #{ep.produce} any more"] ; end
-
-def depressed_advice; subtypes.map(&:depressed_advice) + ["don’t #{ep.consume} until after you’ve #{ep.produce.en} and are #{ep.empty} again"] ; end
+  def name; subtypes.map(&:tla).join("-");end
 
   def opposite; Quad.find(path.reverse); end
   def twin; Quad.find(realm_letters.values_at(1,0,3,2).join); end

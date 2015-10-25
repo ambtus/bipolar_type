@@ -10,6 +10,7 @@
 =render "depression", :subtype => @subtype
 %h2 BipolarTypes
 %p.heading=link_to "discover", discover_path("Q2_#{@subtype.path}")
-%ul
+%dl
   -@subtype.quads.each do |quad|
-    %li=link_to quad.name, type_path(quad.path)
+    %dt=link_to quad.name, type_path(quad.path)
+    %dd=(quad.subtypes - [@subtype]).map(&:name).join(", ")
