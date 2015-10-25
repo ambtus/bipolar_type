@@ -2,11 +2,18 @@
   %p.heading=link_to realm.name, type_path(realm.path)
 %ul
   %li
+    produce:
+    =realm.produce
+  %li
+    consume:
+    =realm.consume
+    %ul
+      %li
+        strength:
+        =realm.strong_input
+      %li
+        energy:
+        =realm.energetic_input
+  %li
     stored energy:
     =realm.energy
-  %li
-    gain:
-    =realm.consume
-  %li
-    use:
-    =realm.produce

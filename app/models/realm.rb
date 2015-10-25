@@ -27,6 +27,9 @@ class Realm
 
   def name; generic.capitalize; end
 
+  def strong_input; strength.split(/ instead of /).first.split.last; end
+  def energetic_input; strength.split(/ instead of /).last; end
+
   def gsub(attitude_string)
     attitude_string.
     gsub("energy", energy).
