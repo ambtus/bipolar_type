@@ -3,9 +3,7 @@
   -@quad.subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
-        %td.half
-          =subtype.alternative
-          =subtype.reaction.ing
+        %td.half=subtype.advice
 %h2 Type
 =render "subtypes", :subtypes => @quad.subtypes
 %h2 Bipolar

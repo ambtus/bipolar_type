@@ -27,4 +27,6 @@ class Attitude
 
   def name; short.titleize.squash; end
 
+  def advice; [alternative, reaction.ing].join(" "); end
+
 end

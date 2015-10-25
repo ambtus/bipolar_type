@@ -29,6 +29,8 @@ class Subtype
 
   def name; short.titleize.squash; end
 
+  def advice; [alternative, reaction.ing].join(" "); end
+
   def result
     case attitude.how_much
     when "lots of"

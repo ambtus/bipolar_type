@@ -19,7 +19,7 @@ class Quad
   def realm_letters; path.scan(/./); end
   def realms; realm_letters.collect{|l| Realm.find(l)}; end
   def subtypes; realms.add(Attitude.all); end
-  def name; subtypes.map(&:tla).join("-");end
+  def name; subtypes.map(&:tla).join("•");end
 
   def opposite; Quad.find(path.reverse); end
   def twin; Quad.find(realm_letters.values_at(1,0,3,2).join); end
