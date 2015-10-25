@@ -25,7 +25,7 @@ class Realm
 
   Attitude::LETTERS[1,4].each_with_index { |path, index| define_method(path) {subtypes[index]}}
 
-  def name; generic.capitalize; end
+  def name; sensory.capitalize; end
 
   def strong_input; strength.split(/ instead of /).first.split.last; end
   def energetic_input; strength.split(/ instead of /).last; end

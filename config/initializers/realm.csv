@@ -1,5 +1,6 @@
-x,p,m,e,f
-generic,physical,mental,emotional,financial
+x,g,v,a,t
+sensory,gustatory,visual,auditory,tactile
+generic,physical,mental,spiritual,material
 consume,eat,look,listen,work
 produce,walk,decide,talk,shop
 energy,fat,facts,emotions,savings

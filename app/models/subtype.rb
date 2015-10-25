@@ -25,7 +25,7 @@ class Subtype
 
   def tla; [attitude.path.first,realm.path,attitude.path.second].join.upcase; end
 
-  def short; [attitude.sensitivity,realm.generic,attitude.preference].join(" "); end
+  def short; [attitude.sensitivity,realm.sensory,attitude.preference].join(" "); end
 
   def name; short.titleize.squash; end
 
