@@ -17,9 +17,3 @@
     %tr
       -row.each do |subtype|
         %td.quarter.none=link_to subtype.name, type_path(subtype.path)
-%h2=link_to "The Twenty Four Bipolartypes", type_path("quads")
-%table.center
-  -Quad.all.in_groups_of(6).each do |row|
-    %tr
-      -row.each do |quad|
-        %td.narrow.none=link_to quad.name, type_path(quad.path)
