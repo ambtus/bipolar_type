@@ -17,7 +17,7 @@ delta,more than,more than,less than,less than
 energy affect,excess,needed,unneeded,critical
 mania effect,great,bad,good,disastrous
 mania output affect,sore,competent,irritable,euphoric
-mania input affect,hungry,powerful,ungrateful,independent
+mania input affect,hungry,powerful,ungrateful,free
 depression effect,terrible,good,bad,great
-depression input affect,bored,weak,grateful,dependent
-depression output affect,boring,incompetent,loved,stifled
+depression input affect,satisfied,weak,appreciative,stressed
+depression output affect,comfortable,incompetent,happy,deprived
