@@ -3,9 +3,7 @@
   =@quad.advice.capitalize.punctuate("!")
 %h2 Problem
 -@quad.pairs.each do |pair|
-  %h3
-    =pair.name
-    ==(#{pair.path[1,2].upcase})
+  %h3=pair.name
   =render "pair", :pair => pair
 %h2 Solution
 -@quad.pairs.each do |pair|
