@@ -1,0 +1,14 @@
+- content_for(:title, @pair.name)
+=render "pair", :pair => @pair
+%p
+  To a lesser extent, you also fail to differentiate
+  =@pair.alt1.subtype.generic
+  =@pair.alt1.subtype.put
+  from 
+  =@pair.alt1.realm.generic 
+  =@pair.alt1.subtype.put.punctuate
+  They are not quite as much of a problem for you, usually, but you are also too
+  %ul
+    -@pair.alts.each do |pair|
+      %li
+        =link_to pair.name, type_path(pair.path.chop + @pair.path)

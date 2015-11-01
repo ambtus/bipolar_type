@@ -5,6 +5,8 @@ class String
   def chip; self[1..-1]; end
   def squash; self.gsub(" ", "");end
   def second; self.chars.second; end
+  def third; self.chars.third; end
+  def fourth; self.chars.fourth; end
 
   def insert_word(string); self.split.insert(1,string).join(" "); end
 
@@ -146,10 +148,10 @@ class String
   end
 
 
-  IRREGULAR = %w{be see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose give}
+  IRREGULAR = %w{be see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose give get}
   def irregular?; IRREGULAR.include?(self); end
-  def past; %w{been saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost gave}[IRREGULAR.index(self)]; end
-  def perfect; %w{been seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost given}[IRREGULAR.index(self)]; end
+  def past; %w{been saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost gave got}[IRREGULAR.index(self)]; end
+  def perfect; %w{been seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost given gotten}[IRREGULAR.index(self)]; end
 
   def ed
     first, second = self.split("/")

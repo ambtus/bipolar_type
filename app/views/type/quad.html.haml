@@ -1,22 +1,26 @@
 - content_for(:title, @quad.name)
-%table.center
-  -@quad.subtypes.in_groups_of(2) do |row|
-    %tr
-      -row.each do |subtype|
-        %td.half=subtype.advice
-%h2 Type
-=render "subtypes", :subtypes => @quad.subtypes
-%h2 Bipolar
-%p
-  Manic-Depression, or bipolar disorder, is classified as an
-  %em affective
-  disorder. This is because your affect (emotion or desire, especially as influencing behavior or action) during an episode is “illogical”. It is in direct conflict or opposition to the objective result of your behavior. In other words, you feel bad when your behavior is creating good effects, and you feel good when your behavior is creating bad effects.
-%h3 Mania
-=render "manias", :subtypes => @quad.subtypes
-%h3 Depression
-=render "depressions", :subtypes => @quad.subtypes
-%h2 Some related BipolarTypes
+%p.heading
+  =@quad.advice.capitalize.punctuate("!")
+%h2 Problem
+-@quad.pairs.each do |pair|
+  %h3
+    =pair.name
+    ==(#{pair.path[1,2].upcase})
+  =render "pair", :pair => pair
+%h2 Solution
+-@quad.pairs.each do |pair|
+  %h3=pair.name
+  =render "pair2", :pair => pair
+%h2 Links
 %ul
-  %li=link_to @quad.opposite.name, type_path(@quad.opposite.path)
-  %li=link_to @quad.twin.name, type_path(@quad.twin.path)
-  %li=link_to @quad.sibling.name, type_path(@quad.sibling.path)
+  %li
+    -@quad.subtypes.each do |subtype|
+      =link_to subtype.name, type_path(subtype.path)
+    (subtypes)
+  -%w{flipped reversed swapped opposite}.each do |kind|
+    %li
+      =link_to @quad.send(kind).name, type_path(@quad.send(kind).path)
+      ==(#{kind})
+    %ul
+      -@quad.send(kind).pairs.each do |pair|
+        %li=link_to pair.name, type_path(pair.path)

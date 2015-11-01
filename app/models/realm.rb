@@ -21,22 +21,8 @@ class Realm
   def +(attitude); Subtype.find(self.path + attitude.path); end
   def subtypes; Attitude.all.add(self); end
 
-  LETTERS.each {|r| define_singleton_method(r) {find(r)}}
+  def name; generic.capitalize; end
 
-  Attitude::LETTERS[1,4].each_with_index { |path, index| define_method(path) {subtypes[index]}}
-
-  def name; sensory.capitalize; end
-
-  def strong_input; strength.split(/ instead of /).first.split.last; end
-  def energetic_input; strength.split(/ instead of /).last.split.last; end
-
-  def gsub(attitude_string)
-    attitude_string.
-    gsub("energy", energy).
-    gsub("consuming", consume.ing).
-    gsub("consume", consume).
-    gsub("producing", produce.ing).
-    gsub("produce", produce)
-  end
+  def others; Realm.all - [self]; end
 
 end

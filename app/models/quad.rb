@@ -1,38 +1,34 @@
 # Encoding: utf-8
 class Quad
-  def self.my_path; Realm::LETTERS[1,4].join; end
-  def self.first; Quad.find(my_path); end
-
-  LETTERS = Realm::LETTERS[1,4].permutation(4).map(&:join)
+  def self.my_path; "fntsp"; end
+  def self.first; Quad.new(my_path); end
 
   def initialize(letters)
-    raise "#{letters} isn't a Quad" unless LETTERS.include?(letters)
-    @index = LETTERS.index(letters)
     @path = letters
   end
   attr_reader :path
 
-  QUADS = LETTERS.collect{|letters| Quad.new(letters)}
-  def self.all; QUADS; end
-  def self.find(letters); QUADS[LETTERS.index(letters)]; end
+  def pair1; Pair.find(path[2,3]); end
+  def p?; pair1.p?; end
+  def pair2_end; p? ? "j" : "p"; end
+  def pair2; Pair.find(path[0,2] + pair2_end); end
+  def pairs; [pair1, pair2]; end
+  def name; pairs.map(&:name).join(", "); end
+  def subtypes; pairs.map(&:subtypes).flatten; end
+  def advice; pairs.map(&:advice).join(", "); end
 
-  def realm_letters; path.scan(/./); end
-  def realms; realm_letters.collect{|l| Realm.find(l)}; end
-  def subtypes; realms.add(Attitude.all); end
-  def name; subtypes.map(&:tla).join("•");end
+  def flipped_path; pairs.first.path.chop + pairs.second.path; end
+  def flipped; Quad.new(flipped_path); end
 
-  def opposite; Quad.find(path.reverse); end
-  def twin; Quad.find(realm_letters.values_at(1,0,3,2).join); end
-  def sibling; Quad.find(realm_letters.values_at(2,3,0,1).join); end
+  def reversed_pairs; pairs.map(&:reversed); end
+  def reversed_path; reversed_pairs.first.path.chop + reversed_pairs.second.path; end
+  def reversed; Quad.new(reversed_path); end
 
-  Attitude::LETTERS.each_with_index { |path, index| define_method(path) {subtypes[index]}}
+  def swapped_path; path.first + path.third + path.second + path.fourth + path.last; end
+  def swapped; Quad.new(swapped_path); end
+  def swapped_pairs; swapped.pairs; end
 
-Realm::LETTERS.each { |path, index| define_method(path) {subtypes.find{|s| s.realm.path == path}}}
-
-  def self.ordered
-    every_sixth = 6.times.to_a.multiply([0,6,12,18]).flatten
-    self.all.values_at(*every_sixth)
-  end
-
+  def opposite_path; p? ? path.chop + "j" : path.chop + "p"; end
+  def opposite; Quad.new(opposite_path); end
 end
 

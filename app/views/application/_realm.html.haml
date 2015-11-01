@@ -1,23 +1,29 @@
--unless current_page? type_path(realm.path)
-  %p.heading=link_to realm.name, type_path(realm.path)
+%h2=realm.name
+%ul
+  -%w{output resources input energy }.each do |term|
+    %li
+      =term.punctuate(":")
+      =realm.send(term)
+  %ul
+    -%w{empty full}.each do |term|
+      %li
+        =term.punctuate(":")
+        =realm.send(term)
+%h3 Subtypes
 %ul
   %li
-    consume:
-    =realm.consume
-    %ul
-      %li
-        strength:
-        =realm.strong_input
-      %li
-        energy:
-        =realm.energetic_input
+    I am too
+    =link_to(realm.full, type_path(realm.path + "p")).punctuate(";")
+    I can’t
+    =realm.input
+    as much as I want to
+    =realm.input
+    ==(#{realm.path.upcase}P)
   %li
-    produce:
-    =realm.produce
-    %ul
-      %li
-        expend:
-        =realm.expend
-      %li
-        stored energy:
-        =realm.energy
+    I am too
+    =link_to(realm.empty, type_path(realm.path + "j")).punctuate(";")
+    I can’t
+    =realm.output
+    as much as I want to
+    =realm.output
+    ==(#{realm.path.upcase}J)

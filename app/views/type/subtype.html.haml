@@ -1,16 +1,46 @@
 - content_for(:title, @subtype.name)
-=render "subtype", :subtype => @subtype
-%h2 Realm
-=render "realm", :realm => @subtype.realm
-%h2 Attitude
-=render "attitude", :attitude => @subtype.attitude
-%h2 Mania
-=render "mania", :subtype => @subtype
-%h2 Depression
-=render "depression", :subtype => @subtype
-%h2 BipolarTypes
-%p.heading=link_to "discover", discover_path("Q2_#{@subtype.path}")
-%dl
-  -@subtype.quads.each do |quad|
-    %dt=link_to quad.name, type_path(quad.path)
-    %dd=(quad.subtypes - [@subtype]).map(&:name).join(", ")
+%p
+  You are
+  =@subtype.result.er
+  than you want to be because you have not perfectly differentiated the
+  =@subtype.generic
+  realm from other realms.
+%p
+  If you have not yet differentiated
+  =@subtype.generic
+  =@subtype.put
+  from
+  =@subtype.put
+  in some other realm, then instead of
+  =@subtype.putting
+  more, you try to
+  =@subtype.change
+  =@subtype.energy
+  by
+  %ul
+    -@subtype.pairs.each do |pair|
+      %li
+        =pair.realm.send(@subtype.put).ing
+        more:
+        =link_to pair.name, type_path(pair.path)
+%p
+  If you know that
+  =@subtype.energy
+  can only be
+  =@subtype.change.en
+  by
+  =@subtype.putting.comma
+  then instead of
+  =@subtype.other_putting
+  to
+  =@subtype.other_change
+  =@subtype.energy
+  you are
+  =@subtype.other_putting
+  to
+  =@subtype.other_change
+  %ul
+    -@subtype.alt_pairs.each do |pair|
+      %li
+        =pair.subtype.energy.punctuate(":")
+        =link_to pair.name, type_path(pair.path)
