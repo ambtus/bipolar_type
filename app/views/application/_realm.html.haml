@@ -1,27 +1,25 @@
-%h2=realm.name
-%ul
-  -%w{output resources input energy }.each do |term|
-    %li
-      =term.punctuate(":")
-      =realm.send(term)
-  %ul
-    -%w{empty full}.each do |term|
-      %li
-        =term.punctuate(":")
-        =realm.send(term)
-%h3 Subtypes
-%ul
-  %li
-    I am too
-    =link_to(realm.full, type_path(realm.path + "p")).punctuate(";")
+%td.third
+  %p.heading
+    =realm.kind.capitalize
+  %dl
+    -%w{input energy output}.each do |term|
+      =render "li", :term => term, :realm => realm
+%td.third
+  %p.heading
+    My
+    =realm.location
+    is somewhere between:
+  %dl
+    -%w{ low high }.each do |term|
+      =render "li", :term => term, :realm => realm
+%td.third
+  %p.heading
     I can’t
-    =realm.input
-    as much as I want to
-    =realm.input
-  %li
-    I am too
-    =link_to(realm.empty, type_path(realm.path + "j")).punctuate(";")
-    I can’t
-    =realm.output
-    as much as I want to
-    =realm.output
+    =realm.act.punctuate(";")
+    my
+    =realm.location
+    is too…
+  %dl
+    -realm.subtypes.each do |subtype|
+      %dt=subtype.attitude.tendency
+      %dd=link_to subtype.tendency, type_path(subtype.path)

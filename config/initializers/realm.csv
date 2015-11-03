@@ -1,8 +1,14 @@
-x,s,n,f,t
-generic,physical,mental,verbal,financial
-input,eat,look,listen,work
-output,move,decide,talk,shop
-energy,calories,knowledge,emotions,money
-resources,food,information,stories,jobs
-full,fat,smart,hysterical,rich
-empty,thin,stupid,calm,poor
+x,sp,sj,nf,nt
+kind,gustatory,tactile,auditory,visual
+gain,eat,work with,listen to,look at
+resources,food,tools,stories,results
+energy,calories,money,emotions,information
+location,body,house,heart,mind
+use,burn,use,express,use
+change,go,buy,influence,solve
+objects,places,luxuries,people,problems
+act,move,shop,talk,decide
+empty,emaciated,cluttered,uncaring,ignorant
+low,thin,luxurious,calm,theoretical
+high,well-nourished,uncluttered,caring,knowledgeable
+full,fat,spartan,hysterical,trivial

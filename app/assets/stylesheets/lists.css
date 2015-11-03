@@ -1,5 +1,6 @@
 ul, dl {
   text-align: left;
+  list-style-type: none;
 }
 dt, dd {
   display: inline;

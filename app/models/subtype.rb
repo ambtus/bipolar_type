@@ -1,5 +1,5 @@
 class Subtype
-  LETTERS = Realm::LETTERS[1,4].multiply(%w{p j}).flatten
+  LETTERS = Attitude::LETTERS.multiply(Realm::LETTERS[1,4]).flatten
 
   def initialize(letters)
     raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
@@ -12,28 +12,28 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def realm; Realm.find(path.first); end
+  def <=>(other_subtype); realm.path <=> other_subtype.realm.path; end
 
-  delegate :generic, :energy, :resources, to: :realm
+  def realm; Realm.find(path[1,2]); end
+  def attitude; Attitude.find(path.first); end
 
-  def p?; path.last == "p" ; end
+  def opposite; Subtype.find(attitude.opposite.path + realm.path); end
 
-  def result; p? ? realm.full : realm.empty ; end
-  def goal; p? ? realm.empty : realm.full ; end
-  def name; result.capitalize; end
+  delegate :behavior, :behavior2, :normalize, :recover, to: :attitude
 
-  def put; p? ? "output" : "input"; end
+  %w{tendency goal short short2 behave behave2}.each {|m| define_method(m) { realm.send(attitude.send(m)) }}
 
-  def putting; p? ? realm.output.ing : realm.input.ing; end
-  def other_putting; p? ? realm.input.ing : realm.output.ing; end
+  def name; tendency.capitalize; end
 
-  def change; p? ? "get rid of" : "gain"; end
-  def other_change; p? ? "gain" : "get rid of"; end
+  def paths; realm.others.map(&:path).add(self.path); end
+  def outputs; paths.collect{|p| Pair.find("i" + p)}; end
+  def inputs; paths.collect{|p| Pair.find("e" + p)}; end
 
-  def pairs; realm.others.collect{|r| Pair.find(r.path + path)}; end
-
-  def alt_end; p? ? "j" : "p"; end
-
-  def alt_pairs; realm.others.collect{|r| Pair.find(path.first + r.path + alt_end)}; end
-
+  def method_missing(meth)
+    if realm.respond_to?(meth)
+      realm.send(meth)
+    else
+      super
+    end
+  end
 end

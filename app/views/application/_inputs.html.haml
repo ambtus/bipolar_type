@@ -1,0 +1,12 @@
+You don’t want to
+=subtype.gain1
+so much but you…
+%ul
+  -pairs.each do |pair|
+    %li
+      need more
+      =pair.reason.energy.colon
+      -if @pair
+        =link_to pair.name, type_path(pair.path + @pair.path)
+      -else
+        =link_to pair.name, type_path(pair.path)

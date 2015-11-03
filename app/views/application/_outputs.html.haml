@@ -1,0 +1,9 @@
+You would like to
+=subtype.output.more
+but you don’t want to…
+%ul
+  -pairs.each do |pair|
+    %li
+      waste any
+      =pair.reason.energy.colon
+      =link_to pair.name, type_path(pair.path)

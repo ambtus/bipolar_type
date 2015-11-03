@@ -10,9 +10,12 @@ class String
 
   def insert_word(string); self.split.insert(1,string).join(" "); end
 
+  def more; insert_word("more"); end
+
   def punctuate(punctuation = "."); self + punctuation; end
   def period; self.punctuate; end
   def comma; self.punctuate(","); end
+  def colon; self.punctuate(":"); end
 
   def parenthetical; "(#{self})"; end
   def parenthetical?; self.match(/\(/); end
@@ -40,7 +43,6 @@ class String
   def few(inject=''); self.uncountable? ? "little #{inject} #{self}" : "few #{inject} #{self}"; end
   def many(inject=''); self.uncountable? ? "much #{inject} #{self}" : "many #{inject} #{self}"; end
   def fewer(inject=''); self.uncountable? ? "less #{inject} #{self}" : "fewer #{inject} #{self}"; end
-  def more(inject=''); self.uncountable? ? "more #{inject} #{self}" : "more #{inject} #{self}"; end
   def those(inject=''); self.uncountable? ? "that #{inject} #{self}" : "those #{inject} #{self}"; end
   def are(inject=''); self.uncountable? ? "#{self} #{inject} is" : "#{self} #{inject} are"; end
   def dont; self.uncountable? ? "#{self} doesn’t" : "#{self} don’t"; end
@@ -51,6 +53,7 @@ class String
   def were; self.uncountable? ? "was" : "were"; end
   def does; self.uncountable? ? "does" : "do"; end
   def they_are; [they, are.split.last].join(" "); end
+  def are_many; [are.split.last, many].join(" "); end
 
   def it; self == "person" ? "them" : "it"; end
   def that; self == "people" ? "who" : "that"; end
