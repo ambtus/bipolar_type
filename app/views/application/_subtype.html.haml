@@ -1,0 +1,6 @@
+%p.heading
+  My
+  =subtype.location
+%dl
+  -%w{nature too goal never}.each do |term|
+    =render "li", :term => term, :definition => subtype.send(term)

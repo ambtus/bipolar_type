@@ -1,0 +1,12 @@
+- content_for(:title, @tendency.name)
+%table
+  %caption
+    You can be too
+    =@tendency.nature
+    either because you
+    =@tendency.act.much("too").comma
+    or because you
+    =@tendency.react.few("too").period
+  %tr
+    -@tendency.subtypes.each do |subtype|
+      %td.half=render subtype.sensitivity.sensitivity, :tendency => @tendency

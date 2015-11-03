@@ -1,19 +1,6 @@
 - content_for(:title, @quad.name)
-%p.heading
-  =@quad.advices.to_sentence.capitalize.punctuate("!")
--@quad.pairs.each do |pair|
-  %h3=pair.name
-  =render "pair", :pair => pair
-%h2 Links
-%ul
-  %li
-    -@quad.subtypes.each do |subtype|
-      =link_to subtype.name, type_path(subtype.path)
-%ul
-  %li
-    -@quad.pairs.each do |pair|
-      =link_to pair.name, type_path(pair.path)
-%ul
-  -%w{flipped swapped reversed opposite }.each do |kind|
-    %li
-      =link_to @quad.send(kind).name, type_path(@quad.send(kind).path)
+%table.center
+  -@quad.subtypes.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td.third=render "subtype", :subtype => subtype

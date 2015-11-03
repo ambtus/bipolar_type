@@ -37,21 +37,32 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income influence self\ esteem food intonation the\ right\ answer rhythm public\ opinion shame guilt empathy potential\ energy}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income influence self\ esteem food intonation the\ right\ answer rhythm public\ opinion shame guilt empathy potential\ energy mind heart body}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
-  def few(inject=''); self.uncountable? ? "little #{inject} #{self}" : "few #{inject} #{self}"; end
-  def many(inject=''); self.uncountable? ? "much #{inject} #{self}" : "many #{inject} #{self}"; end
+
+  def last_word; self.split.last; end
+  def first_words; self.gsub(last_word, ""); end
+
+  def few(inject=''); self.last_word.uncountable? ? "#{first_words}#{inject} little #{last_word}" : "#{first_words}#{inject} few #{last_word}"; end
+  def much(inject=''); self.last_word.uncountable? ? "#{first_words}#{inject} much #{last_word}" : "#{first_words}#{inject} many #{last_word}"; end
+
+  def dont; self.last_word.uncountable? ? "#{self} doesn’t" : "#{self} don’t"; end
+  def does; self.last_word.uncountable? ? "#{self} does" : "#{self} do"; end
+
+
   def fewer(inject=''); self.uncountable? ? "less #{inject} #{self}" : "fewer #{inject} #{self}"; end
   def those(inject=''); self.uncountable? ? "that #{inject} #{self}" : "those #{inject} #{self}"; end
   def are(inject=''); self.uncountable? ? "#{self} #{inject} is" : "#{self} #{inject} are"; end
-  def dont; self.uncountable? ? "#{self} doesn’t" : "#{self} don’t"; end
+
   def have; self.uncountable? ? "#{self} has" : "#{self} have"; end
   def they; self.uncountable? ? "it" : "they"; end
   def their; self.uncountable? ? "its" : "their"; end
   def them; self.uncountable? ? "it" : "them"; end
   def were; self.uncountable? ? "was" : "were"; end
-  def does; self.uncountable? ? "does" : "do"; end
+
+
+
   def they_are; [they, are.split.last].join(" "); end
   def are_many; [are.split.last, many].join(" "); end
 

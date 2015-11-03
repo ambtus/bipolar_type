@@ -1,10 +1,15 @@
 - content_for(:title, @pair.name)
-=render "pair", :pair => @pair
-%p
-  To a lesser extent you are also…
-%table
+%table.center
   %tr
-    -@pair.alts.each do |subtype|
+    -@pair.quads.each do |quad|
       %td.quarter
-        %p.heading=subtype.name
-        =render @pair.behavior2 + "s", :subtype => subtype, :pairs => subtype.send(@pair.behavior2 + "s") & @pair.possibles
+        %p
+          I always thought my
+          =quad.dominant.location
+          was
+          %em extremely
+          =quad.dominant.nature
+        %p
+          But I have to admit that it is actually fairly
+          =quad.dominant.goal.period
+        %p=link_to quad.second_pair_name, type_path(quad.path)

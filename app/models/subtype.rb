@@ -1,5 +1,5 @@
 class Subtype
-  LETTERS = Attitude::LETTERS.multiply(Realm::LETTERS[1,4]).flatten
+  LETTERS = Sensitivity::LETTERS.multiply(Tendency::LETTERS).flatten
 
   def initialize(letters)
     raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
@@ -12,28 +12,24 @@ class Subtype
   def self.all; SUBTYPES; end
   def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def <=>(other_subtype); realm.path <=> other_subtype.realm.path; end
+  def +(subtype); Pair.find(subtype.path + self.path); end
+  def pairs; potentials.add(self); end
 
-  def realm; Realm.find(path[1,2]); end
-  def attitude; Attitude.find(path.first); end
+  def potentials; realm.others.collect{|r| sensitivity.opposite + (r + attitude.opposite) }; end
 
-  def opposite; Subtype.find(attitude.opposite.path + realm.path); end
+  def sensitivity; Sensitivity.find(path.first); end
+  def tendency; Tendency.find(path[1,2]); end
 
-  delegate :behavior, :behavior2, :normalize, :recover, to: :attitude
+  delegate :realm, :attitude, :name, :nature, :location, :too, :goal, :never, to: :tendency
 
-  %w{tendency goal short short2 behave behave2}.each {|m| define_method(m) { realm.send(attitude.send(m)) }}
-
-  def name; tendency.capitalize; end
-
-  def paths; realm.others.map(&:path).add(self.path); end
-  def outputs; paths.collect{|p| Pair.find("i" + p)}; end
-  def inputs; paths.collect{|p| Pair.find("e" + p)}; end
-
-  def method_missing(meth)
-    if realm.respond_to?(meth)
-      realm.send(meth)
-    else
-      super
-    end
+  def sa
+    case path.chars.values_at(0,2).join
+    when "ip", "ej"
+      "rational"
+    when "ij", "ep"
+      "arational"
+     end
   end
+
+
 end

@@ -1,2 +1,7 @@
 %dt=term
-%dd=realm.send(term)
+%dd
+  -tendency = Tendency.find_by(definition)
+  -if tendency
+    =link_to(tendency.nature, type_path(tendency.path))
+  -else
+    =definition

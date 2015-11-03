@@ -1,14 +1,17 @@
-x,sp,sj,nf,nt
-kind,gustatory,tactile,auditory,visual
-gain,eat,work with,listen to,look at
-resources,food,tools,stories,results
-energy,calories,money,emotions,information
-location,body,house,heart,mind
-use,burn,use,express,use
-change,go,buy,influence,solve
-objects,places,luxuries,people,problems
-act,move,shop,talk,decide
-empty,emaciated,cluttered,uncaring,ignorant
-low,thin,luxurious,calm,theoretical
-high,well-nourished,uncluttered,caring,knowledgeable
-full,fat,spartan,hysterical,trivial
+x,s,n,f,t
+kind,physical,mental,spiritual,material
+consume,eat,look at,listen to,work with
+external,food,facts,stories,tools
+gone,gone,clear,finished,broken
+energy,carbs,colorful details,music,features
+strength,protein,black and white outlines,words,basic functionality
+internal,fat,rules,emotions,rewards
+location,body,mind,heart,home
+use,burn,forget,express,spend
+produce,go,change,influence,pursue
+results,places,the future,people,pleasure
+energetic action,walk,dream,talk,splurge
+empty,skinny,stupid,bored,uncomfortable
+low,thin,theoretical,calm,uncluttered
+high,ample,knowledgeable,empathetic,comfortable
+full,fat,trivial,turbulent,cluttered

@@ -1,21 +1,39 @@
 # Encoding: utf-8
 class Quad
-  def self.my_path; "entinfisjisp"; end
-  def self.first; Quad.new(my_path); end
+  def self.my_path; "espitjifp"; end
+  def self.first; Quad.find(my_path); end
+
+  # yes, there's got to be a better way, but this works
+  # and it only has to run once on startup
+  LETTERS = Pair.all.collect{|pair| pair.potentials.collect {|potential| pair.path + potential.path}}.flatten
 
   def initialize(letters)
     @path = letters
+    @index = LETTERS.index(letters)
   end
   attr_reader :path
 
-  def paths; path.scan(/....../).reverse; end
-  def pairs; paths.collect{|p| Pair.find(p)}; end
-  def name; pairs.map(&:name).join(", "); end
-  def advices; pairs.map(&:advices).flatten; end
+  QUADS = LETTERS.collect{|letters| Quad.new(letters)}
+  def self.find(letters); QUADS[LETTERS.index(letters)]; end
+  def self.all; QUADS; end
 
-  def subtypes; pairs.map(&:subtypes).flatten; end
-  def flipped; Quad.new(paths.join); end
-  def reversed; Quad.new(pairs.map(&:reverse).map(&:path).join); end
-  def swapped; Quad.new(path[6,3] + path[3,3] + path[0,3] + path[9,3]); end
-  def opposite; Quad.new(pairs.map(&:opposite).reverse.map(&:path).join); end
+  def ss; path.scan(/.../).collect{|p| Subtype.find(p)}; end
+  def inferior; ss.first; end
+  def tertiary; ss.second; end
+  def dominant; ss.third; end
+
+  def realms; ss.map(&:realm); end
+  def secondary_realm; (Realm.all - realms).first; end
+
+  def secondary; dominant.potentials.find{|s| s.realm == secondary_realm}; end
+
+  def subtypes; (ss + [secondary]).sort_by{|s| [s.sensitivity.index, s.attitude.index]}; end
+
+  def pair; Pair.find(path[0,6]); end
+
+  def dominant_state; dominant.goal; end
+  def secondary_state; secondary.too; end
+  def second_pair_name; [secondary_state, dominant_state].map(&:capitalize).join(" and "); end
+  def name; [pair.name, second_pair_name].join(", "); end
+
 end

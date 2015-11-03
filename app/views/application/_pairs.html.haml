@@ -1,0 +1,4 @@
+%dl
+  -pairs.each do |pair|
+    %dt=pair.tertiary_nature
+    %dd=link_to pair.name, type_path(pair.path)

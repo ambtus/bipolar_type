@@ -1,25 +1,14 @@
-%td.third
+%td.half
   %p.heading
     =realm.kind.capitalize
   %dl
-    -%w{input energy output}.each do |term|
-      =render "li", :term => term, :realm => realm
-%td.third
+    -%w{ gain lose activity }.each do |term|
+      =render "li", :term => term, :definition => realm.send(term)
+%td.half
   %p.heading
     My
     =realm.location
-    is somewhere between:
+    is…
   %dl
-    -%w{ low high }.each do |term|
-      =render "li", :term => term, :realm => realm
-%td.third
-  %p.heading
-    I can’t
-    =realm.act.punctuate(";")
-    my
-    =realm.location
-    is too…
-  %dl
-    -realm.subtypes.each do |subtype|
-      %dt=subtype.attitude.tendency
-      %dd=link_to subtype.tendency, type_path(subtype.path)
+    -%w{full high low empty }.each do |term|
+      =render "li", :term => term, :definition => realm.send(term)
