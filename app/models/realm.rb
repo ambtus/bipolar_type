@@ -7,26 +7,32 @@ class Realm
   arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || row.first}}
 
   def initialize(letter)
-    raise "#{letter} isn't an Realm" unless LETTERS.include?(letter)
     @index = LETTERS.index(letter) + 1
     @path = letter
   end
-  attr_reader :index, :path
+  attr_reader :path
 
   REALMS = LETTERS.collect{|letter| Realm.new(letter)}
   def self.all; REALMS; end
-  def self.find(letter); REALMS[LETTERS.index(letter)]; end
 
-  def +(attitude); Tendency.find(self.path + attitude.path); end
-  def tendencies; Attitude.all.add(self); end
-
-  def consume1; consume.split.first; end
-
-  def activity; [produce, results].join(" "); end
-
-  def gain; [consume, external].join(" "); end
-  def lose; [use, internal].join(" "); end
+  def self.index(letter)
+    raise "#{letter} isn't a Realm" unless LETTERS.include?(letter)
+    LETTERS.index(letter)
+  end
+  def self.find(letter); REALMS[index(letter)]; end
 
   def others; Realm.all - [self]; end
+
+  def +(sensitivity); Subtype.find(self.path + sensitivity.path); end
+
+  def i; self + Sensitivity.find("i"); end
+  def e; self + Sensitivity.find("e"); end
+
+  def name; kind.capitalize; end
+
+  def gain; gain2.split.first; end
+  def consume; [gain2, resources].join(" "); end
+
+ def lose_their; lose.gsub("your", "their"); end
 
 end

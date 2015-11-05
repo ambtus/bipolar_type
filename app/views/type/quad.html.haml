@@ -1,6 +1,8 @@
 - content_for(:title, @quad.name)
-%table.center
-  -@quad.subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td.third=render "subtype", :subtype => subtype
+%p.heading
+  Closest MBTI&reg; type:
+  =render "mbti", :mbti => @quad.mbti
+-@quad.subtypes.each_with_index do |subtype, index|
+  %h2=subtype.name
+  =render "realm", :realm => subtype.realm
+  =render subtype.sensitivity.word, :realm => subtype.realm, :index => index

@@ -1,9 +1,0 @@
-- content_for(:title, 'Realms')
-%table.center
-  %caption Please note that the theory makes no value judgements between realms or between extremes. Although words are inherently emotional, the only connotations intended are that high and low are good and empty and full are bad.
-  %tr
-    %th Realm
-    %th Balance
-  -Realm.all.each do |realm|
-    %tr
-      =render "realm", :realm => realm

@@ -1,17 +1,13 @@
-x,s,n,f,t
-kind,physical,mental,spiritual,material
-consume,eat,look at,listen to,work with
-external,food,facts,stories,tools
-gone,gone,clear,finished,broken
-energy,carbs,colorful details,music,features
-strength,protein,black and white outlines,words,basic functionality
-internal,fat,rules,emotions,rewards
-location,body,mind,heart,home
-use,burn,forget,express,spend
-produce,go,change,influence,pursue
-results,places,the future,people,pleasure
-energetic action,walk,dream,talk,splurge
-empty,skinny,stupid,bored,uncomfortable
-low,thin,theoretical,calm,uncluttered
-high,ample,knowledgeable,empathetic,comfortable
-full,fat,trivial,turbulent,cluttered
+x,t,f,n,s
+kind,material,spiritual,mental,physical
+signals,touch,tones,sights,smells
+resources,jobs,stories,sights,foods
+gain2,work on,listen to,look at,eat
+energy,money,emotions,confidence,fat
+lose,shop,talk,close your eyes,walk
+empty,indebted,submissive,anxious,hungry
+internal,debt,submission,anxiety,hunger
+external,riches,dominance,safety,obesity
+full,rich,dominant,safe,well-fed
+energetic resources,projects,intonations,colors,carbs
+strong resources,chores,words,symmetry,protein and fat

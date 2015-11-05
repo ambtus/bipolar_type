@@ -1,8 +1,8 @@
 class Subtype
-  LETTERS = Sensitivity::LETTERS.multiply(Tendency::LETTERS).flatten
+
+  LETTERS = Realm::LETTERS.multiply(Sensitivity::LETTERS).flatten
 
   def initialize(letters)
-    raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
     @index = LETTERS.index(letters)
     @path = letters
   end
@@ -10,26 +10,22 @@ class Subtype
 
   SUBTYPES = LETTERS.collect{|letters| Subtype.new(letters)}
   def self.all; SUBTYPES; end
-  def self.find(letters); SUBTYPES[LETTERS.index(letters)]; end
 
-  def +(subtype); Pair.find(subtype.path + self.path); end
-  def pairs; potentials.add(self); end
-
-  def potentials; realm.others.collect{|r| sensitivity.opposite + (r + attitude.opposite) }; end
-
-  def sensitivity; Sensitivity.find(path.first); end
-  def tendency; Tendency.find(path[1,2]); end
-
-  delegate :realm, :attitude, :name, :nature, :location, :too, :goal, :never, to: :tendency
-
-  def sa
-    case path.chars.values_at(0,2).join
-    when "ip", "ej"
-      "rational"
-    when "ij", "ep"
-      "arational"
-     end
+  def self.index(letters)
+    raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
+    LETTERS.index(letters)
   end
+  def self.find(letters); SUBTYPES[index(letters)]; end
 
+  def realm; Realm.find(path.first); end
+  def sensitivity; Sensitivity.find(path.second); end
+
+  def short_name; path.capitalize; end
+
+  def name; "#{realm.send(sensitivity.word).capitalize} (#{short_name})"; end
+
+  def obfuscated; "#{realm.kind} #{sensitivity.obfuscated}"; end
+
+  delegate :kind, to: :realm
 
 end

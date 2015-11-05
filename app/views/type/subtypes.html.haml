@@ -1,0 +1,20 @@
+- content_for(:title, 'All 16 SubTypes')
+%table.center
+  -Subtype.all.in_groups_of(2) do |realm_group|
+    %tr
+      %td.none
+      %td.none{:colspan => 2}=render "realm", :realm => realm_group.first.realm
+    %tr
+      %td.none &nbsp;
+      %td.none
+        %h2 Most Differentiated
+      %td.none
+        %h2 Most Undifferentiated
+    -realm_group.each do |subtype|
+      %tr
+        %td.middle.none
+          %h2=subtype.name
+        %td.halfish.left
+          =render subtype.sensitivity.word, :realm => subtype.realm, :index => 0
+        %td.halfish.left
+          =render subtype.sensitivity.word, :realm => subtype.realm, :index => 3

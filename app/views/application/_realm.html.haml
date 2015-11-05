@@ -1,14 +1,35 @@
-%td.half
-  %p.heading
-    =realm.kind.capitalize
-  %dl
-    -%w{ gain lose activity }.each do |term|
-      =render "li", :term => term, :definition => realm.send(term)
-%td.half
-  %p.heading
-    My
-    =realm.location
-    is…
-  %dl
-    -%w{full high low empty }.each do |term|
-      =render "li", :term => term, :definition => realm.send(term)
+%h3
+  The
+  =realm.kind
+  realm
+%ul
+  %li
+    People
+    =realm.gain
+    because they feel
+    =realm.empty
+    or because they
+    %em want
+    to
+    =realm.gain
+    because they like the
+    =realm.resources
+    they are
+    =realm.gain2.ing.period
+  %li
+    They
+    =realm.lose_their
+    because they are
+    =realm.full
+    enough to be
+    %em able
+    to
+    =realm.lose_their.semicolon
+    you cannot
+    =realm.lose
+    if you are not
+    =realm.full
+    enough no matter how much you
+    %em want
+    to.
+

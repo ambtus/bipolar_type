@@ -16,13 +16,20 @@ class String
   def period; self.punctuate; end
   def comma; self.punctuate(","); end
   def colon; self.punctuate(":"); end
+  def semicolon; self.punctuate(";"); end
 
   def parenthetical; "(#{self})"; end
   def parenthetical?; self.match(/\(/); end
   def nonparenthetical; self.split(" (").first; end
   def parenthetical_part; self.split(" (").second.chop; end
 
-  def a_or_an; %w{a e i o u}.include?(self.first) ? "an" : "a"; end
+  def a_or_an
+   if self.length == 2
+     %w{N S F}.include?(self.first) ? "an" : "a"
+   else
+     %w{a e i o u}.include?(self.first) ? "an" : "a"
+   end
+  end
 
   def an; [a_or_an, self].join(" "); end
 
@@ -37,15 +44,15 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income influence self\ esteem food intonation the\ right\ answer rhythm public\ opinion shame guilt empathy potential\ energy mind heart body}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income influence self\ esteem food intonation the\ right\ answer rhythm public\ opinion shame guilt empathy potential\ energy mind heart body stuff weight noise sound serenity}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
 
   def last_word; self.split.last; end
   def first_words; self.gsub(last_word, ""); end
 
-  def few(inject=''); self.last_word.uncountable? ? "#{first_words}#{inject} little #{last_word}" : "#{first_words}#{inject} few #{last_word}"; end
-  def much(inject=''); self.last_word.uncountable? ? "#{first_words}#{inject} much #{last_word}" : "#{first_words}#{inject} many #{last_word}"; end
+  def few(inject=''); self.last_word.uncountable? ? "#{first_words} little #{inject} #{last_word}" : "#{first_words} few #{inject} #{last_word}"; end
+  def much(inject=''); self.last_word.uncountable? ? "#{first_words} much #{inject} #{last_word}" : "#{first_words} many #{inject} #{last_word}"; end
 
   def dont; self.last_word.uncountable? ? "#{self} doesn’t" : "#{self} don’t"; end
   def does; self.last_word.uncountable? ? "#{self} does" : "#{self} do"; end
