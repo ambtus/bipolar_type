@@ -44,7 +44,7 @@ class String
   end
 
   # would it be better to check if countable?
-  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income influence self\ esteem food intonation the\ right\ answer rhythm public\ opinion shame guilt empathy potential\ energy mind heart body stuff weight noise sound serenity}
+  UNCOUNTABLE = %w{hope information fat confidence glucose cash credit income logic affection conflict power animosity sugar knowledge money protein interest hatred anger glycogen light meaning music color tone vocabulary meat checking pleasure pain head optimism pessimism focus trivia laughter discomfort tragedy comedy romance overtime humor net\ worth salary motivation functionality irritation unearned\ income influence self\ esteem food intonation the\ right\ answer rhythm public\ opinion shame guilt empathy potential\ energy mind heart body stuff weight noise sound serenity dissonance symmetry wealth size safety savings}
   def uncountable?; UNCOUNTABLE.include?(self); end
 
 

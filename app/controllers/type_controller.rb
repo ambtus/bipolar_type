@@ -6,7 +6,7 @@ class TypeController < ApplicationController
     elsif Quad::LETTERS.include?(params[:id])
       @quad = Quad.new(params[:id])
       render :quad
-    elsif %w{subtypes quads}.include? params[:id]
+    elsif %w{realms subtypes quads}.include? params[:id]
       render params[:id]
     else
       render :start

@@ -1,7 +1,7 @@
 - content_for(:title, "Question ##{@answer.number}")
 %h2 Choose the one that is the most true…
 %p
-  If the choice is difficult, try going back and choosing the other one you thought about choosing in the first pass. 
+  If this choice is difficult, and you were torn between two choices in the previous question, try going back and choosing the other one.
 -@answer.realms.each do |realm|
   %h3=realm.kind.capitalize
   -if @answer.attitude == "e"

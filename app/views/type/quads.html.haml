@@ -1,13 +1,13 @@
-- content_for(:title, 'All 48 BipolarTypes')
+- content_for(:title, 'The 48 BipolarTypes')
 %table.center
   %caption
-    Well Controlled, Mostly Controlled, Mostly Uncontrolled, Uncontrolled
+    BipolarType: most differentiated, differentiated, less differentiated, least differentiated
   -Quad.all.sort_by(&:mbti).in_groups_of(6).each do |row|
     %tr
       -row.in_groups_of(3).each do |mbti_group|
-        %td.halfish
+        %td.halfish.left
           %p.heading=render "mbti", :mbti => mbti_group.first.mbti
-          %dl
-            -mbti_group.sort_by(&:name).each do |quad|
-              %dt=quad.long_name
-              %dd=link_to quad.name, type_path(quad.path)
+          -mbti_group.sort_by(&:name).each do |quad|
+            %li
+              =link_to quad.name, type_path(quad.path)
+              =quad.long_name

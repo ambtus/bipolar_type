@@ -1,5 +1,5 @@
 !!!
-%html
+%html{:lang=>"en"}
   %head
     %title="BipolarType: " + yield(:title)
     %meta{:content => "text/html; charset=utf-8"}
@@ -9,11 +9,13 @@
     %p.small
       =link_to_unless_current "Introduction", root_path
       |
-      =link_to_unless_current "Discover", discover_path("Q1")
+      =link_to_unless_current "Your Bipolar Type", discover_path("Q1")
       |
-      =link_to_unless_current "All Subtypes", type_path("subtypes")
+      =link_to_unless_current "Realms", type_path("realms")
       |
-      =link_to_unless_current "All BipolarTypes", type_path("quads")
+      =link_to_unless_current "Attitudes", type_path("subtypes")
+      |
+      =link_to_unless_current "BipolarTypes", type_path("quads")
       |
       =link_to_unless_current "My BipolarType", type_path(Quad.my_path)
       |

@@ -15,7 +15,9 @@ class Quad
   def self.find(letters); QUADS[LETTERS.index(letters)]; end
   def self.all; QUADS; end
 
-  def sensitivity; Sensitivity.find(@path.first); end
+  def sl; @path.first; end
+  def sensitivity; Sensitivity.find(sl); end
+  def i?; sl == "i"; end
 
   def realm_path; @path.chip; end
   def realms; realm_path.scan(/./).collect{|p| Realm.find(p)}; end
@@ -26,6 +28,15 @@ class Quad
   def inferior; realms.fourth + sensitivity.opposite; end
 
   def subtypes; [dominant,secondary,tertiary,inferior]; end
+
+  def ue; i? ? inferior : tertiary; end
+def ue_index; i? ? 3 : 2; end
+def ui; i? ? tertiary : inferior; end
+def ui_index; i? ? 2 : 3; end
+def de; i? ? secondary : dominant; end
+def de_index; i? ? 1 : 0; end
+def di; i? ? dominant : secondary; end
+def di_index; i? ? 0 : 1; end
 
   def name; subtypes.map(&:short_name).join; end
   def long_name; subtypes.map(&:name).join(", "); end

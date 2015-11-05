@@ -1,13 +1,15 @@
 x,t,f,n,s
-kind,material,spiritual,mental,physical
-signals,touch,tones,sights,smells
-resources,jobs,stories,sights,foods
+neuro,dopamine,oxytocin,norepinephrine,serotonin
+kind,material,interpersonal,mental,physical
+organ,hands,heart,mind,stomach
+resources,jobs,stories,pictures,foods
 gain2,work on,listen to,look at,eat
-energy,money,emotions,confidence,fat
-lose,shop,talk,close your eyes,walk
-empty,indebted,submissive,anxious,hungry
-internal,debt,submission,anxiety,hunger
-external,riches,dominance,safety,obesity
-full,rich,dominant,safe,well-fed
-energetic resources,projects,intonations,colors,carbs
-strong resources,chores,words,symmetry,protein and fat
+energy,money,friends,confidence,fat
+lose,buy,talk,decide,walk
+loss,purchase,speech,decision,trip
+empty,indebted,apathetic,anxious,hungry
+internal,debts,apathy,anxiety,hunger
+external,wealth,passions,certainty,nourishment
+full,wealthy,passionate,certain,nourished
+energetic resources,projects,intonation,details,carbs
+strong resources,chores,words,outlines,protein

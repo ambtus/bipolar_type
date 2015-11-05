@@ -1,0 +1,6 @@
+- content_for(:title, 'The 4 Realms')
+%table.center
+  -Realm.all.in_groups_of(2) do |row|
+    %tr
+      -row.each do |realm|
+        %td.left=render "realm", :realm => realm
