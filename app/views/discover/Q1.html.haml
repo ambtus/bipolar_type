@@ -10,14 +10,14 @@
   %h3=realm.kind.capitalize
   %ul
     %li
-      I don’t know why I keep gaining so
-      =realm.energy.much("unwanted")
-      or why I am always so
+      I don’t know why I keep gaining
+      =realm.energy
+      or why I am always
       =realm.full.colon
       =link_to realm.e.obfuscated, discover_path(@answer.next("i#{realm.path}"))
     %li
-      I don’t know why I keep losing so
-      =realm.energy.much("needed")
-      or why I am always so
+      I don’t know why I keep losing
+      =realm.energy
+      or why I am always
       =realm.empty.colon
       =link_to realm.i.obfuscated, discover_path(@answer.next("e#{realm.path}"))

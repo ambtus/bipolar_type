@@ -16,13 +16,14 @@ class Sensitivity
     LETTERS.index(letter)
   end
   def self.find(letter); SENSITIVITIES[index(letter)]; end
+  LETTERS.each {|l| define_singleton_method(l) {find(l)}}
 
   def +(realm); Subtype.find(realm.path + self.path); end
 
-  def opposite_path; LETTERS.reverse[@index]; end
-  def opposite; Sensitivity.find(opposite_path); end
+  def invert_path; LETTERS.reverse[@index]; end
+  def invert; Sensitivity.find(invert_path); end
 
-  def word; %w{external internal}[@index]; end
+  def word; %w{externals internals}[@index]; end
 
   def obfuscated; %w{compulsion aversion}[@index]; end
 

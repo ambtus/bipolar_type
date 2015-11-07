@@ -1,25 +1,6 @@
 - content_for(:title, @quad.name)
-%p.heading
-  Closest MBTI&reg; type:
-  =render "mbti", :mbti => @quad.mbti
-%table.center
-  %tr
-    %td.none &nbsp;
-    %th.none Insensitive (Xe)
-    %th.none Sensitive (Xi)
-    %tr
-      %th.narrow.middle.none
-        Un&shy;dif&shy;fer&shy;en&shy;ti&shy;at&shy;ed (out of control: follow the maxim)
-      -%w{ue ui}.each do |letters|
-        %td.halfish.left
-          -subtype = @quad.send(letters)
-          %h2=subtype.name
-          =render "subtype", :sensitivity => subtype.sensitivity.path, :realm => subtype.realm, :index => @quad.send("#{letters}_index")
-    %tr
-      %th.narrow.middle.none
-        Dif&shy;fer&shy;en&shy;ti&shy;at&shy;ed (under control: you already follow the maxim most of the time)
-      -%w{de di}.each do |letters|
-        %td.halfish.left
-          -subtype = @quad.send(letters)
-          %h2=subtype.name
-          =render "subtype", :sensitivity => subtype.sensitivity.path, :realm => subtype.realm, :index => @quad.send("#{letters}_index")
+%h2 Closest MBTI&reg; types
+%dl.center
+  -%w{manic euthymic depressed}.each do |state|
+    %dt=state.capitalize
+    %dd=render "mbti", :mbti => @quad.send(state + "_mbti")

@@ -4,13 +4,13 @@
   %h3=realm.kind.capitalize
   -if @answer.attitude == "i"
     %li
-      I don’t know why I keep gaining so
-      =realm.energy.much("unwanted").colon
+      I don’t know why I keep gaining
+      =realm.energy.colon
       =link_to realm.e.obfuscated, discover_path(@answer.next("#{realm.path}"))
   -if @answer.attitude == "e"
     %li
-      I don’t know why I keep losing so
-      =realm.energy.much("needed")
+      I don’t know why I keep losing
+      =realm.energy
       and/or why I am always so
       =realm.empty.colon
       =link_to realm.i.obfuscated, discover_path(@answer.next("#{realm.path}"))

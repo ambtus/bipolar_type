@@ -1,6 +1,9 @@
 # Restart required even in development mode when you modify this file.
 
 class Array
+
+  def to_phrase; Phrase.new(self); end
+
   def multiply(target, method=:+)
     b = Array.new
     self.each do |row|

@@ -1,13 +1,17 @@
 - content_for(:title, 'The 48 BipolarTypes')
 %table.center
   %caption
-    BipolarType: most differentiated, differentiated, less differentiated, least differentiated
-  -Quad.all.sort_by(&:mbti).in_groups_of(6).each do |row|
+    depressed, euthymic, manic: BipolarType
+  -Quad.all.sort_by(&:euthymic_mbti).in_groups_of(12).each do |row|
     %tr
       -row.in_groups_of(3).each do |mbti_group|
-        %td.halfish.left
-          %p.heading=render "mbti", :mbti => mbti_group.first.mbti
+        %td.quarter.left
+          %p.heading
+            =render "mbti", :mbti => mbti_group.first.euthymic_mbti
+            %br
+            =mbti_group.find{|q| q.is_theoretical?}.dominant_names
           -mbti_group.sort_by(&:name).each do |quad|
             %li
+              =quad.mbtis.reverse.join(", ") + ":"
               =link_to quad.name, type_path(quad.path)
-              =quad.long_name
+

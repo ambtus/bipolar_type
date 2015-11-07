@@ -18,11 +18,15 @@ class Subtype
   def self.find(letters); SUBTYPES[index(letters)]; end
 
   def realm; Realm.find(path.first); end
-  def sensitivity; Sensitivity.find(path.second); end
+  def sensitivity; Sensitivity.find(path.last); end
 
-  def short_name; path.capitalize; end
+  def <=>(other); path.reverse <=> other.path.reverse; end
 
-  def name; "#{realm.send(sensitivity.word).capitalize} (#{short_name})"; end
+  def invert; realm + sensitivity.invert; end
+
+  def function; path.capitalize.to_word; end
+
+  def name; "#{realm.send(sensitivity.word).capitalize} (#{function})"; end
 
   def obfuscated; "#{realm.kind} #{sensitivity.obfuscated}"; end
 

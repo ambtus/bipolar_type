@@ -4,7 +4,7 @@ class Realm
   require 'csv'
   arr_of_arrs = CSV.read("config/initializers/realm.csv")
   LETTERS = arr_of_arrs.shift.drop(1)
-  arr_of_arrs.each {|row| define_method(row.first.gsub(' ', '_')) {row[@index] || row.first}}
+  arr_of_arrs.each {|row| define_method(row.first) {row[@index].to_word_or_phrase}}
 
   def initialize(letter)
     @index = LETTERS.index(letter) + 1
@@ -25,14 +25,14 @@ class Realm
 
   def +(sensitivity); Subtype.find(self.path + sensitivity.path); end
 
+  def perceiving?; %w{s n}.include?(path) ;end
+
   def i; self + Sensitivity.find("i"); end
   def e; self + Sensitivity.find("e"); end
 
   def name; kind.capitalize; end
 
-  def gain; gain2.split.first; end
-  def consume; [gain2, resources].join(" "); end
-
- def lose_their; lose.gsub("your", "their"); end
+  def gain; gain_phrase.to_phrase.words.first; end
+  def consume; Phrase.new([*gain_phrase, resources]); end
 
 end
