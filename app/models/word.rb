@@ -1,28 +1,36 @@
-class Word < String
+class Word
 
-  def inspect; super.chip.chop; end
-
-  %w{chop gsub}.each do |meth|
-    def method_missing(meth, *arguments, &block)
-      super.to_word_or_phrase
-    end
+  def initialize(string)
+    raise "#{string} is not a string" unless string.respond_to?(:to_str)
+    @string = string.to_str
   end
 
-  def punctuate(punctuation); "#{self}#{punctuation}".to_word; end
-  def period; self.punctuate("."); end
-  def comma; self.punctuate(","); end
-  def colon; self.punctuate(":"); end
-  def semicolon; self.punctuate(";"); end
+  def inspect; @string.inspect.chip.chop; end
+  def to_word; self; end
+  def to_s; @string; end
+  alias_method :to_str, :to_s
+
+  def method_missing(meth, *arguments, &block)
+    @string.send(meth, *arguments, &block).to_word_or_phrase
+  end
+
+  def punctuate(punctuation); "#{@string}#{punctuation}".to_word; end
+  def period; punctuate("."); end
+  def comma; punctuate(","); end
+  def colon; punctuate(":"); end
+  def semicolon; punctuate(";"); end
+  def exclaim; punctuate("!"); end
+  def parenthetical; "(#{@string})".to_word; end
 
   def an?
-   if self.is_function?
-     %w{N S F}.include?(self.chars.first)
+   if is_function?
+     %w{N S F}.include?(@string.chars.first)
    else
-     %w{a e i o u}.include?(self.chars.first)
+     %w{a e i o u}.include?(@string.chars.first)
    end
   end
 
-  def a_or_an; self.an? ? "an".to_word : "a".to_word; end
+  def a_or_an; an? ? "an".to_word : "a".to_word; end
 
   def an; [a_or_an, self].to_phrase; end
 
@@ -39,9 +47,9 @@ class Word < String
   def are_phrase; Phrase.new([are, self]); end
 
   def ly
-    if self.last == "y"
+    if chars.last == "y"
       self.chop + "ily"
-    elsif self.last == "c"
+    elsif chars.last == "c"
       self + "ally"
     else
       self + "ly"
@@ -51,7 +59,7 @@ class Word < String
   def er
     if needs_doubling?
       punctuate("#{last}er")
-    elsif self.is_exception?
+    elsif @string.is_exception?
       Phrase.new(["more".to_word, self])
     elsif chars.last == "y"
       chop.punctuate("ier")
@@ -114,8 +122,8 @@ class Word < String
     end
   end
 
-  def ed; is_irregular? ? PAST[IRREGULAR.index(self)] : past; end
-  def en; is_irregular? ? PERFECT[IRREGULAR.index(self)] : past; end
+  def ed; is_irregular? ? PAST_WORDS[IRREGULAR.index(@string)] : past; end
+  def en; is_irregular? ? PERFECT_WORDS[IRREGULAR.index(@string)] : past; end
 
   def functions
     a = scan(/../).map(&:to_word)
@@ -128,9 +136,8 @@ class Word < String
     (last == "i" ? chop + "e" : chop + "i").to_wordc
   end
 
-  def mbti
-    raise "mbti requires three functions" unless functions.size == 3
-    wrapper = case functions.first.to_s
+  def wrapper
+    case @string
     when "Te"
       "ExTJ"
     when "Fe"
@@ -147,16 +154,15 @@ class Word < String
       "INxJ"
     when "Si"
       "ISxJ"
+    else
+      raise "#{self} is not a function"
     end.to_word
-    first_try = wrapper.gsub("x", functions.second.first)
-    return first_try if first_try.is_mbti?
-    second_try = wrapper.gsub("x", functions.third.first)
-    return second_try if second_try.is_mbti?
-    raise "#{functions} didn't produce a valid MBTI type"
   end
 
+  def wrap(other); wrapper.gsub("x", other.first); end
+
   def fix(i_or_e)
-    raise "can only fix mbtis" unless is_mbti?
+    raise "can't fix #{self}" unless is_mbti?
     case i_or_e
     when "i"
       gsub("E", "I")
@@ -171,36 +177,37 @@ class Word < String
   ### special words ###
   #####################
 
-  FUNCTIONS = %w{T F S N}.multiply(%w{i e}).flatten.map(&:to_word)
-  def is_function?; FUNCTIONS.include?(self); end
+  FUNCTIONS = %w{T F S N}.multiply(%w{i e}).flatten
+  def is_function?; FUNCTIONS.include?(@string); end
 
-  MBTIS = %w{ISTP ISFP INTP INFP ISTJ ISFJ INTJ INFJ ESTP ESFP ENTP ENFP ESTJ ESFJ ENTJ ENFJ}.collect(&:to_word)
-  def is_mbti?; MBTIS.include?(self); end
+  MBTIS = %w{ISTP ISFP INTP INFP ISTJ ISFJ INTJ INFJ ESTP ESFP ENTP ENFP ESTJ ESFJ ENTJ ENFJ}
+  def is_mbti?; MBTIS.include?(@string); end
 
 
   ## if the word in realm.csv needs to be singular and plural
   ## make the method name plural, and add the singulars here
   ## plural defaults in order to differentiate they from them
-  UNCOUNTABLE = %w{heart mind stomach food money confidence fat apathy anxiety hunger wealth certainty nourishment intonation outline protein}.collect(&:to_word)
-  def is_uncountable?; UNCOUNTABLE.include?(self); end
+  UNCOUNTABLE = %w{heart mind stomach food money confidence fat apathy anxiety hunger wealth certainty nourishment intonation outline protein}
+  def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
   # exceptions to rules about ending in y or e
-  EXCEPTIONS = %w{passionate}.map(&:to_word)
-  def is_exception?; EXCEPTIONS.include?(self); end
+  EXCEPTIONS = %w{passionate}
+  def is_exception?; EXCEPTIONS.include?(@string); end
 
-  DOUBLES = %w{fat thin}.map(&:to_word)
-  def needs_doubling?; DOUBLES.include?(self); end
+  DOUBLES = %w{fat thin}
+  def needs_doubling?; DOUBLES.include?(@string); end
 
-  VOWELY = %w{buy pay repay}.map(&:to_word)
-  def is_vowel_y?; VOWELY.include?(self); end
+  VOWELY = %w{buy pay repay}
+  def is_vowel_y?; VOWELY.include?(@string); end
 
-  SINGLES = %w{}.map(&:to_word)
-  def is_single_word?; SINGLES.include?(self); end
+  SINGLES = %w{}
+  def is_single_word?; SINGLES.include?(@string); end
 
   # add irregular verbs at the same place in all three
-  IRREGULAR = %w{be see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose give get}.collect(&:to_word)
-  PAST = %w{been saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost gave got}.collect(&:to_word)
-  PERFECT = %w{been seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost given gotten}.collect(&:to_word)
-  def is_irregular?; IRREGULAR.include?(self); end
+  IRREGULAR = %w{be see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose give get}
+  def is_irregular?; IRREGULAR.include?(@string); end
+
+  PAST_WORDS = %w{been saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost gave got}.collect(&:to_word)
+  PERFECT_WORDS = %w{been seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost given gotten}.collect(&:to_word)
 
 end

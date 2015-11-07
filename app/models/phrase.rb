@@ -1,15 +1,22 @@
-class Phrase < Array
+class Phrase
 
-  def inspect; join(" "); end
+  def initialize(array)
+    raise "#{array} is not an array" unless array.respond_to?(:to_ary)
+    raise "#{array} is not an array of words" if array.empty?
+    raise "#{array} is not an array of words" unless array.all?{|x| x.respond_to?(:to_word)}
+    @array = array.map(&:to_word)
+  end
+  def words; @array; end
 
-  def words; to_a; end
+  def inspect; words.join("•"); end
+  def to_s; words.join(" "); end
 
   def method_missing(meth, *arguments, &block)
-    if last.respond_to?(meth)
-     self[-1] = last.send(meth)
-     return self
+    if Word.method_defined?(meth)
+      @array[-1] = words.last.send(meth)
+      return self
     else
-     super
+      @array.send(meth, *arguments, &block).to_word_or_phrase
     end
   end
 

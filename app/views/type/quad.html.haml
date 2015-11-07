@@ -1,6 +1,23 @@
 - content_for(:title, @quad.name)
-%h2 Closest MBTI&reg; types
+%h2=@quad.names
+%h2
+  Closest
+  =link_to "MBTI", "https://en.m.wikipedia.org/wiki/Myers-Briggs_Type_Indicator", :class => "external"
+  types
 %dl.center
   -%w{manic euthymic depressed}.each do |state|
     %dt=state.capitalize
-    %dd=render "mbti", :mbti => @quad.send(state + "_mbti")
+    %dd
+      control
+      =@quad.send(state+"_subtypes").first.location.exclaim
+      =@quad.send(state+"_functions").join
+      =render "mbtis", :mbtis => @quad.send(state + "_mbtis")
+%h2 Related BipolarTypes
+%p
+  Same sensitivities, different priorities:
+  =@quad.invert.names
+  =link_to @quad.invert.name, type_path(@quad.invert.path)
+%p
+  Same priorities, different sensitivies:
+  =@quad.swap.names
+  =link_to @quad.swap.name, type_path(@quad.swap.path)

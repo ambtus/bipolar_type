@@ -26,10 +26,12 @@ class Subtype
 
   def function; path.capitalize.to_word; end
 
-  def name; "#{realm.send(sensitivity.word).capitalize} (#{function})"; end
+  def location; realm.send(sensitivity.location); end
+  def name; "#{location.capitalize} (#{function})".to_word; end
 
-  def obfuscated; "#{realm.kind} #{sensitivity.obfuscated}"; end
+  def direction; "#{realm.kind} #{sensitivity.direction}".to_word; end
 
   delegate :kind, to: :realm
+  delegate :i?, to: :sensitivity
 
 end

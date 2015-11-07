@@ -1,17 +1,17 @@
 - content_for(:title, 'The 48 BipolarTypes')
 %table.center
-  %caption
-    depressed, euthymic, manic: BipolarType
-  -Quad.all.sort_by(&:euthymic_mbti).in_groups_of(12).each do |row|
+  -Quad.all.sort_by(&:euthymic_subtypes).in_groups_of(6).each do |row|
     %tr
-      -row.in_groups_of(3).each do |mbti_group|
-        %td.quarter.left
-          %p.heading
-            =render "mbti", :mbti => mbti_group.first.euthymic_mbti
+      -row.in_groups_of(2).each do |pair|
+        %td.quarter
+          =render "mbtis", :mbtis => [pair.first.dominant_mbtiish]
+          %br
+          =pair.first.dominant_full
+          with
+          -pair.each_with_index do |quad, index|
+            -unless index == 0
+              %br
+              or
             %br
-            =mbti_group.find{|q| q.is_theoretical?}.dominant_names
-          -mbti_group.sort_by(&:name).each do |quad|
-            %li
-              =quad.mbtis.reverse.join(", ") + ":"
-              =link_to quad.name, type_path(quad.path)
-
+            =quad.secondary_full.colon
+            =link_to quad.name, type_path(quad.path)

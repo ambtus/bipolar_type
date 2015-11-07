@@ -1,12 +1,13 @@
 class Answer
 
-  def self.test; Answer.new("Q2_is"); end
+  def self.first_path; "Q1"; end
+  def self.first; Answer.new(first_path); end
 
   def initialize(string)
     @question,@answer = string.split("_")
     @answer = "" unless @answer
   end
-  attr_reader :question, :answer
+  attr_reader :question
 
   def number; @question.last.to_i ; end
   def finished?; number == 4; end
@@ -18,8 +19,10 @@ class Answer
 
   def realms; Realm.all - chosen; end
 
-  def next(string); question.next + "_" + answer + string; end
+  def next(string); question.next + "_" + @answer + string; end
 
-  def result; attitude + realms.last.path + realm_paths.reverse ; end
+  def priorities; (realms + chosen.reverse); end
+  def quad; Quad.find(attitude + priorities.map(&:path).join); end
+  def result; quad.path; end
 
 end

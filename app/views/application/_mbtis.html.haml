@@ -1,0 +1,8 @@
+-mbtis.each_with_index do |mbti,index|
+  ="or" if index > 0
+  -if mbti == "ISTP".to_word
+    =link_to mbti, "http://en.wikipedia.org/wiki/#{mbti}_(personality_type)", :class => "external"
+  -elsif mbti.is_mbti?
+    =link_to mbti, "http://en.wikipedia.org/wiki/#{mbti}", :class => "external"
+  -else
+    =mbti

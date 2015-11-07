@@ -1,7 +1,7 @@
 # Encoding: utf-8
 class Quad
-  def self.my_path; "i" + Realm::LETTERS.join; end
-  def self.first; Quad.find(my_path); end
+  def self.first_path; "i" + Realm::LETTERS.join; end
+  def self.first; Quad.find(first_path); end
 
   LETTERS = Sensitivity::LETTERS.multiply(Realm::LETTERS.permutation(4).map(&:join)).flatten
 
@@ -15,35 +15,63 @@ class Quad
   def self.find(letters); QUADS[LETTERS.index(letters)]; end
   def self.all; QUADS; end
 
-  def i?; path.first == "i"; end
+  def attitude; path.first; end
+  def i?; attitude == "i"; end
 
-  def realms; @path.chip.scan(/./).collect{|p| Realm.find(p)}; end
+  def realms_path; @path.chip; end
 
-  def sensitives; realms[0,2].collect{|r| r + Sensitivity.i}; end
-  def insensitives; realms[2,2].collect{|r| r + Sensitivity.e}; end
-  def subtypes; [*sensitives, *insensitives]; end
+  def invert_path; i? ? "e" : "i"; end
+  def invert; Quad.find(invert_path + realms_path); end
 
-  def dominant; i? ? sensitives.second : insensitives.first ; end
-  def auxiliary; i? ? insensitives.first : sensitives.second ; end
-  def tertiary; i? ? sensitives.first : insensitives.second ; end
-  def inferior; i? ? insensitives.second : sensitives.first ; end
+  def realms; realms_path.scan(/./).collect{|p| Realm.find(p)}; end
+  def attitudes; i? ? %w{i e i e} :  %w{e i e i}; end
+  def priorities; attitudes.each_with_index.collect {|s,i| realms[i] + Sensitivity.send(s)}; end
 
-  def is_theoretical?; dominant.realm.perceiving? != auxiliary.realm.perceiving?; end
+  def functions; priorities.map(&:function); end
 
-  def long_name; subtypes.map(&:name).join(", "); end
-  def dominant_names; [dominant, auxiliary].map(&:name).join(" & "); end
+  def dominant_subtypes; priorities[0,2]; end
+  def secondary_subtypes; priorities[2,2]; end
 
-  def functions; subtypes.map(&:function); end
-  def name; functions.join; end
+  def dominant; dominant_subtypes.first ; end
+  def auxiliary; dominant_subtypes.second ; end
+  def tertiary; secondary_subtypes.first ; end
+  def inferior; secondary_subtypes.second ; end
 
-  def depressed_subtypes; [subtypes.first, subtypes.second.invert] + subtypes[2,2]; end
-  def manic_subtypes; subtypes[0,2] + [subtypes.third.invert, subtypes.last]; end
 
-  def find_mbti(subtypes); subtypes.map(&:function).join.to_word.mbti.fix(path.first); end
-  def euthymic_mbti; find_mbti([dominant,auxiliary,inferior]); end
-  def depressed_mbti; find_mbti(depressed_subtypes[0,3]); end
-  def manic_mbti; find_mbti(manic_subtypes[1,3].reverse); end
+  def dominant_mbtiish; dominant.function.wrap(auxiliary.function); end
+  def dominant_names; dominant_subtypes.map(&:name).to_word(" & "); end
+  def dominant_full; ["Controlled", dominant_names].to_word; end
+  def secondary_mbtiish; tertiary.function.wrap(inferior.function); end
+  def secondary_names; secondary_subtypes.map(&:name).to_word(" & "); end
+  def secondary_full; ["Uncontrolled", secondary_names].to_word; end
+  def names; [dominant_full, secondary_full].to_word(" / "); end
 
-  def mbtis; [manic_mbti, euthymic_mbti, depressed_mbti]; end
+  def swap; Quad.find(invert_path + realms_path[0,2] + realms_path[2,2].reverse); end
+
+  %w{euthymic manic depressed}.each {|state| define_method(state + "_functions") {self.send(state + "_subtypes").map(&:function)}}
+
+  def euthymic_subtypes; dominant_subtypes + secondary_subtypes; end
+  def name; euthymic_functions.join; end
+  def euthymic_mbtis
+    first_try = euthymic_functions.first.wrap(euthymic_functions.second)
+    if first_try.is_mbti?
+      [first_try]
+    else [functions.first.wrap(functions.third), functions.second.wrap(functions.fourth)]
+    end.collect{|m| m.fix(path.first)}
+  end
+
+  def simple_mbti(functions)
+    first_try = functions.first.wrap(functions.second)
+    if first_try.is_mbti?
+      first_try
+    else functions.first.wrap(functions.third)
+    end.fix(path.first)
+  end
+
+  def depressed_subtypes; ([priorities.first, priorities.second.invert] + priorities[2,2]); end
+  def depressed_mbtis; [simple_mbti(depressed_functions)]; end
+
+  def manic_subtypes; (priorities[0,2] + [priorities.third.invert, priorities.last]).reverse; end
+  def manic_mbtis; [simple_mbti(manic_functions)]; end
 
 end

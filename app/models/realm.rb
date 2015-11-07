@@ -25,8 +25,6 @@ class Realm
 
   def +(sensitivity); Subtype.find(self.path + sensitivity.path); end
 
-  def perceiving?; %w{s n}.include?(path) ;end
-
   def i; self + Sensitivity.find("i"); end
   def e; self + Sensitivity.find("e"); end
 

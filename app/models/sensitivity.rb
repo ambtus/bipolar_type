@@ -23,8 +23,10 @@ class Sensitivity
   def invert_path; LETTERS.reverse[@index]; end
   def invert; Sensitivity.find(invert_path); end
 
-  def word; %w{externals internals}[@index]; end
+  def location; %w{externals internals}[@index]; end
 
-  def obfuscated; %w{compulsion aversion}[@index]; end
+  def direction; %w{compulsion aversion}[@index]; end
+
+  def i?; path == "i"; end
 
 end

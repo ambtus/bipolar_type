@@ -1,20 +1,18 @@
 - content_for(:title, "Question ##{@answer.number}")
 %h2 Choose the one that is the most true…
-%p
-  If this choice is difficult, and you were torn between two choices in the previous question, try going back and choosing the other one.
 -@answer.realms.each do |realm|
   %h3=realm.kind.capitalize
   -if @answer.attitude == "e"
     %li
       I don’t know why I keep gaining
       =realm.energy
-      or why I am always so
+      and am so
       =realm.full.colon
-      =link_to realm.e.obfuscated, discover_path(@answer.next("#{realm.path}"))
+      =link_to realm.e.direction, discover_path(@answer.next("#{realm.path}"))
   -if @answer.attitude == "i"
     %li
       I don’t know why I keep losing
       =realm.energy
-      or why I am always
+      and am so
       =realm.empty.colon
-      =link_to realm.i.obfuscated, discover_path(@answer.next("#{realm.path}"))
+      =link_to realm.i.direction, discover_path(@answer.next("#{realm.path}"))

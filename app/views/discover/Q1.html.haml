@@ -1,23 +1,20 @@
 - content_for(:title, "Question ##{@answer.number}")
-%h2 Choose the one that is the most true…
-%p
-  There are only three questions, and the next two are much shorter, so take your time on this one.
-%p
-  Read them all, and choose the one over which you have the
-  %em least
-  control.
+%p.heading There are only three questions, and the next two have fewer choices.
+%h2 Choose the one over which you have the least control.
 -Realm.all.each do |realm|
-  %h3=realm.kind.capitalize
+  %h3
+    =realm.kind.capitalize
+    Realm
   %ul
     %li
       I don’t know why I keep gaining
       =realm.energy
-      or why I am always
+      and am so
       =realm.full.colon
-      =link_to realm.e.obfuscated, discover_path(@answer.next("i#{realm.path}"))
+      =link_to realm.e.direction, discover_path(@answer.next("i#{realm.path}"))
     %li
       I don’t know why I keep losing
       =realm.energy
-      or why I am always
+      and am so
       =realm.empty.colon
-      =link_to realm.i.obfuscated, discover_path(@answer.next("e#{realm.path}"))
+      =link_to realm.i.direction, discover_path(@answer.next("e#{realm.path}"))

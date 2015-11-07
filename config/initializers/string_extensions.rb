@@ -1,5 +1,9 @@
 # Restart required even in development mode when you modify this file.
 
+%w{chip to_word to_phrase to_word_or_phrase}.each do |meth|
+ raise "#{meth} is already defined in String" if String.method_defined?(meth)
+end
+
 class String
 
   def chip; self[1..-1]; end
