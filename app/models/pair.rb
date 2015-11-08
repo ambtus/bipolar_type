@@ -8,6 +8,9 @@ class Pair
     @subtypes = array
     raise "#{array} is not a pair of subtypes" unless @subtypes.all?{|x| x.is_a? Subtype}
   end
+  attr_reader :subtypes
+
+  def <=>(other); subtypes <=> other.subtypes; end
 
   def prefix; @controlled ? "Controlled " : "Uncontrolled "; end
 
@@ -17,7 +20,7 @@ class Pair
   def mbtiish; first.function.wrap(second.function); end
 
   def method_missing(meth, *arguments, &block)
-    if Subtype.method_defined?(meth) 
+    if Subtype.method_defined?(meth)
       @subtypes.collect{|s| s.send(meth)}
     else
       @subtypes.send(meth, *arguments, &block)
