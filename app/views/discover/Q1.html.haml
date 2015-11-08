@@ -1,20 +1,14 @@
 - content_for(:title, "Question ##{@answer.number}")
-%p.heading There are only three questions, and the next two have fewer choices.
-%h2 Choose the one over which you have the least control.
+%p.heading There are only three questions and the next two questions have a much smaller subset of these same choices.
+%h2 Choose the condition over which you have the least control.
+%p
+  You may still be trying to change it, or you may have become resigned and are no longer try to change it, but of the eight conditions, which is the one that is, or would be, the
+  %em hardest
+  for you to change.
 -Realm.all.each do |realm|
   %h3
     =realm.kind.capitalize
     Realm
   %ul
-    %li
-      I don’t know why I keep gaining
-      =realm.energy
-      and am so
-      =realm.full.colon
-      =link_to realm.e.direction, discover_path(@answer.next("i#{realm.path}"))
-    %li
-      I don’t know why I keep losing
-      =realm.energy
-      and am so
-      =realm.empty.colon
-      =link_to realm.i.direction, discover_path(@answer.next("e#{realm.path}"))
+    %li=render "e", :realm => realm, :path => "i#{realm.path}"
+    %li=render "i", :realm => realm, :path => "e#{realm.path}"

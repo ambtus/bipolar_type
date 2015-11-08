@@ -1,14 +1,15 @@
 - content_for(:title, "Question ##{@answer.number}")
-%h2 Choose the one that is more true…
+%h2 Choose the condition over which you have less control.
+%p
+  You may still be trying to change it, or you may have already changed it, but of the two conditions, which is one that is is
+  %em harder
+  for you to change.
 -@answer.realms.each do |realm|
-  %h3=realm.kind.capitalize
-  -if @answer.attitude == "i"
-    %li
-      I don’t know why I am so
-      =realm.full.colon
-      =link_to realm.e.direction, discover_path(@answer.next("#{realm.path}"))
-  -if @answer.attitude == "e"
-    %li
-      I don’t know why I am so
-      =realm.empty.colon
-      =link_to realm.i.direction, discover_path(@answer.next("#{realm.path}"))
+  %h3
+    =realm.kind.capitalize
+    Realm
+  %ul
+    -if @answer.attitude == "e"
+      %li=render "i", :realm => realm, :path => "#{realm.path}"
+    -if @answer.attitude == "i"
+      %li=render "e", :realm => realm, :path => "#{realm.path}"

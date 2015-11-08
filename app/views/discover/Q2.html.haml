@@ -1,18 +1,15 @@
 - content_for(:title, "Question ##{@answer.number}")
-%h2 Choose the one that is the most true…
+%h2 Choose the condition over which you have the least control.
+%p
+  You may still be trying to change it, or you may have become resigned and are no longer try to change it, but of the eight conditions, which is the one that is, or would be, the
+  %em hardest
+  for you to change.
 -@answer.realms.each do |realm|
-  %h3=realm.kind.capitalize
-  -if @answer.attitude == "e"
-    %li
-      I don’t know why I keep gaining
-      =realm.energy
-      and am so
-      =realm.full.colon
-      =link_to realm.e.direction, discover_path(@answer.next("#{realm.path}"))
-  -if @answer.attitude == "i"
-    %li
-      I don’t know why I keep losing
-      =realm.energy
-      and am so
-      =realm.empty.colon
-      =link_to realm.i.direction, discover_path(@answer.next("#{realm.path}"))
+  %h3
+    =realm.kind.capitalize
+    Realm
+  %ul
+    -if @answer.attitude == "e"
+      %li=render "e", :realm => realm, :path => "#{realm.path}"
+    -if @answer.attitude == "i"
+      %li=render "i", :realm => realm, :path => "#{realm.path}"

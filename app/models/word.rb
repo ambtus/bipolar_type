@@ -7,13 +7,16 @@ class Word
 
   def inspect; @string.inspect.chip.chop; end
   def to_word; self; end
+  def words; [self]; end
   def to_s; @string; end
   alias_method :to_str, :to_s
+  def chars; @string.chars; end
 
   def method_missing(meth, *arguments, &block)
     @string.send(meth, *arguments, &block).to_word_or_phrase
   end
 
+  def prefix(prefix); "#{prefix}#{@string}".to_word; end
   def punctuate(punctuation); "#{@string}#{punctuation}".to_word; end
   def period; punctuate("."); end
   def comma; punctuate(","); end
@@ -59,7 +62,7 @@ class Word
   def er
     if needs_doubling?
       punctuate("#{last}er")
-    elsif @string.is_exception?
+    elsif is_exception?
       Phrase.new(["more".to_word, self])
     elsif chars.last == "y"
       chop.punctuate("ier")
@@ -73,17 +76,17 @@ class Word
   end
 
   def erer
-    if self.er.is_a?(Phrase)
-      Phrase.new("more and".to_phrase + self.er)
+    if er.is_a?(Phrase)
+      Phrase.new("more and".to_phrase + er)
     else
-      Phrase.new([self.er, "and".to_word, self.er])
+      Phrase.new([er, "and".to_word, er])
     end
   end
 
   def est
     if needs_doubling?
       punctuate("#{last}est")
-    elsif self.is_exception?
+    elsif is_exception?
       Phrase.new(["most".to_word, self])
     elsif chars.last == "y"
       chop.punctuate("iest")
@@ -187,7 +190,7 @@ class Word
   ## if the word in realm.csv needs to be singular and plural
   ## make the method name plural, and add the singulars here
   ## plural defaults in order to differentiate they from them
-  UNCOUNTABLE = %w{heart mind stomach food money confidence fat apathy anxiety hunger wealth certainty nourishment intonation outline protein}
+  UNCOUNTABLE = %w{heart mind stomach food money confidence fat apathy anxiety hunger wealth certainty nourishment intonation outline protein weight music}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
   # exceptions to rules about ending in y or e

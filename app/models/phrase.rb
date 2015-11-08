@@ -10,13 +10,15 @@ class Phrase
 
   def inspect; words.join("•"); end
   def to_s; words.join(" "); end
+  def fewer_phrase; @array.unshift(words.last.fewer); end
+  %w{ing ed en}.each {|verb_suffix| define_method(verb_suffix) {(@array[0] = first.send(verb_suffix)) && (return self)}}
 
   def method_missing(meth, *arguments, &block)
     if Word.method_defined?(meth)
       @array[-1] = words.last.send(meth)
       return self
     else
-      @array.send(meth, *arguments, &block).to_word_or_phrase
+      @array.send(meth, *arguments, &block)
     end
   end
 

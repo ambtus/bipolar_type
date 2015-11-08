@@ -24,54 +24,58 @@ class Quad
   def invert; Quad.find(invert_path + realms_path); end
 
   def realms; realms_path.scan(/./).collect{|p| Realm.find(p)}; end
+
   def attitudes; i? ? %w{i e i e} :  %w{e i e i}; end
   def priorities; attitudes.each_with_index.collect {|s,i| realms[i] + Sensitivity.send(s)}; end
-
-  def functions; priorities.map(&:function); end
-
-  def dominant_subtypes; priorities[0,2]; end
-  def secondary_subtypes; priorities[2,2]; end
-
-  def dominant; dominant_subtypes.first ; end
-  def auxiliary; dominant_subtypes.second ; end
-  def tertiary; secondary_subtypes.first ; end
-  def inferior; secondary_subtypes.second ; end
+  def insensitive_priorities; priorities.select{|p| !p.i?}; end
+  def sensitive_priorities; priorities.select{|p| p.i?}; end
 
 
-  def dominant_mbtiish; dominant.function.wrap(auxiliary.function); end
-  def dominant_names; dominant_subtypes.map(&:name).to_word(" & "); end
-  def dominant_full; ["Controlled", dominant_names].to_word; end
-  def secondary_mbtiish; tertiary.function.wrap(inferior.function); end
-  def secondary_names; secondary_subtypes.map(&:name).to_word(" & "); end
-  def secondary_full; ["Uncontrolled", secondary_names].to_word; end
-  def names; [dominant_full, secondary_full].to_word(" / "); end
+  def controlled; Pair.new(priorities[0,2]); end
+  def uncontrolled; Pair.new(priorities[2,2], false); end
+  def euthymic_pairs; [controlled, uncontrolled];end
+  def depressed_pairs; [Pair.new([sensitive_priorities.second, sensitive_priorities.first.invert]),  Pair.new(insensitive_priorities.reverse,false)] ; end
+  def manic_pairs; [Pair.new([insensitive_priorities.second,insensitive_priorities.first.invert]), Pair.new(sensitive_priorities.reverse,false)] ; end
 
-  def swap; Quad.find(invert_path + realms_path[0,2] + realms_path[2,2].reverse); end
+  delegate :mbtiish, :names, to: :controlled, prefix: true
+  delegate :mbtiish, :names, to: :uncontrolled, prefix: true
 
-  %w{euthymic manic depressed}.each {|state| define_method(state + "_functions") {self.send(state + "_subtypes").map(&:function)}}
+  def dominant; controlled.first ; end
+  def auxiliary; controlled.second ; end
+  def tertiary; uncontrolled.first ; end
+  def inferior; uncontrolled.second ; end
 
-  def euthymic_subtypes; dominant_subtypes + secondary_subtypes; end
-  def name; euthymic_functions.join; end
-  def euthymic_mbtis
-    first_try = euthymic_functions.first.wrap(euthymic_functions.second)
-    if first_try.is_mbti?
-      [first_try]
-    else [functions.first.wrap(functions.third), functions.second.wrap(functions.fourth)]
-    end.collect{|m| m.fix(path.first)}
+  %w{euthymic manic depressed}.each do |state|
+    define_method(state + "_functions") {self.send(state + "_pairs").map(&:function).to_word("")}
+    define_method(state + "_names") {self.send(state + "_pairs").map(&:names).to_word(" / ")}
   end
 
-  def simple_mbti(functions)
-    first_try = functions.first.wrap(functions.second)
-    if first_try.is_mbti?
-      first_try
-    else functions.first.wrap(functions.third)
+  alias_method :functions, :euthymic_functions
+  alias_method :name, :euthymic_functions
+
+  alias_method :names, :euthymic_names
+
+
+  def priority_functions; priorities.map(&:function); end
+  def euthymic_mbtis
+    if controlled_mbtiish.is_mbti?
+      [controlled_mbtiish]
+    else
+      [priority_functions.first.wrap(priority_functions.fourth), priority_functions.second.wrap(priority_functions.third)].collect{|m| m.fix(path.first)}
+    end
+  end
+
+  def simple_mbti(pair,alternative)
+    if pair.mbtiish.is_mbti?
+      pair.mbtiish
+    else
+      pair.first.function.wrap(alternate)
     end.fix(path.first)
   end
 
-  def depressed_subtypes; ([priorities.first, priorities.second.invert] + priorities[2,2]); end
-  def depressed_mbtis; [simple_mbti(depressed_functions)]; end
 
-  def manic_subtypes; (priorities[0,2] + [priorities.third.invert, priorities.last]).reverse; end
-  def manic_mbtis; [simple_mbti(manic_functions)]; end
+  def depressed_mbtis; [simple_mbti(depressed_pairs.first,depressed_pairs.second.first)]; end
+
+  def manic_mbtis; [simple_mbti(manic_pairs.first,manic_pairs.second.first)]; end
 
 end

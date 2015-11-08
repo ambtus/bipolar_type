@@ -30,7 +30,7 @@ class Realm
 
   def name; kind.capitalize; end
 
-  def gain; gain_phrase.to_phrase.words.first; end
-  def consume; Phrase.new([*gain_phrase, resources]); end
+  def gain; gain_phrase.words.first; end
+  def consume; Phrase.new([*gain_phrase.words, resources]); end
 
 end

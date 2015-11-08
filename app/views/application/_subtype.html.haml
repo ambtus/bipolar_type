@@ -72,7 +72,11 @@
   to do so.
 %p
   You felt
-  =realm.empty
+  -case sensitivity
+  -when "i"
+    =realm.empty
+  -when "e"
+    =realm.full
   -case index
   -when 0
     all
