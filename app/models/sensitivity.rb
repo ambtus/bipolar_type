@@ -24,6 +24,7 @@ class Sensitivity
   def invert; Sensitivity.find(invert_path); end
 
   def location; %w{externals internals}[@index]; end
+  def state; %w{full empty}[@index]; end
 
   def direction; %w{compulsion aversion}[@index]; end
 

@@ -1,14 +1,5 @@
-- content_for(:title, "Question ##{@answer.number}")
-%p.heading There are only three questions and the next two questions have a much smaller subset of these same choices.
-%h2 Choose the condition over which you have the least control.
+- content_for(:title, "Wish ##{@answer.number}")
 %p
-  You may still be trying to change it, or you may have become resigned and are no longer try to change it, but of the eight conditions, which is the one that is, or would be, the
-  %em hardest
-  for you to change.
+  What would you use your first wish for?
 -Realm.all.each do |realm|
-  %h3
-    =realm.kind.capitalize
-    Realm
-  %ul
-    %li=render "e", :realm => realm, :path => "i#{realm.path}"
-    %li=render "i", :realm => realm, :path => "e#{realm.path}"
+  %p=render "e", :realm => realm

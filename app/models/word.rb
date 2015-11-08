@@ -7,6 +7,7 @@ class Word
 
   def inspect; @string.inspect.chip.chop; end
   def to_word; self; end
+  def to_word_or_phrase; self; end
   def words; [self]; end
   def to_s; @string; end
   alias_method :to_str, :to_s
@@ -16,7 +17,7 @@ class Word
     @string.send(meth, *arguments, &block).to_word_or_phrase
   end
 
-  def prefix(prefix); "#{prefix}#{@string}".to_word; end
+  def prefix(prefix); "#{prefix}#{@string}".to_word_or_phrase; end
   def punctuate(punctuation); "#{@string}#{punctuation}".to_word; end
   def period; punctuate("."); end
   def comma; punctuate(","); end
@@ -37,17 +38,17 @@ class Word
 
   def an; [a_or_an, self].to_phrase; end
 
-  def if_uncountable(yes, no=self); is_uncountable? ? yes : no; end
-  def they; if_uncountable("it", "they").to_word; end
-  def them; if_uncountable("it", "them").to_word; end
-  def their; if_uncountable("its", "their").to_word; end
-  def were; if_uncountable("was", "were").to_word; end
-  def many; if_uncountable("much", "many").to_word; end
-  def many_phrase; Phrase.new([many, self]); end
-  def fewer; if_uncountable("less", "fewer").to_word; end
-  def fewer_phrase; Phrase.new([fewer, self]); end
-  def are; if_uncountable("is", "are").to_word; end
-  def are_phrase; Phrase.new([are, self]); end
+  def if_uncountable(yes, no=self); (is_uncountable? ? yes : no).to_word_or_phrase; end
+  def they; if_uncountable("it", "they"); end
+  def them; if_uncountable("it", "them"); end
+  def their; if_uncountable("its", "their"); end
+  def were; if_uncountable("was", "were"); end
+  def many; if_uncountable("much", "many"); end
+  def many_phrase; [many, self].to_phrase; end
+  def fewer; if_uncountable("less", "fewer"); end
+  def fewer_phrase; [fewer, self].to_phrase; end
+  def are; if_uncountable("is", "are"); end
+  def are_phrase; [are, self].to_phrase; end
 
   def ly
     if chars.last == "y"
@@ -63,7 +64,7 @@ class Word
     if needs_doubling?
       punctuate("#{last}er")
     elsif is_exception?
-      Phrase.new(["more".to_word, self])
+      ["more", self].to_phrase
     elsif chars.last == "y"
       chop.punctuate("ier")
     elsif chars.last == "e"
@@ -71,15 +72,15 @@ class Word
     elsif is_single_word?
       punctuate("er")
     else
-      Phrase.new(["more".to_word, self])
+      ["more", self].to_phrase
     end
   end
 
   def erer
     if er.is_a?(Phrase)
-      Phrase.new("more and".to_phrase + er)
+      ["more", "and", er].to_phrase
     else
-      Phrase.new([er, "and".to_word, er])
+      [er, "and", er].to_phrase
     end
   end
 
@@ -87,7 +88,7 @@ class Word
     if needs_doubling?
       punctuate("#{last}est")
     elsif is_exception?
-      Phrase.new(["most".to_word, self])
+      ["most", self].to_phrase
     elsif chars.last == "y"
       chop.punctuate("iest")
     elsif chars.last == "e"
@@ -95,7 +96,7 @@ class Word
     elsif is_single_word?
       punctuate("est")
     else
-      Phrase.new(["most".to_word, self])
+      ["most", self].to_phrase
     end
   end
 
@@ -136,7 +137,7 @@ class Word
 
   def invert
     raise "#{self} is not a function" unless is_function?
-    (last == "i" ? chop + "e" : chop + "i").to_wordc
+    (last == "i" ? chop + "e" : chop + "i")
   end
 
   def wrapper
@@ -190,7 +191,7 @@ class Word
   ## if the word in realm.csv needs to be singular and plural
   ## make the method name plural, and add the singulars here
   ## plural defaults in order to differentiate they from them
-  UNCOUNTABLE = %w{heart mind stomach food money confidence fat apathy anxiety hunger wealth certainty nourishment intonation outline protein weight music}
+  UNCOUNTABLE = %w{heart mind stomach food money confidence fat apathy anxiety hunger wealth certainty nourishment intonation outline protein weight music color}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
   # exceptions to rules about ending in y or e

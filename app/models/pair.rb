@@ -12,9 +12,10 @@ class Pair
 
   def <=>(other); subtypes <=> other.subtypes; end
 
-  def prefix; @controlled ? "Controlled " : "Uncontrolled "; end
+  def concern; @controlled ? :location : :state; end
+  def concerns; @subtypes.map(&concern); end
 
-  def names; name.to_word(" & ").prefix(prefix); end
+  def names; concerns.map(&:capitalize).to_word(" & "); end
   alias_method :inspect, :names
 
   def mbtiish; first.function.wrap(second.function); end

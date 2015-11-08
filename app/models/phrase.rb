@@ -10,6 +10,7 @@ class Phrase
 
   def inspect; words.join("•"); end
   def to_s; words.join(" "); end
+  alias_method :to_str, :to_s
   def fewer_phrase; @array.unshift(words.last.fewer); end
   %w{ing ed en}.each {|verb_suffix| define_method(verb_suffix) {(@array[0] = first.send(verb_suffix)) && (return self)}}
 

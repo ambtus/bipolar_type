@@ -1,15 +1,6 @@
-- content_for(:title, "Question ##{@answer.number}")
-%h2 Choose the condition over which you have less control.
+- content_for(:title, "Wish ##{@answer.number}")
 %p
-  You may still be trying to change it, or you may have already changed it, but of the two conditions, which is one that is is
-  %em harder
-  for you to change.
+  What would you use your last wish for?
 -@answer.realms.each do |realm|
-  %h3
-    =realm.kind.capitalize
-    Realm
-  %ul
-    -if @answer.attitude == "e"
-      %li=render "i", :realm => realm, :path => "#{realm.path}"
-    -if @answer.attitude == "i"
-      %li=render "e", :realm => realm, :path => "#{realm.path}"
+  %p=render "i", :realm => realm
+  %p=render "e", :realm => realm

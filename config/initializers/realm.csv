@@ -1,14 +1,14 @@
 x,t,f,n,s
 kind,financial,emotional,mental,physical
-organs,hands,heart,mind,stomach
-resources,jobs,stories,pictures,food
+organs,hands,heart,mind,body
+energy,money,compassion,confidence,fat
+resources,jobs,stories,truths,food
 gain_phrase,work on,listen to,look at,eat
-energy,money,relationships,confidence,fat
+internals,debts,loneliness,doubts,hunger
+empty,indebted,alone,unsure,thin
+full,rich,popular,convinced,fat
+externals,riches,friends,boredom,restlessness
 lose,buy,talk,decide,walk
 loss,purchase,speech,decision,trip
-empty,indebted,hated,unsure,hungry
-internals,debts,enemies,doubts,hunger
-externals,riches,friends,truth,weight
-full,rich,loved,convinced,fat
-energetic_resources,projects,music,colorful details,sweets
-strong_resources,chores,lyrics,black and white outlines,savories
+energetic_resources,projects,music,colorful movement,sweets
+strong_resources,chores,lyrics,steady outlines,savories

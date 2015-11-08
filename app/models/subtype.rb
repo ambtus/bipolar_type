@@ -26,8 +26,10 @@ class Subtype
 
   def function; path.capitalize.to_word; end
 
-  def location; realm.send(sensitivity.location); end
+  %w{state location}.each {|term| define_method(term) {realm.send(sensitivity.send(term))}}
+
   def name; "#{location.capitalize} (#{function})".to_word; end
+
 
   def direction; "#{realm.kind} #{sensitivity.direction}".to_word; end
 
