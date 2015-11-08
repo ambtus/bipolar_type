@@ -65,11 +65,11 @@ class Quad
     end
   end
 
-  def simple_mbti(pair,alternative)
+  def simple_mbti(pair,alternate)
     if pair.mbtiish.is_mbti?
       pair.mbtiish
     else
-      pair.first.function.wrap(alternate)
+      pair.first.function.wrap(alternate.function)
     end.fix(path.first)
   end
 
