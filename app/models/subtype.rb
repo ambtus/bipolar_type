@@ -1,39 +1,44 @@
-class Subtype
+class Subtype < Phrase
 
-  LETTERS = Realm::LETTERS.multiply(Sensitivity::LETTERS).flatten
-
-  def initialize(letters)
-    @index = LETTERS.index(letters)
-    @path = letters
+  def initialize(array)
+    @losing = array.first
+    @energy = array.second
+    @gaining = array.third
+    super
   end
-  attr_reader :path
+  attr_reader :losing, :energy, :gaining
 
-  SUBTYPES = LETTERS.collect{|letters| Subtype.new(letters)}
-  def self.all; SUBTYPES; end
+  # Override phrase spaces
+  def to_s; words.join(""); end
+  def to_str; words.join(""); end
+  def inspect; words.join("").to_word; end
 
-  def self.index(letters)
-    raise "#{letters} isn't a Subtype" unless LETTERS.include?(letters)
-    LETTERS.index(letters)
-  end
-  def self.find(letters); SUBTYPES[index(letters)]; end
+  ALL = Losing::ALL.collect do |losing|
+               Energy::ALL.collect do |energy|
+                 Gaining::ALL.collect do |gaining|
+                   self.new [losing,energy,gaining]
+                 end
+               end
+             end.flatten
+  def ordered_words; [energy, losing, gaining]; end
+  def <=>(other); ordered_words <=> other.ordered_words; end
+  def self.all; ALL.sort; end
+  def self.find(string); ALL.find{|s| s.to_s == string}; end
 
-  def realm; Realm.find(path.first); end
-  def sensitivity; Sensitivity.find(path.last); end
+  def same_energy; ALL.select{|s| s.energy == energy}; end
+  def attitude; [gaining, losing]; end
+  def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def <=>(other); path.reverse <=> other.path.reverse; end
+  def name; words.map(&:name).join.to_word; end
 
-  def invert; realm + sensitivity.invert; end
+  delegate :gain, :lose, :potential, to: :energy, :prefix => true
+  delegate :ease_of, to: :gaining, :prefix => true
+  delegate :ease_of, to: :losing, :prefix => true
 
-  def function; path.capitalize.to_word; end
+  def when_empty; losing.when_empty(energy); end
+  def size; losing.size(energy); end
 
-  %w{state location}.each {|term| define_method(term) {realm.send(sensitivity.send(term))}}
-
-  def name; "#{location.capitalize} (#{function})".to_word; end
-
-
-  def direction; "#{realm.kind} #{sensitivity.direction}".to_word; end
-
-  delegate :kind, to: :realm
-  delegate :i?, to: :sensitivity
+  def when_full; gaining.when_full(energy); end
+  def sensitivity; gaining.sensitivity(energy); end
 
 end

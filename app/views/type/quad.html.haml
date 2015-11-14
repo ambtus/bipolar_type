@@ -1,10 +1,4 @@
 - content_for(:title, @quad.name)
-%h2
-%h2
--%w{manic euthymic depressed}.each do |state|
-  %h3=state.capitalize
-  %p
-    =@quad.send(state+"_names")
-    =@quad.send(state+"_functions")
-    =render "mbtis", :mbtis => @quad.send(state + "_mbtis")
-%h2 Related BipolarTypes
+%h2 Subtypes
+-@quad.subtypes.each do |subtype|
+  =render "subtype", :subtype => subtype

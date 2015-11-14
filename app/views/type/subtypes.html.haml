@@ -1,8 +1,5 @@
 - content_for(:title, 'The 16 Subtypes')
 %table.center
-  %caption
-    %li There are actually 32 Subtypes.
-    %li This table only contrasts the most and least differentiated.
   -Subtype.all.in_groups_of(2) do |realm_group|
     %tr
       %td.narrow.none
@@ -13,14 +10,14 @@
     %tr
       %td.narrow.none
       %td.halfish.none
-        %h2 Most Differentiated
+        %h2 Controlled State
       %td.halfish.none
-        %h2 Least Differentiated
+        %h2 Uncontrolled State
     -realm_group.each do |subtype|
       %tr
         %td.narrow.middle.none
           %h2=subtype.name
         %td.halfish.left
-          =render "subtype", :sensitivity => subtype.sensitivity.path, :realm => subtype.realm, :index => 0
+          =render subtype.c, :realm => subtype.realm
         %td.halfish.left
-          =render "subtype", :sensitivity => subtype.sensitivity.path, :realm => subtype.realm, :index => 3
+          =render subtype.u, :realm => subtype.realm

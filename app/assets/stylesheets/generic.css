@@ -2,6 +2,6 @@
 .left { text-align: left; }
 .small { font-size: small;}
 .heading {font-style: italic; text-align: center; }
-.constrained {color: red; font-style: italic}
+.warning {color: red; font-style: italic}
 .free {color: green; font-weight: normal}
 .chosen {color: blue; font-style: italic}

@@ -7,20 +7,30 @@ class Answer
     @question,@answer = string.split("_")
     @answer = "" unless @answer
   end
-  attr_reader :question
+  attr_reader :question, :answer
 
   def number; @question.last.to_i ; end
-  def finished?; number == 4; end
+  def finished?; number == 5; end
 
-  def subtypes; @answer.scan(/../).collect{|s| Subtype.find(s)}; end
+  def chosen; @answer.scan(/.../).collect{|subtype| Subtype.find(subtype)}; end
+  def constrained; (chosen.map(&:same_energy) + chosen.map(&:same_attitude)).flatten.uniq; end
+  def class(subtype)
+    if chosen.include? subtype
+      "chosen" 
+    elsif constrained.include? subtype
+      "warning"
+    else
+      "free"
+    end
+  end
 
-  def chosen; subtypes.map(&:realm); end
   def realms; Realm.all - chosen; end
 
-  def next(string); question.next + "_" + @answer + string; end
+  def next(subtype)
+    subtypes = chosen.reject{|s| subtype.same_energy.include?(s) || subtype.same_attitude.include?(s)}
+    "Q" + subtypes.size.next.next.to_s + "_" + subtypes.join + subtype
+  end
 
-  def priorities; (realms + chosen.reverse); end
-  def quad; Quad.find(subtypes.last.sensitivity.invert_path + priorities.map(&:path).join); end
-  def result; quad.path; end
+  def quad_path; chosen.sort.join; end
 
 end

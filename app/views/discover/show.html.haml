@@ -1,0 +1,15 @@
+-content_for(:title, "Question ##{@answer.number}")
+%p.heading
+  %span.free Choose one 
+  from each row and column; if you choose the 
+  %span.warning same row or column, 
+  your 
+  %span.chosen previous selections 
+  in that row and coming will be reset. 
+%table
+  -Subtype.all.in_groups_of(4) do |row|
+    %tr
+      -row.each do |subtype|
+        %td{:class => @answer.class(subtype)}
+          =render "subtype", :subtype => subtype
+          %p.heading=link_to subtype, discover_path(@answer.next(subtype))
