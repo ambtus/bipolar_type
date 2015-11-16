@@ -32,21 +32,7 @@ class Subtype < Phrase
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
   def partial; attitude.join; end
 
-  def name; Phrase.new [descriptive_name, parenthetical]; end
-
-  def signals; "#{energy.domain.capitalize} Signals"; end
-  def descriptive_name
-    case partial
-    when "ee"
-      "External #{signals}"
-    when "ei"
-      "Positive #{signals}"
-    when "ie"
-      "Negative #{signals}"
-    when "ii"
-      "Internal #{signals}"
-    end
-  end
+  def name; inspect; end
 
   def why_start; starting.why(energy); end
   def i_start; "I start #{consume.ing} when #{why_start.period}" end

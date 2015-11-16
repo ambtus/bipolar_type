@@ -49,8 +49,8 @@ class Energy < Noun
   def emptiness; choose Adjective, %w{hunger hopelessness debt anxiety}; end
 
   # internal signal: positive affect. I feel
-  def full; choose Adjective, %w{satisfied loved rewarded confident}; end
-  def fullness; choose Noun, %w{satisfaction love reward confidence}; end
+  def full; choose Adjective, %w{satisfied loved rewarded convinced}; end
+  def fullness; choose Noun, %w{satisfaction love reward conviction}; end
   # the resource was
   def filling; choose Adjective, %w{satisfying loving rewarding convincing}; end
 

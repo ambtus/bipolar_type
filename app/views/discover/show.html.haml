@@ -11,6 +11,5 @@
     %tr
       -row.each do |subtype|
         %td{:class => @answer.class(subtype)}
-          %p.center=subtype.i_start
-          %p.center=subtype.i_stop
+          %p.center=render subtype.partial, :energy => subtype.energy
           %p.heading=link_to subtype, discover_path(@answer.next(subtype))
