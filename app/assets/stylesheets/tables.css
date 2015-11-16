@@ -1,35 +1,15 @@
-table.center {
+table, th, td {
+   border: 1px solid grey;
+}
+table {
+  border-collapse: collapse;
+  empty-cells: hide;
   margin-left:auto;
   margin-right:auto;
-  border-collapse:collapse;
 }
 td {
-  padding: 0 2%
-}
-.quarter {
-  width: 21%;
-}
-.third {
-  width: 29%;
-}
-.narrow {
-  padding: 0;
-  width: 4%;
-  hyphens: auto;
-}
-.halfish {
-  width: 44%
-}
-td {
+  padding: 0 2%;
   vertical-align: top;
-  border: 1px solid grey;
 }
-td.bottom {
-  vertical-align: bottom;
-}
-td.middle {
-  vertical-align: middle;
-}
-td.none {
-  border: none;
-}
+td.bottom { vertical-align: bottom;}
+td.middle { vertical-align: middle; }

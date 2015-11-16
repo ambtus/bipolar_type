@@ -1,7 +1,21 @@
-.center { text-align: center; }
-.left { text-align: left; }
 .small { font-size: small;}
 .heading {font-style: italic; text-align: center; }
 .warning {color: red; font-style: italic}
 .free {color: green; font-weight: normal}
 .chosen {color: blue; font-style: italic}
+.eighth { width: 8%; }
+.sixth { width: 12%; }
+.fifth { width: 16%; }
+.quarter { width: 21%; }
+.third { width: 30%; }
+.half { width: 46% }
+.halfish { width: 44% }
+.narrow {
+  padding: 0;
+  width: 4%;
+  hyphens: auto;
+}
+.center { text-align: center; }
+.left { text-align: left; }
+.right { text-align: right; }
+.none { border: none; }

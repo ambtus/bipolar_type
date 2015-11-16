@@ -1,4 +1,11 @@
 - content_for(:title, @quad.name)
-%h2 Subtypes
--@quad.subtypes.each do |subtype|
-  =render "subtype", :subtype => subtype
+%table
+  %caption
+    %h2 Normal
+  =render "subtypes", :subtypes => @quad.subtypes
+%table
+  %caption
+    %h2 Manic
+%table
+  %caption
+    %h2 Depressed

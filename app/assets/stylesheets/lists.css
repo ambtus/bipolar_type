@@ -1,9 +1,7 @@
-ul, dl {
-  text-align: left;
+ul {
   margin: 0;
-  padding: 0;
 }
-li.none {
+ul.none {
   list-style-type: none;
 }
 dt, dd {

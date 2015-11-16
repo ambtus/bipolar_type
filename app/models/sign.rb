@@ -15,11 +15,6 @@ class Sign < Word
   def index; self.class::LETTERS.index string; end
   def <=>(other); index <=> other.index; end
   def choose(klass, array); klass.new array[index]; end
-
-  def nature; choose Word, %w{can cannot}; end
-
-  def timing; choose Phrase, ["some time after feeling", "immediately upon feeling"].map(&:words); end
-
-  def ease_of; choose Word, %w{easy hard}; end
+  def choose_phrase(phrase); choose Phrase, phrase.map(&:words); end
 
 end

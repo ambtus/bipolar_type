@@ -1,7 +1,5 @@
 class Adjective < Word
 
-  def to_noun; Noun.new(string.chop + "ity"); end
-
   def ly
     if chars.last == "y"
       self.chop + "ily"
@@ -14,41 +12,41 @@ class Adjective < Word
 
   def er
     if needs_doubling?
-      punctuate("#{last}er")
+      suffix("#{last}er")
     elsif is_exception?
-      ["more", self].to_phrase
+      Phrase.new ["more", self]
     elsif chars.last == "y"
-      chop.punctuate("ier")
+      chop.suffix("ier")
     elsif chars.last == "e"
-      punctuate("r")
+      suffix("r")
     elsif is_single_word?
-      punctuate("er")
+      suffix("er")
     else
-      ["more", self].to_phrase
+      Phrase.new ["more", self]
     end
   end
 
   def erer
     if er.is_a?(Phrase)
-      ["more", "and", er].to_phrase
+      Phrase.new ["more", "and", er]
     else
-      [er, "and", er].to_phrase
+      Phrase.new [er, "and", er]
     end
   end
 
   def est
     if needs_doubling?
-      punctuate("#{last}est")
+      suffix("#{last}est")
     elsif is_exception?
-      ["most", self].to_phrase
+      Phrase.new ["most", self]
     elsif chars.last == "y"
-      chop.punctuate("iest")
+      chop.suffix("iest")
     elsif chars.last == "e"
-      punctuate("st")
+      suffix("st")
     elsif is_single_word?
-      punctuate("est")
+      suffix("est")
     else
-      ["most", self].to_phrase
+      Phrase.new ["most", self]
     end
   end
 
@@ -60,7 +58,7 @@ class Adjective < Word
   EXCEPTIONS = %w{appreciate}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
-  SINGLES = %w{}
+  SINGLES = %w{sweet}
   def is_single_word?; SINGLES.include?(@string); end
 
 end

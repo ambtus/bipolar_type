@@ -16,16 +16,19 @@ class Word
   end
 
   def prefix(prefix); "#{prefix}#{string}".to_word; end
-  def suffix(suffix); "#{string}#{suffix}".to_word; end
-  def surround(prefix, suffix=prefix); "#{prefix}#{string}#{suffix}".to_word; end
-  def parenthetical; surround("(",")"); end
+  def open_parenthesis; prefix("("); end
 
+  def suffix(suffix); "#{string}#{suffix}".to_word; end
   def period; suffix("."); end
   def comma; suffix(","); end
   def colon; suffix(":"); end
   def semicolon; suffix(";"); end
   def exclaim; suffix("!"); end
   def question; suffix("?"); end
+  def close_parenthesis; suffix(")"); end
+
+  def parenthetical; open_parenthesis.close_parenthesis;end
+
 
   def an?
      if chars.length == 1

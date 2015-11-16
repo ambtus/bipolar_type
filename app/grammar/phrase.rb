@@ -1,4 +1,5 @@
 class Phrase
+
   def initialize(array)
     @words = array.flatten.collect{|w| w.words}.flatten
     @words.check_constraints(Word,2)
@@ -16,22 +17,21 @@ class Phrase
 
   ## methods that return an array of words
   def first_words; words[0..-2]; end
-  def mid_words; words[1..-2]; end
   def last_words; words[1..-1]; end
 
   ## first word methods
-  %w{ing ed en}.each do |meth|
+  %w{open_parenthesis capitalize ing ed en}.each do |meth|
     define_method(meth) {Phrase.new [first.send(meth), last_words]}
   end
 
   ## last word methods
-  %w{period comma colon semicolon exclaim question}.each do |meth|
+  %w{close_parenthesis period comma colon semicolon exclaim question}.each do |meth|
     define_method(meth) {Phrase.new [first_words, last.send(meth)]}
   end
 
   ## entire phrase methods
   def reverse; Phrase.new words.reverse; end
   def titleize; Phrase.new words.map(&:capitalize); end
-  def parenthetical; Phrase.new [first.prefix("("), mid_words, last.suffix(")")]; end
+  def parenthetical; open_parenthesis.close_parenthesis; end
 
 end

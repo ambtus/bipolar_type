@@ -16,6 +16,18 @@ class Verb < Word
     end
   end
 
+  def s
+    if chars.last == "y"
+      if is_vowel_y?
+        chop.suffix("ies")
+      else
+        suffix("s")
+      end
+    else
+      suffix("s")
+    end
+  end
+
   private
 
   ## add at the same index in IRREGULAR, PAST, and PERFECT
@@ -34,7 +46,7 @@ class Verb < Word
   DOUBLES = %w{stop}
   def needs_doubling?; DOUBLES.include?(@string); end
 
-  VOWEL_Y = %w{buy pay repay}
+  VOWEL_Y = %w{buy pay repay say}
   def is_vowel_y?; VOWEL_Y.include?(@string); end
 
   def past
