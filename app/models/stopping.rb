@@ -4,10 +4,10 @@ class Stopping < Sign
 
   def why(energy)
     case string
-    when "i" #positive internal signal
+    when "e" #positive external signal
       "I feel #{energy.full}"
-    when "e" #negative external signal
-      "the #{energy.resources_are_bad}"
+    when "i" #negative internal signal
+      "the #{energy.reality_is_too_bad}"
     end.to_phrase
   end
 

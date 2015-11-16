@@ -7,7 +7,7 @@ class Starting < Sign
     when "i" #negative internal signal
       "I feel #{energy.empty}"
     when "e" #postive external signal
-      "the #{energy.resources_seem_good}"
+      "the #{energy.resource_seems_good}"
     end.to_phrase
   end
 

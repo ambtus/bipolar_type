@@ -40,6 +40,6 @@ class Word
 
   def an; an? ? "an".to_word : "a".to_word; end
 
-  def an_phrase; [an, self].to_phrase; end
+  def an_phrase; Phrase.new [an, self]; end
 
 end

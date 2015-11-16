@@ -21,40 +21,51 @@ class Energy < Noun
 
   def choose(klass, array); klass.new array[index]; end
 
-  def realm; choose Adjective, %w{physical emotional financial mental}; end
-  def name; Phrase.new [realm.capitalize, parenthetical]; end
+  def domain; choose Adjective, %w{physical spiritual financial cognitive}; end
+  def name; Phrase.new [domain.capitalize, parenthetical]; end
 
-  def produce; choose Verb, %w{walk communicate buy decide}; end
-  def consume; choose Verb, %w{eat listen work look}; end
+  def sense; choose Verb, %w{smell hear touch see}; end
+  def consume; choose Verb, %w{eat listen earn look}; end
+  def get; choose Verb, %w{eat hear work see}; end
+  def organs; choose Noun, %w{teeth ears hands eyes}; end
 
   # the external object
-  def resources; choose Noun, %w{meal stories job show}; end
+  def resource; choose Noun, %w{meal story job picture}; end
 
   # external signal: positive affect
   def seem; choose Verb, %w{smell sound feel look}; end
-  def seem_if; resources.if_uncountable(seem.s, seem); end
-  def good; choose Adjective, %w{appetizing harmonious easy beautiful}; end
-  def resources_seem_good; Phrase.new [resources, seem_if, good]; end
+  def good; choose Adjective, %w{appetizing funny pleasurable colorful}; end
+  def goodness; choose Adjective, %w{appetite laughter pleasure color}; end
+  def resource_seems_good; Phrase.new [resource, seem.s, good]; end
 
   # external signal: negative affect
-  def are; choose Verb, %w{taste sound feel look}; end
-  def are_if; resources.if_uncountable(are.s, are); end
-  def bad; choose Adjective, %w{bitter hateful painful chaotic}; end
-  def resources_are_bad; Phrase.new [resources, are_if, bad]; end
+  def reality; choose Noun, %w{taste speaker task subject}; end
+  def bad; choose Adjective, %w{bitter angry painful close}; end
+  def badness; choose Noun, %w{bitterness anger pain proximity }; end
+  def reality_is_too_bad; Phrase.new [reality, "is", "too", bad]; end
 
   # internal signal: negative affect
-  def empty; choose Adjective, %w{hungry responsible indebted anxious}; end
+  def empty; choose Adjective, %w{hungry hopeless indebted worried}; end
+  def emptiness; choose Adjective, %w{hunger hopelessness debt anxiety}; end
 
-  # internal signal: positive affect
-  def full; choose Adjective, %w{satisfied moved rewarded convinced}; end
-  def filling; chose Adjective, %w{satisfying moving rewarding convincing}; end
+  # internal signal: positive affect. I feel
+  def full; choose Adjective, %w{satisfied loved rewarded confident}; end
+  def fullness; choose Noun, %w{satisfaction love reward confidence}; end
+  # the resource was
+  def filling; choose Adjective, %w{satisfying loving rewarding convincing}; end
 
   # neurochemical
-  def triggers; choose Adjective, %w{desert happy\ ending bonus conclusion}; end
-  def triggery; choose Adjective, %w{sweet sentimental highly\ paid colorful}; end
+  def neuro; choose Noun, %w{serotonin oxytocin dopamine GABA}; end
+  def triggers; choose Noun, %w{simple\ carbs romance wages recognizable\ details}; end
+  def triggery; choose Adjective, %w{sweet romantic paid familiar}; end
+  def strengths; choose Noun, %w{protein tragedies investments patterns}; end
 
   # stored energy
-  def potentials; choose Noun, %w{weight emotions wealth information}; end
-  def essentials; choose Noun, %w{fat values savings knowledge}; end
+  def potentials; choose Noun, %w{weight optimism wealth information}; end
+  def essentials; choose Noun, %w{fat hope assets knowledge}; end
+  # so you can produce without stopping to consume first
+  def produce; choose Verb, %w{move talk spend decide}; end
+  # instead of dying of
+  def death; choose Noun, %w{starvation suicide exposure stupidity}; end
 
 end

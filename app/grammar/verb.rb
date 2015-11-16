@@ -40,7 +40,7 @@ class Verb < Word
   PERFECT = %w{been seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost given gotten known}.collect(&:to_word)
 
   # exceptions to rules about ending in y or e
-  EXCEPTIONS = %w{}
+  EXCEPTIONS = %w{see}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
   DOUBLES = %w{stop}

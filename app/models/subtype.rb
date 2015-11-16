@@ -34,7 +34,7 @@ class Subtype < Phrase
 
   def name; Phrase.new [descriptive_name, parenthetical]; end
 
-  def signals; "#{energy.realm.capitalize} Signals"; end
+  def signals; "#{energy.domain.capitalize} Signals"; end
   def descriptive_name
     case partial
     when "ee"

@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.first_path; "eFeeSiiTeiNi"; end
+  def self.first_path; "eSeeFiiNeiTi"; end
   def self.first; Quad.new first_path; end
 
   def initialize(string)

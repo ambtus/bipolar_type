@@ -1,61 +1,147 @@
 %h2=link_to energy.name, type_path(energy.string.downcase)
-%p
-  You can start
-  =energy.consume.ing
-  either because you feel
-  =energy.empty
-  or because the
-  =energy.resources
-  =energy.seem_if
-  good. Feeling
-  =energy.empty
-  is an internal signal:
-  only you can know whether you feel
-  =energy.empty
-  or not.
-  =energy.seem.ing.capitalize
-  good is an external signal: people can agree or disagree as to whether the
-  =energy.resources.are_phrase
-  =energy.good.period
-%p
-  You can stop
-  =energy.consume.ing
-  either because you feel
-  =energy.full
-  or because the
-  =energy.resources.have_phrase
-  become
-  =energy.bad.period
-  Feeling
-  =energy.full
-  is an internal signal:
-  only you can know whether you feel
-  =energy.full
-  enough.
-  Being
-  =energy.bad
-  is an external signal: people can agree or disagree as to whether the
-  =energy.resources.are_phrase
-  =energy.bad.period
-%p
-  The more you
-  =energy.consume
-  the more
-  =energy.potentials
-  you will gain.
-  Running out of essential
-  =energy.essentials
-  and being unable to
-  =energy.produce
-  is an acute emergency. Accumulating too
-  =energy.potentials.many_phrase
-  can be a problem depending upon your expectations of how scarce
-  =energy.resources
-  will be and how much you will have to
-  =energy.produce
-  in the future.
-  In other words, are you going to need the
-  =energy.potentials
-  later, even if you don’t need
-  =energy.potentials.them
-  now?
+%ul
+  %li
+    You start
+    =energy.consume.ing
+    either because you feel
+    =energy.empty
+    or because the
+    =energy.resource_seems_good.period
+    %ul
+      %li
+        =energy.emptiness.capitalize
+        is an internal signal:
+        the longer you
+        =energy.produce
+        without
+        =energy.get.ing
+        anything the
+        =energy.empty.er
+        you will feel and the more willing you will be to
+        =energy.consume
+        even if you have to seek out
+        =energy.resource.pluralize
+        that don’t grab your attention.
+      %li
+        =energy.goodness.capitalize
+        is an external signal: it
+        alerts you to
+        =energy.resource.an_phrase
+        even if you are not yet
+        =energy.empty
+        in case that
+        =energy.resource
+        is especially good and should not be missed.
+  %li
+    You stop
+    =energy.consume.ing
+    either because the
+    =energy.reality_is_too_bad
+    or because you feel
+    =energy.full.period
+    %ul
+      %li
+        =energy.badness.capitalize
+        is an internal signal: it alerts you to avoid
+        =energy.resource.pluralize
+        that could injure your
+        =energy.organs
+        and make it impossible to
+        =energy.consume
+        in the future.
+      %li
+        =energy.fullness.capitalize
+        is an external signal:
+        the more
+        =energy.filling
+        =energy.triggery.parenthetical
+        the
+        =energy.resource
+        the sooner your
+        =energy.neuro
+        subsystem will respond.
+        %ul
+          %li
+            Generally speaking,
+            =energy.triggers
+            are easy to process and
+            =energy.triggers.if_uncountable("turns", "turn")
+            into available
+            =energy.domain
+            energy that will allow you to
+            =energy.produce
+            quickly.
+          %li
+            =energy.strengths.are_phrase.capitalize
+            not as
+            =energy.filling
+            — and
+            =energy.strengths.do
+            not trigger
+            =energy.neuro
+            — because
+            =energy.strengths.they
+            =energy.strengths.if_uncountable("provides", "provide")
+            =energy.domain
+            strength and it takes time to convert
+            =energy.strengths.them
+            to
+            =energy.domain
+            energy.
+  %li
+    If you
+    =energy.produce
+    more than you
+    =energy.consume
+    you will run out of essential
+    =energy.essentials.period
+    %ul
+      %li
+        If you have no
+        =energy.essentials
+        at all, you will be unable to
+        =energy.produce
+        and will eventually die of
+        =energy.death.period
+      %li
+        Running low on
+        =energy.essentials
+        is an acute emergency.
+  %li
+    If you
+    =energy.consume
+    more than you
+    =energy.produce
+    you will accumulate
+    =energy.potentials.period
+    %ul
+      %li
+        Accumulating too
+        =energy.potentials.many_phrase
+        can be a
+        =energy.domain
+        burden,
+      %li
+        It may be necessary if you are going to need the
+        =energy.essentials
+        later.
+        %ul
+          %li
+            You expect to be unable to
+            =energy.consume
+            because there will be no
+            =energy.resource.pluralize
+            available or the available
+            =energy.resource.pluralize
+            will be too
+            =energy.bad.period
+          %li
+            You expect to be too busy
+            =energy.produce.ing
+            to find the time to stop and
+            =energy.consume.period
+          %li
+            =energy.get.ing.capitalize
+            is becoming difficult as your
+            =energy.organs
+            =energy.organs.if_uncountable("ages", "age").period
