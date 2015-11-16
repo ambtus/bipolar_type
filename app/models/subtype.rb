@@ -1,9 +1,9 @@
 class Subtype < Phrase
 
   def initialize(array)
-    @starting = array.first
+    @stopping = array.first
     @energy = array.second
-    @stopping = array.third
+    @starting = array.third
     super
   end
   attr_reader :starting, :energy, :stopping
@@ -15,20 +15,21 @@ class Subtype < Phrase
   def parenthetical; inspect.parenthetical; end
   def discover_path; Answer.first.next(self); end
 
-  ALL = Starting::ALL.collect do |starting|
-               Energy::ALL.collect do |energy|
-                 Stopping::ALL.collect do |stopping|
-                   self.new [starting,energy,stopping]
-                 end
-               end
-             end.flatten
-  def ordered_words; [starting, stopping, energy]; end
+  ALL = Stopping::ALL.collect do |stopping|
+         Energy::ALL.collect do |energy|
+           Starting::ALL.collect do |starting|
+             self.new [stopping,energy,starting]
+           end
+         end
+       end.flatten
+
+  def ordered_words; [stopping, starting, energy]; end
   def <=>(other); ordered_words <=> other.ordered_words; end
   def self.all; ALL.sort; end
   def self.find(string); ALL.find{|s| s.to_s == string}; end
 
   def same_energy; ALL.select{|s| s.energy == energy}; end
-  def attitude; [starting, stopping]; end
+  def attitude; [stopping, starting]; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
   def partial; attitude.join; end
 

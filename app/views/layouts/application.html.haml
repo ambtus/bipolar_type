@@ -7,15 +7,7 @@
     =stylesheet_link_tag 'application', media: 'all'
     =render "layouts/favicon"
   %body
-    %p.small
-      =link_to_unless_current "Introduction", root_path
-      |
-      =link_to_unless_current "Your Bipolar Type", discover_path(Answer.first_path)
-      |
-      =link_to_unless_current "Realms", type_path("realms")
-      |
-      =link_to_unless_current "My BipolarType", type_path(Quad.first_path)
-      |
-      =link_to "Source Code", "https://github.com/ambtus/bipolar_type", :class => "external"
+    =render "layouts/links"
     %h1="BipolarType: " + yield(:title)
     %div=yield
+    =render "layouts/links"

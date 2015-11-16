@@ -34,8 +34,8 @@ class Energy < Noun
 
   # external signal: positive affect
   def seem; choose Verb, %w{smell sound feel look}; end
-  def good; choose Adjective, %w{appetizing funny pleasurable colorful}; end
-  def goodness; choose Adjective, %w{appetite laughter pleasure color}; end
+  def good; choose Adjective, %w{appetizing funny urgent colorful}; end
+  def goodness; choose Adjective, %w{appetite laughter urgent color}; end
   def resource_seems_good; Phrase.new [resource, seem.s, good]; end
 
   # external signal: negative affect
