@@ -1,2 +1,15 @@
 %h3=link_to subtype.name, discover_path(subtype.discover_path)
-=render "short", :subtype => subtype
+%p.heading
+  I am
+  =subtype.breaks_result
+  and
+  =subtype.accelerator_result.period
+  %br
+  I don’t like being so
+  =subtype.problem.period
+  %br
+  I actually do enjoy being
+  =subtype.solution.semicolon
+  but I rarely admit it.
+-unless @short_only
+  %ul=render subtype.attitude.path, :realm => subtype.realm

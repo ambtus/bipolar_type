@@ -12,6 +12,7 @@ class Attitude < Phrase
   def to_str; words.join("X"); end
   def inspect; words.join("X").to_word; end
   def name; inspect; end
+  def path; to_s; end
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
@@ -25,7 +26,6 @@ class Attitude < Phrase
   def self.all; ALL.sort; end
   ALL.each{|subtype| define_singleton_method(subtype.to_s) {subtype}}
 
-  def path; to_s; end
   def self.paths; all.map(&:path); end
 
 end

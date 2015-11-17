@@ -9,6 +9,9 @@ class Phrase
   ## methods that return a string
   def to_s; words.join(" "); end
   def to_str; words.join(" "); end
+  def path; words.join(""); end
+
+
 
   ## methods that return a word
   def inspect; words.join("•").to_word; end

@@ -28,9 +28,17 @@ class Adjective < Word
 
   def erer
     if er.is_a?(Phrase)
-      Phrase.new ["more", "and", er]
+      Phrase.new ["more and", er]
     else
       Phrase.new [er, "and", er]
+    end
+  end
+
+  def ererer
+    if er.is_a?(Phrase)
+      Phrase.new ["more and more and", er]
+    else
+      Phrase.new [er, "and", er, "and", er]
     end
   end
 
@@ -58,7 +66,7 @@ class Adjective < Word
   EXCEPTIONS = %w{appreciate}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
-  SINGLES = %w{sweet}
+  SINGLES = %w{sweet smart rich poor}
   def is_single_word?; SINGLES.include?(@string); end
 
 end

@@ -1,5 +1,7 @@
 class Noun < Word
 
+  def time; suffix("-time"); end
+
   def if_uncountable(yes, no=self); (is_uncountable? ? yes : no).to_word; end
 
   def they; if_uncountable("it", "they"); end

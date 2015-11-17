@@ -7,6 +7,7 @@ class Word
   def to_s; string; end
   def to_str; string; end
   def chars; string.chars; end
+  def path; to_s; end
 
   def to_word; self; end
 
@@ -27,8 +28,9 @@ class Word
   def question; suffix("?"); end
   def close_parenthesis; suffix(")"); end
 
-  def parenthetical; open_parenthesis.close_parenthesis;end
-
+  def surround(prefix, suffix); "#{prefix}#{string}#{suffix}".to_word; end
+  def scare_quotes; surround("“", "”"); end
+  def parenthetical; surround("(", ")"); end
 
   def an?
      if chars.length == 1

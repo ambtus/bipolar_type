@@ -1,25 +1,17 @@
 class Accelerator < Transition
 
   ########
-  LETTERS = %w{p j}
+  LETTERS = %w{j p}
   ALL = LETTERS.collect{|letter| self.new letter}
+  def <=>(other); other.index <=> index; end
   ########
-
-  def why(realm)
-    case signal_location
-    when "external"
-      Phrase.new ["the", realm.resource, "was", realm.filling]
-    when "internal"
-      Phrase.new ["I", "feel", realm.full]
-    end
-  end
 
   def am(realm)
     case signal_location
     when "external"
-      realm.energetic
-    when "internal"
       realm.strong
+    when "internal"
+      realm.energetic
     end
   end
 

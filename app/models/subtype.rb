@@ -30,16 +30,22 @@ class Subtype < Phrase
 
   def discover_path; Answer.first.next(self); end
 
-  def i_break
-    Phrase.new ["I start", consume.ing, "when", breaks.why(realm)]
+  def breaks_result; breaks.am(realm);end
+  def accelerator_result; accelerator.am(realm); end
+  def problem
+    case attitude.path
+    when "eXp", "iXj"
+      breaks.am(realm)
+    when "iXp", "eXj"
+      accelerator.am(realm)
+    end
   end
-
-  def i_accelerate
-    Phrase.new ["I start", produce.ing, "when", accelerator.why(realm)]
+  def solution
+    case attitude.path
+    when "eXp", "iXj"
+      accelerator.am(realm)
+    when "iXp", "eXj"
+      breaks.am(realm)
+    end
   end
-
-  def i_am
-    Phrase.new ["I am", breaks.am(realm), "and", accelerator.am(realm)]
-  end
-
 end
