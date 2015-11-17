@@ -1,15 +1,16 @@
 -content_for(:title, "Question ##{@answer.number}")
 %p.heading
   %span.free Choose one
-  from each row and column; if you choose the
-  %span.warning same row or column,
+  from each column; if you choose the
+  %span.warning same column,
   your
   %span.chosen previous selections
-  in that row and column will be reset.
+  in that column will be reset.
 %table
   -Subtype.all.in_groups_of(4) do |row|
     %tr
       -row.each do |subtype|
         %td.quarter{:class => @answer.class(subtype)}
           %p.heading
+            =render "short", :subtype => subtype
           %p.heading=link_to subtype, discover_path(@answer.next(subtype))

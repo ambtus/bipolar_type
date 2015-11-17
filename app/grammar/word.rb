@@ -2,6 +2,7 @@ class Word
 
   def initialize(string); @string = string.to_str; end
   attr_reader :string
+
   def inspect; string.inspect.chip.chop; end
 
   def to_s; string; end
@@ -27,6 +28,7 @@ class Word
   def exclaim; suffix("!"); end
   def question; suffix("?"); end
   def close_parenthesis; suffix(")"); end
+  def ellipsis; suffix("…"); end
 
   def surround(prefix, suffix); "#{prefix}#{string}#{suffix}".to_word; end
   def scare_quotes; surround("“", "”"); end

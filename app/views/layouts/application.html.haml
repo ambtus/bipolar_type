@@ -7,7 +7,7 @@
     =stylesheet_link_tag 'application', media: 'all'
     =render "layouts/favicon"
   %body
-    =render "layouts/links"
+    %p.small=render "layouts/links"
     %h1="BipolarType: " + yield(:title)
     %div=yield
-    =render "layouts/links"
+    %p=render "layouts/links"

@@ -1,4 +1,10 @@
 %h3=link_to subtype.name, discover_path(subtype.discover_path)
-%p.heading
+=render "short", :subtype => subtype
 -unless @short_only
-  %ul=render subtype.attitude.path, :realm => subtype.realm
+  %ul
+    %li
+      The basic premise of BipolarType is that you are wrong about
+      %em why
+      you are
+      =subtype.problem.period
+    =render subtype.attitude.path, :realm => subtype.realm

@@ -7,7 +7,7 @@ class Subtype < Phrase
   end
   attr_reader :realm, :attitude
   delegate :breaks, :accelerator, to: :attitude
-  delegate :consume, :produce, :domain, to: :realm
+  delegate :consume, :produce, :domain, :fat, :thin, :restless, :sore, to: :realm
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
@@ -30,4 +30,30 @@ class Subtype < Phrase
 
   def discover_path; Answer.first.next(self); end
 
+  def problem
+    case attitude.path
+    when "eXp"
+      fat
+    when "eXj"
+      thin
+    when "iXp"
+      restless
+    when "iXj"
+      sore
+    end
+  end
+  def solution
+    case attitude.path
+    when "eXp"
+      restless
+    when "eXj"
+      sore
+    when "iXp"
+      fat
+    when "iXj"
+      thin
+    end
+  end
+
+  def i_am; Phrase.new ["I am", problem, "and", solution]; end
 end

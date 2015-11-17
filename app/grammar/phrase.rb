@@ -6,12 +6,12 @@ class Phrase
   end
   attr_reader :words
 
+  def <=>(other); self.to_s <=> other.to_s; end
+
   ## methods that return a string
   def to_s; words.join(" "); end
   def to_str; words.join(" "); end
   def path; words.join(""); end
-
-
 
   ## methods that return a word
   def inspect; words.join("•").to_word; end
@@ -26,9 +26,10 @@ class Phrase
   %w{open_parenthesis capitalize ing ed en}.each do |meth|
     define_method(meth) {Phrase.new [first.send(meth), last_words]}
   end
+  def prefix(prefix); Phrase.new [first.prefix(prefix), last_words]; end
 
   ## last word methods
-  %w{close_parenthesis period comma colon semicolon exclaim question}.each do |meth|
+  %w{close_parenthesis suffix period comma colon semicolon exclaim question ellipsis}.each do |meth|
     define_method(meth) {Phrase.new [first_words, last.send(meth)]}
   end
 
