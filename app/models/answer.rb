@@ -12,9 +12,9 @@ class Answer
   def number; @question.last.to_i ; end
   def finished?; number == 5; end
 
-  def chosen; @answer.scan(/.../).collect{|subtype| Subtype.find(subtype)}; end
+  def chosen; @answer.scan(/.../).collect{|subtype| Subtype.send(subtype)}; end
   def constrained
-    (chosen.map(&:same_energy) + chosen.map(&:same_attitude)).flatten.uniq
+    (chosen.map(&:same_realm) + chosen.map(&:same_attitude)).flatten.uniq
   end
   def class(subtype)
     if chosen.include? subtype
@@ -26,11 +26,9 @@ class Answer
     end
   end
 
-  def realms; Realm.all - chosen; end
-
   def next(subtype)
     subtypes = chosen.reject do |s|
-      subtype.same_energy.include?(s) || subtype.same_attitude.include?(s)
+      subtype.same_realm.include?(s) || subtype.same_attitude.include?(s)
     end
     "Q" + subtypes.size.next.next.to_s + "_" + subtypes.join + subtype
   end

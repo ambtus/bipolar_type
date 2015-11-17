@@ -1,5 +1,2 @@
-%p.heading
-  =subtype.i_start
-  %br
-  =subtype.i_stop
-=render subtype.partial, :energy => subtype.energy
+%h3=link_to subtype.name, discover_path(subtype.discover_path)
+=render "short", :subtype => subtype

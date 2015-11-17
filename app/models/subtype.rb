@@ -1,48 +1,45 @@
 class Subtype < Phrase
 
   def initialize(array)
-    @stopping = array.first
-    @energy = array.second
-    @starting = array.third
+    @realm = array.first
+    @attitude = array.second
     super
   end
-  attr_reader :starting, :energy, :stopping
+  attr_reader :realm, :attitude
+  delegate :breaks, :accelerator, to: :attitude
+  delegate :consume, :produce, :domain, to: :realm
+  def same_realm; ALL.select{|s| s.realm == realm}; end
+  def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  # Override phrase spaces
+  def words; [breaks, realm, accelerator]; end
   def to_s; words.join(""); end
   def to_str; words.join(""); end
   def inspect; words.join("").to_word; end
+  def name; inspect; end
   def parenthetical; inspect.parenthetical; end
+
+  ALL = Realm::ALL.collect do |realm|
+          Attitude::ALL.collect do |attitude|
+            self.new [realm,attitude]
+          end
+        end.flatten
+  def sort_order; [breaks, accelerator, realm]; end
+  def <=>(other); sort_order <=> other.sort_order; end
+  def self.all; ALL.sort; end
+  ALL.each{|subtype| define_singleton_method(subtype.to_s) {subtype}}
+
   def discover_path; Answer.first.next(self); end
 
-  ALL = Stopping::ALL.collect do |stopping|
-         Energy::ALL.collect do |energy|
-           Starting::ALL.collect do |starting|
-             self.new [stopping,energy,starting]
-           end
-         end
-       end.flatten
+  def i_break
+    Phrase.new ["I start", consume.ing, "when", breaks.why(realm)]
+  end
 
-  def ordered_words; [stopping, starting, energy]; end
-  def <=>(other); ordered_words <=> other.ordered_words; end
-  def self.all; ALL.sort; end
-  def self.find(string); ALL.find{|s| s.to_s == string}; end
+  def i_accelerate
+    Phrase.new ["I start", produce.ing, "when", accelerator.why(realm)]
+  end
 
-  def same_energy; ALL.select{|s| s.energy == energy}; end
-  def attitude; [stopping, starting]; end
-  def same_attitude; ALL.select{|s| s.attitude == attitude}; end
-  def partial; attitude.join; end
-
-  def name; inspect; end
-
-  def why_start; starting.why(energy); end
-  def i_start; "I start #{consume.ing} when #{why_start.period}" end
-
-  def why_stop; stopping.why(energy); end
-  def i_stop; "I stop #{consume.ing} when #{why_stop.period}" end
-
-  def method_missing(meth, *arguments, &block)
-    energy.send(meth, *arguments, &block)
+  def i_am
+    Phrase.new ["I am", breaks.am(realm), "and", accelerator.am(realm)]
   end
 
 end

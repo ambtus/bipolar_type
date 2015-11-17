@@ -1,26 +1,26 @@
 - content_for(:title, 'The 4 Realms')
 %table
-  -Energy.all.in_groups_of(2) do |row|
+  -Realm.all.in_groups_of(2) do |row|
     %tr
-      -row.each do |energy|
-        %td.left=render "realm", :energy => energy
+      -row.each do |realm|
+        %td.left=render "realm", :realm => realm
 %h4 Footnote:
 %p
   The letters
-  =Energy.all.to_sentence
+  =Realm.all.to_sentence
   are inherited from the MBTI.
   They are not acronyms for any words used in the BipolarType theory.
 %p
   The letters are the symbols I use to identify the four realms, whereas
-  =Energy.all.map(&:name).to_sentence
+  =Realm.all.map(&:name).to_sentence
   are merely the names I am currently using to describe them.
 %p
   Future versions of this site may use different words to describe the four realms, but the four symbols will remain the same.
 %p
   If you are a linguist, you can think of
-  =Energy.all.to_sentence
+  =Realm.all.to_sentence
   as proper names: e.g. “the S-realm”, not “some 
-  =Energy.s.domain
+  =Realm.s.domain
   realm”. If you are a programmer, you can think of them as pointer references to essential
-  =Energy.n.essentials
+  =Realm.n.essentials
   in my brain.

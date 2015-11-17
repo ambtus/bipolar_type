@@ -3,14 +3,14 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{realms}.include? params[:id]
+    elsif %w{realms attitudes}.include? params[:id]
       render params[:id]
-    elsif Energy.paths.include?(params[:id])
-      @energy = Energy.send(params[:id])
-      render :realm
+    elsif Realm.paths.include?(params[:id])
+      @container = Realm.send(params[:id])
+    elsif Attitude.paths.include?(params[:id])
+      @container = Attitude.send(params[:id])
     else
-      @quad = Quad.new(params[:id])
-      render :quad
+      @container = Quad.new(params[:id])
     end
   end
 
