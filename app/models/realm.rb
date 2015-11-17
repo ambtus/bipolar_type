@@ -42,8 +42,8 @@ class Realm < Indexable
   def triggered; choose Adjective, %w{satisfied responsible successful convinced}; end
   def get; choose Verb, %w{eat hear fight see}; end
   def triggers; choose Noun, %w{carbs whines battles details}; end
-  def non_triggers; choose Noun, %w{protein words wars connections}; end
 
+  def non_triggers; choose Noun, %w{protein words wars connections}; end
   def strengths; choose Noun, %w{muscles vocabulary assets mental-models}; end
 
   ### Xp: internal accelerator ###
@@ -59,7 +59,5 @@ class Realm < Indexable
   ### adjectives
   def fat; choose Adjective, %w{fat popular rich trivial}; end
   def thin; choose Adjective, %w{thin alone poor ignorant}; end
-  def energetic; choose Adjective, %w{energetic emotional competitive clever}; end
-  def strong; choose Adjective, %w{strong eloquent wealthy smart}; end
 
 end

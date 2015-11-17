@@ -6,13 +6,4 @@ class Accelerator < Transition
   def <=>(other); other.index <=> index; end
   ########
 
-  def am(realm)
-    case signal_location
-    when "external"
-      realm.strong
-    when "internal"
-      realm.energetic
-    end
-  end
-
 end
