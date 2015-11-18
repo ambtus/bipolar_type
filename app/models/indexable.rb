@@ -12,11 +12,12 @@ class Indexable < Noun
     end
     super
   end
+  alias_method :letter, :string
 
   def self.all; self::ALL; end
 
-  def other; ALL.find{|i| i != self}; end
-  def others; ALL.collect{|i| i != self}; end
+  def other; self.class.all.find{|i| i != self}; end
+  def others; self.class.all.collect{|i| i != self}; end
 
   def index; self.class::LETTERS.index string; end
   def <=>(other); index <=> other.index; end

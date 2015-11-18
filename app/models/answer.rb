@@ -13,10 +13,10 @@ class Answer
   def finished?; number == 5; end
 
   def chosen; @answer.scan(/.../).collect{|subtype| Subtype.send(subtype)}; end
-  def fully_constrained
+  def constrained
     (chosen.map(&:same_realm) + chosen.map(&:same_attitude)).flatten.uniq
   end
-  def constrained; chosen.map(&:same_realm).flatten; end
+  def partially_constrained; chosen.map(&:same_realm).flatten; end
   def class(subtype)
     if chosen.include? subtype
       "chosen"
@@ -32,7 +32,8 @@ class Answer
       subtype.same_realm.include?(s) || subtype.same_attitude.include?(s)
     end
   end
-  def subtypes(subtype); chosen.reject{|s| subtype.same_realm.include?(s)}; end
+  def partially_constrained_subtypes(subtype); chosen.reject{|s| subtype.same_realm.include?(s)}; end
+  def subtypes(subtype); fully_constrained_subtypes(subtype); end
   def next(subtype)
     "Q" + subtypes(subtype).size.next.next.to_s + "_" + subtypes(subtype).join + subtype
   end

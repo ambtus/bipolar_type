@@ -9,7 +9,7 @@ class Word
   def to_str; string; end
   def chars; string.chars; end
   def path; to_s; end
-
+  def words; [self]; end
   def to_word; self; end
 
   def method_missing(meth, *arguments, &block)
@@ -18,8 +18,11 @@ class Word
   end
 
   def prefix(prefix); "#{prefix}#{string}".to_word; end
-  def open_parenthesis; prefix("("); end
+  def open_paren; prefix("("); end
 
+  def self.last_word_methods
+    %w{period comma colon semicolon exclaim question ellipsis close_paren}
+  end
   def suffix(suffix); "#{string}#{suffix}".to_word; end
   def period; suffix("."); end
   def comma; suffix(","); end
@@ -27,8 +30,8 @@ class Word
   def semicolon; suffix(";"); end
   def exclaim; suffix("!"); end
   def question; suffix("?"); end
-  def close_parenthesis; suffix(")"); end
   def ellipsis; suffix("…"); end
+  def close_paren; suffix(")"); end
 
   def surround(prefix, suffix); "#{prefix}#{string}#{suffix}".to_word; end
   def scare_quotes; surround("“", "”"); end

@@ -15,19 +15,20 @@ class Realm < Indexable
   def domain; choose Adjective, %w{physical spiritual material mental}; end
   def name; Phrase.new [domain.capitalize, parenthetical]; end
 
-  ### behaviors
-  def consume; choose Verb, %w{eat listen earn learn}; end
-  def produce; choose Verb, %w{walk talk spend decide}; end
+  ### produce
+  def putz; choose Verb, %w{walk talk shop choose}; end
+  def burst_out; choose Verb, %w{run sing splurge decide}; end
 
-  def get; choose Verb, %w{eat hear earn see}; end
-  def triggers; choose Noun, %w{carbs whines wages details}; end
-  def non_triggers; choose Noun, %w{protein words interest connections}; end
+  ### consume
+  def get; choose Verb, %w{eat hear do see}; end
+  def graze_objects; choose Noun, %w{meat lyrics chores outlines}; end
+  def binge_objects; choose Noun, %w{potatoes melody projects details}; end
+  def graze; Phrase.new [get, graze_objects]; end
+  def binge; Phrase.new [get, binge_objects]; end
 
   ### adjectives
-  def fat; choose Adjective, %w{fat pestered cluttered pedantic}; end
-  def thin; choose Adjective, %w{skinny alone poor ignorant}; end
-  def restless; choose Adjective, %w{restless emotional greedy arrogant}; end
-  def sore; choose Adjective, %w{sore misunderstood indebted wrong}; end
+  def fat; choose Adjective, %w{fat emotional rich knowledgeable}; end
+  def thin; choose Adjective, %w{thin calm poor ignorant}; end
 
   ### store kinetic energy as potential energy ###
   def potentials; choose Noun, %w{weight optimism wealth information}; end

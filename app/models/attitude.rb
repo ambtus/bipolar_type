@@ -1,12 +1,12 @@
 class Attitude < Phrase
 
   def initialize(array)
-    array.check_constraints Transition, 2, 2
-    @breaks = array.first
-    @accelerator = array.second
+    array.check_constraints Indexable, 2, 2
+    @preference = array.first
+    @order = array.second
     super
   end
-  attr_reader :breaks, :accelerator
+  attr_reader :preference, :order
 
   def to_s; words.join("X"); end
   def to_str; words.join("X"); end
@@ -16,14 +16,12 @@ class Attitude < Phrase
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
-  ALL = Breaks::ALL.collect do |breaks|
-          Accelerator::ALL.collect do |accelerator|
-            self.new [breaks,accelerator]
+  ALL = Preference::ALL.collect do |preference|
+          Order::ALL.collect do |order|
+            self.new [preference,order]
           end
         end.flatten
-  def sort_order; [breaks, accelerator]; end
-  def <=>(other); sort_order <=> other.sort_order; end
-  def self.all; ALL.sort; end
+  def self.all; ALL; end
   ALL.each{|subtype| define_singleton_method(subtype.to_s) {subtype}}
 
   def self.paths; all.map(&:path); end

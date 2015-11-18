@@ -8,6 +8,16 @@ class Phrase
 
   def <=>(other); self.to_s <=> other.to_s; end
 
+  ## specific phrases
+  def self.early; new "Monday morning".split; end
+  def self.late; new "Friday night".split; end
+
+  def self.early_duration; new "during the work day".split; end
+  def self.late_duration; new "on evenings and weekends".split; end
+  def self.duration(early, late)
+    new [early, early_duration, "and", late, late_duration]
+  end
+
   ## methods that return a string
   def to_s; words.join(" "); end
   def to_str; words.join(" "); end
@@ -20,22 +30,26 @@ class Phrase
 
   ## methods that return an array of words
   def first_words; words[0..-2]; end
+  def mid_words; words[1..-2]; end
   def last_words; words[1..-1]; end
 
   ## first word methods
-  %w{open_parenthesis capitalize ing ed en}.each do |meth|
+  def prefix(prefix); Phrase.new [first.prefix(prefix), last_words]; end
+  %w{open_paren capitalize ed en ing s}.each do |meth|
     define_method(meth) {Phrase.new [first.send(meth), last_words]}
   end
-  def prefix(prefix); Phrase.new [first.prefix(prefix), last_words]; end
 
   ## last word methods
-  %w{close_parenthesis suffix period comma colon semicolon exclaim question ellipsis}.each do |meth|
+  def suffix(suffix); Phrase.new [first_words, last.suffix(suffix)]; end
+  Word.last_word_methods.each do |meth|
     define_method(meth) {Phrase.new [first_words, last.send(meth)]}
   end
 
   ## entire phrase methods
   def reverse; Phrase.new words.reverse; end
   def titleize; Phrase.new words.map(&:capitalize); end
-  def parenthetical; open_parenthesis.close_parenthesis; end
+  def parenthetical
+    Phrase.new [first.open_paren, mid_words, last.close_paren]
+  end
 
 end
