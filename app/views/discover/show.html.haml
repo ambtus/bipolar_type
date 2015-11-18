@@ -12,5 +12,6 @@
       -row.each do |subtype|
         %td.quarter{:class => @answer.class(subtype)}
           %p.heading
-            =render "short", :subtype => subtype
+            I hate being so
+            =subtype.problem.period
           %p.heading=link_to subtype, discover_path(@answer.next(subtype))

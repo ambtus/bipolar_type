@@ -16,7 +16,7 @@ class Answer
   def fully_constrained
     (chosen.map(&:same_realm) + chosen.map(&:same_attitude)).flatten.uniq
   end
-  def constrained; chosen.map(&:same_realm); end
+  def constrained; chosen.map(&:same_realm).flatten; end
   def class(subtype)
     if chosen.include? subtype
       "chosen"

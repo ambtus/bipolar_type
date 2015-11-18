@@ -24,9 +24,9 @@ class Realm < Indexable
   def non_triggers; choose Noun, %w{protein words interest connections}; end
 
   ### adjectives
-  def fat; choose Adjective, %w{fat popular rich pedantic}; end
-  def thin; choose Adjective, %w{thin alone poor ignorant}; end
-  def restless; Phrase.new [domain.ly, "restless"]; end
+  def fat; choose Adjective, %w{fat pestered cluttered pedantic}; end
+  def thin; choose Adjective, %w{skinny alone poor ignorant}; end
+  def restless; choose Adjective, %w{restless emotional greedy arrogant}; end
   def sore; choose Adjective, %w{sore misunderstood indebted wrong}; end
 
   ### store kinetic energy as potential energy ###
