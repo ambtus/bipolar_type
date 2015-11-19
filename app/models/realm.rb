@@ -24,21 +24,19 @@ class Realm < Indexable
   def graze; Phrase.new [get, graze_examples]; end
   def binge; Phrase.new [get, binge_examples]; end
 
-  def get; choose Verb, %w{eat hear achieve see}; end
+  def get; choose Verb, %w{eat hear do see}; end
   def get_without_object; choose Verb, %w{eat listen work learn}; end
 
   def tolerate; choose Noun, %w{stomach understand reach believe}; end
-  def resources; choose Noun, %w{meals stories goals information}; end
+  def resources; choose Noun, %w{foods stories jobs facts}; end
 
-  def graze_examples; choose Noun, %w{savories lyrics chores generalities}; end
-  def binge_examples; choose Noun, %w{sweets music projects specifics}; end
+  def graze_examples; choose Noun, %w{savories lyrics chores rules}; end
+  def binge_examples; choose Noun, %w{sweets music projects exceptions}; end
 
   def graze_objects
-    choose Noun, %w{protein words manageable-problems patterns}
+    choose Noun, %w{protein words salary patterns}
   end
-  def binge_objects
-    choose Noun, %w{carbs tone\ of\ voice solvable-problems details}
-  end
+  def binge_objects; choose Noun, %w{carbs emotions bonuses details}; end
   def seem; choose Verb, %w{taste sound feel look}; end
 
   ### use graze_objects to build strengths ###
@@ -47,10 +45,19 @@ class Realm < Indexable
   end
   def strengths; choose Noun, %w{muscles vocabulary credit concepts}; end
 
-  ### store binge_objects as potential energy ###
+  def kinetics; choose Noun, %w{glycogen empathy cash short-term-memories}; end
+  ### store unused kinetics as potential energy ###
   def potentials; choose Noun, %w{fat faith savings memories}; end
+  def essentials
+    choose Phrase,
+    ["essential fat stores", 
+     "faith in the essential goodness of (at least some) people", 
+     "savings (at least in your mind)", 
+     "long term memories"].map(&:split)
+  end
   ### when essential potentials run out you will die of ###
-  def death; choose Noun, %w{starvation suicide exposure ignorance}; end
-  def deathly; choose Noun, %w{starving suicidal indebted forgetful}; end
+  def death; choose Noun, %w{starvation suicide bankruptcy ignorance}; end
+  def deathly; choose Adjective, %w{starving suicidal bankrupt forgetful}; end
+  def uncomfortable; choose Adjective, %w{hungry lonely indebted unsure}; end
 
 end

@@ -1,10 +1,10 @@
 class Sensitivity < Indexable
 
   ########
-  LETTERS = %w{E I}
+  LETTERS = %w{d h}
   ALL = LETTERS.collect{|letter| self.new letter}
-  LETTERS.each{|l| define_singleton_method(l.downcase) {all[LETTERS.index l]}}
-  def path; string.downcase; end
+  LETTERS.each{|l| define_singleton_method(l.next) {all[LETTERS.index l]}}
+  def path; string.next; end
   ########
 
   def priority(array); index.odd? ? array : array.reverse; end

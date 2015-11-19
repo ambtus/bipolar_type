@@ -1,9 +1,10 @@
 class Order < Indexable
 
   ########
-  LETTERS = %w{e i}
+  LETTERS = %w{d h}
   ALL = LETTERS.collect{|letter| self.new letter}
-  LETTERS.each{|l| define_singleton_method(l) {all[LETTERS.index l]}}
+  LETTERS.each{|l| define_singleton_method(l.next) {all[LETTERS.index l]}}
+  def path; string.next; end
   ########
 
   def behaviors(realm)

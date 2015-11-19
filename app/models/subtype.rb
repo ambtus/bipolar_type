@@ -28,7 +28,7 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def path; [sensitivity.path, realm, order].join; end
+  def path; [sensitivity.path, realm, order.path].join; end
   ALL.each{|subtype| define_singleton_method(subtype.path) {subtype}}
 
   def discover_path; Answer.first.next(self); end

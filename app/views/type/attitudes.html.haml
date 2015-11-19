@@ -1,7 +1,15 @@
 - content_for(:title, 'The 4 Attitudes')
 %table.none
-  -Attitude.all.in_groups_of(2) do |row|
-    %tr
-      -row.each do |attitude|
-        %td.half.none=render "square", :subtypes => attitude.subtypes, :caption => attitude
+  %tr
+    %td.third.none
+    %td.third.none=render "square", :subtypes => Attitude.eXe.subtypes, :caption => Attitude.eXe
+    %td.third.none
+  %tr
+    %td.third.none=render "square", :subtypes => Attitude.eXi.subtypes, :caption => Attitude.eXi
+    %td.third.none
+    %td.third.none=render "square", :subtypes => Attitude.iXe.subtypes, :caption => Attitude.iXe
+  %tr
+    %td.third.none
+    %td.third.none=render "square", :subtypes => Attitude.iXi.subtypes, :caption => Attitude.iXi
+    %td.third.none
 

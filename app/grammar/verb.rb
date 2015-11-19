@@ -43,7 +43,7 @@ class Verb < Word
   EXCEPTIONS = %w{see}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
-  DOUBLES = %w{stop grab}
+  DOUBLES = %w{stop grab shop}
   def needs_doubling?; DOUBLES.include?(@string); end
 
   VOWEL_Y = %w{buy pay repay say}
