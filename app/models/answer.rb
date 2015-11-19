@@ -35,9 +35,9 @@ class Answer
   def partially_constrained_subtypes(subtype); chosen.reject{|s| subtype.same_realm.include?(s)}; end
   def subtypes(subtype); fully_constrained_subtypes(subtype); end
   def next(subtype)
-    "Q" + subtypes(subtype).size.next.next.to_s + "_" + subtypes(subtype).join + subtype
+    "Q" + subtypes(subtype).size.next.next.to_s + "_" + subtypes(subtype).map(&:path).join + subtype.path
   end
 
-  def quad_path; chosen.sort.join; end
+  def quad_path; chosen.sort.map(&:path).join; end
 
 end

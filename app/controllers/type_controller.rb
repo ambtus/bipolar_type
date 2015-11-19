@@ -10,6 +10,7 @@ class TypeController < ApplicationController
       @container = Realm.send(params[:id])
     elsif Attitude.paths.include?(params[:id])
       @container = Attitude.send(params[:id])
+      render :attitude
     else
       @container = Quad.new(params[:id])
     end

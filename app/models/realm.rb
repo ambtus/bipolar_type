@@ -12,28 +12,45 @@ class Realm < Indexable
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
 
-  def domain; choose Adjective, %w{physical spiritual material mental}; end
-  def name; Phrase.new [domain.capitalize, parenthetical]; end
+  def domain; choose Adjective, %w{physical spiritual financial mental}; end
+  def name; Phrase.new [domain.capitalize, parenthesize]; end
+  def neuro; choose Noun, %w{serotonin oxytocin dopamine norepinephrine}; end
+  def triggered; choose Adjective, %w{satisfied empathetic successful bored}; end
+  def mania; Phrase.new [neuro, "overload"]; end
 
-  ### produce
+  ### the four behaviors
   def putz; choose Verb, %w{walk talk shop choose}; end
-  def burst_out; choose Verb, %w{run sing splurge decide}; end
+  def burst; choose Verb, %w{run cry splurge decide}; end
+  def graze; Phrase.new [get, graze_examples]; end
+  def binge; Phrase.new [get, binge_examples]; end
 
-  ### consume
-  def get; choose Verb, %w{eat hear do see}; end
-  def graze_objects; choose Noun, %w{meat lyrics chores outlines}; end
-  def binge_objects; choose Noun, %w{potatoes melody projects details}; end
-  def graze; Phrase.new [get, graze_objects]; end
-  def binge; Phrase.new [get, binge_objects]; end
+  def get; choose Verb, %w{eat hear achieve see}; end
+  def get_without_object; choose Verb, %w{eat listen work learn}; end
 
-  ### adjectives
-  def fat; choose Adjective, %w{fat emotional rich knowledgeable}; end
-  def thin; choose Adjective, %w{thin calm poor ignorant}; end
+  def tolerate; choose Noun, %w{stomach understand reach believe}; end
+  def resources; choose Noun, %w{meals stories goals information}; end
 
-  ### store kinetic energy as potential energy ###
-  def potentials; choose Noun, %w{weight optimism wealth information}; end
-  def essentials; choose Noun, %w{fat hope assets concepts}; end
-  ### when the essentials run out you will die of ###
-  def death; choose Noun, %w{starvation suicide exposure stupidity}; end
+  def graze_examples; choose Noun, %w{savories lyrics chores generalities}; end
+  def binge_examples; choose Noun, %w{sweets music projects specifics}; end
+
+  def graze_objects
+    choose Noun, %w{protein words manageable-problems patterns}
+  end
+  def binge_objects
+    choose Noun, %w{carbs tone\ of\ voice solvable-problems details}
+  end
+  def seem; choose Verb, %w{taste sound feel look}; end
+
+  ### use graze_objects to build strengths ###
+  def build
+    graze_objects.if_uncountable("builds and repairs", "build and repair")
+  end
+  def strengths; choose Noun, %w{muscles vocabulary credit concepts}; end
+
+  ### store binge_objects as potential energy ###
+  def potentials; choose Noun, %w{fat faith savings memories}; end
+  ### when essential potentials run out you will die of ###
+  def death; choose Noun, %w{starvation suicide exposure ignorance}; end
+  def deathly; choose Noun, %w{starving suicidal indebted forgetful}; end
 
 end

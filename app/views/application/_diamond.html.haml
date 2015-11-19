@@ -1,0 +1,15 @@
+%table.none
+  %tr
+    %td.third.none
+    %td.third=render "subtype", :subtype => subtypes.first
+    %td.third.none
+  %tr
+    %td.third=render "subtype", :subtype => subtypes.second
+    %td.third
+      -if defined? center
+        %h2=link_to center.name, type_path(center.path)
+    %td.third=render "subtype", :subtype => subtypes.third
+  %tr
+    %td.third.none
+    %td.third=render "subtype", :subtype => subtypes.fourth
+    %td.third.none

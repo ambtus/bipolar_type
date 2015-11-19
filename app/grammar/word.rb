@@ -35,7 +35,7 @@ class Word
 
   def surround(prefix, suffix); "#{prefix}#{string}#{suffix}".to_word; end
   def scare_quotes; surround("“", "”"); end
-  def parenthetical; surround("(", ")"); end
+  def parenthesize; surround("(", ")"); end
 
   def an?
      if chars.length == 1

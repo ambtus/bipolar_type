@@ -48,7 +48,7 @@ class Phrase
   ## entire phrase methods
   def reverse; Phrase.new words.reverse; end
   def titleize; Phrase.new words.map(&:capitalize); end
-  def parenthetical
+  def parenthesize
     Phrase.new [first.open_paren, mid_words, last.close_paren]
   end
 

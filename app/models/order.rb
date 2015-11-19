@@ -7,13 +7,7 @@ class Order < Indexable
   ########
 
   def behaviors(realm)
-    if letter == "i"
-      [realm.graze, realm.burst_out]
-    elsif letter == "e"
-      [realm.putz, realm.binge]
-    else
-      raise "letters are defined wrong in order.rb"
-    end
+    index.odd? ? [realm.graze, realm.burst] : [realm.putz, realm.binge]
   end
 
   def schedule(realm); Phrase.duration *behaviors(realm); end

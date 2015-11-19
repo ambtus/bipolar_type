@@ -1,26 +1,31 @@
 - content_for(:title, 'The 4 Realms')
-%table
+%table.none
   -Realm.all.in_groups_of(2) do |row|
     %tr
       -row.each do |realm|
-        %td.left=render "realm", :realm => realm
+        %td.half.none=render "diamond", :subtypes => realm.subtypes, :center => realm
+
 %h4 Footnote:
 %p
   The letters
   =Realm.all.to_sentence
   are inherited from the MBTI.
-  They are not acronyms for any words used in the BipolarType theory.
+  They are not acronyms for any words used in the BipolarType theory: they are the symbols that I have been using for thirty years to represent four distinct
+  =Realm.n.strengths.period
 %p
-  The letters are the symbols I use to identify the four realms, whereas
-  =Realm.all.map(&:name).to_sentence
-  are merely the names I am currently using to describe them.
-%p
-  Future versions of this site may use different words to describe the four realms, but the four symbols will remain the same.
-%p
-  If you are a linguist, you can think of
-  =Realm.all.to_sentence
-  as proper names: e.g. “the S-realm”, not
-  =Realm.s.domain.an_phrase.prefix("“")
-  realm”. If you are a programmer, you can think of them as pointer references to essential
-  =Realm.n.essentials
-  in my brain.
+  =Realm.all.map(&:domain).to_sentence.capitalize
+  are merely the
+  =Realm.f.graze_objects
+  I am currently using when I
+  =Realm.f.putz
+  as I attempt to translate those
+  =Realm.n.strengths
+  from the
+  =Realm.n.name
+  realm to the
+  =Realm.f.name
+  realm.
+  Future versions of this site may use different
+  =Realm.f.graze_objects.comma
+  but the four symbols will continue to represent the same four
+  =Realm.n.strengths.period
