@@ -18,6 +18,8 @@ class Noun < Word
   def are_phrase; Phrase.new [self, are]; end
   def have; if_uncountable("has", "have"); end
   def have_phrase; Phrase.new [self, have]; end
+  def make; if_uncountable("makes", "make"); end
+  def make_phrase; Phrase.new [self, make]; end
   def do; if_uncountable("does", "do"); end
   def dont; if_uncountable("doesn’t", "don’t"); end
   def dont_phrase; Phrase.new [self, dont]; end
@@ -32,7 +34,7 @@ class Noun < Word
 
   ## if the word needs to be either singular or plural
   ## make the method name plural, and add the singulars here
-  UNCOUNTABLE = %w{vocabulary food fat stuff music harmony information weight knowledge net-worth job story confidence task money credit optimism wealth demonstration meal show family hope love savings protein cash heart body lexical-meaning expressive-meaning music faith emotional-expression tone\ of\ voice empathy}
+  UNCOUNTABLE = %w{vocabulary food fat stuff music harmony information weight knowledge net-worth job story confidence task money credit optimism wealth demonstration meal show family hope love savings protein cash heart body lexical-meaning expressive-meaning music faith emotional-expression tone\ of\ voice empathy glycogen like}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end

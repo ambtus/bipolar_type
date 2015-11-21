@@ -1,13 +1,12 @@
-table, th, td {
-   border: 1px solid grey;
-}
 table {
+  border: none;
   border-collapse: collapse;
   empty-cells: hide;
   margin-left:auto;
   margin-right:auto;
 }
 td {
+  border: none;
   padding: 0 1%;
   vertical-align: top;
 }

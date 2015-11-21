@@ -12,17 +12,19 @@ class Realm < Indexable
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
 
-  def domain; choose Adjective, %w{physical spiritual financial mental}; end
+  def domain; choose Adjective, %w{physical emotional financial mental}; end
   def name; Phrase.new [domain.capitalize, parenthesize]; end
   def neuro; choose Noun, %w{serotonin oxytocin dopamine norepinephrine}; end
   def triggered; choose Adjective, %w{satisfied empathetic successful bored}; end
   def mania; Phrase.new [neuro, "overload"]; end
 
-  ### the four behaviors
-  def putz; choose Verb, %w{walk talk shop choose}; end
+  def behaviors; [binge, futz, burst, graze]; end
+
+  def futz; choose Verb, %w{walk talk shop choose}; end
   def burst; choose Verb, %w{run cry splurge decide}; end
-  def graze; Phrase.new [get, graze_examples]; end
-  def binge; Phrase.new [get, binge_examples]; end
+  def graze; Phrase.new [get, nontriggers]; end
+  def binge; Phrase.new [get, triggers]; end
+
 
   def get; choose Verb, %w{eat hear do see}; end
   def get_without_object; choose Verb, %w{eat listen work learn}; end
@@ -30,34 +32,27 @@ class Realm < Indexable
   def tolerate; choose Noun, %w{stomach understand reach believe}; end
   def resources; choose Noun, %w{foods stories jobs facts}; end
 
-  def graze_examples; choose Noun, %w{savories lyrics chores rules}; end
-  def binge_examples; choose Noun, %w{sweets music projects exceptions}; end
-
-  def graze_objects
-    choose Noun, %w{protein words salary patterns}
-  end
-  def binge_objects; choose Noun, %w{carbs emotions bonuses details}; end
+  def nontriggers; choose Noun, %w{protein words chores patterns}; end
+  def triggers; choose Noun, %w{carbs emotions projects details}; end
   def seem; choose Verb, %w{taste sound feel look}; end
 
-  ### use graze_objects to build strengths ###
   def build
-    graze_objects.if_uncountable("builds and repairs", "build and repair")
+    nontriggers.if_uncountable("builds and repairs", "build and repair")
   end
   def strengths; choose Noun, %w{muscles vocabulary credit concepts}; end
 
   def kinetics; choose Noun, %w{glycogen empathy cash short-term-memories}; end
-  ### store unused kinetics as potential energy ###
-  def potentials; choose Noun, %w{fat faith savings memories}; end
+  def potentials; choose Noun, %w{fat attachments savings long-term-memories}; end
   def essentials
     choose Phrase,
-    ["essential fat stores", 
-     "faith in the essential goodness of (at least some) people", 
-     "savings (at least in your mind)", 
-     "long term memories"].map(&:split)
+    ["essential fat stores",
+     "reasons for living",
+     "retirement assets",
+     "critical facts"].map(&:split)
   end
-  ### when essential potentials run out you will die of ###
+
+  def uncomfortable; choose Adjective, %w{hungry lonely purse-pinched wrong}; end
+  def dying; choose Adjective, %w{starving suicidal going\ bankrupt forgetful}; end
   def death; choose Noun, %w{starvation suicide bankruptcy ignorance}; end
-  def deathly; choose Adjective, %w{starving suicidal bankrupt forgetful}; end
-  def uncomfortable; choose Adjective, %w{hungry lonely indebted unsure}; end
 
 end

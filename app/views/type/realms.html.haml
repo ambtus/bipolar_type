@@ -4,28 +4,4 @@
     %tr
       -row.each do |realm|
         %td.half.none=render "diamond", :subtypes => realm.subtypes, :center => realm
-
-%h4 Footnote:
-%p
-  The letters
-  =Realm.all.to_sentence
-  are inherited from the MBTI.
-  They are not acronyms for any words used in the BipolarType theory: they are the symbols that I have been using for thirty years to represent four distinct
-  =Realm.n.strengths.period
-%p
-  =Realm.all.map(&:domain).to_sentence.capitalize
-  are merely the
-  =Realm.f.graze_objects
-  I am currently using when I
-  =Realm.f.putz
-  as I attempt to translate those
-  =Realm.n.strengths
-  from the
-  =Realm.n.name
-  realm to the
-  =Realm.f.name
-  realm.
-  Future versions of this site may use different
-  =Realm.f.graze_objects.comma
-  but the four symbols will continue to represent the same four
-  =Realm.n.strengths.period
+=render "footnote", :letters => Realm.all.to_sentence, :current => Realm.all.map(&:domain).to_sentence.capitalize

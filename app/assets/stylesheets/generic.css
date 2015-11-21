@@ -18,4 +18,4 @@
 .center { text-align: center; }
 .left { text-align: left; }
 .right { text-align: right; }
-.none { border: none; }
+.bordered {border: 1px solid grey;}

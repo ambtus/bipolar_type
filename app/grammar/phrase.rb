@@ -51,5 +51,6 @@ class Phrase
   def parenthesize
     Phrase.new [first.open_paren, mid_words, last.close_paren]
   end
+  def more; Phrase.new [first, "more", last]; end # FIXME: only works if two words
 
 end

@@ -1,10 +1,10 @@
 class Quad < Phrase
 
-  def self.first_path; "eSeeNiiTeiFi"; end
+  def self.first_path; "spnjetif"; end
   def self.first; Quad.new first_path; end
 
   def initialize(string)
-    @subtypes = string.scan(/.../).collect{|s| Subtype.send(s)}.sort
+    @subtypes = string.scan(/../).collect{|s| Subtype.send(s)}.sort
     @subtypes.check_constraints Subtype, 4, 4
     super(@subtypes)
   end
