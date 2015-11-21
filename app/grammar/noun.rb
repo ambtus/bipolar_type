@@ -12,6 +12,8 @@ class Noun < Word
   def many_phrase; Phrase.new [many, self]; end
   def few; if_uncountable("little", "few"); end
   def few_phrase; Phrase.new [few, self]; end
+  def some; if_uncountable("some", "a few"); end
+  def some_phrase; Phrase.new [some, self]; end
   def fewer; if_uncountable("less", "fewer"); end
   def fewer_phrase; Phrase.new [fewer, self]; end
   def are; if_uncountable("is", "are"); end

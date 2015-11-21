@@ -1,3 +1,3 @@
 %h3=link_to subtype.name, discover_path(subtype.discover_path)
-=render "short", :subtype => subtype
+%p.heading=subtype.short
 =render subtype.attitude.path, :realm => subtype.realm

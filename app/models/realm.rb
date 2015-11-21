@@ -12,7 +12,7 @@ class Realm < Indexable
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
 
-  def domain; choose Adjective, %w{physical emotional financial mental}; end
+  def domain; choose Adjective, %w{physical spiritual material mental}; end
   def name; Phrase.new [domain.capitalize, parenthesize]; end
   def neuro; choose Noun, %w{serotonin oxytocin dopamine norepinephrine}; end
   def triggered; choose Adjective, %w{satisfied empathetic successful bored}; end
@@ -41,14 +41,14 @@ class Realm < Indexable
   end
   def strengths; choose Noun, %w{muscles vocabulary credit concepts}; end
 
-  def kinetics; choose Noun, %w{glycogen empathy cash short-term-memories}; end
-  def potentials; choose Noun, %w{fat attachments savings long-term-memories}; end
+  def kinetics; choose Noun, %w{glycogen empathy cash facts}; end
+  def potentials; choose Noun, %w{fat faith assets memories}; end
   def essentials
     choose Phrase,
     ["essential fat stores",
      "reasons for living",
-     "retirement assets",
-     "critical facts"].map(&:split)
+     "retirement savings",
+     "critical memories"].map(&:split)
   end
 
   def uncomfortable; choose Adjective, %w{hungry lonely purse-pinched wrong}; end

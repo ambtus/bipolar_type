@@ -39,4 +39,6 @@ class Subtype < Phrase
 
   def behaviors; attitude.ordered_behaviors(*realm.behaviors); end
 
+  def short; attitude.short(realm.potentials); end
+
 end

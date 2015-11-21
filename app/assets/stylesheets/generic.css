@@ -10,6 +10,7 @@
 .third { width: 30%; }
 .half { width: 46% }
 .halfish { width: 44% }
+.full { width: 96% }
 .narrow {
   padding: 0;
   width: 4%;
@@ -18,4 +19,4 @@
 .center { text-align: center; }
 .left { text-align: left; }
 .right { text-align: right; }
-.bordered {border: 1px solid grey;}
+

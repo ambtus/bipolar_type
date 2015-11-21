@@ -12,3 +12,4 @@ td {
 }
 td.bottom { vertical-align: bottom;}
 td.middle { vertical-align: middle; }
+.bordered {border: 1px solid grey;}

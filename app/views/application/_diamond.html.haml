@@ -1,20 +1,20 @@
 %table
   %tr
-    %td &nbsp;
+    %td.narrow &nbsp;
     %td{:colspan => 3}=render "subtype", :subtype => subtypes.first
-    %td &nbsp;
+    %td.narrow &nbsp;
   %tr
     %td{:colspan => 3} &nbsp;
     %td{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.second
   %tr
     %td{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.third
-    %td
+    %td.middle
       -if defined? center
         %h2=link_to center.name, type_path(center.path)
       -else
         &nbsp;
   %tr
-    %td{:colspan => 3}
+    %td{:colspan => 3} &nbsp;
   %tr
     %td &nbsp;
     %td{:colspan => 3}=render "subtype", :subtype => subtypes.fourth

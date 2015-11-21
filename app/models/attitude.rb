@@ -30,5 +30,19 @@ class Attitude < Indexable
     end
   end
 
+def how_much; choose Adjective, %w{most more less least}; end
+  def short(potentials)
+    prefix = case string
+    when "P"
+      "I have too #{potentials.many}"
+    when "J"
+      "I have enough"
+    when "E"
+      "I have some"
+    when "I"
+      "I don’t have any"
+    end
+    Phrase.new [prefix, potentials]
+  end
 
 end

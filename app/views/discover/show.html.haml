@@ -1,6 +1,6 @@
 -content_for(:title, "Question ##{@answer.number}")
 %p.heading
-  Chose
+  Choose
   %span.free one from each row and  column;
   if you choose
   %span.warning the same row or column,
@@ -8,9 +8,17 @@
   %span.chosen previous selections
   in that row or column will be reset.
 %table
-  -Subtype.all.in_groups_of(4) do |row|
+  %tr
+    %th.narrow &nbsp;
+    -Realm.all.each do |realm|
+      %th
+        =realm.domain.capitalize
+        =realm.potentials
+  -Subtype.all.in_groups_of(4).each_with_index do |row, index|
     %tr
+      %th.narrow
+        =Attitude.all[index].how_much.capitalize
       -row.each do |subtype|
-        %td.quarter{:class => @answer.class(subtype)}
-          =render "short", :subtype => subtype
-          %p.heading=link_to subtype, discover_path(@answer.next(subtype))
+        %td.bordered.quarter{:class => @answer.class(subtype)}
+          %p.heading=subtype.short
+          %p.center=link_to subtype, discover_path(@answer.next(subtype))

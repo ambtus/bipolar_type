@@ -1,9 +1,9 @@
 - content_for(:title, 'The 4 Attitudes')
 %table
   %tr
-    %td &nbsp;
+    %td.narrow &nbsp;
     %td{:colspan => 3}=render "square", :subtypes => Attitude.p.subtypes, :caption => Attitude.p
-    %td &nbsp;
+    %td.narrow &nbsp;
   %tr
     %td{:colspan => 3} &nbsp;
     %td{:colspan => 2, :rowspan => 2}=render "square", :subtypes => Attitude.j.subtypes, :caption => Attitude.j
@@ -11,9 +11,9 @@
     %td{:colspan => 2, :rowspan => 2}=render "square", :subtypes => Attitude.e.subtypes, :caption => Attitude.e
     %td &nbsp;
   %tr
-    %td{:colspan => 3}
+    %td{:colspan => 3} &nbsp;
   %tr
-    %td &nbsp;
+    %td.narrow &nbsp;
     %td{:colspan => 3}=render "square", :subtypes => Attitude.i.subtypes, :caption => Attitude.i
-    %td &nbsp;
+    %td.narrow &nbsp;
 =render "footnote", :letters => Attitude.all.to_sentence, :current => Attitude.all.map(&:result).to_sentence.capitalize

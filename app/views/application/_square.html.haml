@@ -5,4 +5,4 @@
   -subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
-        %td.half=render "subtype", :subtype => subtype
+        %td.half.bordered=render "subtype", :subtype => subtype
