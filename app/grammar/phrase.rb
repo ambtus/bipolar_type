@@ -1,7 +1,7 @@
 class Phrase
 
   def initialize(array)
-    @words = array.flatten.collect{|w| w.words}.flatten
+    @words = array.flatten.compact.collect{|w| w.words}.flatten
     @words.check_constraints(Word,2)
   end
   attr_reader :words
@@ -51,6 +51,17 @@ class Phrase
   def parenthesize
     Phrase.new [first.open_paren, mid_words, last.close_paren]
   end
-  def more; Phrase.new [first, "more", last]; end # FIXME: only works if two words
+  # only works if two words
+  def more(qualifier=nil)
+    Phrase.new [first_words, "more", qualifier, last]
+  end
+  def less(qualifier=nil)
+    Phrase.new [first_words, last.fewer_phrase(qualifier)]
+  end
+  def many(qualifier=nil)
+    Phrase.new [first_words, qualifier, last.many_phrase]
+  end
+
+  def many_phrase; Phrase.new [last.many, words]; end
 
 end

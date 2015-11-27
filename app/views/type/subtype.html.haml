@@ -1,0 +1,3 @@
+- content_for(:title, @subtype.name)
+=render "subtype", :subtype => @subtype
+%p.heading=link_to "BipolarTypes starting with this subtype", discover_path(@subtype.discover_path)

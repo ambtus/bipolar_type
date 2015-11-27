@@ -38,6 +38,6 @@ class Answer
     "Q" + subtypes(subtype).size.next.next.to_s + "_" + subtypes(subtype).map(&:path).join + subtype.path
   end
 
-  def quad_path; chosen.sort.map(&:path).join; end
+  def quad_path; chosen.sort.map(&:realm).map(&:path).join; end
 
 end

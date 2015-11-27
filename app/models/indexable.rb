@@ -21,6 +21,9 @@ class Indexable < Noun
 
   def index; self.class::LETTERS.index string; end
   def <=>(other); index <=> other.index; end
-  def choose(klass, array); klass.new array[index]; end
+  def choose(klass, array)
+    string = array[index]
+    string == "NIL" ? nil : klass.new(string)
+  end
 
 end

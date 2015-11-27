@@ -1,5 +1,8 @@
 class Verb < Word
 
+  def more; Phrase.new [self, "more"]; end
+  def less; Phrase.new [self, "less"]; end
+
   def ed; is_irregular? ? PAST[irregular_index] : past; end
 
   def en; is_irregular? ? PERFECT[irregular_index] : past; end
@@ -11,6 +14,8 @@ class Verb < Word
       suffix("ing")
     elsif chars.last == "e"
       chop.suffix("ing")
+    elsif chars.last == "c"
+      suffix("king")
     else
       suffix("ing")
     end
@@ -31,19 +36,19 @@ class Verb < Word
   private
 
   ## add at the same index in IRREGULAR, PAST, and PERFECT
-  IRREGULAR = %w{be see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose give get know}
+  IRREGULAR = %w{be see eat are say hear think go break buy do find spend teach steal sell hit build tell make choose sing feed show throw forget lose give get know run panic}
   def is_irregular?; IRREGULAR.include?(@string); end
   def irregular_index; IRREGULAR.index(@string); end
 
-  PAST = %w{been saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost gave got knew}.collect(&:to_word)
+  PAST = %w{been saw ate were said heard thought went broke bought did found spent taught stole sold hit built told made chose sang fed showed threw forgot lost gave got knew ran panicked}.collect(&:to_word)
 
-  PERFECT = %w{been seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost given gotten known}.collect(&:to_word)
+  PERFECT = %w{been seen eaten been said heard thought gone broken bought done found spent taught stolen sold hit built told made chosen sung fed shown thrown forgotten lost given gotten known run panicking }.collect(&:to_word)
 
   # exceptions to rules about ending in y or e
   EXCEPTIONS = %w{see}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
-  DOUBLES = %w{stop grab shop}
+  DOUBLES = %w{stop grab shop run hit}
   def needs_doubling?; DOUBLES.include?(@string); end
 
   VOWEL_Y = %w{buy pay repay say}

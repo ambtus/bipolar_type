@@ -1,7 +1,8 @@
 -content_for(:title, "Question ##{@answer.number}")
 %p.heading
   Choose
-  %span.free one from each row and  column;
+  %span.free one
+  from each row and  column;
   if you choose
   %span.warning the same row or column,
   your
@@ -12,13 +13,12 @@
     %th.narrow &nbsp;
     -Realm.all.each do |realm|
       %th
-        =realm.domain.capitalize
-        =realm.potentials
+        =realm.name
   -Subtype.all.in_groups_of(4).each_with_index do |row, index|
     %tr
       %th.narrow
-        =Attitude.all[index].how_much.capitalize
+        =Attitude.all[index].name
       -row.each do |subtype|
         %td.bordered.quarter{:class => @answer.class(subtype)}
-          %p.heading=subtype.short
-          %p.center=link_to subtype, discover_path(@answer.next(subtype))
+          =render "subtype", :subtype => subtype
+          %p.center=link_to subtype.name, discover_path(@answer.next(subtype))

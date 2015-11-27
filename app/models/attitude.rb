@@ -1,48 +1,38 @@
 class Attitude < Indexable
 
   ########
-  LETTERS = %w{P J E I}
+  LETTERS = %w{P E I J}
   ALL = LETTERS.collect{|letter| self.new letter}
   def path; super.downcase; end
   def self.paths; all.map(&:path); end
   all.each do |realm|
     define_singleton_method(realm.path) {all[LETTERS.index realm.string]}
   end
+  4.times {|i| define_singleton_method(i.next.word) {all[i]}}
   ########
 
+  def partial; index.next.word; end
+
+  def subtype_words(realm); %w{P J}.include?(letter) ? [realm, self] : [self, realm]; end
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
-  def result; choose Adjective, %w{fat strong energetic thin}; end
-  def name; Phrase.new [result.capitalize, parenthesize]; end
+  def domain; choose Adjective, %w{fat strong steady thin}; end
+  def name; Phrase.new [domain.titleize, parenthesize]; end
 
-  def ordered_words(realm); index < 2 ? [realm, self] : [self, realm]; end
-
-  def ordered_behaviors(binge, futz, burst, graze)
-    case string
-    when "P"
-      [binge,futz,graze,burst]
-    when "E"
-      [futz,binge,burst,graze]
-    when "J"
-      [burst,graze,futz,binge]
-    when "I"
-      [graze,burst,binge,futz]
-    end
+  def gain_ease(realm); choose Adjective, %w{easy easy hard hard}; end
+  def gain_potentials(realm)
+    Phrase.new ["it’s", gain_ease(realm), "for me to gain new", realm.potentials]
   end
 
-def how_much; choose Adjective, %w{most more less least}; end
-  def short(potentials)
-    prefix = case string
-    when "P"
-      "I have too #{potentials.many}"
-    when "J"
-      "I have enough"
-    when "E"
-      "I have some"
-    when "I"
-      "I don’t have any"
-    end
-    Phrase.new [prefix, potentials]
+  def lose_ease(realm); choose Adjective, %w{hard easy hard easy}; end
+  def lose_potentials(realm)
+    Phrase.new ["it’s", lose_ease(realm), "for me to get rid of old", realm.potentials]
+  end
+
+  def and_but; choose Word, %w{but and and but}; end
+
+  def short(realm)
+    Phrase.new [gain_potentials(realm).capitalize, and_but, lose_potentials(realm).period]
   end
 
 end

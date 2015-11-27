@@ -1,14 +1,15 @@
 class Quad < Phrase
 
-  def self.first_path; "spnjetif"; end
+  def self.first_path; "snft"; end
   def self.first; Quad.new first_path; end
 
   def initialize(string)
-    @subtypes = string.scan(/../).collect{|s| Subtype.send(s)}.sort
-    @subtypes.check_constraints Subtype, 4, 4
-    super(@subtypes)
+    @realms = string.scan(/./).collect{|s| Realm.send(s)}
+    @realms.check_constraints Realm, 4, 4
+    super(@realms)
   end
-  attr_reader :subtypes
+  attr_reader :realms
+  def subtypes; realms.add(Attitude.all); end
 
   def inspect; subtypes.join("•").to_word; end
   def name; inspect; end

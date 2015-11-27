@@ -5,9 +5,9 @@
     %td.narrow &nbsp;
   %tr
     %td{:colspan => 3} &nbsp;
-    %td{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.second
+    %td.halfish{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.second
   %tr
-    %td{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.third
+    %td.halfish{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.third
     %td.middle
       -if defined? center
         %h2=link_to center.name, type_path(center.path)

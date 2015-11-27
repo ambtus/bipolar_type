@@ -1,3 +1,5 @@
-%h3=link_to subtype.name, discover_path(subtype.discover_path)
+-unless @subtype || @answer
+  %h3=link_to subtype.name, type_path(subtype.path)
 %p.heading=subtype.short
-=render subtype.attitude.path, :realm => subtype.realm
+-unless @answer
+  =render subtype.attitude.partial, :realm => subtype.realm

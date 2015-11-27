@@ -7,7 +7,7 @@ class Subtype < Phrase
   end
   attr_reader :realm, :attitude
 
-  def words; attitude.ordered_words(realm); end
+  def words; attitude.subtype_words(realm); end
   def to_s; words.join(""); end
   def to_str; words.join(""); end
   def path; to_s.downcase; end
@@ -23,22 +23,17 @@ class Subtype < Phrase
         end.flatten
   def self.all; ALL; end
   ALL.each{|subtype| define_singleton_method(subtype.path) {subtype}}
+  def self.paths; ALL.map(&:path); end
 
   def discover_path; Answer.first.next(self); end
 
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  delegate :result, to: :attitude
-  delegate :domain, to: :realm
+  def domains; [realm.domain.ly, attitude.domain]; end
+  def domain; Phrase.new domains.map(&:capitalize) ; end
+  def name; Phrase.new [domain, inspect.parenthesize]; end
 
-  def result_words; [domain.ly, result]; end
-  def result_phrase; Phrase.new result_words; end
-  def tagline; Noun.new result_words.map(&:capitalize).join; end
-  def name; Phrase.new [tagline, inspect.parenthesize]; end
-
-  def behaviors; attitude.ordered_behaviors(*realm.behaviors); end
-
-  def short; attitude.short(realm.potentials); end
+  def short; attitude.short(realm); end
 
 end
