@@ -8,8 +8,10 @@ class TypeController < ApplicationController
       render params[:id]
     elsif Realm.paths.include?(params[:id])
       @container = Realm.send(params[:id])
+      @full = true
     elsif Attitude.paths.include?(params[:id])
       @container = Attitude.send(params[:id])
+      @full = true
       render :attitude
     elsif Subtype.paths.include?(params[:id])
       @subtype = Subtype.send(params[:id])
@@ -17,6 +19,7 @@ class TypeController < ApplicationController
       render :subtype
     else
       @container = Quad.new(params[:id])
+      @full = true
       render :show
     end
   end

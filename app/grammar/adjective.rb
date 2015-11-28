@@ -66,7 +66,7 @@ class Adjective < Word
   EXCEPTIONS = %w{appreciate unsure responsible}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
-  SINGLES = %w{sweet smart rich poor sick}
+  SINGLES = %w{sweet smart rich poor sick hard}
   def is_single_word?; SINGLES.include?(@string); end
 
 end

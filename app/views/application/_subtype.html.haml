@@ -2,4 +2,4 @@
   %h3=link_to subtype.name, type_path(subtype.path)
 %p.heading=subtype.short
 -unless @answer
-  =render subtype.attitude.partial, :realm => subtype.realm
+  =render subtype.attitude.path, :realm => subtype.realm
