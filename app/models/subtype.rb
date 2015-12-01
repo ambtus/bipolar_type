@@ -30,10 +30,9 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def domains; [realm.domain, attitude.domain.ing]; end
-  def domain; Phrase.new domains.map(&:capitalize) ; end
-  def domain; realm.send(attitude.behavior).s.capitalize; end
-  def name; Phrase.new [domain, inspect.parenthesize]; end
+  def domains; [attitude.domain_adjective, realm.domain, attitude.domain_noun]; end
+  def domain; Phrase.new domains ; end
+  def name; Phrase.new [domain.titleize, inspect.parenthesize]; end
 
   def short; attitude.short(realm); end
 

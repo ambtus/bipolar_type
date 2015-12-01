@@ -19,7 +19,6 @@ class TypeController < ApplicationController
       render :subtype
     else
       @container = Quad.new(params[:id])
-      @full = true
       render :show
     end
   end

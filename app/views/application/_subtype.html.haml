@@ -3,3 +3,5 @@
 %p.heading=subtype.short
 -unless @answer
   =render subtype.attitude.path, :realm => subtype.realm
+-unless @full || @answer
+  =link_to "Result of Mania and Depression", type_path(subtype.path)

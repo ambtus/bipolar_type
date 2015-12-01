@@ -14,22 +14,17 @@ class Attitude < Indexable
   def subtype_words(realm); %w{P J}.include?(letter) ? [realm, self] : [self, realm]; end
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
- def behavior; choose Adjective, %w{splurge binge putz graze}; end
-  def domain; choose Adjective, %w{strong fat thin weak}; end
+  def domain_adjective; index.even? ? "extroverted" : "introverted"; end
+  def domain_noun; index < 2 ? "extrovert" : "introvert"; end
+  def domain; Phrase.new [domain_adjective, domain_noun]; end
   def name; Phrase.new [domain.titleize, parenthesize]; end
 
-  def gain_ease; choose Adjective, %w{easy easy hard hard}; end
-  def gain_potentials(realm)
-    Phrase.new ["it’s", gain_ease, "for me to gain", realm.potentials]
-  end
-
-  def lose_ease; choose Adjective, %w{easier hard easy harder}; end
-  def lose_potentials(realm)
-    Phrase.new ["it’s", lose_ease, "for me to lose", realm.potentials]
-  end
-
+  def stressed?; index.between?(1,2); end
+  def and_but; stressed? ? "but" : "and"; end
+  def binge?; index < 2 ? "love to" : "hate to"; end
+  def purge?; index.even? ? "do" : "do not"; end
   def short(realm)
-    Phrase.new [gain_potentials(realm).capitalize, "but", lose_potentials(realm).period]
+    Phrase.new ["I", binge?, realm.binge, and_but, "I", purge?, realm.purge.period]
   end
 
 end

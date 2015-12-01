@@ -9,7 +9,8 @@ class Noun < Word
   def the; Phrase.new ["the", self]; end
 
 
-  def if_uncountable(yes, no=self); (is_uncountable? ? yes : no).to_word; end
+  def if_uncountable(yes, no); (is_uncountable? ? yes : no).to_word; end
+  def if_uncountable_suffix(yes, no); Phrase.new [self, if_uncountable(yes, no)]; end
 
   def they; if_uncountable("it", "they"); end
   def them; if_uncountable("it", "them"); end
@@ -48,9 +49,9 @@ class Noun < Word
   ## make the method name plural, and add the singulars here
   UNCOUNTABLE = %w{vocabulary food fat stuff music harmony information weight
    knowledge net-worth job story confidence task money credit optimism wealth
-   demonstration meal show family hope love protein cash heart body
+   demonstration meal show family hope love protein cash heart body working\ memory
    lexical-meaning expressive-meaning music faith emotional-expression
-   tone\ of\ voice empathy glycogen like learning recall trust intonation}
+   tone\ of\ voice empathy glycogen like learning recall trust intonation head stomach}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end

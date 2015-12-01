@@ -21,7 +21,7 @@ class Word
   def open_paren; prefix("("); end
 
   def self.last_word_methods
-    %w{period comma colon semicolon exclaim! question ellipsis close_paren}
+    %w{period comma colon semicolon exclaim! question? ellipsis close_paren}
   end
   def suffix(suffix); "#{string}#{suffix}".to_word; end
   def period; suffix("."); end
@@ -29,7 +29,7 @@ class Word
   def colon; suffix(":"); end
   def semicolon; suffix(";"); end
   def exclaim!; suffix("!"); end
-  def question; suffix("?"); end
+  def question?; suffix("?"); end
   def ellipsis; suffix("…"); end
   def close_paren; suffix(")"); end
 
