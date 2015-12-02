@@ -16,7 +16,6 @@ class Answer
   def constrained
     (chosen.map(&:same_realm) + chosen.map(&:same_attitude)).flatten.uniq
   end
-  def partially_constrained; chosen.map(&:same_realm).flatten; end
   def class(subtype)
     if chosen.include? subtype
       "chosen"
@@ -27,15 +26,12 @@ class Answer
     end
   end
 
-  def fully_constrained_subtypes(subtype)
-    chosen.reject do |s|
-      subtype.same_realm.include?(s) || subtype.same_attitude.include?(s)
-    end
+  def remaining(subtype)
+    chosen.reject {|s| subtype.same_realm.include?(s) || subtype.same_attitude.include?(s)}
   end
-  def partially_constrained_subtypes(subtype); chosen.reject{|s| subtype.same_realm.include?(s)}; end
-  def subtypes(subtype); fully_constrained_subtypes(subtype); end
   def next(subtype)
-    "Q" + subtypes(subtype).size.next.next.to_s + "_" + subtypes(subtype).map(&:path).join + subtype.path
+    "Q" + remaining(subtype).size.next.next.to_s + "_" + 
+    remaining(subtype).map(&:path).join + subtype.path
   end
 
   def quad_path; chosen.sort.map(&:realm).map(&:path).join; end

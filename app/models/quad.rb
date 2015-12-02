@@ -1,7 +1,7 @@
 class Quad < Phrase
 
-  def self.first_path; "nstf"; end
-  def self.first; Quad.new first_path; end
+  def self.my_path; "nstf"; end
+  def self.first; Quad.new my_path; end
 
   def initialize(string)
     @realms = string.scan(/./).collect{|s| Realm.send(s)}
@@ -9,6 +9,13 @@ class Quad < Phrase
     super(@realms)
   end
   attr_reader :realms
+  def path; super.downcase; end
+
+  def self.paths; Realm.paths.permutation(4).map(&:join); end
+  ALL = self.paths.collect{|path| self.new(path)}
+  def self.all; ALL; end
+  ALL.each {|quad| define_singleton_method(quad.path) {quad} }
+
   def subtypes; realms.add(Attitude.all); end
 
   def inspect; subtypes.join("•").to_word; end

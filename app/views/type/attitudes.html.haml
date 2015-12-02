@@ -2,18 +2,18 @@
 %table
   %tr
     %td.narrow &nbsp;
-    %td{:colspan => 3}=render "square", :subtypes => Attitude.one.subtypes, :caption => Attitude.one
+    %td{:colspan => 3}=render "square", :subtypes => Attitude.first.subtypes, :caption => Attitude.first
     %td.narrow &nbsp;
   %tr
     %td{:colspan => 3} &nbsp;
-    %td.halfish{:colspan => 2, :rowspan => 2}=render "square", :subtypes => Attitude.two.subtypes, :caption => Attitude.two
+    %td.halfish{:colspan => 2, :rowspan => 2}=render "square", :subtypes => Attitude.second.subtypes, :caption => Attitude.second
   %tr
-    %td.halfish{:colspan => 2, :rowspan => 2}=render "square", :subtypes => Attitude.three.subtypes, :caption => Attitude.three
+    %td.halfish{:colspan => 2, :rowspan => 2}=render "square", :subtypes => Attitude.third.subtypes, :caption => Attitude.third
     %td.narrow &nbsp;
   %tr
     %td{:colspan => 3} &nbsp;
   %tr
     %td
-    %td{:colspan => 3}=render "square", :subtypes => Attitude.four.subtypes, :caption => Attitude.four
+    %td{:colspan => 3}=render "square", :subtypes => Attitude.fourth.subtypes, :caption => Attitude.fourth
     %td
 =render "footnote", :klass => Attitude

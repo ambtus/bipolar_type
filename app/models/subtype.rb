@@ -34,6 +34,4 @@ class Subtype < Phrase
   def domain; Phrase.new domains ; end
   def name; Phrase.new [domain.titleize, inspect.parenthesize]; end
 
-  def short; attitude.short(realm); end
-
 end
