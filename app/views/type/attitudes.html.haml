@@ -16,4 +16,4 @@
     %td
     %td{:colspan => 3}=render "square", :subtypes => Attitude.fourth.subtypes, :caption => Attitude.fourth
     %td
-=render "footnote", :klass => Attitude
+=render "footnote", :letters => Attitude.all, :domains => Attitude.all.map(&:domain)

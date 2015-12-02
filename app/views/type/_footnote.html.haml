@@ -1,12 +1,12 @@
 %h4 Footnote:
 %p
   The letters
-  =klass.all.to_sentence
+  =letters.to_sentence
   are inherited from the MBTI.
-  They are not acronyms for any words used in the BipolarType theory: they are the symbols that I have been using for thirty years to represent four distinct
+  They are not acronyms for any words used in the BipolarType theory: they are the symbols that I have been using for thirty years to represent distinct
   =Realm.n.strengths.period
 %p
-  =klass.all.map(&:domain).to_sentence.capitalize
+  =domains.to_sentence.capitalize
   are merely the
   =Realm.f.strengths
   I am currently using when I
@@ -18,6 +18,7 @@
   realm to the
   =Realm.f.name
   realm.
+%p
   Future versions of this site may use different
   =Realm.f.strengths.comma
   but the four symbols will continue to represent the same four

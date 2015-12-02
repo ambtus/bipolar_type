@@ -15,7 +15,7 @@ class Realm < Indexable
   def name; Phrase.new [domain.titleize, parenthesize]; end
 
   def senses; choose Noun, %w{taste/smell hearing touch/pain sight}; end
-  def neuro; choose Noun, %w{serotonin oxytocin dopamine norepinephrine/GABA}; end
+  def neuro; choose Noun, %w{serotonin oxytocin dopamine GABA}; end
 
   # Mania. oversensitivity.
   # That seems so triggery, how can you consume it? at least add some buffers!
@@ -64,6 +64,7 @@ class Realm < Indexable
 
   # before you can reach a climax you have to: start up and produce something
   def start_up; Phrase.new [start, "up"]; end
+  def produce_things; Phrase.new [produce, things]; end
   def produce_something; Phrase.new [produce, thing.some]; end
 
   def start; choose Verb, %w{get speak ante hurry}; end

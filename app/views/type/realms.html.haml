@@ -4,4 +4,4 @@
     %tr
       -row.each do |realm|
         %td.half.bordered=render "diamond", :subtypes => realm.subtypes, :center => realm
-=render "footnote", :klass => Realm
+=render "footnote", :letters => Realm.all, :domains => Realm.all.map(&:domain)
