@@ -1,21 +1,21 @@
 %table
   %tr
     %td.narrow &nbsp;
-    %td{:colspan => 3}=render "subtype", :subtype => subtypes.first
+    %td.bordered{:colspan => 3}=render "subtype", :subtype => subtypes.first
     %td.narrow &nbsp;
   %tr
-    %td{:colspan => 3} &nbsp;
-    %td.halfish{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.second
+    %td.bordered{:colspan => 3} &nbsp;
+    %td.halfish.bordered{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.second
   %tr
-    %td.halfish{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.third
+    %td.halfish.bordered{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.third
     %td.middle
       -if defined? center
         %h2=link_to center.name, type_path(center.path)
       -else
         &nbsp;
   %tr
-    %td{:colspan => 3} &nbsp;
+    %td.bordered{:colspan => 3} &nbsp;
   %tr
     %td &nbsp;
-    %td{:colspan => 3}=render "subtype", :subtype => subtypes.fourth
+    %td.bordered{:colspan => 3}=render "subtype", :subtype => subtypes.fourth
     %td &nbsp;

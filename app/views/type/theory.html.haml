@@ -1,6 +1,6 @@
 - content_for(:title, 'Theory')
 %p
-  BipolarType is based on my belief that Manic-Depression is an illness that manifests differently depending on your personality type.
+  BipolarType is based on my belief that the Bipolar spectrum is a single illness that manifests different symptoms based on your nature and nurture.
 %p
   I believe that there are four basic realms of behavior, each associated with a different  neurochemical and hormonal response to sensory signals.
   %table
@@ -12,19 +12,15 @@
     %tr
       %th.bordered Sensory System
       -Realm.all.each do |realm|
-        %td.bordered.middle=realm.senses
+        %td.bordered.middle=realm.sense
+    %tr
+      %th.bordered Resources
+      -Realm.all.each do |realm|
+        %td.bordered.middle=realm.resources
     %tr
       %th.bordered Neurochemical Hormonal System
       -Realm.all.each do |realm|
         %td.bordered.middle=realm.neuro
-    %tr
-      %th.bordered Triggered Response
-      -Realm.all.each do |realm|
-        %td.bordered.middle=realm.full
-    %tr
-      %th Subsequent Reaction
-      -Realm.all.each do |realm|
-        %td.bordered.middle=realm.produce_things
 %p
   I believe that your relative sensitivity to the four senses determines your attitude towards mania and depression in each of the four realms.
   %table
@@ -55,5 +51,5 @@
       %td.bordered.middle Horrible
       %td.bordered.middle Wonderful
 %p
-  I believe that mitigating the effects of mania and depression by manipulating the environment, and the sensory signals received is just as, if not more, effective than manipulating brain chemistry and the reaction to those signals.
+  I believe that mitigating the effects of mania and depression by manipulating the sensory signals available in the environment is just as, if not more, effective than manipulating brain chemistry and the reaction to those signals.
 =render "footnote", :letters => Realm.all + Attitude.all, :domains => Realm.all.map(&:domain) + Attitude.all.map(&:domain)

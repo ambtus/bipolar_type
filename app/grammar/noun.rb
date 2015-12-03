@@ -51,7 +51,7 @@ class Noun < Word
    knowledge net-worth job story confidence task money credit optimism wealth
    demonstration meal show family hope love protein cash heart body working\ memory
    lexical-meaning expressive-meaning music faith emotional-expression
-   tone\ of\ voice empathy glycogen like learning recall trust intonation head stomach}
+   tone\ of\ voice empathy glycogen like learning recall trust intonation head stomach horror color}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end
