@@ -1,14 +1,14 @@
 - content_for(:title, 'Theory')
 %p
-  BipolarType is based on my belief that the Bipolar spectrum is a single illness that manifests different symptoms based on your nature and nurture.
+  BipolarType is based on my belief that the Bipolar spectrum is a single illness that manifests different symptoms based on your personality type.
 %p
-  I believe that there are four basic realms of behavior, each associated with a different  neurochemical and hormonal response to sensory signals.
+  I believe that there are four basic realms of behavior, each associated with a different set of sensory signals.
   %table
     %caption The Four Realms
     %tr
-      %th.fifth.none
+      %th.third.none
       -Realm.all.each do |realm|
-        %th.fifth.bordered=realm.name
+        %th.sixth.bordered=realm.name
     %tr
       %th.bordered Sensory System
       -Realm.all.each do |realm|
@@ -22,34 +22,37 @@
       -Realm.all.each do |realm|
         %td.bordered.middle=realm.neuro
 %p
-  I believe that your relative sensitivity to the four senses determines your attitude towards mania and depression in each of the four realms.
+  I believe that your innate sensitivity to the four senses determines your attitude towards mania and depression in each of the four realms.
   %table
     %caption The Four Attitudes
     %tr
-      %th.fifth.none
-      %th.bordered Relative Sensitivity
-      %th.bordered Mania
-      %th.bordered Depression
+      %th.third.none &nbsp;
+      %th.third.bordered Mania
+      %th.third.bordered Depression
     %tr
-      %th.fifth.bordered=Attitude.first.name
-      %td.bordered.middle Most Insensitive
-      %td.bordered.middle Wonderful
-      %td.bordered.middle Horrible
+      %th.bordered=Attitude.first.name
+      %td.bordered.middle=Attitude.first.manic_affect.capitalize
+      %td.bordered.middle=Attitude.first.depressed_affect.capitalize
     %tr
-      %th.fifth.bordered=Attitude.second.name
-      %td.bordered.middle Relatively Insensitive
-      %td.bordered.middle Stressful, but good for you
-      %td.bordered.middle Relaxing, but bad for you
+      %th.bordered=Attitude.second.name
+      %td.bordered.middle
+        =Attitude.second.manic_affect.capitalize.comma
+        but good for you
+      %td.bordered.middle
+        =Attitude.second.depressed_affect.capitalize.comma
+        but bad for you
     %tr
-      %th.fifth.bordered=Attitude.third.name
-      %td.bordered.middle Relatively Sensitive
-      %td.bordered.middle Interesting, but bad for you
-      %td.bordered.middle Boring, but good for you
+      %th.bordered=Attitude.third.name
+      %td.bordered.middle
+        =Attitude.third.manic_affect.capitalize.comma
+        but bad for you
+      %td.bordered.middle
+        =Attitude.third.depressed_affect.capitalize.comma
+        but good for you
     %tr
-      %th.fifth.bordered=Attitude.fourth.name
-      %td.bordered.middle Most Sensitive
-      %td.bordered.middle Horrible
-      %td.bordered.middle Wonderful
+      %th.bordered=Attitude.fourth.name
+      %td.bordered.middle=Attitude.fourth.manic_affect.capitalize
+      %td.bordered.middle=Attitude.fourth.depressed_affect.capitalize
 %p
-  I believe that mitigating the effects of mania and depression by manipulating the sensory signals available in the environment is just as, if not more, effective than manipulating brain chemistry and the reaction to those signals.
+  I believe that, in the long run, manipulating the sensory signals present in the environment is more effective at mitigating the symptoms of mania and depression than manipulating brain chemistry and the reaction to those signals.
 =render "footnote", :letters => Realm.all + Attitude.all, :domains => Realm.all.map(&:domain) + Attitude.all.map(&:domain)

@@ -23,7 +23,7 @@ class Word
   def self.last_word_methods
     %w{period comma colon semicolon exclaim! question? ellipsis close_paren}
   end
-  def suffix(suffix); "#{string}#{suffix}".to_word; end
+  def suffix(suffix); "#{to_s}#{suffix}".to_word; end
   def period; suffix("."); end
   def comma; suffix(","); end
   def colon; suffix(":"); end
@@ -33,7 +33,7 @@ class Word
   def ellipsis; suffix("…"); end
   def close_paren; suffix(")"); end
 
-  def surround(prefix, suffix); "#{prefix}#{string}#{suffix}".to_word; end
+  def surround(prefix, suffix); "#{prefix}#{to_s}#{suffix}".to_word; end
   def air_quotes; surround("“", "”"); end
   def parenthesize; surround("(", ")"); end
 

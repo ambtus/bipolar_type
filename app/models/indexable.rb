@@ -22,6 +22,7 @@ class Indexable < Noun
   def index; self.class::LETTERS.index string; end
   def <=>(other); index <=> other.index; end
 
+  def index_ordinal; %w{first second third fourth}[index]; end
   def choose(klass, array)
     string = array[index]
     string == "NIL" ? nil : klass.new(string)

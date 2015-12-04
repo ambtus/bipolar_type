@@ -8,7 +8,7 @@
     %td.halfish.bordered{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.second
   %tr
     %td.halfish.bordered{:colspan => 2, :rowspan => 2}=render "subtype", :subtype => subtypes.third
-    %td.middle
+    %td.middle.narrow
       -if defined? center
         %h2=link_to center.name, type_path(center.path)
       -else

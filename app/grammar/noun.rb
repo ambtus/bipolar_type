@@ -49,9 +49,10 @@ class Noun < Word
   ## make the method name plural, and add the singulars here
   UNCOUNTABLE = %w{vocabulary food fat stuff music harmony information weight
    knowledge net-worth job story confidence task money credit optimism wealth
-   demonstration meal show family hope love protein cash heart body working\ memory
-   lexical-meaning expressive-meaning music faith emotional-expression
-   tone\ of\ voice empathy glycogen like learning recall trust intonation head stomach horror color}
+   demonstration meal show family hope love protein cash heart body
+   working\ memory lexical-meaning expressive-meaning music faith
+   emotional-expression tone\ of\ voice empathy glycogen like learning recall
+   trust intonation head stomach horror color romance}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end
