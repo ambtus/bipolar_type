@@ -19,6 +19,8 @@ class Indexable < Noun
 
   def others; self.class.all.collect{|i| i != self}; end
 
+  def path; inspect.downcase; end
+
   def index; self.class::LETTERS.index string; end
   def <=>(other); index <=> other.index; end
 
