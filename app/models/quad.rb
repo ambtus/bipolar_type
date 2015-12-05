@@ -18,7 +18,7 @@ class Quad < Phrase
 
   def subtypes; realms.add(Attitude.all); end
 
-  def inspect; subtypes.join("•").to_word; end
+  def inspect; realms.join("•").to_word; end
   def name; inspect; end
 
 end

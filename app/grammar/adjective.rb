@@ -59,14 +59,14 @@ class Adjective < Word
   end
 
   private
-  DOUBLES = %w{fat thin}
+  DOUBLES = %w{fat thin big}
   def needs_doubling?; DOUBLES.include?(@string); end
 
   # exceptions to rules about ending in y or e
   EXCEPTIONS = %w{appreciate unsure responsible}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
-  SINGLES = %w{sweet smart rich poor sick hard calm}
+  SINGLES = %w{sweet smart rich poor sick hard calm long short small}
   def is_single_word?; SINGLES.include?(@string); end
 
 end

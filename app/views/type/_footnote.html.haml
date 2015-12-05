@@ -1,17 +1,21 @@
 %h4 Footnote:
 %p
-  =domains.map(&:words).flatten.map(&:string).uniq.sort.to_sentence.capitalize
+  The letters
+  =Realm.all.to_sentence
+  are inherited from the MBTI.
+  They are not acronyms for any words used in the BipolarType theory: they are just the symbols that I have been using for thirty years to represent four distinct
+  =Realm.n.strengths.period
+  =(Realm.all.map(&:domain) + Attitude.all.map(&:domain)).map(&:words).flatten.map(&:string).uniq.to_sentence.capitalize
   are merely the
   =Realm.f.strengths
   I am currently using when I
-  =Realm.f.putz
+  =Realm.f.putz_short
   as I attempt to translate
   from the
   =Realm.n.name
   realm to the
   =Realm.f.name
   realm.
-%p
   Future versions of this site may use different
   =Realm.f.strengths
   to describe the same

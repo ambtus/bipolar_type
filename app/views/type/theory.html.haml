@@ -26,15 +26,18 @@
   %table
     %caption The Four Attitudes
     %tr
-      %th.third.none &nbsp;
-      %th.third.bordered Mania
-      %th.third.bordered Depression
+      %th.quarter.none &nbsp;
+      %th.quarter.bordered Relative Sensitivity
+      %th.quarter.bordered Mania
+      %th.quarter.bordered Depression
     %tr
       %th.bordered=Attitude.first.name
+      %td.bordered.middle Most Insensitive
       %td.bordered.middle=Attitude.first.manic_affect.capitalize
       %td.bordered.middle=Attitude.first.depressed_affect.capitalize
     %tr
       %th.bordered=Attitude.second.name
+      %td.bordered.middle Relatively Insensitive
       %td.bordered.middle
         =Attitude.second.manic_affect.capitalize.comma
         but good for you
@@ -43,6 +46,7 @@
         but bad for you
     %tr
       %th.bordered=Attitude.third.name
+      %td.bordered.middle Relatively Sensitive
       %td.bordered.middle
         =Attitude.third.manic_affect.capitalize.comma
         but bad for you
@@ -51,8 +55,9 @@
         but good for you
     %tr
       %th.bordered=Attitude.fourth.name
+      %td.bordered.middle Most Sensitive
       %td.bordered.middle=Attitude.fourth.manic_affect.capitalize
       %td.bordered.middle=Attitude.fourth.depressed_affect.capitalize
 %p
-  I believe that, in the long run, manipulating the sensory signals present in the environment is more effective at mitigating the symptoms of mania and depression than manipulating brain chemistry and the reaction to those signals.
-=render "footnote", :letters => Realm.all + Attitude.all, :domains => Realm.all.map(&:domain) + Attitude.all.map(&:domain)
+  I believe that, in the long run, manipulating the sensory signals present in a controllable environment (your own home or office or other personal space) is more effective at mitigating the symptoms of mania and depression than manipulating brain chemistry and the reaction to those signals.
+=render "footnote"

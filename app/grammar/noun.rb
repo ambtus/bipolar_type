@@ -52,7 +52,7 @@ class Noun < Word
    demonstration meal show family hope love protein cash heart body
    working\ memory lexical-meaning expressive-meaning music faith
    emotional-expression tone\ of\ voice empathy glycogen like learning recall
-   trust intonation head stomach horror color romance library}
+   trust intonation head stomach horror color romance library fire defence}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end
