@@ -21,7 +21,7 @@ class Realm < Indexable
   def neuro; choose Noun, %w{serotonin oxytocin dopamine GABA}; end
   def full; choose Adjective, %w{nauseous empathetic frustrated anxious}; end
   def overfull; choose Adjective, %w{sick responsible angry afraid}; end
-  def reject; choose Verb, %w{vomit cry fight panic}; end
+  def reject; choose Verb, %w{vomit quit fight panic}; end
 
   def triggers; choose Noun, %w{carbs horror weapons color}; end
   def nontriggers; choose Noun, %w{protein romance walls shapes}; end
@@ -42,7 +42,7 @@ class Realm < Indexable
   def small; choose Adjective, %w{short short small simple}; end
 
   def energy; choose Noun, %w{glycogen dependents offense information}; end
-  def potentials; choose Noun, %w{fat attachments defence memories}; end
+  def potentials; choose Noun, %w{fat attachments offense memories}; end
   def empty; choose Adjective, %w{hungry lonely unequipped unsure}; end
   def consume_verb; choose Verb, %w{eat listen use look}; end
   def consume_helper; choose Word, %w{NIL to NIL at}; end
@@ -53,12 +53,12 @@ class Realm < Indexable
 
   def environment; choose Noun, %w{pantry library workshop desk}; end
   def body; choose Noun, %w{belly heart hands head}; end
-  def strengths; choose Noun, %w{muscles words procedures mental\ models}; end
+  def strengths; choose Noun, %w{muscles vocabulary defense mental\ models}; end
   def weak; choose Adjective, %w{sore misunderstood defeated stupid}; end
 
-  def die_verb; choose Verb, %w{starve commit freeze make}; end
-  def die_mid; choose Word, %w{to NIL to a\ fatal}; end
-  def die_noun; choose Noun, %w{death suicide death mistake}; end
+  def die_verb; choose Verb, %w{starve commit die make}; end
+  def die_mid; choose Word, %w{to NIL of a\ fatal}; end
+  def die_noun; choose Noun, %w{death suicide exposure mistake}; end
   def die; Phrase.new [die_verb, die_mid, die_noun]; end
 
 end
