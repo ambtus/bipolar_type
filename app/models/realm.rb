@@ -17,6 +17,12 @@ class Realm < Indexable
 
   def sense; choose Verb, %w{taste/smell hear touch see}; end
   def resources; choose Noun, %w{food stories tools truths}; end
+  def consume_verb; choose Verb, %w{eat listen use look}; end
+  def consume_helper; choose Word, %w{NIL to NIL at}; end
+  def consume
+    consume_helper ? Phrase.new([consume_verb, consume_helper]) : consume_verb
+  end
+  def consume_short; choose Verb, %w{eat listen compete look}; end
 
   def neuro; choose Noun, %w{serotonin oxytocin dopamine GABA}; end
   def full; choose Adjective, %w{nauseous empathetic frustrated anxious}; end
@@ -41,19 +47,13 @@ class Realm < Indexable
   def big; choose Adjective, %w{long long big complex}; end
   def small; choose Adjective, %w{short short small simple}; end
 
-  def energy; choose Noun, %w{glycogen dependents offense information}; end
-  def potentials; choose Noun, %w{fat attachments offense memories}; end
-  def empty; choose Adjective, %w{hungry lonely unequipped unsure}; end
-  def consume_verb; choose Verb, %w{eat listen use look}; end
-  def consume_helper; choose Word, %w{NIL to NIL at}; end
-  def consume
-    consume_helper ? Phrase.new([consume_verb, consume_helper]) : consume_verb
-  end
-  def consume_short; choose Verb, %w{eat listen buy look}; end
+  def strengths; choose Noun, %w{muscles words defense mental\ models}; end
+  def energy; choose Noun, %w{glycogen emotions offense facts}; end
+  def potentials; choose Noun, %w{fat values enemies memories}; end
+  def empty; choose Adjective, %w{hungry lonely apathetic unsure}; end
 
   def environment; choose Noun, %w{pantry library workshop desk}; end
   def body; choose Noun, %w{belly heart hands head}; end
-  def strengths; choose Noun, %w{muscles vocabulary defense mental\ models}; end
   def weak; choose Adjective, %w{sore misunderstood defeated stupid}; end
 
   def die_verb; choose Verb, %w{starve commit die make}; end

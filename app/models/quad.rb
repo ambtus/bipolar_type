@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; "nstf"; end
+  def self.my_path; "snft"; end
   def self.first; Quad.new my_path; end
 
   def initialize(string)

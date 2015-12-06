@@ -39,9 +39,9 @@ class Word
 
   def an?
      if chars.length == 1
-       %w{A E F H L M O R S X}.include?(string)
+       %w{F H L M O R S X}.include?(string)
      else
-       %w{a e i o u}.include?(chars.first)
+       %w{a e i o u A E I O U}.include?(chars.first)
      end
   end
 
