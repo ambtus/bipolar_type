@@ -24,7 +24,7 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def domains; [realm.domain, attitude.domain]; end
+  def domains; [attitude.domain_adjective, realm.domain, attitude.domain_noun]; end
   def domain; Phrase.new domains ; end
   def name; Phrase.new [domain.titleize, realm.parenthesize]; end
 

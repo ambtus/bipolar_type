@@ -1,4 +1,4 @@
 - content_for(:title, @object.name)
--@full = true
+-@most = true
 =render "subtype", :subtype => @object
 %p.heading=link_to "BipolarTypes starting with this subtype", discover_path(@object.discover_path)

@@ -22,6 +22,8 @@ class Noun < Word
   def few_phrase; Phrase.new [few, self]; end
   def fewer; if_uncountable("less", "fewer"); end
   def fewer_phrase(qualifier=nil); Phrase.new [fewer, qualifier, self]; end
+  def fewest; if_uncountable("least", "fewest"); end
+  def fewest_phrase(qualifier=nil); Phrase.new [fewest, qualifier, self]; end
   def are; if_uncountable("is", "are"); end
   def are_phrase; Phrase.new [self, are]; end
   def have; if_uncountable("has", "have"); end
@@ -52,7 +54,7 @@ class Noun < Word
    demonstration meal show family hope love protein cash heart body
    working\ memory lexical-meaning expressive-meaning music faith
    emotional-expression tone\ of\ voice empathy glycogen like learning recall
-   trust intonation head stomach horror color romance library fire defence}
+   trust intonation head stomach horror color romance library fire defense offense}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end

@@ -1,55 +1,45 @@
 %p.heading
-  More
-  =realm.energy
-  than
-  =realm.strengths.period
-  %br
   I
   =realm.purge_verb
-  =realm.big
-  =realm.purge_nouns.period
-  %br
-  I
-  =realm.consume
-  =realm.triggers
-  and
-  =realm.alt_triggers.period
--if @full
+  too
+  =realm.purge_nouns.many_phrase
+-if @some || @more || @most
   %p
-    =realm.domain.capitalize
-    Tops can
-    =realm.purge_verb
-    =realm.big
-    =realm.purge_nouns
-    because they can
-    =realm.consume
-    plenty of
-    =realm.triggers
-    and
-    =realm.alt_triggers
-    without feeling
-    =realm.full.period
+    Insensitive as an infant, you
+    =realm.consume_short.ed
+    a lot and
+    =realm.produce_short.ed
+    a lot.
+-if @some
   %p
-    If they are unable to even
-    =realm.putz_short.comma
-    let alone
-    =realm.purge_short.comma
-    they need a fresh infusion of
-    =realm.triggers
-    and
-    =realm.alt_triggers
-    to keep
-    =realm.purge.ing.period
-    =realm.nontriggers.capitalize
-    and
-    =realm.alt_nontriggers
-    will not help: they have plenty of
-    =realm.strengths.comma
-    they’re just temporarily out of
-    =realm.energy.period
+    You learned early not to
+    =realm.consume_short
+    as much as you wanted to.
+-elsif @more || @most
   %p
-    Or they can just take a break until their
-    =realm.potentials
-    =realm.potentials.if_uncountable("converts", "convert")
-    back to
-    =realm.energy.period
+    The following message, whether deliberately or accidentally, was hardwired into your growing brain:
+    =render "consume_less", :realm => realm
+-if @some
+  %p
+    Later you learned not to
+    =realm.produce_short
+    as much as you wanted to.
+-elsif @more || @most
+  %p
+    Since you stopped
+    =realm.consume_short.ing
+    but continued to
+    =realm.produce_short.comma
+    you inevitably lost necessary and critical
+    =realm.potentials.period
+  %p
+    The following message, whether deliberately or accidentally, was then layered on as an afterthought:
+    =render "produce_less", :realm => realm
+-if @most
+  %p
+    You sometimes forget and 
+    =realm.produce_short
+    when you “shouldn’t” but you never 
+    =realm.consume_short 
+    as much as you want to, even when depressed.
+

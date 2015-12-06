@@ -14,26 +14,28 @@
       -Realm.all.each do |realm|
         %td.bordered.middle=realm.sense
     %tr
-      %th.bordered Resources
+      %th.bordered Triggers
       -Realm.all.each do |realm|
         %td.bordered.middle=realm.resources
     %tr
       %th.bordered Neurochemical Hormonal System
       -Realm.all.each do |realm|
         %td.bordered.middle=realm.neuro
+    %tr
+      %th.bordered Overloaded
+      -Realm.all.each do |realm|
+        %td.bordered.middle=realm.overfull
 %p
-  I believe that your innate sensitivity to the four senses determines your attitude towards mania and depression in each of the four realms.
+  I believe that your natural sensitivity to the four senses plus your initial nurture as an infant determines your attitude towards mania and depression in each of the four realms.
   %table
     %caption The Four Attitudes
     %tr
-      %th.quarter.none &nbsp;
-      %th.quarter.bordered Relative Sensitivity
-      %th.quarter.bordered Mania
-      %th.quarter.bordered Depression
+      %th.third.none &nbsp;
+      %th.third.bordered Mania
+      %th.third.bordered Depression
     -Attitude.all.each do |attitude|
       %tr
         %th.bordered=attitude.name
-        %td.bordered.middle=attitude.sensitivity.titleize
         %td.bordered.middle=attitude.manic_affect.capitalize
         %td.bordered.middle=attitude.depressed_affect.capitalize
 %p

@@ -1,19 +1,10 @@
 - content_for(:title, 'The 4 Attitudes')
+-@some = true
 %table
-  %tr
-    %td.narrow &nbsp;
-    %td.bordered{:colspan => 3}=render "square", :subtypes => Attitude.first.subtypes, :caption => Attitude.first
-    %td.narrow &nbsp;
-  %tr
-    %td.bordered{:colspan => 3} &nbsp;
-    %td.halfish.bordered{:colspan => 2, :rowspan => 2}=render "square", :subtypes => Attitude.second.subtypes, :caption => Attitude.second
-  %tr
-    %td.halfish.bordered{:colspan => 2, :rowspan => 2}=render "square", :subtypes => Attitude.third.subtypes, :caption => Attitude.third
-    %td.narrow &nbsp;
-  %tr
-    %td.bordered{:colspan => 3} &nbsp;
-  %tr
-    %td
-    %td.bordered{:colspan => 3}=render "square", :subtypes => Attitude.fourth.subtypes, :caption => Attitude.fourth
-    %td
+  -Attitude.all.in_groups_of(2) do |row|
+    %tr
+      -row.each do |attitude|
+        %td.half.bordered
+          %h2=link_to attitude.name, type_path(attitude.path)
+          =render "square", :subtypes => attitude.subtypes
 =render "footnote"

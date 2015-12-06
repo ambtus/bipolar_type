@@ -1,48 +1,44 @@
 %p.heading
-  More
-  =realm.strengths
-  than
-  =realm.energy.period
-  %br
-  I
+  I don’t
   =realm.putz_verb
-  =realm.small
-  =realm.putz_nouns.period
-  %br
-  I
-  =realm.consume
-  =realm.nontriggers
-  and
-  =realm.alt_nontriggers.period
--if @full
+  enough
+  =realm.putz_nouns
+-if @some || @more || @most
   %p
-    =realm.domain.capitalize
-    Bottoms can only
-    =realm.putz_verb
-    =realm.small
-    =realm.putz_nouns
-    because they cannot
-    =realm.consume
-    too
-    =realm.triggers.many_phrase
-    or
-    =realm.alt_triggers
-    without feeling
-    =realm.overfull.period
+    Sensitive as an infant, you
+    =realm.consume_short.ed
+    little and
+    =realm.produce_short.ed
+    little.
+-if @some
   %p
-    If they are unable to stop
-    =realm.reject.ing.comma
-    they have overdosed on
-    =realm.energy
-    and need a complete break from
-    =realm.triggers
-    and
-    =realm.alt_triggers
-    while they
-    =realm.consume
-    =realm.nontriggers
-    and
-    =realm.alt_nontriggers.period
+    You learned early to
+    =realm.consume_short
+    more than you wanted to.
+-elsif @more || @most
   %p
-    Or they will
-    =realm.die.period
+    The following message, whether deliberately or accidentally, was hardwired into your growing brain:
+    =render "consume_more", :realm => realm
+-if @some
+  %p
+    Later you learned to
+    =realm.produce_short
+    more than you wanted to.
+-elsif @more || @most
+  %p
+    Since you started
+    =realm.consume_short.ing
+    more but continued to
+    =realm.produce_short
+    little, you inevitably gained unwanted and unnecessary
+    =realm.potentials.period
+  %p
+    The following message, whether deliberately or accidentally, was then layered on as an afterthought:
+    =render "produce_more", :realm => realm
+-if @most
+  %p
+    You sometimes forget and don’t 
+    =realm.produce_short
+    when you “should” but you always 
+    =realm.consume_short 
+    more than you want to, even when manic.

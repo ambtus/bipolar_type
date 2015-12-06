@@ -5,15 +5,12 @@ class Attitude < Indexable
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
-  def domain; choose Adjective, %w{energy energetic strong strength}; end
+  def domain_adjective; choose Adjective, %w{insensitive insensitive sensitive sensitive}; end
+  def domain_noun; choose Adjective, %w{consumer producer consumer producer}; end
+  def domain; Phrase.new [domain_adjective, domain_noun]; end
   def name; domain.titleize; end
 
-  AFFECTS = %w{wonderful good bad horrible}
-  def manic_affect; Adjective.new AFFECTS[index]; end
-  def depressed_affect; Adjective.new AFFECTS.reverse[index]; end
-
-  def sensitivity_adjective; choose Adjective, %w{most relatively relatively most}; end
-  def sensitivity_noun; choose Noun, %w{insensitive insensitive sensitive sensitive}; end
-  def sensitivity; Phrase.new [sensitivity_adjective, sensitivity_noun]; end
+  def manic_affect; choose Adjective, %w{wonderful good horrible bad}; end
+  def depressed_affect; choose Adjective, %w{bad horrible  wonderful good }; end
 
 end

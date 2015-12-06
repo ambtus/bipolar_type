@@ -1,5 +1,8 @@
 class Verb < Word
 
+  def a_lot; Phrase.new [self, "a lot"]; end
+  def a_bit; Phrase.new [self, "a bit"]; end
+
   def more; Phrase.new [self, "more"]; end
   def less; Phrase.new [self, "less"]; end
 
@@ -53,10 +56,10 @@ class Verb < Word
    thrown forgotten lost given gotten known run panicked }.collect(&:to_word)
 
   # exceptions to rules about ending in y or e
-  EXCEPTIONS = %w{see}
+  EXCEPTIONS = %w{see play}
   def exception?; EXCEPTIONS.include?(@string); end
 
-  DOUBLES = %w{stop grab shop run win}
+  DOUBLES = %w{stop grab shop run win submit}
   def needs_doubling?; DOUBLES.include?(@string); end
 
   VOWEL_Y = %w{pay repay say}
@@ -68,6 +71,8 @@ class Verb < Word
   def past
     if needs_doubling?
       suffix("#{last}ed")
+    elsif exception?
+      suffix("ed")
     elsif chars.last == "y"
       if vowel_y?
         chop.suffix("id")
