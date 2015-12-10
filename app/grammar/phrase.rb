@@ -35,7 +35,7 @@ class Phrase
 
   ## first word methods
   def prefix(prefix); Phrase.new [first.prefix(prefix), last_words]; end
-  %w{open_paren capitalize ed en ing s}.each do |meth|
+  %w{open_paren capitalize}.each do |meth|
     define_method(meth) {Phrase.new [first.send(meth), last_words]}
   end
 
@@ -46,6 +46,10 @@ class Phrase
   end
 
   ## entire phrase methods
+  # verb methods
+  %w{ed en ing s}.each do |meth|
+    define_method(meth) {Phrase.new words.collect{|w| w.is_a?(Verb) ? w.send(meth) : w}}
+  end
   def reverse; Phrase.new words.reverse; end
   def titleize; Phrase.new words.map(&:capitalize); end
   def parenthesize

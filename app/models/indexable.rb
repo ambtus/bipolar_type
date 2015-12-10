@@ -8,7 +8,6 @@ class Indexable < Noun
   LETTERS.each{|l| define_singleton_method(l) {all[LETTERS.index l]}}
   %w{first second third fourth}.each {|i| define_singleton_method(i) {all.send(i)}}
 
-
   def initialize(string)
     unless self.class::LETTERS.include? string
       raise "#{string} is not a #{self.class.name}"
@@ -21,7 +20,7 @@ class Indexable < Noun
 
   def others; self.class.all.collect{|i| i != self}; end
 
-  def path; inspect.downcase; end
+  def path; to_s.downcase; end
   def self.paths; all.map(&:path); end
 
   def index; self.class::LETTERS.index string; end

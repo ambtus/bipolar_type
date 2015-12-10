@@ -12,6 +12,10 @@ class Word
   def words; [self]; end
   def to_word; self; end
 
+  %w{first second third fourth fifth last}.each do |meth|
+    define_method(meth) {Word.new chars.send(meth)}
+  end
+
   def method_missing(meth, *arguments, &block)
     result = string.send(meth, *arguments, &block)
     result.respond_to?(:to_str) ? result.to_word_or_phrase : result

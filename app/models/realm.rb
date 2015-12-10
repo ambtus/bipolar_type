@@ -1,10 +1,8 @@
 class Realm < Indexable
 
   ########
-  LETTERS = %w{S F T N }
+  LETTERS = %w{SF NF ST NT }
   ALL = LETTERS.collect{|letter| self.new letter}
-  def path; super.downcase; end
-  def self.paths; all.map(&:path); end
   all.each { |r| define_singleton_method(r.path) {all[LETTERS.index r.string]} }
   ########
 
@@ -16,51 +14,35 @@ class Realm < Indexable
   def domain; choose Adjective, %w{gustatory auditory tactile visual}; end
   def name; Phrase.new [domain.titleize, parenthesize]; end
 
-  def sense; choose Verb, %w{taste/smell hear touch see}; end
-  def resources; choose Noun, %w{food stories obstacles truths}; end
-  def consume_verb; choose Verb, %w{eat listen feel look}; end
-  def consume_helper; choose Word, %w{NIL to NIL at}; end
-  def consume
-    consume_helper ? Phrase.new([consume_verb, consume_helper]) : consume_verb
-  end
-  def consume_short; choose Verb, %w{eat listen touch look}; end
-
   def neuro; choose Noun, %w{serotonin oxytocin dopamine GABA}; end
-  def full; choose Adjective, %w{nauseous empathetic frustrated anxious}; end
+  def full; choose Adjective, %w{satisfied empathetic finished bored}; end
+  def feel_full; Phrase.new ["feel", full]; end
   def overfull; choose Adjective, %w{sick guilty angry afraid}; end
-  def reject_verb; choose Verb, %w{throw submit fight panic}; end
-def reject_helper; choose Word, %w{up NIL back NIL}; end
-def reject
+  def reject_verb; choose Verb, %w{throw cry destroy panic}; end
+  def reject_helper; choose Word, %w{up NIL something NIL}; end
+  def reject
     reject_helper ? Phrase.new([reject_verb, reject_helper]) : reject_verb
-  end  
+  end
 
-  def energizers; choose Noun, %w{carbs whines pain colors}; end
-  def strengtheners; choose Noun, %w{protein words ?? shapes}; end
-  def addictions; choose Noun, %w{sweets tragedies weapons details}; end
-  def buffers; choose Noun, %w{fat laughter ?? symmetry}; end
-  def binge; Phrase.new [consume, addictions]; end
-  def energize; Phrase.new [consume, energizers]; end
-  def strengthen; Phrase.new [consume, strengtheners]; end
-  def graze; Phrase.new [consume, buffers]; end
+  def sense; choose Verb, %w{taste/smell hear touch see}; end
+  def resources; choose Noun, %w{food stories tools truths}; end
+  def consume_with; choose Verb, %w{eat hear use see}; end
+  def consume; choose Verb, %w{eat listen earn look}; end
+  def provide; choose Verb, %w{feed tell pay show}; end
 
-  def produce_short; choose Verb, %w{move cry play choose}; end 
+  def triggers; choose Noun, %w{carbs tragedy obstacles colors}; end
+  def strengtheners; choose Noun, %w{protein happy\ endings detours shapes}; end
+  def buffers; choose Noun, %w{fat comedy tools symmetry}; end
+  def binge; Phrase.new [consume_with, triggers]; end
+  def graze; Phrase.new [consume_with, strengtheners]; end
 
-  def putz_verb; choose Verb, %w{take tell manage make}; end
-  def putz_nouns; choose Noun, %w{walks stories effects choices}; end
-  def putz; Phrase.new([putz_verb, putz_nouns]); end
-  def putz_short; choose Verb, %w{walk talk touch choose}; end
-
-  def purge_verb; choose Verb, %w{run preach root\ out make}; end
-  def purge_nouns; choose Noun, %w{races sermons causes decisions}; end
-  def purge; Phrase.new([purge_verb, purge_nouns]); end
-  def purge_short; choose Verb, %w{run preach win decide}; end
-
-  def big; choose Adjective, %w{long long big complex}; end
-  def small; choose Adjective, %w{short short small simple}; end
+  def produce; choose Verb, %w{move communicate spend think}; end
+  def putz; choose Verb, %w{walk talk shop specify}; end
+  def purge; choose Verb, %w{run shout splurge generalize}; end
 
   def strengths; choose Noun, %w{muscles vocabulary defenses mental\ models}; end
-  def energy; choose Noun, %w{glycogen emotions offenses information}; end
-  def potentials; choose Noun, %w{fat emotions problems memories}; end
+  def kinetics; choose Noun, %w{glycogen emotions rewards information}; end
+  def potentials; choose Noun, %w{fat friends savings memories}; end
   def empty; choose Adjective, %w{hungry lonely apathetic unsure}; end
 
   def environment; choose Noun, %w{pantry library workshop desk}; end

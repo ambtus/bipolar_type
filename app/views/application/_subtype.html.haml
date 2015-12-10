@@ -1,3 +1,6 @@
-=render subtype.attitude.index_ordinal, :realm => subtype.realm
+%p.heading
+  I have
+  =subtype.how_many_potentials
+  than average.
 -unless @answer || @object.is_a?(Subtype)
   %h3=link_to subtype.name, type_path(subtype.path)
