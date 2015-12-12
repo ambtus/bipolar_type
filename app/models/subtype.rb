@@ -16,10 +16,10 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def word; attitude.first + realm + attitude.second; end
+  def word; Word.new realm.letter + attitude.suffix; end
   def inspect; word; end
   def to_s; word.to_s; end
-  def path; to_s.downcase; end
+  def path; words.join.downcase; end
   ALL.each{|subtype| define_singleton_method(subtype.path) {subtype}}
   def self.paths; ALL.map(&:path); end
 
@@ -28,21 +28,14 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def adjectives; [realm.adjective.ly, attitude.adjective]; end
-  def adjective; Phrase.new adjectives ; end
-  def name; Phrase.new [adjective.titleize, inspect.parenthesize]; end
+  def adverb; realm.adjective.ly; end
+  def adjectives; [adverb, attitude.adjective]; end
+  def name; Phrase.new [adjectives.map(&:capitalize), inspect.parenthesize]; end
 
-  delegate :direction, :amount, :sensitivity, :ordinal, to: :attitude
-  delegate :triggers, :buffers, :potentials, to: :realm
+  delegate :ordinal, to: :attitude
 
-  def first_action; realm.send(attitude.first_action); end
-  def first_lesson; Phrase.new [direction, first_action.ing]; end
-
-  def second_action; realm.send(attitude.second_action); end
-  def second_lesson; Phrase.new [direction, second_action.ing]; end
-
-  def react; Phrase.new [Verb.new("feel"), realm.send(attitude.feeling)]; end 
-
-  def how_many_potentials; attitude.how_many_potentials(potentials); end
+  def method_missing(meth, *arguments, &block)
+    realm.respond_to?(meth) ? realm.send(meth, *arguments, &block) : super
+  end
 
 end

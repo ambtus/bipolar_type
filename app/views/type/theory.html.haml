@@ -1,58 +1,51 @@
 - content_for(:title, 'Theory')
 %p
-  BipolarType is based on my belief that Manic-Depression manifests different symptoms based on your personality type.
+  BipolarType is my theory that Manic-Depression manifests different symptoms depending on your personality type.
 %p
-  I believe that there are four basic realms of behavior, each associated with a different sensory signal. The more energy you can gain during consumption without the related neurochemical hormonal system becoming overloaded and forcing you to stop consuming, the more energy you will store as potential energy and have available to use during production.
+  I hypothesize that there are four basic realms of behavior, each associated with a different sensory signal. The more energy you can gain during consumption without the related neurochemical hormonal system becoming overloaded and forcing you to stop consuming, the more energy you will have available to use during current production or store as potential energy for future production.
   %table
     %caption The Four Realms
     %tr
-      %th.third.none
+      %th.fifth.none
       -Realm.all.each do |realm|
-        %th.sixth.bordered=realm.name
+        %th.fifth.bordered=link_to realm.name, type_path(realm.path)
     %tr
       %th.bordered Sensory System
       -Realm.all.each do |realm|
         %td.bordered.middle=realm.sense
     %tr
-      %th.bordered Kinetic Energy
+      %th.bordered Brain Chemistry
       -Realm.all.each do |realm|
-        %td.bordered.middle=realm.kinetics
+        %td.bordered.middle=realm.neuro
     %tr
       %th.bordered Consume
       -Realm.all.each do |realm|
         %td.bordered.middle=realm.consume
     %tr
-      %th.bordered Neurochemical Hormonal System
-      -Realm.all.each do |realm|
-        %td.bordered.middle=realm.neuro
-    %tr
-      %th.bordered Potential Energy
-      -Realm.all.each do |realm|
-        %td.bordered.middle=realm.potentials
-    %tr
       %th.bordered Produce
       -Realm.all.each do |realm|
         %td.bordered.middle=realm.produce
+    %tr
+      %th.bordered Energy
+      -Realm.all.each do |realm|
+        %td.bordered.middle=realm.kinetics
+    %tr
+      %th.bordered Stored Energy
+      -Realm.all.each do |realm|
+        %td.bordered.middle=realm.potentials
 %p
-  I believe that a combination of your nature and nurture determines your attitude towards each of the four realms, the amount of potential energy you have stored, and the the affect that results when mania forces you to consume less and produce more and lose potential energy and depression forces you to consume more and produce less and gain potential energy.
+  I further hypothesize that your relative sensitivity to each signal determines your attitude towards each of the four realms, the amount of potential energy you usually have stored, and the effect of mania (or stimulants) and depression (or sedatives).
   %table
     %caption The Four Attitudes
     %tr
-      %th.sixth.bordered Nature
-      %th.sixth.bordered Hard Nurture
-      %th.sixth.bordered Soft Nurture
-      %th.sixth.bordered Stored Potential
-      %th.sixth.bordered Mania
-      %th.sixth.bordered Depression
+      %th.quarter &nbsp;
+      %th.quarter.bordered Sensitivity
+      %th.quarter.bordered Manic (stimulated)
+      %th.quarter.bordered Depressed (sedated)
     -Attitude.all.each do |attitude|
       %tr
-        %td.bordered.middle
-          =attitude.sensitivity.titleize
-          =attitude.first.parenthesize
-        %td.bordered.middle=attitude.first_lesson.titleize
-        %td.bordered.middle=attitude.second_lesson.titleize
-        %td.bordered.middle=attitude.adjective.titleize
-        %td.bordered.middle=attitude.manic_affect.capitalize
-        %td.bordered.middle=attitude.depressed_affect.capitalize
-%p
-  I believe that, in the long run, understanding your personality and manipulating the sensory signals present in a your environment is more effective at mitigating mania and depression than manipulating brain chemistry and the reaction to those signals.
+        %th.bordered.middle=link_to attitude.name, type_path(attitude.path)
+        %td.bordered.middle=attitude.sensitivity.titleize
+        %td.bordered.middle=attitude.manic.titleize
+        %td.bordered.middle=attitude.depressed.titleize
+=render "footnote"

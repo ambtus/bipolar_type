@@ -1,20 +1,26 @@
--content_for(:title, "Question ##{@answer.number}")
-%p.heading
-  %span.free Choose one.
-  -unless @answer.number == 1
+-content_for(:title, "Question ##{@answer.number} of 4")
+-if @answer.number > 1
+  %p.heading
     If you choose
     %span.warning the same row or column,
     your
     %span.chosen previous selection
-    will be reset.
+    in that row and/or column will be unselected.
 %table
   %tr
+    %th.narrow &nbsp;
     -Realm.all.each do |realm|
       %th
         =realm.name
   -Subtype.all.in_groups_of(4).each_with_index do |row, index|
     %tr
+      %th.narrow
+        =Attitude.all[index].name
       -row.each do |subtype|
         %td.bordered.quarter{:class => @answer.class(subtype)}
           =render "subtype", :subtype => subtype
-          %p.center=link_to subtype.name, discover_path(@answer.next(subtype))
+          %p.center
+            -if @answer.class(subtype) == "chosen"
+              =subtype.name
+            -else
+              =link_to subtype.name, discover_path(@answer.next(subtype))

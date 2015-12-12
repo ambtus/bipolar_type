@@ -55,7 +55,7 @@ class Noun < Word
    working\ memory lexical-meaning expressive-meaning music faith
    emotional-expression tone\ of\ voice empathy glycogen like learning recall
    trust intonation head stomach horror color romance library fire defense
-   offense tragedy}
+   offense tragedy shelter}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end

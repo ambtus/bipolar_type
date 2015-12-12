@@ -1,10 +1,10 @@
 class Quad < Phrase
 
-  def self.my_path; "sfntstnf"; end
+  def self.my_path; "stnf"; end
   def self.first; Quad.new my_path; end
 
   def initialize(string)
-    @realms = string.scan(/../).collect{|s| Realm.send(s)}
+    @realms = string.scan(/./).collect{|s| Realm.send(s)}
     @realms.check_constraints Realm, 4, 4
     super(@realms)
   end
@@ -18,7 +18,7 @@ class Quad < Phrase
 
   def subtypes; realms.add(Attitude.all); end
 
-  def inspect; realms.join("•").to_word; end
+  def inspect; subtypes.map(&:inspect).join("•").to_word; end
   def name; inspect; end
 
 end

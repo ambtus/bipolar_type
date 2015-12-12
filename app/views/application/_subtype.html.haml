@@ -1,6 +1,12 @@
 %p.heading
-  I have
-  =subtype.how_many_potentials
-  than average.
+  I
+  =%w{first second}.include?(subtype.ordinal) ? "rarely" : "often"
+  =subtype.reject.period
+  %br
+  I
+  =%w{second fourth}.include?(subtype.ordinal) ? "rarely" : "often"
+  =subtype.provide
+  my own
+  =subtype.resources.period
 -unless @answer || @object.is_a?(Subtype)
   %h3=link_to subtype.name, type_path(subtype.path)

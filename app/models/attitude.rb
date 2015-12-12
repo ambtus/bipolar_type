@@ -1,6 +1,6 @@
 class Attitude < Indexable
 
-  LETTERS = %w{EP EJ IP IJ}
+  LETTERS = %w{a b c d}
   ALL = LETTERS.collect{|letter| self.new letter}
   all.each { |r| define_singleton_method(r.path) {all[LETTERS.index r.string]} }
 
@@ -8,35 +8,15 @@ class Attitude < Indexable
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
-  def adjective; choose Adjective, %w{obese thin fat anorexic}; end
-  def manic_affect; choose Adjective, %w{wonderful bad good horrible}; end
-  def depressed_affect; choose Adjective, %w{horrible good bad wonderful }; end
+  def suffix; %w{e e i i}[index]; end
 
-  def amount; choose Word, %w{less less more more}; end
-  def sensitivity; Phrase.new [amount, "sensitive"]; end
-  def feeling; choose Word, %w{full full overfull overfull}; end
+  def adjective; choose Adjective, %w{fat bulimic thin skinny}; end
+  #def name; Phrase.new [adjective.capitalize, parenthesize]; end
+  def name; adjective.capitalize; end
 
-  def direction; choose Word, %w{stop stop start start}; end
-  def first_action; choose Verb, %w{produce consume consume produce}; end
-  def first_lesson; Phrase.new [direction, first_action.ing]; end
-
-  def name; Phrase.new [first_lesson.titleize, parenthesize]; end
-
-  def second_action; choose Verb, %w{ consume produce produce consume }; end
-  def second_lesson; Phrase.new [direction, second_action.ing]; end
-
-  def how_many_potentials(potentials)
-    array = case index
-    when 0
-      [potentials.many, "more", potentials]
-    when 1
-      [potentials.fewer, potentials]
-    when 2
-      [ "more", potentials]
-    when 3
-      ["far", potentials.fewer, potentials]
-    end
-    Phrase.new array
-  end
+  def sensitivity_amount; choose Adjective, %w{least less more most}; end
+  def sensitivity; Phrase.new [sensitivity_amount, "sensitive"]; end
+  def manic; choose Adjective, %w{bulimic thin skinny anorexic}; end
+  def depressed; choose Adjective, %w{obese fat bulimic thin}; end
 
 end

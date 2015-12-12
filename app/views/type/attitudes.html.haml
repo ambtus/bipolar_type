@@ -5,6 +5,5 @@
     %tr
       -row.each do |attitude|
         %td.half.bordered
-          %h2=link_to attitude.name, type_path(attitude.path)
-          =render "square", :subtypes => attitude.subtypes
+          =render "square", :subtypes => attitude.subtypes, :caption => attitude
 =render "footnote"
