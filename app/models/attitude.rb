@@ -9,9 +9,7 @@ class Attitude < Indexable
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
   STATES = %w{obese fat normal thin skinny anorexic}.collect{|s| Adjective.new(s) }
-  def depressed; STATES[index + 2]; end
   def euthymic; STATES[index + 1]; end
-  def manic; STATES[index + 0]; end
 
   def adjective; choose Adjective, %w{top dom sub bottom}; end
   #def name; Phrase.new [adjective.capitalize, parenthesize]; end

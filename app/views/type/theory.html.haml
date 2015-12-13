@@ -40,12 +40,8 @@
     %tr
       %th.quarter &nbsp;
       %th.quarter.bordered Sensitivity
-      %th.quarter.bordered Manic (stimulated)
-      %th.quarter.bordered Depressed (sedated)
     -Attitude.all.each do |attitude|
       %tr
         %th.bordered.middle=link_to attitude.name, type_path(attitude.path)
         %td.bordered.middle=attitude.sensitivity.titleize
-        %td.bordered.middle=attitude.manic.titleize
-        %td.bordered.middle=attitude.depressed.titleize
 =render "footnote"
