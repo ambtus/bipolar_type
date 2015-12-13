@@ -16,7 +16,7 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def word; Word.new realm.letter + attitude.suffix; end
+  def word; Word.new realm.letter; end
   def inspect; word; end
   def to_s; word.to_s; end
   def path; words.join.downcase; end
@@ -28,9 +28,9 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def adverb; realm.adjective.ly; end
-  def adjectives; [adverb, attitude.adjective]; end
-  def name; Phrase.new [adjectives.map(&:capitalize), inspect.parenthesize]; end
+  def adjective; Phrase.new [realm.adjective, attitude.adjective]; end
+  #def name; Phrase.new [adjective.titleize, inspect.parenthesize]; end
+  def name; Phrase.new [adjective.titleize, realm.parenthesize]; end
 
   delegate :ordinal, to: :attitude
 

@@ -56,7 +56,7 @@ class Verb < Word
    thrown forgotten lost given gotten known run panicked }.collect(&:to_word)
 
   # exceptions to rules about ending in y or e
-  EXCEPTIONS = %w{see play}
+  EXCEPTIONS = %w{see play employ}
   def exception?; EXCEPTIONS.include?(@string); end
 
   DOUBLES = %w{stop grab shop run win submit}

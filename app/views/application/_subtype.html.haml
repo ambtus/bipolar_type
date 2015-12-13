@@ -1,12 +1,66 @@
 %p.heading
   I
-  =%w{first second}.include?(subtype.ordinal) ? "rarely" : "often"
-  =subtype.reject.period
-  %br
+  =%w{second fourth}.include?(subtype.ordinal) ? "can’t" : "can"
+  always
+  =subtype.consume
+  if someone wants to
+  =subtype.provision
+  me
+  =%w{first fourth}.include?(subtype.ordinal) ? "and" : "but" 
   I
-  =%w{second fourth}.include?(subtype.ordinal) ? "rarely" : "often"
-  =subtype.provide
-  my own
-  =subtype.resources.period
--unless @answer || @object.is_a?(Subtype)
-  %h3=link_to subtype.name, type_path(subtype.path)
+  =%w{third fourth}.include?(subtype.ordinal) ? "can’t" : "can"
+  =subtype.provide.period
+-unless @answer
+  %p
+    You start 
+    =subtype.consume.ing
+    because others are
+    =subtype.provision.ing
+    you (it’s
+    =subtype.time.close_paren
+    =%w{first second}.include?(subtype.ordinal) ? "or" : "but not"
+    because you're feeling
+    =subtype.empty
+    (you 
+    =%w{first second}.include?(subtype.ordinal) ? "can" : "can’t"
+    =subtype.provide_verb
+    your own
+    =subtype.resources.close_paren.period
+  %p
+    You 
+    ="don’t" if %w{first third}.include?(subtype.ordinal)
+    want to stop 
+    =subtype.consume.ing
+    early if the
+    =subtype.ending
+    is too
+    =subtype.triggery
+    (you
+    =%w{first third}.include?(subtype.ordinal) ? "will" : "won’t"
+    store the
+    =subtype.kinetics
+    as
+    =subtype.potentials.semicolon
+    you
+    =%w{first third}.include?(subtype.ordinal) ? "won’t" : "don’t want to"
+    =subtype.reject.close_paren
+    =%w{first fourth}.include?(subtype.ordinal) ? "and" : "but" 
+    you 
+    ="don’t" if %w{first second}.include?(subtype.ordinal) 
+    stop 
+    =subtype.consume.ing
+    if there is no
+    =subtype.ending
+    (you 
+    =%w{first second}.include?(subtype.ordinal) ? "can" : "can’t" 
+    =subtype.provide_verb
+    the
+    =subtype.ending
+    for yourself).
+-if @bipolar 
+  =render subtype.ordinal, :realm => subtype.realm
+-unless @answer
+  -if [Subtype, Attitude, Realm].include? @object.class
+    %p.heading=link_to "BipolarTypes starting with this subtype", discover_path(subtype.discover_path)
+  -else
+    %h3=link_to subtype.name, type_path(subtype.path)

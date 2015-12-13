@@ -8,15 +8,16 @@ class Attitude < Indexable
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
-  def suffix; %w{e e i i}[index]; end
+  STATES = %w{obese fat normal thin skinny anorexic}.collect{|s| Adjective.new(s) }
+  def depressed; STATES[index + 2]; end
+  def euthymic; STATES[index + 1]; end
+  def manic; STATES[index + 0]; end
 
-  def adjective; choose Adjective, %w{fat bulimic thin skinny}; end
+  def adjective; choose Adjective, %w{top dom sub bottom}; end
   #def name; Phrase.new [adjective.capitalize, parenthesize]; end
   def name; adjective.capitalize; end
 
-  def sensitivity_amount; choose Adjective, %w{least less more most}; end
+  def sensitivity_amount; choose Adjective, %w{less less more more}; end
   def sensitivity; Phrase.new [sensitivity_amount, "sensitive"]; end
-  def manic; choose Adjective, %w{bulimic thin skinny anorexic}; end
-  def depressed; choose Adjective, %w{obese fat bulimic thin}; end
 
 end
