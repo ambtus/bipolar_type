@@ -63,10 +63,10 @@ class Adjective < Word
   def needs_doubling?; DOUBLES.include?(@string); end
 
   # exceptions to rules about ending in y or e
-  EXCEPTIONS = %w{appreciate unsure responsible}
+  EXCEPTIONS = %w{appreciate unsure responsible constructive expensive predictable}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
-  SINGLES = %w{sweet smart rich poor sick hard calm long short small}
+  SINGLES = %w{sweet smart rich poor sick hard calm long short small smooth}
   def is_single_word?; SINGLES.include?(@string); end
 
 end

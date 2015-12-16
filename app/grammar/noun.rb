@@ -38,12 +38,15 @@ class Noun < Word
   def they_do; Phrase.new [they, self.do]; end
   def they_dont; Phrase.new [they, dont]; end
   def they_are; Phrase.new [they, are]; end
+  def they_were; Phrase.new [they, were]; end
   def are_contracted; uncountable("’s", "’re"); end
   def they_are_contracted; they.suffix(are_contracted); end
   def arent; uncountable("isn’t", "aren’t"); end
   def they_arent; Phrase.new [they, arent]; end
   def havent; uncountable("hasn’t", "haven’t"); end
   def they_havent; Phrase.new [they, havent]; end
+  def those; uncountable("that", "those"); end
+  def those_phrase; Phrase.new [those, self]; end
 
   private
 
@@ -55,7 +58,8 @@ class Noun < Word
    working\ memory lexical-meaning expressive-meaning music faith
    emotional-expression tone\ of\ voice empathy glycogen like learning recall
    trust intonation head stomach horror color romance library fire defense
-   offense tragedy shelter}
+   offense tragedy shelter self-esteem praise criticism investment\ income
+   self-deprecation}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end

@@ -1,12 +1,14 @@
 class Indexable < Noun
 
   ########
-  LETTERS = %w{a b c d}
+  LETTERS = %w{a b c d x}
   ALL = LETTERS.collect{|letter| self.new letter}
+  def self.all; self::ALL; end
+  all.each { |i| define_singleton_method(i.path) {all[LETTERS.index i.string]} }
   ########
 
-  LETTERS.each{|l| define_singleton_method(l) {all[LETTERS.index l]}}
-  %w{first second third fourth}.each {|i| define_singleton_method(i) {all.send(i)}}
+  %w{first second third fourth generic}.each {|i| define_singleton_method(i) {all.send(i)}}
+  def ordinal; %w{first second third fourth generic}[index]; end
 
   def initialize(string)
     unless self.class::LETTERS.include? string
@@ -16,8 +18,6 @@ class Indexable < Noun
   end
   alias_method :letter, :string
 
-  def self.all; self::ALL; end
-
   def others; self.class.all.collect{|i| i != self}; end
 
   def path; to_s.downcase; end
@@ -26,10 +26,13 @@ class Indexable < Noun
   def index; self.class::LETTERS.index string; end
   def <=>(other); index <=> other.index; end
 
-  def index_ordinal; %w{first second third fourth}[index]; end
   def choose(klass, array)
-    string = array[index]
-    string == "NIL" ? nil : klass.new(string)
+    if ordinal == "generic"
+      klass.new(caller_locations(1,1)[0].label.gsub('_', ' '))
+    else
+      string = array[index]
+      string == "NIL" ? nil : klass.new(string)
+    end
   end
 
 end

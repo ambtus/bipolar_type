@@ -9,10 +9,10 @@ class TypeController < ApplicationController
       [Realm, Attitude, Subtype, Quad].each do |klass|
         if klass.paths.include?(params[:id])
           @object = klass.send(params[:id])
-          render klass.name.downcase
-          break
+          render klass.name.downcase and return
         end
       end
+      raise params[:id]
     end
   end
 
