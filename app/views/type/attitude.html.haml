@@ -1,3 +1,4 @@
 - content_for(:title, @object.name)
+=render "attitude/#{@object.domainer}", :subtype => @object.generic_subtype
 -@bipolar=true
 =render "square", :subtypes => @object.subtypes

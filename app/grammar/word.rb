@@ -9,6 +9,7 @@ class Word
   def to_str; string; end
   def chars; string.chars; end
   def path; to_s; end
+  def to_partial_path; to_s; end
   def words; [self]; end
   def to_word; self; end
 

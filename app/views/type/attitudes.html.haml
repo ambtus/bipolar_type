@@ -4,5 +4,6 @@
     %tr
       -row.each do |attitude|
         %td.half.bordered
-          =render "square", :subtypes => attitude.subtypes, :caption => attitude
-=render "footnote"
+          %h2=link_to attitude.name, type_path(attitude.path)
+          -attitude.subtypes.each do |subtype|
+            =render "attitude/#{subtype.domainer}", :subtype => subtype

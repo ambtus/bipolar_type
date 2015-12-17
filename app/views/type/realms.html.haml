@@ -4,5 +4,5 @@
     %tr
       -row.each do |realm|
         %td.half.bordered
-          =render "square", :subtypes => realm.subtypes, :caption => realm
-=render "footnote"
+          %h2=link_to realm.name, type_path(realm.path)
+          =render "realm", :realm => realm

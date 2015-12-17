@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; "sntf"; end
+  def self.my_path; "sftn"; end
   def self.first; Quad.new my_path; end
 
   def initialize(string)
@@ -21,5 +21,7 @@ class Quad < Phrase
   def inspect; subtypes.join("•").to_word; end
   #def name; subtypes.map(&:realm).map(&:name).join("•").to_word; end
   def name; inspect; end
+
+  def self.generic; self.new "xxxx"; end
 
 end

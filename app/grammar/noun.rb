@@ -59,7 +59,7 @@ class Noun < Word
    emotional-expression tone\ of\ voice empathy glycogen like learning recall
    trust intonation head stomach horror color romance library fire defense
    offense tragedy shelter self-esteem praise criticism investment\ income
-   self-deprecation}
+   self-deprecation potential\ energy egotism kinetic\ energy trivia safety}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end

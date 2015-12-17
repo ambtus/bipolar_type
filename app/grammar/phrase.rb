@@ -35,7 +35,7 @@ class Phrase
 
   ## first word methods
   def prefix(prefix); Phrase.new [first.prefix(prefix), last_words]; end
-  %w{open_paren capitalize}.each do |meth|
+  %w{open_paren capitalize an_phrase}.each do |meth|
     define_method(meth) {Phrase.new [first.send(meth), last_words]}
   end
 
