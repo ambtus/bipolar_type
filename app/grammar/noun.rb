@@ -47,6 +47,7 @@ class Noun < Word
   def they_havent; Phrase.new [they, havent]; end
   def those; uncountable("that", "those"); end
   def those_phrase; Phrase.new [those, self]; end
+  def these; uncountable("this", "these"); end
 
   private
 
@@ -59,7 +60,7 @@ class Noun < Word
    emotional-expression tone\ of\ voice empathy glycogen like learning recall
    trust intonation head stomach horror color romance library fire defense
    offense tragedy shelter self-esteem praise criticism investment\ income
-   self-deprecation potential\ energy egotism kinetic\ energy trivia safety}
+   self-deprecation potential\ energy egotism kinetic\ energy trivia safety comfort}
   def is_uncountable?; UNCOUNTABLE.include?(@string); end
 
 end

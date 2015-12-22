@@ -30,10 +30,13 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def adjective; Phrase.new [generic, domainer]; end
-  def name; Phrase.new [adjective.titleize, inspect.parenthesize]; end
-  #def name; adjective.titleize; end
-  delegate :ordinal, :sensitivity, :mania, :depression, :insensitive?, :consumer?, :how_much_of, :domainer, to: :attitude
+  def generic; Phrase.new [adverb, attitude.generic]; end
+  def name; Phrase.new [generic.titleize, inspect.parenthesize]; end
+  delegate :ordinal, :strong?, :energetic?, 
+    :strong_verb_prefix, :energetic_verb_prefix, 
+    :strong_adjective_prefix, :energetic_adjective_prefix, 
+    :strong_noun_prefix, :energetic_noun_prefix, 
+    to: :attitude
 
   def method_missing(meth, *arguments, &block)
     realm.respond_to?(meth) ? realm.send(meth, *arguments, &block) : super

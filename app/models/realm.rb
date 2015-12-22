@@ -18,54 +18,61 @@ class Realm < Indexable
   def sensory; choose Noun, %w{taste/smell hearing touch/pain sight}; end
   def sense; choose Verb, %w{smell hear hold see}; end
   def appear; choose Verb, %w{taste sound feel look}; end
-  def neuro; choose Noun, %w{serotonin oxytocin dopamine GABA}; end
+  def neuro; choose Noun, %w{serotonin oxytocin dopamine epinephrine}; end
 
-  def perform; choose Verb, %w{walk talk spend predict}; end
+  def act; choose Verb, %w{walk talk  shop think}; end
   def consume; choose Verb, %w{eat listen earn look}; end
-
   def consume_helper; choose Word, %w{NIL to NIL at}; end
-  def provide; choose Verb, %w{cook tell reward show}; end
-  def provide_helper; choose Word, %w{for to to to}; end
-  def process; choose Verb, %w{cook sing hand show}; end
-  def get; choose Verb, %w{digest understand accept believe}; end
 
-  def resources; choose Noun, %w{foods stories tools information}; end
-  def strong_resources; choose Noun, %w{protein criticism investment\ income patterns}; end
-  def energetic_resources; choose Noun, %w{carbs praise wages colors}; end
-  def buffers; choose Noun, %w{fat self-deprecation reinvestments organization}; end
-  def nasty; choose Adjective, %w{tough whiny risky unbalanced}; end
-  def nice; choose Adjective, %w{tender constructive safe symmetric}; end
+  def resources; choose Noun, %w{food stories tools information}; end
+  def nasty; choose Adjective, %w{tough whiny earned unbalanced}; end
+  def nice; choose Adjective, %w{tender constructive unearned symmetric}; end
+  def strengtheners; choose Noun, %w{protein criticism assets patterns}; end
+  def energizers; choose Noun, %w{carbs praise wages specifics}; end
+  def buffers; choose Noun, %w{fat humor deductions categories}; end
 
-  def strengths; choose Noun, %w{muscles vocabulary assets rules}; end
-  def kinetic_energy; choose Noun, %w{glycogen self-esteem cash facts}; end
-  def potential_energy; choose Noun, %w{fat egotism savings trivia}; end
-
-  def worn_out; choose Adjective, %w{sore misunderstood indebted stupid}; end
-  def weakness; choose Noun, %w{starvation suicide destitution stupidity}; end
-  def empty; choose Adjective, %w{hungry guilty poor unsure}; end
-  def even_emptier; choose Adjective, %w{starving suicidal destitute wrong}; end
+  # process the resources
+  def process; choose Verb, %w{cook sing package show}; end
+  # provide the resources to someone
+  def provide; choose Verb, %w{cook perform reward demonstrate}; end
+  def to; choose Word, %w{for to to to}; end
+  # someone can get the resources
+  def get; choose Verb, %w{digest understand use believe}; end
+  def get_resources; Phrase.new [get, resources]; end
 
 
-  def generic; choose Adjective, %w{physical spiritual material mental}; end
+  def strengths; choose Noun, %w{muscles values credit logic}; end
+  def energy; choose Noun, %w{glycogen self-esteem cash facts}; end
+  def potential_energy; choose Noun, %w{fat egotism savings memories}; end
+
+  def worn_out; choose Adjective, %w{sore boring indebted confused}; end
+  def empty; choose Adjective, %w{hungry unloved poor unsure}; end
+  def even_emptier; choose Adjective, %w{starving suicidal homeless stupid }; end
+  def death; choose Noun, %w{starvation suicide exposure  stupidity}; end
+
+  def generic; choose Adjective, %w{physical verbal financial mental}; end
+  def adverb; generic.ly; end
   def name; Phrase.new [generic.titleize, parenthesize]; end
 
   def produce_verb; choose Verb, %w{go win pursue solve}; end
-  def produce_nouns; choose Noun, %w{places friends pleasures problems}; end
-  def produce(inject="")
+  def produce_adjective; choose Adjective, %w{long allied memorable complex}; end
+  def produce_nouns; choose Noun, %w{distances friends experiences problems}; end
+  def produce(inject=produce_adjective)
     if generic?
-      Phrase.new ["produce", inject, "things"]
+      Phrase.new ["energetic", "action"]
     else
       Phrase.new [produce_verb, inject, produce_nouns]
     end
   end
 
-  def effect_verb; choose Verb, %w{do influence obtain change}; end
-  def effect_nouns; choose Noun, %w{things people safety futures}; end
-  def effect(inject="")
-    if generic? 
-      Phrase.new ["effect", inject, "things"]
+  def achieve; choose Verb, %w{lift influence own predict}; end
+  def difficult; choose Adjective, %w{heavy hostile safe improbable}; end
+  def effects; choose Noun, %w{weights enemies places outcomes}; end
+  def effect(inject=difficult)
+    if generic?
+      Phrase.new ["strong", "action"]
     else
-      Phrase.new [effect_verb, inject, effect_nouns]
+      Phrase.new [achieve, inject, effects]
     end
   end
 

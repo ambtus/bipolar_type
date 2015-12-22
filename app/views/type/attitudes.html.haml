@@ -6,4 +6,4 @@
         %td.half.bordered
           %h2=link_to attitude.name, type_path(attitude.path)
           -attitude.subtypes.each do |subtype|
-            =render "attitude/#{subtype.domainer}", :subtype => subtype
+            =render "subtype", :subtype => subtype

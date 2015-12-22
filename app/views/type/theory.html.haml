@@ -1,6 +1,231 @@
 - content_for(:title, 'Theory')
-%h2 Consumption & Production
-=render "realm", :realm => Realm.generic
-%h2 The Four Attitudes
--Quad.generic.subtypes.each do |subtype|
-  =render "attitude/#{subtype.domainer}", :subtype => subtype
+-realm = Realm.generic
+%h2 Basic Pattern
+%p
+  In order to
+  =realm.act
+  =realm.produce_effects.parenthesize
+  you need both
+  =realm.strengths
+  and
+  =realm.energy.period
+%p
+  You cannot build new
+  =realm.strengths
+  merely by
+  =realm.consume.ing
+  =realm.consume_helper
+  more
+  =realm.strengtheners.comma
+  you also have to try to
+  =realm.effect("more").period
+  Feeling
+  =realm.worn_out
+  is a sign that you have tried to
+  =realm.effect("too many")
+  and need to
+  =realm.consume
+  =realm.consume_helper
+  more
+  =realm.strengtheners
+  so you can repair your
+  =realm.strengths.period
+  If you
+  =realm.consume
+  =realm.consume_helper
+  more
+  =realm.strengtheners
+  than you can use to repair or build
+  =realm.strengths.comma
+  the excess can be converted to
+  =realm.energy
+  if
+  =realm.energizers.are_phrase
+  not available.
+%p
+  =realm.energizers.capitalize
+  =realm.energizers.uncountable("triggers", "trigger")
+  your
+  =realm.neuro
+  system. Once your
+  =realm.neuro
+  system is triggered, you won’t stop
+  =realm.consume.ing
+  until you feel satisfied or all the
+  =realm.resources.are_phrase
+  gone. Once you feel satisfied, you will stop
+  =realm.consume.ing
+  no matter how good the
+  =realm.resources
+  =realm.appear.period
+  =realm.energizers.capitalize
+  can not be used to build and restore
+  =realm.strengths.period
+  If you
+  =realm.consume
+  =realm.consume_helper
+  more
+  =realm.energizers
+  than your
+  =realm.strengths
+  can hold as currently available
+  =realm.energy.comma
+  the excess will be stored as
+  =realm.potential_energy.period
+  The bigger your
+  =realm.strengths.comma
+  the more
+  =realm.energy
+  =realm.strengths.they
+  can soak up
+  before you start accumulating
+  =realm.potential_energy.period
+%p
+  =realm.buffers.are_phrase.capitalize
+  stored as
+  =realm.potential_energy.period
+  =realm.buffers.capitalize
+  not only
+  =realm.buffers.do
+  not trigger your
+  =realm.neuro
+  system,
+  =realm.buffers.they
+  also
+  =realm.buffers.uncountable("allows", "allow")
+  you to
+  =realm.consume
+  =realm.consume_helper
+  more
+  =realm.energizers
+  before your
+  =realm.neuro
+  system is satisfied.
+  =realm.buffers.they.capitalize
+  also
+  =realm.buffers.uncountable("tends", "tend")
+  to make you want to
+  =realm.consume
+  more.
+%p
+  If you
+  =realm.effect("too many")
+  you will overuse your
+  =realm.strengths
+  and feel
+  =realm.worn_out
+  which indicates that you tried to
+  =realm.achieve
+  more
+  =realm.effects
+  than you usually
+  =realm.achieve.period
+  The more
+  =realm.effects
+  you try to
+  =realm.achieve.comma
+  the
+  =realm.worn_out.er
+  you feel.
+  Feeling
+  =realm.worn_out
+  doesn’t mean you can no longer
+  =realm.produce.comma
+  it just means you have been
+  =realm.effect.ing
+  without
+  =realm.consume.ing
+  =realm.consume_helper
+  enough
+  =realm.strengtheners
+  and/or giving your
+  =realm.strengths
+  enough time to grow.
+%p
+  If you
+  =realm.produce("too many")
+  you will run out of
+  =realm.energy
+  and feel
+  =realm.empty
+  which indicates that you are converting
+  =realm.potential_energy
+  to
+  =realm.energy.period
+  The more
+  =realm.potential_energy
+  you convert, the
+  =realm.empty.er
+  you feel. Feeling
+  =realm.even_emptier
+  doesn’t indicate whether or not you have any
+  =realm.potential_energy
+  left, it just means you have been
+  =realm.act.ing
+  for a long time without
+  =realm.consume.ing
+  =realm.consume_helper
+  any
+  =realm.energizers.period
+  If you do run out of
+  =realm.potential_energy.comma
+  you will start cannibalizing your
+  =realm.strengths
+  for
+  =realm.energy.period
+  If you cannibalize critical
+  =realm.strengths.comma
+  you will be unable to
+  =realm.produce
+  and will probably die of
+  =realm.death.period
+%h2 Nature vs Nurture
+%p
+  Being energetic — able to produce
+  lots of
+  products —
+  is nature. You
+  can only
+  act
+  for a long time if you
+  can
+  consume
+  as
+  many energizers
+  as you need whenever you feel
+  empty.
+%p
+  Being strong — able to
+  achieve
+  lots of
+  effects —
+  is nurture. You
+  can only
+  act
+  well if you were
+  encouraged to
+  %em keep
+  acting
+  when you felt
+  worn out
+  —
+  that is, no one else would step in to
+  achieve
+  your
+  effects
+  for you —
+  and so you
+  developed more
+  strengths.
+%p
+  Being able to
+  %em differentiate
+  strength from energy — and knowing your own nature — allows you to decide whether to continue to act or to stop acting when things are difficult.
+%p
+  If you feel
+  %em empty
+  and are sensitive to energizers, then you should stop acting and consume as many buffers as you can: you can never have enough potential energy because consuming energizers is always difficult and running out could kill you. If you are insensitive then you can and should keep acting: you have plenty of potential energy (and can easily replenish your energy if you should happen to run low) and it’s pointless to accumulate potential energy if you’re never going to use it.
+%p
+  If you feel
+  %em worn out
+  and have plenty of strengths, then you should stop acting and get some sleep: you already have plenty of strengths and if you are worn out then that means the effect is difficult to achieve: there’s no point in wearing yourself out unnecessarily as you’re not going to be able to achieve it today. If you have very few strengths then you can and should keep acting: if you leave it until tomorrow someone else with more strengths will probably have already achieved it and you will never develop your own strengths.

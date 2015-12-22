@@ -54,19 +54,19 @@ class Verb < Word
   IRREGULAR = %w{be see eat are say hear think go break buy do
     find spend teach steal sell hit quit build tell make choose sing feed
     show throw forget lose give get know run panic
-    understand}
+    understand write}
   def irregular?; IRREGULAR.include?(@string); end
   def irregular_index; IRREGULAR.index(@string); end
 
   PAST = %w{been saw ate were said heard thought went broke bought did
     found spent taught stole sold hit quit built told made chose sang fed
     showed threw forgot lost gave got knew ran panicked
-    understood}.collect(&:to_word)
+    understood wrote}.collect(&:to_word)
 
   PERFECT = %w{been seen eaten been said heard thought gone broken bought done
     found spent taught stolen sold hit quit built told made chosen sung fed
     shown thrown forgotten lost given gotten known run panicked
-    understood}.collect(&:to_word)
+    understood written}.collect(&:to_word)
 
   # exceptions to rules about ending in y or e
   EXCEPTIONS = %w{see play employ}
