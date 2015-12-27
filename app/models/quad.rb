@@ -19,7 +19,6 @@ class Quad < Phrase
   def subtypes; realms.add(Attitude.all); end
 
   def inspect; subtypes.join("•").to_word; end
-  #def name; subtypes.map(&:realm).map(&:name).join("•").to_word; end
   def name; inspect; end
 
   def self.generic; self.new "xxxx"; end

@@ -8,9 +8,8 @@ class Noun < Word
   def every; prefix("every"); end
   def the; Phrase.new ["the", self]; end
 
-
-  def uncountable(yes, no); (is_uncountable? ? yes : no).to_word; end
-  def uncountable_suffix(yes, no); Phrase.new [self, uncountable(yes, no)]; end
+  def uncountable?; UNCOUNTABLE.include?(@string); end
+  def uncountable(yes, no); (uncountable? ? yes : no).to_word; end
 
   def they; uncountable("it", "they"); end
   def them; uncountable("it", "them"); end
@@ -60,7 +59,7 @@ class Noun < Word
    emotional-expression tone\ of\ voice empathy glycogen like learning recall
    trust intonation head stomach horror color romance library fire defense
    offense tragedy shelter self-esteem praise criticism investment\ income
-   self-deprecation potential\ energy egotism kinetic\ energy trivia safety comfort}
-  def is_uncountable?; UNCOUNTABLE.include?(@string); end
+   self-deprecation potential\ energy egotism kinetic\ energy trivia safety 
+   comfort skin soul mind}
 
 end

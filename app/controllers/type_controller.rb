@@ -3,16 +3,14 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{theory realms attitudes}.include? params[:id]
-      render params[:id]
+    elsif params[:id] == "theory"
+      render :theory
     else
-      [Realm, Attitude, Subtype, Quad].each do |klass|
+      [Realm, Attitude, Quad].each do |klass|
         if klass.paths.include?(params[:id])
           @object = klass.send(params[:id])
-          render klass.name.downcase and return
         end
       end
-      raise params[:id]
     end
   end
 

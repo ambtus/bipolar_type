@@ -69,10 +69,10 @@ class Verb < Word
     understood written}.collect(&:to_word)
 
   # exceptions to rules about ending in y or e
-  EXCEPTIONS = %w{see play employ}
+  EXCEPTIONS = %w{see play employ flee}
   def exception?; EXCEPTIONS.include?(@string); end
 
-  DOUBLES = %w{stop grab shop run win submit}
+  DOUBLES = %w{stop grab shop run win submit drop}
   def needs_doubling?; DOUBLES.include?(@string); end
 
   VOWEL_Y = %w{pay repay say}

@@ -1,0 +1,6 @@
+- content_for(:title, @object.name)
+%table
+  -@object.subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half.bordered=render "subtype", :subtype => subtype

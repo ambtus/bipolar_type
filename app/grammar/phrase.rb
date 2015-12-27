@@ -27,6 +27,7 @@ class Phrase
   def inspect; words.join("•").to_word; end
   def first; words.first; end
   def last; words.last; end
+  def join; words.join; end
 
   ## methods that return an array of words
   def first_words; words[0..-2]; end

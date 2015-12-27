@@ -1,8 +1,0 @@
-%table
-  -if defined? caption
-    %caption
-      %h2=link_to caption.name, type_path(caption.path)
-  -subtypes.in_groups_of(2) do |row|
-    %tr
-      -row.each do |subtype|
-        %td.half.bordered=render "subtype", :subtype => subtype

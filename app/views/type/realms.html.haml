@@ -1,8 +1,0 @@
-- content_for(:title, 'The 4 Realms')
-%table
-  -Realm.all.in_groups_of(2) do |row|
-    %tr
-      -row.each do |realm|
-        %td.half.bordered
-          %h2=link_to realm.name, type_path(realm.path)
-          =render "realm", :realm => realm
