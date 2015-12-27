@@ -19,5 +19,11 @@ class Attitude < Indexable
   def wannabee; Attitude.all.values_at(2, 0, 3, 1)[index]; end
   def goal; Attitude.all.values_at(1, 1, 2, 2)[index]; end
 
+  def description
+    ["consumes more than they produce: gains potential energy",
+    "consumes a lot and produces a lot: stable potential energy",
+    "consumes little and produces little: stable potential energy",
+    "consumes less than they produce: loses potential energy",][index]
+  end
 
 end

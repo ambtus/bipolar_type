@@ -1,9 +1,0 @@
-- content_for(:title, 'Theory')
-%h4 The Four Realms
-%ul
-  -Realm.all.each do |realm|
-    %li=link_to realm.name, type_path(realm.path)
-%h4 The Four Attitudes
-%ul
-  -Attitude.all.each do |attitude|
-    %li=link_to attitude.name, type_path(attitude.path)
