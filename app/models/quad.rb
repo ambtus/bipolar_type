@@ -1,10 +1,10 @@
 class Quad < Phrase
 
-  def self.my_path; "sfntnfst"; end
+  def self.my_path; "snft"; end
   def self.first; Quad.new my_path; end
 
   def initialize(string)
-    @realms = string.scan(/../).collect{|s| Realm.send(s)}
+    @realms = string.scan(/./).collect{|s| Realm.send(s)}
     @realms.check_constraints Realm, 4, 4
     super(@realms)
   end
