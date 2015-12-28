@@ -1,7 +1,7 @@
 class Realm < Indexable
 
   ########
-  LETTERS = %w{S F T N}
+  LETTERS = %w{Sf nF sT Nt}
   ALL = LETTERS.collect{|letter| self.new letter}
   all.each { |r| define_singleton_method(r.path) {all[LETTERS.index r.string]} }
   ########
