@@ -18,6 +18,7 @@ class Realm < Indexable
 
   def consume; choose Verb, %w{eat listen earn look}; end
   def consume_helper; choose Word, %w{NIL to NIL at}; end
+
   def produce; choose Verb, %w{move talk spend predict}; end
   def produce_with; choose Verb, %w{do say buy guess}; end
 
@@ -31,8 +32,10 @@ class Realm < Indexable
   def strengths; choose Noun, %w{muscles metaphors credit rules}; end
   def potential; choose Noun, %w{fat friends savings trivia}; end
 
+  def resources; choose Noun, %w{food stories rewards information}; end
+
   def strengtheners; choose Noun, %w{protein words repayments patterns}; end
-  def energizers; choose Noun, %w{carbs tones wages facts}; end
+  def energizers; choose Noun, %w{carbs intonation wages facts}; end
   def buffers; choose Noun, %w{fat harmony automatic\ savings categories}; end
 
 end
