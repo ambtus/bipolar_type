@@ -50,8 +50,8 @@ class Array
   end
 
   def check_constraints(klass,min=0,max=100)
-    raise "must have at least #{min} #{klass.name.pluralize}" unless count >= min
-    raise "must have no more than #{max} #{klass.name.pluralize}" unless count <= max
+    raise "#{self} #{size} is not at least #{min}" unless count >= min
+    raise "#{self} #{size} is more more than #{max}" unless count <= max
     each{|x| raise "#{x} is not a kind of #{klass}" unless x.is_a? klass}
   end
 end
