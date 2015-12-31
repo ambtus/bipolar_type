@@ -16,4 +16,4 @@
 =render(subtype.attitude.domain, :subtype=>subtype) unless @answer
 -if [Subtype, Attitude, Realm].include? @object.class
   %p
-    =link_to "BipolarTypes starting with this subtype", discover_path(subtype.discover_path)
+    =link_to "Discover BipolarTypes with this subtype", discover_path(subtype.discover_path)
