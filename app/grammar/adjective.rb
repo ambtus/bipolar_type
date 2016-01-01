@@ -1,10 +1,14 @@
 class Adjective < Word
 
   def ly
-    if chars.last == "y"
+    if is_exception?
+      self + "ly"
+    elsif chars.last == "y"
       self.chop + "ily"
     elsif chars.last == "c"
       self + "ally"
+    elsif chars.last == "e"
+      self.chop + "y"
     else
       self + "ly"
     end
@@ -63,7 +67,7 @@ class Adjective < Word
   def needs_doubling?; DOUBLES.include?(@string); end
 
   # exceptions to rules about ending in y or e
-  EXCEPTIONS = %w{appreciate unsure responsible constructive expensive predictable probable sore obstinate}
+  EXCEPTIONS = %w{appreciate unsure responsible constructive expensive predictable probable sore obstinate tactile}
   def is_exception?; EXCEPTIONS.include?(@string); end
 
   SINGLES = %w{sweet smart rich poor sick hard calm long short small smooth}

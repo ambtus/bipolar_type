@@ -19,8 +19,8 @@ class Realm < Indexable
   def consume; choose Verb, %w{eat listen earn look}; end
   def consume_helper; choose Word, %w{NIL to NIL at}; end
 
-  def produce; choose Verb, %w{move talk spend predict}; end
-  def produce_with; choose Verb, %w{do say buy guess}; end
+  def produce; choose Verb, %w{move talk buy predict}; end
+  def produce_with; choose Verb, %w{do say own guess}; end
 
   def unproductive; choose Adjective, %w{seated silent unprovisioned undecided}; end
 
@@ -30,12 +30,20 @@ class Realm < Indexable
   def worn_out; choose Adjective, %w{sore misunderstood maxed-out wrong}; end
 
   def strengths; choose Noun, %w{muscles metaphors credit rules}; end
-  def potential; choose Noun, %w{fat friends savings trivia}; end
+  def kinetics; choose Noun, %w{glycogen emotions cash facts}; end
+  def potential; choose Noun, %w{fat attachments savings generalizations}; end
 
-  def resources; choose Noun, %w{food stories rewards information}; end
+  def resources; choose Noun, %w{food sounds rewards pictures}; end
+  def gain_resources; Phrase.new [consume, consume_helper, resources]; end
 
-  def strengtheners; choose Noun, %w{protein words repayments patterns}; end
-  def energizers; choose Noun, %w{carbs intonation wages facts}; end
+  def strengtheners; choose Noun, %w{protein words property patterns}; end
+  def energizers; choose Noun, %w{carbs intonation wages details}; end
   def buffers; choose Noun, %w{fat harmony automatic\ savings categories}; end
 
+  def productions
+    ["go places and do things",
+     "win friends and influence people",
+     "obtain basic needs and pursue pleasure",
+     "solve problems and change the future"][index].to_phrase
+  end
 end

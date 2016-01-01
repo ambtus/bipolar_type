@@ -2,9 +2,9 @@
   -if [Attitude, Realm, Quad].include? @object.class
     %h3=subtype.name
 %p.heading
-  I
-  =subtype.energetic? ? "almost" : "don’t"
-  always want to
+  I am
+  =subtype.energetic? ? "almost" : "not"
+  always willing to
   =subtype.consume
   =subtype.consume_helper
   =subtype.resources.period

@@ -1,21 +1,48 @@
 - content_for(:title, 'Overview')
+%h2 The Four Realms
 %p
-  “Strive for the serenity to accept the things you cannot change; the courage to change the things you can, and the wisdom to know the difference.”
-%p
-  You cannot change your nature without drugs. You
-  %em can
-  change your nurture if it is no longer adaptive to your environment.
-%h4 The Four Realms
-%p 
-  Each realm is concerned with the consumption of resources to obtain energy, and using that energy in order to produce results. 
+  Each realm is concerned with the consumption of resources to gain strength and energy, and then using strength and kinetic energy in order to produce results now, or saving the kinetic energy as potential energy in order to produce results later.
+-Realm.all.each do |realm|
+  %h3
+    =realm.description.capitalize.colon
+    =link_to realm.name, type_path(realm.path)
+  %dl
+    %dt gain resources
+    %dd=realm.gain_resources
+    %dt external resources (strengtheners, energizers, buffered energy)
+    %dd
+      =realm.strengtheners.comma
+      =realm.energizers.comma
+      =realm.buffers
+    %dt internal resources (strength, kinetic energy, potential energy)
+    %dd
+      =realm.strengths.comma
+      =realm.kinetics.comma
+      =realm.potential
+    %dt produce results
+    %dd=realm.produce
+    %dt production examples
+    %dd=realm.productions
+%h2 The Four Attitudes
+%h3 Two Natures
 %dl
-  -Realm.all.each do |realm|
-    %dt=link_to realm.name, type_path(realm.path)
-    %dd=realm.description
-%h4 The Four Attitudes
-%p
-  Your attitude is a combination of your nature: sensitive to resources and unable to consume much without becoming ill (I) or insensitive to resources and able to consume almost anything (E) and your nurture: encouraged to produce less and/or allow others to produce for you (P) or encouraged to produce more and/or produce for others (J).
+  %dt relatively sensitive (I)
+  %dd unable to consume many unbuffered energizers without rejecting them
+  %dt relatively insensitive (E)
+  %dd able to consume and store almost all energizers without rejecting them
+%h3 Two Nurtures
+%dl
+  %dt relatively submissive (P)
+  %dd nurtured to allow others to continue to produce for you
+  %dt relatively dominant (J)
+  %dd nurtured to produce for yourself and for others
+%h3 Nature plus Nurture
 %dl
   -Attitude.all.each do |attitude|
     %dt=link_to attitude.name, type_path(attitude.path)
     %dd=attitude.description
+%p
+  %b Footnote:
+  =Realm.all.to_sentence
+  and I, E, P, and J are inherited from the MBTI;
+  they are not acronyms for any words used in the BipolarType theory.
