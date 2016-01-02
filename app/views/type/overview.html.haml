@@ -41,8 +41,38 @@
   -Attitude.all.each do |attitude|
     %dt=link_to attitude.name, type_path(attitude.path)
     %dd=attitude.description
+%h2 Mania and Depression
+%h3 Mania
+%p
+  Mania is triggered by stress, stimulants, or a longer day.
+%p
+  During mania, you become much more sensitive (you consume fewer energizers: you stop consuming energizers sooner or you start rejecting unbuffered energizers). You also become much more dominant (you start producing more: you insist upon producing for yourself and you try to produce for other people).
+%p
+  You
+  %em will
+  lose potential energy during a manic episode.
+  This makes mania a highly desirable state for those with the
+  =Attitude.first.name
+  attitude but a complete and utter disaster for those of the
+  =Attitude.fourth.name
+  attitude. The other two attitudes enjoy producing more but don’t like being unable to consume energizers, but the loss of potential energy is neither desirable nor disastrous.
+%h3 Depression
+%p
+  Depression is triggered by crashing after a manic episode, sedatives, or a longer night.
+%p
+  During depression, you become much less sensitive (you consume more energizers: you start craving energizers and you are unable to stop consuming buffered energizers). You also become much less dominant (you start producing less: you refuse to produce for others and you find it difficult to produce for yourself).
+%p
+  You
+  %em will
+  gain potential energy during a depressive episode.
+  This makes depression a highly desirable state for those with the
+  =Attitude.fourth.name
+  attitude but a complete and utter disaster for those of the
+  =Attitude.first.name
+  attitude. The other two attitudes enjoy consuming more but don’t like being unable to produce, but the gain of potential energy is neither desirable nor disastrous.
 %p
   %b Footnote:
-  =Realm.all.to_sentence
-  and I, E, P, and J are inherited from the MBTI;
+  =Realm.all.join(", ")
+  I, E, P, and J are inherited from the MBTI;
   they are not acronyms for any words used in the BipolarType theory.
+
