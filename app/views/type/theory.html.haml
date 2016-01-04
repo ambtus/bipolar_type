@@ -19,8 +19,6 @@
       =realm.strengths.comma
       =realm.kinetics.comma
       =realm.potential
-    %dt produce results
-    %dd=realm.produce
     %dt production examples
     %dd=realm.productions
 %h2 The Four Attitudes
@@ -33,9 +31,9 @@
 %h3 Two Nurtures
 %dl
   %dt relatively submissive (P)
-  %dd nurtured to allow others to continue to produce for you
+  %dd nurtured to allow others to produce for you
   %dt relatively dominant (J)
-  %dd nurtured to produce for yourself and for others
+  %dd nurtured to produce for yourself and others
 %h3 Nature plus Nurture
 %dl
   -Attitude.all.each do |attitude|
@@ -44,7 +42,7 @@
 %h2 Mania and Depression
 %h3 Mania
 %p
-  Mania is triggered by stress, stimulants, or a longer day.
+  Mania is triggered by stimulants, a longer day (spring and summer), or a stressful emergency.
 %p
   During mania, you become much more sensitive (you consume fewer energizers: you stop consuming energizers sooner or you start rejecting unbuffered energizers). You also become much more dominant (you start producing more: you insist upon producing for yourself and you try to produce for other people).
 %p
@@ -53,12 +51,12 @@
   lose potential energy during a manic episode.
   This makes mania a highly desirable state for those with the
   =Attitude.first.name
-  attitude but a complete and utter disaster for those of the
+  attitude but a complete and utter disaster for those with the
   =Attitude.fourth.name
-  attitude. The other two attitudes enjoy producing more but don’t like being unable to consume energizers, but the loss of potential energy is neither desirable nor disastrous.
+  attitude. The other two attitudes enjoy producing more but don’t like being unable to consume energizers, but the loss of potential energy is neither especially desirable nor particularly disastrous.
 %h3 Depression
 %p
-  Depression is triggered by crashing after a manic episode, sedatives, or a longer night.
+  Depression is triggered by sedatives, a longer night (autumn and winter), or crashing after a manic episode.
 %p
   During depression, you become much less sensitive (you consume more energizers: you start craving energizers and you are unable to stop consuming buffered energizers). You also become much less dominant (you start producing less: you refuse to produce for others and you find it difficult to produce for yourself).
 %p
@@ -67,12 +65,26 @@
   gain potential energy during a depressive episode.
   This makes depression a highly desirable state for those with the
   =Attitude.fourth.name
-  attitude but a complete and utter disaster for those of the
+  attitude but a complete and utter disaster for those with the
   =Attitude.first.name
-  attitude. The other two attitudes enjoy consuming more but don’t like being unable to produce, but the gain of potential energy is neither desirable nor disastrous.
+  attitude. The other two attitudes enjoy being able to consume more but don’t like being unable to produce, but the gain of potential energy is neither especially desirable nor particularly disastrous.
+%h2 The sixteen MBTI types
 %p
-  %b Footnote:
-  =Realm.all.join(", ")
-  I, E, P, and J are inherited from the MBTI;
-  they are not acronyms for any words used in the BipolarType theory.
-
+  Although every MBTI type has a BipolarType, only four of the 256 BipolarTypes have MBTI types. The four BipolarTypes which do have MBTI types each have four MBTI types, depending on which realm is dominant.
+%dl
+  %dt=link_to "ESP•ETJ•IFP•INJ", type_path("espetjifpinj")
+  %dd
+    -%w{ESFP ENTJ ISFP INTJ}.each do |mbti|
+      =render "mbti", :mbti => mbti
+  %dt=link_to "ESP•EFJ•ITP•INJ", type_path("espefjitpinj")
+  %dd
+    -%w{ESTP ENFJ ISTP INFJ}.each do |mbti|
+      =render "mbti", :mbti => mbti
+  %dt=link_to "ENP•ETJ•IFP•ISJ", type_path("enpetjifpisj")
+  %dd
+    -%w{ENFP ESTJ INFP ISTJ}.each do |mbti|
+      =render "mbti", :mbti => mbti
+  %dt=link_to "ENP•EFJ•ITP•ISJ", type_path("enpefjitpisj")
+  %dd
+    -%w{ENTP ESFJ INTP ISFJ}.each do |mbti|
+      =render "mbti", :mbti => mbti
