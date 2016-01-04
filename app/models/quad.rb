@@ -23,6 +23,11 @@ class Quad < Phrase
   def self.all; ALL; end
   ALL.each {|quad| define_singleton_method(quad.path) {quad} }
 
+  def discover_without(subtype)
+    raise unless subtypes.include? subtype
+    "Q4_#{subtypes.without(subtype).map(&:path).join}"
+  end
+
 
 
   def inspect; subtypes.join("•").to_word; end

@@ -1,5 +1,6 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
--if @answer.number > 1
+-#
+  -if @answer.number > 1
   %p.heading
     If you choose
     %span.warning the same column,
@@ -20,7 +21,7 @@
         %td.bordered.quarter{:class => @answer.class(subtype)}
           =render "subtype", :subtype => subtype
           %p.center
-            -if @answer.class(subtype) == "chosen"
-              =subtype.name
-            -else
+            -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))
+            -else
+              =subtype.name

@@ -21,7 +21,7 @@ class Indexable < Noun
   end
   alias_method :letter, :string
 
-  def others; self.class.all.collect{|i| i != self}; end
+  def others; self.class.all.select{|i| i != self}; end
 
   def path; to_s.downcase; end
   def self.paths; all.map(&:path); end

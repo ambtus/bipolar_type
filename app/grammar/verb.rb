@@ -75,7 +75,7 @@ class Verb < Word
   DOUBLES = %w{stop grab shop run win submit drop}
   def needs_doubling?; DOUBLES.include?(@string); end
 
-  VOWEL_Y = %w{pay repay say}
+  VOWEL_Y = %w{pay repay say buy}
   def vowel_y?; VOWEL_Y.include?(@string); end
 
   ESSES = %w{do teach guess}

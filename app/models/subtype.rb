@@ -34,7 +34,7 @@ class Subtype < Phrase
   def name; Phrase.new [domain.titleize.join, inspect.parenthesize]; end
 
   def wannabee; Subtype.new [realm, attitude.wannabee]; end
-def goal; Subtype.new [realm, attitude.goal]; end
+  def goal; Subtype.new [realm, attitude.goal]; end
 
   def method_missing(meth, *arguments, &block)
     if attitude.respond_to?(meth)

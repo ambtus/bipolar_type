@@ -19,11 +19,18 @@ class Attitude < Indexable
   def wannabee; Attitude.all.values_at(2, 0, 3, 1)[index]; end
   def goal; Attitude.all.values_at(1, 1, 2, 2)[index]; end
 
-  def description
+  def long_name
+    Phrase.new [(energetic? ? "insensitive" : "sensitive"),
+     (strong? ? "producer" : "consumer")]
+  end
+
+  def result
     ["gains potential energy",
-    "consumes a lot and produces a lot",
+    "produces a lot and consumes a lot",
     "consumes little and produces little",
     "loses potential energy",][index]
   end
+
+  def description; "#{long_name}: #{result}"; end
 
 end

@@ -3,17 +3,27 @@
     %h3=subtype.name
 %p.heading
   I am
-  =subtype.energetic? ? "almost" : "not"
+  ="not" unless subtype.energetic?
   always willing to
   =subtype.consume
   =subtype.consume_helper
   =subtype.resources.period
   %br
   I
-  =subtype.strong? ? "almost" : "don’t"
+  ="don’t" unless subtype.strong?
   always want to
   =subtype.produce.period
-=render(subtype.attitude.domain, :subtype=>subtype) unless @answer
+-unless @answer
+  %p
+    Being
+    =subtype.long_name.an_phrase
+    is
+    =subtype.balanced? ? "a balanced" : "an unbalanced"
+    state.
+  =render(subtype.attitude.domain, :subtype=>subtype)
 -if [Subtype, Attitude, Realm].include? @object.class
   %p
     =link_to "Discover BipolarTypes with this subtype", discover_path(subtype.discover_path)
+-elsif @object.is_a? Quad
+  %p
+    =link_to "Discover BipolarTypes without this subtype", discover_path(@object.discover_without(subtype))
