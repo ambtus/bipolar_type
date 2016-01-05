@@ -14,27 +14,26 @@
         =ij.potential
       %p
         While manic:
-        =ij.consume_with
-        more
+        buffer your
+        =ij.energizers
+        with even more
         =ij.buffers
         and try to refrain from
-        =ij.produce.ing
-        and take sedatives if there is any danger of
+        =ij.produce.ing.period
+        Take sedatives if you are in any danger of
         =ij.dying.period
       -@object.subtypes.each do |ej|
         -if ej.attitude == Attitude.ej
           %p
             After the mania ends, you will find it easier to regain critical
             =ij.potential
-            if you make an effort to
+            if you
             =ej.produce
-            less: put off
+            less: avoid
             =ej.productions.ing
             if you will have to use
             =ij.kinetics
-            in order to
-            =ej.produce_with
-            things.
+            to do so.
   -@object.subtypes.each do |ep|
     -if ep.attitude == Attitude.ep
       %h3
@@ -43,23 +42,22 @@
         =ep.potential
       %p
         While depressed:
-        =ep.consume_with
+        buffer your
+        =ep.energizers
+        with even
         =ep.buffers.fewer_phrase
         and try to keep
-        =ep.produce.ing
-        but do not take stimulants if there is any danger of going manic.
+        =ep.produce.ing.period
+        Do not take stimulants if you are in any danger of going manic.
       -@object.subtypes.each do |ip|
         -if ip.attitude == Attitude.ip
           %p
             After the depression ends, you will find it easier to lose unwanted
             =ep.potential
-            if you make an effort to
+            if you
             =ip.consume_with
-            =ip.obvious.er
             =ip.energizers.colon
             you will find it easier to
             =ep.productions
-            without
-            =ep.consume.ing
             if you have some extra
             =ip.kinetics.period

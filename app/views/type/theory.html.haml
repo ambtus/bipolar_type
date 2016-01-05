@@ -7,7 +7,7 @@
     =realm.description.capitalize.colon
     =link_to realm.name, type_path(realm.path)
   %dl
-    %dt gain resources
+    %dt consume
     %dd=realm.gain_resources
     %dt external resources (strengtheners, energizers, buffered energy)
     %dd
@@ -19,6 +19,10 @@
       =realm.strengths.comma
       =realm.kinetics.comma
       =realm.potential
+    %dt produce
+    %dd
+      =realm.produce_with
+      things
     %dt production examples
     %dd=realm.productions
 %h2 The Four Attitudes
