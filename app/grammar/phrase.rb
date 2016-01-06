@@ -51,20 +51,14 @@ class Phrase
   %w{ed en ing s}.each do |meth|
     define_method(meth) {Phrase.new words.collect{|w| w.is_a?(Verb) ? w.send(meth) : w}}
   end
+  %w{many few fewer fewest}.each do |meth|
+    define_method(meth) {Phrase.new words.collect{|w| w.is_a?(Noun) ? [w.send(meth), w] : w}}
+  end
+  def more; Phrase.new words.collect{|w| w.is_a?(Noun) ? ["more", w] : w}; end
   def reverse; Phrase.new words.reverse; end
   def titleize; Phrase.new words.map(&:capitalize); end
   def parenthesize
     Phrase.new [first.open_paren, mid_words, last.close_paren]
-  end
-  # only works if two words
-  def more(qualifier=nil)
-    Phrase.new [first_words, "more", qualifier, last]
-  end
-  def less(qualifier=nil)
-    Phrase.new [first_words, last.fewer_phrase(qualifier)]
-  end
-  def many(qualifier=nil)
-    Phrase.new [first_words, qualifier, last.many_phrase]
   end
 
   def many_phrase; Phrase.new [last.many, words]; end

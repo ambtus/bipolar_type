@@ -1,12 +1,11 @@
 -unless @answer
   -if [Attitude, Realm, Quad].include? @object.class
-    %h3=subtype.name
+    %h2{:id => subtype.path}=subtype.name
 %p.heading
   I am
   ="not" unless subtype.energetic?
   always willing to
-  =subtype.consume
-  =subtype.consume_helper
+  =subtype.consume_with
   =subtype.resources.period
   %br
   I

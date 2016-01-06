@@ -33,6 +33,12 @@ class Subtype < Phrase
   def domain; Phrase.new [domainly, attitude.domain]; end
   def name; Phrase.new [domain.titleize.join, inspect.parenthesize]; end
 
+  def long_name
+    Phrase.new [(energetic? ? "insensitive" : "sensitive"),
+     realm.domain,
+     (strong? ? "producer" : "consumer")]
+  end
+
   def wannabee; Subtype.new [realm, attitude.wannabee]; end
   def goal; Subtype.new [realm, attitude.goal]; end
 

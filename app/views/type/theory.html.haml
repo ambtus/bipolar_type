@@ -1,5 +1,9 @@
 - content_for(:title, 'The Theory')
-%h2 The Four Realms
+%div.center
+  -%w{Realms Attitudes Bipolar MBTI}.each_with_index do |section, index|
+    ="|" unless index == 0
+    =link_to section, "#" + section.downcase
+%h2{:id => "realms"} The Four Realms
 %p
   Each realm is concerned with the consumption of resources to gain strength and energy, and then using strength and kinetic energy in order to produce results now, or saving the kinetic energy as potential energy in order to produce results later.
 -Realm.all.each do |realm|
@@ -25,7 +29,7 @@
       things
     %dt production examples
     %dd=realm.productions
-%h2 The Four Attitudes
+%h2{:id => "attitudes"} The Four Attitudes
 %h3 Two Natures
 %dl
   %dt relatively sensitive (I)
@@ -43,7 +47,7 @@
   -Attitude.all.each do |attitude|
     %dt=link_to attitude.name, type_path(attitude.path)
     %dd=attitude.description
-%h2 Mania and Depression
+%h2{:id => "bipolar"} Mania and Depression
 %h3 Mania
 %p
   Mania can be triggered by stimulants, a longer day (spring mania), or a state of emergency.
@@ -72,7 +76,7 @@
   attitude but a complete and utter disaster for those with the
   =Attitude.first.name
   attitude. The other two attitudes enjoy being able to consume more but don’t like being unable to produce, but the gain of potential energy is neither especially desirable nor particularly disastrous.
-%h2 The sixteen MBTI types
+%h2{:id => "mbti"} The sixteen MBTI types
 %p
   Although every MBTI type has a BipolarType, only four of the 256 BipolarTypes have MBTI types. The four BipolarTypes which do have MBTI types each have four MBTI types, depending on which realm is dominant.
 %dl

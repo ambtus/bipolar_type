@@ -28,8 +28,6 @@ class Quad < Phrase
     "Q4_#{subtypes.without(subtype).map(&:path).join}"
   end
 
-
-
   def inspect; subtypes.join("•").to_word; end
   def name; inspect; end
 
