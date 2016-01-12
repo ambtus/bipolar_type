@@ -17,7 +17,7 @@
         =Attitude.all[index].name
       -row.each do |subtype|
         %td.bordered.quarter{:class => @answer.class(subtype)}
-          =render "subtype", :subtype => subtype
+          =render subtype.attitude.path, :realm => subtype.realm
           %p.center
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))
