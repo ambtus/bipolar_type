@@ -20,9 +20,5 @@
     =subtype.balanced? ? "a balanced" : "an unbalanced"
     attitude.
   =render(subtype.attitude.domain, :subtype=>subtype)
--if [Subtype, Attitude, Realm].include? @object.class
-  %p
-    =link_to "Discover BipolarTypes with this subtype", discover_path(subtype.discover_path)
--elsif @object.is_a? Quad
-  %p
-    =link_to "Discover BipolarTypes without this subtype", discover_path(@object.discover_without(subtype))
+%p
+  =link_to "BipolarTypes with this subtype", discover_path(subtype.discover_path)

@@ -1,0 +1,26 @@
+- content_for(:title, 'The Four Realms')
+%p
+  Each realm is concerned with the consumption of resources to gain strength and energy, and then using strength and kinetic energy in order to produce results now, or saving the kinetic energy as potential energy in order to produce results later.
+-Realm.all.each do |realm|
+  %h2
+    =realm.description.capitalize.colon
+    =link_to realm.name, type_path(realm.path)
+  %dl
+    %dt consume
+    %dd=realm.gain_resources
+    %dt external resources (strengtheners, energizers, buffered energy)
+    %dd
+      =realm.strengtheners.comma
+      =realm.energizers.comma
+      =realm.buffers
+    %dt internal resources (strength, kinetic energy, potential energy)
+    %dd
+      =realm.strengths.comma
+      =realm.kinetics.comma
+      =realm.potential
+    %dt produce
+    %dd
+      =realm.produce_with
+      things
+    %dt production examples
+    %dd=realm.productions

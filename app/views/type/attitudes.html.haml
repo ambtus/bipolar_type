@@ -1,0 +1,18 @@
+- content_for(:title, 'The Four Attitudes')
+%h2 Two Natures
+%dl
+  %dt relatively sensitive (I)
+  %dd unable to consume many unbuffered energizers without rejecting them
+  %dt relatively insensitive (E)
+  %dd able to consume and store almost all energizers without rejecting them
+%h2 Two Nurtures
+%dl
+  %dt relatively submissive (P)
+  %dd nurtured to allow others to produce for you
+  %dt relatively dominant (J)
+  %dd nurtured to produce for yourself and others
+%h2 Nature plus Nurture
+%dl
+  -Attitude.all.each do |attitude|
+    %dt=link_to attitude.name, type_path(attitude.path)
+    %dd=attitude.description

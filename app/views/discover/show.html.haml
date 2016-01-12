@@ -1,13 +1,11 @@
--content_for(:title, "Question ##{@answer.number} of 4")
--#
-  -if @answer.number > 1
-  %p.heading
-    If you choose
-    %span.warning the same column,
-    your
-    %span.chosen previous selection
-    in that column will be unselected.
+-content_for(:title, "Subtype ##{@answer.number} of 4")
 %table
+  %caption
+    A BipolarType is made up of four subtypes: one from each realm and attitude. Once you 
+    %span.free choose a subtype,
+    other subtypes with the 
+    %span.warning same realm or attitude
+    will become unavailable.
   %tr
     %th.narrow &nbsp;
     -Realm.all.each do |realm|
