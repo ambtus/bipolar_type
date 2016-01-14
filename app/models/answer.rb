@@ -12,7 +12,7 @@ class Answer
   def number; @question.last.to_i ; end
   def finished?; number == 5; end
 
-  def chosen; @answer.scan(/.../).collect{|subtype| Subtype.send(subtype)}; end
+  def chosen; @answer.scan(/../).collect{|subtype| Subtype.send(subtype)}; end
   def constrained
     (chosen.map(&:same_realm) + chosen.map(&:same_attitude)).flatten.uniq
     #chosen.map(&:same_realm).flatten.uniq
@@ -35,7 +35,6 @@ class Answer
     remaining(subtype).map(&:path).join + subtype.path
   end
 
-  #def quad_path; chosen.sort.map(&:realm).map(&:path).join; end
-  def quad_path; chosen.sort.map(&:path).join; end
+  def quad_path; chosen.sort.map(&:realm).map(&:path).join; end
 
 end

@@ -8,6 +8,14 @@ class Phrase
 
   def <=>(other); self.to_s <=> other.to_s; end
 
+ def self.optional(one, two)
+    if one && two
+      self.new [one, two]
+    else
+      one || two
+    end
+  end
+
   ## specific phrases
   def self.early; new "Monday morning".split; end
   def self.late; new "Friday night".split; end

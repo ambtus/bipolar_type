@@ -1,18 +1,46 @@
 - content_for(:title, 'The Four Attitudes')
 %h2 Two Natures
-%dl
-  %dt relatively sensitive (I)
-  %dd unable to consume many unbuffered energizers without rejecting them
-  %dt relatively insensitive (E)
-  %dd able to consume and store almost all energizers without rejecting them
+%table
+  %tr
+    %td.half.bordered
+      %h3 Consume - Produce
+      %ul.left
+        %li wake
+        %li feel empty
+        %li consume until full
+        %li produce until worn out
+        %li sleep
+    %td.half.bordered
+      %h3 Produce - Consume
+      %ul.left
+        %li wake 
+        %li feel ready
+        %li produce until worn out
+        %li consume until full
+        %li sleep
 %h2 Two Nurtures
-%dl
-  %dt relatively submissive (P)
-  %dd nurtured to allow others to produce for you
-  %dt relatively dominant (J)
-  %dd nurtured to produce for yourself and others
+%table
+  %caption
+    %p.center An infant is born with a short sleep wake cycle. 
+    %p.center In order to lengthen that cycle to fit the 24-hour day, they must stretch the wake part of the cycle by either consuming or producing more than is natural.
+  %tr
+    %td.half.bordered
+      %h3 Consume Energizers
+      %p Nurtured to ignore “stop consuming” signals, they will not stop consuming just because they feel full; feeling full is irrelevant if it is not yet “time” to stop consuming.
+      %p As energizers are more apt to make you feel full than strengtheners, they are effectively nurtured to consume more energizers than is natural.
+    %td.half.bordered
+      %h3 Produce Strongly
+      %p Nurtured to ignore “stop producing” signals, they will not stop producing just because they are worn out; being worn out is irrelevant if it is not yet “time” to stop producing.
+      %p As strong production is more apt to wear you out than energetic production, they are effectively nurtured to produce more strongly than is natural.
 %h2 Nature plus Nurture
-%dl
-  -Attitude.all.each do |attitude|
-    %dt=link_to attitude.name, type_path(attitude.path)
-    %dd=attitude.description
+%table
+  %caption The result of your nurture depends on when you do it, which depends on your nature.
+  %tr
+    -Attitude.all.each do |attitude|
+      %td.quarter.bordered
+        -%w{morning afternoon evening night}.each do |time|
+          %h3=time.capitalize
+          %ul.none
+            %li=attitude.send(time + "_feeling").prefix("feel ")
+            %li=attitude.send(time + "_behavior")
+        %h3=link_to attitude.name.suffix(" Subtypes"), type_path(attitude.path)

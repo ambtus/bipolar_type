@@ -1,25 +1,33 @@
 -content_for(:title, "Subtype ##{@answer.number} of 4")
 %table
   %caption
-    A BipolarType is made up of four subtypes: one from each realm and attitude. Once you 
-    %span.free choose a subtype,
-    other subtypes with the 
-    %span.warning same realm or attitude
-    will become unavailable.
+    %p.center A BipolarType is made up of four subtypes: one from each realm and attitude.
+    %p.center
+      Once you have
+      %span.chosen choosen a subtype,
+      other subtypes with the
+      %span.warning same realm or attitude
+      will become unavailable.
   %tr
-    %th.narrow &nbsp;
-    -Realm.all.each do |realm|
-      %th
-        =realm.name
-  -Subtype.all.in_groups_of(4).each_with_index do |row, index|
+    %td.seventh.none &nbsp;
+    -Attitude.all.each do |attitude|
+      %td.fifth.none=attitude.name.prefix("Tendency towards ")
+  -Realm.all.each do |realm|
     %tr
-      %th.narrow
-        =Attitude.all[index].name
-      -row.each do |subtype|
-        %td.bordered.quarter{:class => @answer.class(subtype)}
-          =render subtype.attitude.path, :realm => subtype.realm
+      %td.seventh.middle.none=realm.name
+      -realm.subtypes.each do |subtype|
+        %td.fifth.bordered{:class => @answer.class(subtype)}
           %p.center
             -if @answer.class(subtype) == "free"
-              =link_to subtype.name, discover_path(@answer.next(subtype))
+              =link_to subtype.result.prefix("too "), discover_path(@answer.next(subtype))
             -else
-              =subtype.name
+              =subtype.result.prefix("too ")
+%p
+  Note: a tendency is not the same thing as an actuality. If you work very hard 
+  %em not
+  to have more or less of something, then you can be pretty sure that your
+  %em tendency
+  is the opposite.
+  This also means it’s usually impossible to answer for someone else because you cannot know whether or not they are 
+  %em trying 
+  to be the way they are.

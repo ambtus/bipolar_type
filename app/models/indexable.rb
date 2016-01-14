@@ -7,7 +7,7 @@ class Indexable < Noun
   all.each { |i| define_singleton_method(i.path) {all[LETTERS.index i.string]} }
   ########
 
-  %w{first second third fourth}.each {|i| define_singleton_method(i) {all.send(i)}}
+  %w{first second third fourth last}.each {|i| define_singleton_method(i) {all.send(i)}}
   def self.generic; self.new("X"); end
   def self.x; self.generic; end
   def generic?; string == "X"; end

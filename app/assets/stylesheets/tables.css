@@ -6,11 +6,11 @@ table {
   margin-right:auto;
 }
 td {
-  border: none;
+  border: 1px solid grey;
   padding: 0 1%;
   vertical-align: top;
   text-align: center; 
 }
 td.bottom { vertical-align: bottom;}
 td.middle { vertical-align: middle; }
-.bordered {border: 1px solid grey;}
+td.none {border: none;}

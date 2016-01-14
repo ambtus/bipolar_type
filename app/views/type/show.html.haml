@@ -1,5 +1,26 @@
 - content_for(:title, @object.name)
 %table
+  %caption The result of consuming energizers and producing strongly depends on your attitude.
   %tr
     -@object.subtypes.each do |subtype|
-      %td.quarter.bordered=render "subtype", :subtype => subtype
+      %td.quarter.bordered
+        %p.center
+          =link_to subtype.domain, discover_path(subtype.discover_path)
+          %br
+          =subtype.result.prefix("too ").parenthesize
+%table
+  %caption If you want to prevent the result you need to change not what you do but when you do it.
+  %tr
+    -@object.subtypes.each do |subtype|
+      %td.quarter.bordered
+        %ul.left
+          %li=subtype.morning_reverse
+          %li=subtype.evening_reverse
+%table
+  %caption It is always safe to consume strengtheners and produce energetically.
+  %tr
+    -@object.subtypes.each do |subtype|
+      %td.quarter.bordered
+        %ul.left
+          %li=subtype.consume_strengtheners
+          %li=subtype.produce_energetically

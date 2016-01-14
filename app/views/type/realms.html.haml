@@ -1,26 +1,29 @@
 - content_for(:title, 'The Four Realms')
-%p
-  Each realm is concerned with the consumption of resources to gain strength and energy, and then using strength and kinetic energy in order to produce results now, or saving the kinetic energy as potential energy in order to produce results later.
--Realm.all.each do |realm|
-  %h2
-    =realm.description.capitalize.colon
-    =link_to realm.name, type_path(realm.path)
-  %dl
-    %dt consume
-    %dd=realm.gain_resources
-    %dt external resources (strengtheners, energizers, buffered energy)
-    %dd
-      =realm.strengtheners.comma
-      =realm.energizers.comma
-      =realm.buffers
-    %dt internal resources (strength, kinetic energy, potential energy)
-    %dd
-      =realm.strengths.comma
-      =realm.kinetics.comma
-      =realm.potential
-    %dt produce
-    %dd
-      =realm.produce_with
-      things
-    %dt production examples
-    %dd=realm.productions
+%table
+  -Realm.all.each do |realm|
+    %tr
+      %th=link_to realm.name.suffix(" Subtypes"), type_path(realm.path)
+      %td.quarter
+        %ul.left
+          %li=realm.empty.prefix("feel ")
+          %li=realm.consume_triggers.prefix("don’t ")
+          %li=realm.potential.prefix("lose ")
+      %td.quarter
+        %ul.left
+          %li=realm.empty.prefix("feel ")
+          %li=realm.consume_triggers
+          %li=realm.full.prefix("feel ")
+          %li=realm.consume_triggers.ing.prefix("keep ")
+          %li=realm.potential.prefix("gain ")
+      %td.quarter
+        %ul.left
+          %li=realm.ready.prefix("feel ")
+          %li=realm.produce_energetically
+          %li=realm.strengths_atrophy
+      %td.quarter
+        %ul.left
+          %li=realm.ready.prefix("feel ")
+          %li=realm.produce_strongly
+          %li=realm.worn_out.prefix("feel ")
+          %li=realm.consume_strengtheners
+          %li=realm.strengths.prefix("gain ")
