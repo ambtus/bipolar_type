@@ -12,7 +12,7 @@ class TypeController < ApplicationController
           render :show and return
         end
       end
-      raise "#{params[:id]} is not a realm, attitude, or quad"
+      raise "#{params[:id]} is not a realm, attitude, or quad path"
     end
   end
 

@@ -60,9 +60,15 @@ class Phrase
     define_method(meth) {Phrase.new words.collect{|w| w.is_a?(Verb) ? w.send(meth) : w}}
   end
   %w{many few fewer fewest}.each do |meth|
-    define_method(meth) {Phrase.new words.collect{|w| w.is_a?(Noun) ? [w.send(meth), w] : w}}
+    define_method(meth + "_phrase") do
+      if words.first.is_a?(Adjective) && words.second.is_a?(Noun)
+        Phrase.new [words.second.send(meth), words.first, words.second]
+      else
+        Phrase.new words.collect{|w| w.is_a?(Noun) ? [w.send(meth), w] : w}
+      end
+    end
   end
-  def more; Phrase.new words.collect{|w| w.is_a?(Noun) ? ["more", w] : w}; end
+  def more_phrase; Phrase.new words.collect{|w| w.is_a?(Noun) ? ["more", w] : w}; end
   def reverse; Phrase.new words.reverse; end
   def titleize; Phrase.new words.map(&:capitalize); end
   def parenthesize

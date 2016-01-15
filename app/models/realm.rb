@@ -1,10 +1,10 @@
 class Realm < Indexable
 
-  def domain; choose Adjective, %w{physical social mental financial}; end
   ########
-  LETTERS = %w{p s m f}
-  ALL = LETTERS.collect{|letter| self.new letter}
-  all.each { |r| define_singleton_method(r.path) {all[LETTERS.index r.string]} }
+  IDENTIFIERS = %w{physical social mental financial}
+  def self.paths; IDENTIFIERS; end
+  ALL = IDENTIFIERS.collect{|letter| self.new letter}
+  all.each { |r| define_singleton_method(r.path) {all[IDENTIFIERS.index r.string]} }
   ########
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
@@ -15,9 +15,8 @@ class Realm < Indexable
 
   def neuro; choose Adjective, %w{serotonin oxytocin GABA dopamine}; end
 
-  def domain; choose Adjective, %w{physical social mental financial}; end
-  def domainly; domain.ly; end
-  def name; domain.titleize; end
+  def identifier; choose Adjective, IDENTIFIERS; end
+  def name; identifier.titleize; end
 
   def consume; choose Verb, %w{eat listen look earn }; end
   def consume_suffix; choose Word, %w{NIL to at NIL }; end
@@ -36,8 +35,10 @@ class Realm < Indexable
 
   def dying; choose Word, %w{starvation suicide  fatal\ mistakes destitution}; end
 
-  def strengths; choose Noun, %w{muscles metaphors rules credit }; end
-  def atrophy; strengths.uncountable? ? "atrophies" : "atrophy"; end
+  def strengths_adj; choose Adjective, %w{strong abstract logical strong }; end
+  def strengths_noun; choose Noun, %w{muscles metaphors rules credit }; end
+  def strengths; Phrase.new [strengths_adj, strengths_noun]; end
+  def atrophy; strengths_noun.uncountable? ? "atrophies" : "atrophy"; end
   def strengths_atrophy; Phrase.new [strengths, atrophy]; end
   def kinetics; choose Noun, %w{glycogen emotions facts cash }; end
   def potential; choose Noun, %w{fat friends memories savings }; end

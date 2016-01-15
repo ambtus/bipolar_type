@@ -1,10 +1,10 @@
 class Attitude < Indexable
 
-  def domain; choose Noun, %w{ obesity weakness bulkiness anorexia }; end
   ########
-  LETTERS = %w{ o w b a }
-  ALL = LETTERS.collect{|letter| self.new letter}
-  all.each { |a| define_singleton_method(a.path) {all[LETTERS.index a.string]} }
+  IDENTIFIERS = %w{ obesity weakness bulkiness anorexia }
+  def self.paths; IDENTIFIERS; end
+  ALL = IDENTIFIERS.collect{|letter| self.new letter}
+  all.each { |a| define_singleton_method(a.path) {all[IDENTIFIERS.index a.string]} }
   ########
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
@@ -31,7 +31,8 @@ class Attitude < Indexable
   def night_noun; choose Noun, %w{ potential\ energy strengths strengths potential\ energy }; end
   def night_class; "normal"; end
 
-  def name; domain.titleize; end
+  def identifier; choose Adjective, IDENTIFIERS; end
+  def name; identifier.titleize; end
   def afternoon_behavior; Phrase.optional afternoon_behavior_verb, afternoon_behavior_suffix; end
   def evening_feeling; Phrase.optional evening_feeling_prefix, evening_feeling_adjective; end
   def evening_behavior; Phrase.optional evening_behavior_verb, evening_behavior_suffix; end

@@ -6,7 +6,7 @@
     -@object.subtypes.each do |subtype|
       %td.quarter.bordered
         %p.center
-          =link_to subtype.domain, discover_path(subtype.discover_path)
+          =link_to subtype.identifier, discover_path(subtype.discover_path)
           %br
           =subtype.result.prefix("too ").parenthesize
 %table

@@ -9,12 +9,12 @@
       %span.warning same realm or attitude
       will become unavailable.
   %tr
-    %td.seventh.none &nbsp;
+    %td.narrow.none &nbsp;
     -Attitude.all.each do |attitude|
       %td.fifth.none=attitude.name.prefix("Tendency towards ")
   -Realm.all.each do |realm|
     %tr
-      %td.seventh.middle.none=realm.name
+      %td.narrow.middle.none=realm.name
       -realm.subtypes.each do |subtype|
         %td.fifth.bordered{:class => @answer.class(subtype)}
           %p.center

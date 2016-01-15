@@ -17,11 +17,11 @@ class Subtype < Phrase
         end.flatten
   def self.all; ALL; end
   def words; [realm, attitude]; end
-  def inspect; Word.new words.join; end
+  def inspect; Word.new words.join("_"); end
   def to_s; inspect.to_s; end
   def to_str; to_s; end
-  def path; to_s.downcase; end
 
+  def path; to_s.underscore; end
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
@@ -30,7 +30,7 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def domain; Phrase.new [realm.domain, attitude.domain]; end
+  def identifier; Phrase.new [realm.identifier, attitude.identifier]; end
   def name; Phrase.new [realm.name, attitude.name]; end
 
   def method_missing(meth, *arguments, &block)
@@ -44,7 +44,7 @@ class Subtype < Phrase
   end
 
   def result
-    case attitude.domain.string
+    case attitude.identifier.string
     when "bulkiness"
       realm.strengths.many_phrase
     when "obesity"
@@ -65,7 +65,7 @@ class Subtype < Phrase
   def night_behavior; Phrase.new [night_verb, night_noun]; end
 
   def morning_do
-    case attitude.domain.string
+    case attitude.identifier.string
     when "bulkiness", "weakness"
       consume_triggers
     when "obesity", "anorexia"
@@ -73,7 +73,7 @@ class Subtype < Phrase
     end
   end
   def morning_dont
-    case attitude.domain.string
+    case attitude.identifier.string
     when "bulkiness", "weakness"
       produce_strongly
     when "obesity", "anorexia"
@@ -83,7 +83,7 @@ class Subtype < Phrase
 
 
   def evening_do
-    case attitude.domain.string
+    case attitude.identifier.string
     when "bulkiness", "weakness"
       produce_strongly
     when "obesity", "anorexia"
@@ -91,7 +91,7 @@ class Subtype < Phrase
     end
   end
 def evening_dont
-    case attitude.domain.string
+    case attitude.identifier.string
     when "bulkiness", "weakness"
       consume_triggers
     when "obesity", "anorexia"
