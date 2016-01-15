@@ -64,29 +64,38 @@ class Subtype < Phrase
   def night_feeling; Phrase.optional night_feeling_prefix, night_feeling_adjective; end
   def night_behavior; Phrase.new [night_verb, night_noun]; end
 
-  def morning_reverse
+  def morning_do
     case attitude.domain.string
-    when "bulkiness"
-      Phrase.new [consume_triggers, "in the morning until you feel", full]
-    when "obesity"
-      Phrase.new [produce_strongly, "in the morning even if you already feel", worn_out]
-    when "anorexia"
-      Phrase.new ["stop", produce_strongly.ing, "as soon as possible"]
-    when "weakness"
-      Phrase.new ["stop", consume_triggers.ing, "as soon as possible"]
+    when "bulkiness", "weakness"
+      consume_triggers
+    when "obesity", "anorexia"
+      produce_strongly
+    end
+  end
+  def morning_dont
+    case attitude.domain.string
+    when "bulkiness", "weakness"
+      produce_strongly
+    when "obesity", "anorexia"
+      consume_triggers
     end
   end
 
-  def evening_reverse
+
+  def evening_do
     case attitude.domain.string
-    when "bulkiness"
-      Phrase.new ["wait as long as possible to start", produce_strongly.ing]
-    when "obesity"
-      Phrase.new ["wait as long as possible to start", consume_triggers.ing]
-    when "anorexia"
-      Phrase.new ["buffer the", triggers, "you", consume_with, "with plenty of", strengtheners, "and", buffers]
-    when "weakness"
-      Phrase.new ["continue to", produce_energetically, "until you feel like you are", produce_strongly.ing]
+    when "bulkiness", "weakness"
+      produce_strongly
+    when "obesity", "anorexia"
+      consume_triggers
+    end
+  end
+def evening_dont
+    case attitude.domain.string
+    when "bulkiness", "weakness"
+      consume_triggers
+    when "obesity", "anorexia"
+      produce_strongly
     end
   end
 

@@ -13,7 +13,7 @@
     %td.half.bordered
       %h3 Produce - Consume
       %ul.left
-        %li wake 
+        %li wake
         %li feel ready
         %li produce until worn out
         %li consume until full
@@ -21,7 +21,7 @@
 %h2 Two Nurtures
 %table
   %caption
-    %p.center An infant is born with a short sleep wake cycle. 
+    %p.center An infant is born with a short sleep wake cycle.
     %p.center In order to lengthen that cycle to fit the 24-hour day, they must stretch the wake part of the cycle by either consuming or producing more than is natural.
   %tr
     %td.half.bordered
@@ -41,6 +41,6 @@
         -%w{morning afternoon evening night}.each do |time|
           %h3=time.capitalize
           %ul.none
-            %li=attitude.send(time + "_feeling").prefix("feel ")
-            %li=attitude.send(time + "_behavior")
+            %li{:class => attitude.send(time + "_class")}=attitude.send(time + "_feeling").prefix("feel ")
+            %li{:class => attitude.send(time + "_class")}=attitude.send(time + "_behavior")
         %h3=link_to attitude.name.suffix(" Subtypes"), type_path(attitude.path)

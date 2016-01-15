@@ -32,7 +32,7 @@ class Realm < Indexable
   def empty; choose Adjective, %w{hungry lonely unsure miserly }; end
   def full; choose Adjective, %w{satisfied connected convinced rewarded }; end
   def ready; choose Adjective, %w{restless excited confident rich }; end
-  def worn_out; choose Adjective, %w{sore misunderstood stupid indebted }; end
+  def worn_out; choose Adjective, %w{sore misunderstood wrong indebted }; end
 
   def dying; choose Word, %w{starvation suicide  fatal\ mistakes destitution}; end
 
@@ -47,8 +47,8 @@ class Realm < Indexable
   def gain_internals; Phrase.new [consume_with, externals]; end
   def internals; choose Noun, %w{body opinions knowledge wealth }; end
 
-  def strengtheners; choose Noun, %w{protein words results loan\ repayments }; end
-  def triggers; choose Noun, %w{carbs voices facts disposable\ income }; end
+  def strengtheners; choose Noun, %w{protein words patterns loan\ repayments }; end
+  def triggers; choose Noun, %w{carbs voices facts income }; end
   def buffers; choose Noun, %w{fat harmony categories automatic\ investments }; end
 
   def consume_triggers; Phrase.new [consume_with, triggers]; end

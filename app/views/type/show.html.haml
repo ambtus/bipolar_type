@@ -1,6 +1,7 @@
 - content_for(:title, @object.name)
 %table
-  %caption The result of consuming energizers and producing strongly depends on your attitude.
+  %caption
+    %p.center The four tendencies.
   %tr
     -@object.subtypes.each do |subtype|
       %td.quarter.bordered
@@ -9,15 +10,25 @@
           %br
           =subtype.result.prefix("too ").parenthesize
 %table
-  %caption If you want to prevent the result you need to change not what you do but when you do it.
+  %caption
+    %p.center
+      The less you like the result, the more you need to change
+      %em when
+      you consume energizers and produce strongly.
   %tr
     -@object.subtypes.each do |subtype|
       %td.quarter.bordered
+        %h2 Morning or Depression
         %ul.left
-          %li=subtype.morning_reverse
-          %li=subtype.evening_reverse
+          %li=subtype.morning_do.prefix("do ")
+          %li=subtype.morning_dont.prefix("don’t ")
+        %h2 Evening or Mania
+        %ul.left
+          %li=subtype.evening_do.prefix("do ")
+          %li=subtype.evening_dont.prefix("don’t ")
 %table
-  %caption It is always safe to consume strengtheners and produce energetically.
+  %caption
+    %p.center When in doubt, consume strengtheners and produce energetically.
   %tr
     -@object.subtypes.each do |subtype|
       %td.quarter.bordered

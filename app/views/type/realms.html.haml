@@ -2,7 +2,7 @@
 %table
   -Realm.all.each do |realm|
     %tr
-      %th=link_to realm.name.suffix(" Subtypes"), type_path(realm.path)
+      %th.narrow=link_to realm.name.suffix(" Subtypes"), type_path(realm.path)
       %td.quarter
         %ul.left
           %li=realm.empty.prefix("feel ")
