@@ -43,16 +43,61 @@ class Subtype < Phrase
     end
   end
 
-  def result
+  def measurable
     case attitude.identifier.string
     when "bulkiness"
-      realm.strengths.many_phrase
+      realm.strengths
     when "obesity"
-      realm.potential.many_phrase
+      realm.potential
     when "anorexia"
-      realm.potential.few_phrase
+      realm.potential
     when "weakness"
-      realm.strengths.few_phrase
+      realm.strengths
+    end
+  end
+
+  def result
+    case attitude.identifier.string
+    when "bulkiness", "obesity"
+      measurable.many_phrase
+    when "anorexia", "weakness"
+      measurable.few_phrase
+    end
+  end
+
+  def euthymia
+    phrase = case attitude.identifier.string
+    when "bulkiness", "obesity"
+      "gain unneeded"
+    when "anorexia", "weakness"
+      "lose needed"
+    end
+    Phrase.new ["do not", phrase, measurable]
+  end
+
+  def depression
+    case attitude.identifier.string
+    when "bulkiness"
+      Phrase.new ["lose unwanted and unneeded", measurable]
+    when "obesity"
+      Phrase.new ["gain unwanted", measurable, "slowly instead of quickly"]
+    when "anorexia"
+      Phrase.new ["gain wanted and needed", measurable]
+    when "weakness"
+      Phrase.new ["lose wanted", measurable, "slowly instead of quickly"]
+    end
+  end
+
+  def mania
+    case attitude.identifier.string
+    when "obesity"
+      Phrase.new ["lose unwanted and unneeded", measurable]
+    when "bulkiness"
+      Phrase.new ["gain unwanted", measurable, "slowly instead of quickly"]
+    when "weakness"
+      Phrase.new ["gain wanted and needed", measurable]
+    when "anorexia"
+      Phrase.new ["lose wanted", measurable, "slowly instead of quickly"]
     end
   end
 
@@ -90,7 +135,7 @@ class Subtype < Phrase
       consume_triggers
     end
   end
-def evening_dont
+  def evening_dont
     case attitude.identifier.string
     when "bulkiness", "weakness"
       consume_triggers

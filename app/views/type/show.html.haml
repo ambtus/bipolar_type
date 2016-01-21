@@ -11,27 +11,39 @@
           =subtype.result.prefix("too ").parenthesize
 %table
   %caption
-    %p.center
-      The less you like the result, the more you need to change
-      %em when
-      you consume energizers and produce strongly.
-  %tr
-    -@object.subtypes.each do |subtype|
-      %td.quarter.bordered
-        %h2 Morning or Depression
-        %ul.left
-          %li=subtype.morning_do.prefix("do ")
-          %li=subtype.morning_dont.prefix("don’t ")
-        %h2 Evening or Mania
-        %ul.left
-          %li=subtype.evening_do.prefix("do ")
-          %li=subtype.evening_dont.prefix("don’t ")
-%table
-  %caption
-    %p.center When in doubt, consume strengtheners and produce energetically.
+    %p.center It is always safe to consume strengtheners and produce energetically.
   %tr
     -@object.subtypes.each do |subtype|
       %td.quarter.bordered
         %ul.left
           %li=subtype.consume_strengtheners
           %li=subtype.produce_energetically
+%table
+  %caption
+    %p.center
+      Make every effort to change
+      %em when
+      you consume energizers and produce strongly.
+  %tr
+    -@object.subtypes.each do |subtype|
+      %td.quarter.bordered
+        %h2 Morning
+        %ul.left
+          %li=subtype.morning_do.prefix("do ")
+          %li=subtype.morning_dont.prefix("don’t ")
+  %tr
+    -@object.subtypes.each do |subtype|
+      %td.quarter.bordered
+        %h2 Evening
+        %ul.left
+          %li=subtype.evening_do.prefix("do ")
+          %li=subtype.evening_dont.prefix("don’t ")
+%table
+  %caption
+    %p.center The result of following the above schedule:
+  -%w{euthymia mania depression}.each do |episode|
+    %tr
+      -@object.subtypes.each do |subtype|
+        %td.quarter.bordered
+          %h2=episode.capitalize
+          %p.center=subtype.send(episode)

@@ -37,7 +37,8 @@ class Realm < Indexable
 
   def strengths_adj; choose Adjective, %w{strong abstract logical strong }; end
   def strengths_noun; choose Noun, %w{muscles metaphors rules credit }; end
-  def strengths; Phrase.new [strengths_adj, strengths_noun]; end
+  # def strengths; Phrase.new [strengths_adj, strengths_noun]; end
+  def strengths; strengths_noun; end
   def atrophy; strengths_noun.uncountable? ? "atrophies" : "atrophy"; end
   def strengths_atrophy; Phrase.new [strengths, atrophy]; end
   def kinetics; choose Noun, %w{glycogen emotions facts cash }; end
@@ -57,11 +58,11 @@ class Realm < Indexable
 
   def pve; choose Verb, %w{do express make spend }; end
   def pae; choose Adjective, %w{aerobic strong simple petty}; end
-  def pne; choose Noun, %w{exercise emotions choices cash }; end
-  def produce_energetically; Phrase.new [pve, pae, pne]; end
+  def pne; choose Noun, %w{aerobics emotions choices cash }; end
+  def produce_energetically; Phrase.new [pve, pne]; end
   def pvs; choose Verb, %w{lift verbalize make use }; end
   def pas; choose Adjective, %w{heavy abstract complex available}; end
   def pns; choose Noun, %w{weights concepts decisions credit }; end
-  def produce_strongly; Phrase.new [pvs, pas, pns]; end
+  def produce_strongly; Phrase.new [pvs, pns]; end
 
 end
