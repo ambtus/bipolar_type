@@ -56,13 +56,13 @@ class Realm < Indexable
   def consume_triggers; Phrase.new [consume_with, triggers]; end
   def consume_strengtheners; Phrase.new [consume_with, strengtheners]; end
 
-  def pve; choose Verb, %w{do express make spend }; end
-  def pae; choose Adjective, %w{aerobic strong simple petty}; end
-  def pne; choose Noun, %w{aerobics emotions choices cash }; end
+  def pve; choose Verb, %w{do express fix spend }; end
+  def pae; choose Adjective, %w{aerobic strong current petty}; end
+  def pne; choose Noun, %w{aerobics emotions problems cash }; end
   def produce_energetically; Phrase.new [pve, pne]; end
-  def pvs; choose Verb, %w{lift verbalize make use }; end
-  def pas; choose Adjective, %w{heavy abstract complex available}; end
-  def pns; choose Noun, %w{weights concepts decisions credit }; end
+  def pvs; choose Verb, %w{do verbalize prevent use }; end
+  def pas; choose Adjective, %w{heavy abstract future available}; end
+  def pns; choose Noun, %w{labor concepts problems credit }; end
   def produce_strongly; Phrase.new [pvs, pns]; end
 
 end
