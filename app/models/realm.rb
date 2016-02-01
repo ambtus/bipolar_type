@@ -52,23 +52,29 @@ class Realm < Indexable
 
   def external_storage; choose Noun, %w{pantry network references pay\ checks }; end
 
-  def strengtheners; choose Noun, %w{protein words patterns repayments }; end
+  def strengtheners; choose Noun, %w{protein words results repayments }; end
   def trigger_adjective; choose Adjective, %w{sweet whiny colorful disposable }; end
-  def triggers; choose Noun, %w{carbs intonation details spending\ money }; end
-  #def triggers; Phrase.new [trigger_adjective, trigger_nouns]; end
+  def energizers; choose Noun, %w{carbs intonation details spending\ money }; end
   def buffers; choose Noun, %w{fat humor categories automatic\ investments }; end
 
-  def consume_triggers; Phrase.new [consume_with, triggers]; end
+  def consume_energizers; Phrase.new [consume_with, energizers ]; end
   def consume_strengtheners; Phrase.new [consume_with, strengtheners]; end
 
+  def consume_more_energizers; Phrase.new [consume_with, "more", energizers ]; end
+  def consume_more_strengtheners; Phrase.new [consume_with, "more", strengtheners]; end
+
   def pve; choose Verb, %w{go express solve spend }; end
-  def pae; choose Adjective, %w{NIL strong current NIL}; end
+  def pae; choose Adjective, %w{distant strong current hard}; end
   def pne; choose Noun, %w{places emotions problems cash }; end
   def produce_energetically; Phrase.new [pve, pae, pne]; end
+  def produce_more_energetically; Phrase.new [pve, pae.er, pne]; end
+
   def pvs; choose Verb, %w{lift verbalize prevent borrow }; end
-  def pas; choose Adjective, %w{heavy abstract future NIL}; end
+  def pas; choose Adjective, %w{heavy abstract future secured }; end
   def pns; choose Noun, %w{weights concepts problems money }; end
   def produce_strongly; Phrase.new [pvs, pas, pns]; end
+  def produce_more_strongly; Phrase.new [pvs, pas.er, pns]; end
+
 
   def produce; Phrase.new [pve, pae, pne, "and", pvs, pas, pns]; end
 

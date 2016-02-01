@@ -1,52 +1,27 @@
 - content_for(:title, @object.name)
 %table
-  %tr
-  %th{:colspan => 4} The problem.
-  %tr
-    -@object.subtypes.each do |subtype|
-      %td.quarter.bordered
-        %p
-          You will
-          =subtype.consumer? ? subtype.consume_triggers : subtype.produce_strongly
-          until there
-          =subtype.consumer? ? subtype.triggers.are : subtype.pns.are
-          no
-          =subtype.consumer? ? subtype.triggers : subtype.pns
-          left to
-          =subtype.consumer? ? subtype.consume_with : subtype.pvs
-          unless someone with authority stops you
-  %tr
-  %th{:colspan => 4} The result.
-  %tr
-    -@object.subtypes.each do |subtype|
-      %td.quarter.bordered
-        %p=subtype.result.prefix("Too ")
-  %tr
-    %th{:colspan => 4} The solution
-  %tr
-    %td.none{:colspan => 4} Avoid temptation before the fact.
-  %tr
-    -@object.subtypes.each do |subtype|
-      %td.quarter.bordered.middle
-        %p
-          Create an environment where opportunities to
-          =subtype.consumer? ?subtype.consume_triggers : subtype.produce_strongly
-          are limited but not so rare that you
-          =subtype.consumer? ? "never feel" : "are never"
-          =subtype.consumer? ? subtype.full : subtype.worn_out
-  %tr
-    %td.none{:colspan => 4} Compensate after the fact.
-  %tr
-    -@object.subtypes.each do |subtype|
-      %td.quarter.bordered.middle
+  -@object.subtypes.values_at(0,1,3,2).in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half
+          %h2=link_to subtype.name, discover_path(subtype.discover_path)
+          %ul.left
+            %li=subtype.preface.s
+            %li
+              =subtype.verb.s
+              =subtype.objects
+              until there
+              =subtype.objects.are
+              no more
+              =subtype.objects
+              left to
+              =subtype.verb
+            %li=subtype.result.prefix("tends to have too ")
+          %ul.left
+            %li=subtype.goal.prefix("needs ")
+            %li=subtype.hard.prefix("first ")
+            %li
+              then, when you feel
+              =subtype.rare.comma
+              =subtype.postfix
 
-        =subtype.consumer? ? subtype.produce_strongly : subtype.consume_triggers
-        =subtype.today? ? "that evening" : "the next afternoon"
-  %tr
-    %td.none{:colspan => 4} It is always safe to consume strengtheners and produce energetically.
-  %tr
-    -@object.subtypes.each do |subtype|
-      %td.quarter.bordered
-        %ul.left
-          %li=subtype.consume_strengtheners
-          %li=subtype.produce_energetically

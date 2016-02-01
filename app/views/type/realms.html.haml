@@ -1,65 +1,12 @@
 - content_for(:title, 'The Four Realms')
 %table
-  %tr
-    -Realm.all.each do |realm|
-      %td.quarter.none
-        %h2=link_to realm.name, type_path(realm.path)
-  %tr
-    -Realm.all.each do |realm|
-      %th.quarter
-        %h3=realm.potential.capitalize
-  %tr
-    -Realm.all.each do |realm|
-      %td.middle.none
-        %p
-          =realm.consume_with
-          =realm.strengtheners
-          and
-          =realm.triggers
-          until you feel
-          =realm.full
-  %tr
-    -Realm.all.each do |realm|
-      %td.middle
-        %p
-          never feel
-          =realm.full
-          and your
-          =realm.potential
-          will disappear
-  %tr 
-    -Realm.all.each do |realm|
-      %td.middle
-        %p
-          fall asleep feeling
-          =realm.full
-          and you will wake up with more
-          =realm.potential
-  %tr
-    -Realm.all.each do |realm|
-      %th.quarter
-        %h3=realm.strengths.capitalize
-  %tr
-    -Realm.all.each do |realm|
-      %td.quarter.middle.none
-        %p
-          =realm.produce
-          until you feel
-          =realm.worn_out
-  %tr
-    -Realm.all.each do |realm|
-      %td.middle
-        %p
-          never feel
-          =realm.worn_out
-          and your
-          =realm.strengths 
-          will atrophy
-  %tr 
-    -Realm.all.each do |realm|
-      %td.middle
-        %p
-          fall asleep feeling
-          =realm.worn_out
-          and you will wake up with better
-          =realm.strengths
+  -Realm.all.in_groups_of(2) do |row|
+    %tr
+      -row.each do |realm|
+        %td.half
+          %h2=link_to realm.name, type_path(realm.path)
+          %ul.left
+            %li=realm.consume_energizers
+            %li=realm.produce_energetically
+            %li=realm.produce_strongly
+            %li=realm.consume_strengtheners

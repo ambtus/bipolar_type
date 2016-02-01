@@ -1,85 +1,11 @@
 - content_for(:title, 'The Four Attitudes')
-%h2 Two Natures
 %table
-  %tr
-    %td.half.bordered
-      %h3 Energetic
-      %ul.left
-        %li wake
-        %li consume strengtheners
-        %li consume energizers until full
-        %li produce energetically
-        %li produce strongly until worn out
-        %li sleep
-    %td.half.bordered
-      %h3 Strong
-      %ul.left
-        %li wake
-        %li produce energetically
-        %li produce strongly until worn out
-        %li consume strengtheners
-        %li consume energizers until full
-        %li sleep
-%h2 Two Nurtures
-%table
-  %tr
-    %td.half.bordered
-      %h3 Consume!
-      %ul.left
-        %li consume energizers until full
-        %li want to stop consuming
-        %li be encouraged or forced to continue consuming
-        %li consume until given “permission” to stop
-    %td.half.bordered
-      %h3 Produce!
-      %ul.left
-        %li produce strongly until worn out
-        %li want to stop producing
-        %li be encouraged or forced to continue producing
-        %li produce until given “permission” to stop
-%h2 Nature plus Nurture
-%table
-  %tr
-    %th.narrow.none
-    %th.halfish.none Consume!
-    %th.halfish.none Produce!
-  %tr
-    %th.narrow.middle.none Energetic
-    %td.halfish.bordered
-      %ul.left
-        %li wake
-        %li consume strengtheners
-        %li.warning consume energizers until there is nothing left to consume
-        %li produce energetically 
-        %li.warning continue to produce energetically
-        %li sleep 
-      %p.center=link_to "Strengths atrophy", type_path("weakness")
-    %td.halfish.bordered
-      %ul.left
-        %li wake
-        %li consume strengtheners
-        %li consume energizers until full
-        %li produce energetically
-        %li.warning produce strongly until there is nothing left to produce
-        %li sleep 
-      %p.center=link_to "Strengths accumulate", type_path("bulkiness")
-  %tr
-    %th.narrow Strong
-    %td.halfish.bordered
-      %ul.left
-        %li wake
-        %li produce energetically
-        %li produce strongly until you are worn out
-        %li consume strengtheners
-        %li.warning consume energizers until there is nothing left to consume
-        %li sleep
-      %p.center=link_to "Energy accumulates", type_path("obesity")
-    %td.halfish.bordered
-      %ul.left
-        %li wake
-        %li produce energetically
-        %li.warning produce strongly until there is nothing left to produce
-        %li consume strengtheners
-        %li.warning continue to consume strengtheners
-        %li sleep 
-      %p.center=link_to "Energy atrophies", type_path("anorexia")
+  -Attitude.all.values_at(0,1,3,2).in_groups_of(2) do |row|
+    %tr
+      -row.each do |attitude|
+        %td.half
+          %h2=link_to attitude.name, type_path(attitude.path)
+          %ul.left
+            %li=attitude.preface
+            %li=attitude.behavior
+            %li=attitude.result.prefix("tends to be ")

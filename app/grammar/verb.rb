@@ -78,7 +78,7 @@ class Verb < Word
   VOWEL_Y = %w{pay repay say buy}
   def vowel_y?; VOWEL_Y.include?(@string); end
 
-  ESSES = %w{do teach guess}
+  ESSES = %w{do go teach guess express}
   def es?; ESSES.include?(@string); end
 
   ORS = %w{effect}

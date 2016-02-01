@@ -8,26 +8,30 @@
       other subtypes with the
       %span.warning same realm or attitude
       will become unavailable.
+    %p.center
+      If you get stuck, you can
+      =link_to "start over.", discover_path(Answer.first_path)
   %tr
     %td.narrow.none &nbsp;
-    %td.fifth.none Tendency to accumulate energy
-    %td.fifth.none Tendency for strengths to atrophy
-    %td.fifth.none Tendency to accumulate strengths
-    %td.fifth.none Tendency for energy to atrophy
+    -Attitude.all.each do |attitude|
+      %td.fifth.none=attitude.result.prefix("Tends to be ")
   -Realm.all.each do |realm|
     %tr
       %td.narrow.middle.none=realm.name
       -realm.subtypes.each do |subtype|
         %td.fifth.bordered{:class => @answer.class(subtype)}
           %p.center
+            I
+            =subtype.verb
+            =subtype.objects
+            until there
+            =subtype.objects.are
+            no more
+            =subtype.objects
+            left to
+            =subtype.verb
+            %br 
             -if @answer.class(subtype) == "free"
               =link_to subtype.result.prefix("too "), discover_path(@answer.next(subtype))
             -else
               =subtype.result.prefix("too ")
-%p
-  Note: a tendency is not the same thing as an actuality. If you work very hard 
-  %em not
-  to have too much or too little of something, then you can be pretty sure that your
-  %em tendency
-  is the opposite.
-  This also means it’s usually impossible to answer for someone else because you cannot know whether or not they are achieving the result by accident or by deliberate effort.
