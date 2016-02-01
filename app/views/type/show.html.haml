@@ -1,49 +1,52 @@
 - content_for(:title, @object.name)
 %table
-  %caption
-    %p.center The four tendencies.
+  %tr
+  %th{:colspan => 4} The problem.
   %tr
     -@object.subtypes.each do |subtype|
       %td.quarter.bordered
-        %p.center
-          =link_to subtype.identifier, discover_path(subtype.discover_path)
-          %br
-          =subtype.result.prefix("too ").parenthesize
-%table
-  %caption
-    %p.center It is always safe to consume strengtheners and produce energetically.
+        %p
+          You will
+          =subtype.consumer? ? subtype.consume_triggers : subtype.produce_strongly
+          until there
+          =subtype.consumer? ? subtype.triggers.are : subtype.pns.are
+          no
+          =subtype.consumer? ? subtype.triggers : subtype.pns
+          left to
+          =subtype.consumer? ? subtype.consume_with : subtype.pvs
+          unless someone with authority stops you
+  %tr
+  %th{:colspan => 4} The result.
+  %tr
+    -@object.subtypes.each do |subtype|
+      %td.quarter.bordered
+        %p=subtype.result.prefix("Too ")
+  %tr
+    %th{:colspan => 4} The solution
+  %tr
+    %td.none{:colspan => 4} Avoid temptation before the fact.
+  %tr
+    -@object.subtypes.each do |subtype|
+      %td.quarter.bordered.middle
+        %p
+          Create an environment where opportunities to
+          =subtype.consumer? ?subtype.consume_triggers : subtype.produce_strongly
+          are limited but not so rare that you
+          =subtype.consumer? ? "never feel" : "are never"
+          =subtype.consumer? ? subtype.full : subtype.worn_out
+  %tr
+    %td.none{:colspan => 4} Compensate after the fact.
+  %tr
+    -@object.subtypes.each do |subtype|
+      %td.quarter.bordered.middle
+
+        =subtype.consumer? ? subtype.produce_strongly : subtype.consume_triggers
+        =subtype.today? ? "that evening" : "the next afternoon"
+  %tr
+    %td.none{:colspan => 4} It is always safe to consume strengtheners and produce energetically.
   %tr
     -@object.subtypes.each do |subtype|
       %td.quarter.bordered
         %ul.left
           %li=subtype.consume_strengtheners
           %li=subtype.produce_energetically
-%table
-  %caption
-    %p.center
-      Make every effort to change
-      %em when
-      you consume energizers and produce strongly.
-  %tr
-    -@object.subtypes.each do |subtype|
-      %td.quarter.bordered
-        %h2 Morning
-        %ul.left
-          %li=subtype.morning_do.prefix("do ")
-          %li=subtype.morning_dont.prefix("don’t ")
-  %tr
-    -@object.subtypes.each do |subtype|
-      %td.quarter.bordered
-        %h2 Evening
-        %ul.left
-          %li=subtype.evening_do.prefix("do ")
-          %li=subtype.evening_dont.prefix("don’t ")
-%table
-  %caption
-    %p.center The result of following the above schedule:
-  -%w{euthymia mania depression}.each do |episode|
-    %tr
-      -@object.subtypes.each do |subtype|
-        %td.quarter.bordered
-          %h2=episode.capitalize
-          %p.center=subtype.send(episode)

@@ -60,6 +60,6 @@ class Noun < Word
    trust intonation head stomach horror color romance library fire defense
    offense tragedy shelter self-esteem praise criticism investment\ income
    self-deprecation potential\ energy egotism kinetic\ energy trivia safety
-   comfort skin soul mind property}
+   comfort skin soul mind property credit\ rating dessert}
 
 end

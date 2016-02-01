@@ -21,3 +21,4 @@ p { text-align: left; }
 .right { text-align: right; }
 .small { font-size: small;}
 .left { text-align: left; }
+.nowrap {white-space: nowrap; }

@@ -22,14 +22,8 @@ class Realm < Indexable
   def consume_suffix; choose Word, %w{NIL to at NIL }; end
   def consume_with; Phrase.optional consume, consume_suffix; end
 
-  def produce; choose Verb, %w{walk talk reason play }; end
-  def produce_with; choose Verb, %w{do say predict buy }; end
-
-  def unproductive; choose Adjective, %w{lazy silent undecided frugal }; end
-  def productive; choose Adjective, %w{active talkative decisive extravagant }; end
-
   def empty; choose Adjective, %w{hungry lonely unsure miserly }; end
-  def full; choose Adjective, %w{satisfied connected convinced rewarded }; end
+  def full; choose Adjective, %w{satisfied empathetic convinced rewarded }; end
   def ready; choose Adjective, %w{restless excited confident rich }; end
   def worn_out; choose Adjective, %w{sore misunderstood wrong indebted }; end
 
@@ -40,29 +34,46 @@ class Realm < Indexable
   # def strengths; Phrase.new [strengths_adj, strengths_noun]; end
   def strengths; strengths_noun; end
   def atrophy; strengths_noun.uncountable? ? "atrophies" : "atrophy"; end
+  def accumulate; strengths_noun.uncountable? ? "accumulates" : "accumulate"; end
   def strengths_atrophy; Phrase.new [strengths, atrophy]; end
+  def strengths_accumulate; Phrase.new [strengths, accumulate]; end
   def kinetics; choose Noun, %w{glycogen emotions facts cash }; end
-  def potential; choose Noun, %w{fat friends memories savings }; end
+  def potential; choose Noun, %w{fat friends knowledge savings }; end
+  def atrophies; potential.uncountable? ? "atrophies" : "atrophy"; end
+  def accumulates; potential.uncountable? ? "accumulates" : "accumulate"; end
+  def potential_atrophies; Phrase.new [potential, atrophies]; end
+  def potential_accumulates; Phrase.new [potential, accumulates]; end
+
   def energy; Phrase.new [kinetics, "and", potential]; end
 
   def externals; choose Noun, %w{food stories truths rewards }; end
   def gain_internals; Phrase.new [consume_with, externals]; end
-  def internals; choose Noun, %w{body opinions knowledge wealth }; end
+  def internals; Phrase.new [strengths, "and", potential]; end
 
-  def strengtheners; choose Noun, %w{protein words patterns loan\ repayments }; end
-  def triggers; choose Noun, %w{carbs voices facts income }; end
-  def buffers; choose Noun, %w{fat harmony categories automatic\ investments }; end
+  def external_storage; choose Noun, %w{pantry network references pay\ checks }; end
+
+  def strengtheners; choose Noun, %w{protein words patterns repayments }; end
+  def trigger_adjective; choose Adjective, %w{sweet whiny colorful disposable }; end
+  def triggers; choose Noun, %w{carbs intonation details spending\ money }; end
+  #def triggers; Phrase.new [trigger_adjective, trigger_nouns]; end
+  def buffers; choose Noun, %w{fat humor categories automatic\ investments }; end
 
   def consume_triggers; Phrase.new [consume_with, triggers]; end
   def consume_strengtheners; Phrase.new [consume_with, strengtheners]; end
 
-  def pve; choose Verb, %w{do express fix spend }; end
-  def pae; choose Adjective, %w{aerobic strong current petty}; end
-  def pne; choose Noun, %w{aerobics emotions problems cash }; end
-  def produce_energetically; Phrase.new [pve, pne]; end
-  def pvs; choose Verb, %w{do verbalize prevent use }; end
-  def pas; choose Adjective, %w{heavy abstract future available}; end
-  def pns; choose Noun, %w{labor concepts problems credit }; end
-  def produce_strongly; Phrase.new [pvs, pns]; end
+  def pve; choose Verb, %w{go express solve spend }; end
+  def pae; choose Adjective, %w{NIL strong current NIL}; end
+  def pne; choose Noun, %w{places emotions problems cash }; end
+  def produce_energetically; Phrase.new [pve, pae, pne]; end
+  def pvs; choose Verb, %w{lift verbalize prevent borrow }; end
+  def pas; choose Adjective, %w{heavy abstract future NIL}; end
+  def pns; choose Noun, %w{weights concepts problems money }; end
+  def produce_strongly; Phrase.new [pvs, pas, pns]; end
 
+  def produce; Phrase.new [pve, pae, pne, "and", pvs, pas, pns]; end
+
+  def productions; choose Noun, %w{exercise conversations situations purchases }; end
+
+  def unproductive; choose Adjective, %w{lazy silent undecided frugal }; end
+  def productive; choose Adjective, %w{active talkative decisive extravagant }; end
 end

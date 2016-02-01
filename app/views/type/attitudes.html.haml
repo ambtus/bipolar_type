@@ -3,44 +3,83 @@
 %table
   %tr
     %td.half.bordered
-      %h3 Consume - Produce
+      %h3 Energetic
       %ul.left
         %li wake
-        %li feel empty
-        %li consume until full
-        %li produce until worn out
+        %li consume strengtheners
+        %li consume energizers until full
+        %li produce energetically
+        %li produce strongly until worn out
         %li sleep
     %td.half.bordered
-      %h3 Produce - Consume
+      %h3 Strong
       %ul.left
         %li wake
-        %li feel ready
-        %li produce until worn out
-        %li consume until full
+        %li produce energetically
+        %li produce strongly until worn out
+        %li consume strengtheners
+        %li consume energizers until full
         %li sleep
 %h2 Two Nurtures
 %table
-  %caption
-    %p.center An infant is born with a short sleep wake cycle.
-    %p.center In order to lengthen that cycle to fit the 24-hour day, they must stretch the wake part of the cycle by either consuming or producing more than is natural.
   %tr
     %td.half.bordered
-      %h3 Consume Energizers
-      %p Nurtured to ignore “stop consuming” signals, they will not stop consuming just because they feel full; feeling full is irrelevant if it is not yet “time” to stop consuming.
-      %p As energizers are more apt to make you feel full than strengtheners, they are effectively nurtured to consume more energizers than is natural.
+      %h3 Consume!
+      %ul.left
+        %li consume energizers until full
+        %li want to stop consuming
+        %li be encouraged or forced to continue consuming
+        %li consume until given “permission” to stop
     %td.half.bordered
-      %h3 Produce Strongly
-      %p Nurtured to ignore “stop producing” signals, they will not stop producing just because they are worn out; being worn out is irrelevant if it is not yet “time” to stop producing.
-      %p As strong production is more apt to wear you out than energetic production, they are effectively nurtured to produce more strongly than is natural.
+      %h3 Produce!
+      %ul.left
+        %li produce strongly until worn out
+        %li want to stop producing
+        %li be encouraged or forced to continue producing
+        %li produce until given “permission” to stop
 %h2 Nature plus Nurture
 %table
-  %caption The result of your nurture depends on when you do it, which depends on your nature.
   %tr
-    -Attitude.all.each do |attitude|
-      %td.quarter.bordered
-        -%w{morning afternoon evening night}.each do |time|
-          %h3=time.capitalize
-          %ul.none
-            %li{:class => attitude.send(time + "_class")}=attitude.send(time + "_feeling").prefix("feel ")
-            %li{:class => attitude.send(time + "_class")}=attitude.send(time + "_behavior")
-        %h3=link_to attitude.name.suffix(" Subtypes"), type_path(attitude.path)
+    %th.narrow.none
+    %th.halfish.none Consume!
+    %th.halfish.none Produce!
+  %tr
+    %th.narrow.middle.none Energetic
+    %td.halfish.bordered
+      %ul.left
+        %li wake
+        %li consume strengtheners
+        %li.warning consume energizers until there is nothing left to consume
+        %li produce energetically 
+        %li.warning continue to produce energetically
+        %li sleep 
+      %p.center=link_to "Strengths atrophy", type_path("weakness")
+    %td.halfish.bordered
+      %ul.left
+        %li wake
+        %li consume strengtheners
+        %li consume energizers until full
+        %li produce energetically
+        %li.warning produce strongly until there is nothing left to produce
+        %li sleep 
+      %p.center=link_to "Strengths accumulate", type_path("bulkiness")
+  %tr
+    %th.narrow Strong
+    %td.halfish.bordered
+      %ul.left
+        %li wake
+        %li produce energetically
+        %li produce strongly until you are worn out
+        %li consume strengtheners
+        %li.warning consume energizers until there is nothing left to consume
+        %li sleep
+      %p.center=link_to "Energy accumulates", type_path("obesity")
+    %td.halfish.bordered
+      %ul.left
+        %li wake
+        %li produce energetically
+        %li.warning produce strongly until there is nothing left to produce
+        %li consume strengtheners
+        %li.warning continue to consume strengtheners
+        %li sleep 
+      %p.center=link_to "Energy atrophies", type_path("anorexia")
