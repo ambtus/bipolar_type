@@ -43,50 +43,15 @@ class Subtype < Phrase
     end
   end
 
-  def measurable
-    case attitude.identifier.string
-    when "strong", "energetic"
-      realm.strengths
-    when "submissive", "dominant"
-      realm.potential
-    else
-      raise "attitude identifiers changed"
-    end
-  end
+  def behaviors; [produce_energetically, produce_strongly, consume_strengtheners, consume_energizers]; end
 
-  def result
-    case attitude.identifier.string
-    when "strong", "submissive"
-      measurable.many_phrase
-    when "energetic", "dominant"
-      measurable.few_phrase
-    else
-      raise "attitude identifiers changed"
-    end
-  end
+  def loved_behavior; behaviors[index]; end
+  def hated_behavior; behaviors[(index + 1).modulo(4)]; end
+  def disliked_behavior; behaviors[(index + 2).modulo(4)]; end
+  def liked_behavior; behaviors[(index + 3).modulo(4)]; end
 
-  def goal
-    case attitude.identifier.string
-    when "strong", "submissive"
-      measurable.fewer_phrase
-    when "energetic", "dominant"
-      measurable.prefix("more ")
-    else
-      raise "attitude identifiers changed"
-    end
-  end
+  def measurable; attitude.index.even? ? realm.strengths : realm.energy; end
 
-  def behaviors; [consume_energizers, produce_energetically, produce_strongly, consume_strengtheners, consume_energizers]; end
+  def result; attitude.index < 2 ? measurable.few_phrase : measurable.many_phrase; end
 
-  def preface; behaviors[attitude.index]; end
-  def behave; behaviors[attitude.index + 1]; end
-  def postfix; behaviors[(attitude.index + 3).modulo(4)]; end
-  def objects; realm.send %w{pne pns strengtheners energizers }[attitude.index]; end
-  def verb; realm.send %w{pve pvs consume_with consume_with }[attitude.index]; end
-
-  def more_behaviors; [produce_more_strongly, consume_more_strengtheners, consume_more_energizers, produce_more_energetically]; end
-  def hard; more_behaviors[attitude.index]; end
-  def behave_more; more_behaviors[(attitude.index + 3).modulo(4)]; end
-
-  def rare; realm.send(attitude.rare); end
 end

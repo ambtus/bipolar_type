@@ -1,0 +1,5 @@
+%ul.left
+  -%w{hate dislike like love}.each do |attitude|
+    %li
+      =attitude
+      =subtype.send("#{attitude}d_behavior").ing

@@ -1,36 +1,27 @@
--content_for(:title, "Subtype ##{@answer.number} of 4")
+-content_for(:title, 'The 24 BipolarTypes')
+%p.center A BipolarType is made up of four subtypes: one from each realm and attitude.
+%p.center
+  Once you have
+  %span.chosen choosen a subtype,
+  other subtypes with the
+  %span.warning same realm or attitude
+  will become unavailable.
+  %br
+  If you get stuck, you can
+  =link_to "start over.", discover_path(Answer.first_path)
+%h2==Subtype ##{@answer.number} of 4
 %table
-  %caption
-    %p.center A BipolarType is made up of four subtypes: one from each realm and attitude.
-    %p.center
-      Once you have
-      %span.chosen choosen a subtype,
-      other subtypes with the
-      %span.warning same realm or attitude
-      will become unavailable.
-    %p.center
-      If you get stuck, you can
-      =link_to "start over.", discover_path(Answer.first_path)
   %tr
     %td.narrow.none &nbsp;
     -Attitude.all.each do |attitude|
-      %td.fifth.none=attitude.result.prefix("Tends to be ")
+      %th.fifth=attitude.name
   -Realm.all.each do |realm|
     %tr
-      %td.narrow.middle.none=realm.name
+      %th.narrow.middle=realm.name
       -realm.subtypes.each do |subtype|
         %td.fifth.bordered{:class => @answer.class(subtype)}
           %p.center
-            I
-            =subtype.verb
-            =subtype.objects
-            until there
-            =subtype.objects.are
-            no more
-            =subtype.objects
-            left to
-            =subtype.verb
-            %br 
+            =render "subtype", :subtype => subtype
             -if @answer.class(subtype) == "free"
               =link_to subtype.result.prefix("too "), discover_path(@answer.next(subtype))
             -else

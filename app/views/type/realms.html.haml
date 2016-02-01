@@ -1,12 +1,23 @@
 - content_for(:title, 'The Four Realms')
 %table
-  -Realm.all.in_groups_of(2) do |row|
-    %tr
-      -row.each do |realm|
-        %td.half
-          %h2=link_to realm.name, type_path(realm.path)
-          %ul.left
-            %li=realm.consume_energizers
-            %li=realm.produce_energetically
-            %li=realm.produce_strongly
-            %li=realm.consume_strengtheners
+  %tr
+    %th.narrow &nbsp;
+    -Realm.all.each do |realm|
+      %th.quarter
+        %h2=link_to realm.name, type_path(realm.path)
+  %tr
+    %th.middle Energy
+    -Realm.all.each do |realm|
+      %td.quarter
+        %ul.left
+          %li=realm.consume_energizers
+          %li=realm.energy.prefix("have enough ")
+          %li=realm.produce_energetically
+  %tr
+    %th.middle Strength
+    -Realm.all.each do |realm|
+      %td.quarter
+        %ul.left
+          %li=realm.consume_strengtheners
+          %li=realm.strengths.prefix("have strong ")
+          %li=realm.produce_strongly

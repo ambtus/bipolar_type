@@ -5,23 +5,7 @@
       -row.each do |subtype|
         %td.half
           %h2=link_to subtype.name, discover_path(subtype.discover_path)
-          %ul.left
-            %li=subtype.preface.s
-            %li
-              =subtype.verb.s
-              =subtype.objects
-              until there
-              =subtype.objects.are
-              no more
-              =subtype.objects
-              left to
-              =subtype.verb
-            %li=subtype.result.prefix("tends to have too ")
-          %ul.left
-            %li=subtype.goal.prefix("needs ")
-            %li=subtype.hard.prefix("first ")
-            %li
-              then, when you feel
-              =subtype.rare.comma
-              =subtype.postfix
-
+          =render "subtype", :subtype => subtype
+          %p
+            Usually has too
+            =subtype.result.period

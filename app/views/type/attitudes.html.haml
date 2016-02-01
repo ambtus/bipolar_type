@@ -3,9 +3,9 @@
   -Attitude.all.values_at(0,1,3,2).in_groups_of(2) do |row|
     %tr
       -row.each do |attitude|
-        %td.half
+        %td.half.left
           %h2=link_to attitude.name, type_path(attitude.path)
-          %ul.left
-            %li=attitude.preface
-            %li=attitude.behavior
-            %li=attitude.result.prefix("tends to be ")
+          %dl
+            -%w{hate dislike like love}.each do |type_of|
+              %dt=type_of
+              %dd=attitude.send("#{type_of}d_behavior").ing

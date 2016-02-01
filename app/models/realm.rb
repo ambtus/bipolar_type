@@ -18,68 +18,22 @@ class Realm < Indexable
   def identifier; choose Adjective, IDENTIFIERS; end
   def name; identifier.titleize; end
 
-  def consume; choose Verb, %w{eat listen look earn }; end
-  def consume_suffix; choose Word, %w{NIL to at NIL }; end
-  def consume_with; Phrase.optional consume, consume_suffix; end
+  def consume; choose Verb, %w{eat hear see earn }; end
+  def energizers; choose Noun, %w{carbs intonation facts wages }; end
+  def strengtheners; choose Noun, %w{protein words results salary }; end
 
-  def empty; choose Adjective, %w{hungry lonely unsure miserly }; end
-  def full; choose Adjective, %w{satisfied empathetic convinced rewarded }; end
-  def ready; choose Adjective, %w{restless excited confident rich }; end
-  def worn_out; choose Adjective, %w{sore misunderstood wrong indebted }; end
+  def consume_energizers; Phrase.new [consume, energizers]; end
+  def consume_strengtheners; Phrase.new [consume, strengtheners]; end
 
-  def dying; choose Word, %w{starvation suicide  fatal\ mistakes destitution}; end
+  def pev; choose Verb, %w{go express make spend }; end
+  def pen; choose Noun, %w{places emotions choices cash }; end
+  def produce_energetically; Phrase.new [pev, pen]; end
 
-  def strengths_adj; choose Adjective, %w{strong abstract logical strong }; end
-  def strengths_noun; choose Noun, %w{muscles metaphors rules credit }; end
-  # def strengths; Phrase.new [strengths_adj, strengths_noun]; end
-  def strengths; strengths_noun; end
-  def atrophy; strengths_noun.uncountable? ? "atrophies" : "atrophy"; end
-  def accumulate; strengths_noun.uncountable? ? "accumulates" : "accumulate"; end
-  def strengths_atrophy; Phrase.new [strengths, atrophy]; end
-  def strengths_accumulate; Phrase.new [strengths, accumulate]; end
-  def kinetics; choose Noun, %w{glycogen emotions facts cash }; end
-  def potential; choose Noun, %w{fat friends knowledge savings }; end
-  def atrophies; potential.uncountable? ? "atrophies" : "atrophy"; end
-  def accumulates; potential.uncountable? ? "accumulates" : "accumulate"; end
-  def potential_atrophies; Phrase.new [potential, atrophies]; end
-  def potential_accumulates; Phrase.new [potential, accumulates]; end
+  def psv; choose Verb, %w{lift influence prevent use }; end
+  def psn; choose Noun, %w{weights people problems credit }; end
+  def produce_strongly; Phrase.new [psv, psn]; end
 
-  def energy; Phrase.new [kinetics, "and", potential]; end
+  def strengths; choose Noun, %w{muscles metaphors rules credit }; end
+  def energy; choose Noun, %w{fat opinions knowledge savings }; end
 
-  def externals; choose Noun, %w{food stories truths rewards }; end
-  def gain_internals; Phrase.new [consume_with, externals]; end
-  def internals; Phrase.new [strengths, "and", potential]; end
-
-  def external_storage; choose Noun, %w{pantry network references pay\ checks }; end
-
-  def strengtheners; choose Noun, %w{protein words results repayments }; end
-  def trigger_adjective; choose Adjective, %w{sweet whiny colorful disposable }; end
-  def energizers; choose Noun, %w{carbs intonation details spending\ money }; end
-  def buffers; choose Noun, %w{fat humor categories automatic\ investments }; end
-
-  def consume_energizers; Phrase.new [consume_with, energizers ]; end
-  def consume_strengtheners; Phrase.new [consume_with, strengtheners]; end
-
-  def consume_more_energizers; Phrase.new [consume_with, "more", energizers ]; end
-  def consume_more_strengtheners; Phrase.new [consume_with, "more", strengtheners]; end
-
-  def pve; choose Verb, %w{go express solve spend }; end
-  def pae; choose Adjective, %w{distant strong current hard}; end
-  def pne; choose Noun, %w{places emotions problems cash }; end
-  def produce_energetically; Phrase.new [pve, pae, pne]; end
-  def produce_more_energetically; Phrase.new [pve, pae.er, pne]; end
-
-  def pvs; choose Verb, %w{lift verbalize prevent borrow }; end
-  def pas; choose Adjective, %w{heavy abstract future secured }; end
-  def pns; choose Noun, %w{weights concepts problems money }; end
-  def produce_strongly; Phrase.new [pvs, pas, pns]; end
-  def produce_more_strongly; Phrase.new [pvs, pas.er, pns]; end
-
-
-  def produce; Phrase.new [pve, pae, pne, "and", pvs, pas, pns]; end
-
-  def productions; choose Noun, %w{exercise conversations situations purchases }; end
-
-  def unproductive; choose Adjective, %w{lazy silent undecided frugal }; end
-  def productive; choose Adjective, %w{active talkative decisive extravagant }; end
 end
