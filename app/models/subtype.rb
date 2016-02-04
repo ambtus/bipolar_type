@@ -68,15 +68,9 @@ class Subtype < Phrase
   def gains_strengths; Phrase.new ["builds new", strengths]; end
 
   def cycle_result
-    case attitude.index
-    when 0
-      "will run out of #{energy} during a manic episode"
-    when 1
-      "may run out of #{energy} during a manic episode" 
-    when 2
-      "#{strengths} #{become} more and more relevant during every cycle" 
-    when 3
-      "#{organ} gets bigger and bigger during every cycle" 
-    end
+    attitude.cycle_result.
+      gsub("potential energy", energy).
+      gsub("strengths", strengths).gsub("become", become).
+      gsub("gets", organ + " gets")
   end
 end

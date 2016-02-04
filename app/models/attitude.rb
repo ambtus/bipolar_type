@@ -35,11 +35,11 @@ class Attitude < Indexable
     when 0
       "will run out of potential energy during a manic episode"
     when 1
-      "may run out of potential energy during a manic episode" 
+      "may run out of potential energy during a manic episode"
     when 2
-      "strengths become more and more relevant during every cycle" 
+      "strengths become more and more useful during every cycle"
     when 3
-      "gets bigger and bigger during every cycle" 
+      "gets bigger and bigger during every cycle"
     end
   end
 

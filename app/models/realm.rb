@@ -38,7 +38,7 @@ class Realm < Indexable
 
   def produce; choose Verb, %w{move communicate think shop }; end
 
-  def strengths; choose Noun, %w{muscles relationships rules credit }; end
+  def strengths; choose Noun, %w{muscles metaphors rules credit }; end
   def energy; choose Noun, %w{fat hope memories savings }; end
 
   def atrophy; strengths.uncountable? ? "atrophies" : "atrophy"; end
