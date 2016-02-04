@@ -33,7 +33,7 @@ class Attitude < Indexable
   def cycle_result
     case index
     when 0
-      "will run out of potential energy during a manic episode"
+      "will eventually run out of potential energy during a manic episode"
     when 1
       "may run out of potential energy during a manic episode"
     when 2
