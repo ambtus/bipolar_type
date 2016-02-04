@@ -12,17 +12,17 @@
 %h2==Subtype ##{@answer.number} of 4
 %table
   %tr
-    %td.narrow.none &nbsp;
+    %th
     -Attitude.all.each do |attitude|
-      %th.fifth=attitude.name
+      %th=attitude.name
   -Realm.all.each do |realm|
     %tr
-      %th.narrow.middle=realm.name
+      %th.middle=realm.name
       -realm.subtypes.each do |subtype|
-        %td.fifth.bordered{:class => @answer.class(subtype)}
+        %td{:class => @answer.class(subtype)}
+          =render "subtype", :subtype => subtype
           %p.center
-            =render "subtype", :subtype => subtype
             -if @answer.class(subtype) == "free"
-              =link_to subtype.result.prefix("too "), discover_path(@answer.next(subtype))
+              =link_to subtype.result, discover_path(@answer.next(subtype))
             -else
-              =subtype.result.prefix("too ")
+              =subtype.result

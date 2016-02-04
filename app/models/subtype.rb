@@ -30,7 +30,7 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def identifier; Phrase.new [realm.identifier.ly, attitude.identifier]; end
+  def identifier; index.even? ? Phrase.new([realm.identifier.ly, attitude.identifier]) : Phrase.new([realm.identifier, attitude.identifier]); end
   def name; identifier.titleize; end
 
   def method_missing(meth, *arguments, &block)
@@ -52,6 +52,31 @@ class Subtype < Phrase
 
   def measurable; attitude.index.even? ? realm.strengths : realm.energy; end
 
-  def result; attitude.index < 2 ? measurable.few_phrase : measurable.many_phrase; end
+  def amount; attitude.index < 2 ? measurable.fewer : "more"; end
 
+  def result; Phrase.new [amount, measurable, "than average"]; end
+
+  def manic;[loses_energy, loses_energy, gains_strengths, gains_strengths][attitude.index]; end
+  def mania; Phrase.new [manic, "when manic"]; end
+
+  def depressed; [loses_strengths, gains_energy, loses_strengths, gains_energy][attitude.index]; end
+  def depression; Phrase.new [depressed, "when depressed"]; end
+
+  def loses_energy; Phrase.new ["loses", energy]; end
+  def gains_energy; Phrase.new ["gains", energy]; end
+  def loses_strengths; Phrase.new ["unused", strengths, atrophy]; end
+  def gains_strengths; Phrase.new ["builds new", strengths]; end
+
+  def cycle_result
+    case attitude.index
+    when 0
+      "will run out of #{energy} during a manic episode"
+    when 1
+      "may run out of #{energy} during a manic episode" 
+    when 2
+      "#{strengths} #{become} more and more relevant during every cycle" 
+    when 3
+      "#{organ} gets bigger and bigger during every cycle" 
+    end
+  end
 end

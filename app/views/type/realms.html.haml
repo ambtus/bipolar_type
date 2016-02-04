@@ -1,23 +1,19 @@
 - content_for(:title, 'The Four Realms')
 %table
   %tr
-    %th.narrow &nbsp;
-    -Realm.all.each do |realm|
-      %th.quarter
-        %h2=link_to realm.name, type_path(realm.path)
-  %tr
-    %th.middle Energy
-    -Realm.all.each do |realm|
-      %td.quarter
-        %ul.left
+    %th &nbsp;
+    %th Energy
+    %th Strength
+  -Realm.all.each do |realm|
+    %tr
+      %th=link_to realm.name, type_path(realm.path)
+      %td
+        %ul
           %li=realm.consume_energizers
-          %li=realm.energy.prefix("have enough ")
-          %li=realm.produce_energetically
-  %tr
-    %th.middle Strength
-    -Realm.all.each do |realm|
-      %td.quarter
-        %ul.left
-          %li=realm.consume_strengtheners
-          %li=realm.strengths.prefix("have strong ")
+          %li=realm.energy.prefix("or use ")
+          %li=realm.produce_energetically.prefix("to ")
+      %td
+        %ul
           %li=realm.produce_strongly
+          %li=realm.consume_strengtheners.prefix("then ")
+          %li=realm.strengths.prefix("to build or repair ")

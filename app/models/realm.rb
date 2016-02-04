@@ -1,7 +1,7 @@
 class Realm < Indexable
 
   ########
-  IDENTIFIERS = %w{physical social mental financial}
+  IDENTIFIERS = %w{physical spiritual mental financial}
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   all.each { |r| define_singleton_method(r.path) {all[IDENTIFIERS.index r.string]} }
@@ -18,22 +18,33 @@ class Realm < Indexable
   def identifier; choose Adjective, IDENTIFIERS; end
   def name; identifier.titleize; end
 
-  def consume; choose Verb, %w{eat hear see earn }; end
-  def energizers; choose Noun, %w{carbs intonation facts wages }; end
-  def strengtheners; choose Noun, %w{protein words results salary }; end
+  def consume_verb; choose Verb, %w{eat listen look earn }; end
+  def consume_helper; choose Word, %w{NIL to at NIL }; end
+  def consume; Phrase.optional consume_verb, consume_helper; end
+
+  def strengtheners; choose Noun, %w{protein stories patterns salary }; end
+  def energizers; choose Noun, %w{carbs music details bonuses }; end
 
   def consume_energizers; Phrase.new [consume, energizers]; end
   def consume_strengtheners; Phrase.new [consume, strengtheners]; end
 
-  def pev; choose Verb, %w{go express make spend }; end
-  def pen; choose Noun, %w{places emotions choices cash }; end
+  def pev; choose Verb, %w{go express solve spend }; end
+  def pen; choose Noun, %w{places emotions problems cash }; end
   def produce_energetically; Phrase.new [pev, pen]; end
 
   def psv; choose Verb, %w{lift influence prevent use }; end
-  def psn; choose Noun, %w{weights people problems credit }; end
+  def psn; choose Noun, %w{weights adversaries problems credit }; end
   def produce_strongly; Phrase.new [psv, psn]; end
 
-  def strengths; choose Noun, %w{muscles metaphors rules credit }; end
-  def energy; choose Noun, %w{fat opinions knowledge savings }; end
+  def produce; choose Verb, %w{move communicate think shop }; end
+
+  def strengths; choose Noun, %w{muscles relationships rules credit }; end
+  def energy; choose Noun, %w{fat hope memories savings }; end
+
+  def atrophy; strengths.uncountable? ? "atrophies" : "atrophy"; end
+  def become; strengths.uncountable? ? "becomes" : "become"; end
+
+  def organ; choose Noun, %w{body faith mind wealth}; end
+
 
 end

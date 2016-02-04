@@ -7,8 +7,9 @@
 .fifth { width: 16%; }
 .quarter { width: 21%; }
 .third { width: 30%; }
-.half { width: 46% }
 .halfish { width: 42% }
+.half { width: 46% }
+.wide { width: 60% }
 .full { width: 96% }
 .narrow {
   padding: 0;

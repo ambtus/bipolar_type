@@ -3,7 +3,7 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{realms attitudes}.include? params[:id]
+    elsif %w{overview bipolar realms attitudes subtypes}.include? params[:id]
       render params[:id]
     else
       [Realm, Attitude, Quad].each do |klass|

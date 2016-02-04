@@ -1,11 +1,16 @@
 - content_for(:title, 'The Four Attitudes')
 %table
-  -Attitude.all.values_at(0,1,3,2).in_groups_of(2) do |row|
+  -Attitude.all.values_at(0,1,3,2).in_groups_of(2).each do |row|
     %tr
       -row.each do |attitude|
-        %td.half.left
+        %td.half
           %h2=link_to attitude.name, type_path(attitude.path)
-          %dl
-            -%w{hate dislike like love}.each do |type_of|
-              %dt=type_of
-              %dd=attitude.send("#{type_of}d_behavior").ing
+          -%w{hate dislike like love}.in_groups_of(2).each do |group|
+            %ul
+              -group.each do |method|
+                %li=attitude.send(method).ing.prefix(method + "s ")
+          %p.center=attitude.result
+          %ul
+            %li=attitude.mania
+            %li=attitude.depression
+          %p.center=attitude.cycle_result

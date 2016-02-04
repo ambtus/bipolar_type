@@ -1,9 +1,14 @@
-- content_for(:title, @object.name)
+- content_for(:title, 'The Sixteen Subtypes')
 %table
-  -@object.subtypes.values_at(0,1,3,2).in_groups_of(2).each do |row|
+  %tr
+    %th.narrow
+    -Attitude.all.each do |attitude|
+      %th.quarter=attitude.name
+  -Realm.all.each do |realm|
     %tr
-      -row.each do |subtype|
-        %td.half
+      %th.middle=realm.name
+      -realm.subtypes.each do |subtype|
+        %td
           %h2=link_to subtype.name, discover_path(subtype.discover_path)
           =render "subtype", :subtype => subtype
           %p.center=subtype.result
