@@ -33,7 +33,7 @@ class Realm < Indexable
   def produce_energetically; Phrase.new [pev, pen]; end
 
   def psv; choose Verb, %w{lift influence prevent use }; end
-  def psn; choose Noun, %w{weights adversaries problems credit }; end
+  def psn; choose Noun, %w{weights people problems credit }; end
   def produce_strongly; Phrase.new [psv, psn]; end
 
   def produce; choose Verb, %w{move communicate think shop }; end
