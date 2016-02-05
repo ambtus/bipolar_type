@@ -18,12 +18,12 @@ class Realm < Indexable
   def identifier; choose Adjective, IDENTIFIERS; end
   def name; identifier.titleize; end
 
-  def consume_verb; choose Verb, %w{eat listen look earn }; end
-  def consume_helper; choose Word, %w{NIL to at NIL }; end
+  def consume_verb; choose Verb, %w{eat listen look work }; end
+  def consume_helper; choose Word, %w{NIL to at on }; end
   def consume; Phrase.optional consume_verb, consume_helper; end
 
-  def strengtheners; choose Noun, %w{protein stories patterns salary }; end
-  def energizers; choose Noun, %w{carbs music details bonuses }; end
+  def strengtheners; choose Noun, %w{protein stories patterns chores }; end
+  def energizers; choose Noun, %w{carbs music details projects }; end
 
   def consume_energizers; Phrase.new [consume, energizers]; end
   def consume_strengtheners; Phrase.new [consume, strengtheners]; end

@@ -1,6 +1,7 @@
 - content_for(:title, @object.name)
 %table
-  %caption Steady State
+  %caption
+    %h2 Euthymia
   -@object.subtypes.values_at(0,1,3,2).in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
@@ -9,7 +10,8 @@
           =render "subtype", :subtype => subtype
           %p.center=subtype.result
 %table
-  %caption Bipolar States
+  %caption
+    %h2 Bipolar States
   -@object.subtypes.values_at(0,1,3,2).in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
@@ -19,3 +21,21 @@
             %li=subtype.mania
             %li=subtype.depression
           %p.center=subtype.cycle_result
+%table
+  %caption
+    %h2 Mania Advice
+  -@object.subtypes.values_at(0,1,3,2).in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half
+          %h2=subtype.name
+          =render "mania/" + subtype.ordinal, :realm => subtype.realm
+%table
+  %caption
+    %h2 Depression Advice
+  -@object.subtypes.values_at(0,1,3,2).in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half
+          %h2=subtype.name
+          =render "depression/" + subtype.ordinal, :realm => subtype.realm

@@ -1,6 +1,7 @@
 - content_for(:title, 'The Four Attitudes')
 %table
-  %caption Steady State
+  %caption
+    %h2 Euthymia
   -Attitude.all.values_at(0,1,3,2).in_groups_of(2).each do |row|
     %tr
       -row.each do |attitude|
@@ -12,7 +13,8 @@
                 %li=attitude.send(method).ing.prefix(method + "s ")
           %p.center=attitude.result
 %table
-  %caption Bipolar States
+  %caption
+    %h2 Bipolar States
   -Attitude.all.values_at(0,1,3,2).in_groups_of(2).each do |row|
     %tr
       -row.each do |attitude|
