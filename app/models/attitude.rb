@@ -30,6 +30,7 @@ class Attitude < Indexable
   def depressed; depressed_results[index]; end
   def depression; Phrase.new [depressed, "when depressed"]; end
 
+  def diagnosis; choose Noun, %w{mania bipolar cyclothymia depression}; end
   def cycle_result
     case index
     when 0
@@ -43,10 +44,10 @@ class Attitude < Indexable
     end
   end
 
-    def loses_energy; Phrase.new ["loses", energy]; end
-    def gains_energy; Phrase.new ["gains", energy]; end
-    def loses_strengths; Phrase.new ["less critical", strengths, "atrophy"]; end
-    def gains_strengths; Phrase.new ["builds new", strengths]; end
+  def loses_energy; Phrase.new ["loses", energy]; end
+  def gains_energy; Phrase.new ["gains", energy]; end
+  def loses_strengths; Phrase.new ["less critical", strengths, "atrophy"]; end
+  def gains_strengths; Phrase.new ["builds new", strengths]; end
 
   private
     def consume; Verb.new "consume"; end
@@ -59,7 +60,7 @@ class Attitude < Indexable
     def energetic_production; Phrase.new [produce, "energetically"]; end
     def strong_production; Phrase.new [produce, "strongly"]; end
 
-  def behaviors; [energetic_production, strong_production, consume_strength, consume_energy]; end
+    def behaviors; [energetic_production, strong_production, consume_strength, consume_energy]; end
     def manic_results; [loses_energy, loses_energy, gains_strengths, gains_strengths]; end
     def depressed_results; [loses_strengths, gains_energy, loses_strengths, gains_energy]; end
 
