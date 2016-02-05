@@ -13,6 +13,7 @@
   -@attitude.subtypes.each do |subtype|
     %td.quarter
       %h2=subtype.name
+      %p.center=subtype.diagnosis
       %ul
         %li=subtype.mania
         %li=subtype.depression
