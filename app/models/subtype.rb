@@ -62,10 +62,10 @@ class Subtype < Phrase
   def depressed; [loses_strengths, gains_energy, loses_strengths, gains_energy][attitude.index]; end
   def depression; Phrase.new [depressed, "when depressed"]; end
 
-  def loses_energy; Phrase.new ["loses", energy]; end
-  def gains_energy; Phrase.new ["gains", energy]; end
-  def loses_strengths; Phrase.new ["unused", strengths, atrophy]; end
-  def gains_strengths; Phrase.new ["builds new", strengths]; end
+  def loses_energy; attitude.loses_energy.gsub("potential energy", energy); end
+  def gains_energy; attitude.gains_energy.gsub("potential energy", energy); end
+  def loses_strengths; attitude.loses_strengths.gsub("strengths", strengths).gsub("atrophy", atrophy); end
+  def gains_strengths; attitude.gains_strengths.gsub("strengths", strengths); end
 
   def cycle_result
     attitude.cycle_result.

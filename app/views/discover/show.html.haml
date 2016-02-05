@@ -20,9 +20,13 @@
       %th.middle=realm.name
       -realm.subtypes.each do |subtype|
         %td{:class => @answer.class(subtype)}
-          =render "subtype", :subtype => subtype
+          %ul
+            -%w{hate love}.each do |attitude|
+              %li
+                =attitude + "s"
+                =subtype.send("#{attitude}d_behavior").ing
           %p.center
             -if @answer.class(subtype) == "free"
-              =link_to subtype.result, discover_path(@answer.next(subtype))
+              =link_to subtype.name, discover_path(@answer.next(subtype))
             -else
-              =subtype.result
+              =subtype.name

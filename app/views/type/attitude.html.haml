@@ -1,0 +1,33 @@
+- content_for(:title, @attitude.name)
+%table
+  %caption
+    %h2 Euthymia
+  -@attitude.subtypes.each do |subtype|
+    %td.quarter
+      %h2=link_to subtype.name, discover_path(subtype.discover_path)
+      =render "subtype", :subtype => subtype
+      %p.center=subtype.result
+%table
+  %caption
+    %h2 Bipolar States
+  -@attitude.subtypes.each do |subtype|
+    %td.quarter
+      %h2=subtype.name
+      %ul
+        %li=subtype.mania
+        %li=subtype.depression
+      %p.center=subtype.cycle_result
+%table
+  %caption
+    %h2 Mania Advice
+  -@attitude.subtypes.each do |subtype|
+    %td.quarter
+      %h2=subtype.name
+      =render "mania/" + subtype.ordinal, :realm => subtype.realm
+%table
+  %caption
+    %h2 Depression Advice
+  -@attitude.subtypes.each do |subtype|
+    %td.quarter
+      %h2=subtype.name
+      =render "depression/" + subtype.ordinal, :realm => subtype.realm

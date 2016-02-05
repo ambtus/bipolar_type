@@ -59,6 +59,7 @@ class Phrase
   %w{ed en ing s}.each do |meth|
     define_method(meth) {Phrase.new words.collect{|w| w.is_a?(Verb) ? w.send(meth) : w}}
   end
+  # noun methods
   %w{many few fewer fewest}.each do |meth|
     define_method(meth + "_phrase") do
       if words.first.is_a?(Adjective) && words.second.is_a?(Noun)
@@ -69,12 +70,14 @@ class Phrase
     end
   end
   def more_phrase; Phrase.new words.collect{|w| w.is_a?(Noun) ? ["more", w] : w}; end
+  # all words methods
   def reverse; Phrase.new words.reverse; end
   def titleize; Phrase.new words.map(&:capitalize); end
   def parenthesize
     Phrase.new [first.open_paren, mid_words, last.close_paren]
   end
-
-  def many_phrase; Phrase.new [last.many, words]; end
+  def gsub(pattern, replacement)
+    Phrase.new words.collect{|w| w.gsub(pattern, replacement)}
+  end
 
 end

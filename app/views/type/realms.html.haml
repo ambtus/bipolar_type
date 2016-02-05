@@ -6,11 +6,16 @@
     %th Strength
   -Realm.all.each do |realm|
     %tr
-      %th=link_to realm.name, type_path(realm.path)
+      %td.middle
+        %h2=link_to realm.name, type_path(realm.path)
+        %p.center
+          =realm.consume_verb
+          &
+          =realm.produce
       %td
         %ul
           %li=realm.consume_energizers
-          %li=realm.energy.prefix("or use ")
+          %li=realm.energy.prefix("or use stored ")
           %li=realm.produce_energetically.prefix("to ")
       %td
         %ul
