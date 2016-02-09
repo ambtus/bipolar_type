@@ -5,10 +5,10 @@ table {
   margin-left:auto;
   margin-right:auto;
 }
-td {
-  border: 1px solid grey;
-  vertical-align: top;
+td { 
+  border: 1px solid grey; 
+  text-align: center; 
 }
 td.bottom { vertical-align: bottom;}
-td.middle { vertical-align: middle; }
+td.top { vertical-align: top; }
 td.none {border: none;}

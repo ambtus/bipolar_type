@@ -1,0 +1,16 @@
+%h3==#{subtype.realm.name} Equilibrium
+%p
+  If a person
+  =subtype.consume.s
+  four
+  ==#{subtype.density}-#{subtype.kinetics}-per-#{subtype.resource}
+  =subtype.resource.pluralize
+  a day and uses up
+  =subtype.product
+  =subtype.kinetics
+  =subtype.produce.ing.comma
+  their
+  =subtype.potential.uncountable? ? "amount" : "number"
+  of
+  =subtype.potential
+  will remain stable.

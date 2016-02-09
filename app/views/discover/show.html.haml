@@ -1,10 +1,10 @@
 -content_for(:title, 'The 24 BipolarTypes')
-%p.center A BipolarType is made up of four subtypes: one from each realm and attitude.
+%p.center A BipolarType is made up of four subtypes: one from each row and column.
 %p.center
   Once you have
   %span.chosen choosen a subtype,
   other subtypes with the
-  %span.warning same realm or attitude
+  %span.warning same row or column
   will become unavailable.
   %br
   If you get stuck, you can
@@ -20,12 +20,8 @@
       %th.middle=realm.name
       -realm.subtypes.each do |subtype|
         %td{:class => @answer.class(subtype)}
-          %ul
-            -%w{hate love}.each do |attitude|
-              %li
-                =attitude + "s"
-                =subtype.send("#{attitude}d_behavior").ing
-          %p.center
+          %p=subtype.preference.s
+          %p
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))
             -else

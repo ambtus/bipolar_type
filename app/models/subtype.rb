@@ -30,7 +30,7 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def identifier; index.even? ? Phrase.new([realm.identifier.ly, attitude.identifier]) : Phrase.new([realm.identifier, attitude.identifier]); end
+  def identifier; [sensitivity, realm.identifier, behavior].join(" "); end
   def name; identifier.titleize; end
 
   def method_missing(meth, *arguments, &block)
@@ -43,34 +43,8 @@ class Subtype < Phrase
     end
   end
 
-  def behaviors; [produce_energetically, produce_strongly, consume_strengtheners, consume_energizers]; end
+  def action; consumer? ? consume_verb : produce;  end
+  def preference; Phrase.new [affect, "to", action.string]; end #dont want action acting like a verb
 
-  def loved_behavior; behaviors[index]; end
-  def hated_behavior; behaviors[(index + 1).modulo(4)]; end
-  def disliked_behavior; behaviors[(index + 2).modulo(4)]; end
-  def liked_behavior; behaviors[(index + 3).modulo(4)]; end
 
-  def measurable; attitude.index.even? ? realm.strengths : realm.energy; end
-
-  def amount; attitude.index < 2 ? measurable.fewer : "more"; end
-
-  def result; Phrase.new [amount, measurable, "than average"]; end
-
-  def manic;[loses_energy, loses_energy, gains_strengths, gains_strengths][attitude.index]; end
-  def mania; Phrase.new [manic, "when manic"]; end
-
-  def depressed; [loses_strengths, gains_energy, loses_strengths, gains_energy][attitude.index]; end
-  def depression; Phrase.new [depressed, "when depressed"]; end
-
-  def loses_energy; attitude.loses_energy.gsub("potential energy", energy); end
-  def gains_energy; attitude.gains_energy.gsub("potential energy", energy); end
-  def loses_strengths; attitude.loses_strengths.gsub("strengths", strengths).gsub("atrophy", atrophy); end
-  def gains_strengths; attitude.gains_strengths.gsub("strengths", strengths); end
-
-  def cycle_result
-    attitude.cycle_result.
-      gsub("potential energy", energy).
-      gsub("strengths", strengths).gsub("become", become).
-      gsub("gets", organ + " gets")
-  end
 end

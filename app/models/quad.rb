@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; Realm.all.values_at(1,3,2,0).join("-"); end
+  def self.my_path; Realm.all.values_at(0,3,1,2).join("-"); end
   def self.first; Quad.send my_path; end
 
   def initialize(string)

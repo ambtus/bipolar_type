@@ -18,33 +18,18 @@ class Realm < Indexable
   def identifier; choose Adjective, IDENTIFIERS; end
   def name; identifier.titleize; end
 
-  def consume_verb; choose Verb, %w{eat listen look earn }; end
+  def consume_verb; choose Verb, %w{eat listen look work }; end
   def consume_helper; choose Word, %w{NIL to at NIL }; end
   def consume; Phrase.optional consume_verb, consume_helper; end
 
-  def strengtheners; choose Noun, %w{protein stories results repayments }; end
-  def energizers; choose Noun, %w{carbs music details spending\ money }; end
+  def density; [600, 30, 300, 20][index]; end
+  def product; density * 4; end
+  def kinetics; choose Noun, %w{calories minutes pieces dollars }; end
+  def resource; choose Noun, %w{meal story puzzle hour }; end
 
-  def consume_energizers; Phrase.new [consume, energizers]; end
-  def consume_strengtheners; Phrase.new [consume, strengtheners]; end
+  def potential; choose Noun, %w{fat friends information savings }; end
 
-  def pev; choose Verb, %w{run express solve spend }; end
-  def pen; choose Noun, %w{races emotions problems cash }; end
-  def produce_energetically; Phrase.new [pev, pen]; end
+  def produce; choose Verb, %w{walk talk decide shop }; end
 
-  def psv; choose Verb, %w{lift influence prevent use }; end
-  def psn; choose Noun, %w{weights people problems credit }; end
-  def produce_strongly; Phrase.new [psv, psn]; end
-
-  def produce; choose Verb, %w{walk talk decide spend }; end
-
-  def strengths; choose Noun, %w{muscles relationships rules credit }; end
-  def energy; choose Noun, %w{fat hope memories savings }; end
-
-  def atrophy; strengths.uncountable? ? "atrophies" : "atrophy"; end
-  def become; strengths.uncountable? ? "becomes" : "become"; end
-
-  def organ; choose Noun, %w{body faith mind wealth}; end
-
-
+  def triggers; choose Noun, %w{carbs intonation details rewards }; end
 end

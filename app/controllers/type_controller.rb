@@ -3,19 +3,13 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{overview bipolar realms attitudes}.include? params[:id]
-      render params[:id]
-    elsif Attitude.paths.include?(params[:id]) 
-        @attitude = Attitude.send(params[:id])
-        render :attitude
+    elsif params[:id] == "numbers"
+      render :numbers
+    elsif Quad.paths.include?(params[:id])
+      @quad = Quad.send(params[:id])
+      render :quad
     else
-      [Realm, Quad].each do |klass|
-        if klass.paths.include?(params[:id])
-          @object = klass.send(params[:id])
-          render :show and return
-        end
-      end
-      raise "#{params[:id]} is not a realm or quad path"
+      render :start
     end
   end
 
