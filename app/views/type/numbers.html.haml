@@ -1,13 +1,10 @@
--content_for(:title, 'Numbers')
+-content_for(:title, 'Comparisons')
 %table
+  %caption Numbers are for illustrative purposes only.
   %tr
   -Realm.all.each do |realm|
     %tr
-      %td
-        %h3==#{realm.name} Mania
-        %p=render "mania", :subtype => realm.subtypes.first
-      %td
-        =render "equilibrium", :subtype => realm.subtypes.first
-      %td
-        %h3==#{realm.name} Depression
-        %p=render "depression", :subtype => realm.subtypes.second
+      -%w{mania equilibrium depression}.each do |state|
+        %td
+          %h3==#{realm.name} #{state.capitalize}
+          %p=render state, :subtype => realm.generic_subtype

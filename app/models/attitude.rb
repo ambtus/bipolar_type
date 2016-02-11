@@ -22,4 +22,11 @@ class Attitude < Indexable
   def action; Verb.new(consumer? ? "consume" : "produce"); end
   def preference; Phrase.new [affect, "to", action]; end
 
+  def change; Verb.new(consumer? ? "gain" : "lose"); end
+  def speed; Word.new(insensitive? ? "quickly" : "slowly"); end
+
+  private
+    def potential; Noun.new "potential"; end
+
+
 end

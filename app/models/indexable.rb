@@ -9,14 +9,14 @@ class Indexable < Noun
   ########
 
   %w{first second third fourth last}.each {|i| define_singleton_method(i) {all.send(i)}}
-  def self.generic; self.new("X"); end
+  def self.generic; self.new("generic"); end
   def self.x; self.generic; end
-  def generic?; string == "X"; end
+  def generic?; string == "generic"; end
   def ordinal; generic? ? "generic" : %w{first second third fourth}[index]; end
 
   def initialize(string)
     unless self.class::IDENTIFIERS.include? string
-      raise "#{string} is not a #{self.class.name}" unless string == "X"
+      raise "#{string} is not a #{self.class.name}" unless string == "generic"
     end
     super
   end
@@ -25,7 +25,13 @@ class Indexable < Noun
 
   def others; self.class.all.select{|i| i != self}; end
 
-  def index; self.class::IDENTIFIERS.index string; end
+  def index
+    if string == "generic"
+      self.class::IDENTIFIERS.size + 1
+    else
+      self.class::IDENTIFIERS.index string
+    end
+  end
   def <=>(other); index <=> other.index; end
 
   def choose(klass, array)
