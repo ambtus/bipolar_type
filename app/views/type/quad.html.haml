@@ -5,6 +5,49 @@
       -row.each do |subtype|
         %td.half.top
           %h2=subtype.name
-          =render "always", :subtype => subtype
+          %p=render "always", :subtype => subtype
           %h3=subtype.manic.name
+          %p=render "mania", :subtype => subtype
           %h3=subtype.depressed.name
+          %p=render "depression", :subtype => subtype
+%h2 Bipolar
+%p
+  If you are willing to have too
+  =@quad.subtypes.first.potential.few_phrase
+  and too
+  =@quad.subtypes.second.potential.few_phrase
+  then you can take stimulants all the time and not worry about having too
+  =@quad.subtypes.third.potential.many_phrase
+  or too
+  =@quad.subtypes.fourth.potential.many_phrase.period
+%p
+  Conversely, if you are willing to have too
+  =@quad.subtypes.third.potential.many_phrase
+  and too
+  =@quad.subtypes.fourth.potential.many_phrase
+  then you can take sedatives all the time and not worry about having too
+  =@quad.subtypes.first.potential.few_phrase
+  or too
+  =@quad.subtypes.second.potential.few_phrase.period
+%p
+  If, however, you want to have enough
+  =@quad.subtypes.first.potential
+  but not too
+  =@quad.subtypes.third.potential.many_phrase
+  (for example), then you have a problem.
+%p
+  You would like to take targeted sedative that will allow you to
+  =@quad.subtypes.first.consume
+  more
+  =@quad.subtypes.first.energy
+  and 
+  =@quad.subtypes.second.use
+  =@quad.subtypes.second.energy.fewer_phrase
+  and stimulants that will allow you to
+  =@quad.subtypes.third.use
+  more
+  =@quad.subtypes.third.energy
+  and
+  =@quad.subtypes.fourth.consume
+  =@quad.subtypes.fourth.energy.fewer_phrase
+  but psychopharmacology isn’t quite that advanced yet.

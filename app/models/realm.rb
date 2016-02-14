@@ -27,6 +27,6 @@ class Realm < Indexable
 
   def waste; choose Verb, %w{distant\ future luxuries exercise anger}; end
 
-  def potential; choose Noun, %w{hope savings fat friends}; end
+  def potential; choose Noun, %w{hope savings fat attachments}; end
 
 end
