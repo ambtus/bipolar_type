@@ -20,9 +20,13 @@ class Realm < Indexable
 
   def consume; choose Verb, %w{see earn eat hear}; end
   def energy; choose Noun, %w{results rewards calories emotions}; end
-  def produce; choose Verb, %w{predict spend burn express}; end
+  def use; choose Verb, %w{predict spend burn express}; end
 
   def empty; choose Noun, %w{art winnings sweets music}; end
-  def appear; choose Verb, %w{looks feel taste sounds}; end
+  def appear; choose Verb, %w{look feel taste sound}; end
+
+  def waste; choose Verb, %w{distant\ future luxuries exercise anger}; end
+
+  def potential; choose Noun, %w{hope savings fat friends}; end
 
 end

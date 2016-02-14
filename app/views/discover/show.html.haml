@@ -12,15 +12,15 @@
 %h2==Subtype ##{@answer.number} of 4
 %table
   %tr
-    %th
+    %th.narrow
     -Attitude.all.values_at(2,1,3,0).each do |attitude|
-      %th=attitude.name
+      %th.quarter=attitude.name
   -Realm.all.each do |realm|
     %tr
       %th.middle=realm.name
       -realm.subtypes.values_at(2,1,3,0).each do |subtype|
         %td{:class => @answer.class(subtype)}
-          -#%p.center=subtype.description
+          =render "always", :subtype => subtype
           %p.center
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))
