@@ -21,16 +21,19 @@ class Subtype < Phrase
   def to_s; inspect.to_s; end
   def to_str; to_s; end
 
-  def path; to_s.underscore; end
+  def path; to_s; end
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
+  def peers; ALL.select{|s| s.realm == realm || s.attitude == attitude}; end
   def discover_path; Answer.first.next(self); end
 
   def same_realm; ALL.select{|s| s.realm == realm}; end
-  def same_attitude; ALL.select{|s| s.attitude == attitude}; end
+  def opposite; same_realm.find{|s| s.attitude == attitude.opposite}; end
+  def manic; same_realm.find{|s| s.attitude == attitude.manic}; end
+  def depressed; same_realm.find{|s| s.attitude == attitude.depressed}; end
 
-  def identifier; [sensitivity, realm.identifier, behavior].join(" "); end
+  def identifier; Phrase.new [realm, attitude].map(&:identifier); end
   def name; identifier.titleize; end
 
   def method_missing(meth, *arguments, &block)
@@ -42,9 +45,5 @@ class Subtype < Phrase
       super
     end
   end
-
-  def action; consumer? ? consume_verb : produce;  end
-  def preference; Phrase.new [affect, "to", action.string]; end #dont want action acting like a verb
-
 
 end

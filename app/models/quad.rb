@@ -1,11 +1,11 @@
 class Quad < Phrase
 
-  def self.my_path; Realm.all.values_at(0,3,1,2).join("-"); end
+  def self.my_path; Realm.all.join("-"); end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
     @path = string
-    @realms = string.split("-").collect{|r| Realm.send(r)}.uniq
+    @realms = string.split("-").collect{|r| Realm.send(r)}
     @realms.check_constraints Realm, 4, 4
     super(@realms)
   end
