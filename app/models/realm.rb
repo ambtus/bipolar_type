@@ -25,7 +25,7 @@ class Realm < Indexable
   def empty; choose Noun, %w{art winnings sweets music}; end
   def appear; choose Verb, %w{look feel taste sound}; end
 
-  def waste; choose Verb, %w{distant\ future luxuries exercise anger}; end
+  def waste; choose Verb, %w{hypotheticals luxuries exercise shout}; end
 
   def potential; choose Noun, %w{hope savings fat attachments}; end
 
