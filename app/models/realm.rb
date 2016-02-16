@@ -28,6 +28,6 @@ class Realm < Indexable
 
   def waste; choose Verb, %w{hypotheticals luxuries exercise shout}; end
 
-  def potential; choose Noun, %w{hope savings fat attachments}; end
+  def potential; choose Noun, %w{hope savings fat values}; end
 
 end
