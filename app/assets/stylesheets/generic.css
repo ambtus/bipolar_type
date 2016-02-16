@@ -16,10 +16,11 @@
   width: 4%;
   hyphens: auto;
 }
-p { text-align: left; }
 .heading {font-style: italic; text-align: center; }
 .center { text-align: center; }
+.left { text-align: left; }
 .right { text-align: right; }
 .small { font-size: small;}
-.left { text-align: left; }
 .nowrap {white-space: nowrap; }
+.no_top {margin-top: 0; }
+.no_bottom {margin-bottom: 0; }

@@ -16,6 +16,7 @@ class Realm < Indexable
   def generic_subtype; Subtype.new [self, Attitude.generic]; end
 
   def identifier; choose Adjective, IDENTIFIERS; end
+  def adverb; identifier.ly; end
   def name; identifier.titleize; end
 
   def consume; choose Verb, %w{see earn eat hear}; end

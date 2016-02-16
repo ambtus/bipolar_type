@@ -46,4 +46,17 @@ class Subtype < Phrase
     end
   end
 
+  def short
+    case attitude.ordinal
+    when "first"
+      "I #{use} a lot of #{energy}"
+    when "second"
+      "I #{consume} #{energy.few_phrase}"
+    when "third"
+      "I #{consume} a lot of #{energy}"
+    when "fourth"
+      "I #{use} #{energy.few_phrase}"
+    end
+  end
+
 end

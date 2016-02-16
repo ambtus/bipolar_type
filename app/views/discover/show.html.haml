@@ -20,7 +20,7 @@
       %th.middle=realm.name
       -realm.subtypes.values_at(2,1,3,0).each do |subtype|
         %td{:class => @answer.class(subtype)}
-          %p=render "always", :subtype => subtype
+          %p=subtype.short
           %p.center
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))

@@ -1,73 +1,58 @@
 - content_for(:title, @quad.name)
 %table
   %tr
-    %td{:colspan => 4} When manic or on stimulants (e.g. caffeine):
-  -@quad.subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td.top
-          %h3=subtype.manic.name
-          %p.center
-            I lose
-            =subtype.top? ? "needed" : "unneeded"
-            =subtype.potential
+    %td.third
+      %h2=@first.name
+      =render "subtype", :subtype => @first
+    %td.quarter
+      %h2 Manic
+      %ul
+        %li use more energy than you consume
+        %li use stored energy
+      %h3 Irritable Mania
+      %ul
+        %li=@first.potential.prefix "lose needed "
+        %li=@second.potential.prefix "lose needed "
+      %h3 Euphoric Mania
+      %ul
+        %li=@third.potential.prefix "lose unwanted "
+        %li=@fourth.potential.prefix "lose unwanted "
+    %td.third
+      %h2=@second.name
+      =render "subtype", :subtype => @second
   %tr
-    %td{:colspan => 4} Whether manic or depressed:
-  -@quad.subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td.top
-          %h2=subtype.name
-          %p=render "always", :subtype => subtype
+    %td
+      %h2 Liberal
+      %ul
+        %li produce more than average
+        %li consume more than average
+    %td
+      %h2 “Normal”
+      %ul
+        %li produce an average amount
+        %li consume an average amount
+    %td
+      %h2 Conservative
+      %ul
+        %li produce less than average
+        %li consume less than average
   %tr
-    %td{:colspan => 4} When depressed or taking sedatives (e.g. alcohol):
-  -@quad.subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td.top
-          %h3=subtype.depressed.name
-          %p.center
-            I gain
-            =subtype.top? ? "needed" : "unneeded"
-            =subtype.potential
-%h2 Bipolar
-%p
-  If you don’t need
-  =@quad.subtypes[0,2].map(&:potential).join(" or ")
-  then you can take stimulants all the time and not have too
-  =@quad.subtypes.third.potential.many_phrase
-  or too
-  =@quad.subtypes.fourth.potential.many_phrase.period
-  Conversely, if you need
-  =@quad.subtypes[0,2].map(&:potential).join(" and ")
-  then you can take sedatives all the time and suffer the excess
-  =@quad.subtypes[2,2].map(&:potential).join(" and ") + "."
-%p
-  If, however, you need
-  =@quad.subtypes[0,2].map(&:potential).join(" and ")
-  but cannot tolerate the excess
-  =@quad.subtypes[2,2].map(&:potential).join(" and ")
-  then you have a problem.
-%p
-  You would like to take targeted sedatives that will allow you to
-  =@quad.subtypes.first.consume
-  more
-  =@quad.subtypes.first.energy
-  and
-  =@quad.subtypes.second.use
-  =@quad.subtypes.second.energy.fewer_phrase
-  and stimulants that will allow you to
-  =@quad.subtypes.third.use
-  more
-  =@quad.subtypes.third.energy
-  and
-  =@quad.subtypes.fourth.consume
-  =@quad.subtypes.fourth.energy.fewer_phrase
-  but psychopharmacology isn’t quite that advanced yet.
-%table
-  -@quad.subtypes.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |subtype|
-        %td.half.top
-          %h2=subtype.name
-          %p=render "advice", :subtype => subtype
+    %td
+      %h2=@third.name
+      =render "subtype", :subtype => @third
+    %td
+      %h2 Depressed
+      %ul
+        %li consume more energy than you use
+        %li store energy
+      %h3 Lethargic Depression
+      %ul
+        %li=@first.potential.prefix "gain needed "
+        %li=@second.potential.prefix "gain needed "
+      %h3 Agitated Depression
+      %ul
+        %li=@third.potential.prefix "gain unwanted "
+        %li=@fourth.potential.prefix "gain unwanted "
+    %td
+      %h2=@fourth.name
+      =render "subtype", :subtype => @fourth

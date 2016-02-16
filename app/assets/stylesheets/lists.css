@@ -1,4 +1,5 @@
-ul.none {
+ul {
+  list-style-position: inside;
   list-style-type: none;
   padding: 0;
 }

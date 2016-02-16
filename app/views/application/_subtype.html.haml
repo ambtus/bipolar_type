@@ -1,0 +1,40 @@
+%p
+  You usually
+  =subtype.consume
+  and
+  =subtype.use
+  =subtype.left? ? "a lot of #{subtype.energy}" : subtype.energy.few_phrase
+%p.no_bottom
+  Normally, when you
+  =subtype.backslash? ? subtype.consume : subtype.use
+  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  you
+  =subtype.backslash? ? subtype.use : subtype.consume
+  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+%p.no_bottom
+  If you are
+  %em=subtype.top? ? "manic," : "depressed,"
+  instead of
+  =subtype.backslash? ? subtype.use.ing : subtype.consume.ing
+  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  you will
+  =subtype.top? ? "lose" : "gain"
+  =subtype.potential.semicolon
+  you will be
+  %em unable
+  to
+  =subtype.backslash? ? subtype.use : subtype.consume
+  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+%p
+  All you can do is to try to
+  =subtype.backslash? ? subtype.consume : subtype.use
+  =subtype.left? ? "more" : "less"
+%p
+  If you want to
+  %em=subtype.top? ? "gain" : "lose"
+  =subtype.potential
+  you will have to wait until you are
+  =subtype.top? ? "depressed" : "manic"
+  and can
+  =subtype.backslash? ? subtype.use : subtype.consume
+  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
