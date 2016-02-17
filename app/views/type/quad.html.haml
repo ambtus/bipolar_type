@@ -6,53 +6,48 @@
       =render "subtype", :subtype => @first
     %td.quarter
       %h2 Manic
-      %ul
-        %li use more energy than you consume
-        %li use stored energy
+      %p You use more energy than you consume
+      %p You convert potential energy to kinetic energy
       %h3 Irritable Mania
       %ul
-        %li=@first.potential.prefix "lose needed "
-        %li=@second.potential.prefix "lose needed "
+        %li=@first.potential.prefix "You lose needed "
+        %li=@second.potential.prefix "You lose needed "
       %h3 Euphoric Mania
       %ul
-        %li=@third.potential.prefix "lose unwanted "
-        %li=@fourth.potential.prefix "lose unwanted "
+        %li=@third.potential.prefix "You lose unwanted "
+        %li=@fourth.potential.prefix "You lose unwanted "
     %td.third
       %h2=@second.name
       =render "subtype", :subtype => @second
   %tr
     %td
       %h2 Liberal
-      %ul
-        %li produce more than average
-        %li consume more than average
+      %p You produce more than average
+      %p You consume more than average
     %td
       %h2 “Normal”
-      %ul
-        %li produce an average amount
-        %li consume an average amount
+      %p You produce an average amount
+      %p You consume an average amount
     %td
       %h2 Conservative
-      %ul
-        %li produce less than average
-        %li consume less than average
+      %p You produce less than average
+      %p You consume less than average
   %tr
     %td
       %h2=@third.name
       =render "subtype", :subtype => @third
     %td
       %h2 Depressed
-      %ul
-        %li consume more energy than you use
-        %li store energy
+      %p You consume more energy than you use
+      %p You convert kinetic energy to potential energy
       %h3 Lethargic Depression
       %ul
-        %li=@first.potential.prefix "gain needed "
-        %li=@second.potential.prefix "gain needed "
+        %li=@first.potential.prefix "You gain needed "
+        %li=@second.potential.prefix "You gain needed "
       %h3 Agitated Depression
       %ul
-        %li=@third.potential.prefix "gain unwanted "
-        %li=@fourth.potential.prefix "gain unwanted "
+        %li=@third.potential.prefix "You gain unwanted "
+        %li=@fourth.potential.prefix "You gain unwanted "
     %td
       %h2=@fourth.name
       =render "subtype", :subtype => @fourth

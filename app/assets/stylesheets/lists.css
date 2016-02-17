@@ -1,8 +1,8 @@
 ul {
   list-style-position: inside;
-  list-style-type: none;
   padding: 0;
 }
+ul.none {  list-style-type: none; }
 dt, dd {
   display: inline;
   margin: 0;

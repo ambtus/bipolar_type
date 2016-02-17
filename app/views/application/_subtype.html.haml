@@ -1,16 +1,26 @@
 %p
-  You usually
+  You
   =subtype.consume
   and
   =subtype.use
   =subtype.left? ? "a lot of #{subtype.energy}" : subtype.energy.few_phrase
+%h3 Balance
+%p
+  You want to
+  =subtype.top? ? subtype.use : subtype.consume
+  =subtype.energy
+%p
+  You don’t mind
+  =subtype.top? ? subtype.consume.ing : subtype.use.ing
+  =subtype.energy
 %p.no_bottom
-  Normally, when you
+  When you
   =subtype.backslash? ? subtype.consume : subtype.use
   =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
-  you
+  you automatically
   =subtype.backslash? ? subtype.use : subtype.consume
   =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+%h3 Imbalance
 %p.no_bottom
   If you are
   %em=subtype.top? ? "manic," : "depressed,"
