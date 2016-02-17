@@ -15,28 +15,39 @@
   =subtype.energy
 %p.no_bottom
   When you
-  =subtype.backslash? ? subtype.consume : subtype.use
-  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  =subtype.consume
+  =subtype.top? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
   you automatically
-  =subtype.backslash? ? subtype.use : subtype.consume
-  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  =subtype.use
+  =subtype.top? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
 %h3 Imbalance
 %p.no_bottom
   If you are
   %em=subtype.top? ? "manic," : "depressed,"
   instead of
-  =subtype.backslash? ? subtype.use.ing : subtype.consume.ing
-  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  =subtype.use.ing
+  =subtype.top? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
   you will
   =subtype.top? ? "lose" : "gain"
-  =subtype.potential.semicolon
-  you will be
-  %em unable
-  to
+  =subtype.potential
+%p
+  You cannot stem the
+  =subtype.top? ? "loss" : "gain"
+  of
+  =subtype.potential
+  by trying to
   =subtype.backslash? ? subtype.use : subtype.consume
   =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  because you will merely
+  =subtype.backslash? ? subtype.consume : subtype.use
+  even
+  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  and
+  =subtype.top? ? "lose" : "gain"
+  even more
+  =subtype.potential
 %p
-  All you can do is to try to
+  You can, however, try to
   =subtype.backslash? ? subtype.consume : subtype.use
   =subtype.left? ? subtype.energy.more_phrase : subtype.energy.fewer_phrase
 %p
@@ -48,3 +59,7 @@
   and can
   =subtype.backslash? ? subtype.use : subtype.consume
   =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  without
+  =subtype.backslash? ? subtype.consume.ing : subtype.use.ing
+  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+
