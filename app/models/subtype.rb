@@ -55,4 +55,13 @@ class Subtype < Phrase
     "It’s easier for me to #{easy} #{potential} than to #{hard} #{potential.them}"
   end
 
+  def safe_verb; backslash? ? consume : use; end
+  def safe_object; left? ? energy.many_phrase : energy.few_phrase; end
+
+  def unsafe_verb; backslash? ? use : consume; end
+  def unsafe_object; left? ? energy.fewer_phrase : energy.more_phrase; end
+  def unsafe; Phrase.new [unsafe_verb, unsafe_object]; end
+
+  def advice; Phrase.new [safe_verb.capitalize, "as", safe_object, "as you can and don’t try to", unsafe]; end
+
 end
