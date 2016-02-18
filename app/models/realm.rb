@@ -20,7 +20,7 @@ class Realm < Indexable
   def name; identifier.titleize; end
 
   def consume; choose Verb, %w{see earn eat hear}; end
-  def energy; choose Noun, %w{results rewards calories emotions}; end
+  def energy; choose Noun, %w{results money calories emotions}; end
   def use; choose Verb, %w{predict spend burn express}; end
 
   def empty; choose Noun, %w{art winnings sweets music}; end
@@ -28,6 +28,6 @@ class Realm < Indexable
 
   def waste; choose Verb, %w{hypotheticals luxuries exercise shout}; end
 
-  def potential; choose Noun, %w{hope savings fat attachments}; end
+  def potential; choose Noun, %w{hope savings fat values}; end
 
 end
