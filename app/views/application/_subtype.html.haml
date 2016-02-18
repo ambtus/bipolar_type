@@ -1,65 +1,46 @@
 %p
-  You
-  =subtype.consume
-  and
-  =subtype.use
-  =subtype.left? ? "a lot of #{subtype.energy}" : subtype.energy.few_phrase
-%h3 Balance
-%p
-  You want to
+  You like to
   =subtype.top? ? subtype.use : subtype.consume
   =subtype.energy
 %p
-  You don’t mind
-  =subtype.top? ? subtype.consume.ing : subtype.use.ing
-  =subtype.energy
-%p.no_bottom
-  When you
-  =subtype.consume
-  =subtype.top? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
-  you automatically
-  =subtype.use
-  =subtype.top? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
-%h3 Imbalance
-%p.no_bottom
-  If you are
-  %em=subtype.top? ? "manic," : "depressed,"
-  instead of
-  =subtype.use.ing
-  =subtype.top? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
+  During
+  =subtype.top? ? "mania," : "depression,"
   you will
-  =subtype.top? ? "lose" : "gain"
+  =subtype.easy
+  =subtype.top? ? "needed" : "unneeded"
   =subtype.potential
-%p
+%p.left
   You cannot stem the
-  =subtype.top? ? "loss" : "gain"
+  =subtype.top? ? "loss" : "accumulation"
   of
   =subtype.potential
-  by trying to
-  =subtype.backslash? ? subtype.use : subtype.consume
+  by
+  =subtype.backslash? ? subtype.use.ing : subtype.consume.ing
   =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
-  because you will merely
+  because you will just
   =subtype.backslash? ? subtype.consume : subtype.use
-  even
-  =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
-  and
-  =subtype.top? ? "lose" : "gain"
-  even more
-  =subtype.potential
-%p
-  You can, however, try to
+  =subtype.left? ? subtype.energy.fewer_phrase.comma : subtype.energy.more_phrase.comma
+  but you
+  %em can
   =subtype.backslash? ? subtype.consume : subtype.use
   =subtype.left? ? subtype.energy.more_phrase : subtype.energy.fewer_phrase
-%p
+  without
+  =subtype.backslash? ? subtype.use.ing : subtype.consume.ing
+  =subtype.left? ? subtype.energy.more_phrase : subtype.energy.fewer_phrase
+%p.left
   If you want to
-  %em=subtype.top? ? "gain" : "lose"
+  %em=subtype.hard
+  =subtype.top? ? "needed" : "unneeded"
   =subtype.potential
   you will have to wait until you are
   =subtype.top? ? "depressed" : "manic"
-  and can
+  and will be able to
   =subtype.backslash? ? subtype.use : subtype.consume
   =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
   without
   =subtype.backslash? ? subtype.consume.ing : subtype.use.ing
   =subtype.left? ? subtype.energy.fewer_phrase : subtype.energy.more_phrase
-
+%p
+  =subtype.backslash? ? subtype.consume.ing.capitalize : subtype.use.ing.capitalize
+  =subtype.left? ? subtype.energy.more_phrase : subtype.energy.fewer_phrase
+  is always safe

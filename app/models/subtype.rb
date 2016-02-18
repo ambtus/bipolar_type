@@ -46,17 +46,13 @@ class Subtype < Phrase
     end
   end
 
-  def short
-    case attitude.ordinal
-    when "first"
-      "I #{use} a lot of #{energy}"
-    when "second"
-      "I #{consume} #{energy.few_phrase}"
-    when "third"
-      "I #{consume} a lot of #{energy}"
-    when "fourth"
-      "I #{use} #{energy.few_phrase}"
-    end
+  def modifier; left? ? "more" : energy.fewer; end
+  def behavior; backslash? ? use : consume; end
+
+  def short; "I #{behavior} #{modifier} #{energy} than my peers do"; end
+
+  def ease
+    "It’s easier for me to #{easy} #{potential} than to #{hard} #{potential.them}"
   end
 
 end

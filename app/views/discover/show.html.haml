@@ -13,13 +13,14 @@
 %table
   %tr
     %th.narrow
-    -Attitude.all.values_at(2,1,3,0).each do |attitude|
+    -Attitude.all.each do |attitude|
       %th.quarter=attitude.name
   -Realm.all.each do |realm|
     %tr
       %th.middle=realm.name
-      -realm.subtypes.values_at(2,1,3,0).each do |subtype|
+      -realm.subtypes.each do |subtype|
         %td{:class => @answer.class(subtype)}
+          %p=subtype.ease
           %p=subtype.short
           %p.center
             -if @answer.class(subtype) == "free"
