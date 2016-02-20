@@ -46,22 +46,22 @@ class Subtype < Phrase
     end
   end
 
-  def modifier; left? ? "more" : energy.fewer; end
-  def behavior; backslash? ? use : consume; end
+  def preference; more? ? "like to" : "don’t like to"; end
+  def behavior; rational? ? produce : consume; end
 
-  def short; "I #{behavior} #{modifier} #{energy} than my peers do"; end
+  def short; "I #{preference} #{behavior}"; end
 
-  def ease
-    "It’s easier for me to #{easy} #{potential} than to #{hard} #{potential.them}"
+  def advice
+    case ordinal
+    when "first"
+      Phrase.new [consume, "more"]
+    when "second"
+      Phrase.new [consume, "less so I will", produce, "less"]
+    when "third"
+      Phrase.new [consume, "more so I will", produce, "more"]
+    when "fourth"
+      Phrase.new [consume, "less"]
+    end
   end
-
-  def safe_verb; backslash? ? consume : use; end
-  def safe_object; left? ? energy.many_phrase : energy.few_phrase; end
-
-  def unsafe_verb; backslash? ? use : consume; end
-  def unsafe_object; left? ? energy.fewer_phrase : energy.more_phrase; end
-  def unsafe; Phrase.new [unsafe_verb, unsafe_object]; end
-
-  def advice; Phrase.new [safe_verb.capitalize, "as", safe_object, "as you can and don’t try to", unsafe]; end
 
 end

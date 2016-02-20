@@ -12,11 +12,15 @@ class Attitude < Indexable
   def identifier; choose Noun, IDENTIFIERS; end
   def name; identifier.titleize; end
 
-  def top?; index < 2; end
-  def left?; index.even?; end
-  def backslash?; [0,3].include? index; end
+  def loss?; index < 2; end
+  def more?; index.even?; end
+  def rational?; [0,3].include? index; end
 
-  def easy; top? ? "lose" : "gain"; end
-  def hard; top? ? "gain" : "lose"; end
+  def modifier; more? ? "more" : "less"; end
+
+  def easy; loss? ? "lose" : "gain"; end
+  def hard; loss? ? "gain" : "lose"; end
+
+  def result; loss? ? "loss" : "accumulation"; end
 
 end

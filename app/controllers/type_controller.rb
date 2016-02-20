@@ -3,13 +3,14 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif Quad.paths.include?(params[:id])
-      @quad = Quad.send(params[:id])
-      @first, @second, @third, @fourth = @quad.subtypes
-      render :quad
+    elsif params[:id] == "subtypes"
+      @realms = Realm.all.values_at(2,1,3,0)
+      render :subtypes
     elsif Realm.paths.include?(params[:id])
       @quad = Realm.send(params[:id]).quad
-      @first, @second, @third, @fourth = @quad.subtypes
+      render :quad
+    elsif Quad.paths.include?(params[:id])
+      @quad = Quad.send(params[:id])
       render :quad
     else
       render :start

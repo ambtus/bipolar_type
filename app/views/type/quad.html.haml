@@ -1,60 +1,8 @@
 - content_for(:title, @quad.name)
 %table
-  %tr
-    %td.third
-      %h2=@first.name
-      =render "subtype", :subtype => @first
-    %td.third
-      %h2 Manic
-      %p You consume less but produce more and convert potential energy to kinetic energy
-      %h3 Dysphoric Mania
-      %p
-        You will lose needed
-        =@first.potential
-        and
-        =@second.potential
-      %h3 Euphoric Mania
-      %p
-        You can lose unneeded
-        =@third.potential
-        and
-        =@fourth.potential
-    %td.third
-      %h2=@second.name
-      =render "subtype", :subtype => @second
-  %tr
-    %td
-      %h2 Liberal
-      %p You consume and produce more than average
-    %td
-      %table
-        %caption BipolarType Advice
-        -@quad.subtypes.in_groups_of(2) do |row|
-          %tr
-            -row.each do |subtype|
-              %td.half=subtype.advice
-    %td
-      %h2 Conservative
-      %p You consume and produce less than average
-  %tr
-    %td
-      %h2=@third.name
-      =render "subtype", :subtype => @third
-    %td
-      %h2 Depressed
-      %p You consume more but produce less and convert kinetic energy to potential energy
-      %h3 Euphoric Depression
-      %p
-        You can gain needed
-        =@first.potential
-        and
-        =@second.potential
-      %h3 Dysphoric Depression
-      %p
-        You will gain unneeded
-        =@third.potential
-        and
-        =@fourth.potential
-    %td
-      %h2=@fourth.name
-      =render "subtype", :subtype => @fourth
+  -@quad.subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.top.half
+          =render "short", :subtype => subtype
+          =render "long", :subtype => subtype

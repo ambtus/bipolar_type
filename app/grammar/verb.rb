@@ -1,11 +1,5 @@
 class Verb < Word
 
-  def a_lot; Phrase.new [self, "a lot"]; end
-  def a_bit; Phrase.new [self, "a bit"]; end
-
-  def more; Phrase.new [self, "more"]; end
-  def less; Phrase.new [self, "less"]; end
-
   def ed; irregular? ? PAST[irregular_index] : past; end
 
   def en; irregular? ? PERFECT[irregular_index] : past; end

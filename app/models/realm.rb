@@ -1,7 +1,7 @@
 class Realm < Indexable
 
   ########
-  IDENTIFIERS = %w{ mental financial physical emotional}
+  IDENTIFIERS = %w{ mental financial physical social}
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   all.each { |r| define_singleton_method(r.path) {all[IDENTIFIERS.index r.string]} }
@@ -19,15 +19,13 @@ class Realm < Indexable
   def adverb; identifier.ly; end
   def name; identifier.titleize; end
 
-  def consume; choose Verb, %w{see earn eat hear}; end
-  def energy; choose Noun, %w{results money calories emotions}; end
+  def get; choose Verb, %w{see earn eat hear}; end
+  def energy; choose Noun, %w{results rewards calories emotions}; end
   def use; choose Verb, %w{predict spend burn express}; end
 
-  def empty; choose Noun, %w{art winnings sweets music}; end
-  def appear; choose Verb, %w{look feel taste sound}; end
+  def consume; choose Verb, %w{look work eat listen}; end
+  def produce; choose Verb, %w{hypothesize buy walk talk}; end
 
-  def waste; choose Verb, %w{hypotheticals luxuries exercise shout}; end
-
-  def potential; choose Noun, %w{hope savings fat values}; end
+  def potential; choose Noun, %w{hope savings fat attachments}; end
 
 end
