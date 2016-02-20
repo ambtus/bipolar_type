@@ -46,22 +46,11 @@ class Subtype < Phrase
     end
   end
 
-  def preference; more? ? "like to" : "don’t like to"; end
-  def behavior; rational? ? produce : consume; end
 
-  def short; "I #{preference} #{behavior}"; end
+  def preference; more? ? "always" : "rarely"; end
+  def behave; rational? ? produce : consume; end
+  def alt_behave; rational? ? consume : produce; end
 
-  def advice
-    case ordinal
-    when "first"
-      Phrase.new [consume, "more"]
-    when "second"
-      Phrase.new [consume, "less so I will", produce, "less"]
-    when "third"
-      Phrase.new [consume, "more so I will", produce, "more"]
-    when "fourth"
-      Phrase.new [consume, "less"]
-    end
-  end
+  def short; "I can #{preference} #{behave}"; end
 
 end

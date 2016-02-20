@@ -16,11 +16,4 @@ class Attitude < Indexable
   def more?; index.even?; end
   def rational?; [0,3].include? index; end
 
-  def modifier; more? ? "more" : "less"; end
-
-  def easy; loss? ? "lose" : "gain"; end
-  def hard; loss? ? "gain" : "lose"; end
-
-  def result; loss? ? "loss" : "accumulation"; end
-
 end
