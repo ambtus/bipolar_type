@@ -1,7 +1,7 @@
 class Attitude < Indexable
 
   ########
-  IDENTIFIERS = %w{ hare grazer binger tortoise }
+  IDENTIFIERS = %w{ binger grazer tortoise hare }
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   all.each { |a| define_singleton_method(a.path) {all[IDENTIFIERS.index a.string]} }
@@ -12,8 +12,12 @@ class Attitude < Indexable
   def identifier; choose Noun, IDENTIFIERS; end
   def name; identifier.titleize; end
 
-  def loss?; index < 2; end
-  def more?; index.even?; end
-  def rational?; [0,3].include? index; end
+  def top?; index < 2; end
+  def left?; index.even?; end
+  def diagonal?; [0,3].include? index; end
+
+  def have; top? ? "more" : "fewer"; end
+
+  def want; left? ? "fewer" : "more"; end
 
 end

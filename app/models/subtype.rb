@@ -46,11 +46,7 @@ class Subtype < Phrase
     end
   end
 
-
-  def preference; more? ? "always" : "rarely"; end
-  def behave; rational? ? produce : consume; end
-  def alt_behave; rational? ? consume : produce; end
-
-  def short; "I can #{preference} #{behave}"; end
+  def have; realm.potential.send(attitude.have); end
+  def want; realm.potential.send(attitude.want); end
 
 end

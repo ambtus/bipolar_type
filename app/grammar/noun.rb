@@ -17,6 +17,7 @@ class Noun < Word
   def were; uncountable("was", "were"); end
   def many; uncountable("much", "many"); end
   def many_phrase(injection=nil); Phrase.new [many, injection, self]; end
+  def more; "more"; end
   def more_phrase; Phrase.new ["more", self]; end
   def few; uncountable("little", "few"); end
   def few_phrase; Phrase.new [few, self]; end

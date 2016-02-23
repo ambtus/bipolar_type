@@ -1,13 +1,4 @@
 %h2=link_to subtype.name, discover_path(subtype.discover_path)
 %p
-  =subtype.short
-%p
-  Since I don’t want to
-  =subtype.behave
-  =subtype.more? ? "less" : "more"
-  I must
-  =subtype.alt_behave
-  =subtype.more? ? "more" : "less"
-  if I don’t want to
-  =subtype.loss? ? "run out of" : "drown in"
-  =subtype.potential
+  =render "have", subtype: subtype
+  because I...
