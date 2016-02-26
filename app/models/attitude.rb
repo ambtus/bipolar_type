@@ -1,7 +1,7 @@
 class Attitude < Indexable
 
   ########
-  IDENTIFIERS = %w{ binger grazer tortoise hare }
+  IDENTIFIERS = %w{ obese fat anorexic skinny }
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   all.each { |a| define_singleton_method(a.path) {all[IDENTIFIERS.index a.string]} }
@@ -19,5 +19,9 @@ class Attitude < Indexable
   def have; top? ? "more" : "fewer"; end
 
   def want; left? ? "fewer" : "more"; end
+
+  %w{first second third fourth}.each do |meth|
+    define_method(meth + "?") {ALL.send(meth) == self}
+  end
 
 end

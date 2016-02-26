@@ -1,4 +1,5 @@
 %h2=link_to subtype.name, discover_path(subtype.discover_path)
-%p
-  =render "have", subtype: subtype
-  because I...
+%ul
+  %li=render "have", subtype: subtype
+  %li=render "want", subtype: subtype
+  %li=render "advice", subtype: subtype

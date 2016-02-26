@@ -5,4 +5,4 @@
       -row.each do |subtype|
         %td.top.half
           =render "short", :subtype => subtype
-          =render "long", :subtype => subtype
+          %p.left=render "reverse", :subtype => subtype

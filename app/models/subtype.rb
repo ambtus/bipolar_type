@@ -33,7 +33,7 @@ class Subtype < Phrase
   def manic; same_realm.find{|s| s.attitude == attitude.manic}; end
   def depressed; same_realm.find{|s| s.attitude == attitude.depressed}; end
 
-  def identifier; Phrase.new [realm, attitude].map(&:identifier); end
+  def identifier; Phrase.new [adverb, attitude.identifier]; end
   def name; identifier.titleize; end
 
   def method_missing(meth, *arguments, &block)

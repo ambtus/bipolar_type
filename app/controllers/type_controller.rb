@@ -4,7 +4,7 @@ class TypeController < ApplicationController
     if params[:id].blank?
       render :start
     elsif params[:id] == "subtypes"
-      @realms = Realm.all.values_at(2,1,3,0)
+      @realms = Realm.all
       render :subtypes
     elsif Realm.paths.include?(params[:id])
       @quad = Realm.send(params[:id]).quad
