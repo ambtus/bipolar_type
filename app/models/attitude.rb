@@ -1,7 +1,7 @@
 class Attitude < Indexable
 
   ########
-  IDENTIFIERS = %w{ obese fat anorexic skinny }
+  IDENTIFIERS = %w{ fat obese anorexic skinny }
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   all.each { |a| define_singleton_method(a.path) {all[IDENTIFIERS.index a.string]} }
