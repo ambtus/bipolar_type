@@ -1,0 +1,9 @@
+-content_for(:title, 'Question #1')
+%h2 Mania is a state in which one produces more than usual…
+%p You do all of the following when manic. Which is your worst problem?
+-Realm.all.each do |realm|
+  %p
+    I
+    =realm.produce
+    too much:
+    =link_to "#{realm.name} Mania", discover_path(@answer.next(realm))

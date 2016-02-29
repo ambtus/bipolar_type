@@ -1,0 +1,8 @@
+-content_for(:title, 'Question #4')
+%h2 …and produces less than usual.
+%p All of the following are difficult when depressed. Which is your worst problem?
+-Realm.all.each do |realm|
+  %p
+    I cannot
+    =realm.produce.colon
+    =link_to_unless @answer.chosen?(realm), "#{realm.name} Depression", discover_path(@answer.next(realm))

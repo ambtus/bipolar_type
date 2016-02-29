@@ -33,7 +33,7 @@ class Subtype < Phrase
   def manic; same_realm.find{|s| s.attitude == attitude.manic}; end
   def depressed; same_realm.find{|s| s.attitude == attitude.depressed}; end
 
-  def identifier; Phrase.new [adverb, attitude.identifier]; end
+  def identifier; Phrase.new [adjective, attitude.identifier]; end
   def name; identifier.titleize; end
 
   def method_missing(meth, *arguments, &block)
@@ -46,7 +46,39 @@ class Subtype < Phrase
     end
   end
 
-  def have; realm.potential.send(attitude.have); end
-  def want; realm.potential.send(attitude.want); end
+  def issue_behavior
+    case ordinal
+    when "first"
+      "#{consume_with} too #{triggers.many_phrase}"
+    when "second"
+      "#{produce} too much"
+    when "third"
+      "don’t #{consume_with} enough #{triggers}"
+    when "fourth"
+      "don’t #{produce} enough"
+    end
+  end
+  def issue_state; diagonal? ? "depressed" : "manic"; end
+  def issue
+    "I #{issue_behavior} when I am #{issue_state}"
+  end
+
+  def preference_behavior; top? ? consume : produce; end
+  def preference_modifier; "don’t" unless diagonal?; end
+  def preference
+    "I #{preference_modifier} like to #{preference_behavior}".squish
+  end
+
+  def have_potential; potential.send (attitude.have + "_phrase"); end
+  def have
+    "I have #{have_potential} than average"
+  end
+
+  def want_potential; potential.send (attitude.want + "_phrase"); end
+  def want_behavior; top? ? consume : produce; end
+  def want_modifier; diagonal? ? "more" : "less"; end
+  def want
+    "If I had #{want_potential} I could #{want_behavior} #{want_modifier}"
+  end
 
 end

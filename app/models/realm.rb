@@ -16,10 +16,14 @@ class Realm < Indexable
   def generic_subtype; Subtype.new [self, Attitude.generic]; end
 
   def identifier; choose Adjective, IDENTIFIERS; end
-  def adverb; identifier.ly; end
+  def adjective; identifier; end
+  def adverb; adjective.ly; end
   def name; identifier.titleize; end
 
-  def consume; choose Verb, %w{eat work listen look }; end
+  def consume; choose Verb, %w{eat earn listen look }; end
+  def helper; choose Word, %w{NIL NIL to at }; end
+  def consume_with; Phrase.optional consume, helper; end
+  def triggers; choose Noun, %w{carbs cash voices details }; end
 
   def produce; choose Verb, %w{move buy talk predict}; end
 

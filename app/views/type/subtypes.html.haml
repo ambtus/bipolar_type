@@ -1,18 +1,9 @@
 - content_for(:title, 'Subtypes')
 %table
   %tr
-    -@realms[0,2].each do |realm|
-      -realm.subtypes[0,2].each do |subtype|
-        %td.top=render "short", :subtype => subtype
-  %tr
-    -@realms[0,2].each do |realm|
-      -realm.subtypes[2,2].each do |subtype|
-        %td.top=render "short", :subtype => subtype
-  %tr
-    -@realms[2,2].each do |realm|
-      -realm.subtypes[0,2].each do |subtype|
-        %td.top=render "short", :subtype => subtype
-  %tr
-    -@realms[2,2].each do |realm|
-      -realm.subtypes[2,2].each do |subtype|
+    -Realm.all.each do |realm|
+      %th.quarter=realm.name
+  -Attitude.all.each do |attitude|
+    %tr
+      -attitude.subtypes.each do |subtype|
         %td.top=render "short", :subtype => subtype

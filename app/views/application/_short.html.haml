@@ -1,5 +1,4 @@
-%h2=link_to subtype.name, discover_path(subtype.discover_path)
 %ul
-  %li=render "like", subtype: subtype
-  %li=render "have", subtype: subtype
-  %li=render "want", subtype: subtype
+  %li=subtype.preference
+  %li=subtype.have
+  %li=subtype.want

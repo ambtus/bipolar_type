@@ -1,0 +1,9 @@
+-content_for(:title, 'Question #3')
+%h2 Depression is a state in which one consumes more than usual…
+%p You do all of the following when manic. Which is your worst problem?
+-Realm.all.each do |realm|
+  %p
+    I cannot stop
+    =realm.consume_with.ing
+    =realm.triggers.colon
+    =link_to_unless @answer.chosen?(realm), "#{realm.name} Depression", discover_path(@answer.next(realm))

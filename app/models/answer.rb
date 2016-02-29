@@ -4,31 +4,22 @@ class Answer
   def self.first; Answer.new(first_path); end
 
   def initialize(string)
-    @question,subtypes = string.split(":")
-    @subtype_paths = (subtypes || "").split("-")
+    @question,realms = string.split(":")
+    @realm_paths = (realms || "").split("-")
   end
-  attr_reader :question, :subtype_paths
+  attr_reader :question, :realm_paths
 
   def number; @question.last.to_i ; end
   def finished?; number == 5; end
 
-  def chosen; subtype_paths.collect{|path| Subtype.send(path)}; end
-  def constrained; chosen.map(&:peers).flatten.uniq; end
+  def chosen; realm_paths.collect{|path| Realm.send(path)}; end
 
-  def class(subtype)
-    if chosen.include? subtype
-      "chosen"
-    elsif constrained.include? subtype
-      "warning"
-    else
-      "free"
-    end
-  end
+  def chosen?(realm); chosen.include? realm; end
 
-  def all(subtype); chosen << subtype; end
-  def paths(subtype); all(subtype).map(&:path).join('-'); end
-  def next(subtype); "#{question.next}:#{paths(subtype)}"; end
+  def all(realm); chosen << realm; end
+  def paths(realm); all(realm).map(&:path).join('-'); end
+  def next(realm); "#{question.next}:#{paths(realm)}"; end
 
-  def quad_path; chosen.sort.map(&:realm).map(&:path).join("-"); end
+  def quad_path; chosen.values_at(2,0,1,3).map(&:path).join("-"); end
 
 end
