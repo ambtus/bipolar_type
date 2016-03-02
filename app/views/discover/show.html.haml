@@ -20,6 +20,6 @@
         %td.top{:class => @answer.class(subtype)}
           %p.center
             -if @answer.class(subtype) == "free"
-              =link_to subtype.issue, discover_path(@answer.next(subtype))
+              =link_to subtype.short, discover_path(@answer.next(subtype))
             -else
-              =subtype.issue
+              =subtype.short

@@ -6,4 +6,5 @@
   -Attitude.all.each do |attitude|
     %tr
       -attitude.subtypes.each do |subtype|
-        %td.top=render "short", :subtype => subtype
+        %td.top
+          =subtype.short

@@ -1,7 +1,7 @@
 class Realm < Indexable
 
   ########
-  IDENTIFIERS = %w{ physical financial social mental}
+  IDENTIFIERS = %w{ physical mental social financial }
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   all.each { |r| define_singleton_method(r.path) {all[IDENTIFIERS.index r.string]} }
@@ -15,18 +15,19 @@ class Realm < Indexable
   Attitude.all.each {|a| define_method(a.path) {self + a}}
   def generic_subtype; Subtype.new [self, Attitude.generic]; end
 
-  def identifier; choose Adjective, IDENTIFIERS; end
-  def adjective; identifier; end
+  def adjective; choose Adjective, IDENTIFIERS; end
   def adverb; adjective.ly; end
-  def name; identifier.titleize; end
+  def name; adjective.titleize; end
 
-  def consume; choose Verb, %w{eat earn listen look }; end
-  def helper; choose Word, %w{NIL NIL to at }; end
-  def consume_with; Phrase.optional consume, helper; end
-  def triggers; choose Noun, %w{carbs cash voices details }; end
+  def consume; choose Verb, %w{eat see hear earn }; end
+  def resources; choose Noun, %w{food light stories rewards }; end
 
-  def produce; choose Verb, %w{move buy talk predict}; end
+  def triggers; choose Noun, %w{carbs red music cash }; end
+  def buffers; choose Noun, %w{fat green rhythm repayments  }; end
+  def strengtheners; choose Noun, %w{protein purple words credit }; end
 
-  def potential; choose Noun, %w{fat savings friends hope}; end
+  def produce; choose Verb, %w{move predict talk buy}; end
+
+  def potential; choose Noun, %w{fat hope shame savings }; end
 
 end
