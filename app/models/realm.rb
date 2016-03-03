@@ -19,14 +19,14 @@ class Realm < Indexable
   def adverb; adjective.ly; end
   def name; adjective.titleize; end
 
-  def consume; choose Verb, %w{eat see hear earn }; end
+  def consume; choose Verb, %w{eat believe understand earn }; end
   def resources; choose Noun, %w{food light stories rewards }; end
 
   def triggers; choose Noun, %w{carbs red music cash }; end
   def buffers; choose Noun, %w{fat green rhythm repayments  }; end
   def strengtheners; choose Noun, %w{protein purple words credit }; end
 
-  def produce; choose Verb, %w{move predict talk buy}; end
+  def produce; choose Verb, %w{do predict say buy}; end
 
   def potential; choose Noun, %w{fat hope shame savings }; end
 

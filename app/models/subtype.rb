@@ -40,5 +40,9 @@ class Subtype < Phrase
     end
   end
 
-  def short; self; end
+  def behave; attitude.index.even? ? consume : produce; end
+  def well; attitude.index < 2 ? "anything" : "many things"; end
+  def can; "can " if attitude.index < 2; end
+
+  def short; "I #{can}#{behave} #{well}"; end
 end
