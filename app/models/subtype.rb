@@ -42,8 +42,9 @@ class Subtype < Phrase
 
   def problem; Phrase.new ["too", quantity, potential ]; end
   def bad_behave; Phrase.new [modifier, behave, amount]; end
-  def short; "I have #{problem} because I do #{bad_behave}"; end
+  def short; "I have #{problem} because I #{optional_do} #{bad_behave}"; end
 
+  def optional_do; "do" if index > 1; end
   def modifier; "not" if index > 1; end
   def amount; index > 1 ? "enough" : "too much"; end
   def alt_amount; index > 1 ? "less" : "more"; end

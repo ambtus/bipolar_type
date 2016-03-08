@@ -20,6 +20,6 @@ class Realm < Indexable
   def name; adjective.titleize; end
 
   def consume; choose Verb, %w{eat look  listen work }; end
-  def produce; choose Verb, %w{move analyze  talk buy }; end
-  def potential; choose Noun, %w{fat confidence shoulds money }; end
+  def produce; choose Verb, %w{move predict talk buy }; end
+  def potential; choose Noun, %w{fat confidence shame money }; end
 end
