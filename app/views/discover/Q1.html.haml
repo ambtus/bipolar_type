@@ -1,9 +1,11 @@
--content_for(:title, 'Question #1')
-%h2 Mania is a state in which one produces more than usual…
-%p You do all of the following when manic. Which is your worst problem?
+-content_for(:title, "Question ##{@answer.number}")
 -Realm.all.each do |realm|
   %p
-    I
-    =realm.produce
-    too much:
-    =link_to "#{realm.name} Mania", discover_path(@answer.next(realm))
+    I would be thrilled if I woke up and had lost all my
+    =realm.potential.colon
+    it would give me an excuse to
+    =realm.consume
+    as much as I have always wanted to
+    =realm.consume.period
+    %br
+    =link_to  "I love to #{realm.consume_resources}.", discover_path(@answer.next(realm))

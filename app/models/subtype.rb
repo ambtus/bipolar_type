@@ -40,9 +40,32 @@ class Subtype < Phrase
     end
   end
 
-  def behave; attitude.index.even? ? consume : produce; end
-  def well; attitude.index < 2 ? "anything" : "many things"; end
-  def can; "can " if attitude.index < 2; end
+  def problem; Phrase.new ["too", quantity, potential ]; end
+  def bad_behave; Phrase.new [modifier, behave, amount]; end
+  def short; "I have #{problem} because I do #{bad_behave}"; end
 
-  def short; "I #{can}#{behave} #{well}"; end
+  def modifier; "not" if index > 1; end
+  def amount; index > 1 ? "enough" : "too much"; end
+  def alt_amount; index > 1 ? "less" : "more"; end
+  def desired; index > 1 ? "continue" : "stop"; end
+
+  def behave; [0,3].include?(index) ? consume : produce; end
+  def alt_behave; [0,3].include?(index) ? produce : consume; end
+
+  def quantity; index.odd? ? potential.few : potential.many; end
+  def bad_episode; index.odd? ? "mania" : "depression"; end
+  def bad_episoding; index.odd? ? "manic" : "depressed"; end
+  def drugs; index.odd? ? "sedatives" : "stimulants"; end
+  def good_episoding; index.odd? ? "depressed" : "manic"; end
+  def bad_change;index.odd? ? "loss" : "gain"; end
+  def good_change; index.odd? ? "gain" : "loss"; end
+
+  def advice
+    case index
+    when 0, 1
+      "wait as long as you can before you start"
+    when 2,3
+      "#{behave} as often as you can"
+    end
+  end
 end

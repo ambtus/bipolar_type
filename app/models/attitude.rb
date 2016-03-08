@@ -1,15 +1,13 @@
 class Attitude < Indexable
 
   ########
-  IDENTIFIERS =  %w{first second third fourth}
+  IDENTIFIERS = %w{a b c d}
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
-  all.each { |a| define_singleton_method(a.path) {all[IDENTIFIERS.index a.string]} }
+  def self.all; self::ALL; end
+  all.each { |i| define_singleton_method(i.path) {all[IDENTIFIERS.index i.string]} }
   ########
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
-
-  def identifier; choose Adjective, IDENTIFIERS; end
-  def ordinal; IDENTIFIERS[index]; end
 
 end

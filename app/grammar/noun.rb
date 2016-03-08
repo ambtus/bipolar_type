@@ -63,6 +63,6 @@ class Noun < Word
    offense tragedy shelter self-esteem praise criticism investment\ income
    self-deprecation potential\ energy egotism kinetic\ energy trivia safety
    comfort skin soul mind property credit\ rating dessert energy 
-   spending\ money salary regular\ income bonus\ income truth symmetry dissonance }
+   spending\ money salary regular\ income bonus\ income truth symmetry dissonance pain }
 
 end

@@ -1,10 +1,12 @@
--content_for(:title, 'Question #2')
-%h2 …and consumes less than usual.
-%p All of the following make you feel sick when manic. Which is your worst problem?
+-content_for(:title, "Question #1#{@answer.number}")
 -Realm.all.each do |realm|
   %p
-    I cannot
-    =realm.consume_with
-    =realm.triggers.many_phrase
-    before I start to feel sick:
-    =link_to_unless @answer.chosen?(realm), "#{realm.name} Mania", discover_path(@answer.next(realm))
+    I would be thrilled if I woke up and had lost all my
+    =realm.potential.colon
+    it would give me an excuse to
+    =realm.produce
+    as little as I have always wanted to
+    =realm.produce.period
+    %br
+    =link_to_unless @answer.chosen?(realm), "I hate having to #{realm.produce_things}.", discover_path(@answer.next(realm))
+

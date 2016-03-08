@@ -1,8 +1,12 @@
--content_for(:title, 'Question #4')
-%h2 …and produces less than usual.
-%p All of the following are difficult when depressed. Which is your worst problem?
+-content_for(:title, "Question ##{@answer.number}")
 -Realm.all.each do |realm|
   %p
-    I cannot
-    =realm.produce.colon
-    =link_to_unless @answer.chosen?(realm), "#{realm.name} Depression", discover_path(@answer.next(realm))
+    I would be thrilled if I woke up and had gained a ton of
+    =realm.potential.colon
+    it would give me an excuse to
+    =realm.consume
+    as little as I have always wanted to
+    =realm.consume.period
+    %br
+    =link_to_unless @answer.chosen?(realm), "I hate having to #{realm.consume_resources}.", discover_path(@answer.next(realm))
+

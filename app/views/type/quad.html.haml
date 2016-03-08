@@ -1,6 +1,6 @@
 - content_for(:title, @quad.name)
 %table
-  %tr
-    -@quad.subtypes.each do |subtype|
-      %td.top.quarter
-        =subtype.short
+  -@quad.subtypes.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td=render "subtype", subtype: subtype
