@@ -21,5 +21,5 @@ class Realm < Indexable
 
   def consume; choose Verb, %w{eat look  listen work }; end
   def produce; choose Verb, %w{move predict talk buy }; end
-  def potential; choose Noun, %w{fat confidence shame money }; end
+  def potential; choose Noun, %w{fat confidence emotions money }; end
 end
