@@ -1,20 +1,17 @@
--content_for(:title, 'The 24 BipolarTypes')
-%p.center A BipolarType is made up of four subtypes: one from each row and column.
+-content_for(:title, 'Discovery')
+%p.center A BipolarType is made up of four subtypes: one from each column.
 %p.center
   Once you have
   %span.chosen choosen a subtype,
   other subtypes in the
-  %span.warning same row or column
+  %span.warning same column
   will become unavailable.
-%p.center
-  If you get stuck, you can
-  =link_to "start over.", discover_path(Answer.first_path)
 %h2==Subtype ##{@answer.number} of 4
 %table
   %tr
     -Realm.all.each do |realm|
       %th.quarter=realm.name
-  -Attitude.all.each do |attitude|
+  -Attitude.all.values_at(0,2,1,3).each do |attitude|
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top{:class => @answer.class(subtype)}

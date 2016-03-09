@@ -1,7 +1,7 @@
 class Realm < Indexable
 
   ########
-  IDENTIFIERS = %w{ physical mental  emotional  financial}
+  IDENTIFIERS = %w{ s n  f  t}
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   all.each { |r| define_singleton_method(r.path) {all[IDENTIFIERS.index r.string]} }
@@ -15,7 +15,7 @@ class Realm < Indexable
   Attitude.all.each {|a| define_method(a.path) {self + a}}
   def generic_subtype; Subtype.new [self, Attitude.generic]; end
 
-  def adjective; choose Adjective, IDENTIFIERS; end
+  def adjective; choose Adjective, %w{ physical mental  emotional  financial}; end
   def adverb; adjective.ly; end
   def name; adjective.titleize; end
 

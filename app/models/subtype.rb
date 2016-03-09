@@ -7,7 +7,7 @@ class Subtype < Phrase
   end
   attr_reader :realm, :attitude
 
-  def sort_order; [attitude, realm]; end
+  def sort_order; [realm, attitude]; end
   def <=>(other); sort_order <=> other.sort_order; end
 
   ALL = Attitude::ALL.collect do |attitude|
@@ -16,8 +16,8 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def words; [realm, attitude]; end
-  def inspect; Word.new words.join("_"); end
+  def words; [attitude.first, realm, attitude.second]; end
+  def inspect; Word.new words.join.upcase; end
   def to_s; inspect.to_s; end
   def to_str; to_s; end
 
@@ -25,7 +25,7 @@ class Subtype < Phrase
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
-  def peers; ALL.select{|s| s.realm == realm || s.attitude == attitude}; end
+  def peers; ALL.select{|s| s.realm == realm }; end
   def discover_path; Answer.first.next(self); end
 
   def same_realm; ALL.select{|s| s.realm == realm}; end
