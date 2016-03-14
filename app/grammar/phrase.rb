@@ -17,8 +17,8 @@ class Phrase
   end
 
   ## specific phrases
-  def self.early; new "Monday morning".split; end
-  def self.late; new "Friday night".split; end
+  def self.early; new "Monday morning in the winter".split; end
+  def self.late; new "Saturday night in the spring".split; end
 
   def self.early_duration; new "during the work day".split; end
   def self.late_duration; new "on evenings and weekends".split; end
@@ -55,12 +55,14 @@ class Phrase
   end
 
   ## entire phrase methods
+
   # verb methods
   %w{ed en ing s}.each do |meth|
     define_method(meth) {Phrase.new words.collect{|w| w.is_a?(Verb) ? w.send(meth) : w}}
   end
+
   # noun methods
-  %w{many few fewer fewest}.each do |meth|
+  %w{many few fewer fewest those}.each do |meth|
     define_method(meth + "_phrase") do
       if words.first.is_a?(Adjective) && words.second.is_a?(Noun)
         Phrase.new [words.second.send(meth), words.first, words.second]

@@ -1,19 +1,27 @@
 class Quad < Phrase
 
-  def self.my_path; Attitude.all.join; end
+  def self.my_path; "ftns"; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
     @path = string
-    @attitudes = string.scan(/../).collect{|a| Attitude.send(a)}
-    @attitudes.check_constraints Attitude, 4, 4
-    super(@attitudes)
+    if Attitude.paths.include? (string.first)
+      @attitudes = string.scan(/./).collect{|a| Attitude.send(a)}
+      @attitudes.check_constraints Attitude, 4, 4
+      @realms = Realm.all
+      super(@realms)
+    else
+      @realms = string.scan(/./).collect{|a| Realm.send(a)}
+      @realms.check_constraints Realm, 4, 4
+      @attitudes = Attitude.all
+      super(@realms)
+    end
   end
-  attr_reader :attitudes, :path
+  attr_reader :realms, :path, :attitudes
 
-  def subtypes; attitudes.add(Realm.all); end
+  def subtypes; @realms.add(@attitudes); end
 
-  def self.paths; Attitude.all.repeated_permutation(4).collect{|array| array.map(&:path).join}; end
+  def self.paths; Realm.all.permutation(4).map(&:join); end
   ALL = self.paths.collect{|path| self.new(path)}
   def self.all; ALL; end
   ALL.each {|quad| define_singleton_method(quad.path) {quad} }

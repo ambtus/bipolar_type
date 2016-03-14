@@ -1,9 +1,10 @@
 - content_for(:title, 'Subtypes')
-%table
-  %tr
-    -Realm.all.each do |realm|
-      %th=realm.name
-  -Attitude.all.each do |attitude|
-    %tr
-      -attitude.subtypes.each do |subtype|
-        %td=render "subtype", subtype: subtype
+-%w{bad good reason leverage alternative }.each do |x|
+  %h2=x.capitalize
+  %table
+    -Attitude.all.each do |attitude|
+      %tr
+        -attitude.subtypes.each do |subtype|
+          %td.top.quarter
+            %h2=subtype
+            %p.left=render x, subtype: subtype
