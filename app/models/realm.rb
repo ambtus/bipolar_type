@@ -21,13 +21,14 @@ class Realm < Indexable
 
   def consume; choose Verb, %w{eat look listen work}; end
 
-  def produce; choose Verb, %w{walk guess talk shop}; end
+  def produce; choose Verb, %w{move guess talk shop}; end
   def produce_with; choose Verb, %w{do predict say buy}; end
   def produce_anything; Phrase.new [produce_with, "anything"]; end
   def produce_more; Phrase.new [produce_with, "more things"]; end
   def produce_too_much; Phrase.new [produce_with, "too much"]; end
 
   def potential; choose Noun, %w{fat facts friends money}; end
+  def energy; choose Noun, %w{calories information emotions cash}; end
 
   def worn_out; choose Adjective, %w{sore wrong misunderstood  indebted}; end
 
@@ -38,12 +39,13 @@ class Realm < Indexable
   def consume_bad_things; Phrase.new [consume_with, resources, "that", appear.string, "bad"]; end
   def consume_the_good_parts; Phrase.new [consume_with, "the", part.pluralize, "that", appear.string, "good"]; end
   def consume_something; Phrase.new [consume_with, resources]; end
+  def consume_anything; Phrase.new [consume_with, "anything at all"]; end
 
   def part; choose Noun, %w{course detail voice task}; end
-  def resources; choose Noun, %w{meals truths stories jobs}; end
+  def resources; choose Noun, %w{meals results stories jobs}; end
   def appear; choose Verb, %w{smell look sound feel}; end
 
   def sick; choose Verb, %w{sick afraid unhappy angry};end
-  def be_sick; choose Verb, %w{vomit panic cry gamble};end
+  def be_sick; choose Verb, %w{vomit panic cry fight};end
 
 end

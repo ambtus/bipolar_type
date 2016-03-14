@@ -4,19 +4,18 @@ The reason you
   are not
   =subtype.worn_out
 -when "second", "fourth"
-  have 
-  =subtype.second? ? "more" : subtype.potential.fewer
+  =subtype.second? ? "accumulate" : "lose"
   =subtype.potential
 -when "third"
   can
   =subtype.produce_anything
-=subtype.even? ? "when you are" : "after having been"
+==when you are
 =subtype.left? ? "depressed" : "manic"
 is because you
-=subtype.even? ? "don’t" : "didn’t"
 -case subtype.ordinal
 -when "first", "second"
+  don’t
   =subtype.produce_anything.period
 -when "third", "fourth"
-  stop
+  never stop
   =subtype.produce.ing.period
