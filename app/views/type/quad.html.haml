@@ -1,11 +1,10 @@
 - content_for(:title, @quad.name)
 %table
-  -@quad.subtypes.values_at(0,1,3,2).in_groups_of(2).each do |row|
+  %tr
+    -@quad.subtypes.each do |subtype|
+      %th.quarter=subtype.name
+  -%w{bipolar reason leverage alternative remember}.each do |x|
     %tr
-      -row.each do |subtype|
-        %td.top.quarter
-          %h2
-            =subtype.name
-            =subtype.inspect.parenthesize
-          -%w{bad good reason leverage alternative}.each do |x|
-            %p.left=render x, subtype: subtype
+      -@quad.subtypes.each do |subtype|
+        %td.top
+          %p.left=render x, subtype: subtype

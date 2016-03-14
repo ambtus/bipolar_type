@@ -10,7 +10,7 @@
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top.quarter{:class => @answer.class(subtype)}
-          %p.left=render "bad", subtype: subtype
+          %p.left=render "bipolar", subtype: subtype
           -%w{yes no}.each_with_index do |choice, index|
             =link_to choice, discover_path(@answer.next(subtype, choice))
             ="|" unless index == 1

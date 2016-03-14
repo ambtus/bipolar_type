@@ -22,16 +22,15 @@ class Realm < Indexable
   def consume; choose Verb, %w{eat look listen work}; end
 
   def produce; choose Verb, %w{move guess talk shop}; end
-  def produce_with; choose Verb, %w{do predict influence buy}; end
-  def anything; third? ? "anyone" : "anything"; end
+  def produce_with; choose Verb, %w{go solve influence acquire}; end
+  def anything; choose Noun, %w{anywhere anything anyone anything}; end
   def produce_anything; Phrase.new [produce_with, anything]; end
-  def things; third? ? "people" : "things"; end
+  def things; choose Noun, %w{places problems people possessions}; end
   def produce_more; Phrase.new [produce_with, "more", things]; end
-  def much; third? ? "many people" : "much"; end
-  def produce_too_much; Phrase.new [produce_with, "too", much]; end
+  def produce_too_much; Phrase.new [produce_with, "too many", things]; end
 
-  def potential; choose Noun, %w{fat facts friends money}; end
-  def energy; choose Noun, %w{calories information emotions cash}; end
+  def potential; choose Noun, %w{fat memories friends savings}; end
+  def energy; choose Noun, %w{calories details emotions money}; end
 
   def worn_out; choose Adjective, %w{sore wrong misunderstood  indebted}; end
 
@@ -42,13 +41,15 @@ class Realm < Indexable
   def consume_bad_things; Phrase.new [consume_with, resources, "that", appear.string, "bad"]; end
   def consume_the_good_parts; Phrase.new [consume_with, "the", part.pluralize, "that", appear.string, "good"]; end
   def consume_something; Phrase.new [consume_with, resources]; end
-  def consume_anything; Phrase.new [consume_with, anything, "at all"]; end
+  def consume_anything; Phrase.new [consume_with, "anything"]; end
 
   def part; choose Noun, %w{course detail voice task}; end
-  def resources; choose Noun, %w{meals results stories jobs}; end
+  def resources; choose Noun, %w{meals facts stories jobs}; end
   def appear; choose Verb, %w{smell look sound feel}; end
 
-  def sick; choose Verb, %w{sick afraid unhappy angry};end
-  def be_sick; choose Verb, %w{vomit panic cry fight};end
+  def sick; choose Verb, %w{sick afraid suicidal angry};end
+  def be_sick_verb; choose Verb, %w{throw panic emote attack};end
+  def be_sick_helper; choose Word, %w{up NIL NIL NIL};end
+  def be_sick; Phrase.optional be_sick_verb, be_sick_helper; end
 
 end
