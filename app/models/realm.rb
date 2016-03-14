@@ -22,10 +22,10 @@ class Realm < Indexable
   def consume; choose Verb, %w{eat look listen work}; end
 
   def produce; choose Verb, %w{move guess talk shop}; end
-  def produce_with; choose Verb, %w{go solve influence acquire}; end
-  def anything; choose Noun, %w{anywhere anything anyone anything}; end
+  def produce_with; choose Verb, %w{do solve influence acquire}; end
+  def anything; choose Noun, %w{anything anything anyone anything}; end
   def produce_anything; Phrase.new [produce_with, anything]; end
-  def things; choose Noun, %w{places problems people possessions}; end
+  def things; choose Noun, %w{things problems people possessions}; end
   def produce_more; Phrase.new [produce_with, "more", things]; end
   def produce_too_much; Phrase.new [produce_with, "too many", things]; end
 
@@ -47,8 +47,8 @@ class Realm < Indexable
   def resources; choose Noun, %w{meals facts stories jobs}; end
   def appear; choose Verb, %w{smell look sound feel}; end
 
-  def sick; choose Verb, %w{sick afraid suicidal angry};end
-  def be_sick_verb; choose Verb, %w{throw panic emote attack};end
+  def sick; choose Verb, %w{sick afraid ashamed angry};end
+  def be_sick_verb; choose Verb, %w{throw panic whine fight};end
   def be_sick_helper; choose Word, %w{up NIL NIL NIL};end
   def be_sick; Phrase.optional be_sick_verb, be_sick_helper; end
 
