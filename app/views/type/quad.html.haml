@@ -2,9 +2,7 @@
 %table
   %tr
     -@quad.subtypes.each do |subtype|
-      %th.quarter=subtype.name
-  -%w{bipolar reason leverage alternative remember}.each do |x|
-    %tr
-      -@quad.subtypes.each do |subtype|
-        %td.top
-          %p.left=render x, subtype: subtype
+      %th.quarter
+        =subtype.name
+        %br
+        =subtype.inspect.parenthesize

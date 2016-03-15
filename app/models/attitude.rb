@@ -1,7 +1,7 @@
 class Attitude < Indexable
 
   ########
-  IDENTIFIERS = %w{ i j e p }
+  IDENTIFIERS = %w{ ss ms mi si}
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   def self.all; self::ALL; end
@@ -16,12 +16,11 @@ class Attitude < Indexable
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
 
-  def middle?; [1,2].include? index; end
+  def moderate?; [1,2].include? index; end
   def left?; index < 2; end
-  def even?; index.even? ; end
   def sensitivity; left? ? "sensitive" : "insensitive"; end
-  def behavior; middle? ? "producer" : "consumer"; end
-  def description; Phrase.new [sensitivity, behavior]; end
+  def extent; moderate? ? "moderately" : "super"; end
+  def description; Phrase.new [extent, sensitivity]; end
   def name; description.titleize; end
 
 end
