@@ -1,7 +1,7 @@
 class Attitude < Indexable
 
   ########
-  IDENTIFIERS = %w{ ss ms mi si}
+  IDENTIFIERS = %w{ i p j e}
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   def self.all; self::ALL; end

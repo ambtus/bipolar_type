@@ -1,4 +1,17 @@
 -content_for(:title, 'Discovery: Question #3')
 %p
-  When I go manic, I become more sensitive to... and feel sick
-  When I go depressed, I become less sensitive to... and consume too much
+  I tend to
+  =@answer.unchosen.first.consume
+  too much and
+  =@answer.unchosen.second.produce
+  too much.
+  =@answer.first_quad.problem
+  =link_to @answer.first_quad.name, type_path(@answer.first_path)
+%p
+  I tend to
+  =@answer.unchosen.second.consume
+  too much and
+  =@answer.unchosen.first.produce
+  too much.
+  =@answer.second_quad.problem
+  =link_to @answer.second_quad.name, type_path(@answer.second_path)

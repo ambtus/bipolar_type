@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; "agtv"; end
+  def self.my_path; "fstn"; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
@@ -34,5 +34,7 @@ class Quad < Phrase
   def names; subtypes; end
   def inspect; names.join("•"); end
   def name; inspect; end
+
+  def problem; "I am both #{subtypes.second.fat.er} and #{subtypes.third.thin.er} than I want to be."; end
 
 end

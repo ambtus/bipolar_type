@@ -4,8 +4,8 @@ class Answer
   def self.first; Answer.new(first_path); end
 
   def initialize(string)
-    @question,realms = string.split(":")
-    @realm_paths = (realms || "").scan(/./)
+    @question,@answer = string.split(":")
+    @realm_paths = (@answer || "").scan(/./)
   end
   attr_reader :question, :realm_paths
 
@@ -13,20 +13,15 @@ class Answer
   def finished?; number == 4; end
 
   def chosen; realm_paths.collect{|path| Realm.send(path)}; end
-  def first; chosen.first; end
-  def second; chosen.second; end
-  def pair; chosen[0,2]; end
-  def overs; Realm.all - pair; end
-  def third; overs.first; end
-  def fourth; overs.second; end
-
   def chosen?(realm); chosen.include? realm; end
+  def unchosen; Realm.all - chosen; end
 
-  def paths(realms); realms.map(&:path).join; end
-  def two(realms); "#{question.next}:#{paths(realms)}"; end
-  def three(realms); "#{question.next}:#{paths(realms)}"; end
-  def four(realms); "#{question.next}:#{paths(pair)}#{paths(realms)}"; end
+  def next(realm); "#{question.next}:#{@answer}#{realm.path}"; end
 
-  def quad_path; chosen.map(&:path).join; end
-
+  def first; [chosen.first, *unchosen, chosen.second]; end
+  def second; [chosen.first, *unchosen.reverse, chosen.second]; end
+  def first_path; first.map(&:path).join; end
+  def second_path; second.map(&:path).join; end
+  def first_quad; Quad.send(first_path); end
+  def second_quad; Quad.send(second_path); end
 end

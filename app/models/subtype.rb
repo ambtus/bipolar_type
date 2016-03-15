@@ -13,7 +13,8 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def words; [attitude.first, realm, attitude.second]; end
+  def letters; [attitude, realm]; end
+  def words; attitude.moderate? ? letters.reverse : letters; end
   def inspect; Word.new words.join.upcase; end
   def to_s; inspect.to_s; end
   def to_str; to_s; end
@@ -40,7 +41,7 @@ class Subtype < Phrase
     end
   end
 
-  def description; Phrase.new [extent, adverb, sensitivity]; end
+  def description; Phrase.new [extent, sensitivity, organ]; end
   def name; description.titleize; end
 
 end
