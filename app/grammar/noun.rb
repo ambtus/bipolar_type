@@ -1,5 +1,7 @@
 class Noun < Word
 
+  def pluralize; Noun.new(string.pluralize); end
+
   def time; suffix("-time"); end
 
   def any; prefix("any"); end

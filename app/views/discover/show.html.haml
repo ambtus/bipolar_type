@@ -1,5 +1,5 @@
 -content_for(:title, 'Discovery')
-%p.center A BipolarType is made up of four subtypes: one from each row and column.
+%p.center A BipolarType is made up of four yeses: one from each row and column.
 %h2==Subtype ##{@answer.number} of 4
 -#==choices: #{@answer.choices}
 %table
@@ -11,8 +11,8 @@
       -attitude.subtypes.each do |subtype|
         %td.top.quarter{:class => @answer.class(subtype)}
           %p.left=render "bipolar", subtype: subtype
-          -%w{yes no}.each_with_index do |choice, index|
+          -%w{yes maybe no}.each_with_index do |choice, index|
             =link_to choice, discover_path(@answer.next(subtype, choice))
-            ="|" unless index == 1
+            ="|" unless index == 2
 
 

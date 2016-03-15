@@ -27,6 +27,7 @@ class Subtype < Phrase
   def discover_path; Answer.first.next(self); end
 
   def same_realm; ALL.select{|s| s.realm == realm}; end
+  def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
   def opposite; ALL.find{|s| s.realm == realm && s.attitude == attitude.opposite}; end
 

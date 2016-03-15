@@ -1,0 +1,7 @@
+-content_for(:title, 'Discovery: Question #1')
+-Realm.all.combination(2).each do |pair|
+  %p
+    I am most apt to feel
+    =pair.map(&:sick).to_sentence
+    in the evening.
+    =link_to "I#{pair.join.upcase}", discover_path(@answer.two(pair))
