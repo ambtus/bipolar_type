@@ -32,7 +32,7 @@ class Verb < Word
     end
   end
 
-  def er
+  def to_noun
     if or?
       Noun.new (string + "or")
     elsif chars.last == "e"
