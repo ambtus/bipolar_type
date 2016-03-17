@@ -1,8 +1,0 @@
--content_for(:title, 'Discovery: Question #2')
--@answer.unchosen.each do |realm|
-  %p
-    =render "e", realm: realm
-    %br
-    I have
-    ="a" if realm.organ.uncountable?
-    =link_to_unless @answer.chosen?(realm), realm.e.description.period, discover_path(@answer.next(realm))

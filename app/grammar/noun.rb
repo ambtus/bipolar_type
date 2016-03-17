@@ -64,8 +64,8 @@ class Noun < Word
    trust intonation head stomach horror color romance library fire defense
    offense tragedy shelter self-esteem praise criticism investment\ income
    self-deprecation potential\ energy egotism kinetic\ energy trivia safety
-   comfort skin soul mind property credit\ rating dessert energy 
+   comfort soul mind property credit\ rating dessert energy
    spending\ money salary regular\ income bonus\ income truth
-   symmetry dissonance pain shame logic language nose}
+   symmetry dissonance pain shame logic language nose }
 
 end

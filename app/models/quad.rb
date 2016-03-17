@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; "fstn"; end
+  def self.my_path; "ftsn"; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
@@ -13,7 +13,7 @@ class Quad < Phrase
     else
       @realms = string.scan(/./).collect{|a| Realm.send(a)}
       @realms.check_constraints Realm, 4, 4
-      @attitudes = Attitude.all
+      @attitudes = Attitude.in_order
       super(@realms)
     end
   end

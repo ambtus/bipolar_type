@@ -1,0 +1,5 @@
+%h2==#{subtype.adjective.ly.capitalize} #{subtype.ill.capitalize} #{subtype.inspect.parenthesize}
+%h3==#{subtype.adjective.capitalize} Mania
+%p.left=render "mania/#{subtype.ease_of_consumption}", realm: subtype.realm
+%h3==#{subtype.adjective.capitalize} Depression
+%p.left=render "depression/#{subtype.ease_of_production}", realm: subtype.realm

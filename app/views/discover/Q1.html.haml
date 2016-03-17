@@ -1,8 +1,0 @@
--content_for(:title, 'Discovery: Question #1')
--Realm.all.each do |realm|
-  %p
-    =render "i", realm: realm
-    %br
-    I have
-    ="a" if realm.organ.uncountable?
-    =link_to realm.i.description.period, discover_path(@answer.next(realm))

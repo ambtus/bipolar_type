@@ -1,13 +1,3 @@
 - content_for(:title, @quad.name)
-%table
-  -@quad.subtypes.each do |subtype|
-    %tr
-      %td
-        %h2==#{subtype.name} #{subtype.inspect.parenthesize}
-        %p.left=render subtype.attitude.path, realm: subtype.realm
-      %td.top
-        %h2==#{subtype.generic.capitalize} Mania
-        %p.left=render "mania/#{subtype.attitude.path}", realm: subtype.realm
-      %td.top
-        %h2==#{subtype.generic.capitalize} Depression
-        %p.left=render "depression/#{subtype.attitude.path}", realm: subtype.realm
+-@quad.subtypes.each do |subtype|
+  =render "subtype", subtype: subtype

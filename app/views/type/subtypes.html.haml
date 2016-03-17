@@ -1,14 +1,6 @@
 - content_for(:title, 'Subtypes')
-
 %table
-  -Attitude.all.each do |attitude|
+  -Attitude.in_order.each do |attitude|
     %tr
       -attitude.subtypes.each do |subtype|
-        %th.quarter
-          =subtype.name
-          %br
-          =subtype.inspect.parenthesize
-    %tr
-      -attitude.subtypes.each do |subtype|
-        %td.top
-          %p.left=render attitude.path, realm: subtype.realm
+        %td.top.quarter=render "subtype", subtype: subtype
