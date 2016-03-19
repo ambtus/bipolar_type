@@ -13,13 +13,13 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def letters; [attitude, realm]; end
-  def words; attitude.balanced? ? letters : letters.reverse; end
+  def words; [attitude.first, realm, attitude.second]; end
   def inspect; Word.new words.join.upcase; end
   def to_s; inspect.to_s; end
   def to_str; to_s; end
+  def name; inspect; end
 
-  def <=>(other); attitude.ordered_index <=> other.attitude.ordered_index; end
+  def <=>(other); attitude.index <=> other.attitude.index; end
 
   def path; words.join.to_s; end
   ALL.each{|s| define_singleton_method(s.path) {s}}

@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; "ftsn"; end
+  def self.my_path; "stnf"; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
@@ -13,13 +13,14 @@ class Quad < Phrase
     else
       @realms = string.scan(/./).collect{|a| Realm.send(a)}
       @realms.check_constraints Realm, 4, 4
-      @attitudes = Attitude.in_order
+      @attitudes = Attitude.all
       super(@realms)
     end
   end
   attr_reader :realms, :path, :attitudes
 
   def subtypes; @realms.add(@attitudes); end
+  def table_order;  subtypes.values_at(0,1,3,2); end
 
   def self.paths; Realm.all.permutation(4).map(&:join); end
   ALL = self.paths.collect{|path| self.new(path)}
@@ -34,7 +35,5 @@ class Quad < Phrase
   def names; subtypes; end
   def inspect; names.join("•"); end
   def name; inspect; end
-
-  def problem; "I am both #{subtypes.second.fat.er} and #{subtypes.third.thin.er} than I want to be."; end
 
 end

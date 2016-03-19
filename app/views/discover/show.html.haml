@@ -13,14 +13,14 @@
 %table
   %tr
     -Realm.all.each do |realm|
-      %th.quarter==#{realm.sensory.capitalize} / #{realm.adjective.capitalize}
-  -Attitude.in_order.each do |attitude|
+      %th.quarter=realm.name
+  -Attitude.all.each do |attitude|
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top{:class => @answer.class(subtype)}
           %p.left=render "short", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
-              =link_to subtype, discover_path(@answer.next(subtype))
+              =link_to subtype.name, discover_path(@answer.next(subtype))
             -else
-              =subtype
+              =subtype.name

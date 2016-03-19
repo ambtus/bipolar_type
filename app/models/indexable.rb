@@ -25,8 +25,9 @@ class Indexable < Noun
     end
     super
   end
-  alias_method :letter, :string
-  def path; string; end
+  def letter; @string; end
+  def path; @string; end
+  def name; @string.upcase; end
 
   def others; self.class.all.select{|i| i != self}; end
 
