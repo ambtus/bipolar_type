@@ -2,7 +2,9 @@ ul {
   list-style-position: inside;
   padding: 0;
 }
-ul.none {  list-style-type: none; }
+ul.none
+  list-style-type: none; 
+}
 dt, dd {
   display: inline;
   margin: 0;

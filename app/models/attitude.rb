@@ -9,15 +9,18 @@ class Attitude < Indexable
   ########
 
   def +(realm); subtypes.find{|s| s.realm == realm} || Subtype.new([realm, self]); end
-  def quad; Quad.new Array.new(4, path).join; end
+  def quad; Quad.new Array.new(4, path).join("-"); end
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   Realm.all.each {|r| define_method(a.path) {self + r}}
   def generic_subtype; Subtype.new [Realm.generic, self]; end
 
   def insensitive?; index < 2; end
-  def producer?; index.odd?; end
+  def provider?; [1,2].include? index; end
 
-  def ease_of_consumption; insensitive? ? "easy" : "hard"; end
-  def ease_of_production; producer? ? "easy" : "hard"; end
+  def description_adjective; Adjective.new(insensitive? ? "insensitive" : "sensitive"); end
+  def description_noun; Noun.new(provider? ? "provider" : "consumer"); end
+  def description; Phrase.new [description_adjective, description_noun]; end
+  def name; description.titleize; end
+
 
 end

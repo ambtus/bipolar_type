@@ -1,2 +1,6 @@
 %h2=subtype.name
 %p.left=render "short", subtype: subtype
+-if subtype.provider?
+  %p.left=render "consumer", subtype: subtype
+-else
+  %p.left=render "provider", subtype: subtype

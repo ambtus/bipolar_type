@@ -43,4 +43,7 @@ class Subtype < Phrase
     end
   end
 
+  def description; Phrase.new [description_adjective, adjective, description_noun]; end
+  def name; description.titleize; end
+
 end
