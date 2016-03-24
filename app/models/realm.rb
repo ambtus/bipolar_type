@@ -20,9 +20,9 @@ class Realm < Indexable
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
 
-  def consume; choose Verb, %w{eat learn listen work}; end
+  def consume; choose Verb, %w{eat look listen work}; end
   def consumer; consume.to_noun; end
-  def consume_helper; choose Word, %w{NIL NIL to NIL }; end
+  def consume_helper; choose Word, %w{NIL at to NIL }; end
   def consume_with; Phrase.optional consume, consume_helper; end
 
   def produce; choose Verb, %w{move guess talk spend}; end
