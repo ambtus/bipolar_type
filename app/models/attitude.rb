@@ -1,7 +1,7 @@
 class Attitude < Indexable
 
   ########
-  IDENTIFIERS = %w{ ep ej ij ip }
+  IDENTIFIERS = %w{ ep ej ip ij }
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   def self.all; self::ALL; end
@@ -14,13 +14,11 @@ class Attitude < Indexable
   Realm.all.each {|r| define_method(a.path) {self + r}}
   def generic_subtype; Subtype.new [Realm.generic, self]; end
 
-  def insensitive?; index < 2; end
-  def provider?; [1,2].include? index; end
+  def top?; index < 2; end
+  def bottom?; index > 1; end
+  def odd?; index.odd?; end
+  def even?; index.even? ; end
 
-  def description_adjective; Adjective.new(insensitive? ? "insensitive" : "sensitive"); end
-  def description_noun; Noun.new(provider? ? "provider" : "consumer"); end
-  def description; Phrase.new [description_adjective, description_noun]; end
+  def description; choose Noun, %w{consumer producer non-producer non-consumer}; end
   def name; description.titleize; end
-
-
 end

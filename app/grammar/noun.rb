@@ -29,6 +29,8 @@ class Noun < Word
   def fewest_phrase(qualifier=nil); Phrase.new [fewest, qualifier, self]; end
   def are; uncountable("is", "are"); end
   def are_phrase; Phrase.new [self, are]; end
+  def were; uncountable("was", "were"); end
+  def were_phrase; Phrase.new [self, were]; end
   def have; uncountable("has", "have"); end
   def have_phrase; Phrase.new [self, have]; end
   def make; uncountable("makes", "make"); end
@@ -66,6 +68,6 @@ class Noun < Word
    self-deprecation potential\ energy egotism kinetic\ energy trivia safety
    comfort soul mind property credit\ rating dessert energy
    spending\ money salary regular\ income bonus\ income truth
-   symmetry dissonance pain shame logic language nose }
+   symmetry dissonance pain shame logic language nose skin }
 
 end

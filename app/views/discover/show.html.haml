@@ -11,11 +11,11 @@
   =link_to "start over.", discover_path(Answer.first_path)
 %h2==Subtype ##{@answer.number} of 4
 %table
-  -Attitude.all.each do |attitude|
+  -Realm.all.each do |realm|
     %tr
-      -attitude.subtypes.each do |subtype|
+      -realm.subtypes.each do |subtype|
         %td.top.quarter{:class => @answer.class(subtype)}
-          %p.left=render "short", subtype: subtype
+          %p=render "short", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))

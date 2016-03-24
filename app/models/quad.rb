@@ -20,7 +20,13 @@ class Quad < Phrase
   attr_reader :realms, :path, :attitudes
 
   def subtypes; @realms.add(@attitudes); end
-  def table_order;  subtypes.values_at(0,1,3,2); end
+  def ps; subtypes.values_at(0,2).map(&:realm); end
+  def js; subtypes.values_at(1,3).map(&:realm); end
+  def pairs; [ps, js]; end
+
+  %w{first second third fourth last}.each  do |meth|
+    define_method(meth) {subtypes.send(meth)}
+  end
 
   def self.paths; Realm.all.permutation(4).collect{|array| array.join("-")}; end
   ALL = self.paths.collect{|path| self.new(path)}
