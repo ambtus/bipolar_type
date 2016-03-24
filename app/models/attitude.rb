@@ -16,9 +16,13 @@ class Attitude < Indexable
 
   def top?; index < 2; end
   def bottom?; index > 1; end
-  def odd?; index.odd?; end
-  def even?; index.even? ; end
+  def right?; index.odd?; end
+  def left?; index.even? ; end
+  def backslash?; [0,3].include? index; end
+  def slash?; [1,2].include? index; end
 
-  def description; choose Noun, %w{consumer producer non-producer non-consumer}; end
+  def adjective; top? ? "insensitive" : "sensitive"; end
+  def noun; left? ? "consumer" : "producer"; end
+  def description; Phrase.new [adjective, noun]; end
   def name; description.titleize; end
 end

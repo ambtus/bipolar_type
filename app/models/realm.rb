@@ -20,4 +20,25 @@ class Realm < Indexable
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
 
+  def get_energy; Phrase.new [Verb.new("take"), "in"]; end
+  def get_them; Phrase.new [Verb.new("take"), energy.them, "in"]; end
+  def energy; choose Noun, %w{calories facts stories rewards}; end
+  def use_energy; Phrase.new [Verb.new("use"), "up"]; end
+  def use_them; Phrase.new [Verb.new("use"), energy.them, "up"]; end
+
+  def consume; choose Verb, %w{eat learn listen earn}; end
+  def consumer; consume.to_noun; end
+  def consume_helper; choose Word, %w{NIL NIL to NIL }; end
+  def consume_with; Phrase.optional consume, consume_helper; end
+
+  def produce; choose Verb, %w{move decide talk spend}; end
+  def producer; produce.to_noun; end
+  def produce_with; choose Verb, %w{do decide say buy}; end
+  def worn_out; choose Adjective, %w{sore wrong misunderstood indebted }; end
+
+  def low; choose Adjective, %w{hungry curious bored poor }; end
+  def high; choose Adjective, %w{restless sure excited entitled }; end
+  def ill; choose Adjective, %w{nauseous anxious upset frustrated }; end
+  def very_ill; choose Adjective, %w{violently\ ill terrified suicidal homicidal }; end
+
 end

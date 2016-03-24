@@ -43,7 +43,7 @@ class Subtype < Phrase
     end
   end
 
-  def description; Phrase.new [realm.adjective, attitude.description]; end
+  def description; Phrase.new [attitude.adjective, realm.send(attitude.noun)]; end
   def name; Phrase.new [description.titleize, inspect.parenthesize]; end
 
 end

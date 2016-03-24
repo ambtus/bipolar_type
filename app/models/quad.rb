@@ -5,7 +5,7 @@ class Quad < Phrase
 
   def initialize(string)
     @path = string
-    if Attitude.paths.include? (string.first)
+    if Attitude.paths.include? (string.split("-").first)
       @attitudes = string.split("-").collect{|a| Attitude.send(a)}
       @attitudes.check_constraints Attitude, 4, 4
       @realms = Realm.all
