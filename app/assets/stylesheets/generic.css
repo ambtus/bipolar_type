@@ -19,6 +19,7 @@
 .heading {font-style: italic; text-align: center; }
 .center { text-align: center; }
 .left { text-align: left; }
+p { text-align: left; }
 .right { text-align: right; }
 .small { font-size: small;}
 .nowrap {white-space: nowrap; }
