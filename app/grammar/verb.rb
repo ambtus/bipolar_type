@@ -37,6 +37,8 @@ class Verb < Word
       Noun.new (string + "or")
     elsif chars.last == "e"
       Noun.new (string + "r")
+    elsif needs_doubling?
+      Noun.new suffix("#{last}er")
     else
       Noun.new (string + "er")
     end

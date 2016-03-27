@@ -31,7 +31,7 @@ class Realm < Indexable
   def ill; choose Adjective, %w{nauseous angry suicidal afraid}; end
   def worn_out; choose Adjective, %w{sore indebted misunderstood wrong}; end
 
-  def produce; choose Verb, %w{travel spend talk predict}; end
+  def produce; choose Verb, %w{travel shop talk think}; end
   def producer; produce.to_noun; end
 
   def produce_with; choose Verb, %w{go buy say predict}; end
