@@ -1,11 +1,15 @@
 -content_for(:title, 'The 24 BipolarTypes')
-%p.center A BipolarType is made up of four subtypes: one from each row and column.
 %p.center
-  Once you have
-  %span.chosen choosen a subtype,
-  other subtypes in the
-  %span.warning same row or column
-  will become unavailable.
+  Please note that a BipolarType is made up of four
+  %em attitudes.
+  Not four behaviors.
+  %br
+  Whether you actually consume or produce more or less than other people is irrelevant.
+%p.center
+  Once you have 
+  %span.chosen chosen 
+  an attitude, that attitude in other realms and other attitudes in the same realm will become 
+  %span.warning unavailable.
 %p.center
   If you get stuck, you can
   =link_to "start over.", discover_path(Answer.first_path)
@@ -16,7 +20,7 @@
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top.quarter{:class => @answer.class(subtype)}
-          %p.center=render "short", subtype: subtype
+          =render "short", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))

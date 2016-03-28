@@ -1,14 +1,4 @@
 %h2=subtype.name
 %p.heading=render "short", subtype: subtype
-%p
-  I usually try not to
-  =subtype.left? ? subtype.consume : subtype.produce
-  too
-  =subtype.top? ? "much." : "little."
-  Especially in public. Except when I am
-  =subtype.backslash? ? "depressed" : "manic"
-  and just cannot
-  =subtype.top? ? "stop" : "keep"
-  =subtype.left? ? subtype.consume.ing : subtype.produce.ing
-  no matter how hard I try.
-%ol.left=(render subtype.ordinal, subtype: subtype)
+=render "bipolar", subtype: subtype
+=(render subtype.ordinal, subtype: subtype) if @quad

@@ -1,6 +1,5 @@
-I
-=subtype.left? ? subtype.consume : subtype.produce
-as
-=subtype.top? ? "much" : "little"
-as my superego will let me
-=subtype.left? ? subtype.consume : subtype.produce
+="I #{subtype.consume} too much" if subtype.first?
+="I don’t #{subtype.consume} enough" if subtype.bottom?
+%em="and" if subtype.backslash?
+="I don’t #{subtype.produce} enough" if subtype.top?
+="I #{subtype.produce} too much" if subtype.last?

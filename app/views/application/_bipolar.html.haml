@@ -1,0 +1,30 @@
+I #{subtype.consume} less when I’m manic. This makes me feel
+="great!" if subtype.first?
+="terrible!" if subtype.bottom?
+="bad." if subtype.second?
+%br
+I also #{subtype.produce} more. This makes me feel
+="great!" if subtype.top?
+="terrible!" if subtype.last?
+="good." if subtype.third?
+%br
+I
+=%w{love like dislike hate}[subtype.index] 
+being 
+=subtype.backslash? ? "manic!" : "manic. Or do I?"
+%br
+%br
+I #{subtype.consume} more when I’m depressed. This makes me feel
+="great!" if subtype.bottom?
+="terrible!" if subtype.first?
+="good." if subtype.second?
+%br
+I also #{subtype.produce} less. This makes me feel
+="great!" if subtype.last?
+="terrible!" if subtype.top?
+="bad." if subtype.third?
+%br
+I
+=%w{hate dislike like love}[subtype.index] 
+being
+=subtype.backslash? ? "depressed!" : "depressed. Or do I?"

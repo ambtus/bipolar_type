@@ -21,8 +21,6 @@ class Attitude < Indexable
   def backslash?; [0,3].include? index; end
   def slash?; [1,2].include? index; end
 
-  def adjective; top? ? "willing" : "unwilling"; end
-  def noun; left? ? "consumer" : "producer"; end
-  def description; Phrase.new [adjective, noun]; end
-  def name; description.titleize; end
+  def adjective; choose Adjective, %w{fat lazy ungrateful thin}; end
+  def name; adjective.titleize; end
 end
