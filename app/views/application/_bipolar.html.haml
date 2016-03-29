@@ -1,11 +1,9 @@
-I gain
-="a lot of" if subtype.first?
-="some" if subtype.slash?
-="a #{subtype.potential.few}" if subtype.last?
-=subtype.potential
-when I'm depressed and
-lose
-="a lot" if subtype.last?
-="some" if subtype.slash?
+I lose
 ="a #{subtype.potential.few}" if subtype.first?
-when I’m manic.
+="some" if subtype.cyclothymic?
+="a lot of" if subtype.last?
+=subtype.potential
+when I’m manic, and gain 
+="more" if subtype.insensitive?
+="a #{subtype.potential.few}" if subtype.sensitive?
+back during the subsequent depression

@@ -1,11 +1,11 @@
 When I am
-=subtype.top? ? "depressed or taking sedatives" : "manic or taking stimulants"
+=subtype.insensitive? ? "depressed or taking sedatives" : "manic or taking stimulants"
 -case subtype.ordinal
 -when "first"
-  I want to #{subtype.consume} more but I can’t — I already have too #{subtype.potential.many_phrase} — so I try not to
+  I want to #{subtype.consume} more but I can’t afford to gain any more #{subtype.potential}
 -when "second"
-  I have to #{subtype.consume} more
+  I have to #{subtype.consume} more in order to #{subtype.produce}
 -when "third"
-  I can’t #{subtype.consume} as much
+  I can’t #{subtype.consume} without becoming #{subtype.adverb} ill
 -when "fourth"
-  don’t want to #{subtype.consume} but I have to — I already have too #{subtype.potential.few_phrase} — so I do
+  I don’t want to #{subtype.consume} but I can’t afford to lose any more #{subtype.potential}

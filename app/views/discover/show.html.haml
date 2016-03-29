@@ -1,10 +1,6 @@
 -content_for(:title, 'The 24 BipolarTypes')
 %p.center
-  Please note that a BipolarType is made up of four
-  %em attitudes.
-  Not four behaviors.
-  %br
-  Whether you actually consume more or less is irrelevant.
+  A BipolarType is made up of four attitudes: one per realm.
 %p.center
   Once you have 
   %span.chosen chosen 
@@ -20,7 +16,7 @@
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top.quarter{:class => @answer.class(subtype)}
-          =render "short", subtype: subtype
+          %p.center=render "short", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))

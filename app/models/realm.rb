@@ -16,7 +16,7 @@ class Realm < Indexable
   Attitude.all.each {|a| define_method(a.path) {self + a}}
   def generic_subtype; Subtype.new [self, Attitude.generic]; end
 
-  def adjective; choose Adjective, %w{physical mental social financial}; end
+  def adjective; choose Adjective, %w{physical mental emotional financial}; end
   def adverb; adjective.ly; end
 
   def appear; choose Verb, %w{smell look sound feel}; end
@@ -29,21 +29,13 @@ class Realm < Indexable
 
   def consume_time; choose Noun, %w{mealtime lesson\ time story\ time work\ time}; end
 
-  def potential; choose Noun, %w{fat confidence friends savings}; end
+  def potential; choose Noun, %w{fat memories friends savings}; end
 
-  def empty; choose Adjective, %w{hungry afraid lonely poor}; end
-  def ill; Phrase.new [adverb, "overwhelmed"]; end
-  def full; Phrase.new [adverb, "restless"]; end
-
-  def worn_out; choose Adjective, %w{sore wrong  misunderstood indebted }; end
-
-  def produce; choose Verb, %w{walk decide talk buy}; end
+  def produce; choose Verb, %w{walk think talk shop}; end
   def producer; produce.to_noun; end
 
-  def produce_with; choose Verb, %w{go predict say  buy}; end
-  def thing; Noun.new(first? ? "place" : "thing"); end
+  def produce_with; choose Verb, %w{move predict say buy}; end
 
   def produce_time; choose Noun, %w{gym\ time test\ time speech\ time shopping\ time}; end
 
-  def waste; choose Verb, %w{pace guess chatter splurge}; end
 end

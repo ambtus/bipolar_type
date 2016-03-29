@@ -14,15 +14,15 @@ class Attitude < Indexable
   Realm.all.each {|r| define_method(a.path) {self + r}}
   def generic_subtype; Subtype.new [Realm.generic, self]; end
 
-  def top?; index < 2; end
-  def bottom?; index > 1; end
-  def right?; index.odd?; end
-  def left?; index.even? ; end
-  def backslash?; [0,3].include? index; end
-  def slash?; [1,2].include? index; end
+  def insensitive?; index < 2; end
+  def sensitive?; index > 1; end
+  def producer?; index.odd?; end
+  def consumer?; index.even? ; end
+  def bipolar?; [0,3].include? index; end
+  def cyclothymic?; [1,2].include? index; end
 
-  def adjective; Adjective.new(top? ? "insensitive" : "sensitive"); end
-  def noun; Noun.new(left? ? "consumer" : "producer"); end
+  def adjective; Adjective.new(insensitive? ? "insensitive" : "sensitive"); end
+  def noun; Noun.new(consumer? ? "consumer" : "producer"); end
   def description; Phrase.new [adjective, noun]; end
   def name; description.titleize; end
 end
