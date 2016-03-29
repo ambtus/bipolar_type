@@ -43,8 +43,8 @@ class Subtype < Phrase
     end
   end
 
-  def description; Phrase.new [adverb, adjective,]; end
-  def name; Phrase.new ["I am", description.titleize, inspect.parenthesize]; end
+  def description; Phrase.new [attitude.adjective, realm.send(attitude.noun)]; end
+  def name; Phrase.new [description.titleize, inspect.parenthesize]; end
 
   def gain_or_lose
     return "gain" if first?

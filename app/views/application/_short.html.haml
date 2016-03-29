@@ -1,5 +1,11 @@
-="I #{subtype.consume} too much" if subtype.first?
-="I don’t #{subtype.consume} enough" if subtype.bottom?
-%em="and" if subtype.backslash?
-="I don’t #{subtype.produce} enough" if subtype.top?
-="I #{subtype.produce} too much" if subtype.last?
+When I am
+=subtype.top? ? "depressed or taking sedatives" : "manic or taking stimulants"
+-case subtype.ordinal
+-when "first"
+  I want to #{subtype.consume} more but I can’t — I already have too #{subtype.potential.many_phrase} — so I try not to
+-when "second"
+  I have to #{subtype.consume} more
+-when "third"
+  I can’t #{subtype.consume} as much
+-when "fourth"
+  don’t want to #{subtype.consume} but I have to — I already have too #{subtype.potential.few_phrase} — so I do
