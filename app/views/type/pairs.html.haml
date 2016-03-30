@@ -1,9 +1,0 @@
-- content_for(:title, 'Pairs')
-%table
-  -Realm.all.permutation(2) do |pair|
-    %tr
-      %td{colspan: 2}        
-        %h2==#{pair.map(&:resources).map(&:capitalize).to_sentence}
-    %tr
-      %td.half=render "ps", insensitive: pair.first, sensitive: pair.second
-      %td.half=render "js", insensitive: pair.first, sensitive: pair.second
