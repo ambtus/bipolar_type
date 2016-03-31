@@ -35,7 +35,7 @@ class Realm < Indexable
   def potential; choose Noun, %w{fat memories friends savings}; end
 
   def process_verb; choose Verb, %w{digest believe empathize collect}; end
-  def process_helper; choose Verb, %w{NIL NIL with NIL}; end
+  def process_helper; choose Word, %w{NIL NIL with NIL}; end
   def resources; choose Noun, %w{food information stories rewards}; end
   def process; Phrase.new [process_verb, process_helper, "the", resources]; end
 
