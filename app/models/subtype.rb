@@ -13,7 +13,7 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def words; [attitude, realm]; end
+  def words; [attitude.first, realm, attitude.second]; end
   def inspect; Word.new words.join.upcase; end
   def to_s; inspect.to_s; end
   def to_str; to_s; end
@@ -31,7 +31,10 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def opposite; ALL.find{|s| s.realm == realm && s.attitude == attitude.opposite}; end
+  def next; ALL.find{|s| s.realm == realm && s.attitude == attitude.next}; end
+
+  def behavior; realm.send(attitude.behavior); end
+  def feeling; realm.send(attitude.feeling); end
 
   def method_missing(meth, *arguments, &block)
     if attitude.respond_to?(meth)
@@ -42,13 +45,5 @@ class Subtype < Phrase
       super
     end
   end
-
-  def description; Phrase.new [realm.adverb, attitude.adjective]; end
-  def name; Phrase.new [description.titleize]; end
-
-  def gain_or_lose
-    return "gain" if first?
-    return "lose" if third?
-  end
-
+  
 end

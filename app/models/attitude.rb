@@ -1,7 +1,7 @@
 class Attitude < Indexable
 
   ########
-  IDENTIFIERS = %w{ ➡ ⬇ ⬆ ⬅  }
+  IDENTIFIERS = %w{ ep ij ip ej  }
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   def self.all; self::ALL; end
@@ -15,6 +15,7 @@ class Attitude < Indexable
   def generic_subtype; Subtype.new [Realm.generic, self]; end
 
   def self.in_order; ALL.values_at(0,1,3,2); end
+  def next; ALL.values_at(1,3,0,2)[index]; end
 
   def insensitive?; index < 2; end
   def sensitive?; index > 1; end
@@ -23,6 +24,7 @@ class Attitude < Indexable
   def bipolar?; [0,3].include? index; end
   def cyclothymic?; [1,2].include? index; end
 
-  def adjective; choose Adjective, %w{ slow bored strong weak}; end
-  def name; adjective.titleize; end
+  def behavior; choose Verb, %w{energize process recover produce}; end
+  def feeling; choose Verb, %w{empty full worn_out restless}; end
+
 end

@@ -18,6 +18,6 @@
           %p.center=render "short", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
-              =link_to subtype.name, discover_path(@answer.next(subtype))
+              =link_to subtype, discover_path(@answer.next(subtype))
             -else
-              =subtype.name
+              =subtype

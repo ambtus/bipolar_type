@@ -35,6 +35,9 @@ class Quad < Phrase
     "Q4_#{subtypes.without(subtype).map(&:path).join}"
   end
 
+  def pairs; [[first, third], [second, fourth]]; end
+  def paired(subtype); (pairs.find{|p| p.include? subtype} - [subtype]).first; end
+
   def names; subtypes.values_at(0,1,3,2).map(&:name); end
   def inspect; names.join("•"); end
   def name; inspect; end
