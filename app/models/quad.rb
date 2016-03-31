@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; Realm.all.join("-"); end
+  def self.my_path; "s-n-f-t"; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
@@ -20,9 +20,6 @@ class Quad < Phrase
   attr_reader :realms, :path, :attitudes
 
   def subtypes; @realms.add(@attitudes); end
-  def ps; subtypes.values_at(0,2).map(&:realm); end
-  def js; subtypes.values_at(1,3).map(&:realm); end
-  def pairs; [ps, js]; end
 
   %w{first second third fourth last}.each  do |meth|
     define_method(meth) {subtypes.send(meth)}
@@ -38,7 +35,7 @@ class Quad < Phrase
     "Q4_#{subtypes.without(subtype).map(&:path).join}"
   end
 
-  def names; subtypes; end
+  def names; subtypes.values_at(0,1,3,2).map(&:name); end
   def inspect; names.join("•"); end
   def name; inspect; end
 

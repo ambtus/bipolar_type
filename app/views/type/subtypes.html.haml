@@ -1,6 +1,6 @@
 - content_for(:title, 'Subtypes')
 %table
-  -Attitude.all.each do |attitude|
+  -Attitude.in_order.each do |attitude|
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top.quarter=render "subtype", subtype: subtype
