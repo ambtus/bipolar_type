@@ -32,6 +32,7 @@ class Subtype < Phrase
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
   def next; ALL.find{|s| s.realm == realm && s.attitude == attitude.next}; end
+  def paired_generic; Subtype.new [Realm.generic, attitude.paired]; end
 
   def behavior; realm.send(attitude.behavior); end
   def feeling; realm.send(attitude.feeling); end
@@ -45,5 +46,8 @@ class Subtype < Phrase
       super
     end
   end
-  
+
+  def description; Phrase.new [attitude.adjective, realm.adjective, attitude.noun]; end
+  def name; [description.titleize, inspect.parenthesize].join("<br />").html_safe; end
+
 end

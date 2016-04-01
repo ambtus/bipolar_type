@@ -16,6 +16,7 @@ class Attitude < Indexable
 
   def self.in_order; ALL.values_at(0,1,3,2); end
   def next; ALL.values_at(1,3,0,2)[index]; end
+  def paired; ALL.values_at(2,3,0,1)[index]; end
 
   def insensitive?; index < 2; end
   def sensitive?; index > 1; end
@@ -24,7 +25,12 @@ class Attitude < Indexable
   def bipolar?; [0,3].include? index; end
   def cyclothymic?; [1,2].include? index; end
 
-  def behavior; choose Verb, %w{energize process recover produce}; end
+  def behavior; choose Verb, %w{consume process recover produce}; end
   def feeling; choose Verb, %w{empty full worn_out restless}; end
+
+  def adjective; Adjective.new(insensitive? ? "insensitive" : "sensitive"); end
+  def noun; choose Noun, %w{consumption processing recovering producing}; end
+  def description; Phrase.new [adjective, noun]; end
+  def name; description.titleize; end
 
 end

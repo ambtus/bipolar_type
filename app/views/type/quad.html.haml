@@ -1,8 +1,14 @@
 - content_for(:title, @quad.name)
 %table
-  -@quad.subtypes.in_groups_of(2) do |row|
-    %tr
-      -row.each do |subtype|
-        %td.top.half
-          =render "subtype", subtype: subtype
-          =render subtype.ordinal, subtype: subtype, paired: @quad.paired(subtype)
+  %tr
+    %td.third.top=render "subtype", subtype: @quad.first
+    %td.third=render "insensitive"
+    %td.third.top=render "subtype", subtype: @quad.second
+  %tr
+    %td=render "consume"
+    %td=render "advice"
+    %td=render "produce"
+  %tr
+    %td.top=render "subtype", subtype: @quad.third
+    %td=render "sensitive"
+    %td.top=render "subtype", subtype: @quad.fourth

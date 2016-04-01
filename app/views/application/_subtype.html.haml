@@ -1,2 +1,3 @@
-%h2=subtype
 %p.heading=render "short", subtype: subtype
+=render subtype.ordinal, subtype: subtype, paired: @quad.paired(subtype) if @quad
+=render subtype.ordinal, subtype: subtype, paired: subtype.paired_generic unless @quad

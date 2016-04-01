@@ -2,9 +2,9 @@
 %p.center
   A BipolarType is made up of four attitudes: one per realm.
 %p.center
-  Once you have 
-  %span.chosen chosen 
-  an attitude, that attitude in other realms and other attitudes in the same realm will become 
+  Once you have
+  %span.chosen chosen
+  an attitude, that attitude in other realms and other attitudes in the same realm will become
   %span.warning unavailable.
 %p.center
   If you get stuck, you can
@@ -15,9 +15,8 @@
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top.quarter{:class => @answer.class(subtype)}
-          %p.center=render "short", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
-              =link_to subtype, discover_path(@answer.next(subtype))
+              =link_to (render "short", subtype: subtype), discover_path(@answer.next(subtype))
             -else
-              =subtype
+              =render "short", subtype: subtype
