@@ -18,39 +18,34 @@ class Realm < Indexable
 
   def adjective; choose Adjective, %w{physical mental emotional financial}; end
   def adverb; adjective.ly; end
+  def name; adjective.capitalize; end
 
-  def appear; choose Verb, %w{smell look sound feel}; end
-  def good; choose Adjective, %w{sweet symmetric harmonic smooth}; end
+  def fat; choose Adjective, %w{fat knowledgeable social rich}; end
+  def thin; choose Adjective, %w{skinny theoretical independent poor}; end
+  def strong; choose Adjective, %w{strong smart influential creditworthy }; end
+  def weak; choose Adjective, %w{weak stupid uninfluential uncreditworthy }; end
 
-  def consume; choose Verb, %w{eat look listen earn}; end
-  def consume_helper; choose Word, %w{NIL at to NIL}; end
-  def consume_with; choose Verb, %w{eat see hear earn}; end
-  def energizers; choose Noun, %w{carbs colorful\ details complaints spending\ money}; end
-  def strengtheners; choose Noun, %w{protein results rebuttals loan\ repayments}; end
+  def consume; choose Verb, %w{eat learn listen earn}; end
+  def produce; choose Verb, %w{move decide talk spend}; end
+  def unproductive; choose Verb, %w{seated undecided silent miserly}; end
 
-  def recover; Phrase.new [consume, consume_helper, strengtheners]; end
-  def energize; Phrase.new [consume, consume_helper, energizers]; end
+  def reject_verb; choose Verb, %w{throw panic cry quit}; end
+  def reject_helper; choose Word, %w{up NIL NIL NIL}; end
+  def reject; Phrase.optional reject_verb, reject_helper; end
 
-  def kinetic; choose Noun, %w{calories facts emotions cash}; end
-  def potential; choose Noun, %w{fat memories friends savings}; end
+  def energizers; choose Noun, %w{carbs colors complaints cash}; end
+  def potential; choose Noun, %w{fat memories friends money}; end
 
-  def process_verb; choose Verb, %w{digest believe empathize collect}; end
-  def process_helper; choose Word, %w{NIL NIL with NIL}; end
-  def process_verb_with_helper; Phrase.optional process_verb, process_helper; end
-  def resources; choose Noun, %w{food information stories rewards}; end
-  def process; Phrase.new [process_verb, process_helper, "the", resources]; end
+  def worn_out; choose Adjective, %w{sore stupid misunderstood indebted}; end
+  def strengths; choose Noun, %w{muscles mental\ models vocabulary loans}; end
+  def atrophy; strengths.uncountable? ? "atrophies" : "atrophy"; end
+  def strengtheners; choose Noun, %w{protein results rebuttals repayments}; end
 
-  def produce; choose Verb, %w{walk decide talk buy}; end
-  def produce_with; choose Verb, %w{go predict say buy}; end
-  def thing; Noun.new(first? ? "where" : "thing"); end
-  def things; Noun.new(first? ? "places" : "things"); end
-
-  def empty; choose Adjective, %w{hungry curious lonely poor}; end
+  def empty; choose Adjective, %w{hungry unsure lonely poor}; end
   def worn_out; choose Adjective, %w{sore wrong misunderstood indebted}; end
-  def full; Phrase.new [adverb, "full"]; end
-  def restless; Phrase.new [adverb, "restless"]; end
 
-  def ill; choose Adjective, %w{nauseous afraid guilty angry}; end
-  def very_ill; choose Adjective, %w{sick paranoid suicidal homicidal}; end
+  def reject_verb; choose Verb, %w{throw panic cry quit}; end
+  def reject_helper; choose Word, %w{up NIL NIL NIL}; end
+  def reject; Phrase.optional reject_verb, reject_helper; end
 
 end

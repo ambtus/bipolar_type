@@ -1,22 +1,24 @@
 -content_for(:title, 'The 24 BipolarTypes')
 %p.center
-  A BipolarType is made up of four attitudes: one per realm.
-%p.center
   Once you have
   %span.chosen chosen
-  an attitude, that attitude in other realms and other attitudes in the same realm will become
+  a subtype, that attitude in other realms and other attitudes in the same realm will become
   %span.warning unavailable.
 %p.center
   If you get stuck, you can
   =link_to "start over.", discover_path(Answer.first_path)
 %h2==Subtype ##{@answer.number} of 4
 %table
-  -Attitude.in_order.each do |attitude|
+  %tr
+    -Realm.all.each do |realm|
+      %th.quarter=realm.name
+  -Attitude.all.each do |attitude|
     %tr
       -attitude.subtypes.each do |subtype|
-        %td.top.quarter{:class => @answer.class(subtype)}
+        %td.top{:class => @answer.class(subtype)}
+          %p.center=render "short", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
-              =link_to (render "short", subtype: subtype), discover_path(@answer.next(subtype))
+              =link_to subtype.name, discover_path(@answer.next(subtype))
             -else
-              =render "short", subtype: subtype
+              =subtype.name

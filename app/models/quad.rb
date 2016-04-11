@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; "s-n-f-t"; end
+  def self.my_path; "s-n-t-f"; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
@@ -21,6 +21,7 @@ class Quad < Phrase
 
   def subtypes; @realms.add(@attitudes); end
 
+  def ordered_subtypes; subtypes.values_at(0,1,3,2); end
   %w{first second third fourth last}.each  do |meth|
     define_method(meth) {subtypes.send(meth)}
   end
@@ -38,8 +39,8 @@ class Quad < Phrase
   def pairs; [[first, third], [second, fourth]]; end
   def paired(subtype); (pairs.find{|p| p.include? subtype} - [subtype]).first; end
 
-  def names; subtypes.values_at(0,1,3,2); end
-  def inspect; names.join("•"); end
+  def inspect; subtypes.join("•"); end
   def name; inspect; end
 
+  def letters; realms.map(&:letter); end   
 end

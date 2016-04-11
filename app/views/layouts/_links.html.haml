@@ -1,11 +1,9 @@
 =link_to_unless_current "Introduction", root_path
 |
-=link_to_unless_current "Theory", type_path("theory")
-|
 =link_to_unless controller.controller_name == "discover", "Discovery", discover_path(Answer.first_path)
 -#=link_to_unless_current "Discovery", discover_path(Answer.first_path)
--#|
--#=link_to_unless_current "Subtypes", type_path("subtypes")
+|
+=link_to_unless_current "Subtypes", type_path("subtypes")
 |
 =link_to_unless_current "My BipolarType", type_path(Quad.my_path)
 |

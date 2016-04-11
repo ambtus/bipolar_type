@@ -13,7 +13,8 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def words; [attitude.first, realm, attitude.second]; end
+  def letters; [attitude, realm]; end
+  def words; attitude.balanced? ? letters : letters.reverse; end
   def inspect; Word.new words.join.upcase; end
   def to_s; inspect.to_s; end
   def to_str; to_s; end
@@ -31,12 +32,6 @@ class Subtype < Phrase
   def same_realm; ALL.select{|s| s.realm == realm}; end
   def same_attitude; ALL.select{|s| s.attitude == attitude}; end
 
-  def next; ALL.find{|s| s.realm == realm && s.attitude == attitude.next}; end
-  def paired_generic; Subtype.new [Realm.generic, attitude.paired]; end
-
-  def behavior; realm.send(attitude.behavior); end
-  def feeling; realm.send(attitude.feeling); end
-
   def method_missing(meth, *arguments, &block)
     if attitude.respond_to?(meth)
       attitude.send(meth, *arguments, &block)
@@ -47,7 +42,10 @@ class Subtype < Phrase
     end
   end
 
-  def description; Phrase.new [attitude.adjective, realm.adjective, attitude.noun]; end
-  def name; [description.titleize, inspect.parenthesize].join("<br />").html_safe; end
+  def big; realm.send(attitude.big); end
+  def strong; realm.send(attitude.strong); end
+
+  def description; Phrase.new [big, conjunction, strong]; end
+  def name; Phrase.new [big.capitalize, conjunction, strong.capitalize]; end
 
 end
