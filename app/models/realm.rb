@@ -22,8 +22,8 @@ class Realm < Indexable
 
   def fat; choose Adjective, %w{fat knowledgeable social rich}; end
   def thin; choose Adjective, %w{skinny theoretical independent poor}; end
-  def strong; choose Adjective, %w{strong smart influential creditworthy }; end
-  def weak; choose Adjective, %w{weak stupid uninfluential uncreditworthy }; end
+  def strong; choose Adjective, %w{strong smart influential good\ credit }; end
+  def weak; choose Adjective, %w{weak stupid uninfluential bad\ credit }; end
 
   def consume; choose Verb, %w{eat learn listen earn}; end
   def produce; choose Verb, %w{move decide talk spend}; end

@@ -46,6 +46,6 @@ class Subtype < Phrase
   def strong; realm.send(attitude.strong); end
 
   def description; Phrase.new [big, conjunction, strong]; end
-  def name; Phrase.new [big.capitalize, conjunction, strong.capitalize]; end
+  def name; Phrase.new [big.titleize, conjunction, strong.titleize]; end
 
 end
