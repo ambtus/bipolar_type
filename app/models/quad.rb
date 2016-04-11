@@ -22,9 +22,6 @@ class Quad < Phrase
   def subtypes; @realms.add(@attitudes); end
 
   def ordered_subtypes; subtypes.values_at(0,1,3,2); end
-  %w{first second third fourth last}.each  do |meth|
-    define_method(meth) {subtypes.send(meth)}
-  end
 
   def self.paths; Realm.all.permutation(4).collect{|array| array.join("-")}; end
   ALL = self.paths.collect{|path| self.new(path)}
@@ -42,5 +39,18 @@ class Quad < Phrase
   def inspect; subtypes.join("•"); end
   def name; inspect; end
 
-  def letters; realms.map(&:letter); end   
+  %w{first second third fourth last}.each  do |meth|
+    define_method(meth) {realms.send(meth)}
+  end
+  def mbti
+    if "E#{first.mbti_order(second)}P".is_mbti?
+      "E#{first.mbti_order(second)}P/I#{third.mbti_order(fourth)}J"
+    elsif "I#{first.mbti_order(fourth)}P".is_mbti?
+      "I#{first.mbti_order(fourth)}P/E#{second.mbti_order(third)}J"
+    end
+  end
+
+  def self.by_mbti; ALL.sort_by(&:mbti); end
+
+  def letters; realms.map(&:letter); end
 end

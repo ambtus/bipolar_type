@@ -7,7 +7,7 @@ class Realm < Indexable
   all.each { |r| define_singleton_method(r.path) {all[IDENTIFIERS.index r.string]} }
   ########
 
-  def self.mbti_order(first, second); [first, second].sort.map(&:upcase).join ; end
+  def mbti_order(second); [self, second].sort.map(&:upcase).join ; end
 
 
   def +(attitude); subtypes.find{|s| s.attitude == attitude} || Subtype.new([self, attitude]); end
@@ -16,36 +16,33 @@ class Realm < Indexable
   Attitude.all.each {|a| define_method(a.path) {self + a}}
   def generic_subtype; Subtype.new [self, Attitude.generic]; end
 
-  def adjective; choose Adjective, %w{physical mental emotional financial}; end
+  def adjective; choose Adjective, %w{physical mental social financial}; end
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
 
-  def fat; choose Adjective, %w{fat knowledgeable social rich}; end
-  def thin; choose Adjective, %w{skinny theoretical independent poor}; end
+  def obvious; choose Adjective, %w{sweet colorful whiny cash}; end
+  def energizers; choose Noun, %w{carbs details complaints rewards}; end
+  def reject_verb; choose Verb, %w{throw panic cry quit}; end
+  def reject_helper; choose Word, %w{up NIL NIL NIL}; end
+  def reject; Phrase.optional reject_verb, reject_helper; end
+  def potential; choose Noun, %w{fat memories friends savings}; end
+  def empty; choose Adjective, %w{hungry unsure lonely poor}; end
+  def fat; choose Adjective, %w{fat knowledgeable popular rich}; end
+  def thin; choose Adjective, %w{skinny theoretical alone cash\ poor}; end
+
+  def strengtheners; choose Noun, %w{protein patterns reassurance repayments}; end
+  def strengths; choose Noun, %w{muscles mental\ models hope loans}; end
+  def atrophy; strengths.uncountable? ? "atrophies" : "atrophy"; end
+  def worn_out; choose Adjective, %w{sore wrong hopeless indebted}; end
   def strong; choose Adjective, %w{strong smart influential good\ credit }; end
   def weak; choose Adjective, %w{weak stupid uninfluential bad\ credit }; end
+  def are; choose Verb, %w{are are are have}; end
+  def are_weak; Phrase.new [are, weak]; end
 
-  def consume; choose Verb, %w{eat learn listen earn}; end
-  def produce; choose Verb, %w{move decide talk spend}; end
+  def consume; choose Verb, %w{eat look listen earn}; end
+  def helper; choose Word, %w{NIL at to NIL}; end
+  def consume_with; Phrase.optional consume, helper; end
+  def produce; choose Verb, %w{walk decide complain shop}; end
   def unproductive; choose Verb, %w{seated undecided silent miserly}; end
-
-  def reject_verb; choose Verb, %w{throw panic cry quit}; end
-  def reject_helper; choose Word, %w{up NIL NIL NIL}; end
-  def reject; Phrase.optional reject_verb, reject_helper; end
-
-  def energizers; choose Noun, %w{carbs colors complaints cash}; end
-  def potential; choose Noun, %w{fat memories friends money}; end
-
-  def worn_out; choose Adjective, %w{sore stupid misunderstood indebted}; end
-  def strengths; choose Noun, %w{muscles mental\ models vocabulary loans}; end
-  def atrophy; strengths.uncountable? ? "atrophies" : "atrophy"; end
-  def strengtheners; choose Noun, %w{protein results rebuttals repayments}; end
-
-  def empty; choose Adjective, %w{hungry unsure lonely poor}; end
-  def worn_out; choose Adjective, %w{sore wrong misunderstood indebted}; end
-
-  def reject_verb; choose Verb, %w{throw panic cry quit}; end
-  def reject_helper; choose Word, %w{up NIL NIL NIL}; end
-  def reject; Phrase.optional reject_verb, reject_helper; end
 
 end

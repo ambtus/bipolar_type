@@ -1,4 +1,4 @@
-- content_for(:title, @quad.name)
+- content_for(:title, "#{@quad.name} (#{@quad.mbti})")
 %table
   -@quad.ordered_subtypes.in_groups_of(2) do |row|
     %tr

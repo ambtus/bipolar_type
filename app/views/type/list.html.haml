@@ -1,0 +1,32 @@
+- content_for(:title, '24 BipolarTypes')
+%table
+  -Quad.by_mbti.in_groups_of(4).each_with_index do |group, index|
+    -if index < 4
+      %tr
+        %th{colspan: 4}=group.first.mbti
+      %tr
+      -group.each do |quad|
+        %td
+          =link_to quad.name, type_path(quad.path)
+          %br
+          -quad.subtypes.each do |subtype|
+            =subtype.name
+            =subtype.inspect.parenthesize
+            %br
+    -else
+      -group.in_groups_of(2) do |row|
+        %tr
+          %th
+          %th{colspan: 2}=row.first.mbti
+          %th
+        %tr
+          %th
+          -row.each do |quad|
+            %td
+              =link_to quad.name, type_path(quad.path)
+              %br
+              -quad.subtypes.each do |subtype|
+                =subtype.name
+                =subtype.inspect.parenthesize
+                %br
+          %th

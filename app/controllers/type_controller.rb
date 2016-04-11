@@ -3,7 +3,7 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{theory subtypes }.include? params[:id]
+    elsif %w{theory subtypes list}.include? params[:id]
       render params[:id]
     elsif Realm.paths.include?(params[:id])
       @quad = Realm.send(params[:id]).quad
