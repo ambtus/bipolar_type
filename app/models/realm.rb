@@ -16,33 +16,35 @@ class Realm < Indexable
   Attitude.all.each {|a| define_method(a.path) {self + a}}
   def generic_subtype; Subtype.new [self, Attitude.generic]; end
 
-  def adjective; choose Adjective, %w{physical mental social financial}; end
+  def adjective; choose Adjective, %w{physical mental emotional financial}; end
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
 
-  def obvious; choose Adjective, %w{sweet colorful whiny cash}; end
-  def energizers; choose Noun, %w{carbs details complaints rewards}; end
+  def energizers; choose Noun, %w{sweets facts whines cash}; end
   def reject_verb; choose Verb, %w{throw panic cry quit}; end
   def reject_helper; choose Word, %w{up NIL NIL NIL}; end
   def reject; Phrase.optional reject_verb, reject_helper; end
+  def kinetic; choose Noun, %w{glycogen facts emotions cash}; end
   def potential; choose Noun, %w{fat memories friends savings}; end
-  def empty; choose Adjective, %w{hungry unsure lonely poor}; end
-  def fat; choose Adjective, %w{fat knowledgeable popular rich}; end
+  def empty; choose Adjective, %w{hungry unsure lonely miserly}; end
+  def death; choose Adjective, %w{starvation stupidity suicide exposure}; end
+  def big; choose Adjective, %w{fat knowledgeable opinionated rich}; end
   def thin; choose Adjective, %w{skinny theoretical alone cash\ poor}; end
 
-  def strengtheners; choose Noun, %w{protein patterns reassurance repayments}; end
-  def strengths; choose Noun, %w{muscles mental\ models hope loans}; end
+  def strengtheners; choose Noun, %w{protein patterns words repayments}; end
+  def strengths; choose Noun, %w{muscles rules metaphors credit}; end
   def atrophy; strengths.uncountable? ? "atrophies" : "atrophy"; end
-  def worn_out; choose Adjective, %w{sore wrong hopeless indebted}; end
-  def strong; choose Adjective, %w{strong smart influential good\ credit }; end
+  def worn_out; choose Adjective, %w{sore wrong misunderstood indebted}; end
+  def strong; choose Adjective, %w{strong smart eloquent good\ credit }; end
   def weak; choose Adjective, %w{weak stupid uninfluential bad\ credit }; end
+  def am; choose Verb, %w{am am am have}; end
   def are; choose Verb, %w{are are are have}; end
   def are_weak; Phrase.new [are, weak]; end
 
-  def consume; choose Verb, %w{eat look listen earn}; end
-  def helper; choose Word, %w{NIL at to NIL}; end
+  def consume; choose Verb, %w{eat watch listen work}; end
+  def helper; choose Word, %w{NIL for to for}; end
   def consume_with; Phrase.optional consume, helper; end
-  def produce; choose Verb, %w{walk decide complain shop}; end
+  def produce; choose Verb, %w{move decide talk buy}; end
   def unproductive; choose Verb, %w{seated undecided silent miserly}; end
 
 end

@@ -29,6 +29,6 @@ class Answer
   def paths(subtype); all(subtype).map(&:path).join('-'); end
   def next(subtype); "#{question.next}:#{paths(subtype)}"; end
 
-  def quad_path; chosen.sort.map(&:realm).map(&:path).join("-"); end
+  def quad_path; chosen.sort.map(&:realm).map(&:path).join; end
 
 end

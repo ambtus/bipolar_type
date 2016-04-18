@@ -68,6 +68,6 @@ class Noun < Word
    self-deprecation potential\ energy egotism kinetic\ energy trivia safety
    comfort soul mind property credit\ rating dessert energy
    spending\ money salary regular\ income bonus\ income truth
-   symmetry dissonance pain shame logic language nose skin }
+   symmetry dissonance pain shame logic language nose skin brain}
 
 end

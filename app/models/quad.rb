@@ -1,17 +1,17 @@
 class Quad < Phrase
 
-  def self.my_path; "s-n-t-f"; end
+  def self.my_path; "snft"; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
     @path = string
-    if Attitude.paths.include? (string.split("-").first)
-      @attitudes = string.split("-").collect{|a| Attitude.send(a)}
+    if Attitude.paths.include? (string[0,2])
+      @attitudes = string.scan(/../).collect{|a| Attitude.send(a)}
       @attitudes.check_constraints Attitude, 4, 4
       @realms = Realm.all
       super(@realms)
     else
-      @realms = string.split("-").collect{|a| Realm.send(a)}
+      @realms = string.chars.collect{|a| Realm.send(a)}
       @realms.check_constraints Realm, 4, 4
       @attitudes = Attitude.all
       super(@realms)
@@ -21,20 +21,10 @@ class Quad < Phrase
 
   def subtypes; @realms.add(@attitudes); end
 
-  def ordered_subtypes; subtypes.values_at(0,1,3,2); end
-
-  def self.paths; Realm.all.permutation(4).collect{|array| array.join("-")}; end
+  def self.paths; Realm.all.permutation(4).collect{|array| array.join}; end
   ALL = self.paths.collect{|path| self.new(path)}
   def self.all; ALL; end
   ALL.each {|quad| define_singleton_method(quad.path) {quad} }
-
-  def discover_without(subtype)
-    raise unless subtypes.include? subtype
-    "Q4_#{subtypes.without(subtype).map(&:path).join}"
-  end
-
-  def pairs; [[first, third], [second, fourth]]; end
-  def paired(subtype); (pairs.find{|p| p.include? subtype} - [subtype]).first; end
 
   def inspect; subtypes.join("•"); end
   def name; inspect; end
@@ -44,9 +34,9 @@ class Quad < Phrase
   end
   def mbti
     if "E#{first.mbti_order(second)}P".is_mbti?
-      "E#{first.mbti_order(second)}P/I#{third.mbti_order(fourth)}J"
-    elsif "I#{first.mbti_order(fourth)}P".is_mbti?
-      "I#{first.mbti_order(fourth)}P/E#{second.mbti_order(third)}J"
+      "E#{first.mbti_order(second)}/I#{third.mbti_order(fourth)}"
+    elsif "I#{first.mbti_order(third)}P".is_mbti?
+      "#{first.mbti_order(third)}P/#{second.mbti_order(fourth)}J"
     end
   end
 

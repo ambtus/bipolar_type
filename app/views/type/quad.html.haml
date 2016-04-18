@@ -1,6 +1,6 @@
 - content_for(:title, "#{@quad.name} (#{@quad.mbti})")
 %table
-  -@quad.ordered_subtypes.in_groups_of(2) do |row|
+  -@quad.subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
         %td.top.half

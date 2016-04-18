@@ -16,7 +16,7 @@
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top{:class => @answer.class(subtype)}
-          %p.center=render "short", subtype: subtype
+          %p.center=render "subtype", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))

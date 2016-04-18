@@ -2,8 +2,8 @@
 %table
   %tr
     -Realm.all.each do |realm|
-      %th=realm.name
-  -Attitude.all.each do |attitude|
+      %th.quarter=realm.name
+  -Attitude.all.values_at(0,1,3,2).each do |attitude|
     %tr
       -attitude.subtypes.each do |subtype|
         %td.top=render "subtype", subtype: subtype

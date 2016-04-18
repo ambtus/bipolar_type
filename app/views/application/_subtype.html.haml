@@ -1,16 +1,17 @@
-%h2
-  =subtype.name
-  %br
-  =subtype.inspect.parenthesize
-%p.heading=render "short", subtype: subtype
-%p.heading
-  When I am
-  =subtype.empty
-  I
-  =subtype.big? ? subtype.consume.suffix(" more") : subtype.produce.suffix(" less")
-  %br
-  When I am
-  =subtype.worn_out
-  I
-  =subtype.strong? ? subtype.consume.suffix(" more") : subtype.produce.suffix(" less")
+-unless @answer
+  %h2
+    =subtype.name
+    %br
+    =subtype.inspect.parenthesize
+  %p.heading=render "short", subtype: subtype
+  %p.heading
+    When I am
+    =subtype.empty
+    I
+    =subtype.big? ? subtype.consume.suffix(" more") : subtype.produce.suffix(" less")
+    %br
+    When I am
+    =subtype.worn_out
+    I
+    =subtype.strong? ? subtype.consume.suffix(" more") : subtype.produce.suffix(" less")
 =render subtype.ordinal, realm: subtype.realm
