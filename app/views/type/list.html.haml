@@ -1,7 +1,7 @@
 - content_for(:title, '24 BipolarTypes')
 %table
   -Quad.by_mbti.in_groups_of(4).each_with_index do |group, index|
-    -if index < 4
+    -if index > 1
       %tr
         %th{colspan: 4}=group.first.mbti
       %tr

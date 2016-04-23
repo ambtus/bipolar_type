@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; "snft"; end
+  def self.my_path; "stfn"; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
@@ -33,9 +33,9 @@ class Quad < Phrase
     define_method(meth) {realms.send(meth)}
   end
   def mbti
-    if "E#{first.mbti_order(second)}P".is_mbti?
+    if %w{SN FT}.include? first.mbti_order(third)
       "E#{first.mbti_order(second)}/I#{third.mbti_order(fourth)}"
-    elsif "I#{first.mbti_order(third)}P".is_mbti?
+    else
       "#{first.mbti_order(third)}P/#{second.mbti_order(fourth)}J"
     end
   end
