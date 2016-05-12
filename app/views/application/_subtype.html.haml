@@ -1,3 +1,32 @@
 %h2=subtype.name unless @answer
-%p=render subtype.attitude.first, realm: subtype.realm
-%p=render subtype.attitude.second, realm: subtype.realm
+%p.heading
+  I
+  =subtype.top? ? "love" : "like"
+  to
+  =subtype.left? ? subtype.consume.period : subtype.produce.period
+  I
+  =subtype.top? ? "don’t like" : "hate"
+  to
+  =subtype.left? ? subtype.produce.period : subtype.consume.period
+-unless @answer
+  %p
+    If you are
+    =subtype.left? ? "accumulating unwanted" : "running out of wanted"
+    =subtype.energy.comma
+    you will be
+    %em happier
+    if you
+    =subtype.top? ? "keep" : "stop"
+    =subtype.diagonal? ? subtype.produce.ing : subtype.consume.ing
+    =subtype.top? ? "after" : "before"
+    you are
+    =subtype.diagonal? ? subtype.worn_out : subtype.overwhelmed
+    even if it seems
+    %em easier
+    or more “normal”
+    to
+    =subtype.top? ? "stop" : "keep"
+    =subtype.diagonal? ? subtype.consume.ing : subtype.produce.ing
+    =subtype.top? ? "before" : "after"
+    you feel
+    =subtype.diagonal? ? subtype.overwhelmed.period : subtype.worn_out.period

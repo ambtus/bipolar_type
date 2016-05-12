@@ -17,7 +17,7 @@ class Subtype < Phrase
   def inspect; Word.new words.join.upcase; end
   def to_s; inspect.to_s; end
   def to_str; to_s; end
-  def name; inspect; end
+
 
   def <=>(other); attitude.index <=> other.attitude.index; end
 
@@ -41,10 +41,7 @@ class Subtype < Phrase
     end
   end
 
-  def big; realm.send(attitude.big); end
-  def strong; realm.send(attitude.strong); end
-
-  def description; Phrase.new [big, conjunction, strong]; end
-  def name; Phrase.new [big.titleize, conjunction, strong.titleize]; end
-
+  def names; [adverb, description].map(&:titleize); end
+  def name; Phrase.new names; end
+  def letters; names.map(&:first).join; end
 end

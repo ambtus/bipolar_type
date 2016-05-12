@@ -1,4 +1,4 @@
--content_for(:title, 'The 24 BipolarTypes')
+-content_for(:title, "Subtype ##{@answer.number} of 4")
 %p.center
   Once you have
   %span.chosen chosen
@@ -7,16 +7,17 @@
 %p.center
   If you get stuck, you can
   =link_to "start over.", discover_path(Answer.first_path)
-%h2==Subtype ##{@answer.number} of 4
 %table
   %tr
+    %th.narrow
     -Realm.all.each do |realm|
       %th.quarter=realm.name
   -Attitude.all.each do |attitude|
     %tr
+      %th.narrow=attitude.name
       -attitude.subtypes.each do |subtype|
         %td.top{:class => @answer.class(subtype)}
-          %p.center=render "subtype", subtype: subtype
+          =render "subtype", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"
               =link_to subtype.name, discover_path(@answer.next(subtype))

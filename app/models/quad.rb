@@ -1,6 +1,6 @@
 class Quad < Phrase
 
-  def self.my_path; "stfn"; end
+  def self.my_path; Realm::IDENTIFIERS.join; end
   def self.first; Quad.send my_path; end
 
   def initialize(string)
@@ -27,7 +27,7 @@ class Quad < Phrase
   ALL.each {|quad| define_singleton_method(quad.path) {quad} }
 
   def inspect; subtypes.join("•"); end
-  def name; inspect; end
+  def name; subtypes.map(&:letters).join("•"); end
 
   %w{first second third fourth last}.each  do |meth|
     define_method(meth) {realms.send(meth)}
