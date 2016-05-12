@@ -3,10 +3,17 @@
   -Quad.all.in_groups_of(6).each do |row|
     %tr
     -row.each do |quad|
-      %td
+      %td.top
         =link_to quad.name, type_path(quad.path)
         %br
         -quad.subtypes.each do |subtype|
-          =subtype.name
-          =subtype.neuro_drugs.parenthesize
+          %b=subtype.name.colon
+          =subtype.top? ? "Loves" : "Likes"
+          to
+          =subtype.left? ? subtype.consume.semicolon : subtype.produce.semicolon
+          =subtype.top? ? "doesn’t like" : "hates"
+          to
+          =subtype.left? ? subtype.produce : subtype.consume
+          =subtype.left? ? "(accumulates" : "(runs out of"
+          =subtype.energy.close_paren
           %br

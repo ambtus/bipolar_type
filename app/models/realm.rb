@@ -27,8 +27,8 @@ class Realm < Indexable
 
   def energy; choose Noun, %w{fat knowledge emotions savings}; end
 
-  def consume; choose Verb, %w{eat learn listen earn}; end
-  def produce; choose Verb, %w{move decide talk spend}; end
+  def consume; choose Verb, %w{eat learn listen compete}; end
+  def produce; choose Verb, %w{move decide talk buy}; end
 
   def overwhelmed; choose Verb, %w{nauseous anxious upset frustrated}; end
   def worn_out; choose Verb, %w{sore stupid misunderstood indebted}; end

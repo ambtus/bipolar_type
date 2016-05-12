@@ -4,16 +4,18 @@
   =subtype.top? ? "love" : "like"
   to
   =subtype.left? ? subtype.consume.period : subtype.produce.period
+  %br
   I
   =subtype.top? ? "don’t like" : "hate"
   to
   =subtype.left? ? subtype.produce.period : subtype.consume.period
+  %br
+  I tend to
+  =subtype.left? ? "accumulate unwanted" : "run out of wanted"
+  =subtype.energy.period
 -unless @answer
   %p
-    If you are
-    =subtype.left? ? "accumulating unwanted" : "running out of wanted"
-    =subtype.energy.comma
-    you will be
+    You will be
     %em happier
     if you
     =subtype.top? ? "keep" : "stop"
@@ -30,7 +32,7 @@
   %p
     If you must
     =subtype.top? ? "stop" : "keep"
-    =subtype.diagonal? ? subtype.produce.ing : subtype.consume.ing
+    =subtype.left? ? subtype.consume.ing : subtype.produce.ing
     in order to appear “reasonable” you may find
     =subtype.neuro_drugs
     helpful:
