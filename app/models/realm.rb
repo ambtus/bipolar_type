@@ -1,6 +1,6 @@
 class Realm < Indexable
 
-  ADJECTIVES = %w{physical mental verbal financial}
+  ADJECTIVES = %w{physical mental social financial}
 
   ########
   #IDENTIFIERS = %w{s n f t}
@@ -23,12 +23,10 @@ class Realm < Indexable
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
 
-  def neuro; choose Noun, %w{serotonin epinephrine oxytocin dopamine}; end
+  def energy; choose Noun, %w{fat memories emotions savings}; end
 
-  def energy; choose Noun, %w{fat knowledge emotions savings}; end
-
-  def consume; choose Verb, %w{eat learn listen compete}; end
-  def produce; choose Verb, %w{move decide talk buy}; end
+  def consume; choose Verb, %w{eat watch listen work}; end
+  def produce; choose Verb, %w{move think talk play}; end
 
   def overwhelmed; choose Verb, %w{nauseous anxious upset frustrated}; end
   def worn_out; choose Verb, %w{sore stupid misunderstood indebted}; end

@@ -20,6 +20,7 @@ class Attitude < Indexable
 
   def description; choose Adjective, %w{lazy driven sensitive aversive}; end
   def name; description.capitalize; end
+  def letter; description.first; end
 
   def drugs; top? ? "stimulants" : "sedatives"; end
 

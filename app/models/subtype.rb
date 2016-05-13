@@ -13,15 +13,16 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def words; [attitude.first, realm, attitude.second]; end
-  def inspect; Word.new words.join.upcase; end
+  def words; [realm, attitude.letter]; end
+  def path; words.join.to_s; end
+  def inspect; Word.new path.upcase; end
   def to_s; inspect.to_s; end
   def to_str; to_s; end
 
 
   def <=>(other); attitude.index <=> other.attitude.index; end
 
-  def path; words.join.to_s; end
+
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 

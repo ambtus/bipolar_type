@@ -1,5 +1,9 @@
 %h2=subtype.name unless @answer
 %p.heading
+  I tend to
+  =subtype.left? ? "accumulate unwanted" : "run out of wanted"
+  =subtype.energy.period
+  %br
   I
   =subtype.top? ? "love" : "like"
   to
@@ -9,10 +13,6 @@
   =subtype.top? ? "don’t like" : "hate"
   to
   =subtype.left? ? subtype.produce.period : subtype.consume.period
-  %br
-  I tend to
-  =subtype.left? ? "accumulate unwanted" : "run out of wanted"
-  =subtype.energy.period
 -unless @answer
   %p
     You will be
@@ -29,19 +29,3 @@
     =subtype.top? ? "before" : "after"
     you feel
     =subtype.diagonal? ? subtype.overwhelmed.period : subtype.worn_out.period
-  %p
-    If you must
-    =subtype.top? ? "stop" : "keep"
-    =subtype.left? ? subtype.consume.ing : subtype.produce.ing
-    in order to appear “reasonable” you may find
-    =subtype.neuro_drugs
-    helpful:
-    they will
-    =subtype.top? ? "make you feel" : "keep you from feeling"
-    =subtype.overwhelmed
-    =subtype.top? ? "sooner" : "as soon"
-    and you
-    =subtype.top? ? "won’t" : "will"
-    be able to
-    =subtype.consume
-    =subtype.top? ? "as much." : "more."
