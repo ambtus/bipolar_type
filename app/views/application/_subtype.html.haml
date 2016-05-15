@@ -1,18 +1,20 @@
 %h2=subtype.name unless @answer
 %p.heading
-  I tend to
-  =subtype.left? ? "accumulate unwanted" : "run out of wanted"
+  I would rather
+  =subtype.left? ? subtype.consume : subtype.produce
+  than
+  =subtype.left? ? subtype.produce : subtype.consume
+  and tend to
+  =subtype.left? ? "accumulate unwanted" : "run out of"
   =subtype.energy.period
   %br
   I
-  =subtype.top? ? "love" : "like"
-  to
-  =subtype.left? ? subtype.consume.period : subtype.produce.period
-  %br
-  I
-  =subtype.top? ? "don’t like" : "hate"
-  to
-  =subtype.left? ? subtype.produce.period : subtype.consume.period
+  =subtype.top? ? "can" : "can’t"
+  =subtype.consume
+  when I feel
+  =subtype.overwhelmed
+  without
+  =subtype.reject.ing.period
 -unless @answer
   %p
     You will be
@@ -21,11 +23,13 @@
     =subtype.top? ? "keep" : "stop"
     =subtype.diagonal? ? subtype.produce.ing : subtype.consume.ing
     =subtype.top? ? "after" : "before"
-    you feel
+    you are
     =subtype.diagonal? ? subtype.worn_out : subtype.overwhelmed
-    even if it seems more “reasonable” to
+    even if it seems more
+    %em reasonable
+    to
     =subtype.top? ? "stop" : "keep"
     =subtype.diagonal? ? subtype.consume.ing : subtype.produce.ing
     =subtype.top? ? "before" : "after"
-    you feel
+    you are
     =subtype.diagonal? ? subtype.overwhelmed.period : subtype.worn_out.period

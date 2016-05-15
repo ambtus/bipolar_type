@@ -8,10 +8,10 @@ class TypeController < ApplicationController
     else
      begin
         @quad = Quad.new(params[:id])
-        render :quad
       rescue
-        render :start
+        render :start and return
       end
+      render :quad
     end
   end
 

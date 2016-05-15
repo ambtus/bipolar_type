@@ -25,10 +25,14 @@ class Realm < Indexable
 
   def energy; choose Noun, %w{fat memories emotions savings}; end
 
-  def consume; choose Verb, %w{eat watch listen work}; end
-  def produce; choose Verb, %w{move think talk play}; end
+  def consume; choose Verb, %w{eat learn listen work}; end
+  def produce; choose Verb, %w{move decide talk buy}; end
 
   def overwhelmed; choose Verb, %w{nauseous anxious upset frustrated}; end
-  def worn_out; choose Verb, %w{sore stupid misunderstood indebted}; end
+  def worn_out; choose Verb, %w{sore wrong misunderstood indebted}; end
+
+  def reject_verb; choose Verb, %w{throw panic cry break}; end
+  def reject_helper; choose Word, %w{up NIL NIL something}; end
+  def reject; Phrase.optional reject_verb, reject_helper; end
 
 end
