@@ -1,20 +1,9 @@
-%h2=subtype.name unless @answer
-%p.heading
-  I would rather
-  =subtype.left? ? subtype.consume : subtype.produce
-  than
-  =subtype.left? ? subtype.produce : subtype.consume
-  and tend to
-  =subtype.left? ? "accumulate unwanted" : "run out of"
-  =subtype.energy.period
-  %br
-  I
-  =subtype.top? ? "can" : "can’t"
-  =subtype.consume
-  when I feel
-  =subtype.overwhelmed
-  without
-  =subtype.reject.ing.period
+-unless @answer
+  %h2
+    =subtype.name
+    =subtype.inspect.parenthesize
+=render "nurture", nurture: subtype.nurture, realm: subtype.realm
+=render "nature", nature: subtype.nature, realm: subtype.realm
 -unless @answer
   %p
     You will be

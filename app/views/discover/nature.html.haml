@@ -1,0 +1,7 @@
+-content_for(:title, "#{@answer.realm.name} Nature (Question ##{@answer.number} of 8)")
+%table
+  %tr
+    -Nature.all.each do |nature|
+      %td.top.half
+        =render "nature", nature: nature, realm: @answer.realm
+        =link_to nature.name, discover_path(@answer.next(nature))

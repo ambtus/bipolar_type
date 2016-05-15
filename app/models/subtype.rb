@@ -13,7 +13,7 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def words; [realm, attitude.letter]; end
+  def words; [attitude.nature, realm, attitude.nurture]; end
   def path; words.join.to_s; end
   def inspect; Word.new path.upcase; end
   def to_s; inspect.to_s; end
