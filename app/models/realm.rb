@@ -25,10 +25,10 @@ class Realm < Indexable
 
   def energy; choose Noun, %w{fat memories emotions savings}; end
 
-  def consume; choose Verb, %w{eat watch listen compete}; end
+  def consume; choose Verb, %w{eat learn listen compete}; end
 
-  def produce_verb; choose Verb, %w{move predict talk spend}; end
-  def produce_helper; choose Word, %w{NIL NIL NIL money}; end
+  def produce_verb; choose Verb, %w{move decide talk spend}; end
+  def produce_helper; choose Word, %w{NIL NIL NIL rewards}; end
   def produce; Phrase.optional produce_verb, produce_helper; end
 
 
