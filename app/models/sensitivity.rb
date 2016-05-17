@@ -1,14 +1,14 @@
-class Nature < Indexable
+class Sensitivity < Indexable
 
   ########
-  IDENTIFIERS = %w{ e i }
+  IDENTIFIERS = %w{ i s }
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   def self.all; self::ALL; end
   all.each { |i| define_singleton_method(i.path) {all[IDENTIFIERS.index i.string]} }
   ########
 
-  def attitudes; Attitude.all.select{|s| s.nature == self}; end
+  def attitudes; Attitude.all.select{|s| s.sensitivity == self}; end
 
   def top?; index.even?; end
 

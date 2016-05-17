@@ -13,7 +13,7 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def words; [attitude.nature, realm, attitude.nurture]; end
+  def words; [attitude.sensitivity, realm, attitude.tendency]; end
   def path; words.join.to_s; end
   def inspect; Word.new path.upcase; end
   def to_s; inspect.to_s; end
@@ -42,9 +42,12 @@ class Subtype < Phrase
     end
   end
 
-  def names; [adverb, description].map(&:titleize); end
-  def name; Phrase.new names; end
+  def names; words.map(&:description); end
+  def name; Phrase.new names.map(&:titleize); end
   def letters; names.map(&:first).join; end
 
   def neuro_drugs; Phrase.new [neuro, drugs]; end
+
+  def mbtis; [attitude, realm].map(&:mbti); end
+  def mbti; Word.new (attitude.diagonal? ? mbtis.reverse.join : mbtis.join); end
 end

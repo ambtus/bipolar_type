@@ -1,20 +1,20 @@
 class Attitude < Phrase
 
   def initialize(array)
-    @nature = array.first
-    @nurture = array.second
+    @sensitivity = array.first
+    @tendency = array.second
     super
   end
-  attr_reader :nature, :nurture
+  attr_reader :sensitivity, :tendency
 
-  ALL = Nature::ALL.collect do |nature|
-          Nurture::ALL.collect do |nurture|
-            self.new [nature,nurture]
+  ALL = Sensitivity::ALL.collect do |sensitivity|
+          Tendency::ALL.collect do |tendency|
+            self.new [sensitivity,tendency]
           end
         end.flatten
 
   def self.all; ALL; end
-  def words; [nature, nurture]; end
+  def words; [sensitivity, tendency]; end
   def path; words.join.to_s; end
   def inspect; Word.new path.upcase; end
   def to_s; inspect.to_s; end
@@ -27,27 +27,28 @@ class Attitude < Phrase
   def +(realm); subtypes.find{|s| s.realm == realm} || Subtype.new([realm, self]); end
 
   def method_missing(meth, *arguments, &block)
-    if nature.respond_to?(meth)
-      nature.send(meth, *arguments, &block)
-    elsif nurture.respond_to?(meth)
-      nurture.send(meth, *arguments, &block)
+    if sensitivity.respond_to?(meth)
+      sensitivity.send(meth, *arguments, &block)
+    elsif tendency.respond_to?(meth)
+      tendency.send(meth, *arguments, &block)
     else
       super
     end
   end
 
   def respond_to?(meth)
-    nature.respond_to?(meth) || nurture.respond_to?(meth) || super
+    sensitivity.respond_to?(meth) || tendency.respond_to?(meth) || super
   end
-
-
-  def names; [nature, nurture].map(&:name); end
-  def name; Phrase.new names; end
 
   def diagonal?; [0,3].include? index; end
 
   def index; ALL.index(self); end
-  def description; Adjective.new(%w{lazy driven sensitive stressed}[index]); end
+  def description; Word.new(%w{consumer bored stressed producer}[index]); end
   def letter; description.first; end
   ALL.each{|s| define_singleton_method(s.letter) {s}}
+
+  def mbti; %w{P E I J}[index]; end
+
+  def prefix(realm); diagonal? ? realm.adjective : realm.adverb; end
+  def name(realm); Phrase.new [prefix(realm), description].map(&:titleize); end
 end

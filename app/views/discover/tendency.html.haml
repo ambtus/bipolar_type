@@ -1,0 +1,8 @@
+-content_for(:title, "#{@answer.realm.name} Tendency (Question ##{@answer.number} of 8)")
+%p.center Everyone gains #{@answer.realm.potential} if they #{@answer.realm.get} more #{@answer.realm.kinetic} than they #{@answer.realm.use}.
+%p.center Everyone loses #{@answer.realm.potential} if they #{@answer.realm.use} more #{@answer.realm.kinetic} than they #{@answer.realm.get}.
+%table
+  %tr
+    -Tendency.all.each do |tendency|
+      %td.top.half
+        =link_to (render "tendency", tendency: tendency, realm: @answer.realm), discover_path(@answer.next(tendency))

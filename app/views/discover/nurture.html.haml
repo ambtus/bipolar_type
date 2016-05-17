@@ -1,7 +1,0 @@
--content_for(:title, "#{@answer.realm.name} Nurture (Question ##{@answer.number} of 8)")
-%table
-  %tr
-    -Nurture.all.each do |nurture|
-      %td.top.half
-        =render "nurture", nurture: nurture, realm: @answer.realm
-        =link_to nurture.name, discover_path(@answer.next(nurture))

@@ -1,9 +1,9 @@
 -unless @answer
   %h2
     =subtype.name
-    =subtype.inspect.parenthesize
-=render "nurture", nurture: subtype.nurture, realm: subtype.realm
-=render "nature", nature: subtype.nature, realm: subtype.realm
+    =subtype.mbti.parenthesize
+=render "sensitivity", sensitivity: subtype.sensitivity, realm: subtype.realm
+=render "tendency", tendency: subtype.tendency, realm: subtype.realm
 -unless @answer
   %p
     You will be
