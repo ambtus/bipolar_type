@@ -42,8 +42,8 @@ class Subtype < Phrase
     end
   end
 
-  def names; words.map(&:description); end
-  def name; Phrase.new names.map(&:titleize); end
+  def names; words.map(&:description).map(&:titleize); end
+  def name; Phrase.new names; end
   def letters; names.map(&:first).join; end
 
   def neuro_drugs; Phrase.new [neuro, drugs]; end

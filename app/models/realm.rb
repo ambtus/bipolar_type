@@ -1,6 +1,6 @@
 class Realm < Indexable
 
-  ADJECTIVES = %w{physical mental social financial}
+  ADJECTIVES = %w{physical mental emotional financial}
 
   ########
   IDENTIFIERS = ADJECTIVES.map(&:first)
@@ -24,16 +24,19 @@ class Realm < Indexable
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
 
-  def get; choose Verb, %w{ingest see hear achieve}; end
-  def use; choose Verb, %w{burn predict tell buy}; end
-  def kinetic; choose Noun, %w{calories truths stories results}; end
-  def potential; choose Noun, %w{fat memories empathy money}; end
+  def get; choose Verb, %w{eat see hear make}; end
+  def use; choose Verb, %w{burn predict tell spend}; end
+  def kinetic; choose Noun, %w{calories truths stories money}; end
+  def potential; choose Noun, %w{fat memories empathy savings}; end
 
-  def object; choose Noun, %w{weight facts friends savings}; end
-  def lose_verb; choose Verb, %w{lose forget lose lose}; end
-  def gain_verb; choose Verb, %w{gain remember make gain}; end
-  def lose; Phrase.optional lose_verb, object; end
-  def gain; Phrase.optional gain_verb, object; end
+  def gain_verb; choose Verb, %w{gain remember fall acquire}; end
+  def gain_helper; choose Word, %w{ NIL NIL in NIL}; end
+  def lose_verb; choose Verb, %w{lose forget fall use}; end
+  def lose_helper; choose Word, %w{ NIL NIL out\ of NIL}; end
+  def object; choose Noun, %w{weight details love money}; end
+
+  def lose; Phrase.new [lose_verb, lose_helper, object]; end
+  def gain; Phrase.new [gain_verb, gain_helper, object]; end
 
   def consume; Phrase.new [get, kinetic]; end
   def produce; Phrase.new [use, kinetic]; end
