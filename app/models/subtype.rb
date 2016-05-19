@@ -46,6 +46,8 @@ class Subtype < Phrase
   def name; Phrase.new names; end
   def letters; names.map(&:first).join; end
 
+  def sub_name; Phrase.new [adverb, attitude.sub_name]; end
+
   def neuro_drugs; Phrase.new [neuro, drugs]; end
 
   def mbtis; [attitude, realm].map(&:mbti); end

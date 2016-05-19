@@ -1,6 +1,4 @@
 -content_for(:title, "#{@answer.realm.name} Sensitivity (Question ##{@answer.number} of 8)")
-%p.center Everyone feels #{@answer.realm.overwhelmed} if they try to #{@answer.realm.get} too #{@answer.realm.kinetic.many_phrase} at the same time.
-%p.center Not everyone #{@answer.realm.reject.s}.
 %table
   %tr
     -Sensitivity.all.each do |sensitivity|

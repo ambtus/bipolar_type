@@ -1,7 +1,9 @@
 class Sensitivity < Indexable
 
+  ADJECTIVE = %w{depressed manic}
+
   ########
-  IDENTIFIERS = %w{ i s }
+  IDENTIFIERS = ADJECTIVE.map(&:first)
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   def self.all; self::ALL; end
@@ -12,7 +14,8 @@ class Sensitivity < Indexable
 
   def top?; index.even?; end
 
-  def description; choose Adjective, %w{insensitive sensitive}; end
+  def adjective; choose Adjective, ADJECTIVE; end
+  def description; adjective; end
   def name; description.capitalize; end
 
   def drugs; top? ? "stimulants" : "sedatives"; end

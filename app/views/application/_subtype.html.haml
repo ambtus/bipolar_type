@@ -1,6 +1,6 @@
 -unless @answer
-  %h2
-    =subtype.name
+  %h2=subtype.name
+  %h3=subtype.sub_name
 =render "sensitivity", sensitivity: subtype.sensitivity, realm: subtype.realm
 =render "tendency", tendency: subtype.tendency, realm: subtype.realm
 -unless @answer
@@ -8,16 +8,10 @@
     You will be
     %em happier
     if you
-    =subtype.top? ? "keep" : "stop"
-    =subtype.diagonal? ? subtype.produce.ing : subtype.consume.ing
-    =subtype.top? ? "after" : "before"
-    you are
-    =subtype.diagonal? ? subtype.worn_out : subtype.overwhelmed
-    even if it seems more
-    %em reasonable
-    to
-    =subtype.top? ? "stop" : "keep"
-    =subtype.diagonal? ? subtype.consume.ing : subtype.produce.ing
-    =subtype.top? ? "before" : "after"
-    you are
-    =subtype.diagonal? ? subtype.overwhelmed.period : subtype.worn_out.period
+    =subtype.diagonal? ? subtype.use : subtype.get
+    =subtype.top? ? subtype.kinetic.more_phrase : subtype.kinetic.fewer_phrase
+    — even if you are
+    =subtype.top? ? "already" : "not yet"
+    =subtype.diagonal? ? subtype.worn_out.period : subtype.overwhelmed.period
+-if @quad
+  =render subtype.attitude.ordinal, realm: subtype.realm

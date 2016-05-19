@@ -20,6 +20,8 @@ class Attitude < Phrase
   def to_s; inspect.to_s; end
   def to_str; to_s; end
 
+  def quad; Quad.new Array.new(4, self).add(Realm.all).map(&:path).join("-"); end
+
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
@@ -43,9 +45,13 @@ class Attitude < Phrase
   def diagonal?; [0,3].include? index; end
 
   def index; ALL.index(self); end
+  def ordinal; generic? ? "generic" : %w{first second third fourth}[index]; end
+
   def description; Word.new(%w{consumer bored stressed producer}[index]); end
   def letter; description.first; end
   ALL.each{|s| define_singleton_method(s.letter) {s}}
+
+  def sub_name; Word.new(%w{obese driven sensitive anorexic}[index]); end
 
   def mbti; %w{P E I J}[index]; end
 

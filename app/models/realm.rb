@@ -1,6 +1,6 @@
 class Realm < Indexable
 
-  ADJECTIVES = %w{physical mental emotional financial}
+  ADJECTIVES = %w{physical mental verbal financial}
 
   ########
   IDENTIFIERS = ADJECTIVES.map(&:first)
@@ -12,7 +12,7 @@ class Realm < Indexable
   def mbti; choose Word, %w{S N F T}; end
   def mbti_order(second); [self, second].sort.map(&:mbti).join ; end
 
-  def quad; Quad.new Array.new(4, path).join; end
+  def quad; Quad.new Array.new(4, self).add(Attitude.all).map(&:path).join("-"); end
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude} || Subtype.new([self, attitude]); end
@@ -24,24 +24,24 @@ class Realm < Indexable
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
 
-  def get; choose Verb, %w{eat see hear make}; end
-  def use; choose Verb, %w{burn predict tell spend}; end
-  def kinetic; choose Noun, %w{calories truths stories money}; end
-  def potential; choose Noun, %w{fat memories empathy savings}; end
+  def get; choose Verb, %w{eat see hear achieve}; end
+  def use; choose Verb, %w{burn predict tell buy}; end
+  def kinetic; choose Noun, %w{calories truths stories results}; end
 
-  def gain_verb; choose Verb, %w{gain remember fall acquire}; end
-  def gain_helper; choose Word, %w{ NIL NIL in NIL}; end
-  def lose_verb; choose Verb, %w{lose forget fall use}; end
-  def lose_helper; choose Word, %w{ NIL NIL out\ of NIL}; end
-  def object; choose Noun, %w{weight details love money}; end
+  def potential; choose Noun, %w{fat memories bonds savings}; end
 
-  def lose; Phrase.new [lose_verb, lose_helper, object]; end
-  def gain; Phrase.new [gain_verb, gain_helper, object]; end
+  def gain_verb; choose Verb, %w{gain remember develop gain}; end
+  def lose_verb; choose Verb, %w{lose forget destroy spend}; end
+
+  def object; choose Noun, %w{weight details relationships savings}; end
+
+  def lose; Phrase.new [lose_verb, object]; end
+  def gain; Phrase.new [gain_verb, object]; end
 
   def consume; Phrase.new [get, kinetic]; end
   def produce; Phrase.new [use, kinetic]; end
 
-  def overwhelmed; choose Verb, %w{nauseous anxious upset frustrated}; end
+  def overwhelmed; choose Verb, %w{nauseous anxious conflicted frustrated}; end
 
   def reject_verb; choose Verb, %w{throw panic cry get}; end
   def reject_helper; choose Word, %w{up NIL NIL angry}; end

@@ -1,7 +1,9 @@
 class Tendency < Indexable
 
+  NOUNS = %w{consumer producer}
+
   ########
-  IDENTIFIERS = %w{ c p }
+  IDENTIFIERS = NOUNS.map(&:first)
   def self.paths; IDENTIFIERS; end
   ALL = IDENTIFIERS.collect{|letter| self.new letter}
   def self.all; self::ALL; end
@@ -12,7 +14,8 @@ class Tendency < Indexable
 
   def left?; index.even?; end
 
-  def description; choose Adjective, %w{consumer producer}; end
+  def noun; choose Noun, NOUNS; end
+  def description; noun; end
   def name; description.capitalize; end
 
 end

@@ -11,16 +11,17 @@ class Noun < Word
   def the; Phrase.new ["the", self]; end
 
   def uncountable?; UNCOUNTABLE.include?(@string); end
-  def uncountable(yes, no); (uncountable? ? yes : no).to_word; end
+  def uncountable(yes, no); Word.new (uncountable? ? yes : no); end
+  def uncountable_noun(yes, no); Noun.new (uncountable? ? yes : no); end
 
-  def they; uncountable("it", "they"); end
-  def them; uncountable("it", "them"); end
+  def they; uncountable_noun("it", "they"); end
+  def them; uncountable_noun("it", "them"); end
   def their; uncountable("its", "their"); end
   def were; uncountable("was", "were"); end
   def many; uncountable("much", "many"); end
   def many_phrase(injection=nil); Phrase.new [many, injection, self]; end
   def more; "more"; end
-  def more_phrase; Phrase.new ["more", self]; end
+  def more_phrase(qualifier=nil); Phrase.new ["more", qualifier, self]; end
   def few; uncountable("little", "few"); end
   def few_phrase; Phrase.new [few, self]; end
   def fewer; uncountable("less", "fewer"); end
