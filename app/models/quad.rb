@@ -12,6 +12,6 @@ class Quad < Phrase
   attr_reader :path, :subtypes
 
   def inspect; subtypes.join("•"); end
-  def name; subtypes.map(&:letters).join("•"); end
+  def name; subtypes.map(&:mbti).join("•"); end
 
 end

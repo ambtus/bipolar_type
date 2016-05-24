@@ -1,6 +1,6 @@
 class Sensitivity < Indexable
 
-  ADJECTIVE = %w{depressed manic}
+  ADJECTIVE = %w{extroverted introverted}
 
   ########
   IDENTIFIERS = ADJECTIVE.map(&:first)

@@ -1,6 +1,0 @@
--content_for(:title, "#{@answer.realm.name} Sensitivity (Question ##{@answer.number} of 8)")
-%table
-  %tr
-    -Sensitivity.all.each do |sensitivity|
-      %td.half
-        =link_to (render "sensitivity", sensitivity: sensitivity, realm: @answer.realm), discover_path(@answer.next(sensitivity))

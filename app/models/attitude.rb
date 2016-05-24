@@ -47,14 +47,6 @@ class Attitude < Phrase
   def index; ALL.index(self); end
   def ordinal; generic? ? "generic" : %w{first second third fourth}[index]; end
 
-  def description; Word.new(%w{consumer bored stressed producer}[index]); end
-  def letter; description.first; end
-  ALL.each{|s| define_singleton_method(s.letter) {s}}
-
-  def sub_name; Word.new(%w{obese driven sensitive anorexic}[index]); end
-
   def mbti; %w{P E I J}[index]; end
 
-  def prefix(realm); diagonal? ? realm.adjective : realm.adverb; end
-  def name(realm); Phrase.new [prefix(realm), description].map(&:titleize); end
 end

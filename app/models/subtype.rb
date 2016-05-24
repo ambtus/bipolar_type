@@ -46,10 +46,12 @@ class Subtype < Phrase
   def name; Phrase.new names; end
   def letters; names.map(&:first).join; end
 
-  def sub_name; Phrase.new [adverb, attitude.sub_name]; end
+  def result; Phrase.new [adverb, attitude.result]; end
+  def result; realm.send(attitude.result); end
 
   def neuro_drugs; Phrase.new [neuro, drugs]; end
 
   def mbtis; [attitude, realm].map(&:mbti); end
   def mbti; Word.new (attitude.diagonal? ? mbtis.reverse.join : mbtis.join); end
+  def name; mbti; end
 end

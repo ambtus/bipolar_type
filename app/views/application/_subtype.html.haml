@@ -1,17 +1,3 @@
 -unless @answer
   %h2=subtype.name
-  %h3=subtype.sub_name
-=render "sensitivity", sensitivity: subtype.sensitivity, realm: subtype.realm
-=render "tendency", tendency: subtype.tendency, realm: subtype.realm
--unless @answer
-  %p
-    You will be
-    %em happier
-    if you
-    =subtype.diagonal? ? subtype.use : subtype.get
-    =subtype.top? ? subtype.kinetic.more_phrase : subtype.kinetic.fewer_phrase
-    — even if you are
-    =subtype.top? ? "already" : "not yet"
-    =subtype.diagonal? ? subtype.worn_out.period : subtype.overwhelmed.period
--if @quad
-  =render subtype.attitude.ordinal, realm: subtype.realm
+=render subtype.attitude.ordinal, realm: subtype.realm
