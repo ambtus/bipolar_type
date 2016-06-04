@@ -1,0 +1,8 @@
+-content_for(:title, "Question ##{@answer.number} (of 3)")
+%table
+  %tr
+    -@answer.realms.each do |realm|
+      %td.top.half
+        %h2 #{realm.name} Overachiever
+        =render "second", realm: realm
+        =link_to realm.mbti.prefix("E"), discover_path(@answer.next(realm))

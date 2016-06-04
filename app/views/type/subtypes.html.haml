@@ -2,5 +2,5 @@
 %table
   -Realm.all.each do |realm|
     %tr
-      -realm.subtypes.values_at(0,1,3,2).each do |subtype|
-        %td.top=render "subtype", subtype: subtype
+      -realm.subtypes.each do |subtype|
+        %td.top.quarter=render "subtype", subtype: subtype

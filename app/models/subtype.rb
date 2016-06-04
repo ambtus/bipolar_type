@@ -13,12 +13,15 @@ class Subtype < Phrase
           end
         end.flatten
   def self.all; ALL; end
-  def words; [attitude.sensitivity, realm, attitude.tendency]; end
-  def path; words.join.to_s; end
-  def inspect; Word.new path.upcase; end
-  def to_s; inspect.to_s; end
-  def to_str; to_s; end
 
+  def unordered_pair; [attitude, realm]; end
+  def pair; attitude.extreme? ? unordered_pair.reverse : unordered_pair; end
+
+  def mbti; Word.new pair.map(&:mbti).join; end
+  def inspect; pair.map(&:inspect).join; end
+  def path; pair.map(&:path).join; end
+  def to_s; path.to_s; end
+  def to_str; to_s; end
 
   def <=>(other); attitude.index <=> other.attitude.index; end
 
@@ -42,16 +45,7 @@ class Subtype < Phrase
     end
   end
 
-  def names; words.map(&:description).map(&:titleize); end
-  def name; Phrase.new names; end
-  def letters; names.map(&:first).join; end
+  def adjective; Phrase.new [adverb, attitude.adjective]; end
+  def name; Phrase.new [adjective.titleize, mbti.parenthesize]; end
 
-  def result; Phrase.new [adverb, attitude.result]; end
-  def result; realm.send(attitude.result); end
-
-  def neuro_drugs; Phrase.new [neuro, drugs]; end
-
-  def mbtis; [attitude, realm].map(&:mbti); end
-  def mbti; Word.new (attitude.diagonal? ? mbtis.reverse.join : mbtis.join); end
-  def name; mbti; end
 end

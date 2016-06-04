@@ -1,32 +1,55 @@
 class Realm < Indexable
 
-  ADJECTIVES = %w{physical financial social mental}
+  MBTI = %w{S N F T}
+  ADJECTIVE = %w{physical mental social financial}
+  PRODUCE = %w{move predict talk buy}
+  STRONG = %w{strong smart eloquent wealthy}
+  CONSUME = %w{eat watch listen work}
+  RESOURCE = %w{food theories stories paychecks}
+  STRENGTH = %w{protein patterns words credit}
+  SHORT = %w{carbs facts emotions cash}
+  LONG = %w{fat memories values savings}
+  USE = %w{burn forget express spend}
+  STRENGTHS = %w{muscles rules metaphors assets}
+  WEAK = %w{sore stupid misunderstood indebted}
+  EMPTY = %w{hungry curious lonely broke}
+  FULL = %w{restless confident emotional rich}
+  OVERWHELMED = %w{nauseous anxious upset frustrated}
 
   ########
-  IDENTIFIERS = ADJECTIVES.map(&:first)
-  def self.paths; IDENTIFIERS; end
-  ALL = IDENTIFIERS.collect{|letter| self.new letter}
-  all.each { |r| define_singleton_method(r.path) {all[IDENTIFIERS.index r.string]} }
+  LETTERS = MBTI.map(&:downcase)
+  def self.paths; LETTERS; end
+  ALL = LETTERS.collect{|letter| self.new letter}
+  def self.all; ALL; end
+  LETTERS.each do |letter| 
+    define_singleton_method(letter) { ALL[LETTERS.index(letter)] }
+  end
   ########
-
-  def mbti; choose Word, %w{S T F N}; end
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude} || Subtype.new([self, attitude]); end
   def quad; Quad.new Array.new(4, self).add(Attitude.all).map(&:path).join("-"); end
 
-  def adjective; choose Adjective, ADJECTIVES; end
-  def description; adjective; end
+  def mbti; choose Word, MBTI; end
+
+  def adjective; choose Adjective, ADJECTIVE; end
+  def strong; choose Adjective, STRONG; end
+  def weak; choose Adjective, WEAK; end
+  def empty; choose Adjective, EMPTY; end
+  def full; choose Adjective, FULL; end
+  def overwhelmed; choose Adjective, OVERWHELMED; end
+
+  def produce; choose Verb, PRODUCE; end
+  def consume; choose Verb, CONSUME; end
+  def use; choose Verb, USE; end
+
+  def resource; choose Noun, RESOURCE; end
+  def strength; choose Noun, STRENGTH; end
+  def short; choose Noun, SHORT; end
+  def long; choose Noun, LONG; end
+  def strengths; choose Noun, STRENGTHS; end
+
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
-
-  def potential; choose Noun, %w{fat rewards emotions information}; end
-
-  def consume; choose Verb, %w{eat work listen watch}; end
-  def consume_helper; choose Word, %w{NIL on to NIL}; end
-  def consume_with; Phrase.optional consume, consume_helper; end
-
-  def produce; choose Verb, %w{walk buy talk predict}; end
-  def produce_with; choose Verb, %w{do buy say predict}; end
 
 end

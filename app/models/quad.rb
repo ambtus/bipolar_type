@@ -1,7 +1,7 @@
 class Quad < Phrase
 
   def self.my_path; Realm.all.add(Attitude.all).map(&:path).join("-"); end
-  def self.first; Quad.send my_path; end
+  def self.first; Quad.new my_path; end
 
   def initialize(string)
     @path = string

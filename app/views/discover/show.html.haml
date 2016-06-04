@@ -1,8 +1,0 @@
--content_for(:title, "#{@answer.realm.name} Realm (#{@answer.number} of 4)")
-%table
-  -@answer.realm.subtypes.in_groups_of(2) do |row|
-    %tr
-      -row.each do |subtype|
-        %td.top.half
-          =render "subtype", subtype: subtype
-          =link_to subtype.name, discover_path(@answer.next(subtype))
