@@ -1,2 +1,3 @@
-%h2=subtype.name
+-unless @answer
+  %h2=subtype.name 
 %p=render subtype.attitude.ordinal, realm: subtype.realm

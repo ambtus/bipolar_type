@@ -1,9 +1,0 @@
--content_for(:title, "Discovery Verification")
--realm=@answer.realms.first
-%h2 #{realm.name} Underachiever
-=render "third", realm: realm
-%p.center 
-  That sounds right:
-  =link_to realm.mbti.prefix("I"), discover_path(@answer.next(realm))
-  | That sounds wrong:
-  =link_to "Start over", discover_path(Answer.first_path)
