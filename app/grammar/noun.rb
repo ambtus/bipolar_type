@@ -13,6 +13,10 @@ class Noun < Word
   def uncountable?; UNCOUNTABLE.include?(@string); end
   def uncountable(yes, no); Word.new (uncountable? ? yes : no); end
   def uncountable_noun(yes, no); Noun.new (uncountable? ? yes : no); end
+  def uncountable_verb(yes, no); Verb.new (uncountable? ? yes : no); end
+
+  def need; uncountable_verb("needs", "need"); end
+  def need_phrase(qualifier=nil); Phrase.new [self, qualifier, need]; end
 
   def they; uncountable_noun("it", "they"); end
   def them; uncountable_noun("it", "them"); end

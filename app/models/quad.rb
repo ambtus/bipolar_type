@@ -25,6 +25,7 @@ class Quad < Phrase
   ALL = self.paths.collect{|path| self.new(path)}
   def self.all; ALL; end
   ALL.each {|quad| define_singleton_method(quad.path) {quad} }
+  def self.in_order; ALL.sort_by{|q| [q.realms.second, q.realms.third]}; end
 
   def discover_without(subtype)
     raise unless subtypes.include? subtype

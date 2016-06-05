@@ -1,7 +1,13 @@
 - content_for(:title, "#{@quad.name}")
 %table
-  -@quad.subtypes.in_groups_of(2) do |row|
-    %tr
-      -row.each do |subtype|
-        %td.top.half
-          =render "subtype", subtype: subtype
+  %tr
+    %td.top{colspan: 2}
+      =render "subtype", subtype: @quad.subtypes.second
+  %tr
+    %td.top.half
+      =render "subtype", subtype: @quad.subtypes.first
+    %td.top.half
+      =render "subtype", subtype: @quad.subtypes.fourth
+  %tr
+    %td.top{colspan: 2}
+      =render "subtype", subtype: @quad.subtypes.third

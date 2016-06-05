@@ -1,0 +1,17 @@
+- content_for(:title, 'The 24 BipolarTypes')
+%table
+  -Quad.in_order.in_groups_of(6) do |row|
+    %tr
+      -row.each do |quad|
+        %td.top.sixth
+          =link_to quad.name, type_path(quad.path)
+          %p
+            -quad.subtypes.each_with_index do |subtype, index|
+              - unless index == 0
+                %br
+              -if index == 1
+                %strong=subtype.adjective.titleize
+              -elsif index == 2
+                %em=subtype.adjective.titleize
+              -else
+                =subtype.adjective.titleize
