@@ -1,10 +1,12 @@
 class Realm < Indexable
 
   MBTI = %w{S N F T}
-  ADJECTIVE = %w{physical mental social financial}
-  PRODUCE = %w{move decide talk buy}
-  CONSUME = %w{eat look listen earn}
+  ADJECTIVE = %w{physical intellectual social material}
+  PRODUCE = %w{move think talk buy}
+  CONSUME = %w{eat learn listen work}
   POTENTIAL = %w{fat memories friends savings}
+  FAT = %w{fat knowledgeable popular rich}
+  THIN = %w{thin theoretical independent unencumbered}
 
   ########
   LETTERS = MBTI.map(&:downcase)
@@ -16,7 +18,7 @@ class Realm < Indexable
   end
   ########
 
-  def subtypes; Subtype.all.select{|s| s.realm == self}; end
+  def subtypes; Subtype.all.select{|s| s.realm == self}.values_at(0,1,3,2); end
   def +(attitude); subtypes.find{|s| s.attitude == attitude} || Subtype.new([self, attitude]); end
   def quad; Quad.new Array.new(4, self).map(&:path).join; end
 
@@ -28,6 +30,9 @@ class Realm < Indexable
   def adjective; choose Adjective, ADJECTIVE; end
   def adverb; adjective.ly; end
   def name; adjective.capitalize; end
+
+  def fat; choose Adjective, FAT ; end
+  def thin; choose Adjective, THIN ; end
 
   def potential; choose Noun, POTENTIAL; end
 

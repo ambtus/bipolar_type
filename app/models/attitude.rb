@@ -1,7 +1,7 @@
 class Attitude < Indexable
 
   MBTI = %w{P E I J}
-  ADJECTIVE = %w{fat happy unhappy thin}
+  ADJECTIVE = %w{fat active inactive thin}
 
   ########
   LETTERS = MBTI.map(&:downcase)
