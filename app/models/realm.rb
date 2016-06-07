@@ -6,7 +6,7 @@ class Realm < Indexable
   CONSUME = %w{eat learn listen work}
   POTENTIAL = %w{fat memories friends savings}
   FAT = %w{fat knowledgeable popular rich}
-  THIN = %w{thin theoretical independent unencumbered}
+  THIN = %w{thin theoretical independent poor}
 
   ########
   LETTERS = MBTI.map(&:downcase)
