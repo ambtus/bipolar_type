@@ -1,7 +1,8 @@
 class Attitude < Indexable
 
   MBTI = %w{P E I J}
-  ADJECTIVE = %w{fat happy unhappy thin}
+  ADJECTIVE = %w{fat strong weak thin}
+  ARENA = %w{consumer compulsion aversion producer}
 
   ########
   LETTERS = MBTI.map(&:downcase)
@@ -23,4 +24,6 @@ class Attitude < Indexable
   def after?; %w{P J}.include? mbti.string; end
 
   def adjective; choose Adjective, ADJECTIVE; end
+  def arena; choose Adjective, ARENA; end
+  def name; Phrase.new [arena.capitalize, mbti.parenthesize]; end
 end

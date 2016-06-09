@@ -2,19 +2,26 @@
 %p.center A BipolarType is made up of four subtypes: one from each row and column.
 %p.center
   Once you have
-  %span.chosen choosen a subtype,
-  other subtypes in the
-  %span.warning same row or column
+  %span.chosen choosen a Subtype,
+  the other subtypes in the
+  %span.warning same Realm or Attitude
   will become unavailable.
 %p.center
   If you get stuck, you can
   =link_to "start over.", discover_path(Answer.first_path)
 %table
   %tr
+    %th.narrow
+      Attitude →
+      %br
+      Realm ↓
+    -Attitude.all.each do |attitude|
+      %th.quarter=attitude.name
   -Realm.all.each do |realm|
     %tr
+      %th.name=realm.name
       -realm.subtypes.each do |subtype|
-        %td.quarter.top{:class => @answer.class(subtype)}
+        %td.top{:class => @answer.class(subtype)}
           %p.left=render "subtype", subtype: subtype
           %p.center
             -if @answer.class(subtype) == "free"

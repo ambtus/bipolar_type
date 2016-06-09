@@ -1,8 +1,9 @@
 class Realm < Indexable
 
+  ARENA = %w{action truth story finance}
   MBTI = %w{S N F T}
   ADJECTIVE = %w{physical mental social financial}
-  PRODUCE = %w{move decide talk buy}
+  PRODUCE = %w{move think talk buy}
   CONSUME = %w{eat look listen earn}
   POTENTIAL = %w{fat memories friends savings}
 
@@ -27,7 +28,8 @@ class Realm < Indexable
 
   def adjective; choose Adjective, ADJECTIVE; end
   def adverb; adjective.ly; end
-  def name; adjective.capitalize; end
+  def arena; choose Adjective, ARENA; end
+  def name; Phrase.new [arena.capitalize, mbti.parenthesize]; end
 
   def potential; choose Noun, POTENTIAL; end
 
