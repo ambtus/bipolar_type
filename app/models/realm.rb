@@ -1,9 +1,10 @@
 class Realm < Indexable
 
+  ARENA = %w{action truth story finance}
   MBTI = %w{S N F T}
-  ADJECTIVE = %w{physical intellectual social material}
+  ADJECTIVE = %w{physical mental social financial}
   PRODUCE = %w{move think talk buy}
-  CONSUME = %w{eat learn listen work}
+  CONSUME = %w{eat look listen earn}
   POTENTIAL = %w{fat memories friends savings}
   FAT = %w{fat knowledgeable popular rich}
   THIN = %w{thin theoretical independent poor}
@@ -29,7 +30,8 @@ class Realm < Indexable
 
   def adjective; choose Adjective, ADJECTIVE; end
   def adverb; adjective.ly; end
-  def name; adjective.capitalize; end
+  def arena; choose Adjective, ARENA; end
+  def name; Phrase.new [arena.capitalize, mbti.parenthesize]; end
 
   def fat; choose Adjective, FAT ; end
   def thin; choose Adjective, THIN ; end
