@@ -19,7 +19,7 @@ class Realm < Indexable
   end
   ########
 
-  def subtypes; Subtype.all.select{|s| s.realm == self}.values_at(0,1,3,2); end
+  def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude} || Subtype.new([self, attitude]); end
   def quad; Quad.new Array.new(4, self).map(&:path).join; end
 
