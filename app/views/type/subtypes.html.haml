@@ -1,6 +1,18 @@
 - content_for(:title, 'The 16 Subtypes')
+
 %table
+  %tr
+    %th.narrow
+      Attitude →
+      %br
+      Realm ↓
+      =link_to "transpose", type_path("by_realm")
+    -Attitude.all.each do |attitude|
+      %th.quarter=attitude.name
   -Realm.all.each do |realm|
     %tr
+      %th.name=realm.name
       -realm.subtypes.each do |subtype|
-        %td.top.quarter=render "subtype", subtype: subtype
+        %td.top
+          =render "subtype", subtype: subtype
+          =render "advice", subtype: subtype

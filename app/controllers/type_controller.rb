@@ -3,13 +3,17 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{subtypes quads}.include? params[:id]
+    elsif %w{subtypes quads by_realm}.include? params[:id]
       render params[:id]
     elsif Realm.paths.include?(params[:id])
-      @quad = Realm.send(params[:id]).quad
+      realm = Realm.send(params[:id])
+      @quad = realm.quad
+      @name = realm.name
       render :quad
     elsif Attitude.paths.include?(params[:id])
-      @quad = Attitude.send(params[:id]).quad
+      attitude = Attitude.send(params[:id])
+      @quad = attitude.quad
+      @name = attitude.name
       render :quad
     else
      begin
@@ -17,6 +21,7 @@ class TypeController < ApplicationController
       rescue
         render :start and return
       end
+      @name = @quad.name
       render :quad
     end
   end

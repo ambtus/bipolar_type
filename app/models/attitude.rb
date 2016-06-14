@@ -1,8 +1,8 @@
 class Attitude < Indexable
 
   MBTI = %w{P E I J}
-  ADJECTIVE = %w{fat strong weak thin}
-  ARENA = %w{consumer compulsion aversion producer}
+  ADJECTIVE = %w{fat insensitive sensitive thin}
+  PROBLEM = %w{addiction depression mania compulsion}
 
   ########
   LETTERS = MBTI.map(&:downcase)
@@ -18,12 +18,11 @@ class Attitude < Indexable
   def +(realm); subtypes.find{|s| s.realm == realm} || Subtype.new([realm, self]); end
   def quad; Quad.new Array.new(4, self).map(&:path).join; end
 
-  def name; Phrase.new [adjective.capitalize, mbti.parenthesize]; end
-
   def mbti; choose Word, MBTI; end
   def after?; %w{P J}.include? mbti.string; end
 
   def adjective; choose Adjective, ADJECTIVE; end
-  def arena; choose Adjective, ARENA; end
-  def name; Phrase.new [arena.capitalize, mbti.parenthesize]; end
+  def problem; choose Noun, PROBLEM; end
+  def name; Phrase.new [adjective.capitalize.colon, "suffers from", problem, mbti.parenthesize]; end
+
 end

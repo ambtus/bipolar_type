@@ -15,7 +15,7 @@ class Answer
   def chosen; subtype_paths.collect{|path| Subtype.send(path)}; end
   def constrained; chosen.map(&:peers).flatten.uniq; end
 
-  def class(subtype)
+  def css(subtype)
     if chosen.include? subtype
       "chosen"
     elsif constrained.include? subtype

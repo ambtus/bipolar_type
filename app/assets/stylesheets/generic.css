@@ -1,14 +1,10 @@
 .warning {color: red; font-style: italic}
 .free {color: blue; font-weight: normal}
 .chosen {color: green; font-style: italic}
-.eighth { width: 8%; }
-.seventh { width: 10%; }
-.sixth { width: 12%; }
-.fifth { width: 16%; }
-.quarter { width: 21%; }
-.third { width: 30%; }
-.halfish { width: 42% }
-.half { width: 46% }
+.ninth { width: 11%; }
+.quarter { width: 25%; }
+.third { width: 33%; }
+.half { width: 50% }
 .wide { width: 60% }
 .full { width: 96% }
 .narrow {
@@ -25,3 +21,9 @@ p { text-align: left; }
 .nowrap {white-space: nowrap; }
 .no_top {margin-top: 0; }
 .no_bottom {margin-bottom: 0; }
+
+
+.red {color: red;}
+.blue {color: blue;}
+.green {color: green;}
+.orange {color: orange;}

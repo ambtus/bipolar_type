@@ -6,25 +6,14 @@
   the other subtypes in the
   %span.warning same Realm or Attitude
   will become unavailable.
+%p.center Do not compare yourself to other people; just compare yourself to yourself.
 %p.center
   If you get stuck, you can
   =link_to "start over.", discover_path(Answer.first_path)
 %table
-  %tr
-    %th.narrow
-      Attitude →
-      %br
-      Realm ↓
-    -Attitude.all.each do |attitude|
-      %th.quarter=attitude.name
   -Realm.all.each do |realm|
     %tr
-      %th.name=realm.name
-      -realm.subtypes.each do |subtype|
-        %td.top{:class => @answer.class(subtype)}
+      -realm.subtypes.values_at(1,0,3,2).each do |subtype|
+        %td.quarter.top{:class => @answer.css(subtype)}
           %p.left=render "subtype", subtype: subtype
-          %p.center
-            -if @answer.class(subtype) == "free"
-              =link_to subtype.name, discover_path(@answer.next(subtype))
-            -else
-              =subtype.name
+
