@@ -36,6 +36,4 @@ class Quad < Phrase
   def inspect; names.join("•"); end
   def name; inspect; end
 
-  def problem; "I am both #{subtypes.second.fat.er} and #{subtypes.third.thin.er} than I want to be."; end
-
 end

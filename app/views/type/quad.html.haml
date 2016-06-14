@@ -1,24 +1,6 @@
 - content_for(:title, "#{@name}")
 %table
-  %tr
-    %th.ninth
-    %td.third.bottom{colspan: 3}=render "advice", subtype: @quad.subtypes.second
-    %th.ninth
-  %tr
-    %td{rowspan: 3}=render "advice", subtype: @quad.subtypes.first
-    %th.ninth
-    %td=render "subtype", subtype: @quad.subtypes.second
-    %th.ninth
-    %td{rowspan: 3}=render "advice", subtype: @quad.subtypes.fourth
-  %tr
-    %td=render "subtype", subtype: @quad.subtypes.first
-    %th.ninth
-    %td=render "subtype", subtype: @quad.subtypes.fourth
-  %tr
-    %th
-    %td=render "subtype", subtype: @quad.subtypes.third
-    %th
-  %tr
-    %th
-    %td.top{colspan: 3}=render "advice", subtype: @quad.subtypes.third
-    %th
+  -@quad.subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.top.half=render "subtype", subtype: subtype
