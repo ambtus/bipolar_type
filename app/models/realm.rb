@@ -1,9 +1,10 @@
 class Realm < Indexable
 
   MBTI = %w{S N F T}
-  ADJECTIVE = %w{physical mental spiritual financial}
+  ADJECTIVE = %w{physical mental social financial}
   CONSUME = %w{eat look listen work}
   PRODUCE = %w{move think talk spend}
+  POTENTIAL = %w{fat memories attachments savings}
 
   ########
   LETTERS = MBTI.map(&:downcase)
@@ -25,6 +26,7 @@ class Realm < Indexable
   def adjective; choose Adjective, ADJECTIVE; end
 
   def mbti; choose Noun, MBTI; end
+  def potential; choose Noun, POTENTIAL; end
 
   def adverb; adjective.ly; end
   def name; Phrase.new [adjective.capitalize, mbti.parenthesize]; end
