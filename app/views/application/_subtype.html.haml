@@ -1,4 +1,3 @@
-%p=render subtype.attitude.ordinal, realm: subtype.realm
 %p.center
   -if @answer
     -if @answer.css(subtype) == "free"
@@ -7,8 +6,12 @@
       =subtype.name
   -else
     =link_to subtype.name, discover_path(Answer.first.next(subtype))
-    -if @quad
-      %br
-      =link_to_unless_current subtype.realm.name, type_path(subtype.realm.path)
-      %br
-      =link_to_unless_current subtype.attitude.name, type_path(subtype.attitude.path)
+%p=render subtype.attitude.ordinal, realm: subtype.realm
+-unless @answer
+  %hr.half
+  =render "advice", subtype: subtype
+-if @quad
+  %br
+  =link_to_unless_current subtype.realm.name, type_path(subtype.realm.path)
+  |
+  =link_to_unless_current subtype.attitude.name, type_path(subtype.attitude.path)

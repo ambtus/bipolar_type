@@ -1,9 +1,9 @@
 class Realm < Indexable
 
   MBTI = %w{S N F T}
-  ADJECTIVE = %w{physical mental spiritual material}
-  CONSUME = %w{eat learn listen work}
-  PRODUCE = %w{move think talk achieve}
+  ADJECTIVE = %w{physical mental spiritual financial}
+  CONSUME = %w{eat look listen work}
+  PRODUCE = %w{move think talk spend}
 
   ########
   LETTERS = MBTI.map(&:downcase)

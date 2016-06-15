@@ -13,6 +13,4 @@
     %tr
       %th.name=attitude.name
       -attitude.subtypes.each do |subtype|
-        %td.top
-          =render "subtype", subtype: subtype
-          =render "advice", subtype: subtype
+        %td.top=render "subtype", subtype: subtype

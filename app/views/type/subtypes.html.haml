@@ -12,6 +12,5 @@
     %tr
       %th.name=realm.name
       -realm.subtypes.each do |subtype|
-        %td.top
-          =render "subtype", subtype: subtype
-          =render "advice", subtype: subtype
+        %td.top=render "subtype", subtype: subtype
+
