@@ -27,10 +27,12 @@ class Quad < Phrase
   ALL.each {|quad| define_singleton_method(quad.path) {quad} }
   def self.in_order; ALL.sort_by{|q| [q.realms.second, q.realms.third]}; end
 
-  def discover_without(subtype)
-    raise unless subtypes.include? subtype
-    "Q4_#{subtypes.without(subtype).map(&:path).join}"
+  def differentiated?; realms.uniq.size == 4 && attitudes.uniq.size == 4; end
+
+  %w{first second third fourth}.each  do |meth|
+    define_method(meth) {subtypes.send(meth)}
   end
+
 
   def names; subtypes.map(&:mbti); end
   def inspect; names.join("•"); end

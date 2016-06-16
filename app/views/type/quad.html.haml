@@ -1,4 +1,6 @@
 - content_for(:title, "#{@name}")
+-if @quad.differentiated?
+  %p.center=link_to "cheat sheat", short_path(@quad.path)
 %table
   -@quad.subtypes.in_groups_of(2) do |row|
     %tr

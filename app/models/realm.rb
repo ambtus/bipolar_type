@@ -2,15 +2,15 @@ class Realm < Indexable
 
   MBTI = %w{S N F T}
   ADJECTIVE = %w{physical mental emotional financial}
-  CONSUME = %w{eat watch listen earn}
+  CONSUME = %w{eat watch listen work}
   PRODUCE = %w{move think talk spend}
   KINETIC = %w{glycogen facts emotions cash}
   POTENTIAL = %w{fat memories friends savings}
-  VERB = %w{eat look listen use}
+  VERB = %w{eat look listen do}
   PREPOSITION = %w{NIL at to NIL}
-  OBVIOUS = %w{sweet colorful loud dangerous}
-  IMPACTFUL = %w{high-carb flashing angry powerful}
-  OBJECTS = %w{desserts lights voices tools}
+  OBVIOUS = %w{flavorful bright loud painful}
+  IMPACTFUL = %w{high-carb colorful dissonant well-paid}
+  OBJECTS = %w{desserts lights voices jobs}
   OVERWHELMED = %w{sick afraid suicidal angry}
   WORN = %w{sore stupid misunderstood indebted}
 
