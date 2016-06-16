@@ -1,0 +1,6 @@
+%p=render subtype.attitude.path, realm: subtype.realm
+%p.center
+  -if @answer.css(subtype) == "free"
+    =link_to subtype.name, discover_path(@answer.next(subtype))
+  -else
+    =subtype.name

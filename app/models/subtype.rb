@@ -17,7 +17,7 @@ class Subtype < Phrase
   def unordered_pair; [attitude, realm]; end
   def pair; attitude.after? ? unordered_pair.reverse : unordered_pair; end
 
-  def mbti; Word.new pair.map(&:mbti).join; end
+  def mbti; Noun.new pair.map(&:mbti).join; end
   def inspect; pair.map(&:inspect).join; end
   def path; pair.map(&:path).join; end
   def to_s; path.to_s; end

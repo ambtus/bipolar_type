@@ -5,6 +5,6 @@
       -row.each do |quad|
         %td.top.sixth
           =link_to quad.name, type_path(quad.path)
-          %ul.none.left
+          %ul.left
             -quad.subtypes.each do |subtype|
-              %li=subtype.adjective.titleize
+              %li=link_to subtype.name, type_path(subtype.path)
