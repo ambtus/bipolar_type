@@ -11,9 +11,9 @@
   If you get stuck, you can
   =link_to "start over.", discover_path(Answer.first_path)
 %table
-  -Realm.all.each do |realm|
+  -Attitude.all.each do |row|
     %tr
-      -realm.subtypes.values_at(1,0,3,2).each do |subtype|
+      -row.subtypes.each do |subtype|
         %td.quarter.top{:class => @answer.css(subtype)}
           %p.left=render "subtype", subtype: subtype
 

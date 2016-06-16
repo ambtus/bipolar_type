@@ -5,13 +5,11 @@
       Attitude →
       %br
       Realm ↓
-      =link_to "transpose", type_path("by_realm")
+      =link_to "transpose", type_path("transposed")
     -Attitude.all.each do |attitude|
       %th.quarter=attitude.name
   -Realm.all.each do |realm|
     %tr
       %th.name=realm.name
       -realm.subtypes.each do |subtype|
-        %td.top
-          =render "subtype", subtype: subtype
-          =render "advice", subtype: subtype
+        %td.top=render "subtype", subtype: subtype
