@@ -38,4 +38,10 @@ class Quad < Phrase
   def inspect; names.join("•"); end
   def name; inspect; end
 
+
+  def ep; Mbti.new("e#{realms.values_at(0,1).sort.map(&:path).join}p"); end
+  def ip; Mbti.new("i#{realms.values_at(0,2).sort.map(&:path).join}p"); end
+def ej;  Mbti.new("e#{realms.values_at(1,3).sort.map(&:path).join}j"); end
+def ij; Mbti.new("i#{realms.values_at(2,3).sort.map(&:path).join}j"); end
+
 end
