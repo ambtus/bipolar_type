@@ -1,0 +1,21 @@
+%table.wide
+  %th{colspan: 2}
+    %h2 Mania
+    %p.center Just because you have to stop #{realm.consume_triggers.ing} doesn’t mean you have to stop #{realm.produce.ing}.
+  %tr
+    %td.half.top
+      %h3 Excess Production
+      %p=render "rationale/pipm", realm: realm
+    %td.top
+      %h3 Oversensitivity
+      %p=render "rationale/cijm", realm: realm
+  %th{colspan: 2}
+    %h2 Depression
+    %p.center 
+  %tr
+    %td.top
+      %h3 Lack of Production
+      %p=render "rationale/pipd", realm: realm 
+    %td.top
+      %h3 Undersensitivity
+      %p=render "rationale/cijd", realm: realm

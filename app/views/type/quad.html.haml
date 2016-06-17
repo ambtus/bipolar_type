@@ -1,8 +1,14 @@
 - content_for(:title, "#{@name}")
--if @quad.differentiated?
-  %p.center=link_to "cheat sheat", short_path(@quad.path)
-%table
+%table.wide
+  %caption If you don’t know what to do:
   -@quad.subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
-        %td.top.half=render "subtype", subtype: subtype
+        %td.top.half
+          %h2=subtype.name
+          -if @quad.differentiated?
+            =render "advice", subtype: subtype
+          -else
+            =render "both", subtype: subtype
+-if @quad.differentiated?
+  %p.center=link_to "by attitude", short_path(@quad.path)

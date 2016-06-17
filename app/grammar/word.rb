@@ -13,6 +13,8 @@ class Word
   def words; [self]; end
   def to_word; self; end
 
+  def first_word; self; end  
+
   %w{first second third fourth fifth last}.each do |meth|
     define_method(meth) {Word.new chars.send(meth)}
   end

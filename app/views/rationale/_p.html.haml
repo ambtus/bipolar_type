@@ -1,0 +1,21 @@
+%table.wide
+  %th{colspan: 2}
+    %h2 Mania
+    %p.center The more you #{realm.produce} the more you can #{realm.consume}.
+  %tr
+    %td.half.top
+      %h3 Excess Production
+      %p=render "rationale/pipm", realm: realm
+    %td.top
+      %h3 Oversensitivity
+      %p=render "rationale/cepm", realm: realm 
+  %th{colspan: 2}
+    %h2 Depression
+    %p.center If you don’t want to #{realm.produce} it’s because you don’t have any new #{realm.nouns} to #{realm.produce_verb}.
+  %tr
+    %td.top
+      %h3 Lack of Production
+      %p=render "rationale/pipd", realm: realm
+    %td.top
+      %h3 Undersensitivity
+      %p=render "rationale/cepd", realm: realm

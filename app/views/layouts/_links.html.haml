@@ -1,14 +1,13 @@
 =link_to_unless_current "Introduction", root_path
 |
-=link_to_unless_current "Mantras", type_path("mantras")
+=link_to_unless_current "Bipolar", type_path("bipolar")
 |
-=link_to_unless controller.controller_name == "discover", "Discovery", discover_path(Answer.first_path)
--#=link_to_unless_current "Discovery", discover_path(Answer.first_path)
-|
-=link_to_unless_current "Subtypes", type_path("subtypes")
+=link_to_unless controller.controller_name == "discover", "Types", discover_path(Answer.first_path)
 |
 =link_to_unless_current "BipolarTypes", type_path("quads")
 |
 =link_to_unless_current "My BipolarType", type_path(Quad.my_path)
+|
+=link_to_unless_current "Subtypes", type_path("subtypes")
 |
 =link_to "SourceCode", "https://github.com/ambtus/bipolar_type", :class => "external"

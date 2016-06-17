@@ -16,6 +16,8 @@ class Phrase
     end
   end
 
+  def first_word; words.first; end
+
   ## specific phrases
   def self.early; new "Monday morning in the winter".split; end
   def self.late; new "Saturday night in the spring".split; end

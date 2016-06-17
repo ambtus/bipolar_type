@@ -10,6 +10,6 @@
       %th.quarter=attitude.name
   -Realm.all.each do |realm|
     %tr
-      %th.name=realm.name
+      %th=realm.name
       -realm.subtypes.each do |subtype|
-        %td.top=render "subtype", subtype: subtype
+        %td.top=render "both", subtype: subtype

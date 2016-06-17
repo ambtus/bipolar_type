@@ -45,6 +45,9 @@ class Subtype < Phrase
     end
   end
 
+  def cadvice; attitude.cadvice(consume); end
+  def padvice; attitude.padvice(produce); end
+
   def adjective; Phrase.new [adverb, attitude.adjective]; end
   def name; Phrase.new [adjective.titleize, mbti.parenthesize]; end
 

@@ -1,5 +1,4 @@
 - content_for(:title, 'The 16 Subtypes')
-
 %table
   %tr
     %th.narrow
@@ -11,6 +10,6 @@
       %th.quarter=realm.name
   -Attitude.all.each do |attitude|
     %tr
-      %th.name=attitude.name
+      %th=attitude.name
       -attitude.subtypes.each do |subtype|
-        %td.top=render "subtype", subtype: subtype
+        %td.top=render "both", subtype: subtype

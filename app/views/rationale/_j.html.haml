@@ -1,0 +1,21 @@
+%table.wide
+  %th{colspan: 2}
+    %h2 Mania
+    %p.center The less you #{realm.produce.first_word} the less you have to #{realm.consume}.
+  %tr
+    %td.half.top
+      %h3 Excess Production
+      %p=render "rationale/pejm", realm: realm
+    %td.top
+      %h3 Oversensitivity
+      %p=render "rationale/cijm", realm: realm
+  %th{colspan: 2}
+    %h2 Depression
+    %p.center 
+  %tr
+    %td.top
+      %h3 Lack of Production
+      %p=render "rationale/pejd", realm: realm
+    %td.top
+      %h3 Undersensitivity
+      %p=render "rationale/cijd", realm: realm

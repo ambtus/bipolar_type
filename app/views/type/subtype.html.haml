@@ -1,4 +1,5 @@
 - content_for(:title, "#{@subtype.name}")
+=render "rationale/#{@subtype.attitude.path}", realm: @subtype.realm 
 %p
   =link_to @subtype.realm.name.prefix("All "), type_path(@subtype.realm.path)
   |

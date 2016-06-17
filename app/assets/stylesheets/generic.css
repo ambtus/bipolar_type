@@ -13,6 +13,7 @@
   hyphens: auto;
 }
 .heading {font-style: italic; text-align: center; }
+.header {font-weight: bold; text-align: center; }
 .center { text-align: center; }
 .left { text-align: left; }
 p { text-align: left; }

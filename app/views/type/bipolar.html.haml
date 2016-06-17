@@ -1,0 +1,26 @@
+- content_for(:title, 'Manic-Depression')
+%table
+  %tr
+    %td
+      %h3 Manic Excess Production
+      %ul.center.none
+        -Realm.all.each do |realm|
+          %li=realm.over_production
+    %td
+      %h3 Manic Oversensitivity
+      %ul.center.none
+        -Realm.all.each do |realm|
+          %li=realm.over_sensitivity
+  %tr
+    %td
+      %h3 Depressed Lack of Production
+      %ul.center.none
+        -Realm.all.each do |realm|
+          %li=realm.under_production
+    %td
+      %h3 Depressed Undersensitivity
+      %ul.center.none
+        -Realm.all.each do |realm|
+          %li=realm.under_sensitivity
+%p Manic Excess Production together with Depressed Undersensitivity is just extroversion: produce a lot and consume a lot. Manic Oversensitivity together with Depressed Lack of Production is just introversion: consume little and produce little.
+%p BipolarType defines True Mania as when you are consistently producing more than you consume and running out of energy because you are producing a lot but oversensitive to input and cannot consume enough to compensate. BipolarType defines True Depression as when you are consistently consuming more than you produce and storing too much energy because you are undersensitive to input and keep consuming but cannot produce enough to compensate.

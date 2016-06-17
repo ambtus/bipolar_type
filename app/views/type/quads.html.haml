@@ -7,4 +7,4 @@
           =link_to quad.name, type_path(quad.path)
           %ul.none
             -quad.subtypes.each do |subtype|
-              %li=link_to subtype.name, type_path(subtype.path)
+              %li=subtype.name
