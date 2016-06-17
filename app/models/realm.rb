@@ -3,15 +3,16 @@ class Realm < Indexable
   MBTI = %w{S N F T}
   ADJECTIVE = %w{physical mental emotional financial}
   CONSUME = %w{eat watch listen work}
-  PRODUCE = %w{move think talk spend}
+  PRODUCE = %w{move decide talk spend}
+  PVERB = %w{do decide say buy}
   KINETIC = %w{glycogen facts emotions cash}
   POTENTIAL = %w{fat memories friends savings}
-  VERB = %w{eat look listen do}
-  PREPOSITION = %w{NIL at to NIL}
+  CVERB = %w{eat see hear earn}
+  PREPOSITION = %w{NIL NIL NIL NIL}
   OBVIOUS = %w{flavorful bright loud painful}
-  IMPACTFUL = %w{high-carb colorful dissonant well-paid}
-  OBJECTS = %w{desserts lights voices jobs}
-  OVERWHELMED = %w{sick afraid suicidal angry}
+  IMPACTFUL = %w{high-carb changing repetitive well-paid}
+  OBJECTS = %w{meals colors voices rewards}
+  OVERWHELMED = %w{nauseous afraid suicidal angry}
   WORN = %w{sore stupid misunderstood indebted}
 
   ########
@@ -29,8 +30,10 @@ class Realm < Indexable
   def quad; Quad.new Array.new(4, self).map(&:path).join; end
 
   def produce; choose Verb, PRODUCE; end
+  def produced; choose Verb, PRODUCED; end
   def consume; choose Verb, CONSUME; end
-  def verb; choose Verb, VERB; end
+  def cverb; choose Verb, CVERB; end
+  def produce_verb; choose Verb, PVERB; end
   def preposition; choose Word, PREPOSITION; end
 
   def adjective; choose Adjective, ADJECTIVE; end
@@ -46,8 +49,8 @@ class Realm < Indexable
 
   def adverb; adjective.ly; end
   def triggers; Phrase.new [obvious.comma, impactful, objects]; end
-  def trigger_verb; Phrase.optional verb, preposition; end
-  def consume_triggers; Phrase.new [trigger_verb, triggers]; end
+  def consume_verb; Phrase.optional cverb, preposition; end
+  def consume_triggers; Phrase.new [consume_verb, triggers]; end
   def name; Phrase.new [adjective.capitalize, mbti.parenthesize]; end
 
 end

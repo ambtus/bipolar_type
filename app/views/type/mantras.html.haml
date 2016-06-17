@@ -1,0 +1,13 @@
+- content_for(:title, 'The Mantras')
+%h2 When I am manic and cannot go to sleep
+%ul.center.none
+  -Realm.all.each do |realm|
+    %li there is nothing that needs to be #{realm.consume_verb.en}
+  -Realm.all.each do |realm|
+    %li there is nothing that needs to be #{realm.produce_verb.en}
+%h2 When I am depressed and cannot get out of bed
+%ul.center.none
+  -Realm.all.each do |realm|
+    %li there are things I can #{realm.produce_verb}
+  -Realm.all.each do |realm|
+    %li there are things I can #{realm.consume_verb}

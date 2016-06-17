@@ -1,23 +1,28 @@
 - content_for(:title, "#{@quad.name}")
 %p.center=link_to "by subtype", type_path(@quad.path)
 %h2 I want to go to sleep!
-%p.center Try #{@quad.second.consume_triggers.ing} first and then fall back to #{@quad.first.consume_triggers.ing} if that doesn’t work.
-%h2 I want to wake up!
-%p.center Try #{@quad.third.consume_triggers.ing} first and then fall back to #{@quad.fourth.consume_triggers.ing} if that doesn’t work.
+%p.center Try #{@quad.third.produce_verb.ing} something first and then fall back on #{@quad.first.consume_triggers.ing} if that doesn’t work.
+%h2 I need to get up!
+%p.center Try #{@quad.second.consume_triggers.ing} first and then fall back on #{@quad.fourth.produce_verb.ing} something if that doesn’t work.
 %h2 I’m tired and feeling…
 %div.center
   %dl
     %dt=@quad.first.worn
     %dd keep #{@quad.first.produce.ing}
-    %dt=@quad.third.worn
-    %dd keep #{@quad.third.produce.ing}
     %dt=@quad.second.worn
     %dd stop #{@quad.second.produce.ing}
+    %dt=@quad.third.worn
+    %dd keep #{@quad.third.produce.ing}
     %dt=@quad.fourth.worn
     %dd stop #{@quad.fourth.produce.ing}
 %h2 I’m stressed and feeling…
 %div.center
   %dl
-    -@quad.subtypes.each do |subtype|
-      %dt=subtype.overwhelmed
-      %dd stop #{subtype.consume.ing}!
+    %dt=@quad.first.overwhelmed
+    %dd keep #{@quad.first.consume.ing}
+    %dt=@quad.second.overwhelmed
+    %dd keep #{@quad.second.consume.ing}
+    %dt=@quad.third.overwhelmed
+    %dd stop #{@quad.third.consume.ing}
+    %dt=@quad.fourth.overwhelmed
+    %dd stop #{@quad.fourth.consume.ing}

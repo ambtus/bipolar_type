@@ -3,7 +3,7 @@ class TypeController < ApplicationController
   def show
     if params[:id].blank?
       render :start
-    elsif %w{subtypes quads transposed}.include? params[:id]
+    elsif %w{subtypes quads transposed mantras}.include? params[:id]
       render params[:id]
     elsif Subtype.paths.include?(params[:id])
       @subtype = Subtype.send(params[:id])
