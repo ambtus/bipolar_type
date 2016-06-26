@@ -32,7 +32,7 @@ class Verb < Word
     end
   end
 
-  def to_noun
+  def er
     if or?
       Noun.new (string + "or")
     elsif chars.last == "e"
@@ -74,7 +74,7 @@ class Verb < Word
   VOWEL_Y = %w{pay repay say buy}
   def vowel_y?; VOWEL_Y.include?(@string); end
 
-  ESSES = %w{do go teach guess express}
+  ESSES = %w{do go teach guess express watch}
   def es?; ESSES.include?(@string); end
 
   ORS = %w{effect}

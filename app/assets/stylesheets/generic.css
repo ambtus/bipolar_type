@@ -1,9 +1,12 @@
-.warning {color: red; font-style: italic}
-.free {color: blue; font-weight: normal}
-.chosen {color: green; font-style: italic}
+.warning {color: grey; font-style: italic}
+.free {color: purple; font-weight: normal}
+.chosen {color: black; font-style: italic}
+.bold {font-weight: bold}
 .ninth { width: 11%; }
+.quarterish { width: 24%; }
 .quarter { width: 25%; }
 .third { width: 33%; }
+.halfish { width: 48% }
 .half { width: 50% }
 .wide { width: 80% }
 .full { width: 96% }
@@ -25,6 +28,6 @@ p { text-align: left; }
 
 
 .red {color: red;}
-.blue {color: blue;}
 .green {color: green;}
-.orange {color: orange;}
+.blue {color: blue;}
+.gold {color: orange;}

@@ -6,6 +6,7 @@ table {
   margin-right:auto;
 }
 td { 
+  padding: 1em;
   border: 1px solid grey; 
   text-align: center; 
 }

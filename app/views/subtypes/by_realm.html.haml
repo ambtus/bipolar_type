@@ -1,0 +1,16 @@
+- content_for(:title, 'The 16 Subtypes (by realm)')
+%table
+  %tr
+    %th.narrow
+      Realm →
+      %br
+      Nature ↓
+      =link_to "transpose", subtype_path("by_nature")
+    -Realm.all.each do |realm|
+      %th.quarterish=realm.name
+  -Nature.all.each do |nature|
+    %tr
+      %th
+        =nature.name
+      -nature.subtypes.each do |subtype|
+        %td.top=render "subtype", subtype: subtype

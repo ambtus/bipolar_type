@@ -1,8 +1,0 @@
-- content_for(:title, "#{@subtype.name}")
-=render "rationale/#{@subtype.attitude.path}", realm: @subtype.realm 
-%p
-  =link_to @subtype.realm.name.prefix("All "), type_path(@subtype.realm.path)
-  |
-  =link_to @subtype.attitude.name.prefix("All "), type_path(@subtype.attitude.path)
-%p
-  =link_to @subtype.name.prefix("Start Discovery with "), discover_path(Answer.first.next(@subtype))

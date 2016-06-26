@@ -10,9 +10,10 @@ class Answer
   attr_reader :question, :subtype_paths
 
   def number; @question.last.to_i ; end
-  def finished?; number == 5; end
+  def finished?; number > 4; end
 
   def chosen; subtype_paths.collect{|path| Subtype.send(path)}; end
+  def subtypes; chosen[0,4].sort; end
   def constrained; chosen.map(&:peers).flatten.uniq; end
 
   def css(subtype)
@@ -29,6 +30,6 @@ class Answer
   def paths(subtype); all(subtype).map(&:path).join('-'); end
   def next(subtype); "#{question.next}:#{paths(subtype)}"; end
 
-  def quad_path; chosen.sort.map(&:realm).map(&:path).join; end
+  def type_path; subtypes.map(&:realm).map(&:path).join; end
 
 end

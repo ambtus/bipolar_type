@@ -1,0 +1,6 @@
+%p.center
+  =link_to_unless_current "All #{subtype.realm.symbol}s", realm_path(subtype.realm.path)
+  |
+  =link_to_unless_current "All #{subtype.nature.symbol}s", nature_path(subtype.nature.path)
+  %br
+  =render "discover", subtype: subtype

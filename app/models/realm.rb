@@ -1,74 +1,45 @@
-class Realm < Indexable
+class Realm < Single
 
-  MBTI = %w{S N F T}
-  ADJECTIVE = %w{physical mental spiritual financial}
-  CONSUME = %w{eat watch listen work}
-  PRODUCEV = %w{walk decide talk spend}
-  PRODUCEO = %w{NIL NIL NIL money}
-  PVERB = %w{visit solve influence buy}
-  NOUNS = %w{places problems people assets}
-  THING = %w{where thing one thing}
-  KINETIC = %w{glycogen facts emotions cash}
-  POTENTIAL = %w{fat memories attachments savings}
-  CVERB = %w{eat see listen earn}
-  PREPOSITION = %w{NIL NIL to NIL}
-  OBVIOUS = %w{flavorful bright loud painful}
-  IMPACTFUL = %w{high-carb detailed tragic risky}
-  OBJECTS = %w{meals pictures stories rewards}
-  STRENGTHENERS = %w{protein patterns happy\ endings repayments}
-  OVERWHELMED = %w{nauseous afraid suicidal angry}
-WHELM = %w{vomit panic suicide fight}
-  WORN = %w{sore stupid misunderstood indebted}
+  NAME = %w{physical mental spiritual financial} # must all start with different letters
 
   ########
-  LETTERS = MBTI.map(&:downcase)
-  def self.paths; LETTERS; end
-  ALL = LETTERS.collect{|letter| self.new letter}
-  def self.all; ALL; end
-  LETTERS.each do |letter|
-    define_singleton_method(letter) { ALL[LETTERS.index(letter)] }
-  end
+  ACRONYMS = NAME.map(&:first)
+  ALL = ACRONYMS.collect {|letter| self.new letter}
+  ACRONYMS.each {|letter| define_singleton_method(letter) { ALL[ACRONYMS.index(letter)] } }
   ########
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
-  def +(attitude); subtypes.find{|s| s.attitude == attitude} || Subtype.new([self, attitude]); end
-  def quad; Quad.new Array.new(4, self).map(&:path).join; end
+  def +(nature); subtypes.find{|s| s.nature == nature} || Subtype.new([self, nature]); end
 
-  def both(subtype); [self, subtype.realm].sort.map(&:mbti).join; end
+  def generic; choose Adjective, NAME; end
+  def adverb; generic.ly; end
+  def name; Phrase.new [generic.capitalize, symbol.parenthesize]; end
 
-  def whelm; choose Verb, WHELM; end
-  def producev; choose Verb, PRODUCEV; end
-  def produced; choose Verb, PRODUCED; end
-  def consume; choose Verb, CONSUME; end
-  def cverb; choose Verb, CVERB; end
-  def produce_verb; choose Verb, PVERB; end
-  def produce_verb2; choose Verb, PVERB2; end
-  def preposition; choose Word, PREPOSITION; end
-  def produceo; choose Word, PRODUCEO; end
+  def color; choose Adjective, %w{red green blue gold}; end # Arbitrary
 
-  def adjective; choose Adjective, ADJECTIVE; end
-  def obvious; choose Adjective, OBVIOUS; end
-  def impactful; choose Adjective, IMPACTFUL; end
-  def overwhelmed; choose Adjective, OVERWHELMED; end
-  def worn; choose Adjective, WORN; end
+  def energy; choose Noun, %w{caloric factual emotional monetary}; end
 
-  def mbti; choose Noun, MBTI; end
-  def kinetic; choose Noun, KINETIC; end
-  def potential; choose Noun, POTENTIAL; end
-  def objects; choose Noun, OBJECTS; end
-  def strengtheners; choose Noun, STRENGTHENERS; end
-  def nouns; choose Noun, NOUNS; end
-  def thing; choose Noun, THING; end
+  def consume; choose Verb, %w{eat watch listen earn}; end
+  def consumer; consume.er; end
+  def get; choose Verb, %w{eat see hear earn}; end
+  def resource; choose Verb, %w{food truth voice reward}; end
+  def resources; resource.pluralize; end
+  def consumption; Phrase.new [get, resources]; end
+  def empty; choose Adjective, %w{hungry unsure lonely broke}; end
+  def energizers; choose Noun, %w{carbs colors music cash}; end
+  def potential; choose Noun, %w{fat memories values savings}; end
+  def empty; choose Noun, %w{hungry unsure lonely poor}; end
+  def overwhelmed; choose Noun, %w{sick afraid suicidal angry}; end
 
-  def adverb; adjective.ly; end
-  def triggers; Phrase.new [obvious.comma, impactful, objects]; end
-  def produce; Phrase.optional producev, produceo; end
-  def consume_verb; Phrase.optional cverb, preposition; end
-  def consume_triggers; Phrase.new [consume_verb, triggers]; end
-  def name; Phrase.new [adjective.capitalize, mbti.parenthesize]; end
+  def produce; choose Verb, %w{move think communicate buy}; end
+  def producer; produce.er; end
+  def achieve; choose Verb, %w{do predict express spend}; end
+  def goals; choose Verb, %w{things results opinions rewards}; end
+  def production; Phrase.new [achieve, goals]; end
+  def strength; choose Noun, %w{muscle rules vocabulary debt}; end
+  def worn; choose Adjective, %w{sore stupid misunderstood indebted}; end
+  def strengtheners; choose Noun, %w{protein shapes stories credit}; end
+  def fast; choose Verb, %w{run guess talk shop}; end
+  def strong; choose Verb, %w{lift decide write borrow}; end
 
-  def over_production; Phrase.new ["There are more", nouns, "I want to", produce_verb]; end
-  def under_production; Phrase.new ["I don’t want to", produce_verb, "any more", nouns]; end
-  def over_sensitivity; Phrase.new ["I don’t want to", consume_verb, "any more", objects]; end
-  def under_sensitivity; Phrase.new ["There are more", objects, "I want to", consume_verb]; end
 end

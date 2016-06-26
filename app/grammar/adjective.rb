@@ -70,7 +70,7 @@ class Adjective < Word
   EXCEPTIONS = %w{appreciate sure unsure responsible constructive expensive predictable probable sore obstinate tactile overtime visible tangible audible future repetitive adjective creditworthy knowledgeable }
   def is_exception?; EXCEPTIONS.include?(@string); end
 
-  SINGLES = %w{sweet smart rich poor sick hard calm long short small smooth loud bright strong soft}
+  SINGLES = %w{sweet smart rich poor sick hard calm long short small smooth loud bright strong soft high low quiet loud fast clever}
   def is_single_word?; SINGLES.include?(@string); end
 
 end

@@ -1,18 +1,2 @@
-ul {
-  list-style-position: inside;
-  padding: 0;
-}
-ul.none {
-  list-style-type: none; 
-}
-dt, dd {
-  display: inline;
-  margin: 0;
-}
-dt:after {
-  content: ":";
-}
-dd:after {
-  content: '\A';
-  white-space: pre;
-}
+ol, ul { list-style-position: inside; padding: 0;}
+ul.none { list-style-type: none; }

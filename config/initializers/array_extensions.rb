@@ -1,6 +1,6 @@
 # Restart required even in development mode when you modify this file.
 
-%w{multiply add duplicates without remove_consecutive_dupes check_constraints}.each do |meth|
+%w{sixth multiply add duplicates without remove_consecutive_dupes check_constraints}.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 
@@ -54,4 +54,6 @@ class Array
     raise "#{self} #{size} is more more than #{max}" unless count <= max
     each{|x| raise "#{x} is not a kind of #{klass}" unless x.is_a? klass}
   end
+
+  def sixth; self[5]; end
 end

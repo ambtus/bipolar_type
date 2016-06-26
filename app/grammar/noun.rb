@@ -1,6 +1,7 @@
 class Noun < Word
 
   def pluralize; Noun.new(string.pluralize); end
+  def symbol; upcase ; end
 
   def time; suffix("-time"); end
 
@@ -74,6 +75,6 @@ class Noun < Word
    comfort soul mind property credit\ rating dessert energy feedback conflict
    spending\ money salary regular\ income bonus\ income truth rhythm
    symmetry dissonance pain shame logic language nose skin brain junk 
-   local\ color power hurt despair pleasure}
+   local\ color power hurt despair pleasure muscle}
 
 end

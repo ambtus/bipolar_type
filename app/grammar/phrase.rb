@@ -37,7 +37,8 @@ class Phrase
   def inspect; words.join("•").to_word; end
   def first; words.first; end
   def last; words.last; end
-  def join; words.join; end
+  def join; Word.new words.join; end
+  def symbol; join.upcase ; end
 
   ## methods that return an array of words
   def first_words; words[0..-2]; end
@@ -62,6 +63,9 @@ class Phrase
   %w{ed en ing s}.each do |meth|
     define_method(meth) {Phrase.new words.collect{|w| w.is_a?(Verb) ? w.send(meth) : w}}
   end
+
+  # adjective methods
+  def er; Phrase.new words.collect{|w| w.is_a?(Adjective) ? w.er : w}; end
 
   # noun methods
   %w{many few fewer fewest those}.each do |meth|
