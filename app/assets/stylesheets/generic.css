@@ -1,6 +1,10 @@
+body { font-size: 125% }
+p { text-align: left; max-width: 62em}
+.header { padding-bottom: 1em; font-size: .8em }
+.footer { padding-top: 3em; font-size: .8em}
 .warning {color: grey; font-style: italic}
-.free {color: purple; font-weight: normal}
-.chosen {color: black; font-style: italic}
+.free {color: purple; }
+.chosen {color: purple; font-style: italic}
 .bold {font-weight: bold}
 .ninth { width: 11%; }
 .quarterish { width: 24%; }
@@ -10,16 +14,10 @@
 .half { width: 50% }
 .wide { width: 80% }
 .full { width: 96% }
-.narrow {
-  padding: 0;
-  width: 4%;
-  hyphens: auto;
-}
+.narrow { padding: 0; width: 4%; hyphens: auto; }
 .heading {font-style: italic; text-align: center; }
-.header {font-weight: bold; text-align: center; }
 .center { text-align: center; }
 .left { text-align: left; }
-p { text-align: left; }
 .right { text-align: right; }
 .small { font-size: small;}
 .nowrap {white-space: nowrap; }

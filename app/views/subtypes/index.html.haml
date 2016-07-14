@@ -1,0 +1,7 @@
+- content_for(:title, 'The Sixteen Subtypes')
+%table
+  -Realm.all.each do |realm|
+    %tr
+      -realm.subtypes.values_at(0,2,1,3).each do |subtype|
+        %td.quarter.top
+          =render "subtype", subtype: subtype

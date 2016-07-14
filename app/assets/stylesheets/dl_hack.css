@@ -1,7 +1,0 @@
-.dlr { text-align: left; } /* on right side of page */
-.dll { text-align: right; } /* on left side of page */
-
-.dtr, .dtl { font-weight: bold;} /* term is always bold */
-
-.ddl:after { content: ":";} /* definition first */
-.dtr:after { content: ":";} /* term first */

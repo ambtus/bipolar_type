@@ -1,6 +1,5 @@
 class RealmsController < ApplicationController
-  def index
-  end
+  def index; end
 
   def show
     @realm = Realm.send params[:id]

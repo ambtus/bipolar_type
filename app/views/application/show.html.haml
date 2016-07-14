@@ -1,13 +1,7 @@
 - content_for(:title, "#{@name}")
-%p.header=@subtypes.map(&:short_name).join(" | ")
-=render "bipolar"
-%h2 Nature
-%table
-  %caption
-    %p
-      Rather than taking sedatives for mania and stimulants for depression, BipolarType recommends that you change when you consume and produce.
-  -@subtypes.in_groups_of(2) do |row|
+%table 
+  -@subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
-        %td.top
+        %td.top.half
           =render "subtype", subtype: subtype

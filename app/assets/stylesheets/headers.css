@@ -1,23 +1,22 @@
 h1 {
-  font-size: 140%;
+  font-size: 1.4em;
   font-style: bold;
   text-align: center;
 }
 h2 {
-  font-size: 130%;
+  font-size: 1.3em;
   font-style: bold;
   text-align: center;
 }
 h3 {
-  font-size: 120%;
+  font-size: 1.2em;
   font-style: italic;
   text-align: center;
 }
 h4 {
-  font-size: 110%;
+  font-size: 1.1em;
   font-style: bold;
 }
 h5 {
-  font-size: 100%;
   font-style: italic;
 }

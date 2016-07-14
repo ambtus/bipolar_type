@@ -1,0 +1,6 @@
+- content_for(:title, 'The Four Attitudes')
+%p A BipolarType attitude is a desire to either consume or produce along with a sensitivity or tolerance level for that behavior.
+%p.center
+  -Attitude.all.each_with_index do |attitude, index|
+    ="|" unless index == 0
+    =link_to attitude.name, attitude_path(attitude.path)

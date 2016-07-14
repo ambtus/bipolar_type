@@ -1,3 +1,9 @@
-.div{class: subtype.color}
-  =render subtype.nature.path, subtype: subtype
-  =render "links", subtype: subtype
+-I18n.locale = subtype.locale
+%h2=render subtype.loc
+%p.heading=render "nature/#{subtype.loc}"
+%h3 Euphoria
+%p=render "euphoria/#{subtype.second.loc}"
+%h3 Dysphoria
+%p=render "dysphoria/#{subtype.loc}"
+%h3 Advice
+%p=render "advice/#{subtype.loc}"

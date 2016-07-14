@@ -1,14 +1,8 @@
 =link_to_unless_current "Introduction", root_path
 |
-=link_to_unless controller.controller_name == "answers",  "Discovery", answer_path(Answer.first_path)
+=link_to_unless_current "Theory", start_path("theory")
 |
-=link_to_unless_current "Realms", realms_path
-|
-=link_to_unless_current "Natures", natures_path
-|
-=link_to_unless_current "Subtypes", subtype_path("by_realm")
-|
-=link_to_unless_current "BipolarTypes", types_path
+=link_to_unless controller.controller_name == "answers",  "YourBipolarType", answer_path(Answer.first_path)
 |
 =link_to_unless_current "My BipolarType", type_path(Type.my_path)
 |

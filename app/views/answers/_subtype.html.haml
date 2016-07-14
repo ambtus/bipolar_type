@@ -1,6 +1,10 @@
-%p.center=render subtype.nature.path, realm: subtype.realm
-%p.center
+-I18n.locale = subtype.locale
+%td.quarter.top
   -if @answer.css(subtype) == "free"
-    =link_to subtype.short_name, answer_path(@answer.next(subtype))
-  -else
-    =subtype.short_name
+    %p.center
+      =render "nature/#{subtype.attitude.loc}"
+  %p.center{:class => @answer.css(subtype)}
+    -if @answer.css(subtype) == "free"
+      =link_to (render subtype.attitude.loc), answer_path(@answer.next(subtype))
+    -else
+      =render subtype.attitude.loc

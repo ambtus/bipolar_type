@@ -1,33 +1,6 @@
 - content_for(:title, 'The Four Realms')
-%table
-  %tr
-    %th
-    %th Consume (get resources)
-    %th Produce (use resources)
-  -Realm.all.each do |realm|
-    %tr{class: realm.color}
-      %td.none
-        %h2 #{realm.name}
-        %p.center #{realm.energy} value
-      %td.top
-        %h3.right #{realm.consumption.capitalize}
-        %div.dll
-          %span.ddl get strength
-          %span.dtl #{realm.get} #{realm.strengtheners}
-          %br
-          %span.ddl get new energy
-          %span.dtl #{realm.get} #{realm.energizers}
-          %br
-          %span.ddl use stored energy
-          %span.dtl use #{realm.potential}
-          %br
-          %span.right (but feel #{realm.empty})
-      %td.top
-        %h3.left #{realm.production.capitalize}
-        %div.dlr
-          %span.dtr #{realm.strong}
-          %span.ddr use strength
-          %span.left (but may feel #{realm.worn})
-          %br
-          %span.dtr #{realm.fast}
-          %span.ddr use energy
+%p A BipolarType realm is a group of behaviors around a type of energy that can be consumed, stored, and then used to produce.
+%p.center
+  -Realm.all.each_with_index do |realm, index|
+    ="|" unless index == 0
+    =link_to realm.name, realm_path(realm.path)

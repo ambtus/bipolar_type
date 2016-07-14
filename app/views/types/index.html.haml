@@ -1,7 +1,5 @@
 - content_for(:title, 'The 24 BipolarTypes')
 %table
-  %caption
-    %p Natures may or may not be observed based on nurture.
   -Type.all.in_groups_of(6) do |row|
     %tr
       -row.each do |type|
@@ -9,4 +7,5 @@
           =link_to type.name, type_path(type.path)
           %ul.none
             -type.subtypes.each do |subtype|
-              %li{class: subtype.color}=subtype.short_name
+              -I18n.locale = subtype.locale
+              %li{class: subtype.color}=render subtype.loc
