@@ -9,6 +9,7 @@ p:
   producer: "doer"
   produced: "moved"
   producing: "moving"
+  production: "movement"
   productions: "movements"
   empty: "hungry"
   emptier: "hungrier"
@@ -29,4 +30,5 @@ p:
   little_stored: "little fat"
   resources: "foods"
   appear: "taste"
+  appears: "tastes"
   appearing: "tasting"

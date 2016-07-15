@@ -1,8 +1,9 @@
 -I18n.locale = subtype.locale
-%h2=render subtype.loc
+%h2 #{subtype.description.titleize}
+%h3=render subtype.loc
 %p.heading=render "nature/#{subtype.loc}"
 %h3 Euphoria
-%p=render "euphoria/#{subtype.second.loc}"
+%p.heading=render "euphoria/#{subtype.second.loc}"
 %h3 Dysphoria
 %p=render "dysphoria/#{subtype.loc}"
 %h3 Advice

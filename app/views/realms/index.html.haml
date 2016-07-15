@@ -1,6 +1,3 @@
 - content_for(:title, 'The Four Realms')
 %p A BipolarType realm is a group of behaviors around a type of energy that can be consumed, stored, and then used to produce.
-%p.center
-  -Realm.all.each_with_index do |realm, index|
-    ="|" unless index == 0
-    =link_to realm.name, realm_path(realm.path)
+=render "links"

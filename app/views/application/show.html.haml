@@ -1,5 +1,7 @@
 - content_for(:title, "#{@name}")
-%table 
+=render "realms/links"
+=render "attitudes/links"
+%table
   -@subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|

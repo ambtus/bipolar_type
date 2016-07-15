@@ -1,6 +1,6 @@
 class First < Concept
 
-  NAMES = %w{avid picky}
+  NAMES = %w{insensitive sensitive}
 
   ########
   ACRONYMS = NAMES.map(&:first)
