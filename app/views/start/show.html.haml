@@ -1,17 +1,15 @@
 - content_for(:title, 'The Theory')
+%h2 The Four Realms
+%p A BipolarType realm is a group of behaviors around a type of energy that can be consumed, stored, and then used to produce.
+=render "realms/links"
+%h2 The Four Attitudes
+%p A BipolarType attitude is a desire to either consume or produce along with a sensitivity (tolerance level) for that behavior.
+=render "attitudes/links"
+%h2 The Sixteen Subtypes
+%p A BipolarType subtype is a specific attitude towards a specific realm.
+%p.center=link_to "The 16 subtypes", subtypes_path
+%h2 The 256 BipolarTypes
 %p
-  There are
-  =link_to "four realms", realms_path
-  of behavior.
-%p
-  There are
-  =link_to "four attitudes", attitudes_path
-  towards each realm of behavior.
-%p
-  There are
-  =link_to "16 subtypes:", subtypes_path
-  a specific attitude towards a specific realm.
-%p
-  There are
-  =link_to "24 BipolarTypes:", types_path
-  one attitude per realm.
+  A BipolarType is made of four subtypes: an attitude towards each realm.
+%p.center
+  =link_to "Find your BipolarType", answer_path(Answer.first_path)

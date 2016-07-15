@@ -2,7 +2,7 @@ class TypesController < ApplicationController
   def index; end
   def show
     begin
-    @type = Type.send params[:id]
+    @type = Type.new params[:id]
     @name = @type.name
     @subtypes = @type.subtypes
     rescue

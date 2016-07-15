@@ -1,17 +1,22 @@
--content_for(:title, "Issue ##{@answer.number} of 4")
+-content_for(:title, "Question ##{@answer.number} of 4")
 %p.center
   Once you have
   %span.chosen chosen
   a Subtype, the other subtypes in the
   %span.warning same
-  Realm or Attitude will become unavailable.
+  Realm will become unavailable.
 -unless @answer.number == 1
   %p.center
     If you get stuck, you can
     =link_to "start over.", answer_path(Answer.first_path)
 
 %table
+  %tr
+    %th
+    -Attitude.all.each do |attitude|
+      %th #{attitude.name} Attitude
   -Realm.all.each do |realm|
     %tr
+      %th #{realm.name} Realm
       -realm.subtypes.each do |subtype|
         =render "subtype", subtype: subtype
