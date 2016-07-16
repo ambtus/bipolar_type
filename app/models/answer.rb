@@ -14,12 +14,12 @@ class Answer
 
   def chosen; subtype_paths.collect{|path| Subtype.send(path)}; end
   def subtypes; chosen[0,4].sort; end
-  def constrained; chosen.map(&:realm); end
+  def constrained; chosen.map(&:peers).flatten.uniq; end
 
   def css(subtype)
     if chosen.include? subtype
       "chosen"
-    elsif constrained.include? subtype.realm
+    elsif constrained.include? subtype
       "warning"
     else
       "free"
@@ -30,6 +30,6 @@ class Answer
   def paths(subtype); all(subtype).map(&:path).join('-'); end
   def next(subtype); "#{question.next}:#{paths(subtype)}"; end
 
-  def type_path; subtypes.map(&:path).join("-"); end
+  def type_path; subtypes.map(&:realm).map(&:path).join; end
 
 end

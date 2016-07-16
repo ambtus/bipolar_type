@@ -1,15 +1,16 @@
 - content_for(:title, 'The Theory')
 %h2 The Four Realms
-%p A BipolarType realm is a group of behaviors around a type of energy that can be consumed, stored, and then used to produce.
+%p.center A BipolarType realm is a group of behaviors around a type of energy that can be consumed, stored, and then used to produce.
 =render "realms/links"
 %h2 The Four Attitudes
-%p A BipolarType attitude is a desire to either consume or produce along with a sensitivity (tolerance level) for that behavior.
+%p.center A BipolarType attitude is a desire to either consume or produce along with a sensitivity (tolerance level) for that behavior.
 =render "attitudes/links"
-%h2 The Sixteen Subtypes
-%p A BipolarType subtype is a specific attitude towards a specific realm.
+%h2 The 16 Subtypes
+%p.center A BipolarType subtype is a specific attitude towards a specific realm.
 %p.center=link_to "The 16 subtypes", subtypes_path
-%h2 The 256 BipolarTypes
-%p
-  A BipolarType is made of four subtypes: an attitude towards each realm.
-%p.center
-  =link_to "Find your BipolarType", answer_path(Answer.first_path)
+%h2 The 24 BipolarTypes
+%p.center A BipolarType is made of four subtypes: one attitude towards each realm.
+%p.center=link_to "The 24 BipolarTypes", types_path
+%h2 Your BipolarType
+%p.center BipolarType makes the claim that by spending more time in the non-preferred aspect (consuming or producing) of your insensitive realms, and less time absolutely in your sensitive realms, that you can reduce stress and live a happier and more fulfilling life.
+%p.center=link_to "Find your BipolarType", answer_path(Answer.first_path)
