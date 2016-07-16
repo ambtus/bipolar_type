@@ -1,6 +1,6 @@
 class Realm < Concept
 
-  NAMES = %w{physical mental social financial } # must all start with different letters and initial letter must match locale
+  NAMES = %w{physical mental emotional financial } # must all start with different letters and initial letter must match locale
 
   def color; %w{red green blue gold }[index]; end
 
