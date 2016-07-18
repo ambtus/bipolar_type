@@ -12,7 +12,6 @@ class First < Concept
   def +(second); attitudes.find{|s| s.second == second}; end
 
   def description; NAMES[index]; end
-  def name; "#{description.capitalize} (#{symbol})"; end
 
   def location; %w{top bottom}[index]; end
 

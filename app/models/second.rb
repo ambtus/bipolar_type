@@ -12,7 +12,7 @@ class Second < Concept
   def +(first); attitudes.find{|s| s.second == second}; end
 
   def description; NAMES[index]; end
-  def name; "#{description.capitalize} (#{symbol})"; end
+  def name; description.capitalize; end
 
   def location; %w{left right}[index]; end
   def loc; location; end
