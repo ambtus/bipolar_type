@@ -1,4 +1,3 @@
 -I18n.locale = subtype.locale
-%h2=link_to subtype.description.titleize, subtype_path(subtype.path)
-%h3=render subtype.loc
+%h2=link_to subtype.name, subtype_path(subtype.path)
 %p=render "advice/#{subtype.loc}"
