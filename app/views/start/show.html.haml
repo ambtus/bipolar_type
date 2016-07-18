@@ -1,9 +1,15 @@
 - content_for(:title, 'The Theory')
 %h2 The Four Realms
-%p.center A BipolarType realm is a group of behaviors around a type of energy that can be consumed, stored, and then used to produce.
+%p.center
+  A BipolarType realm is a group of behaviors around a type of energy (
+  -Realm.all.each_with_index do |realm, index|
+    ="|" unless index == 0
+    -I18n.locale = realm.locale
+    #{t :energy}
+  ) that can be consumed, stored, and used to produce.
 =render "realms/links"
 %h2 The Four Attitudes
-%p.center A BipolarType attitude is a desire to either consume or produce along with a sensitivity (tolerance level) for that behavior.
+%p.center A BipolarType attitude is a preference to either consume or produce along with a sensitivity: your tolerance level or ability to persevere in that preference.
 =render "attitudes/links"
 %h2 The 16 Subtypes
 %p.center A BipolarType subtype is a specific attitude towards a specific realm.
