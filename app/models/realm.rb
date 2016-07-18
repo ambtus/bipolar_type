@@ -14,7 +14,7 @@ class Realm < Concept
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
   def description; NAMES[index]; end
-  def name; "#{description.capitalize} (#{symbol})"; end
+  def name; description.capitalize; end
   def adverb; description + "ly"; end
 
 end

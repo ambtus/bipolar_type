@@ -36,12 +36,11 @@ class Subtype
 
   def inspect; @triplet.map(&:inspect).join; end
   def path; @triplet.map(&:path).join; end
-  def symbol; @triplet.map(&:symbol).join; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
   def description; @triplet.map(&:description).join(" "); end
-  def name; "#{description.titleize} (#{symbol})"; end
+  def name; description.titleize; end
 
 end

@@ -9,7 +9,6 @@ class Attitude
 
   def inspect; @both.map(&:inspect).join; end
   def path; @both.map(&:path).join; end
-  def symbol; @both.map(&:symbol).join; end
 
   ALL = First::ALL.collect do |first|
                Second::ALL.collect do |second|
@@ -28,7 +27,7 @@ class Attitude
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
   def description; @both.map(&:description).join(" "); end
-  def name; "#{description.titleize} (#{symbol})"; end
+  def name; description.titleize; end
 
   def locations; @both.map(&:location); end
   def loc; locations.map(&:first).join; end

@@ -3,7 +3,6 @@ class Concept
   def initialize(letter); @letter = letter; end
   def inspect; @letter; end
   def path; @letter; end
-  def symbol; @letter.upcase ; end
   def locale; @letter.to_sym; end
 
   ########
