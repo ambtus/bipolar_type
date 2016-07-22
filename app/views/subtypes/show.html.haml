@@ -6,5 +6,11 @@
 %p.heading=render "euphoria/#{@subtype.second.loc}"
 %h3 Dysphoria
 %p=render "dysphoria/#{@subtype.loc}"
-%h3 Advice
+%h3 General Advice
 %p=render "advice/#{@subtype.loc}"
+%h3 Manic Advice
+%p When you are manic you will want to #{t :produce} more and #{t :consume} less.
+%p=render "mania/#{@subtype.loc}"
+%h3 Depressed Advice
+%p When you are depressed you will want to #{t :consume} more and #{t :produce} less.
+%p=render "depression/#{@subtype.loc}"
