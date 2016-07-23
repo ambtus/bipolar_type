@@ -30,7 +30,7 @@ p:
   strengths: "muscles"
   worn_out: "sore"
   more_worn_out: "more sore"
-  injury: "injury"
+  injury: "soreness"
   stored: "fat"
   less_stored: "less fat"
   much_stored: "much fat"
