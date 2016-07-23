@@ -2,14 +2,27 @@
 =render "realms/links"
 =render "attitudes/links"
 %table
-  %caption General Advice
+  %caption
+    %h2 Subtypes
   -@subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
         %td.top.half
-          =render "subtype", subtype: subtype
+          -I18n.locale = subtype.locale
+          =link_to subtype.name, subtype_path(subtype.path)
+          %p.heading=render subtype.loc
 %table
-  %caption Manic Advice
+  %caption
+    %h2 General Advice
+  -@subtypes.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |subtype|
+        %td.top.half
+          -I18n.locale = subtype.locale
+          =render "advice/#{subtype.loc}"
+%table
+  %caption
+    %h2 Manic Advice
   -@subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
@@ -17,7 +30,8 @@
           -I18n.locale = subtype.locale
           =render "mania/#{subtype.loc}"
 %table
-  %caption Depressed Advice
+  %caption
+    %h2 Depressed Advice
   -@subtypes.in_groups_of(2).each do |row|
     %tr
       -row.each do |subtype|
