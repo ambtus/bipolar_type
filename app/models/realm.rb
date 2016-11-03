@@ -1,8 +1,8 @@
 class Realm < Concept
 
-  NAMES = %w{physical mental emotional financial } # must all start with different letters and initial letter must match locale
+  NAMES = %w{mental physical financial emotional} # must all start with different letters and initial letter must match locale
 
-  def color; %w{red green blue gold }[index]; end
+  def color; %w{green red gold blue }[index]; end
 
   ########
   ACRONYMS = NAMES.map(&:first)
