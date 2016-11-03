@@ -1,17 +1,15 @@
 class Subtype
 
   def initialize(array)
-    @triplet = array
-    @first = array.first
-    @realm = array.second
-    @second = array.third
+    @pair = array
+    @realm = array.first
+    @attitude = array.second
   end
-  attr_reader :realm, :first, :second
-  def attitude; Attitude.send(first.path + second.path); end
+  attr_reader :realm, :attitude
 
   ALL = Realm::ALL.collect do |realm|
                Attitude::ALL.collect do |attitude|
-                  self.new [attitude.first,realm,attitude.second]
+                  self.new [realm,attitude]
                 end
             end.flatten
 
@@ -34,13 +32,13 @@ class Subtype
     end
   end
 
-  def inspect; @triplet.map(&:inspect).join; end
-  def path; @triplet.map(&:path).join; end
+  def inspect; @pair.map(&:inspect).join; end
+  def path; @pair.map(&:path).join; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
-  def description; @triplet.map(&:description).join(" "); end
+  def description; [attitude.description.split.first, realm.adverb, attitude.description.split.second].join(" "); end
   def name; description.titleize; end
 
 end
