@@ -1,9 +1,9 @@
 class Attitude < Concept
 
-  NAMES = %w{least\ sensitive less\ sensitive more\ sensitive most\ sensitive}
+  NAMES = %w{acute\ mania chronic\ mania chronic\ depression acute\ depression}
 
   ########
-  ACRONYMS = %w{e p j i }
+  ACRONYMS = %w{i j p e}
   ALL = ACRONYMS.collect {|letter| self.new letter}
   ACRONYMS.each {|letter| define_singleton_method(letter) { ALL[ACRONYMS.index(letter)] } }
   ########

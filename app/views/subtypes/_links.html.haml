@@ -1,0 +1,4 @@
+%p.center
+  -@subtypes.each_with_index do |subtype, index|
+    ="|" unless index == 0
+    =link_to_unless_current subtype.name, subtype_path(subtype.path)

@@ -1,0 +1,5 @@
+t:
+  realm: "financial"
+  consume: "compete/earn"
+  produce: "pay/buy"
+  rejecting: "fighting"

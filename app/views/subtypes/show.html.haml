@@ -1,16 +1,2 @@
-- content_for(:title, "#{@subtype.name}")
+=render "header"
 -I18n.locale = @subtype.locale
-%h3=render @subtype.loc
-%p.heading=render "nature/#{@subtype.loc}"
-%h3 Euphoria
-%p.heading=render "euphoria/#{@subtype.loc}"
-%h3 Dysphoria
-%p=render "dysphoria/#{@subtype.loc}"
-%h3 General Advice
-%p=render "advice/#{@subtype.loc}"
-%h3 Manic Advice
-%p When you are manic you will #{t :consume} less and #{t :produce} more.
-%p=render "mania/#{@subtype.loc}"
-%h3 Depressed Advice
-%p When you are depressed you will #{t :consume} more and #{t :produce} less.
-%p=render "depression/#{@subtype.loc}"

@@ -18,5 +18,5 @@ class Type
   def self.all; ALL; end
   ALL.each {|type| define_singleton_method(type.path) {type} }
 
-  def name; realms.map(&:symbol).join("•"); end
+  def name; subtypes.map(&:symbol).join("•"); end
 end

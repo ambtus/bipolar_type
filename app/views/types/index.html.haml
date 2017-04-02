@@ -5,7 +5,7 @@
       -row.each do |type|
         %td.top.sixth
           =link_to type.name, type_path(type.path)
-          %ul.none
           -type.subtypes.each do |subtype|
             -I18n.locale = subtype.locale
-            %li{class: subtype.color}=render subtype.loc
+            %br
+            =subtype.name
