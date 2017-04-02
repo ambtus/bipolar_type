@@ -1,0 +1,5 @@
+s:
+  realm: "physical"
+  consume: "eat/drink"
+  produce: "move/exercise"
+  rejecting: "throwing up"
