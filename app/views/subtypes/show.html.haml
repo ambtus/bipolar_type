@@ -1,2 +1,6 @@
-=render "header"
+- content_for(:title, "#{@name}")
+=render "realms/links"
+=render "attitudes/links"
 -I18n.locale = @subtype.locale
+=render @subtype.attitude.mbti
+=render "advice/" + @subtype.attitude.mbti

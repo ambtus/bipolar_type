@@ -1,5 +1,19 @@
 f:
-  realm: "emotional"
-  consume: "listen/read"
-  produce: "talk/write"
-  rejecting: "crying"
+  adjective: emotional
+  adverb: emotionally
+  consume: listen
+  consuming: listening
+  produce: talk
+  producing: talking
+  get: hear
+  getting: hearing
+  resources: stories
+  appear: sound
+  use: express
+  energy: emotions
+  less: less
+  little: little
+  much: much
+  fat: shame
+  it: it
+  creating: saying

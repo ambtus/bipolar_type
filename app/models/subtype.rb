@@ -32,14 +32,19 @@ class Subtype
     end
   end
 
-  def inspect; @pair.map(&:inspect).join; end
-  def path; @pair.map(&:path).join; end
-  def symbol; ([0,3].include? attitude.index) ? path.reverse.upcase : path.upcase; end
+  def mbti; [@attitude.mbti.first, @realm.mbti, @attitude.mbti.second].join; end
+  def inspect; mbti; end
+  def path; mbti; end
+  def symbol; path.upcase; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
-  def description; [attitude.description.split.first, realm.description, attitude.description.split.second].join(" "); end
+  def description
+    [@realm.description, @attitude.description].join(" ")
+  end
   def name; description.titleize; end
+
+  def siblings; (Subtype.all.select{|s| s.realm == @realm || s.attitude == @attitude}) - [self]; end
 
 end

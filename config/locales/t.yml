@@ -1,5 +1,19 @@
 t:
-  realm: "financial"
-  consume: "compete/earn"
-  produce: "pay/buy"
-  rejecting: "fighting"
+  adjective: financial
+  adverb: financially
+  consume: work
+  consuming: working
+  produce: buy
+  producing: buying
+  get: touch/grab
+  getting: touching
+  resources: tools
+  appear: feel
+  use: spend
+  energy: money
+  less: fewer
+  little: few
+  much: much
+  fat: savings
+  it: them
+  creating: purchasing
