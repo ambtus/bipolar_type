@@ -1,0 +1,40 @@
+- content_for(:title, "The Theory")
+%p BipolarType defines depression as a period of time during which it is easy to consume but hard to produce and energy is stored. Mania is the period of time during which it is easy to produce but hard to consume and stored energy is burned.
+%p Depression and mania follow each other in a constant cycle.
+%p There is a yearly cycle:  strong spring mania, weak summer depression, weak fall mania, strong winter depression; a monthly cycle: full moon mania and new moon depression; a weekly cycle: strong beginning of the week depression, weak midweek mania, weak late-week depression, strong weekend mania; and a daily cycle: strong morning depression, weak midday mania, weak afternoon depression and strong evening mania.
+%p These cycles are cumulative. Monday morning in the winter at the new moon is the time of strongest depression: consumption is easy, production is nearly impossible without artificial stimulants such as caffeine. Saturday evening in the spring during a full moon is the time of strongest mania: production is easy, consumption is nearly impossible without artificial sedatives such as alcohol.
+%p BipolarType does not attempt to prevent the cycle, which is natural (albeit stronger in some individuals than others). Instead, it offers personalized advice on how to flatten the curve without resorting to sedatives and stimulants.
+%h2 The Four Attitudes
+%p Under normal circumstances the gain of energy during depression balances out the loss of energy during mania and stored energy remains stable in the long run, even if it fluctuates from day to day or season to season.
+%p Mania and depression are only a problem when you are losing energy you can ill afford to lose, or gaining energy which is an unwanted burden.
+%p This happens when you have a preference, or attitude, which creates gains during depression which are larger than the losses during mania, or vice versa.
+%p The main theorem in BipolarType is that if you are having problems because of a problem in one state, the solution is to be found in the other.
+%table
+  -Attitude.all.each do |attitude|
+    -I18n.locale = :en
+    %h3=link_to attitude.name, attitude_path(attitude.path)
+    =render attitude.mbti
+%h2 The Four Realms
+%p There are four realms, each with their own stash of stored energy and their own consumptive and productive behaviors.
+%p Consumptive behaviors are a way to get energy and require the use of your senses to perceive whether the resource is a good source of energy or not. Generally speaking, resources that appear good provide lots of energy, and resources that appear bad may be toxic or unhealthy. Each realm uses a different sense.
+%p Productive behaviors are a way to use energy and, in general, the more energy we use, the better the result.
+%table
+  -Realm.all.each do |realm|
+
+    -I18n.locale = realm.locale
+    %h3=link_to realm.name, realm_path(realm.path)
+    %dl
+      %dt #{t :adjective} energy:
+      %dd #{t :energy}
+      %dt stored #{t :energy}:
+      %dd #{t :fat} (more or #{t :less} than necessary is #{t :adverb} unhealthy)
+      %dt #{t :get} #{t :energy}:
+      %dd #{(t :consume)} (#{t :resources} that #{t :appear} good tend to provide more  #{t :energy} whereas #{t :resources} that #{t :appear} bad may cause #{t :adjective} pain)
+      %dt #{t :use} #{t :energy}:
+      %dd #{(t :produce)} (you tend to get better results if you use more #{t :energy} when #{t :creating} things)
+%h2 The Sixteen Subtypes
+%p
+  A subtype is a realm in an attitude. There are sixteen subtypes.
+  =render "subtypes/table"
+%h2 The Twenty-Four BipolarTypes
+%p A BipolarType is a set of four subtypes: the four attitudes distributed over the four realms.

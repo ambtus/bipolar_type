@@ -1,0 +1,4 @@
+-@subtypes.each do |subtype|
+  %h3=link_to subtype.name, subtype_path(subtype.path)
+  -I18n.locale=subtype.realm.locale
+  =render "advice/" + subtype.attitude.mbti

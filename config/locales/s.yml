@@ -1,5 +1,19 @@
 s:
-  realm: "physical"
-  consume: "eat/drink"
-  produce: "move/exercise"
-  rejecting: "throwing up"
+  adjective: physical
+  adverb: physically
+  consume: eat
+  consuming: eating
+  produce: move
+  producing: moving
+  get: taste/smell
+  getting: smelling
+  resources: foods
+  appear: taste/smell
+  use: burn
+  energy: calories
+  less: less
+  little: little
+  much: much
+  fat: fat
+  it: it
+  creating: doing

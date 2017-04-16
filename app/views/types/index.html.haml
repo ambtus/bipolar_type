@@ -3,9 +3,9 @@
   -Type.all.in_groups_of(6) do |row|
     %tr
       -row.each do |type|
-        %td.top.sixth
+        %td.top
           =link_to type.name, type_path(type.path)
-          -type.subtypes.each do |subtype|
-            -I18n.locale = subtype.locale
-            %br
-            =subtype.name
+          %ul
+            -type.subtypes.each do |subtype|
+              -I18n.locale = subtype.locale
+              %li=subtype.name

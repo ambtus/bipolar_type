@@ -1,0 +1,8 @@
+%table
+  -Attitude.all.each do |attitude|
+    %tr
+      -attitude.subtypes.each do |subtype|
+        -I18n.locale=subtype.locale
+        %td.quarter
+          %h3=link_to subtype.name, subtype_path(subtype.path)
+          =render attitude.mbti
