@@ -1,8 +1,8 @@
 %table
-  -Attitude.all.each do |attitude|
+  -Realm.all.each do |realm|
     %tr
-      -attitude.subtypes.each do |subtype|
-        -I18n.locale=subtype.locale
-        %td.quarter
-          %h3=link_to subtype.name, subtype_path(subtype.path)
-          =render attitude.mbti
+      -realm.subtypes.each do |subtype|
+        %td
+          =link_to subtype_path(subtype.path) do
+            -I18n.locale=subtype.locale
+            =render subtype.attitude.path

@@ -1,7 +1,8 @@
 %table
-  %tr
-    -@subtypes.each do |subtype|
-      %td
-        =link_to_unless_current subtype.name, subtype_path(subtype.path)
-        -I18n.locale=subtype.locale
-        =render subtype.attitude.mbti
+  -@subtypes.in_groups_of(2) do |row|
+    %tr
+    -row.each do |subtype|
+      -I18n.locale=subtype.locale
+      %td.bordered.half
+        =link_to subtype_path(subtype.path) do
+          =render subtype.attitude.mbti

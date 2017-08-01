@@ -15,13 +15,6 @@ class Subtype
 
   def self.all; ALL; end
 
-
-  def peers; ALL.select{|s| s.realm == realm || s.attitude == attitude} - [self]; end
-  def wings; ALL.select{|s| attitude.wings.include? s.attitude}; end
-  def answer_path; Answer.first.next(self); end
-
-  def <=>(other); [attitude, realm] <=> [other.attitude, other.realm]; end
-
   def method_missing(meth, *arguments, &block)
     if realm.respond_to?(meth)
       realm.send(meth, *arguments, &block)
@@ -32,7 +25,7 @@ class Subtype
     end
   end
 
-  def mbti; [@attitude.mbti.first, @realm.mbti, @attitude.mbti.second].join; end
+  def mbti; [@attitude.first, @realm.mbti, @attitude.second].join; end
   def inspect; mbti; end
   def path; mbti; end
   def symbol; path.upcase; end
@@ -40,11 +33,11 @@ class Subtype
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
-  def description
-    [@realm.description, @attitude.description].join(" ")
-  end
+  def description; [@attitude.description, @realm.description, "energy"].join(" "); end
   def name; description.titleize; end
 
   def siblings; (Subtype.all.select{|s| s.realm == @realm || s.attitude == @attitude}) - [self]; end
+
+  def types; Type.all.select{|t| t.subtypes.include? self}; end
 
 end

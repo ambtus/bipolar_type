@@ -1,4 +1,11 @@
--@subtypes.each do |subtype|
-  %h3=link_to subtype.name, subtype_path(subtype.path)
-  -I18n.locale=subtype.realm.locale
-  =render "advice/" + subtype.attitude.mbti
+%table
+  -@subtypes.in_groups_of(2) do |row|
+    %tr
+    -row.each do |subtype|
+      %td.half.top
+        %h3=link_to subtype.name, subtype_path(subtype.path)
+        -I18n.locale=subtype.realm.locale
+        %p
+          I need to
+          =render subtype.attitude.mbti
+        =render "advice/" + subtype.attitude.mbti

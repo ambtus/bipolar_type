@@ -20,16 +20,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  adjective: ""
   adverb: ""
-  consume: consume
-  produce: produce
-  consuming: consuming
-  producing: producing
-  getting: perceiving
-  appear: appear
-  creating: creating
-  much: much
-  little: little
+  organ: engine
+  consuming: getting energy
+  consume: get energy
+  consumed: got energy
+  preposition: ""
+  resources: resources
+  produce: use energy
+  producing: using energy
+  produced: used energy
+  use: use
   energy: energy
-  fat: "saved energy"
-  it: it
+  potenetial: "potential energy"

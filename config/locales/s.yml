@@ -1,19 +1,19 @@
 s:
   adjective: physical
   adverb: physically
-  consume: eat
+  organ: body
   consuming: eating
+  consume: eat
+  consumed: eaten
+  preposition: ""
+  resources: foods
   produce: move
   producing: moving
-  get: taste/smell
-  getting: smelling
-  resources: foods
-  appear: taste/smell
+  produced: moved
   use: burn
   energy: calories
-  less: less
-  little: little
-  much: much
-  fat: fat
-  it: it
-  creating: doing
+  potential: fat
+  mild: nausea
+  strong: sickness
+  emptiness: hunger
+  empty: hungry

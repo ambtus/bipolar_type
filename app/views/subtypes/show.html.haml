@@ -2,5 +2,7 @@
 =render "realms/links"
 =render "attitudes/links"
 -I18n.locale = @subtype.locale
-=render @subtype.attitude.mbti
+%p=render @subtype.attitude.mbti
 =render "advice/" + @subtype.attitude.mbti
+%h2 BipolarTypes
+=render "types/table"

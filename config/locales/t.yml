@@ -1,19 +1,19 @@
 t:
-  adjective: financial
-  adverb: financially
-  consume: work
-  consuming: working
+  adjective: material
+  adverb: materially
+  organ: credit
+  consuming: earning
+  consume: earn
+  consumed: earned
+  preposition: ""
+  resources: rewards
   produce: buy
   producing: buying
-  get: touch/grab
-  getting: touching
-  resources: tools
-  appear: feel
+  produced: bought
   use: spend
-  energy: money
-  less: fewer
-  little: few
-  much: much
-  fat: savings
-  it: them
-  creating: purchasing
+  energy: cash
+  potential: savings
+  mild: frustration
+  strong: anger
+  emptiness: insolvency
+  empty: insolvent

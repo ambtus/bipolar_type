@@ -1,9 +1,9 @@
 class Realm < Concept
 
-  NAMES = %w{physical emotional mental financial }
+  NAMES = %w{physical mental spiritual material}
 
   ########
-  ACRONYMS = %w{s f n t}
+  ACRONYMS = %w{s n f t}
   ALL = ACRONYMS.collect {|letter| self.new letter}
   ACRONYMS.each {|letter| define_singleton_method(letter) { ALL[ACRONYMS.index(letter)] } }
   ########

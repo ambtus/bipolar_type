@@ -1,5 +1,6 @@
 - content_for(:title, "#{@name}")
-=render "realms/links"
-=render "attitudes/links"
-=render "subtypes/short"
+%p
+  =render "realms/links"
+  =render "attitudes/links"
+%p=render "subtypes/short"
 =render "subtypes/long"
