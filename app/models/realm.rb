@@ -1,23 +1,22 @@
 class Realm < Concept
 
-  NAMES = %w{physical emotional mental financial }
-
   ########
-  ACRONYMS = %w{s f n t}
+  ACRONYMS = %w{s t f n}
   ALL = ACRONYMS.collect {|letter| self.new letter}
-  ACRONYMS.each {|letter| define_singleton_method(letter) { ALL[ACRONYMS.index(letter)] } }
+  ACRONYMS.each do |letter|
+    define_singleton_method(letter) {ALL[ACRONYMS.index(letter)]}
+  end
   ########
 
-  def mbti; ACRONYMS[index]; end
+  ADJECTIVES = %w{caloric financial social mental}
+  def adjective; ADJECTIVES[index]; end
+  def name; adjective.capitalize; end
+
+  def locale; path.to_sym; end
 
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
-  def description; NAMES[index]; end
-  def symbol; path.upcase; end
-  def name; description.capitalize; end
-  def adverb; description + "ly"; end
-
-  def locale; @letter.to_sym; end
+  def mbti; path.upcase; end
 
 end

@@ -20,16 +20,4 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  adverb: ""
-  consume: consume
-  produce: produce
-  consuming: consuming
-  producing: producing
-  getting: perceiving
-  appear: appear
-  creating: creating
-  much: much
-  little: little
-  energy: energy
-  fat: "saved energy"
-  it: it
+  get: get

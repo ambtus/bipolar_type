@@ -1,4 +1,4 @@
-%p.center
+%div.center
   -Realm.all.each_with_index do |realm, index|
     ="|" unless index == 0
     =link_to_unless_current realm.name, realm_path(realm.path)

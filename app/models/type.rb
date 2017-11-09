@@ -1,22 +1,17 @@
 class Type
 
-  def self.my_path; Realm.paths.join; end
-  def self.first; self.send my_path; end
+  def self.my_path; Attitude.all.map(&:path).join("-"); end
+  def self.first; self.new my_path; end
 
   def initialize(string)
     @path = string
-    @realms = @path.scan(/./).collect{|a| Realm.send(a)}
-    @realms.uniq.check_constraints Realm, 4, 4
+    @attitudes = @path.split("-").collect{|a| Attitude.send(a)}
+    @attitudes.check_constraints Attitude, 4, 4
   end
-  attr_reader :realms, :path
-  def inspect; @realms.map(&:inspect).join; end
+  attr_reader :path, :attitudes
 
-  def subtypes; @realms.add(Attitude.all); end
+  def subtypes; attitudes.add(Realm.all); end
+  def name; subtypes.map(&:name).join("•"); end
+  def inspect; name; end
 
-  def self.paths; Realm.all.permutation(4).collect{|a| a.map(&:path).join}; end
-  ALL = self.paths.collect{|path| self.new(path)}
-  def self.all; ALL; end
-  ALL.each {|type| define_singleton_method(type.path) {type} }
-
-  def name; @realms.map(&:name).map(&:first).join("•"); end
 end

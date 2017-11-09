@@ -1,0 +1,13 @@
+-content_for(:title, "Question ##{@answer.number} of 4")
+-I18n.locale = @answer.realm.locale
+%h2 The #{@answer.realm.name} Realm
+%p.center The #{@answer.realm.adjective} realm is centered around #{t :energy}.
+%p.center You get #{t :energy} by #{t :consuming} #{t :resources} and use #{t :energy} to #{t :produce} things.
+%h2 Your #{@answer.realm.name} Problem
+%table
+  -@answer.realm.subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half.top
+          %h3=link_to subtype.name, answer_path(@answer.next(subtype.attitude.path))
+          =render "problems/#{subtype.attitude.path}"
