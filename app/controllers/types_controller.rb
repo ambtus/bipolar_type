@@ -2,7 +2,7 @@ class TypesController < ApplicationController
   def show
     begin
     @type = Type.new params[:id]
-    @name = @type.name
+    @mbti = @type.mbti
     @subtypes = @type.subtypes
     rescue
       redirect_to root_path and return

@@ -11,7 +11,7 @@ class Type
   attr_reader :path, :attitudes
 
   def subtypes; attitudes.add(Realm.all); end
-  def name; subtypes.map(&:name).join("•"); end
-  def inspect; name; end
+  def mbti; subtypes.map(&:mbti).join("•"); end
+  def inspect; mbti; end
 
 end

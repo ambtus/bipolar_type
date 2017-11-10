@@ -1,1 +1,5 @@
 =render "header"
+-@subtypes.each do |subtype|
+  -I18n.locale = subtype.locale
+  %h2=subtype.mbti
+  =render "solutions/#{subtype.attitude.path}"

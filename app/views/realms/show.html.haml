@@ -1,1 +1,9 @@
 =render "header"
+-I18n.locale = @realm.locale
+%table
+  -@subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half.top
+          %h2=subtype.mbti
+          =render "solutions/#{subtype.attitude.path}"

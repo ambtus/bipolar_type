@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :answers, only: [:show]
   resources :realms, only: [:show]
   resources :attitudes, only: [:show]
-  resources :subtypes, only: [:index, :show]
+  resources :subtypes, only: [:show]
   resources :types, only: [:show]
 end

@@ -27,8 +27,6 @@ class Subtype
   def path; [@attitude.first, @realm.path, @attitude.second].join; end
   def inspect; path; end
   def mbti; path.upcase; end
-  def name; mbti; end
-  def symbol; path.upcase; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end

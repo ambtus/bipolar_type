@@ -1,16 +1,12 @@
 class Realm < Concept
 
   ########
-  ACRONYMS = %w{s t f n}
+  ACRONYMS = %w{s t n f}
   ALL = ACRONYMS.collect {|letter| self.new letter}
   ACRONYMS.each do |letter|
     define_singleton_method(letter) {ALL[ACRONYMS.index(letter)]}
   end
   ########
-
-  ADJECTIVES = %w{caloric financial social mental}
-  def adjective; ADJECTIVES[index]; end
-  def name; adjective.capitalize; end
 
   def locale; path.to_sym; end
 

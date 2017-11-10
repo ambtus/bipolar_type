@@ -1,4 +1,4 @@
 %div.center
   -@subtypes.each_with_index do |subtype, index|
     ="|" unless index == 0
-    =link_to subtype.name, subtype_path(subtype.path)
+    =link_to subtype.mbti, subtype_path(subtype.path)
