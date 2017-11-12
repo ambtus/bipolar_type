@@ -1,5 +1,6 @@
 =render "header"
 -@subtypes.each do |subtype|
   -I18n.locale = subtype.locale
-  %h2 #{subtype.mbti} (#{t :adjective} #{subtype.episode})
+  %h2=link_to subtype.mbti, subtype_path(subtype.path)
+  %p.heading=subtype.name
   =render "solutions/#{subtype.attitude.path}"

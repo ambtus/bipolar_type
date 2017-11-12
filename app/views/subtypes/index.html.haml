@@ -1,0 +1,21 @@
+- content_for(:title, "The 16 Subtypes")
+=render "realms/links"
+=render "attitudes/links"
+%h2 The Problems
+%table.wide
+  -Attitude.all.each do |attitude|
+    %tr
+      -attitude.subtypes.each do |subtype|
+        -I18n.locale = subtype.locale
+        %td.quarter.top
+          =link_to subtype.mbti, subtype_path(subtype.path)
+          =render "problems/#{subtype.attitude.path}"
+%h2 The Solutions
+%table.wide
+  -Attitude.all.each do |attitude|
+    %tr
+      -attitude.subtypes.each do |subtype|
+        -I18n.locale = subtype.locale
+        %td.quarter.top
+          =link_to subtype.mbti, subtype_path(subtype.path)
+          =render "solutions/#{subtype.attitude.path}"

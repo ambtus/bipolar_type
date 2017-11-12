@@ -3,7 +3,7 @@ class RealmsController < ApplicationController
 
   def show
     @realm = Realm.send params[:id]
-    @mbti = @realm.mbti
+    @name = @realm.name
     @subtypes = @realm.subtypes
   end
 end

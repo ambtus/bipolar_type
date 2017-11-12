@@ -1,4 +1,16 @@
-=render "header"
+- content_for(:title, "#{@name}")
+=render "realms/links"
+=render "attitudes/links"
+%div.center
+  -@subtype.realm.subtypes.each_with_index do |subtype, index|
+    ="|" unless index == 0
+    =link_to_unless_current subtype.name, subtype_path(subtype.path)
+%div.center
+  -@subtype.attitude.subtypes.each_with_index do |subtype, index|
+    ="|" unless index == 0
+    =link_to_unless_current subtype.name, subtype_path(subtype.path)
 -I18n.locale = @subtype.locale
+%h2 Problem
 =render "problems/#{@subtype.attitude.path}"
+%h2 Solution
 =render "solutions/#{@subtype.attitude.path}"

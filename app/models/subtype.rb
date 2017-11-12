@@ -31,6 +31,8 @@ class Subtype
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
-  def siblings; ALL.select{|s| s.realm == realm || s.attitude == attitude} - [self]; end
+  def siblings; attitude.subtypes + realm.subtypes - [self]; end
+
+  def name; [@realm.name, @attitude.name].join(" "); end
 
 end

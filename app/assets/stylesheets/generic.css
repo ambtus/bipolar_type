@@ -6,15 +6,17 @@ p { text-align: left; max-width: 62em}
 .free {color: purple; }
 .chosen {color: purple; font-style: italic}
 .bold {font-weight: bold}
+
 .ninth { width: 11%; }
-.quarterish { width: 24%; }
-.quarter { width: 25%; }
+.fifth { width: 19%; }
+.quarter { width: 24%; }
 .third { width: 33%; }
 .halfish { width: 48% }
 .half { width: 50% }
 .wide { width: 80% }
 .full { width: 96% }
 .narrow { padding: 0; width: 4%; hyphens: auto; }
+
 .heading {font-style: italic; text-align: center; }
 .center { text-align: center; }
 .left { text-align: left; }
@@ -23,7 +25,6 @@ p { text-align: left; max-width: 62em}
 .nowrap {white-space: nowrap; }
 .no_top {margin-top: 0; }
 .no_bottom {margin-bottom: 0; }
-
 
 .red {color: red;}
 .green {color: green;}

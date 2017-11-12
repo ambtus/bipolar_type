@@ -1,5 +1,14 @@
 =render "header"
 -I18n.locale = @realm.locale
+%h2 The Problems
+%table
+  -@subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half.top
+          %h2=subtype.mbti
+          =render "problems/#{subtype.attitude.path}"
+%h2 The Solutions
 %table
   -@subtypes.in_groups_of(2) do |row|
     %tr

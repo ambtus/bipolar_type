@@ -8,6 +8,9 @@ class Concept
   ACRONYMS.each do |letter|
     define_singleton_method(letter) {ALL[ACRONYMS.index(letter)]}
   end
+  %w{first second third fourth}.each_with_index do |ordinal, index|
+    define_singleton_method(ordinal) {ALL[index]}
+  end
   ########
 
   def self.paths; self::ACRONYMS; end
@@ -19,6 +22,6 @@ class Concept
 
   def index; self.class::ACRONYMS.index @letter; end
   def <=>(other); index <=> other.index; end
-  def ordinal; %w{first second third fourth}[index]; end
 
+  def ordinal; %w{first second third fourth}[index]; end
 end

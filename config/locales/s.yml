@@ -1,11 +1,13 @@
 s:
-  adjective: caloric
+  adjective: physical
   much: many
   energy: calories
   consume: eat
   consuming: eating
+  resources: food
+  consume_wo: eat
   produce: do
   producing: doing
-  purge: throw up
-  purging: throwing up
+  things: things
+  produce_wo: do
   stash: pantry

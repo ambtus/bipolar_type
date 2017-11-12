@@ -1,11 +1,13 @@
 n:
   adjective: mental
   much: many
-  energy: facts
-  consume: learn
-  consuming: learning
-  produce: plan
-  producing: planning
-  purge: forget
-  purging: forgetting
-  stash: lessons
+  energy: information
+  consume: look at
+  consuming: looking at
+  resources: facts
+  consume_wo: learn
+  produce: make
+  producing: making
+  things: predictions
+  produce_wo: think
+  stash: reference desk

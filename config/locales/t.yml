@@ -2,10 +2,12 @@ t:
   adjective: financial
   much: much
   energy: money
-  consume: earn
-  consuming: earning
+  consume: work on
+  consuming: working on
+  resources: tasks
+  consume_wo: earn
   produce: buy
   producing: buying
-  purge: quit
-  purging: quitting
-  stash: schedule
+  things: things
+  produce_wo: spend
+  stash: work schedule

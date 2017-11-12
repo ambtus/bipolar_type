@@ -1,15 +1,12 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
 -I18n.locale = @answer.realm.locale
-%h2 The #{(t :adjective).capitalize} Realm
-%p.center energy == #{t :energy}
-%p.center You get #{t :energy} by #{t :consuming} things and use #{t :energy} to #{t :produce} things.
-%h2 Your #{(t :adjective).capitalize} Problem
-%p.center If you are bipolar (manic & depressed) or bulimic (binging & purging), then chose something else.
-%p.center For example, if you are sometimes manic and sometimes depressed, and sometimes binge but never purge, then chose binge.
+%h2 The #{@answer.realm.name} Realm
+%p.center You get #{t :energy} by #{t :consuming} #{t :resources} and use #{t :energy} to #{t :produce} #{t :things}.
+%h2 Your #{@answer.realm.name} Problem
 %table
   -@answer.realm.subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
         %td.half.top
           =render "problems/#{subtype.attitude.path}"
-          %h3=link_to subtype.progression, answer_path(@answer.next(subtype.attitude.path))
+          =link_to subtype.name, answer_path(@answer.next(subtype.attitude.path))

@@ -1,7 +1,7 @@
 class Type
 
-  def self.my_path; Attitude.all.map(&:path).join("-"); end
-  def self.first; self.new my_path; end
+  def self.my_path; "ep-ij-ip-ej"; end
+  def self.mine; self.new my_path; end
 
   def initialize(string)
     @path = string
@@ -13,5 +13,7 @@ class Type
   def subtypes; attitudes.add(Realm.all); end
   def mbti; subtypes.map(&:mbti).join("•"); end
   def inspect; mbti; end
+
+  def name; mbti; end
 
 end

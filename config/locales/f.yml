@@ -4,8 +4,10 @@ f:
   energy: emotions
   consume: listen to
   consuming: listening to
+  resources: stories
+  consume_wo: listen
   produce: say
   producing: saying
-  purge: cry
-  purging: crying
-  stash: library
+  things: things
+  produce_wo: talk
+  stash: media library
