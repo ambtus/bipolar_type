@@ -1,24 +1,16 @@
 - content_for(:title, 'The Theory')
-%p Extroverts perceive abundance (the glass is half full) and consume more. After consuming more they have more energy and produce more.
-%p Introverts perceive scarcity (the glass is half empty) and consume less. After consuming less they have less energy and produce less.
-%p Perceptives feel guilty about how much they consume.
-%p Judgers feel guilty about how much they produce.
-%p
-  This leads to four attitudes:
-  %table.wide
-    %tr
-      %td.left EPs feel guilty when they consume too much
-      %td.left EJs feel guilty when they produce too much
-    %tr
-      %td.left IPs feel guilty when they don’t consume enough
-      %td.left IJs feel guilty when they don’t produce enough
-%p The MBTI&reg; tells you not to feel guilty or defensive. I’m okay and you’re okay. Neither of us is better or worse, we’re just different.
-%p BipolarType tells you how to change. When your guilt is stronger than your willpower. When you hate yourself but cannot change your behaviors. When you are tired of accepting yourself as different, and just want to feel normal for a little while.
-%p
-  What are the four problems that
-  =link_to "you", answer_path(Answer.first_path)
-  want to solve?
-%p
-  Or, choose from the list of
-  =link_to "all sixteen problems", subtypes_path
-  if you only want to solve one
+%p When resources are abundant, people are liberal with those resources and consume more. After consuming more they have more energy and produce more.
+%p When resources are scarce, people conserve those resources by consuming less. After consuming less they have less energy and produce less.
+%p Not all people perceive resources the same way or feel equally energetic after consuming those resources. These individual differences lead to interpersonal conflicts about how much should be consumed or produced.
+%table.half
+  %tr
+    %td.left.top #{Attitude.first.name} types consume more than their peers
+    %td.left.top #{Attitude.second.name} types produce more than their peers
+  %tr
+    %td.left.top #{Attitude.third.name} types consume less than their peers
+    %td.left.top #{Attitude.fourth.name} types produce less than their peers
+%p Most of the time peer pressure and guilt keep people behaving within normal parameters. Sometimes, willpower is not enough to keep you behaving normally, no matter how guilty you feel.
+%p Most type theories tell you that you’re different. You don’t need to feel guilty because you’re fine the way you are. If you will accept the way I behave, then I can accept the way you behave.
+%p Most psychological theories tell you that you’re abnormal. You don’t need to feel guilty because you were born with a chemical imbalance. If you will take the drugs I prescribe, then I can fix the way you behave.
+%p I don’t want to accept myself as different. I don’t like myself the way I am but I cannot change my behaviors no matter how much I hate myself. I’ve taken every drug prescribed for me but they either don’t work or have side effects worse than the problems they are trying to fix.
+%p I developed BipolarType in an attempt to behave normally most of the time without the use of dangerous guilt or drugs. It seems to work for me. I hope it works for you.

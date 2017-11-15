@@ -8,7 +8,8 @@
       -attitude.subtypes.each do |subtype|
         -I18n.locale = subtype.locale
         %td.quarter.top
-          =link_to subtype.mbti, subtype_path(subtype.path)
+          =link_to subtype.name, subtype_path(subtype.path)
+          %br
           =render "problems/#{subtype.attitude.path}"
 %h2 The Solutions
 %table.wide
@@ -17,5 +18,6 @@
       -attitude.subtypes.each do |subtype|
         -I18n.locale = subtype.locale
         %td.quarter.top
-          =link_to subtype.mbti, subtype_path(subtype.path)
+          =link_to subtype.name, subtype_path(subtype.path)
+          %br
           =render "solutions/#{subtype.attitude.path}"

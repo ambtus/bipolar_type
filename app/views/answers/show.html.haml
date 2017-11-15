@@ -9,4 +9,4 @@
       -row.each do |subtype|
         %td.half.top
           =render "problems/#{subtype.attitude.path}"
-          =link_to subtype.name, answer_path(@answer.next(subtype.attitude.path))
+          %div=link_to subtype.name, answer_path(@answer.next(subtype.attitude.path))

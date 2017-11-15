@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "ep-ij-ip-ej"; end
+  def self.my_path; "ep-ej-ip-ij"; end
   def self.mine; self.new my_path; end
 
   def initialize(string)

@@ -1,7 +1,7 @@
 class Realm < Concept
 
   ########
-  ACRONYMS = %w{s n f t}
+  ACRONYMS = %w{s t f n}
   ALL = ACRONYMS.collect {|letter| self.new letter}
   ACRONYMS.each do |letter|
     define_singleton_method(letter) {ALL[ACRONYMS.index(letter)]}
@@ -18,8 +18,10 @@ class Realm < Concept
 
   def mbti; path.upcase; end
 
-  REALMS = %w{physical mental spiritual material}
-  def realm; REALMS[index]; end
+  def realm
+    I18n.locale = self.locale
+    I18n.t :adjective
+  end
 
   def name; realm.capitalize; end
 

@@ -18,17 +18,9 @@ class Attitude < Concept
   def first; path.first; end
   def second; path.second; end
 
-  POSITIVES = %w{appreciative liberal humble conservative}
-  def positive; POSITIVES[index]; end
-
   NEGATIVES = %w{greedy hyperactive ungrateful lazy}
   def negative; NEGATIVES[index]; end
 
-  PROBLEMS = %w{binge mania purge depression}
-  def problem; PROBLEMS[index]; end
-
-  def progression; [positive, negative, problem].join(" => "); end
-
-  def name; problem.capitalize; end
+  def name; negative.capitalize; end
 
 end

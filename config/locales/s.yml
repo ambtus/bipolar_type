@@ -4,6 +4,7 @@ s:
   energy: calories
   consume: eat
   consuming: eating
+  scarcer: less
   resources: food
   consume_wo: eat
   produce: do

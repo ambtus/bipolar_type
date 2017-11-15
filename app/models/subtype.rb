@@ -33,6 +33,6 @@ class Subtype
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def name; [@realm.name, @attitude.name].join(" "); end
+  def name; "#{@realm.name}ly #{@attitude.name}"; end
 
 end

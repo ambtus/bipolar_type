@@ -2,9 +2,10 @@ t:
   adjective: financial
   much: much
   energy: money
-  consume: work on
-  consuming: working on
-  resources: tasks
+  consume: earn
+  consuming: earning
+  scarcer: fewer
+  resources: rewards
   consume_wo: earn
   produce: buy
   producing: buying
