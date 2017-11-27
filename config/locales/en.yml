@@ -20,4 +20,22 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  get: get
+  adjective: ""
+  adverb: ""
+  power: power
+  energy: energy
+  summer: summer
+  winter: winter
+  resources: resources
+  sense: sense
+  consume: consume
+  consume_wo: consume
+  consumed: consumed
+  consuming: consuming
+  consumption: consumption
+  produce: produce
+  producing: producing
+  produce_wo: produce
+  productions: productions
+  reserves: reserves
+

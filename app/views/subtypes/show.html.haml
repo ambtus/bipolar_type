@@ -1,8 +1,8 @@
 =render "header"
 -I18n.locale = @subtype.locale
 %h2 Problem
-=render "problems/#{@subtype.attitude.path}"
+%div.center=render "problems/#{@subtype.attitude.path}"
 %h2 Solution
-=render "solutions/#{@subtype.attitude.path}"
+%div.center=render "solutions/#{@subtype.attitude.path}"
 %h2 Explanation
 =render "long/#{@subtype.attitude.path}"

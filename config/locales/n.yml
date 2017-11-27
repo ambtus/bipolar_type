@@ -1,14 +1,23 @@
 n:
   adjective: mental
-  much: many
-  energy: information
+  adverb: mentally
+  sense: see
+  summer: unverified
+  winter: proven
+  resources: results
+  resource: result
   consume: look at
-  consuming: looking at
-  scarcer: fewer
-  resources: facts
-  consume_wo: learn
-  produce: make
-  producing: making
-  things: predictions
-  produce_wo: think
-  stash: reference desk
+  consumed: learned
+  consumen: known
+  consuming: learning
+  process: believe
+  energy: facts
+  reserves: knowledge
+  produce: solve
+  produced: solved
+  producing: solving
+  consume_wo: believe
+  produce_wo: decide
+  producen: worried
+  strength: rules
+  power: thoughts

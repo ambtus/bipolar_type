@@ -1,0 +1,14 @@
+%table
+  %tr
+    %th
+    -Realm.all.each do |realm|
+      -I18n.locale = realm.locale
+      %th=link_to realm.name, realm_path(realm.path)
+  -%w{power energy reserves sense consume_wo summer winter resources produce_wo }.each do |word|
+    %tr
+      -I18n.locale = :en
+      %th=(t word).titleize
+      -Realm.all.each do |realm|
+        -I18n.locale = realm.locale
+        %td=t word
+

@@ -1,14 +1,23 @@
 f:
-  adjective: verbal
-  much: many
-  energy: emotions
-  consume: listen to
-  consuming: listening to
-  scarcer: fewer
+  adjective: spiritual
+  adverb: spiritually
+  sense: hear
+  summer: spoken or sung
+  winter: written
   resources: stories
-  consume_wo: listen
+  resource: story
+  consume: listen to
+  consumed: listened to
+  consuming: listening
+  consumen: read
+  process: empathize
+  energy: opinions
+  reserves: self esteem
   produce: say
+  produced: said
   producing: saying
-  things: things
+  consume_wo: agree
   produce_wo: talk
-  stash: media library
+  producen: spoken
+  strength: vocabulary
+  power: voice

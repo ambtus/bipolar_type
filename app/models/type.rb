@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "ep-ej-ip-ij"; end
+  def self.my_path; "o-d-a-m"; end
   def self.mine; self.new my_path; end
 
   def initialize(string)
@@ -10,10 +10,10 @@ class Type
   end
   attr_reader :path, :attitudes
 
-  def subtypes; attitudes.add(Realm.all); end
-  def mbti; subtypes.map(&:mbti).join("•"); end
-  def inspect; mbti; end
+  def subtypes; attitudes.add(Realm.all).sort; end
+  def symbol; subtypes.map(&:symbol).join("•"); end
+  def inspect; symbol; end
 
-  def name; mbti; end
+  def name; symbol; end
 
 end

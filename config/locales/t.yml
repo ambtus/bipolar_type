@@ -1,14 +1,23 @@
 t:
-  adjective: financial
-  much: much
+  adjective: material
+  adverb: materially
+  sense: touch
+  summer: earned
+  winter: investment
+  resources: income
+  resource: reward
+  consume: collect
+  consumed: collected
+  consumen: earned
+  consuming: collecting
+  process: collect
   energy: money
-  consume: earn
-  consuming: earning
-  scarcer: fewer
-  resources: rewards
-  consume_wo: earn
+  reserves: assets
   produce: buy
+  produced: bought
   producing: buying
-  things: things
+  consume_wo: collect
   produce_wo: spend
-  stash: work schedule
+  producen: bought
+  strength: credit
+  power: wealth

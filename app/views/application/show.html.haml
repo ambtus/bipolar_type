@@ -1,23 +1,16 @@
 - content_for(:title, 'The Theory')
-%p The BipolarType theory asserts that there are two different seasons of life that cycle back and forth indefinitely: summer and winter.<sup><a href="#fn1" id="ref1">1</a></sup>
-%p During summer, resources are flourishing, fresh, new, unfamiliar, varied, raw and perishable. Such resources need to be consumed as soon as possible, or they will disappear. The summer season is identified by abundant and tempting but ephemeral resources leading to increased consumption. Some of the energy surplus is deposited into saved energy and some leads to increased activities. Increased activities result in increased strength.
-%p During winter, resources are dwindling, stale, old, familiar, repetitive, preserved and stable. Such resources need to be conserved as much as possible, or they will run out. The winter season is identified by scarce and boring but enduring resources leading to decreased consumption. Some of the energy deficit is withdrawn from saved energy and some leads to decreased activities. Decreased activities result in decreased strength.
-%p In ancient times, there wasn’t any choice. During the summer, one consumed abundant summer resources and gained saved energy and strength. During the winter, one conserved scarce winter resources and lost saved energy and strength.
-%p Today, you can get summer resources in the dead of winter, and winter resources in the height of summer. With a little effort, you can live in perpetual summer or perpetual winter.
-%table.wide
-  %tr
-    %td.left.top.half
-      #{Attitude.ep.name} types consume too much because they live in perpetual summer.
-    %td.left.top
-      #{Attitude.ej.name} types produce too much because they live in perpetual summer.
-  %tr
-    %td.left.top
-      #{Attitude.ip.name} types consume too little because they live in perpetual winter.
-    %td.left.top
-      #{Attitude.ij.name} types produce too little because they live in perpetual winter.
-%p Most type theories tell you that you’re different. You don’t need to feel guilty because you’re fine the way you are. If you will stop calling me lazy, then I will stop calling you greedy.
-%p Most psychological theories tell you that you’re abnormal. You don’t need to feel guilty because you were born with a chemical imbalance. If you will take the drugs I prescribe, then you will stop being greedy.
-%p The problem with the first approach is that accepting that you are different doesn’t actually solve the problems that come with being different. Whether or not you call me greedy, I still have unwanted saved energy from consuming too much.
-%p The problem with the second approach is that it just swaps out one problem for another. If you chemically modify my brain so that I cannot consume too much, I will stop producing as much and become lazy.
-%p BipolarType gives you the facts you need in order to make an informed choice: would I rather be greedy or lazy? Which is actually worse for me as an adult individual making a personal choice? Once you have made that choice, you can modify your environment and accept the trade-offs necessary in order to produce the outcome that you prefer.
-<sup id="fn1">1. On the equator, the seasons are wet and dry but the concepts are similar<a href="#ref1" title="Jump back to footnote 1 in the text.">↩</a></sup>
+-I18n.locale = :en
+%h2 The Two Seasons
+%p The BipolarType theory asserts that there are two different seasons of life that cycle back and forth indefinitely: summer and winter. On the equator, the two seasons are wet and dry but the concepts are similar.
+=render "realms/seasons"
+%p In ancient times, there wasn’t any choice. During the summer, one consumed abundant summer resources and stored up excess energy. During the winter, one conserved scarce winter resources and used up stored energy.
+%p Today, you can get summer resources in the dead of winter, and winter resources in the height of summer. You can end up living in perpetual summer or perpetual winter.
+%h2 The Four Attitudes
+%h3 Perpetual Winter
+=render "realms/high"
+%h3 Perpetual Summer
+=render "realms/low"
+=render "attitudes/table"
+%h2 The Four Realms
+%p BipolarType defines four realms. Each realm has its own resources which can be consumed to get the energy necessary to produce activities in that realm.
+=render "realms/table"

@@ -24,15 +24,17 @@ class Subtype
     end
   end
 
-  def path; [@attitude.first, @realm.path, @attitude.second].join; end
+  def <=>(other); attitude.index <=> other.attitude.index; end
+
+  def path; [@realm.path, @attitude.path].join; end
   def inspect; path; end
-  def mbti; path.upcase; end
+  def symbol; [@realm.symbol, @attitude.symbol].join; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def name; "#{@realm.name}ly #{@attitude.name}"; end
+  def name; "#{@realm.name} #{@attitude.name}"; end
 
 end

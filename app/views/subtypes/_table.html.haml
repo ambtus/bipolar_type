@@ -4,5 +4,5 @@
     %tr
       -realm.subtypes.each do |subtype|
         %td
-          =link_to subtype.mbti, subtype_path(subtype.path)
+          =link_to subtype.name, subtype_path(subtype.path)
           =render "problems/#{subtype.attitude.path}"

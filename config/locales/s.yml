@@ -1,14 +1,23 @@
 s:
   adjective: physical
-  much: many
-  energy: calories
+  adverb: physically
+  sense: taste
+  summer: fresh
+  winter: shelf-stable
+  resources: foods
+  resource: food
   consume: eat
+  consumed: ate
+  consumen: eaten
   consuming: eating
-  scarcer: less
-  resources: food
-  consume_wo: eat
+  process: digest
+  energy: calories
+  reserves: fat
   produce: do
+  produced: done
   producing: doing
-  things: things
-  produce_wo: do
-  stash: pantry
+  consume_wo: eat
+  produce_wo: walk
+  producen: moved
+  strength: muscle
+  power: body
