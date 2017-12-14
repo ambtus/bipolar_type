@@ -1,23 +1,26 @@
 n:
   adjective: mental
   adverb: mentally
-  sense: see
-  summer: unverified
-  winter: proven
-  resources: results
-  resource: result
-  consume: look at
-  consumed: learned
-  consumen: known
-  consuming: learning
-  process: believe
+  less: fewer
+  is: are
+  much: many
   energy: facts
-  reserves: knowledge
-  produce: solve
-  produced: solved
-  producing: solving
-  consume_wo: believe
-  produce_wo: decide
-  producen: worried
-  strength: rules
-  power: thoughts
+  sense: see
+  get: believe
+  getting: believing
+  preposition: ""
+  eschew: ignore
+  many: much
+  few: little
+  energy_reserves: knowledge
+  reach: solve
+  reaching: solving
+  goals: problems
+  anything: anything
+  something: something
+  nothing: nothing
+  it: it
+  use_energy: think
+  using_energy: thinking
+  waste_energy: worry
+  wasting_energy: worrying

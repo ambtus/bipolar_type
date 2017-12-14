@@ -1,8 +1,0 @@
-%table
-  -Realm.all.each do |realm|
-    -I18n.locale=realm.locale
-    %tr
-      -realm.subtypes.each do |subtype|
-        %td
-          =link_to subtype.name, subtype_path(subtype.path)
-          =render "problems/#{subtype.attitude.path}"

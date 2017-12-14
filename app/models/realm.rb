@@ -10,6 +10,8 @@ class Realm < Concept
 
   def locale; path.to_sym; end
 
+  def self.locales; ACRONYMS.map(&:to_sym); end
+
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 

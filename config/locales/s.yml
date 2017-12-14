@@ -1,23 +1,27 @@
 s:
   adjective: physical
   adverb: physically
-  sense: taste
-  summer: fresh
-  winter: shelf-stable
-  resources: foods
-  resource: food
-  consume: eat
-  consumed: ate
-  consumen: eaten
-  consuming: eating
-  process: digest
-  energy: calories
-  reserves: fat
-  produce: do
-  produced: done
-  producing: doing
-  consume_wo: eat
-  produce_wo: walk
-  producen: moved
-  strength: muscle
-  power: body
+  less: fewer
+  is: are
+  much: many
+  energy: carbs
+  sense: smell/taste
+  get: eat
+  getting: eating
+  believing: eating
+  preposition: ""
+  eschew: fast
+  many: much
+  few: little
+  energy_reserves: fat
+  reach: go
+  reaching: going
+  goals: places
+  anything: anywhere
+  something: somewhere
+  nothing: nowhere
+  it: there
+  use_energy: walk
+  using_energy: walking
+  waste_energy: pace
+  wasting_energy: pacing

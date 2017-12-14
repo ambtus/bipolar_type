@@ -1,17 +1,2 @@
-=render "header"
-%h2 The Four #{@realm.name} Attitudes
-%table
-  -@subtypes.in_groups_of(2) do |row|
-    %tr
-    -row.each do |subtype|
-      -I18n.locale = subtype.locale
-      %td.half.top
-        %h2=link_to subtype.name, subtype_path(subtype.path)
-        %p.heading=render "problems/#{subtype.attitude.path}"
-        =render "solutions/#{subtype.attitude.path}"
-%h2 The Two Seasons
-=render "realms/seasons"
-%h3 Perpetual Winter
-=render "realms/high"
-%h3 Perpetual Summer
-=render "realms/low"
+- content_for(:title, "#{@name}")
+=render "subtypes"

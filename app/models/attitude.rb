@@ -1,6 +1,6 @@
 class Attitude < Concept
 
-  STATES = %w{depression obesity mania anorexia}
+  STATES = %w{ obesity mania depression anorexia}
 
   ########
   ACRONYMS = STATES.map(&:first)
@@ -15,5 +15,6 @@ class Attitude < Concept
 
   def state; STATES[index]; end
   def name; state.titleize; end
+
 
 end

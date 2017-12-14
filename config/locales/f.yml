@@ -1,23 +1,26 @@
 f:
-  adjective: spiritual
-  adverb: spiritually
+  adjective: emotional
+  adverb: emotionally
+  less: fewer
+  is: are
+  much: many
+  energy: emotions
   sense: hear
-  summer: spoken or sung
-  winter: written
-  resources: stories
-  resource: story
-  consume: listen to
-  consumed: listened to
-  consuming: listening
-  consumen: read
-  process: empathize
-  energy: opinions
-  reserves: self esteem
-  produce: say
-  produced: said
-  producing: saying
-  consume_wo: agree
-  produce_wo: talk
-  producen: spoken
-  strength: vocabulary
-  power: voice
+  get: empathize
+  getting: empathizing
+  preposition: with
+  eschew: ignore
+  many: many
+  few: few
+  energy_reserves: friends
+  reach: influence
+  reaching: influencing
+  goals: people
+  anything: anyone
+  something: someone
+  nothing: nobody
+  it: them
+  use_energy: talk
+  using_energy: talking
+  waste_energy: nag
+  wasting_energy: nagging

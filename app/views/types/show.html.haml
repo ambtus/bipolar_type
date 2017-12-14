@@ -1,17 +1,8 @@
-=render "header"
-%h2 The Problems
+- content_for(:title, "#{@name}")
 %table
-  -@subtypes.in_groups_of(2) do |row|
-    %tr
-      -row.each do |subtype|
-        -I18n.locale = subtype.locale
-        %td.half.top
-          =link_to subtype.name, subtype_path(subtype.path)
-%h2 The Solutions
-%table.wide
-  -@subtypes.in_groups_of(2) do |row|
-    %tr
-      -row.each do |subtype|
-        -I18n.locale = subtype.locale
-        %td.half.top
-          =render "solutions/#{subtype.attitude.path}"
+  %tr
+    -@subtypes.each do |subtype|
+      -I18n.locale = subtype.locale
+      %td.quarter.top
+        =link_to subtype.name, subtype_path(subtype.path)
+        =render "end/" + subtype.attitude.path

@@ -1,8 +1,10 @@
-=render "header"
+- content_for(:title, "#{@name}")
+%div.center
+  =link_to @subtype.realm.name, realm_path(@subtype.realm.path)
+  |
+  =link_to @subtype.attitude.name, attitude_path(@subtype.attitude.path)
 -I18n.locale = @subtype.locale
-%h2 Problem
-%div.center=render "problems/#{@subtype.attitude.path}"
-%h2 Solution
-%div.center=render "solutions/#{@subtype.attitude.path}"
-%h2 Explanation
-=render "long/#{@subtype.attitude.path}"
+=render @subtype.attitude.path
+=render "beginning/#{@subtype.attitude.path}"
+=render "middle/#{@subtype.attitude.path}"
+=render "end/#{@subtype.attitude.path}"

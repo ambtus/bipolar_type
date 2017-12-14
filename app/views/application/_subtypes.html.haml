@@ -1,0 +1,13 @@
+%table
+  %tr
+    -@subtypes.each do |subtype|
+      -I18n.locale = subtype.locale
+      %th.quarter=subtype.name
+  %tr
+    -@subtypes.each do |subtype|
+      -I18n.locale = subtype.locale
+      %td.quarter.top
+        =render subtype.attitude.path
+        =render "beginning/" + subtype.attitude.path
+        =render "middle/" + subtype.attitude.path
+        =render "end/" + subtype.attitude.path

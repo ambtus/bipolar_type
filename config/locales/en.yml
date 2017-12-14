@@ -22,20 +22,27 @@
 en:
   adjective: ""
   adverb: ""
-  power: power
+  less: less
+  is: is
+  much: much
   energy: energy
-  summer: summer
-  winter: winter
-  resources: resources
   sense: sense
-  consume: consume
-  consume_wo: consume
-  consumed: consumed
-  consuming: consuming
-  consumption: consumption
-  produce: produce
-  producing: producing
-  produce_wo: produce
-  productions: productions
-  reserves: reserves
-
+  get: get
+  getting: getting
+  preposition: ""
+  many: many
+  few: few
+  energy_reserves: energy reserves
+  reach: reach
+  reaching: reaching
+  anything: any goals
+  something: some goals
+  nothing: no goals
+  goals: goals
+  conserve_energy: conserve energy
+  conserving_energy: conserving energy
+  use: use
+  use_energy: use energy
+  using_energy: using energy
+  waste_energy: waste energy
+  wasting_energy: wasting energy

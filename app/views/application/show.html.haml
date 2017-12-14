@@ -1,16 +1,12 @@
 - content_for(:title, 'The Theory')
--I18n.locale = :en
-%h2 The Two Seasons
-%p The BipolarType theory asserts that there are two different seasons of life that cycle back and forth indefinitely: summer and winter. On the equator, the two seasons are wet and dry but the concepts are similar.
-=render "realms/seasons"
-%p In ancient times, there wasn’t any choice. During the summer, one consumed abundant summer resources and stored up excess energy. During the winter, one conserved scarce winter resources and used up stored energy.
-%p Today, you can get summer resources in the dead of winter, and winter resources in the height of summer. You can end up living in perpetual summer or perpetual winter.
-%h2 The Four Attitudes
-%h3 Perpetual Winter
-=render "realms/high"
-%h3 Perpetual Summer
-=render "realms/low"
-=render "attitudes/table"
-%h2 The Four Realms
-%p BipolarType defines four realms. Each realm has its own resources which can be consumed to get the energy necessary to produce activities in that realm.
-=render "realms/table"
+%h2=link_to "The Four Realms", realms_path
+%p.center There are four realms of behavior, each centered around a different type of energy.
+=render "realms/links"
+%h2=link_to "The Four Attitudes", attitudes_path
+%p.center There are four attitudes, each manifesting as a different problem.
+=render "attitudes/links"
+%h2=link_to "The Sixteen Subtypes", subtypes_path
+%p.center A subtype is an attitude towards a realm.
+=render "subtypes/links"
+%h2=link_to "The BipolarTypes", answer_path(Answer.first_path)
+%p.center A BipolarType is a set of attitudes, one for each realm.

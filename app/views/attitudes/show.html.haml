@@ -1,18 +1,2 @@
-=render "header"
-%h2 The Problems & Solutions
-%table
-  %tr
-  -@subtypes.each do |subtype|
-    %td.top
-      %p=link_to subtype.name, subtype_path(subtype.name)
-      -I18n.locale = subtype.locale
-      =render "problems/#{subtype.attitude.path}"
-      %p.center So…
-      =render "solutions/#{subtype.attitude.path}"
-%h2 The Theory
-%table
-  %tr
-  -@subtypes.each do |subtype|
-    %td.top
-      -I18n.locale = subtype.locale
-      =render "long/#{subtype.attitude.path}"
+- content_for(:title, "#{@name}")
+=render "subtypes"

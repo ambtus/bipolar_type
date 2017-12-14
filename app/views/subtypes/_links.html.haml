@@ -1,5 +1,7 @@
--@subtypes.in_groups_of(2) do |line|
-  %div.center
-    -line.each_with_index do |subtype, index|
-      ="|" unless index == 0
-      =link_to_unless_current subtype.name, subtype_path(subtype.path)
+%table
+  -Realm.all.each do |realm|
+    -I18n.locale = realm.locale
+    %tr
+      -realm.subtypes.each do |subtype|
+        %td
+          =link_to subtype.name, subtype_path(subtype.path)

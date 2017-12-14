@@ -1,23 +1,26 @@
 t:
-  adjective: material
-  adverb: materially
+  adjective: financial
+  adverb: financially
+  less: less
+  is: is
+  much: much
+  energy: cash
   sense: touch
-  summer: earned
-  winter: investment
-  resources: income
-  resource: reward
-  consume: collect
-  consumed: collected
-  consumen: earned
-  consuming: collecting
-  process: collect
-  energy: money
-  reserves: assets
-  produce: buy
-  produced: bought
-  producing: buying
-  consume_wo: collect
-  produce_wo: spend
-  producen: bought
-  strength: credit
-  power: wealth
+  get: collect
+  getting: collecting
+  preposition: ""
+  eschew: ignore
+  many: many
+  few: few
+  energy_reserves: savings
+  reach: buy
+  reaching: buying
+  goals: tools
+  anything: anything
+  something: something
+  nothing: nothing
+  it: it
+  use_energy: spend money
+  using_energy: spending money
+  waste_energy: gamble
+  wasting_energy: gambling

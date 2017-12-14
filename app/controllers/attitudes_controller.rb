@@ -1,5 +1,5 @@
 class AttitudesController < ApplicationController
-  def index; end
+  def index; @attitudes = Attitude.all; end
   def show
     @attitude = Attitude.send params[:id]
     @name = @attitude.name
