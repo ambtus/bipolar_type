@@ -1,8 +1,2 @@
 - content_for(:title, "#{@name}")
-%table
-  %tr
-    -@subtypes.each do |subtype|
-      -I18n.locale = subtype.locale
-      %td.quarter.top
-        =link_to subtype.name, subtype_path(subtype.path)
-        =render "end/" + subtype.attitude.path
+=render "subtypes"
