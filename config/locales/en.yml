@@ -33,16 +33,17 @@ en:
   many: many
   few: few
   energy_reserves: energy reserves
-  reach: reach
-  reaching: reaching
-  anything: any goals
-  something: some goals
-  nothing: no goals
-  goals: goals
-  conserve_energy: conserve energy
-  conserving_energy: conserving energy
+  achieve: achieve
+  achieving: achieving
+  anything: anything
+  something: something
+  nothing: nothing
   use: use
   use_energy: use energy
   using_energy: using energy
   waste_energy: waste energy
   wasting_energy: wasting energy
+  save_energy: save energy
+  saving_energy: saving energy
+  conserve_energy: conserve energy
+  conserving_energy: conserving energy

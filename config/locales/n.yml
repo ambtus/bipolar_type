@@ -13,9 +13,8 @@ n:
   many: much
   few: little
   energy_reserves: knowledge
-  reach: solve
-  reaching: solving
-  goals: problems
+  achieve: solve
+  achieving: solving
   anything: anything
   something: something
   nothing: nothing
@@ -24,3 +23,8 @@ n:
   using_energy: thinking
   waste_energy: worry
   wasting_energy: worrying
+  conserve_energy: guess
+  conserving_energy: guessing
+  save_energy: meditate
+  saving_energy: meditating
+

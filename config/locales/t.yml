@@ -4,7 +4,7 @@ t:
   less: less
   is: is
   much: much
-  energy: cash
+  energy: money
   sense: touch
   get: collect
   getting: collecting
@@ -13,14 +13,19 @@ t:
   many: many
   few: few
   energy_reserves: savings
-  reach: buy
-  reaching: buying
-  goals: tools
+  achieve: buy
+  achieving: buying
   anything: anything
   something: something
   nothing: nothing
   it: it
-  use_energy: spend money
-  using_energy: spending money
+  use_energy: spend cash
+  using_energy: spending cash
   waste_energy: gamble
-  wasting_energy: gambling
+  wasting_energy: gamble
+  conserve_energy: use credit
+  conserving_energy: using credit
+  save_energy: save
+  saving_energy: saving
+
+

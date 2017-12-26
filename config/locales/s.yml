@@ -8,15 +8,13 @@ s:
   sense: smell/taste
   get: eat
   getting: eating
-  believing: eating
   preposition: ""
   eschew: fast
   many: much
   few: little
   energy_reserves: fat
-  reach: go
-  reaching: going
-  goals: places
+  achieve: go
+  achieving: going
   anything: anywhere
   something: somewhere
   nothing: nowhere
@@ -25,3 +23,8 @@ s:
   using_energy: walking
   waste_energy: pace
   wasting_energy: pacing
+  save_energy: sit
+  saving_energy: sitting
+  conserve_energy: drive
+  conserving_energy: driving
+

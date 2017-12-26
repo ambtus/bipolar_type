@@ -1,21 +1,8 @@
 -I18n.locale = :en
 %table
-  %tr
-    %th{colspan: 2} Summer
-    %th{colspan: 2} Winter
-  %tr
-    %td{colspan: 2}
-      %ul
-        %li #{t :waste_energy}
-        %li #{t :get} more #{t :energy}
-        %li gain #{t :energy_reserves}
-    %td{colspan: 2}
-      %ul
-        %li #{t :conserve_energy}
-        %li #{t :get} less #{t :energy}
-        %li lose #{t :energy_reserves}
-  %tr
-    -Attitude.all.each do |attitude|
-      %td.top.quarter
-        %h2=link_to attitude.name, attitude_path(attitude.path)
-        =render attitude.path
+  -Attitude.all.in_groups_of(2) do |row|
+    %tr
+      -row.each do |attitude|
+        %td.top.quarter
+          %h2=link_to attitude.name, attitude_path(attitude.path)
+          =render attitude.path

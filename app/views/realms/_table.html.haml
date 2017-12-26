@@ -12,15 +12,18 @@
         -I18n.locale = realm.locale
         %td=t word
   %tr
-    %th Reach Goals
-    -Realm.all.each do |realm|
-      -I18n.locale = realm.locale
-      %td #{t :reach} #{t :goals}
-  %tr
     %th Waste Energy
     -Realm.all.each do |realm|
       -I18n.locale = realm.locale
       %td
         #{t :waste_energy}
         %br
-        (#{t :use_energy} without #{t :reaching} #{t :anything})
+        (#{t :use_energy} without #{t :achieving} #{t :anything})
+  %tr
+    %th Conserve Energy
+    -Realm.all.each do |realm|
+      -I18n.locale = realm.locale
+      %td
+        #{t :conserve_energy}
+        %br
+        (#{t :achieve} #{t :something} without #{t :using_energy})

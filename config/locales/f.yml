@@ -6,21 +6,25 @@ f:
   much: many
   energy: emotions
   sense: hear
-  get: empathize
-  getting: empathizing
-  preposition: with
+  get: care
+  getting: caring
+  preposition: about
   eschew: ignore
   many: many
   few: few
-  energy_reserves: friends
-  reach: influence
-  reaching: influencing
-  goals: people
-  anything: anyone
-  something: someone
-  nothing: nobody
+  energy_reserves: values
+  achieve: say
+  achieving: saying
+  anything: anything
+  something: something
+  nothing: nothing
   it: them
   use_energy: talk
   using_energy: talking
-  waste_energy: nag
-  wasting_energy: nagging
+  waste_energy: babble
+  wasting_energy: babbling
+  conserve_energy: write
+  conserving_energy: writing
+  save_energy: remain silent
+  saving_energy: remaining silent
+

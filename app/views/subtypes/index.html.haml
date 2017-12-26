@@ -6,4 +6,5 @@
       -realm.subtypes.each do |subtype|
         %td.quarter.top
           =link_to subtype.name, subtype_path(subtype.path)
+          %br
           =render subtype.attitude.path
