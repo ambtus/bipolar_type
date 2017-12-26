@@ -26,7 +26,7 @@ class Subtype
 
   def <=>(other); attitude.index <=> other.attitude.index; end
 
-  def path; [@realm.path, @attitude.path].join; end
+  def path; [@attitude.first, @realm.path, @attitude.second].join; end
   def inspect; path; end
   def symbol; [@realm.symbol, @attitude.symbol].join; end
 
@@ -35,6 +35,6 @@ class Subtype
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def name; "#{@realm.name} #{@attitude.name}"; end
+  def name; "#{@realm.name}ly #{@attitude.name}"; end
 
 end

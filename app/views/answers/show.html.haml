@@ -2,6 +2,7 @@
 -I18n.locale = @answer.realm.locale
 %h2 Your #{@answer.realm.name} Problem
 %table
+  %caption I am too…
   -@answer.realm.subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|

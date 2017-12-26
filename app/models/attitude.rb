@@ -1,9 +1,9 @@
 class Attitude < Concept
 
-  STATES = %w{ obesity depression anorexia   mania  }
+  STATES = %w{ fat weak thin strong  }
 
   ########
-  ACRONYMS = STATES.map(&:first)
+  ACRONYMS = %w{ep ej ip ij}
   ALL = ACRONYMS.collect {|letter| self.new letter}
   ACRONYMS.each do |letter|
     define_singleton_method(letter) {ALL[ACRONYMS.index(letter)]}
@@ -15,6 +15,8 @@ class Attitude < Concept
 
   def state; STATES[index]; end
   def name; state.titleize; end
+  def symbol; name.first; end
 
-
+  def first; path.first; end
+  def second; path.second; end
 end

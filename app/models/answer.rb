@@ -16,6 +16,6 @@ class Answer
 
   def next(new); "#{question.next}:#{attitude_paths}#{new}"; end
 
-  def type_path; attitude_paths.scan(/./).join("-"); end
+  def type_path; attitude_paths.scan(/../).join("-"); end
 
 end
