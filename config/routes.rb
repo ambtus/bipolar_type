@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root 'start#index'
-  get '/theory' => "start#show", as: :theory
+  root 'start#home'
+  get '/theory' => "start#theory", as: :theory
+  get '/story' => "start#story", as: :story
   resources :answers, only: [:show]
   resources :realms, only: [:index, :show]
   resources :attitudes, only: [:index, :show]

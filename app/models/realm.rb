@@ -17,7 +17,7 @@ class Realm < Concept
 
   def realm
     I18n.locale = self.locale
-    I18n.t :adjective
+    I18n.t :realm
   end
 
   def name; realm.capitalize; end

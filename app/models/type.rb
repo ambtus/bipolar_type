@@ -1,7 +1,7 @@
 class Type
 
   def self.my_path; "ep-ej-ip-ij"; end
-  def self.mine; self.new my_path; end
+  def self.my_type; self.new my_path; end
 
   def initialize(string)
     @path = string
@@ -15,5 +15,10 @@ class Type
   def inspect; symbol; end
 
   def name; symbol; end
+
+  Realm.paths.each_with_index do |realm_path, index|
+    define_method(realm_path) {subtypes[index]}
+  end
+
 
 end

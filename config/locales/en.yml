@@ -20,30 +20,22 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  adjective: ""
+  realm: realm
   adverb: ""
-  less: less
-  is: is
-  much: much
-  energy: energy
+  domain: domain
   sense: sense
-  get: get
-  getting: getting
-  preposition: ""
-  many: many
-  few: few
-  energy_reserves: energy reserves
+  resources: resources
+  appear: appear
+  appeared: appeared
+  consume: consume
+  consumed: consumed
+  consuming: consuming
+  produce: produce
+  producing: producing
   achieve: achieve
   achieving: achieving
+  goals: goals
   anything: anything
-  something: something
-  nothing: nothing
-  use: use
-  use_energy: use energy
-  using_energy: using energy
-  waste_energy: waste energy
-  wasting_energy: wasting energy
-  save_energy: save energy
-  saving_energy: saving energy
-  conserve_energy: conserve energy
-  conserving_energy: conserving energy
+  reserves: energy reserves
+  inactive: inactive
+  neuro: probable regulator

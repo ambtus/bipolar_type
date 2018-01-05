@@ -1,30 +1,20 @@
 n:
-  adjective: mental
-  adverb: mentally
-  less: fewer
-  is: are
-  much: many
-  energy: facts
+  realm: mental
+  domain: temporal
   sense: see
-  get: believe
-  getting: believing
-  preposition: ""
-  eschew: ignore
-  many: much
-  few: little
-  energy_reserves: knowledge
-  achieve: solve
-  achieving: solving
+  resources: results
+  appear: look
+  appeared: looked
+  consume: learn
+  consumed: learned
+  consuming: learning
+  produce: think
+  producing: thinking
+  achieve: prevent
+  achieving: preventing
+  goals: problems
   anything: anything
-  something: something
   nothing: nothing
-  it: it
-  use_energy: think
-  using_energy: thinking
-  waste_energy: worry
-  wasting_energy: worrying
-  conserve_energy: guess
-  conserving_energy: guessing
-  save_energy: meditate
-  saving_energy: meditating
-
+  reserves: knowledge
+  inactive: calm
+  neuro: glutamate

@@ -8,5 +8,9 @@
 %h2=link_to "The Sixteen Subtypes", subtypes_path
 %p.center A subtype is an attitude towards a realm.
 =render "subtypes/links"
-%h2=link_to "The BipolarTypes", answer_path(Answer.first_path)
-%p.center A BipolarType is a set of attitudes, one for each realm.
+%h2 The 256 BipolarTypes
+%p.center A BipolarType is a set of subtypes: one attitude for each realm.
+%p.center
+  It is my hope that BipolarType will make it easier for you to achieve and maintain
+  =succeed "." do
+    =link_to "your goals", answer_path(Answer.first_path)

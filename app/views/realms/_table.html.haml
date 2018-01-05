@@ -4,26 +4,10 @@
     -Realm.all.each do |realm|
       -I18n.locale = realm.locale
       %th=link_to realm.name, realm_path(realm.path)
-  -%w{energy sense get energy_reserves use_energy }.each do |word|
+  -%w{domain sense resources consume reserves inactive produce achieve goals neuro}.each do |word|
     %tr
       -I18n.locale = :en
       %th=(t word).titleize
       -Realm.all.each do |realm|
         -I18n.locale = realm.locale
         %td=t word
-  %tr
-    %th Waste Energy
-    -Realm.all.each do |realm|
-      -I18n.locale = realm.locale
-      %td
-        #{t :waste_energy}
-        %br
-        (#{t :use_energy} without #{t :achieving} #{t :anything})
-  %tr
-    %th Conserve Energy
-    -Realm.all.each do |realm|
-      -I18n.locale = realm.locale
-      %td
-        #{t :conserve_energy}
-        %br
-        (#{t :achieve} #{t :something} without #{t :using_energy})

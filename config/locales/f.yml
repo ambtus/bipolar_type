@@ -1,30 +1,20 @@
 f:
-  adjective: emotional
-  adverb: emotionally
-  less: fewer
-  is: are
-  much: many
-  energy: emotions
+  realm: spiritual
+  domain: emotional
   sense: hear
-  get: care
-  getting: caring
-  preposition: about
-  eschew: ignore
-  many: many
-  few: few
-  energy_reserves: values
-  achieve: say
-  achieving: saying
-  anything: anything
-  something: something
-  nothing: nothing
-  it: them
-  use_energy: talk
-  using_energy: talking
-  waste_energy: babble
-  wasting_energy: babbling
-  conserve_energy: write
-  conserving_energy: writing
-  save_energy: remain silent
-  saving_energy: remaining silent
-
+  resources: stories
+  appear: sound
+  appeared: sounded
+  consume: listen
+  consumed: listened
+  consuming: listening
+  produce: talk
+  producing: talking
+  achieve: influence
+  achieving: influencing
+  goals: people
+  anything: anyone
+  nothing: no one
+  reserves: hope
+  inactive: silent
+  neuro: ocytocin

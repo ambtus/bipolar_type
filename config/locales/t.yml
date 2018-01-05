@@ -1,31 +1,20 @@
 t:
-  adjective: financial
-  adverb: financially
-  less: less
-  is: is
-  much: much
-  energy: money
-  sense: touch
-  get: collect
-  getting: collecting
-  preposition: ""
-  eschew: ignore
-  many: many
-  few: few
-  energy_reserves: savings
+  realm: material
+  domain: financial
+  sense: hold
+  resources: tools
+  appear: feel
+  appeared: felt
+  consume: earn
+  consumed: earned
+  consuming: earning
+  produce: spend
+  producing: spending
   achieve: buy
   achieving: buying
+  goals: things
   anything: anything
-  something: something
   nothing: nothing
-  it: it
-  use_energy: spend cash
-  using_energy: spending cash
-  waste_energy: gamble
-  wasting_energy: gamble
-  conserve_energy: use credit
-  conserving_energy: using credit
-  save_energy: save
-  saving_energy: saving
-
-
+  reserves: savings
+  inactive: content
+  neuro: dopamine

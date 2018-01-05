@@ -1,10 +1,10 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
 -I18n.locale = @answer.realm.locale
-%h2 Your #{@answer.realm.name} Problem
+%h2 Your #{@answer.realm.name} Goal
 %table
-  %caption I am too…
   -@answer.realm.subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
-        %td.quarter.top
-          %div=link_to subtype.name, answer_path(@answer.next(subtype.attitude.path))
+        %td.half.top
+          =link_to  answer_path(@answer.next(subtype.attitude.path)) do
+            =render subtype.attitude.path
