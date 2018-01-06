@@ -4,4 +4,6 @@
   |
   =link_to @subtype.attitude.name, attitude_path(@subtype.attitude.path)
 -I18n.locale = @subtype.locale
+%p.center=render "answers/#{@subtype.attitude.path}"
 %p=render @subtype.attitude.path
+%p.heading=render "rights/#{@subtype.attitude.path}"

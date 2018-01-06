@@ -3,8 +3,27 @@
 %p.center There are four realms of behavior, each centered around a different type of energy.
 =render "realms/links"
 %h2=link_to "The Four Attitudes", attitudes_path
-%p.center There are four attitudes, each manifesting as a different problem.
-=render "attitudes/links"
+%h3 The Facts
+%p.center increased consumption => increased production & increased energy reserves
+%p.center decreased consumption => decreased production & decreased energy reserves
+%h3 The Depressed Cycle
+%p
+  I consume more in order to produce more. The increased energy reserves are an unintended consequence:
+  =succeed "." do
+    =link_to Attitude.ep.name, attitude_path("ep")
+%p
+  I consume less in order to get rid of unwanted reserves. The decreased production is an unintended consequence:
+  =succeed "." do
+    =link_to Attitude.ej.name, attitude_path("ej")
+%h3 The Manic Cycle
+%p
+  I consume less in order to produce less. The decreased energy reserves are an unintended consequence:
+  =succeed "." do
+    =link_to Attitude.ip.name, attitude_path("ip")
+%p
+  I consume more in order to gain reserves. The increased production is an unintended consequence:
+  =succeed "." do
+    =link_to Attitude.ij.name, attitude_path("ij")
 %h2=link_to "The Sixteen Subtypes", subtypes_path
 %p.center A subtype is an attitude towards a realm.
 =render "subtypes/links"

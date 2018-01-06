@@ -1,6 +1,6 @@
 class Attitude < Concept
 
-  STATES = %w{ obesity depression anorexia mania  }
+  STATES = %w{ fat lethargic thin hyperactive  }
 
   ########
   ACRONYMS = %w{ep ej ip ij}
