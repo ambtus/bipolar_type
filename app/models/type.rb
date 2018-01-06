@@ -11,10 +11,14 @@ class Type
   attr_reader :path, :attitudes
 
   def subtypes; attitudes.add(Realm.all).sort; end
-  def symbol; subtypes.map(&:symbol).join("•"); end
-  def inspect; symbol; end
 
-  def name; symbol; end
+#   def symbol; subtypes.map(&:symbol).join("•"); end
+#   def inspect; symbol; end
+#   def name; symbol; end
+
+  def mbti; subtypes.map(&:mbti).join("•"); end
+  def inspect; mbti; end
+  def name; mbti; end
 
   Realm.paths.each_with_index do |realm_path, index|
     define_method(realm_path) {subtypes[index]}

@@ -37,4 +37,5 @@ class Subtype
 
   def name; "#{@realm.name}ly #{@attitude.name}"; end
 
+  def mbti; path.upcase; end
 end

@@ -19,4 +19,6 @@ class Attitude < Concept
 
   def first; path.first; end
   def second; path.second; end
+
+  def mbti; path.upcase; end
 end
