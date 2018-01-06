@@ -1,2 +1,10 @@
 - content_for(:title, "#{@name}")
+%h2 Short Answer
+%table
+  -@subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        -I18n.locale = subtype.locale
+        %td.half.top=render "rights", :subtype=>subtype
+%h2 Long Answer
 =render "subtypes"

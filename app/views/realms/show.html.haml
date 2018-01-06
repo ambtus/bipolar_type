@@ -1,2 +1,10 @@
 - content_for(:title, "#{@name}")
+-I18n.locale = @realm.locale
+%h2 Short Answer
+%table
+  -@subtypes.in_groups_of(2) do |row|
+    %tr
+      -row.each do |subtype|
+        %td.half.top=render "rights", :subtype=>subtype
+%h2 Long Answer
 =render "subtypes"
