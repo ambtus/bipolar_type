@@ -20,22 +20,4 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  realm: realm
-  adverb: ""
-  domain: domain
-  sense: sense
-  resources: resources
-  appear: appear
-  appeared: appeared
-  consume: consume
-  consumed: consumed
-  consuming: consuming
-  produce: produce
-  producing: producing
-  achieve: achieve
-  achieving: achieving
-  goals: goals
-  anything: anything
-  reserves: energy reserves
-  inactive: inactive
-  neuro: regulator
+  hello: hello

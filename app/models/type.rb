@@ -1,28 +1,23 @@
 class Type
 
-  def self.my_path; "ep-ej-ip-ij"; end
+  def self.my_path; "odma"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
     @path = string
-    @attitudes = @path.split("-").collect{|a| Attitude.send(a)}
-    @attitudes.check_constraints Attitude, 4, 4
+    @states = @path.scan(/./).collect{|a| State.send(a)}
+    @states.check_constraints State, 4, 4
   end
-  attr_reader :path, :attitudes
+  attr_reader :path, :states
 
-  def subtypes; attitudes.add(Realm.all).sort; end
+  def subtypes; states.add(Energy.all).sort; end
 
-#   def symbol; subtypes.map(&:symbol).join("•"); end
-#   def inspect; symbol; end
-#   def name; symbol; end
+  def symbol; subtypes.map(&:symbol).join("•"); end
+  def inspect; symbol; end
+  def name; symbol; end
 
-  def mbti; subtypes.map(&:mbti).join("•"); end
-  def inspect; mbti; end
-  def name; mbti; end
-
-  Realm.paths.each_with_index do |realm_path, index|
-    define_method(realm_path) {subtypes[index]}
+  Energy.paths.each_with_index do |energy_path, index|
+    define_method(energy_path) {subtypes[index]}
   end
-
 
 end

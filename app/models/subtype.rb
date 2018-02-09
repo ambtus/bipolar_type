@@ -1,41 +1,40 @@
 class Subtype
 
   def initialize(array)
-    @realm = array.first
-    @attitude = array.second
+    @energy = array.first
+    @state = array.second
   end
-  attr_reader :realm, :attitude
+  attr_reader :energy, :state
 
-  ALL = Realm::ALL.collect do |realm|
-          Attitude::ALL.collect do |attitude|
-            self.new [realm,attitude]
+  ALL = Energy::ALL.collect do |energy|
+          State::ALL.collect do |state|
+            self.new [energy,state]
           end
         end.flatten
 
   def self.all; ALL; end
 
   def method_missing(meth, *arguments, &block)
-    if realm.respond_to?(meth)
-      realm.send(meth, *arguments, &block)
-    elsif attitude.respond_to?(meth)
-      attitude.send(meth, *arguments, &block)
+    if energy.respond_to?(meth)
+      energy.send(meth, *arguments, &block)
+    elsif state.respond_to?(meth)
+      state.send(meth, *arguments, &block)
     else
       super
     end
   end
 
-  def <=>(other); attitude.index <=> other.attitude.index; end
+  def <=>(other); state.index <=> other.state.index; end
 
-  def path; [@attitude.first, @realm.path, @attitude.second].join; end
+  def path; [@energy.path, @state.path].join; end
   def inspect; path; end
-  def symbol; [@realm.symbol, @attitude.symbol].join; end
+  def symbol; path.upcase; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
-  def siblings; attitude.subtypes + realm.subtypes - [self]; end
+  def siblings; state.subtypes + energy.subtypes - [self]; end
 
-  def name; "#{@realm.name}ly #{@attitude.name}"; end
+  def name; "#{@energy.name} #{@state.name}"; end
 
-  def mbti; path.upcase; end
 end

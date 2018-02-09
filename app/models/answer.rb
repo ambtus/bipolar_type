@@ -4,18 +4,18 @@ class Answer
   def self.first; Answer.new(first_path); end
 
   def initialize(string)
-    @question,attitudes = string.split(":")
-    @attitude_paths = attitudes || ""
+    @question,states = string.split(":")
+    @state_paths = states || ""
   end
-  attr_reader :question, :attitude_paths
+  attr_reader :question, :state_paths
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
-  def realm; Realm.all[index]; end
+  def energy; Energy.all[index]; end
   def finished?; number > 4; end
 
-  def next(new); "#{question.next}:#{attitude_paths}#{new}"; end
+  def next(new); "#{question.next}:#{state_paths}#{new}"; end
 
-  def type_path; attitude_paths.scan(/../).join("-"); end
+  def type_path; state_paths; end
 
 end

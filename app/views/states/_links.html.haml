@@ -1,0 +1,4 @@
+%div.center
+  -State.all.each_with_index do |state, index|
+    ="|" unless index == 0
+    =link_to_unless_current state.name, state_path(state.path)

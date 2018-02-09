@@ -1,0 +1,4 @@
+%div.center
+  -Energy.all.each_with_index do |energy, index|
+    ="|" unless index == 0
+    =link_to_unless_current energy.name, energy_path(energy.path)

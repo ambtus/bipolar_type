@@ -1,8 +1,7 @@
 - content_for(:title, "The 16 Subtypes")
 %table.wide
-  -Realm.all.each do |realm|
-    -I18n.locale = realm.locale
+  -Energy.all.each do |energy|
     %tr
-      -realm.subtypes.each do |subtype|
+      -energy.subtypes.each do |subtype|
         %td.quarter.top
-          =render "rights", :subtype=>subtype
+          =subtype.name
