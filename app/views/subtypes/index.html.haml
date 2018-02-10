@@ -1,7 +1,11 @@
 - content_for(:title, "The 16 Subtypes")
-%table.wide
+%table
+  %tr
+    %th
+      -State.all.each do |state|
+        %th=link_to state.name, state_path(state.path)
   -Energy.all.each do |energy|
     %tr
+      %th=link_to energy.name, energy_path(energy.path)
       -energy.subtypes.each do |subtype|
-        %td.quarter.top
-          =subtype.name
+        %td.top=link_to subtype.name, subtype_path(subtype.path)

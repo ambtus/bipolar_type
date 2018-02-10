@@ -3,4 +3,4 @@
   -@subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
-        %td.half.top=subtype.name
+        %td.top=link_to subtype.name, subtype_path(subtype.path)

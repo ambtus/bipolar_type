@@ -1,6 +1,7 @@
 - content_for(:title, "#{@name}")
+%p=render "header"
 %table
   -@subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
-        %td.half.top=subtype.name
+        %td.half.top=link_to subtype.name, subtype_path(subtype.path)

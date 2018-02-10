@@ -1,2 +1,33 @@
 - content_for(:title, "The Four Energies")
-=render "energies/table"
+%table
+  %tr
+    %th
+    -Energy.all.each do |energy|
+      %th=link_to energy.name, energy_path(energy.path)
+  -%w{ get use energy }.each do |word|
+    %tr
+      %th=word.capitalize
+      -Energy.all.each do |energy|
+        %td=energy.send(word)
+  %tr
+    %th
+    -Energy.all.each do |energy|
+      %td.top
+        %p
+          =energy.get.capitalize + "ing"
+          isn’t the only way to get
+          =energy.adjective
+          energy, but it’s the primary one.
+        %p
+          =energy.use.capitalize.gsub(/e$/, '') + "ing"
+          isn’t the only way to use
+          =energy.adjective
+          energy, there are many different ways to
+          =energy.produce + ","
+          but it’s the primary one.
+        %p
+          =energy.triggers.capitalize
+          are more apt to cause a
+          =energy.adjective
+          overreaction than
+          =energy.buffers + "."
