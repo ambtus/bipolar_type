@@ -14,12 +14,12 @@
     -Energy.all.each do |energy|
       %td.top
         %p
-          =energy.get.capitalize + "ing"
+          =energy.getting.capitalize
           isn’t the only way to get
           =energy.adjective
           energy, but it’s the primary one.
         %p
-          =energy.use.capitalize.gsub(/e$/, '') + "ing"
+          =energy.using.capitalize
           isn’t the only way to use
           =energy.adjective
           energy, there are many different ways to

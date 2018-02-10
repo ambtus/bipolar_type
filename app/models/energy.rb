@@ -31,4 +31,7 @@ class Energy < Concept
   def triggers; TRIGGERS[index]; end
   def buffers; BUFFERS[index]; end
 
+  def using; use.gsub(/e$/, '') + 'ing'; end
+  def getting; get + 'ing'; end
+
 end
