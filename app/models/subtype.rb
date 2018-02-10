@@ -37,4 +37,6 @@ class Subtype
 
   def name; "#{@energy.name} #{@state.name}"; end
 
+  def overreaction; state.overreaction(energy); end
+
 end

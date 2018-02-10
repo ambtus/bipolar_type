@@ -5,5 +5,5 @@
     %tr
       -row.each do |subtype|
         %td.half.top
-          =link_to answer_path(@answer.next(subtype.state.path)) do
-            =subtype.name
+          =link_to subtype.name, answer_path(@answer.next(subtype.state.path))
+          %div=subtype.overreaction

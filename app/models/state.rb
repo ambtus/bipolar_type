@@ -17,4 +17,17 @@ class State < Concept
   def name; state.titleize; end
   def symbol; path.upcase; end
 
+  def overreaction(energy)
+    case index
+    when 0
+      "#{energy.get} too much"
+    when 1
+      "can’t #{energy.use}"
+    when 2
+      "#{energy.use} too much"
+    when 3
+      "can’t #{energy.get}"
+    end
+  end
+
 end
