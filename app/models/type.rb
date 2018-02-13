@@ -1,16 +1,16 @@
 class Type
 
-  def self.my_path; "odma"; end
+  def self.my_path; "apvc"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
     @path = string
-    @states = @path.scan(/./).collect{|a| State.send(a)}
-    @states.check_constraints State, 4, 4
+    @imbalances = @path.scan(/./).collect{|a| Imbalance.send(a)}
+    @imbalances.check_constraints Imbalance, 4, 4
   end
-  attr_reader :path, :states
+  attr_reader :path, :imbalances
 
-  def subtypes; states.add(Energy.all).sort; end
+  def subtypes; imbalances.add(Energy.all).sort; end
 
   def symbol; subtypes.map(&:symbol).join("•"); end
   def inspect; symbol; end

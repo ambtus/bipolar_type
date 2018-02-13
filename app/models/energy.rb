@@ -1,10 +1,10 @@
 class Energy < Concept
 
-  ADJECTIVES = %w{physical mental financial social}
-  GETS = %w{eat watch collect listen}
-  USES = %w{walk think spend talk}
-  PRODUCTIONS = %w{exercise think spend communicate}
-  MEASURES = %w{calories information money emotions}
+  ADJECTIVES = %w{physical mental social financial}
+  GETS = %w{eat watch listen earn}
+  USES = %w{move think talk spend}
+  MEASURES = %w{calories facts opinions assets}
+  STORES = %w{fat memory friend savings}
   ########
 
   ACRONYMS = ADJECTIVES.map(&:first)
@@ -15,7 +15,7 @@ class Energy < Concept
   ########
 
   def subtypes; Subtype.all.select{|s| s.energy == self}; end
-  def +(state); subtypes.find{|s| s.state == state}; end
+  def +(imbalance); subtypes.find{|s| s.imbalance == imbalance}; end
 
   def adjective; ADJECTIVES[index]; end
   def name; adjective.capitalize; end
@@ -23,10 +23,10 @@ class Energy < Concept
 
   def get; GETS[index]; end
   def use; USES[index]; end
-  def produce; PRODUCTIONS[index]; end
   def measure; MEASURES[index]; end
+  def store; STORES[index]; end
 
   def using; use.gsub(/e$/, '') + 'ing'; end
-  def getting; get + 'ing'; end
+  def getting; get.gsub(/e$/, '') + 'ing'; end
 
 end

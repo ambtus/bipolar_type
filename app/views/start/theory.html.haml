@@ -1,12 +1,33 @@
 - content_for(:title, 'The Theory')
-%h2=link_to "The Four Energies", energies_path
-=render "energies/links"
-%h2=link_to "The Four States", states_path
-=render "states/links"
-%h2=link_to "The Sixteen Subtypes", subtypes_path
-=render "subtypes/links"
-%h2 The 256 BipolarTypes
+%h2 Energy Imbalances (Bipolar)
+%table
+  %tr
+    %th
+    %th Normal Energy Output
+    %th Normal Energy Intake
+  %tr
+    %th Energy Surplus (Depression)
+    %td get too much energy
+    %td use too little energy
+  %tr
+    %th Energy Deficit (Mania)
+    %td get too little energy
+    %td use too much energy
+%h2 Energy Kinds (Type)
+%table
+  %tr
+    %th
+    %th Energy
+    %th Get
+    %th Use
+  -Energy.all.each do |energy|
+    %tr
+      %th=energy.name
+      %td=energy.measure
+      %td=energy.get
+      %td=energy.use
+%h2 BipolarType
 %p.center
-  A BipolarType is a set of subtypes:
+  A BipolarType is a set of four imbalances:
   =succeed "." do
-    =link_to "one state for each type of energy", answer_path(Answer.first_path)
+    =link_to "one for each energy", answer_path(Answer.first_path)

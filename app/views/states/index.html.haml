@@ -1,7 +1,0 @@
-- content_for(:title, "The Four States")
-%p=render "energies/links"
-%table
-  -State.all.in_groups_of(2) do |row|
-    %tr
-      -row.each do |state|
-        %td.top.quarter=link_to state.name, state_path(state.path)

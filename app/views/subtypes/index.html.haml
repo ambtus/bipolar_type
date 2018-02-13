@@ -8,4 +8,10 @@
     %tr
       %th=link_to energy.name, energy_path(energy.path)
       -energy.subtypes.each do |subtype|
-        %td.top=link_to subtype.name, subtype_path(subtype.path)
+        %td.top
+          =link_to subtype.name, subtype_path(subtype.path)
+          %div.center
+            if
+            =subtype.cause
+            then
+            =subtype.effect
