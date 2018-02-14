@@ -1,23 +1,23 @@
 class Type
 
-  def self.my_path; "apvc"; end
+  def self.my_path; "abdc"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
     @path = string
-    @imbalances = @path.scan(/./).collect{|a| Imbalance.send(a)}
-    @imbalances.check_constraints Imbalance, 4, 4
+    @attitudes = @path.scan(/./).collect{|a| Attitude.send(a)}
+    @attitudes.uniq.check_constraints Attitude, 4, 4
   end
-  attr_reader :path, :imbalances
+  attr_reader :path, :attitudes
 
-  def subtypes; imbalances.add(Energy.all).sort; end
+  def subtypes; attitudes.add(Realm.all).sort; end
 
   def symbol; subtypes.map(&:symbol).join("•"); end
   def inspect; symbol; end
   def name; symbol; end
 
-  Energy.paths.each_with_index do |energy_path, index|
-    define_method(energy_path) {subtypes[index]}
+  Realm.paths.each_with_index do |realm_path, index|
+    define_method(realm_path) {subtypes[index]}
   end
 
 end

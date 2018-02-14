@@ -3,9 +3,5 @@
     %tr
       -row.each do |subtype|
         %td
-          =link_to subtype.name, subtype_path(subtype.path)
-          %br
-          How do I
-          =subtype.problem + "?"
-          %br
-          =subtype.solution.capitalize + "."
+          =link_to subtype_path(subtype.path) do
+            =subtype.name

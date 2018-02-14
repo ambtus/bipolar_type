@@ -1,69 +1,62 @@
 class Subtype
 
   def initialize(array)
-    @energy = array.first
-    @imbalance = array.second
+    @realm = array.first
+    @attitude = array.second
   end
-  attr_reader :energy, :imbalance
+  attr_reader :realm, :attitude
 
-  ALL = Energy::ALL.collect do |energy|
-          Imbalance::ALL.collect do | imbalance |
-            self.new [energy,imbalance]
+  ALL = Realm::ALL.collect do |realm|
+          Attitude::ALL.collect do | attitude |
+            self.new [realm,attitude]
           end
         end.flatten
 
   def self.all; ALL; end
 
   def method_missing(meth, *arguments, &block)
-    if energy.respond_to?(meth)
-      energy.send(meth, *arguments, &block)
-    elsif imbalance.respond_to?(meth)
-      imbalance.send(meth, *arguments, &block)
+    if realm.respond_to?(meth)
+      realm.send(meth, *arguments, &block)
+    elsif attitude.respond_to?(meth)
+      attitude.send(meth, *arguments, &block)
     else
       super
     end
   end
 
-  def <=>(other); imbalance.index <=> other.imbalance.index; end
+  def <=>(other); attitude.index <=> other.attitude.index; end
 
-  def path; [@energy.path, @imbalance.path].join; end
+  def path; [@realm.path, @attitude.path].join; end
   def inspect; path; end
   def symbol; path.upcase; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
-  def siblings; imbalance.subtypes + energy.subtypes - [self]; end
+  def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def phrase; "#{@energy.adjective} #{@imbalance.noun}"; end
-  def name; phrase.titleize; end
-
-  def problem
-    case noun
-    when "addiction", "aversion"
-      get
-    when "paralysis", "compulsion"
-      use
-    end +
-    case noun
-    when "addiction", "compulsion"
-      " less"
-    when "paralysis", "aversion"
-      " more"
+  def solution
+    case attitude.path
+    when "a"
+      "#{refuel} more"
+    when "b"
+      "#{pace} slower"
+    when "c"
+      "#{pace} faster"
+    when "d"
+      "#{refuel} less"
     end
   end
-  def solution
-    case noun
-    when "addiction", "aversion"
-      use
-    when "paralysis", "compulsion"
-      get
-    end +
-    case noun
-    when "addiction", "compulsion"
-      " less"
-    when "paralysis", "aversion"
-      " more"
+  def wrong
+    case attitude.path
+    when "b"
+      "#{refuel} more"
+    when "a"
+      "#{pace} slower"
+    when "d"
+      "#{pace} faster"
+    when "c"
+      "#{refuel} less"
     end
   end
 

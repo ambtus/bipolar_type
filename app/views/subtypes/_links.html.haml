@@ -1,6 +1,6 @@
 %table
-  -Energy.all.each do |energy|
+  -Realm.all.each do |realm|
     %tr
-      -energy.subtypes.each do |subtype|
+      -realm.subtypes.each do |subtype|
         %td
           =link_to subtype.name, subtype_path(subtype.path)

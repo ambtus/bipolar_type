@@ -1,9 +1,20 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-%h2 Your #{@energy.name} Imbalance
+%p.center
+  Once you have
+  %span.chosen chosen
+  a Subtype, the other subtypes in the
+  %span.warning same
+  Realm or Attitude will become unavailable.
+%p.center
+  If you get stuck, you can
+  =link_to "start over.", answer_path(Answer.first_path)
 %table
-  %caption I know I should…
-  -@energy.subtypes.in_groups_of(2).each_with_index do |row, index|
+  -Attitude.all.in_groups_of(2) do |outter_row|
     %tr
-      -row.each do |subtype|
-        %td.top
-          =link_to subtype.problem, answer_path(@answer.next(subtype.imbalance.path))
+    -outter_row.each do |attitude|
+      %td
+        %table
+          -attitude.subtypes.in_groups_of(2) do |inner_row|
+            %tr
+            -inner_row.each do |subtype|
+              =render "subtype", subtype: subtype

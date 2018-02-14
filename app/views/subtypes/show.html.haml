@@ -1,6 +1,5 @@
 - content_for(:title, "#{@name}")
 %div.center
-  =link_to @subtype.energy.name, energy_path(@subtype.energy.path)
+  =link_to @subtype.name, realm_path(@subtype.realm.path)
   |
-  =link_to @subtype.state.name, state_path(@subtype.state.path)
-%p.heading=@subtype.problem
+  =link_to @subtype.problem, attitude_path(@subtype.attitude.path)

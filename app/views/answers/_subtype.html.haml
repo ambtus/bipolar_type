@@ -1,0 +1,10 @@
+%td.quarter.top
+  -if @answer.css(subtype) == "free"
+    %p.center
+      =subtype.name
+  %p.center{:class => @answer.css(subtype)}
+    -if @answer.css(subtype) == "free"
+      =link_to answer_path(@answer.next(subtype)) do
+        =subtype.name
+    -else
+      =subtype.name
