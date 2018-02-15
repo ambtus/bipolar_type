@@ -1,2 +1,21 @@
 - content_for(:title, "#{@name}")
-=render "subtypes"
+%table
+  %caption My Bipolar Cycle
+  %tr
+    %th I am manic →
+    %td.left I #{@subtypes.first.transition}
+    %td.left and #{@subtypes.second.transition} ↓
+  %tr
+    %td.left ↑ and #{@subtypes.third.transition}
+    %td.left I #{@subtypes.fourth.transition}
+    %th ← I am depressed
+%h2 Mania
+%p If you are manic you are #{@subtypes.first.adverb} overwhelmed and can no longer #{@subtypes.first.consume}. It’s a good time to #{@subtypes.fourth.produce}.
+%p #{@subtypes.first.produce.capitalize} if you want to but don’t overdo it. You’ll just become #{@subtypes.first.adverb} fatigued but you won’t feel any less #{@subtypes.first.adverb} restless until you have finished processing everything you #{@subtypes.first.consumed}.
+%p If you find yourself #{@subtypes.second.producing} then stop as soon as you can; your goal is not to start #{@subtypes.second.consuming} again. The more you #{@subtypes.second.produce} now, the more you will have to #{@subtypes.second.consume} the next time you are depressed.
+%p Don’t force yourself to #{@subtypes.third.produce} unless you forgot not to #{@subtypes.third.consume} too much when you were depressed and feel #{@subtypes.third.adverb} restless. Forcing yourself to #{@subtypes.third.produce} beyond that will just cause #{@subtypes.third.adjective} fatigue and over#{@subtypes.third.consuming}.
+%h2 Depression
+%p If you are depressed you are #{@subtypes.fourth.adverb} fatigued and can no longer #{@subtypes.fourth.produce}. It’s a good time to #{@subtypes.first.consume}.
+%p #{@subtypes.fourth.consume.capitalize} if you want to but don’t overdo it. You’ll just become #{@subtypes.fourth.adverb} restless but you won’t feel any less #{@subtypes.fourth.adverb} fatigued until you have had a chance to let your #{@subtypes.fourth.organ} recover.
+%p If you find yourself #{@subtypes.third.consuming} then stop as soon as you can; your goal is not to start #{@subtypes.third.producing} again. The more you #{@subtypes.third.consume} now, the more you will have to #{@subtypes.third.produce} the next time you are manic.
+%p Don’t force yourself to #{@subtypes.second.consume} unless you forgot not to #{@subtypes.second.produce} too much when you were manic and feel #{@subtypes.second.adverb} fatigued. Forcing yourself to #{@subtypes.second.consume} beyond that will just cause #{@subtypes.second.adjective} restlessness and over#{@subtypes.second.producing}.

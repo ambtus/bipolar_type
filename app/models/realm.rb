@@ -1,9 +1,10 @@
 class Realm < Concept
 
   ADJECTIVES = %w{physical mental emotional financial}
-  ENERGIES = %w{calories facts opinions assets}
-  EASIES = %w{walk guess talk rent}
-  HARDS = %w{run prove yell buy}
+  CONSUMES = %w{eat watch listen earn}
+  PRODUCES = %w{walk think talk spend}
+  CONSUMEDS = %w{ate saw heard earned}
+  ORGANS = %w{body mind voice credit}
   ########
 
   ACRONYMS = ADJECTIVES.map(&:first)
@@ -18,14 +19,19 @@ class Realm < Concept
 
   def adjective; ADJECTIVES[index]; end
   def adverb; adjective + "ly"; end
+  def name; adjective.capitalize; end
 
   def energy; ENERGIES[index]; end
-  def easy; EASIES[index]; end
-  def hard; HARDS[index]; end
+  def organ; ORGANS[index]; end
 
-  def easying; easy + "ing"; end
-  def harding; (hard + "ing").gsub("ni", "nni").gsub("ein", "in"); end
+  def consume; CONSUMES[index]; end
+  def consumed; CONSUMEDS[index]; end
+  def produce; PRODUCES[index]; end
 
-  def name; adjective.capitalize; end
+  def consuming; consume + "ing"; end
+  def producing; produce + "ing"; end
+
+  def self.consumings; ALL.map(&:consuming).to_sentence; end
+  def self.producings; ALL.map(&:producing).to_sentence; end
 
 end

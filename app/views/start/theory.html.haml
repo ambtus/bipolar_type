@@ -1,101 +1,61 @@
 - content_for(:title, 'The Theory')
-%h2 Bipolar
-%h3 Mania & Depression
-%p You are manic if you are awake when you need to be asleep. You are hypomanic if you are active when you want to be passive. Mania and insomnia can be treated medically with sedatives.
-%p You are depressed if you are asleep when you need to be awake. You are mildly depressed if you are passive when you want to be active. Depression and hypersomnia can be treated medically with stimulants.
-%h3 Rapid Cycling
-%p If the sedatives and stimulants have a longer half life than the mania or depression, then the sedatives aggravate your depression and the stimulants aggravate your mania. This is called rapid cycling and is difficult to treat medically. You can try to treat the mania with long term sedatives and then the aggravated depression with short term stimulants. Or you can try to treat the depression with long term stimulants and the aggravated mania with short term sedatives.
-%p I developed BipolarType because psychiatric medication failed to manage my rapid cycling.
-%table.wide
-  %caption
-    %h3 The Four Attitudes
-  %tr
-    %td
-      Spring Morning
-      %p
-        If you want to
-        %em become
-        awake and active without stimulants you need to create restlessness. →
-    %td
-      Summer Afternoon
-      %p
-        If you want to
-        %em stay
-        awake and active without stimulants you need to prevent fatigue. ↓
-  %tr
-    %td
-      Winter Night
-      %p
-        If you want to
-        %em stay
-        passive and sleepy without sedatives you need to prevent restlessness. ↑
-    %td
-      Autumn Evening
-      %p
-        If you want to
-        %em become
-        passive and sleepy without sedatives you need to create fatigue. ←
-%p BipolarType defines four realms. Each realm has its own energy which causes restlessness and its own activities which cause fatigue.
-%h3 Mixed States
-%p You can be both restless and fatigued at the same time, either in the same realm or different realms. This is called a mixed state and is difficult to treat medically. You can try to treat the restlessness with a general sedative and then the aggravated fatigue with a specific stimulant. Or you can try to treat the fatigue with a general stimulant and the aggravated restlessness with a specific sedative.
-%p I developed BipolarType because psychiatric medication failed to manage my mixed states.
-%table.wide
-  %caption
-    %h3 The Four Realms
-  -Realm.all.in_groups_of(2) do |row|
-    %tr
-      -row.each do |realm|
-        %td.top
-          =realm.name
-          %p #{realm.name} restlessness is caused by an excess of #{realm.energy}.
-          %p #{realm.name} fatigue is caused by activities at or near your #{realm.adjective} limit. Everyone has a different limit, but an example would be #{realm.harding} instead of #{realm.easying}.
 %table
-  %caption
-    %h3 The Sixteen Solutions
+  %caption The Physical Cycle
   %tr
-    %td
-      Spring Morning →
-      %br
-      I want to become active without stimulants.
-      %table
-        -Realm.all.in_groups_of(2) do |row|
-          %tr
-            -row.each do |realm|
-              %td seek out #{realm.energy}
-    %td
-      Summer Afternoon ↓
-      %br
-      I want to stay active without stimulants.
-      %table
-        -Realm.all.in_groups_of(2) do |row|
-          %tr
-            -row.each do |realm|
-              %td #{realm.easy} don’t #{realm.hard}
+    %th I am restless →
+    %td I stop eating
+    %td and start walking ↓
   %tr
-    %td
-      Winter Night ↑
-      %br
-      I want to stay passive without sedatives.
-      %table
-        -Realm.all.in_groups_of(2) do |row|
-          %tr
-            -row.each do |realm|
-              %td avoid #{realm.energy}
-    %td
-      Autumn Evening ←
-      %br
-      I want to become passive without sedatives.
-      %table
-        -Realm.all.in_groups_of(2) do |row|
-          %tr
-            -row.each do |realm|
-              %td #{realm.hard} don’t #{realm.easy}
-%h2 BipolarType
-%p If you are depressed then you can seek out caffeine, uppers, cocaine, amphetamines, antidepressants, #{Realm::ENERGIES.to_sentence(:last_word_connector => ", or ")}. They are all stimulants and will all  help you wake up and become more active.
+    %td ↑ and start eating
+    %td I stop walking
+    %th ← I am fatigued
+%p There are two States in the above diagram: “I am restless” and “I am fatigued”. If you don’t want to be restless, and are willing to take strong sedatives to keep from feeling so restless, then you can label that state “Mania”. If you don’t want to be fatigued, and are willing to take strong stimulants to keep from feeling so fatigued, then you can label that state “Depression”.
+%p There are four Transitions in the above diagram: “stop eating”, “start walking”, “stop walking”, and “start eating”. Each transition can be noticed by an individual as a change in behavior. Not wanting to be manic or depressed isn’t merely not wishing to feel restless or fatigued. It’s because of an actual, and unwanted, change in behavior.
+%table
+  %caption The Four Physical Attitudes
+  %tr
+    %th
+    %th Attitudes about Eating
+    %th Attitudes about Walking
+  %tr
+    %th Attitudes about Mania
+    %td.left I hate being manic because I stop eating. I want to eat!
+    %td.left I hate being manic because I start walking. I don’t want to walk!
+    %th
+  %tr
+    %th Attitudes about Depression
+    %td.left I hate being depressed because I start eating. I don’t want to eat!
+    %td.left I hate being depressed because I stop walking. I want to walk!
+%p Eating and walking are not the only things we do. BipolarType defines four realms: #{Realm.all.map(&:name).to_sentence}.
+%table
+  %caption The Bipolar Cycle
+  %tr
+    %th I am manic →
+    %td.left I stop #{Realm.consumings}
+    %td.left and start #{Realm.producings} ↓
+  %tr
+    %td.left ↑ and start #{Realm.consumings}
+    %td.left I stop #{Realm.producings}
+    %th ← I am depressed
+%p A BipolarType is a personal set of attitudes. The one thing you hate the most during each transition.
+%table
+  %caption My Bipolar Cycle
+  %tr
+    %th I hate being manic because →
+    %td.left I stop listening (I rarely notice that I also stop eating, watching, and earning)
+    %td.left and start spending (I rarely notice that I also start walking, thinking, and talking). ↓
+  %tr
+    %td.left ↑ and start eating (I rarely notice that I also start watching, listening, and earning).
+    %td.left I stop thinking (I rarely notice that I also stop walking, talking, and spending)
+    %th ← I hate being depressed because
+%p If I take sedatives for my mania so that I can listen more and spend less, I eat more and think less. If I take stimulants for my depression so that I can eat less and think more, I listen less and spend more. This is the difficulty with trying to treat a bipolar disorder. Whatever you do to “fix” one half of the problem aggravates the other half.
+%p BipolarType takes a different tack. Rather than trying to medicate away the mania or depression as a whole it looks at the cycle as a whole.
+%p If I’m manic, I stop listening and start spending. Rather than taking sedatives, I need to remember to start thinking. Thinking is something that I want to do. Being manic isn’t so bad if I can remember to use the time to think instead of bemoaning the fact that I can no longer listen. Also, if I’m busy thinking I’m less likely to spend too much.
+%p If I’m depressed, I stop thinking. Rather than taking stimulants, I need to remember to start listening. Listening is something that I want to do. Being depressed isn’t so bad if I can remember to use the time to listen instead of bemoaning the fact that I can no longer think. Also, if I’m busy listening I’m less likely to eat too much.
 %p
-  If, however, you want to become more active without causing side effects or worse problems for yourself later in the day, then there is one natural stimulant which is the best option
-  %em for you.
-%p.center
-  A BipolarType is a set of
+  You have different things you want to do with your life, and so
+  =link_to "your BipolarType", answer_path(Answer.first_path)
+  is unlikely to be the same as
   =succeed "." do
-    =link_to "four solutions", answer_path(Answer.first_path)
+    =link_to "my BipolarType", type_path(Type.my_path)
+

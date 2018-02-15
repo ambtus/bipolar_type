@@ -1,3 +1,18 @@
 - content_for(:title, "#{@name}")
 %p=render "header"
-=render "subtypes"
+%table
+  %caption The #{@name} Bipolar Cycle
+  %tr
+    %th
+      Mania
+      %br
+      (#{@name} restlessness)→
+    %td.left I #{@subtypes.first.transition}
+    %td.left and #{@subtypes.second.transition} ↓
+  %tr
+    %td.left ↑ and #{@subtypes.third.transition}
+    %td.left I #{@subtypes.fourth.transition}
+    %th
+      ← Depression
+      %br
+      (#{@name} lethargy)

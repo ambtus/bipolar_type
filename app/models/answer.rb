@@ -32,6 +32,6 @@ class Answer
   def paths(subtype); all(subtype).map(&:path).join('-'); end
   def next(subtype); "#{question.next}:#{paths(subtype)}"; end
 
-  def type_path; subtypes.map(&:attitude).map(&:path).join; end
+  def type_path; subtypes.map(&:realm).map(&:path).join; end
 
 end

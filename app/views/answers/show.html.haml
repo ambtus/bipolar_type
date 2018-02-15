@@ -1,8 +1,8 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-%p.center
+%p
   Once you have
   %span.chosen chosen
-  a Subtype, the other subtypes in the
+  a hate, the other hates in the
   %span.warning same
   Realm or Attitude will become unavailable.
 %p.center
@@ -17,4 +17,11 @@
           -attitude.subtypes.in_groups_of(2) do |inner_row|
             %tr
             -inner_row.each do |subtype|
-              =render "subtype", subtype: subtype
+              %td.quarter.top
+                %p{:class => @answer.css(subtype)}
+                  -if @answer.css(subtype) == "free"
+                    =link_to subtype.hate, answer_path(@answer.next(subtype))
+                  -elsif @answer.css(subtype) == "chosen"
+                    =subtype.hate
+                  -else
+                    =subtype.indifferent

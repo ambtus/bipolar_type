@@ -35,29 +35,19 @@ class Subtype
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def solution
+  def transition
     case attitude.path
     when "a"
-      "#{refuel} more"
+      "stop #{consuming}"
     when "b"
-      "#{pace} slower"
+      "start #{producing}"
     when "c"
-      "#{pace} faster"
+      "stop #{producing}"
     when "d"
-      "#{refuel} less"
-    end
-  end
-  def wrong
-    case attitude.path
-    when "b"
-      "#{refuel} more"
-    when "a"
-      "#{pace} slower"
-    when "d"
-      "#{pace} faster"
-    when "c"
-      "#{refuel} less"
+      "start #{consuming}"
     end
   end
 
+  def indifferent; "I don’t hate myself when I #{transition}"; end
+  def hate; "I hate myself when I #{transition}"; end
 end
