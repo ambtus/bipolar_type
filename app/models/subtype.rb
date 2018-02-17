@@ -50,4 +50,7 @@ class Subtype
 
   def indifferent; "I don’t hate myself when I #{transition}"; end
   def hate; "I hate myself when I #{transition}"; end
+
+  def easy; "I always want to #{transition}"; end
+  def hard; "I don’t always want to #{transition}"; end
 end

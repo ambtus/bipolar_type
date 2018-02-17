@@ -14,6 +14,10 @@ class Type
 
   def symbol; subtypes.map(&:symbol).join("•"); end
   def inspect; symbol; end
-  def name; symbol; end
+
+  def likes; subtypes.values_at(2,0).map(&:consume) + subtypes.values_at(1,3).map(&:produce); end
+  def name; likes.to_sentence(last_word_connector: ", & ").titleize.html_safe; end
+
+  def self.all;Realm.paths.permutation(4).map(&:join).collect{|p| new(p)};end
 
 end

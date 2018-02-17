@@ -2,56 +2,56 @@
 %table
   %caption The Physical Cycle
   %tr
-    %th I am restless →
+    %th When I am restless →
     %td I stop eating
-    %td and start walking ↓
+    %td and start exercising ↓
   %tr
     %td ↑ and start eating
-    %td I stop walking
-    %th ← I am fatigued
+    %td I stop exercising
+    %th ← When I am fatigued
 %p There are two States in the above diagram: “I am restless” and “I am fatigued”. If you don’t want to be restless, and are willing to take strong sedatives to keep from feeling so restless, then you can label that state “Mania”. If you don’t want to be fatigued, and are willing to take strong stimulants to keep from feeling so fatigued, then you can label that state “Depression”.
-%p There are four Transitions in the above diagram: “stop eating”, “start walking”, “stop walking”, and “start eating”. Each transition can be noticed by an individual as a change in behavior. Not wanting to be manic or depressed isn’t merely not wishing to feel restless or fatigued. It’s because of an actual, and unwanted, change in behavior.
+%p There are four Transitions in the above diagram: “stop eating”, “start exercising”, “stop exercising”, and “start eating”. Each transition can be noticed by an individual as a change in behavior. Mania and depression aren’t merely feeling restless or fatigued. They are unwanted changes in behavior.
 %table
   %caption The Four Physical Attitudes
   %tr
     %th
     %th Attitudes about Eating
-    %th Attitudes about Walking
+    %th Attitudes about Exercising
   %tr
     %th Attitudes about Mania
     %td.left I hate being manic because I stop eating. I want to eat!
-    %td.left I hate being manic because I start walking. I don’t want to walk!
+    %td.left I hate being manic because I start exercising. I don’t want to exercise!
     %th
   %tr
     %th Attitudes about Depression
     %td.left I hate being depressed because I start eating. I don’t want to eat!
-    %td.left I hate being depressed because I stop walking. I want to walk!
-%p Eating and walking are not the only things we do. BipolarType defines four realms: #{Realm.all.map(&:name).to_sentence}.
+    %td.left I hate being depressed because I stop exercising. I want to exercise!
+%p Eating and exercising are not the only things we do. BipolarType defines four realms: #{Realm.all.map(&:name).to_sentence}.
 %table
   %caption The Bipolar Cycle
   %tr
-    %th I am manic →
+    %th When I am manic →
     %td.left I stop #{Realm.consumings}
     %td.left and start #{Realm.producings} ↓
   %tr
     %td.left ↑ and start #{Realm.consumings}
     %td.left I stop #{Realm.producings}
-    %th ← I am depressed
+    %th ← When I am depressed
 %p A BipolarType is a personal set of attitudes. The one thing you hate the most during each transition.
 %table
   %caption My Bipolar Cycle
   %tr
     %th I hate being manic because →
-    %td.left I stop listening (I rarely notice that I also stop eating, watching, and earning)
-    %td.left and start spending (I rarely notice that I also start walking, thinking, and talking). ↓
+    %td.left I can’t empathize (I also can’t eat, but that’s a good thing, and I have enough reserves to go without learning or earning for a while)
+    %td.left and start spending (I also start thinking, but that’s a good thing, and I rarely communicate or exercise too much). ↓
   %tr
-    %td.left ↑ and start eating (I rarely notice that I also start watching, listening, and earning).
-    %td.left I stop thinking (I rarely notice that I also stop walking, talking, and spending)
+    %td.left ↑ and start eating (I also start empathizing and earning and learning, but those are all good things).
+    %td.left I stop thinking (I also stop spending, but that’s a good thing, and stop exercising and communicating, but that’s rarely a problem)
     %th ← I hate being depressed because
-%p If I take sedatives for my mania so that I can listen more and spend less, I eat more and think less. If I take stimulants for my depression so that I can eat less and think more, I listen less and spend more. This is the difficulty with trying to treat a bipolar disorder. Whatever you do to “fix” one half of the problem aggravates the other half.
-%p BipolarType takes a different tack. Rather than trying to medicate away the mania or depression as a whole it looks at the cycle as a whole.
-%p If I’m manic, I stop listening and start spending. Rather than taking sedatives, I need to remember to start thinking. Thinking is something that I want to do. Being manic isn’t so bad if I can remember to use the time to think instead of bemoaning the fact that I can no longer listen. Also, if I’m busy thinking I’m less likely to spend too much.
-%p If I’m depressed, I stop thinking. Rather than taking stimulants, I need to remember to start listening. Listening is something that I want to do. Being depressed isn’t so bad if I can remember to use the time to listen instead of bemoaning the fact that I can no longer think. Also, if I’m busy listening I’m less likely to eat too much.
+%p If I take sedatives for my mania so that I can empathize more and spend less, I eat more and think less. If I take stimulants for my depression so that I can eat less and think more, I empathize less and spend more. This is the difficulty with trying to treat a bipolar disorder. Whatever you do to “fix” one half of the problem aggravates the other half.
+%p BipolarType takes a different tack. Rather than trying to medicate away the mania or depression and hope that you don’t aggravate the other too badly, it looks at the cycle as a whole.
+%p If I’m manic, I stop empathizing and start spending. Rather than take sedatives, I can remember to start thinking. Thinking is something that I want to do. Being manic isn’t so bad if I can remember to use the time to think instead of bemoaning the fact that I can no longer empathize. Also, if I’m busy thinking I’m less likely to spend too much.
+%p If I’m depressed, I stop thinking. Rather than take stimulants, I can remember to start empathizing. Empathizing is something that I want to do. Being depressed isn’t so bad if I can remember to use the time to empathize instead of bemoaning the fact that I can no longer think. Also, if I’m busy empathizing I’m less likely to eat too much.
 %p
   You have different things you want to do with your life, and so
   =link_to "your BipolarType", answer_path(Answer.first_path)

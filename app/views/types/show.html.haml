@@ -1,21 +1,44 @@
-- content_for(:title, "#{@name}")
+- content_for(:title, @name)
 %table
   %caption My Bipolar Cycle
   %tr
-    %th I am manic →
+    %th When I am manic →
     %td.left I #{@subtypes.first.transition}
     %td.left and #{@subtypes.second.transition} ↓
   %tr
     %td.left ↑ and #{@subtypes.third.transition}
     %td.left I #{@subtypes.fourth.transition}
-    %th ← I am depressed
-%h2 Mania
-%p If you are manic you are #{@subtypes.first.adverb} overwhelmed and can no longer #{@subtypes.first.consume}. It’s a good time to #{@subtypes.fourth.produce}.
-%p #{@subtypes.first.produce.capitalize} if you want to but don’t overdo it. You’ll just become #{@subtypes.first.adverb} fatigued but you won’t feel any less #{@subtypes.first.adverb} restless until you have finished processing everything you #{@subtypes.first.consumed}.
-%p If you find yourself #{@subtypes.second.producing} then stop as soon as you can; your goal is not to start #{@subtypes.second.consuming} again. The more you #{@subtypes.second.produce} now, the more you will have to #{@subtypes.second.consume} the next time you are depressed.
-%p Don’t force yourself to #{@subtypes.third.produce} unless you forgot not to #{@subtypes.third.consume} too much when you were depressed and feel #{@subtypes.third.adverb} restless. Forcing yourself to #{@subtypes.third.produce} beyond that will just cause #{@subtypes.third.adjective} fatigue and over#{@subtypes.third.consuming}.
-%h2 Depression
-%p If you are depressed you are #{@subtypes.fourth.adverb} fatigued and can no longer #{@subtypes.fourth.produce}. It’s a good time to #{@subtypes.first.consume}.
-%p #{@subtypes.fourth.consume.capitalize} if you want to but don’t overdo it. You’ll just become #{@subtypes.fourth.adverb} restless but you won’t feel any less #{@subtypes.fourth.adverb} fatigued until you have had a chance to let your #{@subtypes.fourth.organ} recover.
-%p If you find yourself #{@subtypes.third.consuming} then stop as soon as you can; your goal is not to start #{@subtypes.third.producing} again. The more you #{@subtypes.third.consume} now, the more you will have to #{@subtypes.third.produce} the next time you are manic.
-%p Don’t force yourself to #{@subtypes.second.consume} unless you forgot not to #{@subtypes.second.produce} too much when you were manic and feel #{@subtypes.second.adverb} fatigued. Forcing yourself to #{@subtypes.second.consume} beyond that will just cause #{@subtypes.second.adjective} restlessness and over#{@subtypes.second.producing}.
+    %th ← When I am depressed
+%h2 Not #{@subtypes.first.consuming} enough
+%p You can always #{@subtypes.first.transition}. Sometimes you even #{@subtypes.first.transition} before you have #{@subtypes.first.consumed} enough.
+%p
+  If you notice that you have stopped #{@subtypes.first.consuming} and you didn’t want to stop or had resolved not to stop, then you can be pretty sure that you are trying to stop
+  %em=@subtypes.third.consuming + "."
+%p
+  It’s not always easy for you to stop #{@subtypes.third.consuming}. Sometimes you just don’t want to. But if you have stopped
+  %em #{@subtypes.first.consuming}
+  when you didn’t want to then you
+  %em do
+  want to stop #{@subtypes.third.consuming}. Sometimes you just need to give yourself permission.
+%h2 #{@subtypes.second.producing.capitalize} too much
+%p You can always #{@subtypes.second.transition}. Sometimes you even #{@subtypes.second.transition} before you have #{@subtypes.second.consumed} enough.
+%p
+  If you notice that you have started #{@subtypes.second.producing} and you didn’t want to start or had resolved not to start, then you can be pretty sure that you are trying to start
+  %em=@subtypes.fourth.producing + "."
+%p
+  It’s not always easy for you to start #{@subtypes.fourth.producing}. Sometimes you just don’t want to. But if you have started
+  %em #{@subtypes.second.producing}
+  when you didn’t want to then you
+  %em do
+  want to start #{@subtypes.fourth.producing}. Sometimes you just need to give yourself permission.
+%h2 Not #{@subtypes.fourth.producing} enough
+%p You can always #{@subtypes.fourth.transition}. Sometimes you even #{@subtypes.fourth.transition} before you have #{@subtypes.fourth.produced} enough.
+%p
+  If you notice that you have stopped #{@subtypes.fourth.producing} and you didn’t want to stop or had resolved not to stop, then you can be pretty sure that you are trying to stop
+  %em=@subtypes.second.producing + "."
+%p
+  It’s not always easy for you to stop #{@subtypes.second.producing}. Sometimes you just don’t want to. But if you have stopped
+  %em #{@subtypes.fourth.producing}
+  when you didn’t want to then you
+  %em do
+  want to stop #{@subtypes.second.producing}. Sometimes you just need to give yourself permission.

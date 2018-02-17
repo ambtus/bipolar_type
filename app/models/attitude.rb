@@ -20,37 +20,7 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  def behavior
-    case path
-    when "a"
-      "wake up"
-    when "b"
-      "stay active"
-    when "c"
-      "relax"
-    when "d"
-      "stay calm"
-    end
-  end
-  def goal; "I want to #{behavior}"; end
-  def problem; "I cannot #{behavior}"; end
-
-  def state
-    case path
-    when "a", "c"
-      "neither restless nor fatigued"
-    when "b", "d"
-      "both restless and fatigued"
-    end
-  end
-
-  def episode
-    case path
-    when "a", "b"
-      "depression"
-    when "c", "d"
-      "mania"
-    end
-  end
+  ARROWS = %w{→ ↓ ↑ ←}
+  def arrow; ARROWS[index]; end
 
 end

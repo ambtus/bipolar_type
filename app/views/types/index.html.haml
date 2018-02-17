@@ -1,0 +1,18 @@
+- content_for(:title, 'The Twenty Four BipolarTypes')
+-Type.all.in_groups_of(6) do |first_mania|
+  %table
+    %caption
+      %p.heading When I am manic I #{first_mania.first.subtypes.first.transition}
+    %tr
+    -first_mania.in_groups_of(2) do |second_mania|
+      %td.top
+        and #{second_mania.first.subtypes.second.transition}.
+        %br
+        When I am depressed…
+        %table
+          -second_mania.each do |type|
+            %tr
+              %td
+                I #{type.subtypes.fourth.transition} and
+                %br
+                =link_to type.subtypes.third.transition, type_path(type.path)

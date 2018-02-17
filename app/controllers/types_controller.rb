@@ -8,4 +8,6 @@ class TypesController < ApplicationController
 #       redirect_to root_path and return
 #     end
   end
+
+  def index; end
 end
