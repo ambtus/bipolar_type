@@ -1,44 +1,18 @@
 - content_for(:title, @name)
 %table
-  %caption My Bipolar Cycle
+  %caption My Bipolar Issues
   %tr
-    %th When I am manic →
-    %td.left I #{@subtypes.first.transition}
-    %td.left and #{@subtypes.second.transition} ↓
+    %td.left=@subtypes.first.hard
+    %td.left=@subtypes.second.hard
   %tr
-    %td.left ↑ and #{@subtypes.third.transition}
-    %td.left I #{@subtypes.fourth.transition}
-    %th ← When I am depressed
-%h2 Not #{@subtypes.first.consuming} enough
-%p You can always #{@subtypes.first.transition}. Sometimes you even #{@subtypes.first.transition} before you have #{@subtypes.first.consumed} enough.
-%p
-  If you notice that you have stopped #{@subtypes.first.consuming} and you didn’t want to stop or had resolved not to stop, then you can be pretty sure that you are trying to stop
-  %em=@subtypes.third.consuming + "."
-%p
-  It’s not always easy for you to stop #{@subtypes.third.consuming}. Sometimes you just don’t want to. But if you have stopped
-  %em #{@subtypes.first.consuming}
-  when you didn’t want to then you
-  %em do
-  want to stop #{@subtypes.third.consuming}. Sometimes you just need to give yourself permission.
-%h2 #{@subtypes.second.producing.capitalize} too much
-%p You can always #{@subtypes.second.transition}. Sometimes you even #{@subtypes.second.transition} before you have #{@subtypes.second.consumed} enough.
-%p
-  If you notice that you have started #{@subtypes.second.producing} and you didn’t want to start or had resolved not to start, then you can be pretty sure that you are trying to start
-  %em=@subtypes.fourth.producing + "."
-%p
-  It’s not always easy for you to start #{@subtypes.fourth.producing}. Sometimes you just don’t want to. But if you have started
-  %em #{@subtypes.second.producing}
-  when you didn’t want to then you
-  %em do
-  want to start #{@subtypes.fourth.producing}. Sometimes you just need to give yourself permission.
-%h2 Not #{@subtypes.fourth.producing} enough
-%p You can always #{@subtypes.fourth.transition}. Sometimes you even #{@subtypes.fourth.transition} before you have #{@subtypes.fourth.produced} enough.
-%p
-  If you notice that you have stopped #{@subtypes.fourth.producing} and you didn’t want to stop or had resolved not to stop, then you can be pretty sure that you are trying to stop
-  %em=@subtypes.second.producing + "."
-%p
-  It’s not always easy for you to stop #{@subtypes.second.producing}. Sometimes you just don’t want to. But if you have stopped
-  %em #{@subtypes.fourth.producing}
-  when you didn’t want to then you
-  %em do
-  want to stop #{@subtypes.second.producing}. Sometimes you just need to give yourself permission.
+    %td.left=@subtypes.third.hard
+    %td.left=@subtypes.fourth.hard
+%h2 #{@subtypes.first.consume.capitalize} while #{@subtypes.third.consuming}
+%p If you are #{@subtypes.third.consuming} then you are in the “get energy” part of your cycle. Use the fact that you have started to #{@subtypes.third.consume} as your signal that it’s time to #{@subtypes.first.consume}.
+%p #{@subtypes.first.consuming.capitalize} won’t be easy when you are manic. It may take some trial and error to find something which doesn’t overwhelm you. The more manic you are, the harder it will be to find something bland enough not to distress you. Keep trying. It’s better to #{@subtypes.first.consume} and only get a little #{@subtypes.first.adjective} energy than to not #{@subtypes.first.consume} at all and get none. Especially when you are manic and #{@subtypes.first.producing} more. Just remember to switch back to something a little more interesting when you are no longer manic so you don’t become bored.
+%p Once you are no longer manic, you can either force yourself to continue to #{@subtypes.third.produce} at your manic rate — although it will be difficult because you will feel #{@subtypes.third.adverb} fatigued much sooner — or drop back to your pre-manic levels. In the latter case, you may find it difficult to #{@subtypes.third.consume} less after having gotten used to being able to #{@subtypes.third.consume} more when manic. If you can quickly modulate from #{@subtypes.third.consuming}, to #{@subtypes.first.consuming} while you #{@subtypes.third.consume}, to #{@subtypes.first.consuming} alone, you won’t #{@subtypes.third.consume} as much during the “get energy” part of your cycle.
+
+%h2 #{@subtypes.fourth.produce.capitalize} while #{@subtypes.second.producing}
+%p If you are #{@subtypes.second.producing} then you are in the “use energy” part of your cycle. Use the fact that you have started to #{@subtypes.second.produce} as your signal that it’s time to #{@subtypes.fourth.produce}.
+%p #{@subtypes.fourth.producing.capitalize} won’t be easy when you are depressed. It may take some trial and error to find something which doesn’t fatigue you. The more depressed you are, the harder it will be to find something easy enough not to distress you. Keep trying. It’s better to #{@subtypes.fourth.produce} and only use a little #{@subtypes.fourth.adjective} energy than to not #{@subtypes.fourth.produce} at all and use none. Especially when you are depressed and #{@subtypes.fourth.consuming} more. Just remember to switch back to something a little more difficult when you are no longer depressed so you don’t become bored.
+%p Once you are no longer depressed, you can either force yourself to continue to #{@subtypes.second.consume} at your depressed rate — although it will be difficult because you will feel #{@subtypes.second.adverb} overwhelmed much sooner — or drop back to your pre-depressed levels. In the latter case, you may find it difficult to #{@subtypes.second.produce} less after having gotten used to being able to #{@subtypes.second.produce} more when depressed. If you can quickly modulate from #{@subtypes.second.producing}, to #{@subtypes.fourth.producing} while you #{@subtypes.second.produce}, to #{@subtypes.fourth.producing} alone, you won’t #{@subtypes.second.produce} as much during the “use energy” part of your cycle.

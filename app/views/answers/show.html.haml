@@ -7,21 +7,22 @@
   Realm or Attitude will become unavailable.
   If you get stuck, you can
   =link_to "start over.", answer_path(Answer.first_path)
-
--Realm.all.in_groups_of(2) do |outter_row|
-  -outter_row.each do |realm|
-    %table
-      %caption #{realm.name} Realm
-      -realm.subtypes.in_groups_of(2) do |inner_row|
-        %tr
-        -inner_row.each do |subtype|
-          %td.top
-            %div{:class => @answer.css(subtype)}
-              -if @answer.css(subtype) == "free"
-                =link_to subtype.easy, answer_path(@answer.next(subtype))
-              -elsif @answer.css(subtype) == "chosen"
-                But
-                =subtype.easy
-              -else
-                =subtype.hard
-              =subtype.arrow
+%table
+  -Realm.all.in_groups_of(2) do |outter_row|
+    %tr
+      -outter_row.each do |realm|
+        %td
+          %table
+            %caption #{realm.name} Realm
+            -realm.subtypes.in_groups_of(2) do |inner_row|
+              %tr
+              -inner_row.each do |subtype|
+                %td.top
+                  %div{:class => @answer.css(subtype)}
+                    -if @answer.css(subtype) == "free"
+                      =link_to subtype.hard, answer_path(@answer.next(subtype))
+                    -elsif @answer.css(subtype) == "chosen"
+                      =subtype.hard
+                    -else
+                      =subtype.easier
+                    =subtype.arrow

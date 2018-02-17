@@ -1,61 +1,43 @@
 - content_for(:title, 'The Theory')
+%h2 Bipolar
+%p There are times in your life when you stop using energy in order to and get it, and other times in your life when you when you stop getting energy in order to use it.
+%p If you stop and get energy when you run out, get exactly as much as you used, start using energy when you have enough, and use exactly as much as you got, then you are balanced and stable.
+%p If any part of the cycle breaks down, then you are bipolar. Energy in no longer equals energy out. You are unbalanced and unstable.
 %table
-  %caption The Physical Cycle
-  %tr
-    %th When I am restless →
-    %td I stop eating
-    %td and start exercising ↓
-  %tr
-    %td ↑ and start eating
-    %td I stop exercising
-    %th ← When I am fatigued
-%p There are two States in the above diagram: “I am restless” and “I am fatigued”. If you don’t want to be restless, and are willing to take strong sedatives to keep from feeling so restless, then you can label that state “Mania”. If you don’t want to be fatigued, and are willing to take strong stimulants to keep from feeling so fatigued, then you can label that state “Depression”.
-%p There are four Transitions in the above diagram: “stop eating”, “start exercising”, “stop exercising”, and “start eating”. Each transition can be noticed by an individual as a change in behavior. Mania and depression aren’t merely feeling restless or fatigued. They are unwanted changes in behavior.
-%table
-  %caption The Four Physical Attitudes
-  %tr
-    %th
-    %th Attitudes about Eating
-    %th Attitudes about Exercising
-  %tr
-    %th Attitudes about Mania
-    %td.left I hate being manic because I stop eating. I want to eat!
-    %td.left I hate being manic because I start exercising. I don’t want to exercise!
-    %th
-  %tr
-    %th Attitudes about Depression
-    %td.left I hate being depressed because I start eating. I don’t want to eat!
-    %td.left I hate being depressed because I stop exercising. I want to exercise!
-%p Eating and exercising are not the only things we do. BipolarType defines four realms: #{Realm.all.map(&:name).to_sentence}.
-%table
-  %caption The Bipolar Cycle
+  %caption The Physical Bipolar Cycle
   %tr
     %th When I am manic →
-    %td.left I stop #{Realm.consumings}
-    %td.left and start #{Realm.producings} ↓
+    %td I don’t eat enough
+    %td and exercise too much
+    %th and lose fat ↓
   %tr
-    %td.left ↑ and start #{Realm.consumings}
-    %td.left I stop #{Realm.producings}
+    %th ↑ and gain fat
+    %td and eat too much
+    %td I don’t exercise enough
     %th ← When I am depressed
-%p A BipolarType is a personal set of attitudes. The one thing you hate the most during each transition.
+%p If physical energy was the only type of energy in your life, you could take stimulants when depressed which would force you to exercise more and eat less, and sedatives when manic which would force you to eat more and exercise less.
+%p Unfortunately, life isn’t that simple.
+%h2 Type
 %table
-  %caption My Bipolar Cycle
+  %caption The Complete Bipolar Cycle
   %tr
-    %th I hate being manic because →
-    %td.left I can’t empathize (I also can’t eat, but that’s a good thing, and I have enough reserves to go without learning or earning for a while)
-    %td.left and start spending (I also start thinking, but that’s a good thing, and I rarely communicate or exercise too much). ↓
+    %th When I am manic →
+    %td I #{Realm.consumes} less
+    %td and #{Realm.produces} more ↓
   %tr
-    %td.left ↑ and start eating (I also start empathizing and earning and learning, but those are all good things).
-    %td.left I stop thinking (I also stop spending, but that’s a good thing, and stop exercising and communicating, but that’s rarely a problem)
-    %th ← I hate being depressed because
-%p If I take sedatives for my mania so that I can empathize more and spend less, I eat more and think less. If I take stimulants for my depression so that I can eat less and think more, I empathize less and spend more. This is the difficulty with trying to treat a bipolar disorder. Whatever you do to “fix” one half of the problem aggravates the other half.
-%p BipolarType takes a different tack. Rather than trying to medicate away the mania or depression and hope that you don’t aggravate the other too badly, it looks at the cycle as a whole.
-%p If I’m manic, I stop empathizing and start spending. Rather than take sedatives, I can remember to start thinking. Thinking is something that I want to do. Being manic isn’t so bad if I can remember to use the time to think instead of bemoaning the fact that I can no longer empathize. Also, if I’m busy thinking I’m less likely to spend too much.
-%p If I’m depressed, I stop thinking. Rather than take stimulants, I can remember to start empathizing. Empathizing is something that I want to do. Being depressed isn’t so bad if I can remember to use the time to empathize instead of bemoaning the fact that I can no longer think. Also, if I’m busy empathizing I’m less likely to eat too much.
-%p
-  You have different things you want to do with your life, and so
-  =link_to "your BipolarType", answer_path(Answer.first_path)
-  is unlikely to be the same as
-  =succeed "." do
-    =link_to "my BipolarType", type_path(Type.my_path)
-
+    %td ↑ and #{Realm.consumes} more
+    %td I #{Realm.produces} less
+    %th ← When I am depressed
+%p Some of these symptoms will be easier for you to resist than others. For example, you may be able to force yourself to eat more or walk less when manic, but not eat less and walk more when depressed. In this case, you will manifest with physical depression. On the other hand, if you are able to force yourself to eat less and walk more when depressed, but not eat more and walk less with manic, you will manifest with physical mania.
+%p The difficulty with trying to treat a bipolar disorder is that whatever you do to fix one half of the problem aggravates the other half. If you take stimulants to treat depression in one realm, you’re likely to agravate mania in another. If you take sedatives to treat mania in one realm, you end up agravating depression in another.
+%h2 BipolarType
+%p A BipolarType is the set of symptoms — one per realm — which is the most difficult for you to resist. Most of my family is bipolar; we don’t all have the same issues because we have different BipolarTypes.
+%table
+  %caption My BipolarType
+  %tr
+    %td.right I don’t #{Realm.f.consume} enough (#{Realm.f.adjective} mania) →
+    %td.left ↓ and #{Realm.t.produce} too much (#{Realm.t.adjective} mania)
+  %tr
+    %td.right and #{Realm.s.consume} too much (#{Realm.s.adjective} depression) ↑
+    %td.left ← I don’t #{Realm.n.produce} enough (#{Realm.n.adjective} depression)
+%p Even if you are not bipolar, if you ever use caffeine (a stimulant) or alcohol (a sedative) then you may find BipolarType useful.

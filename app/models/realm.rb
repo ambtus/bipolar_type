@@ -1,14 +1,14 @@
 class Realm < Concept
 
-  ADJECTIVES = %w{physical mental emotional financial}
-  CONSUMES = %w{eat watch listen sell}
-  PRODUCES = %w{walk think talk buy}
-  CONSUMEDS = %w{ate saw heard earned}
-  PRODUCEDS = %w{exercised decided talked spent}
+  ADJECTIVES = %w{physical mental spiritual material}
+  CONSUMES = %w{eat watch listen take}
+  PRODUCES = %w{move think talk give}
+  CONSUMEDS = %w{ate learned heard earned}
+  PRODUCEDS = %w{exercised decided said bought}
   ORGANS = %w{body mind voice credit}
   ########
 
-  ACRONYMS = ADJECTIVES.map(&:first)
+  ACRONYMS = %w{s n f t}
   ALL = ACRONYMS.collect {|letter| self.new letter}
   ACRONYMS.each do |letter|
     define_singleton_method(letter) {ALL[ACRONYMS.index(letter)]}
@@ -28,6 +28,7 @@ class Realm < Concept
   def organ; ORGANS[index]; end
 
   def consume; CONSUMES[index]; end
+  def overwhelmed; OVERWHELMEDS[index]; end
   def consumed; CONSUMEDS[index]; end
   def produce; PRODUCES[index]; end
   def produced; PRODUCEDS[index]; end
@@ -35,7 +36,7 @@ class Realm < Concept
   def consuming; consume.gsub(/e$/, '') + "ing"; end
   def producing; produce.gsub(/e$/, '') + "ing"; end
 
-  def self.consumings; ALL.map(&:consuming).to_sentence; end
-  def self.producings; ALL.map(&:producing).to_sentence; end
+  def self.consumes; ALL.map(&:consume).to_sentence; end
+  def self.produces; ALL.map(&:produce).to_sentence; end
 
 end

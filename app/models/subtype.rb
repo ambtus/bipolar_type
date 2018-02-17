@@ -35,22 +35,19 @@ class Subtype
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def transition
+  def symptom
     case attitude.path
     when "a"
-      "stop #{consuming}"
+      "keep #{consuming}"
     when "b"
-      "start #{producing}"
-    when "c"
       "stop #{producing}"
+    when "c"
+      "keep #{producing}"
     when "d"
-      "start #{consuming}"
+      "stop #{consuming}"
     end
   end
 
-  def indifferent; "I don’t hate myself when I #{transition}"; end
-  def hate; "I hate myself when I #{transition}"; end
-
-  def easy; "I always want to #{transition}"; end
-  def hard; "I don’t always want to #{transition}"; end
+  def hard; "It’s hard for me to #{symptom}"; end
+  def easier; "It’s not too hard for me to #{symptom}"; end
 end
