@@ -1,18 +1,34 @@
 - content_for(:title, @name)
 %table
-  %caption My Bipolar Issues
+  %caption My Issues
   %tr
     %td.left=@subtypes.first.hard
     %td.left=@subtypes.second.hard
   %tr
     %td.left=@subtypes.third.hard
     %td.left=@subtypes.fourth.hard
-%h2 #{@subtypes.first.consume.capitalize} while #{@subtypes.third.consuming}
-%p If you are #{@subtypes.third.consuming} then you are in the “get energy” part of your cycle. Use the fact that you have started to #{@subtypes.third.consume} as your signal that it’s time to #{@subtypes.first.consume}.
-%p #{@subtypes.first.consuming.capitalize} won’t be easy when you are manic. It may take some trial and error to find something which doesn’t overwhelm you. The more manic you are, the harder it will be to find something bland enough not to distress you. Keep trying. It’s better to #{@subtypes.first.consume} and only get a little #{@subtypes.first.adjective} energy than to not #{@subtypes.first.consume} at all and get none. Especially when you are manic and #{@subtypes.first.producing} more. Just remember to switch back to something a little more interesting when you are no longer manic so you don’t become bored.
-%p Once you are no longer manic, you can either force yourself to continue to #{@subtypes.third.produce} at your manic rate — although it will be difficult because you will feel #{@subtypes.third.adverb} fatigued much sooner — or drop back to your pre-manic levels. In the latter case, you may find it difficult to #{@subtypes.third.consume} less after having gotten used to being able to #{@subtypes.third.consume} more when manic. If you can quickly modulate from #{@subtypes.third.consuming}, to #{@subtypes.first.consuming} while you #{@subtypes.third.consume}, to #{@subtypes.first.consuming} alone, you won’t #{@subtypes.third.consume} as much during the “get energy” part of your cycle.
+%h2 Mania
+%p When you are manic you are blessed because you #{@subtypes.fourth.produce} more and #{@subtypes.third.consume} less and cursed because you #{@subtypes.second.produce} more and #{@subtypes.first.consume} less.
+%p You cannot sedate yourself in order to #{@subtypes.second.produce} less or #{@subtypes.first.consume} more or you will lose your ability to #{@subtypes.fourth.produce}.
+%p So, if you cannot take sedatives, how do you prevent yourself from #{@subtypes.second.producing} too much? By not having any excess #{@subtypes.second.adjective} energy. You must not #{@subtypes.second.consume} too much when you are depressed. You don’t actually want to #{@subtypes.second.consume} more, so resist the temptation. You will probably #{@subtypes.second.consume} more anyway, but don’t take advantage of the situation in order to #{@subtypes.second.consume} even more.
+%p And, if you cannot take sedatives, how do you prevent yourself from #{@subtypes.first.consuming} too little (and, incidently, inducing the next depression)? By changing your #{@subtypes.first.consuming} habits a bit until you find something bland enough not to overwhelm you.
+%p Finally, there is no point in stimulating yourself to become manic and #{@subtypes.third.consume} less. Take advantage of the mania to #{@subtypes.third.consume} less when it occurs, but don’t rely on it. Anything good enough will tempt you to #{@subtypes.third.consume} even when you are manic.
+%h2 Depression
+%p When you are depressed you are blessed because you can #{@subtypes.first.consume} more and #{@subtypes.second.produce} less and cursed because you #{@subtypes.third.consume} more and #{@subtypes.fourth.produce} less.
+%p You cannot stimulate yourself in order to #{@subtypes.third.consume} less or #{@subtypes.fourth.produce} more or you will lose your ability to #{@subtypes.first.consume}.
+%p So, if you cannot take stimulants, how do you prevent yourself from #{@subtypes.third.consuming} too much? By not having any excess #{@subtypes.third.adjective} strength. You must not #{@subtypes.third.produce} too much when you are manic. You don’t actually want to #{@subtypes.third.produce} more, so resist the temptation. You will probably #{@subtypes.third.produce} more anyway, but don’t take advantage of the situation in order to #{@subtypes.third.produce} even more.
+%p And, if you cannot take stimulants, how do you prevent yourself from #{@subtypes.fourth.producing} too little (and, incidently, inducing the next mania)? By changing your #{@subtypes.fourth.producing} habits a bit until you find something easy enough not to fatigue you.
+%p Finally, there is no point in sedating yourself to become depressed and #{@subtypes.second.produce} less. Take advantage of the depression to #{@subtypes.second.produce} less when it occrus, but don’t rely on it. Anything good enough will tempt you to #{@subtypes.second.produce} even when you are depressed.
+%h2 While Manic
+%ul
+  %li When you are manic, #{@subtypes.fourth.produce} as much as you can. It’s why you are manic. You need to #{@subtypes.fourth.produce}. When you have #{@subtypes.fourth.produced} enough the mania will end.
+  %li Resist the urge to #{@subtypes.second.produce}, which will be easier if you resisted the urge to #{@subtypes.second.consume} while depressed.
+  %li Take advantage of the mania to #{@subtypes.third.consume} less, but don’t rely on it, it won’t hold up to temptation. Do not #{@subtypes.third.produce} more, it will just make it harder not to #{@subtypes.third.consume} too much when depressed.
+  %li Find something really bland and undistressing so you can continue to #{@subtypes.first.consume}. Do not allow yourself to stop #{@subtypes.first.consuming} just because you feel stressed and overwhelmed. If you don’t #{@subtypes.first.consume} enough you will merely trigger the next depressive episode sooner.
+%h2 While Depressed
+%ul
+  %li When you are depressed, #{@subtypes.first.consume} as much as you can. It’s why you are depressed. You need to #{@subtypes.first.consume}. When you have #{@subtypes.first.consumed} enough the depression will end.
+  %li Resist the urge to #{@subtypes.third.consume}, which will be easier if you resisted the urge to #{@subtypes.third.produce} while manic.
+  %li Take advantage of the depression to #{@subtypes.second.produce} less, but don’t rely on it, it won’t hold up to temptation. Do not #{@subtypes.second.consume} more, it will just make it harder not to #{@subtypes.second.produce} too much when manic.
+  %li Find something really simple and easy so you can continue to #{@subtypes.fourth.produce}. Do not allow yourself to stop #{@subtypes.fourth.producing} just because you feel tired and fatigued. If you don’t #{@subtypes.fourth.produce} enough you will merely trigger the next manic episode sooner.
 
-%h2 #{@subtypes.fourth.produce.capitalize} while #{@subtypes.second.producing}
-%p If you are #{@subtypes.second.producing} then you are in the “use energy” part of your cycle. Use the fact that you have started to #{@subtypes.second.produce} as your signal that it’s time to #{@subtypes.fourth.produce}.
-%p #{@subtypes.fourth.producing.capitalize} won’t be easy when you are depressed. It may take some trial and error to find something which doesn’t fatigue you. The more depressed you are, the harder it will be to find something easy enough not to distress you. Keep trying. It’s better to #{@subtypes.fourth.produce} and only use a little #{@subtypes.fourth.adjective} energy than to not #{@subtypes.fourth.produce} at all and use none. Especially when you are depressed and #{@subtypes.fourth.consuming} more. Just remember to switch back to something a little more difficult when you are no longer depressed so you don’t become bored.
-%p Once you are no longer depressed, you can either force yourself to continue to #{@subtypes.second.consume} at your depressed rate — although it will be difficult because you will feel #{@subtypes.second.adverb} overwhelmed much sooner — or drop back to your pre-depressed levels. In the latter case, you may find it difficult to #{@subtypes.second.produce} less after having gotten used to being able to #{@subtypes.second.produce} more when depressed. If you can quickly modulate from #{@subtypes.second.producing}, to #{@subtypes.fourth.producing} while you #{@subtypes.second.produce}, to #{@subtypes.fourth.producing} alone, you won’t #{@subtypes.second.produce} as much during the “use energy” part of your cycle.

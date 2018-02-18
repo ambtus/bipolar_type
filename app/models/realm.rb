@@ -1,10 +1,10 @@
 class Realm < Concept
 
   ADJECTIVES = %w{physical mental spiritual material}
-  CONSUMES = %w{eat watch listen take}
-  PRODUCES = %w{move think talk give}
+  CONSUMES = %w{eat learn listen earn}
+  PRODUCES = %w{move think talk spend}
   CONSUMEDS = %w{ate learned heard earned}
-  PRODUCEDS = %w{exercised decided said bought}
+  PRODUCEDS = %w{done thought said bought}
   ORGANS = %w{body mind voice credit}
   ########
 

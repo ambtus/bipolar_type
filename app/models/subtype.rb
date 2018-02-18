@@ -38,16 +38,16 @@ class Subtype
   def symptom
     case attitude.path
     when "a"
-      "keep #{consuming}"
+      "to #{consume} enough"
     when "b"
-      "stop #{producing}"
+      "not to #{produce} too much"
     when "c"
-      "keep #{producing}"
+      "#{produce} enough"
     when "d"
-      "stop #{consuming}"
+      "not to #{consume} too much"
     end
   end
 
-  def hard; "It’s hard for me to #{symptom}"; end
-  def easier; "It’s not too hard for me to #{symptom}"; end
+  def hard; "It’s hard for me #{symptom}"; end
+  def easier; "It’s not hard for me #{symptom}"; end
 end
