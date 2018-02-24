@@ -26,7 +26,7 @@ class Subtype
 
   def <=>(other); attitude.index <=> other.attitude.index; end
 
-  def path; [@realm.path, @attitude.path].join; end
+  def path; [@attitude.path.first, @realm.path, @attitude.path.second].join; end
   def inspect; path; end
   def symbol; path.upcase; end
 
@@ -35,19 +35,7 @@ class Subtype
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def symptom
-    case attitude.path
-    when "a"
-      "to #{consume} enough"
-    when "b"
-      "not to #{produce} too much"
-    when "c"
-      "#{produce} enough"
-    when "d"
-      "not to #{consume} too much"
-    end
-  end
+  def name; [attitude.first, realm.name, attitude.second].join(" "); end
 
-  def hard; "It’s hard for me #{symptom}"; end
-  def easier; "It’s not hard for me #{symptom}"; end
+
 end

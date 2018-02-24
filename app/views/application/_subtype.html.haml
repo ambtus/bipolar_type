@@ -1,0 +1,22 @@
+%h3 Mania
+-case subtype.attitude.path
+  -when "s", "d"
+    %p It’s okay to stop #{subtype.consuming} after you have #{subtype.consumen} as much as you want.
+    %p It’s also okay to wake up in the middle of the night and #{subtype.produce} for a little while if you feel unusually restless.
+  -when "m", "i"
+    %p It’s not okay to stop #{subtype.consuming} just because you feel #{subtype.overwhelmed}.
+    %p
+      Taking sedatives or overtaxing your #{subtype.overtax} may not be good for you, but it’s
+      %em necessary
+      in order to #{subtype.consume} all day long without #{subtype.producing} all night.
+%h3 Depression
+-case subtype.attitude.path
+  -when "s", "m"
+    %p It’s okay to stop #{subtype.producing} after you have #{subtype.producen} as much as you want.
+    %p It’s even okay to take a short nap in the middle of the day if you feel unusually tired.
+  -when "d", "i"
+    %p It’s not okay to stop #{subtype.producing} just because you feel tired.
+    %p
+      Taking stimulants or binging on #{subtype.binge} may not be good for you, but it’s
+      %em necessary
+      in order to #{subtype.produce} all day long without napping.

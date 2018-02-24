@@ -1,0 +1,9 @@
+- content_for(:title, @name)
+%p.center=render "header"
+%table
+  %tr
+    -@subtypes.each do |subtype|
+      %th.quarter=link_to subtype.name, subtype_path(subtype.path)
+  %tr
+    -@subtypes.each do |subtype|
+      %td=render "subtype", subtype: subtype

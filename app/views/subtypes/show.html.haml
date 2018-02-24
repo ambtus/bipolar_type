@@ -2,4 +2,5 @@
 %div.center
   =link_to @subtype.name, realm_path(@subtype.realm.path)
   |
-  =link_to @subtype.problem, attitude_path(@subtype.attitude.path)
+  =link_to @subtype.name, attitude_path(@subtype.attitude.path)
+=render "subtype", subtype: @subtype

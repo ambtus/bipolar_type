@@ -1,43 +1,33 @@
 - content_for(:title, 'The Theory')
-%h2 Bipolar
-%p There are times in your life when you stop using energy in order to and get it, and other times in your life when you when you stop getting energy in order to use it.
-%p If you stop and get energy when you run out, get exactly as much as you used, start using energy when you have enough, and use exactly as much as you got, then you are balanced and stable.
-%p If any part of the cycle breaks down, then you are bipolar. Energy in no longer equals energy out. You are unbalanced and unstable.
-%table
-  %caption The Physical Bipolar Cycle
-  %tr
-    %th When I am manic →
-    %td I don’t eat enough
-    %td and exercise too much
-    %th and lose fat ↓
-  %tr
-    %th ↑ and gain fat
-    %td and eat too much
-    %td I don’t exercise enough
-    %th ← When I am depressed
-%p If physical energy was the only type of energy in your life, you could take stimulants when depressed which would force you to exercise more and eat less, and sedatives when manic which would force you to eat more and exercise less.
-%p Unfortunately, life isn’t that simple.
-%h2 Type
-%table
-  %caption The Complete Bipolar Cycle
-  %tr
-    %th When I am manic →
-    %td I #{Realm.consumes} less
-    %td and #{Realm.produces} more ↓
-  %tr
-    %td ↑ and #{Realm.consumes} more
-    %td I #{Realm.produces} less
-    %th ← When I am depressed
-%p Some of these symptoms will be easier for you to resist than others. For example, you may be able to force yourself to eat more or walk less when manic, but not eat less and walk more when depressed. In this case, you will manifest with physical depression. On the other hand, if you are able to force yourself to eat less and walk more when depressed, but not eat more and walk less with manic, you will manifest with physical mania.
-%p The difficulty with trying to treat a bipolar disorder is that whatever you do to fix one half of the problem aggravates the other half. If you take stimulants to treat depression in one realm, you’re likely to agravate mania in another. If you take sedatives to treat mania in one realm, you end up agravating depression in another.
-%h2 BipolarType
-%p A BipolarType is the set of symptoms — one per realm — which is the most difficult for you to resist. Most of my family is bipolar; we don’t all have the same issues because we have different BipolarTypes.
-%table
-  %caption My BipolarType
-  %tr
-    %td.right I don’t #{Realm.f.consume} enough (#{Realm.f.adjective} mania) →
-    %td.left ↓ and #{Realm.t.produce} too much (#{Realm.t.adjective} mania)
-  %tr
-    %td.right and #{Realm.s.consume} too much (#{Realm.s.adjective} depression) ↑
-    %td.left ← I don’t #{Realm.n.produce} enough (#{Realm.n.adjective} depression)
-%p Even if you are not bipolar, if you ever use caffeine (a stimulant) or alcohol (a sedative) then you may find BipolarType useful.
+%h2 The Why
+%p I had three goals:
+%ol
+  %li Don’t kill yourself.
+  %li Get out of debt and stay out of debt (unless the alternative is suicide).
+  %li Lose 120 pounds and keep it off (unless the alternative is committing suicide or incuring debt).
+%p The first thing to notice is that getting out of debt and losing fat are both getting rid of something unwanted and burdensome, but they aren’t the same kind of thing.
+%p There are two aspects to the health of a system. How much strength it has and how much energy it has in reserve. The strength of the system can be measured by the size and power of the engine: debt and muscle are both measures of strength. The energy reserves of the system can be measured by the capacity and level of the fuel tank: savings and fat are both measures of energy reserves. I want to decrease my debt, not my savings; decrease my fat, not my muscle.
+%p Given that I believe I become suicidal when I run out of emotional reserves (not emotional strength),  let me rephrase my goals as:
+%ol
+  %li Increase your emotional reserves.
+  %li Decrease your financial strength (unless it negatively affects your emotional health).
+  %li Decrease your physical reserves (unless it negatively affects your emotional or financial health).
+%p Working on this theory is something I do in order to achieve my three goals and requires mental strength, but my mental health isn’t even on the list. I believe that’s because increasing my mental health is no longer a goal, because I’ve already achieved it.
+%p
+  It was my highest priority in the past, but a problem solved is no longer a priority. Nevertheless, I expect it would quickly take first place again if things changed, so my BipolarType is
+  =succeed "." do
+    =link_to Type.my_type.name, type_path(Type.my_path)
+%h2 The How
+%p If my goal is to decrease physical reserves, I need to know how I got so many in the first place.
+%p The BipolarType theory is that there are two pattens of behavior that people tend to follow.
+%p Some people wake up in the morning, start walking, and stop to eat when they are finished doing whatever they wanted to do.
+%p Some people wake up in the morning, start eating, and stop to walk when they are finished eating whatever they wanted to eat.
+%p If the day ended
+%h3 Increase Strength or Decrease Reserves
+%p Wake in the morning and start splurging. Later in the day, feel fatigued and start binging. After binging feel restless, but it’s late in the day and not the right time to be splurging. Wait a while or take sedatives and the restlessness will decrease as the excess energy from the binge is deposited into reserves and you will no longer feel like splurging and will be able to fall asleep and stay asleep.
+%p Option A: push yourself on to increase strength. Instead of waiting for the restlessness to go away or taking sedatives at the end of the day, stay up and start splurging again. Go to bed feeling fatigued and your strength will increase.
+%p Option B: hold yourself back to decrease reserves. Backtrack. You have too many reserves because you felt restless but didn’t splurge; you felt restless because you binged; you binged because you felt fatigued; you felt fatigued because you splurged in the morning. If you hold yourself back in the morning, and don’t splurge, you won’t binge, or feel restless, or require sedatives to sleep, or gain unwanted reserves. You can prevent yourself from splurging in the morning fairly easily, because you didn’t binge beforehand. It’s harder to stop the cycle in the middle and prevent yourself from binging in the afternoon if you’ve already splurged.
+%h3 Increase Reserves or Decrease Strength
+%p Wake in the morning and start binging. Later in the day, feel restless and start splurging. After splurging feel empty, but it’s late in the day and not the right time to be binging. Wait a while or take sedatives and the hunger will decrease as the energy deficit from the splurge is withdrawn from reserves and you will no longer feel like binging and will be able to fall asleep and stay asleep.
+%p Option A: push yourself on to increase reserves. Instead of waiting for the hunger to go away or taking sedatives at the end of the day, stay up and start binging again. Go to bed feeling full and your reserves will increase.
+%p Option B: hold yourself back to decrease strength. Backtrack. You have too much strength because you felt restless but didn’t splurge; you felt restless because you binged; you binged because you felt fatigued; you felt fatigued because you splurged in the morning. If you hold yourself back in the morning, and don’t splurge, you won’t binge, or feel restless, or require sedatives to sleep, or gain unwanted reserves. You can prevent yourself from splurging in the morning fairly easily, because you didn’t binge beforehand. It’s harder to stop the cycle in the middle and prevent yourself from binging in the afternoon if you’ve already splurged.
