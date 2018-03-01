@@ -2,16 +2,12 @@
 %table
   %tr
     %th
-      -State.all.each do |state|
-        %th=link_to state.name, state_path(state.path)
+      -Attitude.all.each do |attitude|
+        %th=link_to attitude.name, attitude_path(attitude.path)
   -Realm.all.each do |realm|
     %tr
       %th=link_to realm.name, realm_path(realm.path)
       -realm.subtypes.each do |subtype|
         %td.top
           =link_to subtype.name, subtype_path(subtype.path)
-          %div.center
-            if
-            =subtype.cause
-            then
-            =subtype.effect
+          %p=render "subtype", subtype: subtype

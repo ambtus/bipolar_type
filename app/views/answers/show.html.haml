@@ -1,8 +1,36 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
+%p
+  Once you have
+  %span.chosen chosen
+  something, the other choices in the
+  %span.warning same
+  Realm or Attitude will become unavailable.
+%p.center
+  If you get stuck, you can
+  =link_to_unless_current "start over", answer_path(Answer.first_path)
+  or
+  -if @by_attitude
+    =link_to "transpose", url_for(params.merge(:sort => "r"))
+    -concepts = Realm.all
+    -inner = Attitude
+  -else
+    =link_to "transpose", url_for(params.merge(:sort => "a"))
+    -concepts = Attitude.all
+    -inner = Realm
+  the table.
 %table
-  %caption Your #{@realm.name} Goal
-  -@subtypes.in_groups_of(2) do |row|
+  %tr
+    %th
+    -inner.all.each do |header|
+      %th=header.name
+  -concepts.each do |concept|
     %tr
-      -row.each do |subtype|
-        %td
-          =link_to subtype.name, answer_path(@answer.next(subtype))
+      %th #{concept.name}
+      -concept.subtypes.each do |subtype|
+        %td.quarter.none
+          %div{:class => @answer.css(subtype)}
+            -if @answer.css(subtype) == "free"
+              =link_to subtype.name, answer_path(@answer.next(subtype))
+              %p=render "subtype", subtype: subtype
+            -else
+              =subtype.name

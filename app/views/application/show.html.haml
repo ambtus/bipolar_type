@@ -6,4 +6,4 @@
       %th.quarter=link_to subtype.name, subtype_path(subtype.path)
   %tr
     -@subtypes.each do |subtype|
-      %td=render "subtype", subtype: subtype
+      %td.top.left=render "subtype", subtype: subtype

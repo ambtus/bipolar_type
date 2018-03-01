@@ -4,18 +4,34 @@ class Answer
   def self.first; Answer.new(first_path); end
 
   def initialize(string)
-    @question,attitudes = string.split(":")
-    @attitude_paths = attitudes || ""
+    @question,subtypes = string.split(":")
+    @subtype_paths = (subtypes || "").split("-")
   end
-  attr_reader :question, :attitude_paths
+  attr_reader :question, :subtype_paths
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
   def realm; Realm.all[index]; end
   def finished?; number > 4; end
 
-  def next(subtype); "#{question.next}:#{attitude_paths}#{subtype.attitude.path}"; end
+  def chosen; subtype_paths.collect{|path| Subtype.send(path)}; end
+  def subtypes; chosen[0,4].sort; end
+  def constrained; chosen.map(&:siblings).flatten.uniq; end
 
-  def type_path; attitude_paths; end
+  def css(subtype)
+    if chosen.include? subtype
+      "chosen"
+    elsif constrained.include? subtype
+      "warning"
+    else
+      "free"
+    end
+  end
+
+  def all(subtype); chosen << subtype; end
+  def paths(subtype); all(subtype).map(&:path).join('-'); end
+  def next(subtype); "#{question.next}:#{paths(subtype)}"; end
+
+  def type_path; subtypes.map(&:realm).map(&:path).join; end
 
 end
