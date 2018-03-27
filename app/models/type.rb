@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "sfnt"; end
+  def self.my_path; Realm.paths.join; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)

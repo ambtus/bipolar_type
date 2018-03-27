@@ -14,14 +14,9 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  def adjective; %w{fatigued producer consumer overwhelmed}[index]; end
-  def name; adjective.capitalize; end
-  def symbol; name.first; end
+  def episode; %w{depression lethargy hypomania mania}[index]; end
+  def name; episode.titleize; end
 
-  def happy?; %w{b c}.include? path; end
-  def mood; happy? ? "public" : "unhappy"; end
-  def consumer?; index.even? ; end
-  def role; consumer? ? "consumer" : "producer"; end
+  def goal; index < 2 ? "strong" : "fat"; end
 
-  def description; [mood, role].join(" "); end
 end

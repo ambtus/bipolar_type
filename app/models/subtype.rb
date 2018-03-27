@@ -36,7 +36,10 @@ class Subtype
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def description; realm.send(attitude.adjective); end
+  def description; [adjective, episode].join(" "); end
   def name; description.titleize; end
 
+  def types; Type.all.select{|t| t.subtypes.include?(self)}; end
+
+  def goal; realm.send(attitude.goal); end
 end

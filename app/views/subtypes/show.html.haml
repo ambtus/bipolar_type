@@ -1,6 +1,21 @@
 - content_for(:title, "#{@name}")
 %div.center
-  =link_to @subtype.name, realm_path(@subtype.realm.path)
+  =link_to @subtype.realm.name, realm_path(@subtype.realm.path)
   |
-  =link_to @subtype.name, attitude_path(@subtype.attitude.path)
-=render "subtype", subtype: @subtype
+  =link_to @subtype.attitude.name, attitude_path(@subtype.attitude.path)
+%p=render "subtype", subtype: @subtype
+%table
+  %caption
+    I want to be
+    =@subtype.goal
+    and…
+  -@subtype.types.in_groups_of(2) do |row|
+    %tr
+      -row.each do |type|
+        %td
+          =link_to type.name, type_path(type.path)
+          %br
+          -(type.subtypes - [@subtype]).each do |subtype|
+            =subtype.goal
+
+

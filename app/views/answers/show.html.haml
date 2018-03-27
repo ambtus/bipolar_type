@@ -1,26 +1,25 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-%p
+%p.center
   Once you have
   %span.chosen chosen
   something, the other choices in the
   %span.warning same
   Realm or Attitude will become unavailable.
-%p.center
-  If you get stuck, you can
-  =link_to_unless_current "start over", answer_path(Answer.first_path)
-  or
-  -if @by_attitude
-    =link_to "transpose", url_for(params.merge(:sort => "r"))
-    -concepts = Realm.all
-    -inner = Attitude
-  -else
-    =link_to "transpose", url_for(params.merge(:sort => "a"))
-    -concepts = Attitude.all
-    -inner = Realm
-  the table.
+-unless @answer.number == 1
+  %p.center
+    If you get stuck, you can
+    =link_to_unless_current "start over", answer_path(Answer.first_path)
 %table
   %tr
     %th
+      -if @by_attitude
+        =link_to "Transpose", url_for(params.merge(:sort => "r"))
+        -concepts = Realm.all
+        -inner = Attitude
+      -else
+        =link_to "Transpose", url_for(params.merge(:sort => "a"))
+        -concepts = Attitude.all
+        -inner = Realm
     -inner.all.each do |header|
       %th=header.name
   -concepts.each do |concept|

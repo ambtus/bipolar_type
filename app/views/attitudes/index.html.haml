@@ -1,13 +1,9 @@
-- content_for(:title, "The Four States")
-%p=render "energies/links"
+- content_for(:title, "The Four Attitudes")
 %table
-  -State.all.in_groups_of(2) do |row|
+  %tr
+    -Attitude.all.each do |attitude|
+      %th=link_to attitude.name, attitude_path(attitude.path)
+  -%w{  }.each do |word|
     %tr
-      -row.each do |state|
-        %td.top
-          =link_to state.name, state_path(state.path)
-          %div
-            if
-            =state.cause
-            then
-            =state.effect
+      -Attitude.all.each do |attitude|
+        %td=attitude.send(word)
