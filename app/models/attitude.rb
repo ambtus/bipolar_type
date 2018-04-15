@@ -1,7 +1,7 @@
 class Attitude < Concept
 
   ########
-  ACRONYMS = %w{a b c d}
+  ACRONYMS = %w{uc oc up op}
   ALL = ACRONYMS.collect {|letter| self.new letter}
   ACRONYMS.each do |letter|
     define_singleton_method(letter) {ALL[ACRONYMS.index(letter)]}
@@ -14,9 +14,11 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  def episode; %w{depression lethargy hypomania mania}[index]; end
-  def name; episode.titleize; end
+  def u_or_o; path.first == "u" ? "under" : "over"; end
+  def c_or_p; path.second == "p" ? "consume" : "produce"; end
+  def description; [u_or_o, c_or_p].join(" "); end
 
-  def goal; index < 2 ? "strong" : "fat"; end
+  def result; %w{manic fat depressed strong}[index]; end
+  def name; result.titleize; end
 
 end

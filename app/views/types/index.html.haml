@@ -3,21 +3,15 @@
   -Type.all.in_groups_of(6) do |mania|
     %tr
       %th{rowspan: 2}
-        not
-        =mania.first.subtypes.first.strong
-        enough
+        =mania.first.subtypes.first.name
       -mania.in_groups_of(2) do |depression|
         %th{colspan: 2}
-          not
-          =depression.first.subtypes.last.fat
-          enough
+          =depression.first.subtypes.third.name
       %tr
         -mania.in_groups_of(2) do |depression|
           -depression.each do |type|
             %td
               =link_to type_path(type.path) do
-                =type.subtypes.second.strong
+                =type.subtypes.second.name
                 &
-                =type.subtypes.third.fat
-
-
+                =type.subtypes.fourth.name
