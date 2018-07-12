@@ -1,0 +1,29 @@
+- content_for(:title, @name)
+%h2 The Four Attitudes
+=render "attitudes/links"
+%p BipolarType defines two states and four attitudes. The two states are mania and depression. Each state has an unstressed and a stressed attitude.
+%table
+  %tr
+    %th.half Mania
+    %th.half Depression
+  %tr
+    %td.left.top During mania, a person is goal oriented. They use energy to achieve goals and although they may pause to get energy, they find it hard to appreciate resources.
+    %td.left.top During depression, a person is resource oriented. They use resources to get energy and although they may pause to use energy, they find it hard to achieve goals.
+  %tr
+    %td.left.top The unstressed manic attitude is #{Attitude.first.name}. You have goals, you have an energy surplus, and you use that surplus in order to achieve those goals.
+    %td.left.top The unstressed depressed attitude is #{Attitude.third.name}. You have resources, you have an energy deficit, and you appreciate those resources in order to achieve happiness.
+  %tr
+    %td.left.top The stressed manic attitude is #{Attitude.second.name}. You still have goals but you no longer have an energy surplus. The conflict between wanting to use energy and having to get energy is stressful. You become less #{Attitude.first.noun} (using energy) and more #{Attitude.second.noun} (getting energy) as your energy surplus disappears.  You get more and more energy, but it does not make you feel #{Attitude.third.noun} because you aren’t appreciating resources, you’re just getting energy.
+    %td.left.top The stressed depressed attitude is #{Attitude.fourth.name}. You still have resources but you no longer have an energy deficit. The conflict between wanting to get energy and having to use energy is stressful. You become less #{Attitude.third.noun} (getting energy) and more #{Attitude.fourth.noun} (using energy) as your energy deficit disappears. You use more and more energy, but it does not make you feel #{Attitude.first.noun} because you aren’t achieving goals, you’re just using energy.
+%h2 The Four Realms
+%p BipolarType defines four realms, each centered around a different kind of energy. Each realm has goals which require the use of energy and resources from which you can get energy. Each realm has energy reserves which can store an energy surplus or fuel an energy deficit.
+%table
+  %tr
+    %th
+    -Realm.all.each do |realm|
+      %th=link_to realm.name, realm_path(realm.path)
+  -%w{ energy reserves resources goals  }.each do |word|
+    %tr
+      %th=word + ":"
+      -Realm.all.each do |realm|
+        %td=realm.send(word)
