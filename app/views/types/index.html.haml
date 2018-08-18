@@ -1,17 +1,22 @@
 - content_for(:title, 'The Twenty Four BipolarTypes')
 %table
-  -Type.all.in_groups_of(6) do |mania|
+  -Type.all.in_groups_of(6) do |anorexia|
     %tr
       %th{rowspan: 2}
-        =mania.first.subtypes.first.name
-      -mania.in_groups_of(2) do |depression|
+        =anorexia.first.subtypes.first.adjective
+        anorexia
+      -anorexia.in_groups_of(2) do |mania|
         %th{colspan: 2}
-          =depression.first.subtypes.third.name
+          =mania.first.subtypes.second.adjective
+          mania
       %tr
-        -mania.in_groups_of(2) do |depression|
-          -depression.each do |type|
+        -anorexia.in_groups_of(2) do |mania|
+          -mania.each do |type|
             %td
-              =link_to type_path(type.path) do
-                =type.subtypes.second.name
-                &
-                =type.subtypes.fourth.name
+              =type.subtypes.third.adjective
+              depression
+              %br
+              =link_to type.name, type_path(type.path)
+              %br
+              =type.subtypes.fourth.adjective
+              obesity

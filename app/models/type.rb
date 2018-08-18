@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "fsnt"; end
+  def self.my_path; "cdba"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -17,6 +17,6 @@ class Type
 
   def name; symbol; end
 
-  def self.all;Realm.paths.permutation(4).sort_by{|x| [x.first, x.third]}.map(&:join).collect{|p| new(p)};end
+  def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
 
 end

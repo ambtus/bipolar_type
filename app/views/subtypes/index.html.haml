@@ -3,11 +3,11 @@
   %tr
     %th
       -Attitude.all.each do |attitude|
-        %th=link_to attitude.name, attitude_path(attitude.path)
+        %th.quarter=link_to attitude.name, attitude_path(attitude.path)
   -Realm.all.each do |realm|
     %tr
       %th=link_to realm.name, realm_path(realm.path)
       -realm.subtypes.each do |subtype|
         %td.top
           =link_to subtype.name, subtype_path(subtype.path)
-          %p Wants to be #{subtype.goal} which is hard when #{subtype.good_behavior} is difficult because you are #{subtype.problem}.
+          %p=render "subtype", subtype: subtype

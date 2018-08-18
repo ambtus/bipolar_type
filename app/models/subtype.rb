@@ -1,8 +1,9 @@
 class Subtype
 
-  def initialize(array)
-    @realm = array.first
-    @attitude = array.second
+  def initialize(pair)
+    @pair = pair
+    @realm = pair.first
+    @attitude = pair.second
   end
   attr_reader :realm, :attitude
 
@@ -26,21 +27,17 @@ class Subtype
 
   def <=>(other); attitude.index <=> other.attitude.index; end
 
-  def path; [ @realm.path, @attitude.path].join; end
-  def inspect; path; end
+  def path; @pair.map(&:path).join; end
+  def symbol; @pair.map(&:symbol).join; end
+  def inspect; symbol; end
 
-  def symbol; [@realm.symbol, @attitude.symbol].join; end
+  def name; @pair.map(&:name).join(" "); end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def description; [adverb, noun].join(" "); end
-  def name; description.titleize; end
-
   def types; Type.all.select{|t| t.subtypes.include?(self)}; end
 
-  def goal; realm.send(attitude.goal); end
-  def good_behavior; realm.send(attitude.good_behavior); end
 end

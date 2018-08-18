@@ -1,37 +1,46 @@
 - content_for(:title, @name)
-%h2 The Energy Cycle
-%table
-  %tr
-    %td
-      %h3=link_to Attitude.fourth.name, attitude_path(Attitude.fourth.path)
-      %p During the #{Attitude.fourth.adjective} part of the cycle, a person uses energy because they have an energy surplus.
-      %p Previous: they were #{Attitude.third.adjective} and got too much energy and now have an energy surplus.
-      %p Next: They are not yet #{Attitude.first.adjective} because they have not yet found a goal they can achieve.
-    %td
-      %h3=link_to Attitude.first.name, attitude_path(Attitude.first.path)
-      %p During the #{Attitude.first.adjective} part of the cycle, a person uses energy because they have a goal to achieve.
-      %p Previous: they were #{Attitude.fourth.adjective} but have now found a goal to achieve.
-      %p Next: They are not yet #{Attitude.second.adjective} because they still have an energy surplus.
-  %tr
-    %td
-      %h3=link_to Attitude.third.name, attitude_path(Attitude.third.path)
-      %p During the #{Attitude.second.adjective} part of the cycle, a person gets energy because they have a resource to appreciate.
-      %p Previous: they were #{Attitude.second.adjective} but  have now found a resource to appreciate.
-      %p Next: They are not yet #{Attitude.third.adjective} because they still have an energy deficit.
-    %td
-      %h3=link_to Attitude.second.name, attitude_path(Attitude.second.path)
-      %p During the #{Attitude.second.adjective} part of the cycle, a person gets energy because they have an energy deficit.
-      %p Previous: they were #{Attitude.first.adjective} and used too much energy and now have an energy deficit.
-      %p Next: They are not yet #{Attitude.third.adjective} because they have not yet found a resource they can appreciate.
-%h2 The Four Energies
+%p BipolarType concerns itself with four realms of behavior, each of which uses a different kind of energy and each of which has a different internal signal that lets an individual know when they are running low on energy and need to stop and sense and consume external resources in order to get more energy.
 %table
   %tr
     %th
-    -Realm.all.each do |realm|
-      %th=link_to realm.name, realm_path(realm.path)
-  -%w{ energy reserves goals resources appreciate }.each do |word|
+    %th Energy
+    %th Low Signal
+    %th Sense
+    %th Consume
+    %th Resources
+  -Realm.all.each do |realm|
     %tr
-      %th=word + ":"
-      -Realm.all.each do |realm|
-        %td=realm.send(word)
-%h2 The Four Bipolar Cycles
+      %th=realm.name
+      %td=realm.energy
+      %td=realm.empty
+      %td=realm.sense
+      %td=realm.consume
+      %td=realm.external
+%h2 Bipolar
+%p
+  Depression is something that BipolarType defines as the end state of mania. Mania is when you are so busy running on fumes that you ignore the low energy signals until you run out of energy and crash. Although you run out of energy in only one realm, activities in
+  %em all
+  realms are constrained because everything that you do requires all four kinds of energy and your system shuts down in order to conserve energy.
+%p
+  There are two indications that you have become depressed. One indication is that you can no longer use energy to produce results
+  %em despite
+  having plenty of energy in the associated realm. The other indication is that you are getting energy that you do
+  %em not
+  want nor need.
+%p
+  In other words, if you run out of energy in one realm you will not be able to do
+  %em anything
+  even if you still have energy in the other three realms. You will also start to sense and consume resources in all four realms, even though you only need energy in one of them.
+%h2 Type
+%p Different people are more apt to run out of energy in different realms. Even among people who run out of energy in the same realm when manic, different people experience depression differently: the realms in which they want to produce but can’t and the realms in which they don’t want to consume but do are not necessarily the same.
+%p
+  A BipolarType is a set of four realms:
+  %ol
+    %li The realm in which you run out of energy when manic
+    %li The realm in which you could run out of energy while manic but don’t because the mania ended when you ran out of energy in the first realm before you ran out of energy in this realm
+    %li The realm in which depression is a problem because you cannot produce despite having enough energy
+    %li The realm in which depression is a problem because you consume when you don’t want or need the energy
+%p
+  Another way of looking at it is the four realms can be ordered in terms of how much energy you tend to have stored or saved. At one end is the realm in which you
+  %em would
+  run out of energy if mania were induced in you by stimulants and at the other end is the realm in which you would become most distressed by a surplus of energy accumulated if depression were induced in you by sedatives.

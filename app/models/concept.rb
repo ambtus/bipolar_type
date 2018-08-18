@@ -1,27 +1,30 @@
 class Concept
 
-  def initialize(letter); @letter = letter; end
+  def initialize(symbol); @symbol = symbol; end
+  SYMBOLS = %w{α β γ δ}
+  PATHS = %w{a b c d}
 
   ########
-  ACRONYMS = %w{a b c d}
-  ALL = ACRONYMS.collect {|letter| self.new letter}
-  ACRONYMS.each do |letter|
-    define_singleton_method(letter) {ALL[ACRONYMS.index(letter)]}
+  ALL = SYMBOLS.collect {|symbol| self.new symbol}
+  PATHS.each do |path|
+    define_singleton_method(path) {ALL[PATHS.index(path)]}
   end
   %w{first second third fourth}.each_with_index do |ordinal, index|
     define_singleton_method(ordinal) {ALL[index]}
   end
   ########
 
-  def self.paths; self::ACRONYMS; end
+  def self.paths; self::SYMBOLS; end
   def self.all; self::ALL; end
 
-  def inspect; @letter; end
-  def path; @letter; end
-  def symbol; @letter.upcase; end
+  def inspect; @symbol; end
+  def symbol; @symbol; end
 
-  def index; self.class::ACRONYMS.index @letter; end
+  def index; self.class::SYMBOLS.index @symbol; end
   def <=>(other); index <=> other.index; end
 
+  def path; PATHS[index]; end
+  def adjective; %w{alpha beta gamma delta}[index]; end
+  def name; adjective.capitalize; end
   def ordinal; %w{first second third fourth}[index]; end
 end
