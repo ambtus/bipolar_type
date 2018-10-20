@@ -2,8 +2,11 @@
 %p.center=render "header"
 %table
   %tr
+    %th
     -@subtypes.each do |subtype|
-      %th.quarter=link_to subtype.name, subtype_path(subtype.path)
-  %tr
-    -@subtypes.each do |subtype|
-      %td.top.left=render "subtype", subtype: subtype
+      %th.quarter=subtype.name
+  -%w{problem solution theory oops}.each do |section|
+    %tr
+      %th=section.capitalize
+      -@subtypes.each do |subtype|
+        %td.top.left=render section, subtype: subtype

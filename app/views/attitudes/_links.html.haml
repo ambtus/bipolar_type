@@ -1,4 +1,4 @@
 %div.center
   -Attitude.all.each_with_index do |attitude, index|
     ="|" unless index == 0
-    =link_to_unless_current attitude.name, attitude_path(attitude.path)
+    =link_to_unless_current attitude.disorder.capitalize, attitude_path(attitude.path)

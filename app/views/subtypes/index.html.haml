@@ -9,5 +9,8 @@
       %th=link_to realm.name, realm_path(realm.path)
       -realm.subtypes.each do |subtype|
         %td.top
-          =link_to subtype.name, subtype_path(subtype.path)
-          %p=render "subtype", subtype: subtype
+          %ul.none
+            %li=link_to subtype.name, subtype_path(subtype.path)
+            %li=render "problem", subtype: subtype
+            %li=render "solution", subtype: subtype
+            %li=render "reason", subtype: subtype

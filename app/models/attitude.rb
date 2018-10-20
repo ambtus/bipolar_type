@@ -10,8 +10,10 @@ class Attitude < Concept
   end
   ########
 
-  def adjective; %w{anorexia mania depression obesity}[index]; end
-  def name; adjective.titleize; end
+  def imbalance; %w{fat passive active thin}[index]; end
+  def name; imbalance.titleize; end
+
+  def disorder; %w{obesity depression mania anorexia}[index]; end
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end

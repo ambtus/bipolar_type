@@ -31,7 +31,8 @@ class Subtype
   def symbol; @pair.map(&:symbol).join; end
   def inspect; symbol; end
 
-  def name; @pair.map(&:name).join(" "); end
+  def description; "#{realm.adjective} #{attitude.disorder}"; end
+  def name; "#{description.titleize}"; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end

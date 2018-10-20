@@ -13,3 +13,4 @@ td {
 td.bottom { vertical-align: bottom;}
 td.top { vertical-align: top; }
 td.none {border: none;}
+td.short {padding: 0;}

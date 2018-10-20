@@ -21,7 +21,31 @@ class String
              ESTJ ESFJ ENTJ ENFJ}
   def is_mbti?; MBTIS.include? self; end
 
-  def s; self.sub(/e?y$/, "ie") + "s"; end
+  def s
+    return "people" if self=="person"
+    return "speaches" if self=="speach"
+    self.sub(/e?y$/, "ie") + "s"
+  end
+  def ed
+    return "felt" if self=="feel"
+    return "bought" if self=="buy"
+    return "told" if self=="tell"
+    return "spent" if self=="spend"
+    return "made" if self=="make"
+    return "heard" if self=="hear"
+    return "did" if self=="do"
+    self.sub(/e$/, "") + "ed"
+  end
+  SAME = %w{solve watch learn taste hear make earn spend tell buy collect feel influence}
+  def is_same?; SAME.include? self; end
+  def en
+    return "said" if self =="talk"
+    return "said" if self=="tell"
+    return "heard" if self=="listen"
+    return "done" if self=="do"
+    return self.ed if self.is_same?
+    self.sub(/e$/, "") + "en";
+  end
   def ly; self + "ly"; end
   def ing
     return "lying" if self=="lie"
