@@ -1,0 +1,32 @@
+- content_for(:title, 'The Theory')
+%p BipolarType defines two states: on and off.
+%p When you are “on” you are using energy, not getting energy. Being on is like driving a car.
+%p When you are “off” you are getting energy, not using energy. Being off is like fueling a car.
+%p Both states are normal and necessary: you cannot have one without the other. But if you don’t have them in the correct proportion, you will create an energy imbalance: either an energy deficit or an energy surplus.
+%h2 The Four Problems
+%table
+  %tr
+    %th{colspan: 2} On (energy deficit)
+    %th{colspan: 2} Off (energy surplus)
+  %tr
+    -Attitude.all.each do |attitude|
+      %td.top.left #{attitude.behavior.ing} too #{attitude.amount} energy (#{attitude.disorder}: too #{attitude.nurture})
+%h2 The Four Solutions
+%table
+  %tr
+    %th{colspan: 2} On (energy deficit)
+    %th{colspan: 2} Off (energy surplus)
+  %tr
+    -Attitude.all.each do |attitude|
+      %td.top.left
+        Don’t try to #{attitude.behavior} #{attitude.change} energy; #{attitude.reason}
+        %em something else.
+%h2 The Theory
+%p
+  You use energy in order to achieve goals. If you’re not using the right amount of energy, it’s because you’re trying to achieve the wrong goals. Or at least, goals which are wrong for
+  %em you.
+  They may be fine for other people, but they create an energy imbalance in you.
+%p
+  You use your senses in order to get energy. If you’re not getting the right amount of energy, it’s because you’re trying to sense the wrong resources. Or at least, resources which are wrong for
+  %em you.
+  They may be fine for other people, but they create an energy imbalance in you.

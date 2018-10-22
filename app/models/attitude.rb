@@ -10,10 +10,14 @@ class Attitude < Concept
   end
   ########
 
-  def imbalance; %w{fat passive active thin}[index]; end
-  def name; imbalance.titleize; end
+  def nurture; %w{active thin fat passive}[index]; end
+  def disorder; %w{mania anorexia obesity depression}[index]; end
+  def name; disorder.titleize; end
 
-  def disorder; %w{obesity depression mania anorexia}[index]; end
+  def behavior; [0,3].include?(index) ? "use" : "get"; end
+  def amount; index.even? ? "much" : "little"; end
+  def change; index.even? ? "less" : "more"; end
+  def reason; [0,3].include?(index) ? "achieve" : "sense"; end
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
