@@ -1,5 +1,6 @@
 class Realm < Concept
 
+  SYMBOLS = %w{P M F S}
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   PATHS.each do |path|
@@ -16,23 +17,29 @@ class Realm < Concept
   def adjective; %w{physical mental financial social}[index]; end
   def name; adjective.titleize; end
 
-  def reserves; %w{fat knowledge savings ego}[index]; end
+  def energy; %w{calories facts money love}[index]; end
+  def reserves; %w{fat knowledge savings self-esteem}[index]; end
+  def empty; %w{hungry curious envious lonely}[index]; end
+  def refuel; %w{eat watch work listen}[index]; end
 
-  def refuel; %w{eat watch earn listen}[index]; end
+  def appear; %w{taste look feel sound}[index]; end
+  def sense; %w{taste see collect hear}[index]; end
+  def get; %w{eat look\ for do listen\ to}[index]; end
+  def process; %w{digest believe count understand}[index]; end
+  def resources; %w{foods truths jobs opinions}[index]; end
+  def basic; %w{savory black\ and\ white salaried sharp}[index]; end
+  def necessities; %w{protein outlines credit criticism}[index]; end
+  def tempting; %w{sweet colorful contracted harmonious }[index]; end
+  def extras; %w{carbohydrates details cash praise}[index]; end
 
-  def get; %w{eat look\ for use listen\ to}[index]; end
-  def resource; %w{food information tools voices}[index]; end
+  def drain; %w{move think spend talk}[index]; end
+  def power; %w{body brain purse voice }[index]; end
+  def organ; %w{muscles rules credit conscience}[index]; end
+  def produce; %w{do create buy prioritize}[index]; end
 
-  def sense; %w{taste see feel hear}[index]; end
-  def basic; %w{savory black\ and\ white rough sharp}[index]; end
-  def necessities; %w{protein outlines functionality criticism}[index]; end
-  def tempting; %w{sweet colorful smooth soothing}[index]; end
-  def extras; %w{carbohydrates details features praise}[index]; end
-
-  def power; %w{muscles logic credit values}[index]; end
-  def work; %w{move think spend talk}[index]; end
-
-  def make; %w{do solve make influence}[index]; end
-  def part; %w{task piece payment person}[index]; end
-  def whole; %w{project puzzle purchase audience}[index]; end
+  def make; %w{take put\ together make resolve}[index]; end
+  def part; %w{step piece payment conflict}[index]; end
+  def whole; %w{trip puzzle purchase dispute}[index]; end
+  def easy; %w{short simple cheap small}[index]; end
+  def hard; %w{long complex expensive large}[index]; end
 end

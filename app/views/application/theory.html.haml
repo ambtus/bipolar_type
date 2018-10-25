@@ -1,32 +1,31 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines two states: on and off.
-%p When you are “on” you are using energy, not getting energy. Being on is like driving a car.
-%p When you are “off” you are getting energy, not using energy. Being off is like fueling a car.
-%p Both states are normal and necessary: you cannot have one without the other. But if you don’t have them in the correct proportion, you will create an energy imbalance: either an energy deficit or an energy surplus.
+%p BipolarType defines two states: up and down.
+%p When you are “up” you are using energy, not getting energy.
+%p When you are “down” you are getting energy, not using energy.
+%p Both states are normal and necessary: you cannot have one without the other.
 %h2 The Four Problems
 %table
   %tr
-    %th{colspan: 2} On (energy deficit)
-    %th{colspan: 2} Off (energy surplus)
+    %th{colspan: 2} Too Up
+    %th{colspan: 2} Too Down
   %tr
     -Attitude.all.each do |attitude|
-      %td.top.left #{attitude.behavior.ing} too #{attitude.amount} energy (#{attitude.disorder}: too #{attitude.nurture})
+      %td.top.left.quarter #{attitude.behavior.ing} too #{attitude.amount} energy (#{attitude.disorder}: too #{attitude.nurture})
 %h2 The Four Solutions
 %table
   %tr
-    %th{colspan: 2} On (energy deficit)
-    %th{colspan: 2} Off (energy surplus)
-  %tr
     -Attitude.all.each do |attitude|
-      %td.top.left
-        Don’t try to #{attitude.behavior} #{attitude.change} energy; #{attitude.reason}
-        %em something else.
+      %td.top.left.quarter
+        Don’t try to #{attitude.behavior} #{attitude.change}
+        of the
+        %em same
+        energy; change your #{attitude.focus}.
 %h2 The Theory
 %p
   You use energy in order to achieve goals. If you’re not using the right amount of energy, it’s because you’re trying to achieve the wrong goals. Or at least, goals which are wrong for
   %em you.
-  They may be fine for other people, but they create an energy imbalance in you.
+  They may be fine for other people, but they create problems for you.
 %p
-  You use your senses in order to get energy. If you’re not getting the right amount of energy, it’s because you’re trying to sense the wrong resources. Or at least, resources which are wrong for
+  You use resources in order to get energy. If you’re not getting the right amount of energy, it’s because you’re trying to use the wrong resources. Or at least, resources which are wrong for
   %em you.
-  They may be fine for other people, but they create an energy imbalance in you.
+  They may be fine for other people, but they create problems for you.

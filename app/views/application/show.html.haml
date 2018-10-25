@@ -1,11 +1,12 @@
 - content_for(:title, @name)
 %p.center=render "header"
+=render "overview"
 %table
   %tr
     %th
     -@subtypes.each do |subtype|
       %th.quarter=subtype.name
-  -%w{problem solution theory oops}.each do |section|
+  -%w{problem result solution theory oops}.each do |section|
     %tr
       %th=section.capitalize
       -@subtypes.each do |subtype|

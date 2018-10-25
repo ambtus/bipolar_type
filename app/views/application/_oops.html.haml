@@ -1,26 +1,31 @@
 If you want to
 -case subtype.nurture
 -when "fat"
-  stop losing #{subtype.reserves},
+  start #{subtype.refuel.ing} again,
 -when "thin"
-  stop gaining #{subtype.reserves},
+  stop #{subtype.refuel.ing} again,
 -when "passive"
-  stop #{subtype.work.ing} so much,
+  stop #{subtype.drain.ing} again,
 -when "active"
-  start #{subtype.work.ing} more again,
-just return to the
+  start #{subtype.drain.ing} again,
+just switch back to
 -case subtype.nurture
 -when "fat"
   #{subtype.tempting} #{subtype.extras}
 -when "thin"
   #{subtype.basic} #{subtype.necessities}
 -when "passive"
-  short-term #{subtype.whole.s}
+  #{subtype.easy} #{subtype.whole.s}
 -when "active"
-  long-term #{subtype.whole.s}
-you were taught to
+  #{subtype.hard} #{subtype.whole.s}
+and you’ll
 -case subtype.nurture
--when "fat", "thin"
-  #{subtype.get}.
--when "passive", "active"
-  #{subtype.make}.
+-when "fat"
+  #{subtype.refuel} more and regain #{subtype.reserves}.
+-when "thin"
+  #{subtype.refuel} less and lose #{subtype.reserves}.
+-case subtype.nurture
+-when "passive"
+  #{subtype.drain} less and regain #{subtype.reserves}.
+-when "active"
+  #{subtype.drain} more and lose #{subtype.reserves}.

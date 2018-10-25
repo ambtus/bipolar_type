@@ -24,7 +24,12 @@ class String
   def s
     return "people" if self=="person"
     return "speaches" if self=="speach"
-    self.sub(/e?y$/, "ie") + "s"
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first.s, second].join(" ")
+    else
+      self.sub(/e?y$/, "ie") + "s"
+    end
   end
   def ed
     return "felt" if self=="feel"
@@ -35,16 +40,6 @@ class String
     return "heard" if self=="hear"
     return "did" if self=="do"
     self.sub(/e$/, "") + "ed"
-  end
-  SAME = %w{solve watch learn taste hear make earn spend tell buy collect feel influence}
-  def is_same?; SAME.include? self; end
-  def en
-    return "said" if self =="talk"
-    return "said" if self=="tell"
-    return "heard" if self=="listen"
-    return "done" if self=="do"
-    return self.ed if self.is_same?
-    self.sub(/e$/, "") + "en";
   end
   def ly; self + "ly"; end
   def ing

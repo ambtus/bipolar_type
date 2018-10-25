@@ -32,4 +32,4 @@
               =link_to answer_path(@answer.next(subtype), :sort => params[:sort]) do
                 =render "problem", subtype: subtype
             -else
-              =render "problem", subtype: subtype
+              =subtype.name

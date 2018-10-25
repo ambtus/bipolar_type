@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "cdab"; end
+  def self.my_path; "dcab"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -9,6 +9,10 @@ class Type
     @realms.uniq.check_constraints Realm, 4, 4
   end
   attr_reader :path, :realms
+
+  %w{first second third fourth}.each_with_index do |ordinal, index|
+    define_method(ordinal) {@realms[index]}
+  end
 
   def subtypes; realms.add(Attitude.all); end
 
