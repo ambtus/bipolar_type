@@ -34,12 +34,11 @@ class Realm < Concept
 
   def drain; %w{move think spend talk}[index]; end
   def power; %w{body brain purse voice }[index]; end
-  def organ; %w{muscles rules credit conscience}[index]; end
-  def produce; %w{do create buy prioritize}[index]; end
+  def strength; %w{muscles rules credit conscience}[index]; end
 
-  def make; %w{take put\ together make resolve}[index]; end
-  def part; %w{step piece payment conflict}[index]; end
-  def whole; %w{trip puzzle purchase dispute}[index]; end
+  def achieve; %w{take put\ together make influence}[index]; end
+  def part; %w{step piece payment person}[index]; end
+  def goal; %w{trip puzzle purchase group}[index]; end
   def easy; %w{short simple cheap small}[index]; end
   def hard; %w{long complex expensive large}[index]; end
 end
