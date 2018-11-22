@@ -1,31 +1,69 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines two states: up and down.
-%p When you are “up” you are using energy, not getting energy.
-%p When you are “down” you are getting energy, not using energy.
-%p Both states are normal and necessary: you cannot have one without the other.
-%h2 The Four Problems
+%h2 Bipolar
+%p I am bipolar. In 1980, I was diagnosed as depressed by my mother and “homesick” by the MIT school psychologist despite my familial history of bipolar disorder. By 1984 I had been “upgraded” to Major Depression and then Bipolar II after my reaction to antidepressants. In 1990 I was hospitalized under suicide watch. In 1991 my diagnosis was “upgraded” again to Bipolar I with mixed states. In 1993 I was diagnosed as “mixed states - and classical bipolar manic and depressive - rapid cycling”. Now, when they need a diagnoses they just use Bipolar NOS (not otherwise specified).
+%p
+  Although there are some psychopharmacological treatments that do help some people with bipolar disorder, they didn’t help me. Drugs almost inevitably made things worse assuming they did anything at all. I have been almost completely drug free since 2007 when I went off all my medications for a drug holiday and discovered that I was no worse without medication. I was not necessarily
+  %em better,
+  but I was definitely no worse.
+%p
+  BipolarType is in no way a recommendation for you to go off
+  %em your
+  medications if they are helping you. But whether or not you find medication helpful, knowing what is going on may help you to lessen or mitigate the symptoms and your dependence on extra stimulants and sedatives.
+%h3 The Fight-Flight-Freeze Response
+%p There are two responses to danger.
+%p The anger (or offense) response is to advance on the dangers and use your strength to fight and defeat them.
+%p The fear (or defense) response is to retreat from the dangers and use your speed to flee and escape them.
+%p But not all dangers are created equal. Sometimes fighting doesn’t work for you, and you have to have a backup flight response in reserve. Sometimes fleeing doesn’t work for you and you have to have a backup fight response in reserve. Thus, all offense types flee some dangers, and all defence types fight some dangers.
+%p As children, we differentiate these two responses: these are the dangers I am strong enough to fight and defeat and these are the dangers I am fast enough to flee and escape.
+%p As you grow and develop, you further differentiate within your fight response: the behaviors which improve dangers which you find more irritating, and so you use them more and they become stronger; and the behaviors which improve dangers which you find less irritating, and so you use them less and they remain relatively weak.
+%p Similiarly, you differentiate within your flight response: the behaviors which avoid dangers which you find more worrisome, and so you use them more and they become faster; and the behaviors which avoid dangers which you find less worrisome, and so you use them less and they remain relatively slow.
+%p The freeze response does nothing because you are neither strong enough to fight and defeat the danger nor fast enough to flee and escape the danger. It can be associated either with your auxiliary fight or your auxiliary flight response or both.
+%p As a fully differentiated adult, you will have a strong dominant fight response, a weak auxiliary fight response which freezes when threatened by unexpectedly irritating dangers, a fast dominant flight response, and an auxiliary flight response which freezes when threatened by unexpectely worrisome dangers.
+%h3 The Four Bipolar States
 %table
   %tr
-    %th{colspan: 2} Too Up
-    %th{colspan: 2} Too Down
+    %th
+    %th Depression
+    %th Mania
   %tr
-    -Attitude.all.each do |attitude|
-      %td.top.left.quarter #{attitude.behavior.ing} too #{attitude.amount} energy (#{attitude.disorder}: too #{attitude.nurture})
-%h2 The Four Solutions
-%table
+    %th Fight
+    %td.p freezing when you feel angry
+    %td.p fighting after you have won
   %tr
-    -Attitude.all.each do |attitude|
-      %td.top.left.quarter
-        Don’t try to #{attitude.behavior} #{attitude.change}
-        of the
-        %em same
-        energy; change your #{attitude.focus}.
-%h2 The Theory
+    %th Flight
+    %td.p freezing when you feel afraid
+    %td.p fleeing after you have escaped
+%p I believe that the bipolar cycle occurs because you cannot be both angry and afraid at the same time.
+%p You cannot be irritable or frustrated or fight when you are afraid or terrified. A unipolar offense type is capable of “turning up” the fear to induce fear based responses in order to end the anger based behaviors.
+%p Conversely, you cannot be anxious or agitated or flee when you are angry or furious. A unipolar defense type is capable of “turning up” the anger to induce anger based responses in order to end the fear based behaviors.
+%p A bipolar type can do both and end up with a rapidly oscillating cycle.
 %p
-  You use energy in order to achieve goals. If you’re not using the right amount of energy, it’s because you’re trying to achieve the wrong goals. Or at least, goals which are wrong for
-  %em you.
-  They may be fine for other people, but they create problems for you.
+  The point is, if you can “turn up” the anger and fear, you can turn them
+  %em down
+  too. But you won’t be able to turn them down if you are still trying to avoid your previous behaviors.
+%p BipolarType tries to explain personality as a complex system such that in order to prevent mania or depression in one area you need to treat mania and depression in all areas.
+%h2 Type
 %p
-  You use resources in order to get energy. If you’re not getting the right amount of energy, it’s because you’re trying to use the wrong resources. Or at least, resources which are wrong for
-  %em you.
-  They may be fine for other people, but they create problems for you.
+  Responses can be classified into eight types:
+  -Realm.all.each_with_index do |realm, index|
+    ="and" if index == 3
+    towards and away from #{realm.nouns}#{index == 3 ? "." : ","}
+-Realm.all.each do |realm|
+  %h3=realm.adjective.capitalize
+  %p
+    If you have a #{realm.adjective} fight response, you are more likely to react offensively
+    %em towards
+    dangerous #{realm.nouns}. If you have a #{realm.adjective} flight response, you are more likely to react defensively
+    %em away from
+    dangerous #{realm.nouns}.
+  %p That is, a #{realm.adjective} fight response leads you to fight #{realm.adverb} (#{realm.hit} and #{realm.shove}) to defeat dangerous #{realm.nouns}, whereas a #{realm.adjective} flight response leads you to flee #{realm.adverb} (#{realm.run} and #{realm.hide}) to escape dangerous #{realm.nouns}.
+  %p Someone with a dominant #{realm.adjective} fight response will #{realm.hit} and #{realm.shove} slightly irritating #{realm.nouns}. Someone with an auxiliary #{realm.adjective} fight response will only #{realm.hit} and #{realm.shove} truly irritating #{realm.nouns}, but is more apt to freeze and be unable to #{realm.hit} or #{realm.shove} them because they haven’t developed as much #{realm.adjective} strength.
+  %p Someone with a dominant #{realm.adjective} flight response will #{realm.run} and #{realm.hide} slightly worrisome #{realm.nouns}. Someone with an auxiliary #{realm.adjective} flight response will only #{realm.run} and #{realm.hide} truly worrisome #{realm.nouns}, but is more apt to freeze and be unable to #{realm.run} or #{realm.hide} them because they haven’t developed as much #{realm.adjective} speed.
+
+%h2 BipolarType
+%p A Bipolar Type is a set of two fear based responses and two anger based responses. Each set has one response which is dominant and more apt to become manic and one which less well developed and is more apt to become depressed.
+%p If you are, like me, afraid of people and ideas, and angry at places and things, then you can induce anger based responses by focusing on the places and things that frustrate and irritate you, which will prevent you from focusing on the people and ideas that frighten you.
+%p Conversely, if you go too far in the anger direction and start destroying perfectly innocuous things or freezing at mildly irritating places, you can focus back on the people and ideas.
+%p If you can train yourself to be stronger or faster in your auxiliary realms, you are less likely to become depressed in them, and are also less likely to become manic in your dominant realms because you have more behaviors to chose from when feeling stressed.
+%p It also helps to know exactly what is stressing you, what your response is, and how to behave effectively in that realm, instead of using behaviors that are more appropriate for a different realm.
+%p For example, as an adult, you are expected to criticize people who annoy you, not hit them. However, if your verbal strength is lacking but you are physically strong you may chose the wrong behavior. The effective non-bipolar solution is to practice your verbal responses so that you become verbally stronger, not to induce a fear response so you won’t use your physical strength inappropriately.

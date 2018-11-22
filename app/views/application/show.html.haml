@@ -3,11 +3,16 @@
 =render "overview"
 %table
   %tr
+    %th.narrow
+    %th Anger
+    %th{colspan: 2} Freeze
+    %th Fear
+  %tr
     %th
     -@subtypes.each do |subtype|
-      %th.quarter=subtype.name
-  -%w{problem result solution theory oops}.each do |section|
+      %th=link_to subtype.name, subtype_path(subtype.path)
+  -%w{ advice subtype rationale}.each do |section|
     %tr
-      %th=section.capitalize
+      %th=section.titleize
       -@subtypes.each do |subtype|
-        %td.top.left=render section, subtype: subtype
+        %td.quarter.top.left=render section, subtype: subtype

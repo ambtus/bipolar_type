@@ -32,6 +32,9 @@ class String
     end
   end
   def ed
+    return "forgotten" if self=="forget"
+    return "left" if self=="leave"
+    return "sold" if self=="sell"
     return "felt" if self=="feel"
     return "bought" if self=="buy"
     return "told" if self=="tell"
@@ -39,8 +42,13 @@ class String
     return "made" if self=="make"
     return "heard" if self=="hear"
     return "did" if self=="do"
+    return "fought" if self=="fight"
+    return "ran" if self=="run"
+    return "hit" if self=="hit"
+    return "seen" if self=="see"
     self.sub(/e$/, "") + "ed"
   end
+
   def ly; self + "ly"; end
   def ing
     return "lying" if self=="lie"

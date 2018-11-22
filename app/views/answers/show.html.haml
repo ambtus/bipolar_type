@@ -7,29 +7,32 @@
   Row or Column will become unavailable.
 -unless @answer.number == 1
   %p.center
-    If you get stuck, you can
+    If you get stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
+%p.center
+  -if @by_attitude
+    =link_to "Transpose rows and columns", url_for(params.merge(:sort => "r"))
+    -cols = Realm.all
+    -rows = Attitude.all
+  -else
+    =link_to "Transpose rows and columns", url_for(params.merge(:sort => "a"))
+    -cols = Attitude.all
+    -rows = Realm.all
 %table
   %tr
     %th
-      -if @by_attitude
-        =link_to "Transpose rows and columns", url_for(params.merge(:sort => "r"))
-        -concepts = Attitude.all
-        -inner = Realm
-      -else
-        =link_to "Transpose rows and columns", url_for(params.merge(:sort => "a"))
-        -concepts = Realm.all
-        -inner = Attitude
-    -inner.all.each do |header|
-      %th=header.name
-  -concepts.each do |concept|
+    -cols.each do |col|
+      %th=col.name
+  -rows.each do |row|
     %tr
-      %th #{concept.name}
-      -concept.subtypes.each do |subtype|
+      %th=row.name
+      -row.subtypes.each do |subtype|
         %td.quarter.none
           %div{:class => @answer.css(subtype)}
             -if @answer.css(subtype) == "free"
-              =link_to answer_path(@answer.next(subtype), :sort => params[:sort]) do
-                =render "problem", subtype: subtype
+              =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
+                .left=render "subtype", subtype: subtype
+            -elsif @answer.css(subtype) == "chosen"
+              .left=render "subtype", subtype: subtype
             -else
               =subtype.name

@@ -1,7 +1,7 @@
 class Concept
 
   def initialize(symbol); @symbol = symbol; end
-  SYMBOLS = %w{α β γ δ}
+  SYMBOLS = %w{α β ψ ω}
   PATHS = %w{a b c d}
 
   ########
@@ -23,8 +23,11 @@ class Concept
   def index; self.class::SYMBOLS.index @symbol; end
   def <=>(other); index <=> other.index; end
 
+  def others; self.class::ALL - [self]; end
+  def other; (self.class::ALL - [self]).first; end
+
   def path; PATHS[index]; end
-  def adjective; %w{alpha beta gamma delta}[index]; end
+  def adjective; %w{alpha beta psi omega}[index]; end
   def name; adjective.capitalize; end
   def ordinal; %w{first second third fourth}[index]; end
 end

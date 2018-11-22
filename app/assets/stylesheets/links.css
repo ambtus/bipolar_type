@@ -2,3 +2,9 @@ a.external:link {text-decoration: none; color: grey;}
 a.external:visited {text-decoration: none; color: grey;}
 a.external:active {text-decoration: none}
 a.external:hover {text-decoration: underline; color: grey;}
+
+
+a.answer:link {text-decoration: none; color: black;}
+a.answer:visited {text-decoration: none; color: black;}
+a.answer:active {text-decoration: none}
+a.answer:hover {text-decoration: underline; color: black;}

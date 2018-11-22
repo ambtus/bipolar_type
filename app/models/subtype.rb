@@ -20,6 +20,8 @@ class Subtype
       realm.send(meth, *arguments, &block)
     elsif attitude.respond_to?(meth)
       attitude.send(meth, *arguments, &block)
+    elsif attitude.response.respond_to?(meth)
+      attitude.response.send(meth, *arguments, &block)
     else
       super
     end
@@ -31,8 +33,7 @@ class Subtype
   def symbol; @pair.map(&:symbol).join; end
   def inspect; symbol; end
 
-  def description; "#{realm.adjective} #{attitude.disorder}"; end
-  def name; "#{description.titleize}"; end
+  def name; @pair.map(&:name).join(" "); end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
