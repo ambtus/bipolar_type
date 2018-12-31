@@ -1,4 +1,4 @@
--content_for(:title, "Question ##{@answer.number} of 4")
+-content_for(:title, "Question ##{@answer.number} of 3")
 %p.center
   Once you have
   %span.chosen chosen
@@ -15,10 +15,11 @@
     -cols = Realm.all
     -rows = Attitude.all
   -else
-    =link_to "Transpose rows and columns", url_for(params.merge(:sort => "a"))
+    =link_to "Transpose columns and rows", url_for(params.merge(:sort => "a"))
     -cols = Attitude.all
     -rows = Realm.all
 %table
+  %caption I feel better if I…
   %tr
     %th
     -cols.each do |col|
@@ -31,8 +32,8 @@
           %div{:class => @answer.css(subtype)}
             -if @answer.css(subtype) == "free"
               =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-                .left=render "subtype", subtype: subtype
+                .left=render "short", subtype: subtype
             -elsif @answer.css(subtype) == "chosen"
-              .left=render "subtype", subtype: subtype
+              .left=render "short", subtype: subtype
             -else
               =subtype.name

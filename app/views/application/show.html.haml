@@ -1,18 +1,6 @@
 - content_for(:title, @name)
 %p.center=render "header"
 =render "overview"
-%table
-  %tr
-    %th.narrow
-    %th Anger
-    %th{colspan: 2} Freeze
-    %th Fear
-  %tr
-    %th
-    -@subtypes.each do |subtype|
-      %th=link_to subtype.name, subtype_path(subtype.path)
-  -%w{ advice subtype rationale}.each do |section|
-    %tr
-      %th=section.titleize
-      -@subtypes.each do |subtype|
-        %td.quarter.top.left=render section, subtype: subtype
+-@subtypes.each do |subtype|
+  %h2=render "short", subtype: subtype
+  %p=render "long", subtype: subtype

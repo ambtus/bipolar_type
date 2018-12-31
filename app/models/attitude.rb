@@ -1,7 +1,5 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{ T S N F}
-
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   PATHS.each do |path|
@@ -12,12 +10,9 @@ class Attitude < Concept
   end
   ########
 
-  def state; %w{strong weak slow fast}[index]; end
-  def name; state.capitalize; end
+  def adjective; %w{ production depression reception mania }[index]; end
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
-
-  def response; index < 2 ? Response.first : Response.second; end
 
 end

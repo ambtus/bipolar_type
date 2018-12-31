@@ -1,2 +1,5 @@
 - content_for(:title, @name)
 %p.center=render "header"
+-%w{problem timing strength rationale}.each do |section|
+  %h2=section.capitalize
+  =render section, subtype: @subtype

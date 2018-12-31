@@ -20,8 +20,6 @@ class Subtype
       realm.send(meth, *arguments, &block)
     elsif attitude.respond_to?(meth)
       attitude.send(meth, *arguments, &block)
-    elsif attitude.response.respond_to?(meth)
-      attitude.response.send(meth, *arguments, &block)
     else
       super
     end

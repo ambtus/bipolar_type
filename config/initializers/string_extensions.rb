@@ -1,6 +1,6 @@
 # Restart required even in development mode when you modify this file.
 
-%w{second third fourth chip to_word words to_phrase is_mbti? inf s ly}.each do |meth|
+%w{second third fourth chip to_word words to_phrase is_mbti? s ed ly ing enough more too_much}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -32,7 +32,8 @@ class String
     end
   end
   def ed
-    return "forgotten" if self=="forget"
+    return "ate" if self=="eat"
+    return "forgot" if self=="forget"
     return "left" if self=="leave"
     return "sold" if self=="sell"
     return "felt" if self=="feel"
@@ -45,11 +46,17 @@ class String
     return "fought" if self=="fight"
     return "ran" if self=="run"
     return "hit" if self=="hit"
-    return "seen" if self=="see"
-    self.sub(/e$/, "") + "ed"
+    return "saw" if self=="see"
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first.ed, second].join(" ")
+    else
+      self.sub(/e$/, "") + "ed"
+    end
   end
 
   def ly; self + "ly"; end
+
   def ing
     return "lying" if self=="lie"
     return "listening" if self=="listen"
@@ -64,4 +71,28 @@ class String
     end
   end
 
+  def enough
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first, "enough", second].join(" ")
+    else
+      "#{self} enough"
+    end
+  end
+  def more
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first, "more", second].join(" ")
+    else
+      "#{self} more"
+    end
+  end
+  def too_much
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first, "too much", second].join(" ")
+    else
+      "#{self} too much"
+    end
+  end
 end

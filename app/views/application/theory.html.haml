@@ -1,69 +1,93 @@
 - content_for(:title, 'The Theory')
-%h2 Bipolar
-%p I am bipolar. In 1980, I was diagnosed as depressed by my mother and “homesick” by the MIT school psychologist despite my familial history of bipolar disorder. By 1984 I had been “upgraded” to Major Depression and then Bipolar II after my reaction to antidepressants. In 1990 I was hospitalized under suicide watch. In 1991 my diagnosis was “upgraded” again to Bipolar I with mixed states. In 1993 I was diagnosed as “mixed states - and classical bipolar manic and depressive - rapid cycling”. Now, when they need a diagnoses they just use Bipolar NOS (not otherwise specified).
-%p
-  Although there are some psychopharmacological treatments that do help some people with bipolar disorder, they didn’t help me. Drugs almost inevitably made things worse assuming they did anything at all. I have been almost completely drug free since 2007 when I went off all my medications for a drug holiday and discovered that I was no worse without medication. I was not necessarily
-  %em better,
-  but I was definitely no worse.
-%p
-  BipolarType is in no way a recommendation for you to go off
-  %em your
-  medications if they are helping you. But whether or not you find medication helpful, knowing what is going on may help you to lessen or mitigate the symptoms and your dependence on extra stimulants and sedatives.
-%h3 The Fight-Flight-Freeze Response
-%p There are two responses to danger.
-%p The anger (or offense) response is to advance on the dangers and use your strength to fight and defeat them.
-%p The fear (or defense) response is to retreat from the dangers and use your speed to flee and escape them.
-%p But not all dangers are created equal. Sometimes fighting doesn’t work for you, and you have to have a backup flight response in reserve. Sometimes fleeing doesn’t work for you and you have to have a backup fight response in reserve. Thus, all offense types flee some dangers, and all defence types fight some dangers.
-%p As children, we differentiate these two responses: these are the dangers I am strong enough to fight and defeat and these are the dangers I am fast enough to flee and escape.
-%p As you grow and develop, you further differentiate within your fight response: the behaviors which improve dangers which you find more irritating, and so you use them more and they become stronger; and the behaviors which improve dangers which you find less irritating, and so you use them less and they remain relatively weak.
-%p Similiarly, you differentiate within your flight response: the behaviors which avoid dangers which you find more worrisome, and so you use them more and they become faster; and the behaviors which avoid dangers which you find less worrisome, and so you use them less and they remain relatively slow.
-%p The freeze response does nothing because you are neither strong enough to fight and defeat the danger nor fast enough to flee and escape the danger. It can be associated either with your auxiliary fight or your auxiliary flight response or both.
-%p As a fully differentiated adult, you will have a strong dominant fight response, a weak auxiliary fight response which freezes when threatened by unexpectedly irritating dangers, a fast dominant flight response, and an auxiliary flight response which freezes when threatened by unexpectely worrisome dangers.
-%h3 The Four Bipolar States
+%p There are four realms of activities, each of which has a different set of paired behaviors.
+%ul
+  -Realm.all.each do |realm|
+    %li
+      #{realm.name} Realm:
+      %ul
+        %li get #{realm.energy}: #{realm.consume} (#{realm.process_resources})
+        %li use #{realm.energy}: #{realm.produce} (#{realm.change_nouns})
+%p Both getting and using energy are normal and natural behaviors. They only become problematic if they are not balanced by the other. Using energy without getting it creates a dangerous energy deficit. Getting energy without using it creates an unhealthy energy surplus.
+%p A bipolar cycle is one of four periods of alternating alert productivity (using energy) followed by calm receptiveness (geting energy).
 %table
   %tr
     %th
-    %th Depression
-    %th Mania
+    %th Use energy
+    %th Get energy
+    %th Use energy
+    %th Get energy
   %tr
-    %th Fight
-    %td.p freezing when you feel angry
-    %td.p fighting after you have won
+    %th Daily
+    %td Morning
+    %td Midday
+    %td Afternoon
+    %td Evening
   %tr
-    %th Flight
-    %td.p freezing when you feel afraid
-    %td.p fleeing after you have escaped
-%p I believe that the bipolar cycle occurs because you cannot be both angry and afraid at the same time.
-%p You cannot be irritable or frustrated or fight when you are afraid or terrified. A unipolar offense type is capable of “turning up” the fear to induce fear based responses in order to end the anger based behaviors.
-%p Conversely, you cannot be anxious or agitated or flee when you are angry or furious. A unipolar defense type is capable of “turning up” the anger to induce anger based responses in order to end the fear based behaviors.
-%p A bipolar type can do both and end up with a rapidly oscillating cycle.
-%p
-  The point is, if you can “turn up” the anger and fear, you can turn them
-  %em down
-  too. But you won’t be able to turn them down if you are still trying to avoid your previous behaviors.
-%p BipolarType tries to explain personality as a complex system such that in order to prevent mania or depression in one area you need to treat mania and depression in all areas.
-%h2 Type
-%p
-  Responses can be classified into eight types:
-  -Realm.all.each_with_index do |realm, index|
-    ="and" if index == 3
-    towards and away from #{realm.nouns}#{index == 3 ? "." : ","}
--Realm.all.each do |realm|
-  %h3=realm.adjective.capitalize
-  %p
-    If you have a #{realm.adjective} fight response, you are more likely to react offensively
-    %em towards
-    dangerous #{realm.nouns}. If you have a #{realm.adjective} flight response, you are more likely to react defensively
-    %em away from
-    dangerous #{realm.nouns}.
-  %p That is, a #{realm.adjective} fight response leads you to fight #{realm.adverb} (#{realm.hit} and #{realm.shove}) to defeat dangerous #{realm.nouns}, whereas a #{realm.adjective} flight response leads you to flee #{realm.adverb} (#{realm.run} and #{realm.hide}) to escape dangerous #{realm.nouns}.
-  %p Someone with a dominant #{realm.adjective} fight response will #{realm.hit} and #{realm.shove} slightly irritating #{realm.nouns}. Someone with an auxiliary #{realm.adjective} fight response will only #{realm.hit} and #{realm.shove} truly irritating #{realm.nouns}, but is more apt to freeze and be unable to #{realm.hit} or #{realm.shove} them because they haven’t developed as much #{realm.adjective} strength.
-  %p Someone with a dominant #{realm.adjective} flight response will #{realm.run} and #{realm.hide} slightly worrisome #{realm.nouns}. Someone with an auxiliary #{realm.adjective} flight response will only #{realm.run} and #{realm.hide} truly worrisome #{realm.nouns}, but is more apt to freeze and be unable to #{realm.run} or #{realm.hide} them because they haven’t developed as much #{realm.adjective} speed.
-
-%h2 BipolarType
-%p A Bipolar Type is a set of two fear based responses and two anger based responses. Each set has one response which is dominant and more apt to become manic and one which less well developed and is more apt to become depressed.
-%p If you are, like me, afraid of people and ideas, and angry at places and things, then you can induce anger based responses by focusing on the places and things that frustrate and irritate you, which will prevent you from focusing on the people and ideas that frighten you.
-%p Conversely, if you go too far in the anger direction and start destroying perfectly innocuous things or freezing at mildly irritating places, you can focus back on the people and ideas.
-%p If you can train yourself to be stronger or faster in your auxiliary realms, you are less likely to become depressed in them, and are also less likely to become manic in your dominant realms because you have more behaviors to chose from when feeling stressed.
-%p It also helps to know exactly what is stressing you, what your response is, and how to behave effectively in that realm, instead of using behaviors that are more appropriate for a different realm.
-%p For example, as an adult, you are expected to criticize people who annoy you, not hit them. However, if your verbal strength is lacking but you are physically strong you may chose the wrong behavior. The effective non-bipolar solution is to practice your verbal responses so that you become verbally stronger, not to induce a fear response so you won’t use your physical strength inappropriately.
+    %th Weekly
+    %td Saturday/Sunday
+    %td Monday/Tuesday
+    %td Wednesday
+    %td Thursday/Friday
+  %tr
+    %th Monthly
+    %td Spring
+    %td Summer
+    %td Autumn
+    %td Winter
+%p The natural result of seasonal mania — alert productivity for many months with only a few hours or days of calm receptiveness — is an energy deficit. The natural result of seasonal depression — calm receptiveness for many months with only a few hours or days of alert productivity — is an energy surplus.
+%h2 Treatment
+%p Psychopharmaceuticals affect how long you spend in each half of the cycle. Stimulants increase the length of your productive periods whereas sedatives increase the length of your receptive periods.
+%p The oldest treatments for bipolar disorder were general sedatives which decreased mania and increased depression which is a reasonable approach since mania is dangerous whereas depression is merely unhealthy. The modern treatment is usually a general sedative (mood stabilizer) with a targeted stimulant (antidepressant). The general sedative decreases the time you spend manic over all, and the targeted stimulant decreases the time you spend depressed in a specific realm.
+%p BipolarType offers two solutions, neither of which affects how long you spend in each half of the cycle.
+%p The first solution is balancing surplus vs deficit. Neither is a problem in the short term, only if they predominate in the long term. If you tend towards an energy deficit then you want to increase your surplus during depression but if you tend towards an energy surplus then you want to increase your deficit during mania.
+%p The second solution is balancing strength vs energy. The more strength you have, the more energy you require as a baseline amount in the long term. If you tend towards an energy deficit then you want to decrease your baseline strength but if you tend towards an energy surplus then you want to increase your baseline strength.
+%p Thus, the four solutions are:
+%table
+  %tr
+    %th
+    %th manic deficit
+    %th depressed surplus
+  %tr
+    %th reserves
+    %td create an energy surplus when depressed
+    %td create an energy deficit when manic
+  %tr
+    %th strength
+    %td decrease baseline strength
+    %td increase baseline strength
+%p Changing your reserves requires focusing on getting energy: you want to get more energy to create a surplus and get less energy to create a deficit. Getting more energy is easier to do during the receptive period; getting less energy is easier to do during the productive period.
+%p Changing your strength requires focusing on using strength: you want to use more strength to build strength and use less strength to allow your strength to atrophy. Using more strength is easier to do during the productive period; using less strength is easier to do during the receptive period.
+%p It is impossible to use or get or not use or not get energy or strength for months at a time, and difficult to do for days at a time, but relatively easy to do for a few hours. You are also more apt to have the freedom to change your behaviors at the beginning or the end of the day, especially if you can shift your sleep schedule. Thus, the solutions become:
+%table
+  %tr
+    %th
+    %th manic deficit
+    %th depressed surplus
+  %tr
+    %th reserves
+    %td do get energy in the evening
+    %td do not get energy in the morning
+  %tr
+    %th strength
+    %td do not use strength in the evening
+    %td do use strength in the morning
+%p If you merge the two solutions that take place at the same time, and focus first on what you should be doing and relegate what what you should not be doing to the end, you get:
+%table
+  %tr
+    %th morning
+    %th evening
+  %tr
+    %td.p do use strength; don’t get energy
+    %td.p do get energy; don’t use strength
+%h2 24 BipolarTypes
+%p Given that there are twenty four ways to permute four realms, the generic solution translates to twenty four personalized individual solutions:
+%table
+  %tr
+    %th
+    %th morning
+    %th evening
+  -Type.all.each_with_index do |type, index|
+    %tr
+      %th=link_to (index+1).ordinalize, type_path(type.path)
+      %td.p do #{type.third.use_strength}; don’t #{type.fourth.get_energy}.
+      %td.p do #{type.first.get_energy}; don’t #{type.second.use_strength}.

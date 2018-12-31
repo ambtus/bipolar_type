@@ -4,7 +4,7 @@
     %th
     -Realm.all.each do |realm|
       %th=link_to realm.name, realm_path(realm.path)
-  -%w{power strength energy reserves empty refuel get sense process resources basic necessities tempting extras achieve easy hard goal part}.each do |word|
+  -%w{consume produce}.each do |word|
     %tr
       %th=word
       -Realm.all.each do |realm|

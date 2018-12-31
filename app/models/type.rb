@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "cbda"; end
+  def self.my_path; "dbac"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -16,12 +16,16 @@ class Type
 
   def subtypes; realms.add(Attitude.all); end
 
-  def symbol; "e#{first.symbol}#{second.symbol}•#{third.symbol}#{fourth.symbol}i"; end
+  def symbol; realms.map(&:symbol).join; end
   def inspect; symbol; end
 
-  def name; "#{symbol}"; end
+  def name; symbol; end
 
   def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
+
+  %w{productive depressed receptive manic}.each_with_index do |x, index|
+    define_method(x) {subtypes[index]}
+  end
 
 end
 
