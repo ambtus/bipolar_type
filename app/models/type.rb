@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "dbac"; end
+  def self.my_path; "cdba"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -23,7 +23,7 @@ class Type
 
   def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
 
-  %w{productive depressed receptive manic}.each_with_index do |x, index|
+  %w{manic receptive productive depressed }.each_with_index do |x, index|
     define_method(x) {subtypes[index]}
   end
 

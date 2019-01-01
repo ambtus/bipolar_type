@@ -3,6 +3,6 @@
     %th morning
     %th evening
   %tr
-    %td.p do #{@type.productive.use_strength}; don’t #{@type.depressed.get_energy}.
-    %td.p do #{@type.receptive.get_energy}; don’t #{@type.manic.use_strength}.
+    %td.p do use #{@type.productive.strength}; don’t #{@type.depressed.get_energy}
+    %td.p do #{@type.receptive.get_energy}; don’t use #{@type.manic.strength}
 

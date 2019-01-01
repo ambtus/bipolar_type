@@ -1,0 +1,11 @@
+-content_for(:title, "Question ##{@answer.number} of 3")
+%p Of the two remaining realms, there is one in which using energy is more  important.
+%p It’s difficult to use the energy surplus, but you find the time and make the effort to use energy steadily and develop strength, because the results are important to you.
+%ul
+  -@realms.each do |realm|
+    %li
+      =link_to realm.name, answer_path(@answer.next(realm.path))
+      I don’t always have the necessary #{realm.strength}, but I keep trying until I can #{realm.change} all the #{realm.nouns} I want to #{realm.change}.
+%p
+  If none of these seem right, you can
+  =link_to "start over", answer_path(Answer.first_path)

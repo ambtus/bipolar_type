@@ -35,59 +35,31 @@
     %td Autumn
     %td Winter
 %p The natural result of seasonal mania — alert productivity for many months with only a few hours or days of calm receptiveness — is an energy deficit. The natural result of seasonal depression — calm receptiveness for many months with only a few hours or days of alert productivity — is an energy surplus.
-%h2 Treatment
+%h2 Medical Treatment
 %p Psychopharmaceuticals affect how long you spend in each half of the cycle. Stimulants increase the length of your productive periods whereas sedatives increase the length of your receptive periods.
 %p The oldest treatments for bipolar disorder were general sedatives which decreased mania and increased depression which is a reasonable approach since mania is dangerous whereas depression is merely unhealthy. The modern treatment is usually a general sedative (mood stabilizer) with a targeted stimulant (antidepressant). The general sedative decreases the time you spend manic over all, and the targeted stimulant decreases the time you spend depressed in a specific realm.
-%p BipolarType offers two solutions, neither of which affects how long you spend in each half of the cycle.
-%p The first solution is balancing surplus vs deficit. Neither is a problem in the short term, only if they predominate in the long term. If you tend towards an energy deficit then you want to increase your surplus during depression but if you tend towards an energy surplus then you want to increase your deficit during mania.
-%p The second solution is balancing strength vs energy. The more strength you have, the more energy you require as a baseline amount in the long term. If you tend towards an energy deficit then you want to decrease your baseline strength but if you tend towards an energy surplus then you want to increase your baseline strength.
-%p Thus, the four solutions are:
+%h2 Behavioral Treatment
+%p If you leave the cycles the way they are, then there are two ways to manage a deficit: you can get more energy or use less energy. Getting more energy takes time. Using less energy frees up time. Similarly, there are two ways to manage a surplus: you can use more energy or get less energy. Using more energy takes time. Getting less energy frees up time.
 %table
   %tr
-    %th
     %th manic deficit
     %th depressed surplus
   %tr
-    %th reserves
-    %td create an energy surplus when depressed
-    %td create an energy deficit when manic
+    %td spend more time getting energy
+    %td spend less time getting energy
   %tr
-    %th strength
-    %td decrease baseline strength
-    %td increase baseline strength
-%p Changing your reserves requires focusing on getting energy: you want to get more energy to create a surplus and get less energy to create a deficit. Getting more energy is easier to do during the receptive period; getting less energy is easier to do during the productive period.
-%p Changing your strength requires focusing on using strength: you want to use more strength to build strength and use less strength to allow your strength to atrophy. Using more strength is easier to do during the productive period; using less strength is easier to do during the receptive period.
-%p It is impossible to use or get or not use or not get energy or strength for months at a time, and difficult to do for days at a time, but relatively easy to do for a few hours. You are also more apt to have the freedom to change your behaviors at the beginning or the end of the day, especially if you can shift your sleep schedule. Thus, the solutions become:
-%table
-  %tr
-    %th
-    %th manic deficit
-    %th depressed surplus
-  %tr
-    %th reserves
-    %td do get energy in the evening
-    %td do not get energy in the morning
-  %tr
-    %th strength
-    %td do not use strength in the evening
-    %td do use strength in the morning
-%p If you merge the two solutions that take place at the same time, and focus first on what you should be doing and relegate what what you should not be doing to the end, you get:
+    %td spend less time using energy
+    %td spend more time using energy
+%p Getting more energy is easier to do during the receptive period; getting less energy is easier to do during the productive period.
+%p Using more energy is easier to do during the productive period; using less energy is easier to do during the receptive period.
+%p It is impossible to use or get more or less energy for months at a time, and difficult to do for days at a time, but relatively easy to do for a few hours. You are also more apt to have the freedom to change your behaviors at the beginning or the end of the day, especially if you can shift your sleep schedule. Thus, the manic deficit behaviors become evening behaviors, and the depressed surplus behaviors become morning behaviors.
+%p If you merge the two solutions that take place at the same time, and focus first on what you want to spend time doing and relegate to the end what you are willing to free up time by not doing, you get:
 %table
   %tr
     %th morning
     %th evening
   %tr
-    %td.p do use strength; don’t get energy
-    %td.p do get energy; don’t use strength
+    %td.p use more energy; get less energy
+    %td.p get more energy; use less energy
 %h2 24 BipolarTypes
-%p Given that there are twenty four ways to permute four realms, the generic solution translates to twenty four personalized individual solutions:
-%table
-  %tr
-    %th
-    %th morning
-    %th evening
-  -Type.all.each_with_index do |type, index|
-    %tr
-      %th=link_to (index+1).ordinalize, type_path(type.path)
-      %td.p do #{type.third.use_strength}; don’t #{type.fourth.get_energy}.
-      %td.p do #{type.first.get_energy}; don’t #{type.second.use_strength}.
+%p Given that there are twenty four ways to permute four realms, the generic solution translates to twenty four personalized individual solutions.

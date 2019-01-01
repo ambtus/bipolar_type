@@ -1,0 +1,9 @@
+-content_for(:title, "Question ##{@answer.number} of 3")
+%p There is one realm in which getting energy is the most painful or unpleasant or time consuming.
+%p It’s so difficult to make up the energy deficit, that you learn by experience that it’s not worth the effort to get more and so you stop using so much energy instead.
+%ul
+  -@realms.each do |realm|
+    %li
+      =link_to realm.name, answer_path(@answer.next(realm.path))
+      I can’t #{realm.change} as many #{realm.nouns} as I want to; I rarely enjoy #{realm.consume.ing}.
+

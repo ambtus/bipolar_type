@@ -1,6 +1,6 @@
 class Realm < Concept
 
-  SYMBOLS = %w{A P F M}
+  SYMBOLS = %w{P M F A}
 
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
@@ -15,38 +15,38 @@ class Realm < Concept
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
-  def adjective; %w{affective physical financial mental}[index]; end
+  def adjective; %w{physical mental financial affective}[index]; end
   def adverb; adjective.ly; end
 
-  def energy; %w{emotions calories money data}[index]; end
-  def reserves; %w{hope fat savings knowledge}[index]; end
-  def empty; %w{hopeless hungry overdrawn forgetful}[index]; end
+  def energy; %w{calories data money emotions}[index]; end
+  def reserves; %w{fat knowledge savings hope}[index]; end
+  def empty; %w{hungry forgetful overdrawn hopeless}[index]; end
 
-  def consume; %w{listen eat compete see}[index]; end
-  def process; %w{understand digest collect believe}[index]; end
-  def resources; %w{feedback foods rewards results}[index]; end
+  def produce; %w{walk think shop talk}[index]; end
+  def nouns; %w{places ideas things people}[index]; end
+  def change; %w{go synthesize buy influence}[index]; end
+  def change_nouns; [change, nouns].join(" "); end
+
+  def consume; %w{eat watch compete listen}[index]; end
+  def process; %w{digest remember earn understand}[index]; end
+  def resources; %w{foods truths rewards values}[index]; end
   def process_resources; [process, resources].join(" "); end
   def process_the_resources; [process, "the", resources].join(" "); end
 
-  def energizers; %w{music/intonation carbs cash\ rewards specific\ details}[index]; end
-  def get; %w{listen\ to eat compete\ for look\ for}[index]; end
+  def nice; %w{sweet colorful cash musical}[index]; end
+  def energizers; %w{carbs details rewards voices}[index]; end
+  def get; %w{eat look\ for compete\ for listen\ to}[index]; end
   def get_energy; [get, energizers].compact.join(" "); end
   def get_more_energy; [get, "more", energizers].compact.join(" "); end
   def get_less_energy; [get, energizers.last == "s" ? "fewer" : "less", energizers].compact.join(" "); end
-  def strengtheners; %w{words/meaning protein prestige/respect patterns/outlines}[index]; end
-  def get_more_strength; [get, "more", strengtheners].compact.join(" "); end
+  def get_nice_energy; [get, nice, energizers].compact.join(" "); end
+  def strengtheners; %w{protein patterns prestige/respect words/meaning}[index]; end
+  def get_strength; [get, strengtheners].compact.join(" "); end
 
-  def produce; %w{talk walk shop think}[index]; end
-  def nouns; %w{people places things ideas}[index]; end
-  def change; %w{influence go buy synthesize}[index]; end
-  def change_nouns; [change, nouns].join(" "); end
-
-  def strength; %w{words muscle credit logic}[index]; end
-  def labor; %w{communicate exercise buy think}[index]; end
-  def use_strength; ["use", strength].join(" "); end
-  def use_more_strength; ["use more", strength].join(" "); end
+  def strength; %w{muscles logic credit vocabulary}[index]; end
+  def labor; %w{exercise think buy communicate}[index]; end
   def use_less_strength; ["use", strength.last == "s" ? "fewer" : "less", strength].compact.join(" "); end
-  def energies; %w{emotions reps cash facts}[index]; end
+  def energies; %w{reps specific\ examples cash emotions}[index]; end
   def use_more_energy; ["use more", energies].join(" "); end
 
 

@@ -10,8 +10,6 @@ class Attitude < Concept
   end
   ########
 
-  def adjective; %w{ production depression reception mania }[index]; end
-
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
