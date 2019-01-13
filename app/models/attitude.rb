@@ -13,4 +13,9 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
+  def adjective; %w{weak strong thin fat}[index]; end
+
+  def health; index.even? ? "healthy" : "unhealthy" ;end
+  def episode; index < 2 ? "mania" : "depression"; end
+
 end

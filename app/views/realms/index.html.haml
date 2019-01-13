@@ -1,10 +1,11 @@
 - content_for(:title, "The Four Realms")
+%p.small affect: emotion or desire, especially as influencing behavior or action
 %table
   %tr
     %th
     -Realm.all.each do |realm|
       %th=link_to realm.name, realm_path(realm.path)
-  -%w{consume produce}.each do |word|
+  -%w{energy notice appear get process resources energizers strengtheners reserves act achieve goals strength }.each do |word|
     %tr
       %th=word
       -Realm.all.each do |realm|

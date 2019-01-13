@@ -1,65 +1,104 @@
 - content_for(:title, 'The Theory')
-%p There are four realms of activities, each of which has a different set of paired behaviors.
-%ul
-  -Realm.all.each do |realm|
-    %li
-      #{realm.name} Realm:
-      %ul
-        %li get #{realm.energy}: #{realm.consume} (#{realm.process_resources})
-        %li use #{realm.energy}: #{realm.produce} (#{realm.change_nouns})
-%p Both getting and using energy are normal and natural behaviors. They only become problematic if they are not balanced by the other. Using energy without getting it creates a dangerous energy deficit. Getting energy without using it creates an unhealthy energy surplus.
-%p A bipolar cycle is one of four periods of alternating alert productivity (using energy) followed by calm receptiveness (geting energy).
+%h2 Bipolar Cycles
+%p A bipolar cycle is a period of activity (building and using strength) followed by a period of rest (getting and conserving energy).
 %table
   %tr
     %th
-    %th Use energy
+    %th{colspan:2} Active
+    %th{colspan:2} Restful
+  %tr
+    %th
+    %th Build strength
+    %th Use strength
     %th Get energy
-    %th Use energy
-    %th Get energy
+    %th Conserve energy
   %tr
     %th Daily
     %td Morning
-    %td Midday
-    %td Afternoon
+    %td Day
     %td Evening
+    %td Night
   %tr
     %th Weekly
-    %td Saturday/Sunday
-    %td Monday/Tuesday
-    %td Wednesday
-    %td Thursday/Friday
+    %td Monday
+    %td Midweek
+    %td Friday
+    %td Weekend
   %tr
-    %th Monthly
+    %th Yearly
     %td Spring
     %td Summer
-    %td Autumn
+    %td Fall
     %td Winter
-%p The natural result of seasonal mania — alert productivity for many months with only a few hours or days of calm receptiveness — is an energy deficit. The natural result of seasonal depression — calm receptiveness for many months with only a few hours or days of alert productivity — is an energy surplus.
-%h2 Medical Treatment
-%p Psychopharmaceuticals affect how long you spend in each half of the cycle. Stimulants increase the length of your productive periods whereas sedatives increase the length of your receptive periods.
-%p The oldest treatments for bipolar disorder were general sedatives which decreased mania and increased depression which is a reasonable approach since mania is dangerous whereas depression is merely unhealthy. The modern treatment is usually a general sedative (mood stabilizer) with a targeted stimulant (antidepressant). The general sedative decreases the time you spend manic over all, and the targeted stimulant decreases the time you spend depressed in a specific realm.
-%h2 Behavioral Treatment
-%p If you leave the cycles the way they are, then there are two ways to manage a deficit: you can get more energy or use less energy. Getting more energy takes time. Using less energy frees up time. Similarly, there are two ways to manage a surplus: you can use more energy or get less energy. Using more energy takes time. Getting less energy frees up time.
+%p.small Not all weekly cycles are seven days long; my weekly cycle is six days: three days up, three days down.
+%p
+  On a spring monday morning you
+  %em will
+  be active and build strength. But on a spring midweek evening you will be able to build strength, use strength, or get energy; the only thing you
+  %em won’t
+  be able to do (without sedatives such as alcohol) is conserve energy.
+%p
+  On a winter weekend night you
+  %em will
+  be restful and conserve energy. But on a winter friday day you will be able to conserve energy, get energy, or use strength; the only thing you
+  %em won’t
+  be able to do (without stimulants such as caffeine) is build strength.
+%h2 Bipolar Disorders
+%p Using strength without getting energy creates an energy deficit. Getting energy without using strength creates an energy surplus.
+%p Depression is the natural ability to ignore zeitgebers and turn “off” in the face of a dangerous energy deficit without the use of sedatives. During depression you won’t be able to build new strengths even on a spring monday morning; you don’t have enough reserves to fuel the strengths you already have. The building strength period is eliminated and the periods of getting and conserving energy are lengthened. You sleep soundly and wake later. When using strength, your focus shifts towards easier goals which do not require more strength than you already have. When getting energy, your focus shifts towards resources which provide more energy than strengtheners.
+%p Mania is the natural ability to ignore zeitgebers and turn “on” in the face of a dangerous energy surplus without the use of stimulants. During mania you won’t be able to conserve energy even on a winter sunday night; you don’t have enough strength to use the reserves you already have. The conserving energy period is eliminated and the periods of building and using strength are lengthened. You sleep restlessly and wake sooner. When using strength, your focus shifts towards harder goals which require more strength than you currently have. When getting energy, your focus shifts towards resources which provide more strengtheners than energy.
+%p If mania and depression are beneficial conditions which protect the individual from dangerous energy imbalances, why are they considered disorders or treated with sedatives and stimulants?
+%p Partly because sleeping when everyone else is awake or not sleeping when everyone else is asleep is “abnormal”. But mostly because there are four realms of energy. While mania and depression are healthy behaviors for the realms triggering them, they can be unhealthy for the other two realms.
+%ul
+  %li
+    Healthy mania:
+    %ul
+      %li I build new and useful strengths to use the reserves I already have
+  %li
+    Unhealthy mania:
+    %ul
+      %li I build strengths I don’t need and don’t have enough reserves to fuel
+  %li
+    Healthy depression:
+    %ul
+      %li I get new and useful resources to fuel the strengths I already have
+  %li
+    Unhealthy depression:
+    %ul
+      %li I get resources I don’t need and don’t have enough strength to use
+%h2 The Four Realms
 %table
   %tr
-    %th manic deficit
-    %th depressed surplus
+    %th
+    %th{colspan:2} Productive
+    %th{colspan:2} Receptive
   %tr
-    %td spend more time getting energy
-    %td spend less time getting energy
-  %tr
-    %td spend less time using energy
-    %td spend more time using energy
-%p Getting more energy is easier to do during the receptive period; getting less energy is easier to do during the productive period.
-%p Using more energy is easier to do during the productive period; using less energy is easier to do during the receptive period.
-%p It is impossible to use or get more or less energy for months at a time, and difficult to do for days at a time, but relatively easy to do for a few hours. You are also more apt to have the freedom to change your behaviors at the beginning or the end of the day, especially if you can shift your sleep schedule. Thus, the manic deficit behaviors become evening behaviors, and the depressed surplus behaviors become morning behaviors.
-%p If you merge the two solutions that take place at the same time, and focus first on what you want to spend time doing and relegate to the end what you are willing to free up time by not doing, you get:
-%table
-  %tr
-    %th morning
-    %th evening
-  %tr
-    %td.p use more energy; get less energy
-    %td.p get more energy; use less energy
-%h2 24 BipolarTypes
-%p Given that there are twenty four ways to permute four realms, the generic solution translates to twenty four personalized individual solutions.
+    %th
+    %th Build strength
+    %th Use strength
+    %th Get energy
+    %th Store energy
+  -Realm.all.each do |realm|
+    %tr
+      %th=realm.name
+      %td build new #{realm.strength}
+      %td
+        #{realm.act} & #{realm.achieve}
+        %b #{realm.goals}
+      %td #{realm.notice} & #{realm.get_resources}
+      %td
+        #{realm.process} #{realm.resources} =>
+        %b #{realm.energy}
+        ="=> #{realm.reserves}"
+=render "affect"
+-Realm.all.each do |realm|
+  %h3 #{realm.name} States
+  %ul
+    -realm.subtypes.each do |subtype|
+      %li
+        =subtype.description + ":"
+        =render "subtype", subtype: subtype
+%h2 The BipolarType Solution
+%p You should not treat mania or depression but instead try to prevent them.
+%p If you don’t want to experience unhealthy depression, then prevent healthy depression by conserving energy in the realm which triggers depression even when you aren’t depressed and getting energy every evening, even when you are manic. Treating depression with stimulants merely aggravates and prolongs the dangerous energy deficit which is much more critical than your unhealthy energy surplus.
+%p If you don’t want to experience unhealthy mania, then prevent healthy mania by building strength in the realm which triggers mania even when you aren’t manic and using strength every day, even when you are depressed. Treating mania with sedatives merely aggravates and prolongs the dangerous energy surplus which is much more critical than your unhealthy energy deficit.
