@@ -1,0 +1,29 @@
+-case subtype.attitude.ordinal
+-when "fourth"
+  Don’t bother #{subtype.accomplish.ing} #{subtype.anything} when you are manic; it won’t increase your #{subtype.reserves} since you won’t #{subtype.gather} after #{subtype.practice.ing}. If you have to #{subtype.accomplish} #{subtype.something}, #{subtype.accomplish} #{subtype.something} that doesn’t require much #{subtype.strength}; you may have a lot of #{subtype.strength}, but you cannot
+  %em use
+  it when you are manic and you don’t need #{subtype.strength} in order to #{subtype.accomplish} #{subtype.easy} #{subtype.goals}.
+-when "third"
+  Don’t #{subtype.accomplish} new #{subtype.goals} when you are manic. It’s far to easy to #{subtype.practice} too much and gain unwanted #{subtype.strength}. And you do
+  %em not
+  want more #{subtype.strength} because then you will have to #{subtype.gather.more}. If you need to #{subtype.practice}, #{subtype.accomplish} #{subtype.goals} that are less likely to build unwanted #{subtype.strength}.
+  -if @type
+    If you cannot #{@type.first.practice}, and all your #{@type.first.strength} is atrophying, then it’s better to #{subtype.practice} and #{subtype.accomplish} #{subtype.goals} and build #{subtype.strength} than to not #{@type.first.practice} and die.
+-when "second"
+  If you can #{subtype.practice} then you
+  %em can
+  #{subtype.accomplish} #{subtype.something}. You just can’t #{subtype.accomplish} #{subtype.something} else. It may make you feel tired, but keep #{subtype.practice.ing}. #{subtype.practice.capitalize} in circles if you have to; it won’t make you feel as tired if you don’t try to use as much #{subtype.strength} by #{subtype.accomplish.ing} #{subtype.something} difficult. Even if you have enough #{subtype.strength} now, it’s still not a good idea to wear it out when you are depressed, because you don’t know how long the depression will last.
+  -if @type
+    Also, if you keep #{subtype.practice.ing} you will be able to
+    #{@type.first.practice} more and the more you can #{@type.first.practice}, the better.
+-when "first"
+  Since you can’t #{subtype.practice} when you are depressed, you have to make sure you have enough #{subtype.strength} to live on for as long as the depression lasts. #{subtype.accomplish.capitalize} more #{subtype.goals} when you
+  %em aren’t
+  depressed. It’s easier to build #{subtype.strength} when you #{subtype.accomplish} harder #{subtype.goals} and the more difficult the #{subtype.goals} the more #{subtype.strength} you will build.
+  -if @type
+    If you are having trouble #{subtype.practice.ing}, then #{@type.second.practice}. Even if you can’t #{@type.second.accomplish} #{@type.second.anything}. Just #{@type.second.practice.ing} in circles will rev you up enough to #{subtype.practice}. If you are about to
+    %em die
+    because you cannot #{subtype.practice}, then #{@type.third.practice} enough to
+    #{@type.third.accomplish} #{@type.third.something}! You won’t die if you build some #{@type.third.strength}; you
+    %em will
+    die if you don’t #{subtype.accomplish} the #{subtype.goals} you need to #{subtype.accomplish}.

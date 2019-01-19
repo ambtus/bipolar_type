@@ -1,23 +1,29 @@
 - content_for(:title, 'The Theory')
-%h2 Bipolar Cycles
-%p A bipolar cycle is a period of activity (building and using strength) followed by a period of rest (getting and conserving energy).
+%h2 The Bipolar Cycle
+%p A bipolar cycle is two active periods (building and using strength) followed by two dormant periods (building and using reserves).
 %table
   %tr
     %th
-    %th{colspan:2} Active
-    %th{colspan:2} Restful
+    %th{colspan:2} Strength
+    %th{colspan:2} Reserves
   %tr
     %th
-    %th Build strength
-    %th Use strength
-    %th Get energy
-    %th Conserve energy
+    %th Build
+    %th Use
+    %th Build
+    %th Use
   %tr
-    %th Daily
-    %td Morning
-    %td Day
-    %td Evening
-    %td Night
+    %th Period
+    %td Training
+    %td Labor
+    %td Harvest
+    %td Rest
+  %tr
+    %th Yearly
+    %td Spring
+    %td Summer
+    %td Autumn
+    %td Winter
   %tr
     %th Weekly
     %td Monday
@@ -25,80 +31,107 @@
     %td Friday
     %td Weekend
   %tr
-    %th Yearly
-    %td Spring
-    %td Summer
-    %td Fall
-    %td Winter
-%p.small Not all weekly cycles are seven days long; my weekly cycle is six days: three days up, three days down.
-%p
-  On a spring monday morning you
-  %em will
-  be active and build strength. But on a spring midweek evening you will be able to build strength, use strength, or get energy; the only thing you
-  %em won’t
-  be able to do (without sedatives such as alcohol) is conserve energy.
-%p
-  On a winter weekend night you
-  %em will
-  be restful and conserve energy. But on a winter friday day you will be able to conserve energy, get energy, or use strength; the only thing you
-  %em won’t
-  be able to do (without stimulants such as caffeine) is build strength.
+    %th Daily
+    %td Morning
+    %td Day
+    %td Evening
+    %td Night
 %h2 Bipolar Disorders
-%p Using strength without getting energy creates an energy deficit. Getting energy without using strength creates an energy surplus.
-%p Depression is the natural ability to ignore zeitgebers and turn “off” in the face of a dangerous energy deficit without the use of sedatives. During depression you won’t be able to build new strengths even on a spring monday morning; you don’t have enough reserves to fuel the strengths you already have. The building strength period is eliminated and the periods of getting and conserving energy are lengthened. You sleep soundly and wake later. When using strength, your focus shifts towards easier goals which do not require more strength than you already have. When getting energy, your focus shifts towards resources which provide more energy than strengtheners.
-%p Mania is the natural ability to ignore zeitgebers and turn “on” in the face of a dangerous energy surplus without the use of stimulants. During mania you won’t be able to conserve energy even on a winter sunday night; you don’t have enough strength to use the reserves you already have. The conserving energy period is eliminated and the periods of building and using strength are lengthened. You sleep restlessly and wake sooner. When using strength, your focus shifts towards harder goals which require more strength than you currently have. When getting energy, your focus shifts towards resources which provide more strengtheners than energy.
-%p If mania and depression are beneficial conditions which protect the individual from dangerous energy imbalances, why are they considered disorders or treated with sedatives and stimulants?
-%p Partly because sleeping when everyone else is awake or not sleeping when everyone else is asleep is “abnormal”. But mostly because there are four realms of energy. While mania and depression are healthy behaviors for the realms triggering them, they can be unhealthy for the other two realms.
-%ul
-  %li
-    Healthy mania:
-    %ul
-      %li I build new and useful strengths to use the reserves I already have
-  %li
-    Unhealthy mania:
-    %ul
-      %li I build strengths I don’t need and don’t have enough reserves to fuel
-  %li
-    Healthy depression:
-    %ul
-      %li I get new and useful resources to fuel the strengths I already have
-  %li
-    Unhealthy depression:
-    %ul
-      %li I get resources I don’t need and don’t have enough strength to use
+%h3 Mania
+%p
+  Mania is the inability to relax during a rest period because you don’t have enough
+  %em reserves;
+  you are awake and active in the middle of a long winter night because you don’t have the reserves that would allow you to continue to rest.
+%p
+  Mania is not caused by being liberal with your energy and neglecting your reserves when
+  %em active;
+  it is caused because you didn’t build enough reserves during the
+  %em harvest period.
+  Unfortunately, you cannot use something you do not have so the rest period ends and you move on to the active periods even though everyone else is still resting.
+%p
+  Taking sedatives so that you will stay asleep during the night does
+  %em not
+  provide you with the reserves you need to actually rest effectively.
+  Only
+  %em harvest
+  periods will help you build the reserves that you need in order to rest all night.
+%h3 Depression
+%p
+  Depression is the inability to work during a labor period because you don’t have enough
+  %em strength;
+  you are asleep and dormant in the middle of a long summer day because you don’t have the strength that would allow you to continue to labor.
+%p
+  Depression is not caused by being conservative with your energy and neglecting your strength when
+  %em dormant;
+  it is caused because you didn’t build enough strength during the
+  %em training period.
+  Unfortunately, you cannot use something you do not have so the labor period ends and you move on to the dormant periods even though everyone else is still laboring.
+%p
+  Taking stimulants so that you will stay awake during the day does
+  %em not
+  provide you with the strength you need to actually labor effectively.
+  Only
+  %em training
+  periods will help you build the strength that you need in order to labor all day.
 %h2 The Four Realms
+%p There are four different realms of behavior each of which has its own strength and reserves.
 %table
   %tr
     %th
-    %th{colspan:2} Productive
-    %th{colspan:2} Receptive
-  %tr
-    %th
-    %th Build strength
-    %th Use strength
-    %th Get energy
-    %th Store energy
+    %th Training
+    %th Strength
+    %th Labor
+    %th Harvest
+    %th Reserves
   -Realm.all.each do |realm|
     %tr
       %th=realm.name
-      %td build new #{realm.strength}
-      %td
-        #{realm.act} & #{realm.achieve}
-        %b #{realm.goals}
-      %td #{realm.notice} & #{realm.get_resources}
-      %td
-        #{realm.process} #{realm.resources} =>
-        %b #{realm.energy}
-        ="=> #{realm.reserves}"
-=render "affect"
--Realm.all.each do |realm|
-  %h3 #{realm.name} States
-  %ul
-    -realm.subtypes.each do |subtype|
-      %li
-        =subtype.description + ":"
-        =render "subtype", subtype: subtype
-%h2 The BipolarType Solution
-%p You should not treat mania or depression but instead try to prevent them.
-%p If you don’t want to experience unhealthy depression, then prevent healthy depression by conserving energy in the realm which triggers depression even when you aren’t depressed and getting energy every evening, even when you are manic. Treating depression with stimulants merely aggravates and prolongs the dangerous energy deficit which is much more critical than your unhealthy energy surplus.
-%p If you don’t want to experience unhealthy mania, then prevent healthy mania by building strength in the realm which triggers mania even when you aren’t manic and using strength every day, even when you are depressed. Treating mania with sedatives merely aggravates and prolongs the dangerous energy surplus which is much more critical than your unhealthy energy deficit.
+      %td=realm.practice
+      %td=realm.strength
+      %td=realm.labor
+      %td=realm.harvest
+      %td=realm.reserves
+%h2 Individual Differences
+%p Some people develop strength quickly and easily with a short training period; other people need to train a lot longer in order to develop the same strength. That’s a question of nature, not nurture. Some people just develop strength faster than others. Someone who has a lot of strength requires more reserves to get through a rest period because strength acts as a drain on energy even when not in use.
+%p
+  As a baby, your first major milestone was when you could
+  %em sleep through the night.
+  Through trial and error, your parents or caregivers learned what resources to give you in the evening so that you would have enough reserves to stay asleep all night long. Whatever the resources were that you needed more of, that’s what you got. This is evidenced by the fact that you did, eventually, learn to make it through the night without active periods. The resources that you needed the most of were those associated with your strongest realm.
+%p
+  As a toddler, your second major milestone was when you could
+  %em stay awake through the day.
+  Through trial and error, your parents or teachers learned what training to give you in the morning so that you would have enough strength to stay awake all day long. Whatever the training was that you needed more of, that’s what you got. This is evidenced by the fact that you did, eventually, learn to make it through the day without dormant periods. The training that you needed the most of was that associated with your weakest realm.
+%p By the time you were six, you were spending most of your morning training in your weakest realm and most of your evening harvesting in your strongest realm. Regardless of whatever labor you were doing during the day. For most of your childhood your parents and caregivers and teachers kept you on track, providing training and harvests as necessary to keep you within normal limits.
+%p Bipolar disorders usually emerge during adolescence or early adulthood when people have to take responsibility for their own training and harvests.
+%p
+  Depression occurs when you stop training your weakest realm. You’ve been training every morning all your life and are no longer weak. You have enough strength to do labor. You have more strength than you think you need and may even have more than your peers at this point. You want to use your mornings for something else. Something where your strength is less than it could be. Something to make it easier to labor in another realm. You change what you train in the morning to another realm in which you
+  %em want
+  to have more strenght and be able to labor longer. But when you attempt the labor which you used to be able to sustain easily, you fail and enter a dormant period.
+%p
+  Your weakest realm is weakest not just because it takes longer to
+  %em build
+  strength. But because your strength atrophies quickly whenever you stop training. You must train every morning. For the rest of your life. Even in the middle of winter and on weekends. You will feel
+  %em much
+  more alert and be able to stay awake and labor all day long if you do. Yes, it might be
+  %em nice
+  to have more strength in another realm, but it’s not
+  %em necessary.
+  It
+  %em is
+  necessary to continue to build strength in your weakest realm.
+%p
+  Mania occurs when you stop collecting. You’ve been collecting every evening all your life and are no longer anxious. You have enough reserves to relax. You have more reserves than you think you need and may even have more than your peers at this point. You want to use your evenings for something else. Something where your reserves are less than they could be. Something to make it easier to rest in another realm. You change what you harvest in the evening to another realm in which you
+  %em want
+  to have more reserves and be able to rest longer. But when you attempt the rest which you used to be able to sustain easily, you fail and enter an active period.
+%p
+  Your strongest realm is strongest not just because it takes longer to
+  %em build
+  reserves. But because your reserves atrophy quickly whenever you stop harvesting. You must harvest every evening. For the rest of your life. Even in the middle of summer and on weekdays. You will feel
+  %em much
+  more relaxed and be able to stay asleep and rest all night long if you do. Yes, it might be
+  %em nice
+  to have more reserves in another realm, but it’s not
+  %em necessary.
+  It
+  %em is
+  necessary to continue to build reserves in your strongest realm.

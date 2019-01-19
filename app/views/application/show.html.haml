@@ -1,6 +1,13 @@
 - content_for(:title, @name)
 %p.center=render "header"
--@subtypes.each do |subtype|
-  %h2=subtype.name
-  %p.heading=subtype.description
-  =render "subtype", subtype: subtype
+%table
+  %tr
+    -@subtypes.each do |subtype|
+      %th.quarter=link_to subtype.name, subtype_path(subtype.path)
+  %tr
+    -@subtypes.each do |subtype|
+      %td=subtype.description
+  -%w{subtype output input}.each do |partial|
+    %tr
+      -@subtypes.each do |subtype|
+        %td.p=render partial, subtype: subtype

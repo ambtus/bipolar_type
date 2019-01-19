@@ -1,9 +1,13 @@
--case subtype.attitude.adjective
--when "weak"
-  I build new and useful #{subtype.strength} to use the #{subtype.reserves} I already have
--when "fat"
-  I #{subtype.get_resources} I don’t need and don’t have enough #{subtype.strength} to use constructively
--when "strong"
-  I build #{subtype.strength} I don’t need and don’t have enough #{subtype.reserves} to fuel indefinitely
--when "thin"
-  I #{subtype.get} new and useful #{subtype.resources} to fuel the #{subtype.strength} I already have
+-case subtype.attitude.ordinal
+-when "first"
+  I can’t #{subtype.practice} when I am depressed.
+-when "second"
+  I
+  %em can
+  #{subtype.practice} when I am depressed; I just can’t #{subtype.accomplish} #{subtype.anything}.
+-when "third"
+  I
+  %em can
+  #{subtype.gather} when I am manic; I just can’t #{subtype.process} anything.
+-when "fourth"
+  I can’t #{subtype.gather} when I am manic.
