@@ -1,137 +1,60 @@
 - content_for(:title, 'The Theory')
-%h2 The Bipolar Cycle
-%p A bipolar cycle is two active periods (building and using strength) followed by two dormant periods (building and using reserves).
-%table
-  %tr
-    %th
-    %th{colspan:2} Strength
-    %th{colspan:2} Reserves
-  %tr
-    %th
-    %th Build
-    %th Use
-    %th Build
-    %th Use
-  %tr
-    %th Period
-    %td Training
-    %td Labor
-    %td Harvest
-    %td Rest
-  %tr
-    %th Yearly
-    %td Spring
-    %td Summer
-    %td Autumn
-    %td Winter
-  %tr
-    %th Weekly
-    %td Monday
-    %td Midweek
-    %td Friday
-    %td Weekend
-  %tr
-    %th Daily
-    %td Morning
-    %td Day
-    %td Evening
-    %td Night
-%h2 Bipolar Disorders
-%h3 Mania
-%p
-  Mania is the inability to relax during a rest period because you don’t have enough
-  %em reserves;
-  you are awake and active in the middle of a long winter night because you don’t have the reserves that would allow you to continue to rest.
-%p
-  Mania is not caused by being liberal with your energy and neglecting your reserves when
-  %em active;
-  it is caused because you didn’t build enough reserves during the
-  %em harvest period.
-  Unfortunately, you cannot use something you do not have so the rest period ends and you move on to the active periods even though everyone else is still resting.
-%p
-  Taking sedatives so that you will stay asleep during the night does
-  %em not
-  provide you with the reserves you need to actually rest effectively.
-  Only
-  %em harvest
-  periods will help you build the reserves that you need in order to rest all night.
-%h3 Depression
-%p
-  Depression is the inability to work during a labor period because you don’t have enough
-  %em strength;
-  you are asleep and dormant in the middle of a long summer day because you don’t have the strength that would allow you to continue to labor.
-%p
-  Depression is not caused by being conservative with your energy and neglecting your strength when
-  %em dormant;
-  it is caused because you didn’t build enough strength during the
-  %em training period.
-  Unfortunately, you cannot use something you do not have so the labor period ends and you move on to the dormant periods even though everyone else is still laboring.
-%p
-  Taking stimulants so that you will stay awake during the day does
-  %em not
-  provide you with the strength you need to actually labor effectively.
-  Only
-  %em training
-  periods will help you build the strength that you need in order to labor all day.
-%h2 The Four Realms
-%p There are four different realms of behavior each of which has its own strength and reserves.
-%table
-  %tr
-    %th
-    %th Training
-    %th Strength
-    %th Labor
-    %th Harvest
-    %th Reserves
+%p There are four realms, each of which run on a different type of energy:
+%ul
   -Realm.all.each do |realm|
-    %tr
-      %th=realm.name
-      %td=realm.practice
-      %td=realm.strength
-      %td=realm.labor
-      %td=realm.harvest
-      %td=realm.reserves
-%h2 Individual Differences
-%p Some people develop strength quickly and easily with a short training period; other people need to train a lot longer in order to develop the same strength. That’s a question of nature, not nurture. Some people just develop strength faster than others. Someone who has a lot of strength requires more reserves to get through a rest period because strength acts as a drain on energy even when not in use.
-%p
-  As a baby, your first major milestone was when you could
-  %em sleep through the night.
-  Through trial and error, your parents or caregivers learned what resources to give you in the evening so that you would have enough reserves to stay asleep all night long. Whatever the resources were that you needed more of, that’s what you got. This is evidenced by the fact that you did, eventually, learn to make it through the night without active periods. The resources that you needed the most of were those associated with your strongest realm.
-%p
-  As a toddler, your second major milestone was when you could
-  %em stay awake through the day.
-  Through trial and error, your parents or teachers learned what training to give you in the morning so that you would have enough strength to stay awake all day long. Whatever the training was that you needed more of, that’s what you got. This is evidenced by the fact that you did, eventually, learn to make it through the day without dormant periods. The training that you needed the most of was that associated with your weakest realm.
-%p By the time you were six, you were spending most of your morning training in your weakest realm and most of your evening harvesting in your strongest realm. Regardless of whatever labor you were doing during the day. For most of your childhood your parents and caregivers and teachers kept you on track, providing training and harvests as necessary to keep you within normal limits.
-%p Bipolar disorders usually emerge during adolescence or early adulthood when people have to take responsibility for their own training and harvests.
-%p
-  Depression occurs when you stop training your weakest realm. You’ve been training every morning all your life and are no longer weak. You have enough strength to do labor. You have more strength than you think you need and may even have more than your peers at this point. You want to use your mornings for something else. Something where your strength is less than it could be. Something to make it easier to labor in another realm. You change what you train in the morning to another realm in which you
-  %em want
-  to have more strenght and be able to labor longer. But when you attempt the labor which you used to be able to sustain easily, you fail and enter a dormant period.
-%p
-  Your weakest realm is weakest not just because it takes longer to
-  %em build
-  strength. But because your strength atrophies quickly whenever you stop training. You must train every morning. For the rest of your life. Even in the middle of winter and on weekends. You will feel
-  %em much
-  more alert and be able to stay awake and labor all day long if you do. Yes, it might be
-  %em nice
-  to have more strength in another realm, but it’s not
-  %em necessary.
-  It
-  %em is
-  necessary to continue to build strength in your weakest realm.
-%p
-  Mania occurs when you stop collecting. You’ve been collecting every evening all your life and are no longer anxious. You have enough reserves to relax. You have more reserves than you think you need and may even have more than your peers at this point. You want to use your evenings for something else. Something where your reserves are less than they could be. Something to make it easier to rest in another realm. You change what you harvest in the evening to another realm in which you
-  %em want
-  to have more reserves and be able to rest longer. But when you attempt the rest which you used to be able to sustain easily, you fail and enter an active period.
-%p
-  Your strongest realm is strongest not just because it takes longer to
-  %em build
-  reserves. But because your reserves atrophy quickly whenever you stop harvesting. You must harvest every evening. For the rest of your life. Even in the middle of summer and on weekdays. You will feel
-  %em much
-  more relaxed and be able to stay asleep and rest all night long if you do. Yes, it might be
-  %em nice
-  to have more reserves in another realm, but it’s not
-  %em necessary.
-  It
-  %em is
-  necessary to continue to build reserves in your strongest realm.
+    %li #{realm.adjective}: #{realm.energy}
+%p Each realm has a different resource which you can use to get energy:
+%ul
+  -Realm.all.each do |realm|
+    %li get #{realm.energy}: #{realm.use} #{realm.resources}
+%p Your senses tell you which resources to use:
+%ul
+  -Realm.all.each do |realm|
+    %li #{realm.notice}: good #{realm.resources} #{realm.appear} better
+%p Bad resources are those which you can’t process:
+%ul
+  -Realm.all.each do |realm|
+    %li #{realm.baduns}: #{realm.resources} you cannot #{realm.process}
+%p Different resources have different proportions of energizers and strengtheners:
+%ul
+  -Realm.all.each do |realm|
+    %li #{realm.resources}: some are pure #{realm.energizer} and some are pure #{realm.strengthener} but most are a combination of #{realm.energizer.s} and #{realm.strengthener.s}
+%p Buffers make resources appear better and easier to use but not process:
+%ul
+  -Realm.all.each do |realm|
+    %li #{realm.buffers}: makes #{realm.resources} (#{realm.energizer.s} and #{realm.strengthener.s}) #{realm.appear} better and easier to #{realm.use} but won’t make #{realm.baduns} #{realm.processable}
+%p Your neurons fire in the presence of energizers; strengtheners and buffers do not trigger a response.
+%ul
+  -Realm.all.each do |realm|
+    %li #{realm.neuro}: you’ve got #{realm.energizer.s}!
+%p Some brains rev up when they get the signal that energy has arrived: yes! energy! finally! time to do more! I have enough energy now to work all day!
+%p The more you do, the more strength you will build; more strength allows you to accomplish harder goals:
+%ul
+  -Realm.all.each do |realm|
+    %li #{realm.strength}: #{realm.adjective} strength that allows you to #{realm.labor}
+%p Some brains calm down when they get the signal that energy has arrived: yes! energy! finally! time to do less! I have enough energy now to sleep all night!
+%p The less you do, the more reserves you will build; more reserves allow you to act longer without getting energy:
+%ul
+  -Realm.all.each do |realm|
+    %li #{realm.reserves}: #{realm.adjective} reserves that allow you to #{realm.act} longer without #{realm.use_wo.ing}
+%p The presence of abundant energizers can cause a vicious “on” cycle in someone who revs up. Energizers make them rev up; the more they rev up, the more they do; the more they do, the more strength they build; the more strength they build, the more energy they need to fuel those strengths; the more energy they need, the more resources they seek; the more resources they seek, the more energizers they get; the more energizers they get, the more neurons are triggered; the more neurons are triggered, the more they rev up and the more they do and the less they sleep.
+%p If you are in desperate need of more strength because of harder goals that need to be accomplished immediately, this is called hypomania and is productive and desirable. If you are building strengths you do not need and don’t want to have to fuel, or are awake all night when you want to be asleep, this is called mania.
+%p General sedatives can be used to calm the person down. It may even be possible to target specific neurons with specific sedatives. But. Removing the energizers works better. Seeking out resources that are primarily strengtheners with just enough energizers to keep yourself alert and active during the day without keeping you awake all night or forcing you to build strengths you don’t want to have to fuel is something you can do without a doctor’s prescription and without any harmful side effects.
+%p The presence of abundant energizers can cause a vicious “off” cycle in someone who calms down. energizers make them calm down; the more they calm down, the less they do; the less they do, the more reserves they build; the more reserves they build, the more strength they need to use those reserves; the more strength they need, the more resources they seek; the more resources they seek, the more energizers they get; the more energizers they get, the more neurons are triggered; the more neurons are triggered, the more they calm down and the less they do and the more they sleep.
+%p If you are in desperate need of more reserves because of long periods of time during which resources are not available, or during which you cannot stop to get resources, this is called saving and is productive and desirable. If you are building reserves you do not need and don’t want to have to use, or are asleep all day when you want to be awake, this is called depression.
+%p General stimulants can be used to rev the person up. It may even be possible to target specific neurons with specific stimulants. But. Removing the energizers works better. Seeking out resources that are primarily strengtheners with just enough energizers to keep yourself calm and asleep during the night without keeping you asleep all day or forcing you to build reserves you don’t want to have to use is something you can do without a doctor’s prescription and without any harmful side effects.
+%table
+  %caption The Four Attitudes
+  %tr
+    %th
+    %th rev up
+    %th calm down
+  %tr
+    %th proud
+    %td.p I am proud of the reserves I have saved, but I wish I still had enough strength to accomplish my goals during the day
+    %td.p I am proud of the strength I have developed, but I wish I still had enough reserves to sleep through the night
+  %tr
+    %th jealous
+    %td.p I am not proud of my strengths because I don’t want to have to fuel them (I am jealous of your reserves)
+    %td.p I am not proud of my reserves because I don’t want to have to use them (I am jealous of your strength)
+%p A BipolarType is one attitude for each realm. I don’t know if everyone has a BipolarType. I do know you don’t have to be bipolar to have a BipolarType.
