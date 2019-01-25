@@ -1,60 +1,68 @@
 - content_for(:title, 'The Theory')
-%p There are four realms, each of which run on a different type of energy:
+%h2 The Four Attitudes
+%p There are four periods:
+%ol
+  %li Spring | Monday | Morning
+  %li Summer | Midweek | Midday
+  %li Autumn | Friday | Evening
+  %li Winter | Weekend | Night
+%p There is a different attitude towards each period:
+%ol
+  %li I want to wake up in the morning to achieve goals
+  %li I want to stay awake during the day and continue to achieve goals
+  %li I want to calm down in the evening to rest
+  %li I want to stay calm during the night and continue to rest
+%p There are two classes of drugs:
+%ul
+  %li stimulants: wake you up and keep you awake
+  %li sedatives: calm you down and keep you calm
+%p There are four attitudes towards the two drugs given the four periods:
+%ol
+  %li I need a stimulant to wake up in the morning
+  %li I need to avoid sedatives or I will fall asleep during the day
+  %li I need a sedative to calm down in the evening
+  %li I need to avoid stimulants or I will stay awake during the night
+%h2 The Four Realms
+%p There are four realms, each of which has it’s own actions and goals:
 %ul
   -Realm.all.each do |realm|
-    %li #{realm.adjective}: #{realm.energy}
+    %li #{realm.adjective}: #{realm.act} to #{realm.accomplish} #{realm.goals}
+%p Each realm requires a different type of energy:
+%ul
+  -Realm.all.each do |realm|
+    %li #{realm.adjective}: I need #{realm.energy} to #{realm.act}
 %p Each realm has a different resource which you can use to get energy:
 %ul
   -Realm.all.each do |realm|
-    %li get #{realm.energy}: #{realm.use} #{realm.resources}
-%p Your senses tell you which resources to use:
+    %li #{realm.adjective}: #{realm.use} #{realm.resources} to get #{realm.energy}
+%p Different resources have different proportions of triggers and nulls:
 %ul
   -Realm.all.each do |realm|
-    %li #{realm.notice}: good #{realm.resources} #{realm.appear} better
-%p Bad resources are those which you can’t process:
+    %li #{realm.adjective}: some #{realm.resources} are #{realm.triggers} and some are #{realm.nulls}, but most are a combination of both
+%p Your neurons fire in the presence of triggers; nulls do not trigger a response.
 %ul
   -Realm.all.each do |realm|
-    %li #{realm.baduns}: #{realm.resources} you cannot #{realm.process}
-%p Different resources have different proportions of energizers and strengtheners:
+    %li #{realm.adjective}: #{realm.neuro} triggers when you’ve gotten #{realm.triggers} but not when you get #{realm.nulls}
+%h2 The Four Types
+%h3 Nature
+%p Some brains react to triggers by waking up:
 %ul
   -Realm.all.each do |realm|
-    %li #{realm.resources}: some are pure #{realm.energizer} and some are pure #{realm.strengthener} but most are a combination of #{realm.energizer.s} and #{realm.strengthener.s}
-%p Buffers make resources appear better and easier to use but not process:
+    %li #{realm.triggers} act as a stimulant: #{realm.neuro} signals that it’s time to wake up and #{realm.act} and #{realm.accomplish} #{realm.goals}
+%p Some brains react to triggers by calming down:
 %ul
   -Realm.all.each do |realm|
-    %li #{realm.buffers}: makes #{realm.resources} (#{realm.energizer.s} and #{realm.strengthener.s}) #{realm.appear} better and easier to #{realm.use} but won’t make #{realm.baduns} #{realm.processable}
-%p Your neurons fire in the presence of energizers; strengtheners and buffers do not trigger a response.
+    %li #{realm.triggers} act as a sedative: #{realm.neuro} signals that it’s time to calm down and stop #{realm.act.ing} and go to sleep
+%h3 Nurture
+%p Most parents give their children resources that are primarily triggers. Very few parents give their children resources that are primarily nulls:
 %ul
   -Realm.all.each do |realm|
-    %li #{realm.neuro}: you’ve got #{realm.energizer.s}!
-%p Some brains rev up when they get the signal that energy has arrived: yes! energy! finally! time to do more! I have enough energy now to work all day!
-%p The more you do, the more strength you will build; more strength allows you to accomplish harder goals:
-%ul
-  -Realm.all.each do |realm|
-    %li #{realm.strength}: #{realm.adjective} strength that allows you to #{realm.labor}
-%p Some brains calm down when they get the signal that energy has arrived: yes! energy! finally! time to do less! I have enough energy now to sleep all night!
-%p The less you do, the more reserves you will build; more reserves allow you to act longer without getting energy:
-%ul
-  -Realm.all.each do |realm|
-    %li #{realm.reserves}: #{realm.adjective} reserves that allow you to #{realm.act} longer without #{realm.use_wo.ing}
-%p The presence of abundant energizers can cause a vicious “on” cycle in someone who revs up. Energizers make them rev up; the more they rev up, the more they do; the more they do, the more strength they build; the more strength they build, the more energy they need to fuel those strengths; the more energy they need, the more resources they seek; the more resources they seek, the more energizers they get; the more energizers they get, the more neurons are triggered; the more neurons are triggered, the more they rev up and the more they do and the less they sleep.
-%p If you are in desperate need of more strength because of harder goals that need to be accomplished immediately, this is called hypomania and is productive and desirable. If you are building strengths you do not need and don’t want to have to fuel, or are awake all night when you want to be asleep, this is called mania.
-%p General sedatives can be used to calm the person down. It may even be possible to target specific neurons with specific sedatives. But. Removing the energizers works better. Seeking out resources that are primarily strengtheners with just enough energizers to keep yourself alert and active during the day without keeping you awake all night or forcing you to build strengths you don’t want to have to fuel is something you can do without a doctor’s prescription and without any harmful side effects.
-%p The presence of abundant energizers can cause a vicious “off” cycle in someone who calms down. energizers make them calm down; the more they calm down, the less they do; the less they do, the more reserves they build; the more reserves they build, the more strength they need to use those reserves; the more strength they need, the more resources they seek; the more resources they seek, the more energizers they get; the more energizers they get, the more neurons are triggered; the more neurons are triggered, the more they calm down and the less they do and the more they sleep.
-%p If you are in desperate need of more reserves because of long periods of time during which resources are not available, or during which you cannot stop to get resources, this is called saving and is productive and desirable. If you are building reserves you do not need and don’t want to have to use, or are asleep all day when you want to be awake, this is called depression.
-%p General stimulants can be used to rev the person up. It may even be possible to target specific neurons with specific stimulants. But. Removing the energizers works better. Seeking out resources that are primarily strengtheners with just enough energizers to keep yourself calm and asleep during the night without keeping you asleep all day or forcing you to build reserves you don’t want to have to use is something you can do without a doctor’s prescription and without any harmful side effects.
-%table
-  %caption The Four Attitudes
-  %tr
-    %th
-    %th rev up
-    %th calm down
-  %tr
-    %th proud
-    %td.p I am proud of the reserves I have saved, but I wish I still had enough strength to accomplish my goals during the day
-    %td.p I am proud of the strength I have developed, but I wish I still had enough reserves to sleep through the night
-  %tr
-    %th jealous
-    %td.p I am not proud of my strengths because I don’t want to have to fuel them (I am jealous of your reserves)
-    %td.p I am not proud of my reserves because I don’t want to have to use them (I am jealous of your strength)
-%p A BipolarType is one attitude for each realm. I don’t know if everyone has a BipolarType. I do know you don’t have to be bipolar to have a BipolarType.
+    %li #{realm.adjective}: most parents give their children #{realm.resources} that are high in #{realm.triggers} and low in #{realm.nulls}
+%p Most parents want their children to sleep through the night and stay awake during the day. They also have their own ideas about which realms are important and need to be fueled and which are unimportant and the child does not need energy in order to achieve those goals.
+%p Thus, the following schedule is eventually discovered through trial and error:
+%ol
+  %li I give my child the important resources which will wake them up in the morning
+  %li I avoid giving my child unnecessary resources which would make them fall asleep during the day
+  %li I give my child important resources which will calm them down in the evening
+  %li I avoid giving my child unnecessary resources which will make them wake up during the night
+%p A BipolarType is thus the four triggers in the order that the child’s nature (does the energizer act as a sedative or a stimulant?) interacts with the parent’s nurture (is the energizer necessary in order to achieve important goals?).

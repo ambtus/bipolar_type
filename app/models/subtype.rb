@@ -33,8 +33,6 @@ class Subtype
 
   def name; @pair.map(&:name).join("ly "); end
 
-  def description; "#{@attitude.health} #{realm.adjective} #{@attitude.episode}"; end
-
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 

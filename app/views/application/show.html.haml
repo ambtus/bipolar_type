@@ -4,7 +4,7 @@
   %tr
     -@subtypes.each do |subtype|
       %th.quarter=link_to subtype.name, subtype_path(subtype.path)
-  -%w{subtype nature baby nurture child}.each do |partial|
+  -%w{subtype}.each do |partial|
     %tr
       -@subtypes.each do |subtype|
         %td.p=render partial, subtype: subtype
