@@ -10,7 +10,7 @@ class Concept
     define_singleton_method(path) {ALL[PATHS.index(path)]}
   end
   %w{first second third fourth}.each_with_index do |ordinal, index|
-    define_singleton_method(ordinal) {ALL[index]}
+    define_singleton_method(ordinal) {self::ALL[index]}
   end
   ########
 
@@ -34,5 +34,5 @@ class Concept
   def first?; self.ordinal == "first"; end
   def last?; self.ordinal == "fourth"; end
 
-  def self.names; self::ALL.map(&:name); end
+  def self.names; self::ALL.map(&:name).to_sentence; end
 end

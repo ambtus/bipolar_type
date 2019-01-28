@@ -3,7 +3,7 @@ p { text-align: left; max-width: 62em}
 .header { padding-bottom: 1em; font-size: .8em }
 .footer { padding-top: 3em; font-size: .8em}
 .warning {color: grey; font-style: italic}
-.free {color: purple; }
+.free {font-weight: bold}
 .chosen {color: purple; font-style: italic}
 .bold {font-weight: bold}
 
@@ -22,6 +22,7 @@ p { text-align: left; max-width: 62em}
 .left { text-align: left; }
 .right { text-align: right; }
 .small { font-size: small;}
+.note { font-size: small;}
 .nowrap {white-space: nowrap; }
 .no_top {margin-top: 0; }
 .no_bottom {margin-bottom: 0; }

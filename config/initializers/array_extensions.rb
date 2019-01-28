@@ -1,6 +1,6 @@
 # Restart required even in development mode when you modify this file.
 
-%w{sixth multiply add duplicates without remove_consecutive_dupes check_constraints to_sentence_or}.each do |meth|
+%w{sixth multiply add duplicates without remove_consecutive_dupes check_constraints and or}.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 
@@ -57,5 +57,6 @@ class Array
 
   def sixth; self[5]; end
 
-  def to_sentence_or; to_sentence(last_word_connector: ", or "); end
+  def and; to_sentence; end
+  def or; to_sentence(last_word_connector: ", or ", two_words_connector: " or "); end
 end

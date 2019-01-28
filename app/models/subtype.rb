@@ -14,6 +14,7 @@ class Subtype
         end.flatten
 
   def self.all; ALL; end
+  def self.first; ALL.first; end
 
   def method_missing(meth, *arguments, &block)
     if realm.respond_to?(meth)
@@ -31,7 +32,7 @@ class Subtype
   def symbol; @pair.map(&:symbol).join; end
   def inspect; symbol; end
 
-  def name; @pair.map(&:name).join("ly "); end
+  def name; @pair.map(&:name).join(" "); end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end

@@ -1,10 +1,14 @@
 - content_for(:title, @name)
 %p.center=render "header"
+=render "types/schedule" if @type
+%h2 Problems & Solutions
 %table
   %tr
+    %th
     -@subtypes.each do |subtype|
       %th.quarter=link_to subtype.name, subtype_path(subtype.path)
-  -%w{subtype}.each do |partial|
+  -%w{problem solution}.each do |partial|
     %tr
+      %th=partial.capitalize
       -@subtypes.each do |subtype|
         %td.p=render partial, subtype: subtype

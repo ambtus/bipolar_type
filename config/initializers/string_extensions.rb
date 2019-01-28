@@ -1,6 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
-%w{second third fourth chip to_word words to_phrase is_mbti? s ed ly ing enough more too_much}.each do |meth|
+# A list of all the methods defined here to prevent breaking rails by overwriting something in use
+%w{chip second third fourth to_word words to_phrase is_mbti? s ed ly ing enough more too_much plural? little few fewer less much many that those is are them it they}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -95,4 +96,25 @@ class String
       "#{self} too much"
     end
   end
+
+  def plural?
+    return true if self == "people"
+    return true if self[-1] == "s"
+    return false
+  end
+
+  def little; plural? ? "few" : "little"; end
+  def few; little; end
+  def fewer; plural? ? "fewer" : "less"; end
+  def less; fewer; end
+  def much; plural? ? "many" : "much"; end
+  def many; much; end
+  def that; plural? ? "those" : "that"; end
+  def those; that; end
+  def is; plural? ? "are" : "is"; end
+  def are; is; end
+  def them; plural? ? "them" : "it"; end
+  def it; them; end
+  def they; plural? ? "they" : "it"; end
+
 end

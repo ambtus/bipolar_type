@@ -1,38 +1,16 @@
--content_for(:title, "Question ##{@answer.number} of 3")
+-content_for(:title, "Question ##{@answer.number} of 4")
 %p.center
-  Once you have
-  %span.chosen chosen
-  something, the other choices in the
-  %span.warning same
-  Row or Column will become unavailable.
+  Once you chose a realm, later choices in
+  %span.warning previously chosen
+  realms will become unavailable.
 -unless @answer.number == 1
   %p.center
     If you get stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
-%p.center
-  -if @by_attitude
-    =link_to "Transpose rows and columns", url_for(params.merge(:sort => "r"))
-    -cols = Realm.all
-    -rows = Attitude.all
-  -else
-    =link_to "Transpose columns and rows", url_for(params.merge(:sort => "a"))
-    -cols = Attitude.all
-    -rows = Realm.all
-%table
-  %tr
-    %th
-    -cols.each do |col|
-      %th=col.name
-  -rows.each do |row|
-    %tr
-      %th=row.name
-      -row.subtypes.each do |subtype|
-        %td.quarter.none
-          %div{:class => @answer.css(subtype)}
-            -if @answer.css(subtype) == "free"
-              =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-                .left=render "subtype", subtype: subtype
-            -elsif @answer.css(subtype) == "chosen"
-              .left=render "subtype", subtype: subtype
-            -else
-              =subtype.name
+%dl
+  -@attitude.subtypes.each do |subtype|
+    -if @answer.css(subtype) == "free"
+      %dt=link_to subtype.name, answer_path(@answer.next(subtype), :sort => params[:sort])
+    -else
+      %dt=subtype.name
+    %dd{:class => @answer.css(subtype)}=render "problem", subtype: subtype

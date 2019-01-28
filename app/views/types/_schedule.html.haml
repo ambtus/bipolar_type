@@ -1,0 +1,17 @@
+%h2 Schedule
+%table.wide
+  %tr
+    %th.narrow
+    %th Morning
+    %th Day
+    %th Evening
+    %th Night
+  %tr
+    %th Use Energy
+    %td{colspan:2} do #{@type.use_mores.map(&:act).and}
+    %td{colspan:2} don’t #{@type.use_lesses.map(&:act).or}
+  %tr
+    %th Get Energy
+    %td don’t #{@type.get_lesses.map(&:get_extras).or}
+    %td{colspan:2} do #{@type.get_mores.map(&:get_extras).and}
+    %td don’t #{@type.get_lesses.map(&:get_extras).or}

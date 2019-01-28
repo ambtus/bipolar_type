@@ -1,13 +1,16 @@
-- content_for(:title, "The 16 Problems")
-%table
-  %tr
-    %th
-      -Attitude.all.each do |attitude|
-        %th.quarter=link_to attitude.name, attitude_path(attitude.path)
-      -Realm.all.each do |realm|
-        %tr
-          %th=link_to realm.name, realm_path(realm.path)
-          -realm.subtypes.each do |subtype|
-            %td
-              =link_to subtype.name, subtype_path(subtype.path)
-              %p=render "problem", subtype: subtype
+- content_for(:title, "The 16 Subtypes")
+-%w{problem solution}.each do |partial|
+  %h2=partial.titleize
+  %table
+    %tr
+      %th
+        -Attitude.all.each do |attitude|
+          %th.quarter=link_to attitude.name, attitude_path(attitude.path)
+        -Realm.all.each do |realm|
+          %tr
+            %th=link_to realm.name, realm_path(realm.path)
+            -realm.subtypes.each do |subtype|
+              %td.p
+                =link_to subtype.name, subtype_path(subtype.path)
+                %br
+                =render partial, subtype: subtype

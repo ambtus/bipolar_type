@@ -1,0 +1,17 @@
+%ul
+  -if subtype.abundant?
+    %li don’t #{subtype.take} #{subtype.resources} in the morning
+  -else
+    %li #{subtype.take} #{subtype.resources} every evening
+  -if subtype.early?
+    %li don’t #{subtype.act} unless there is #{subtype.something} you have to #{subtype.achieve}
+  -else
+    %li #{subtype.act} even if you don’t have #{subtype.anything} you need to #{subtype.achieve}
+  -if subtype.abundant?
+    %li #{subtype.take} #{subtype.staples} instead of #{subtype.extras} when possible
+  -else
+    %li #{subtype.take} #{subtype.extras} in addition to #{subtype.staples} when possible
+  -if subtype.early?
+    %li when you #{subtype.do_it}, #{subtype.cheat} instead of #{subtype.act.ing} when possible
+  -else
+    %li when you #{subtype.do_it}, #{subtype.act} instead of #{subtype.cheat.ing} when possible

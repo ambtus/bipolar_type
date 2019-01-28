@@ -1,1 +1,87 @@
 - content_for(:title, 'The Theory')
+%h2 The Four Seasons
+%table
+  %tr
+    %th.narrow{colspan:2}
+    %th{colspan:2} Get Energy
+  %tr
+    %th{colspan:2}
+    %th Scarce Resources
+    %th Abundant Resources
+  %tr
+    %th{rowspan:2} Use Energy
+    %th Liberal Actions
+    %td
+      Spring Sowing:
+      %br
+      drain your reserves
+      %br
+      →
+    %td
+      Summer Labor:
+      %br
+      maintain empty reserves
+      %br
+      ↓
+  %tr
+    %th Conservative Actions
+    %td
+      Winter Rest:
+      %br
+      maintain full reserves
+      %br
+      ↑
+    %td
+      Autumn Reaping:
+      %br
+      fill your reserves
+      %br
+      ←
+%p During the first season, resources are scarce so you start sowing and lose reserves. During the second season, resources become abundant as you continue your labors and the loss of reserves ends. During the third season, reserves continue to be abundant as you end your labors and you gain reserves. During the last season, resources become scarce as you continue to rest and the gain of reserves ends.
+%p A healthy cycle is when you rotate through all four periods in turn. Your reserves rise and fall, but never actually run out or overflow.
+%p Bipolar disorder is when you get stuck in a season and cannot move on. The four possible bipolar episodes are:
+%ol
+  -Attitude.all.each do |attitude|
+    %li #{attitude.episode.titleize}: #{attitude.resulting} reserves #{attitude.ending} (eternal #{attitude.behavior})
+%p
+  The first tenet of BipolarType is that “curing” acute mania by inducing chronic depression or “curing” acute depression by inducing chronic mania is
+  %em not
+  a desirable outcome. The desired outcome is to maintain the natural rhythm of life while avoiding explosions and implosions.
+%h2 The Four Realms of Behavior
+%table
+  %tr
+    %th
+    -Realm.all.each do |realm|
+      %th=realm.name
+  -%w{ energy get_energy use_energy achieve_goals reserves }.each do |word|
+    %tr
+      %th=word.titleize
+      -Realm.all.each do |realm|
+        %td=realm.send(word)
+=render "affect"
+%p Not everyone is in danger of exploding or imploding. Everyone does, however, have the potential for becoming trapped in a single period of time with differing results.
+%p That is, if everyone were trapped in eternal #{Attitude.third.behavior}, some #{Realm.first.storage.s} would explode from a surplus of #{Realm.first.reserves} while some #{Realm.second.storage.s} would explode from a surplus of #{Realm.second.reserves}, some #{Realm.third.storage.s} would explode from a surplus of #{Realm.third.reserves}, and still other #{Realm.fourth.storage.s} would explode from a surplus of #{Realm.fourth.reserves}.
+%p
+  The same person who just barely manages to avoid exploding from an excess of #{Realm.first.reserves} is extremely unlikely to implode from a deficit of #{Realm.first.reserves} during an abnormally long #{Attitude.first.behavior}. Nor are they likely to bemoan an abnormally long and stagnant #{Attitude.fourth.behavior} or #{Attitude.second.behavior}; at least they are no longer gaining #{Realm.first.reserves}.
+%p The second tenet of BipolarType is that every person has the potential for a different problem in each realm of behavior for every season. Not everyone actually experiences those problems, but everyone has the potential.
+%h2 The Four Daily Periods
+%p
+  Every problem has a solution in the opposite season.
+  Unfortunately, if you are in danger of #{Attitude.first.suffering} during #{Attitude.first.behavior}, you cannot afford to wait around for the #{Attitude.third.behavior}. Especially if, in your environment,
+  %em #{Attitude.third.season} never comes!
+%p Luckily, the seasonal cycle is mirrored in the daily cycle:
+%ol
+  -Attitude.all.each do |attitude|
+    %li
+      #{attitude.episode.capitalize}: #{attitude.suffering} some #{attitude.seasonal}
+      %em #{attitude.diurnal}
+%p
+  Thus, the third tenet of BipolarType is that the cure for bipolar disorder is to manipulate the resources available in your environment and your beliefs about actions on a
+  %em day to day
+  basis.
+%p
+  If your life is an eternal autumn feast (abundant resources and nothing to do), then you need to focus on avoiding resources and finding things to do in the
+  %em morning.
+  Later in the day, your nature will kick in and resonate with your environment and you will stop #{Attitude.first.action} and start #{Attitude.third.action} and gaining reserves. But first thing in the morning you have a very good chance of actually being able to drain some of your surplus reserves.
+%p There is also a weekly cycle (Monday, Midweek, Friday, Weekend), but trying to remember to do something every Monday isn’t as easy as making a habit of doing it every morning. You also don’t regress as badly if you skip a single morning in a week than you do if you miss the only Monday in the week.
+

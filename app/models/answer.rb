@@ -10,7 +10,8 @@ class Answer
   attr_reader :question, :subtype_paths
 
   def number; @question.last.to_i ; end
-  def finished?; number > 3; end
+  def index; number - 1; end
+  def finished?; number > 4; end
 
   def chosen; subtype_paths.collect{|path| Subtype.send(path)}; end
   def constrained; chosen.map(&:siblings).flatten.uniq; end
