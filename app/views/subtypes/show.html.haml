@@ -1,9 +1,9 @@
 - content_for(:title, @name)
 %p.center=render "header"
--%w{problem environment solution get_energy use_energy}.each do |partial|
+-%w{problem }.each do |partial|
   %h2=partial.titleize
   =render partial, subtype: @subtype
-%h2 BipolarTypes with this Subtype
+%h2 BipolarTypes with this Problem
 -@subtype.types.each do |type|
   %h3=link_to type.name, type_path(type.path)
   =type.subtypes.map(&:name).to_sentence

@@ -29,7 +29,7 @@
     %th
     -Realm.all.each do |realm|
       %th=realm.name
-  -%w{ energy do_chores achieve_goals refuel reserves }.each do |word|
+  -%w{ energy reserves do_chores achieve_goals refuel  }.each do |word|
     %tr
       %th=word.titleize
       -Realm.all.each do |realm|
@@ -41,41 +41,4 @@
 %p Most people figure out what is most important to them, and find an optimal balance. Perhaps they move north so they will not burn out and go to bed earlier so they won’t explode. They live with the fact that they are stagnating and imploding in other, less important, realms.
 %p Some people cannot balance their two most important realms, because they are in opposite attitudes. If they move north they stagnate in one realm and if they move south they burn out in another and neither is an acceptable outcome so they keep moving back and forth and cycling between mania and depression.
 %h2 The BipolarType Solution
-%p The third tenet of BipolarType is that the cure for these problems is to manipulate your schedule to suit your own needs, not your latitude or the needs of your roommates.
-%table
-  %tr
-    %th.fifth
-    %th.fifth Winter Burn Out
-    %th.fifth Spring Explosion
-    %th.fifth Summer Stagnation
-    %th.fifth Autumn Implosion
-  %tr
-    %th Dawn
-    %td.none no chores
-    %td.none chores
-    %td.none chores
-    %td.none no chores
-  %tr
-    %th Morning
-    %td.none chores
-    %td.none labor
-    %td.none labor
-    %td.none chores
-  %tr
-    %th Daytime
-    %td.none{colspan: 4} whatever is required (alert mindfulness)
-  %tr
-    %th Afternoon
-    %td.none fuel
-    %td.none fuel
-    %td.none labor
-    %td.none labor
-  %tr
-    %th Dusk
-    %td.none no fuel
-    %td.none no fuel
-    %td.none fuel
-    %td.none fuel
-  %tr
-    %th Nighttime
-    %td.none{colspan: 4} sleep (automatic restoration)
+%p The third tenet of BipolarType is that the cure for these problems is to manipulate your schedule to suit your own needs and priorities.
