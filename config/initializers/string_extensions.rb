@@ -39,6 +39,7 @@ class String
     return "sold" if self=="sell"
     return "felt" if self=="feel"
     return "bought" if self=="buy"
+    return "thought" if self=="think"
     return "told" if self=="tell"
     return "spent" if self=="spend"
     return "made" if self=="make"
@@ -48,6 +49,7 @@ class String
     return "ran" if self=="run"
     return "hit" if self=="hit"
     return "saw" if self=="see"
+    return "shopped" if self=="shop"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ed, second].join(" ")

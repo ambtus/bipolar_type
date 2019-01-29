@@ -17,22 +17,25 @@ class Attitude < Concept
 
   def opposite; ALL[(index + 2).modulo(4)]; end
 
-  def season; %w{spring summer autumn winter }[index]; end
+  def self.question_order; ALL.values_at(3, 1, 0, 2); end
+
+  def season; %w{winter spring summer autumn}[index]; end
+  def name; season.titleize; end
   def seasonal; season; end
-  def action; %w{sowing labor reaping rest}[index]; end
-  def behavior; [seasonal, action].join(" "); end
+  def action; %w{labor refuel sleep do}[index]; end
+  def problem; %w{burn\ out explosion stagnation implosion}[index]; end
+  def suffer; %w{burn\ out explode stagnate implode}[index]; end
+  def suffering; suffer.ing; end
 
-  def diurnal; %w{morning day evening night }[index]; end
-
-  def abundant?; [1,2].include?(index); end
+  def manic?; [0,3].include?(index); end
   def early?; index < 2 ;end
-  def transitional?; index.even?; end
+  def transitional?; index.odd?; end
 
-  def state; early? ? "mania" : "depression"; end
+  def state; manic? ? "mania" : "depression"; end
   def duration; transitional? ? "acute" : "chronic"; end
   def episode; [duration, state].join(" "); end
 
-  def result; %w{lose maintain gain maintain }[index]; end
+  def result; %w{maintain gain maintain lose}[index]; end
   def resulting; result.ing; end
 
   def ending
@@ -40,38 +43,10 @@ class Attitude < Concept
       when "summer", "winter"
         "indefinitely"
       when "spring"
-        "until you implode"
-      when "autumn"
         "until you explode"
-    end
-  end
-
-  def suffering
-    case season
-      when "winter"
-        "stagnating"
-      when "summer"
-        "burning out"
-      when "spring"
-        "imploding"
       when "autumn"
-        "exploding"
+        "until you implode"
     end
   end
-
-  def problem
-    case season
-      when "winter"
-        "stagnation"
-      when "summer"
-        "burn out"
-      when "spring"
-        "implosion"
-      when "autumn"
-        "explosion"
-    end
-  end
-
-  def name; problem.titleize; end
 
 end

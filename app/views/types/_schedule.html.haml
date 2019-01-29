@@ -1,17 +1,42 @@
 %h2 Schedule
-%table.wide
+%table
   %tr
-    %th.narrow
+    %th.fifth
+    %th.fifth #{@type.winter.name} Burn Out
+    %th.fifth #{@type.spring.name} Explosion
+    %th.fifth #{@type.summer.name} Stagnation
+    %th.fifth #{@type.autumn.name} Implosion
+  %tr
+    %th Dawn
+    %td.none no #{@type.winter.chores} (#{@type.winter.cheat.ing} is okay)
+    %td.none #{@type.spring.do_chores}
+    %td.none #{@type.summer.do_chores}
+    %td.none no #{@type.autumn.chores} (#{@type.autumn.cheat.ing} is okay)
+  %tr
     %th Morning
-    %th Day
-    %th Evening
-    %th Night
+    %td.none #{@type.winter.do_chores}
+    %td.none #{@type.spring.labor}
+    %td.none #{@type.summer.labor}
+    %td.none #{@type.autumn.do_chores}
   %tr
-    %th Use Energy
-    %td{colspan:2} do #{@type.use_mores.map(&:act).and}
-    %td{colspan:2} don’t #{@type.use_lesses.map(&:act).or}
+    %th Daytime
+    %td.none #{@type.winter.labor}
+    %td.none #{@type.spring.labor}
+    %td.none #{@type.summer.labor}
+    %td.none #{@type.autumn.labor}
   %tr
-    %th Get Energy
-    %td don’t #{@type.get_lesses.map(&:get_extras).or}
-    %td{colspan:2} do #{@type.get_mores.map(&:get_extras).and}
-    %td don’t #{@type.get_lesses.map(&:get_extras).or}
+    %th Afternoon
+    %td.none #{@type.winter.refuel}
+    %td.none #{@type.spring.refuel}
+    %td.none #{@type.summer.labor}
+    %td.none #{@type.autumn.labor}
+  %tr
+    %th Dusk
+    %td.none no #{@type.winter.extras} (#{@type.winter.staples} #{@type.winter.staples.are} okay)
+    %td.none no #{@type.spring.extras} (#{@type.spring.staples} #{@type.spring.staples.are} okay)
+    %td.none #{@type.summer.refuel}
+    %td.none #{@type.autumn.refuel}
+  %tr
+    %th Nighttime
+    %td.none{colspan: 4} sleep
+

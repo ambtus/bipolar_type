@@ -1,17 +1,14 @@
 %ul
-  -if subtype.abundant?
-    %li don’t #{subtype.take} #{subtype.resources} in the morning
-  -else
-    %li #{subtype.take} #{subtype.resources} every evening
-  -if subtype.early?
-    %li don’t #{subtype.act} unless there is #{subtype.something} you have to #{subtype.achieve}
-  -else
-    %li #{subtype.act} even if you don’t have #{subtype.anything} you need to #{subtype.achieve}
-  -if subtype.abundant?
-    %li #{subtype.take} #{subtype.staples} instead of #{subtype.extras} when possible
-  -else
-    %li #{subtype.take} #{subtype.extras} in addition to #{subtype.staples} when possible
-  -if subtype.early?
-    %li when you #{subtype.do_it}, #{subtype.cheat} instead of #{subtype.act.ing} when possible
-  -else
-    %li when you #{subtype.do_it}, #{subtype.act} instead of #{subtype.cheat.ing} when possible
+  %li
+    -case subtype.season
+    -when "spring", "summer"
+      #{subtype.use_energy.capitalize} whenever you feel #{subtype.full}, even if you don’t have any#{subtype.thing} you want to #{subtype.achieve}; don’t #{subtype.cheat} unless you cannot #{subtype.achieve} #{subtype.what} you want to #{subtype.achieve} by #{subtype.use_energy.ing}.
+    -when "autumn", "winter"
+      Never #{subtype.use_energy} when you are not fully awake and alert and know exactly #{subtype.what} you are #{subtype.achieve.ing} and why; #{subtype.cheat.ing} is okay if you feel #{subtype.full} and just want to #{subtype.achieve} “some#{subtype.thing}”.
+  %li
+    -case subtype.season
+    -when "winter", "spring"
+      Never #{subtype.get_extras}  when you are not fully awake and alert and know exactly what you are #{subtype.take.ing} and why; #{subtype.get_staples} if you are feeling #{subtype.empty} and just want to #{subtype.take} “something”.
+    -when "summer", "autumn"
+      #{subtype.refuel.capitalize} whenever you feel #{subtype.empty}; don’t #{subtype.get_staples} if you are capable of #{subtype.get_extras.ing}.
+
