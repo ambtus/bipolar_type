@@ -3,7 +3,7 @@ p { text-align: left; max-width: 62em}
 .header { padding-bottom: 1em; font-size: .8em }
 .footer { padding-top: 3em; font-size: .8em}
 .warning {color: grey; font-style: italic}
-.free {font-weight: bold}
+.free {}
 .chosen {color: purple; font-style: italic}
 .bold {font-weight: bold}
 

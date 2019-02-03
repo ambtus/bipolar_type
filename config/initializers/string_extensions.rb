@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth to_word words to_phrase is_mbti? s ed ly ing enough more too_much plural? little few fewer less much many that those is are them it they}.each do |meth|
+%w{chip second third fourth to_word words to_phrase is_mbti? s ed ly ing some enough more many too_much a_few plural? little few fewer less much many that those is are them it they}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -82,6 +82,30 @@ class String
       "#{self} enough"
     end
   end
+  def some
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first, "some", second].join(" ")
+    else
+      "#{self} some"
+    end
+  end
+  def a_lot
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first, second.many, second].join(" ")
+    else
+      "#{self} a lot"
+    end
+  end
+  def a_few
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first, "a", second.few, second].join(" ")
+    else
+      "#{self} a little"
+    end
+  end
   def more
     if self.match(" ")
       first, second = self.split(' ', 2)
@@ -106,17 +130,17 @@ class String
   end
 
   def little; plural? ? "few" : "little"; end
-  def few; little; end
+  alias few :little
   def fewer; plural? ? "fewer" : "less"; end
-  def less; fewer; end
+  alias less :fewer
   def much; plural? ? "many" : "much"; end
-  def many; much; end
+  alias many :much
   def that; plural? ? "those" : "that"; end
-  def those; that; end
+  alias those :that
   def is; plural? ? "are" : "is"; end
-  def are; is; end
+  alias are :is
   def them; plural? ? "them" : "it"; end
-  def it; them; end
+  alias it :them
   def they; plural? ? "they" : "it"; end
 
 end

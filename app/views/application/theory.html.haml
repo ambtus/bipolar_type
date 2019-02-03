@@ -1,44 +1,75 @@
 - content_for(:title, 'The Theory')
-%h2 The Four Behaviors
-%ol
-  %li After you wake up, you do chores. Chores are habitual and repetitive and require some of your attention.
-  %li After you have done chores, you do labor. Labor is goal oriented and productive and requires all of your attention.
-  %li After you have done labor, you refuel. Refueling is satisying and relaxing and requires some of your attention.
-  %li After you have refueled, you sleep. Sleep is restorative and automatic and requires none of your attention.
-%h2 The Four Types
-%ol
-  %li Winter types use all of the short daylight hours to labor; they do their chores at dawn before sunrise and refuel at dusk after sunset.
-  %li Spring types (early birds) use the daylight hours to labor and refuel; chores require less of their attention so they do them at dawn before sunrise.
-  %li Summer types use all of short nighttime hours to sleep; they do their chores in the morning after sunrise and refuel in the afternoon before sunset.
-  %li Autumn types (night owls) use the daylight hours to do chores and labor; refueling requires less of their attention so they do it at dusk after sunset.
-%h2 The Four Problems
-%p When a Winter type moves south, they burn out. They labor too long and don’t have enough time for restorative sleep.
-%p When a Spring type tries to stay up late, they explode. They refuel too much on automatic after the sun sets; they are tired and not paying attention and they continue to refuel after they are satisfied and store the surplus energy as as unwanted reserves.
-%p When a Summer type moves north, they stagnate. They sleep too long and don’t have enough time for productive labor.
-%p When an Autumn type tries to get up early, they implode. They do too many chores on automatic before the sun rises; they are tired and not paying attention and they have to do them all over again correctly once they are fully awake and waste a lot of energy which they have to withdraw from their reserves.
-%ol
-  -Attitude.all.each do |attitude|
-    %li #{attitude.episode.titleize}: #{attitude.name} types trying to act like #{attitude.opposite.name} types and #{attitude.suffering}
-%p
-  The first tenet of BipolarType is that “curing” mania or depression by giving people sedatives or stimulants so that it is easier for them to act like someone they are not is
-  %em not
-  the optimal solution.
+%p BipolarType defines two states: mania and depression.
+%p Mania is when you don’t want to stop and replace the energy you have used; you have an aversion to getting energy, but you are willing and able to continue using energy until you implode.
+%p Depression is when you don’t want to stop and burn the energy you have gotten; you have an aversion to using energy, but you are willing and able to continue getting energy until you explode.
 %h2 The Four Realms
+%p BipolarType defines four realms of behavior, each of which uses a different kind of energy:
 %table
   %tr
     %th
-    -Realm.all.each do |realm|
+    -Realm.each do |realm|
       %th=realm.name
-  -%w{ energy reserves do_chores achieve_goals refuel  }.each do |word|
+
+  -%w{ energy use_energy get_energy}.each do |word|
     %tr
       %th=word.titleize
-      -Realm.all.each do |realm|
+      -Realm.each do |realm|
         %td=realm.send(word)
-=render "affect"
-%p The second tenet of BipolarType is that every person has the potential for a different problem in each realm of behavior. Not everyone actually experiences those problems, but everyone has the potential.
-%p That is, if you are suffering from burn out in one realm, you cannot also suffer from stagnation or explosion or implosion in that realm, but you could potentially suffer from those other problems in other realms.
-%p Trying to move north or south, or get up earlier or stay up later, in order to solve a problem in one realm will only cause a different problem in another realm.
-%p Most people figure out what is most important to them, and find an optimal balance. Perhaps they move north so they will not burn out and go to bed earlier so they won’t explode. They live with the fact that they are stagnating and imploding in other, less important, realms.
-%p Some people cannot balance their two most important realms, because they are in opposite attitudes. If they move north they stagnate in one realm and if they move south they burn out in another and neither is an acceptable outcome so they keep moving back and forth and cycling between mania and depression.
-%h2 The BipolarType Solution
-%p The third tenet of BipolarType is that the cure for these problems is to manipulate your schedule to suit your own needs and priorities.
+
+  %tr
+    %th Mania
+    -Realm.each do |realm|
+      %td.p I can #{realm.use_energy} but I don’t want to #{realm.get_energy}.
+
+  %tr
+    %th Depression
+    -Realm.each do |realm|
+      %td.p I can #{realm.get_energy} but I don’t want to #{realm.use_energy}.
+
+
+%h2 The Four Attitudes
+%p The first tenet of BipolarType is that everyone has the potential for all of the bipolar states, but in different realms.
+%ol
+  %li Stable: neither manic nor depressed
+  %li Manic: manic, but not depressed
+  %li Depressed: depressed, but not manic
+  %li Mixed: both manic and depressed
+%p Your Stable realm is the realm in which you are willing and able to use and then get energy in turn; you have no aversion to using energy nor to getting energy in this realm. Spending time in this realm is almost never painful. Since you enjoy using and getting energy equally, these energy reserves are easy to balance and neither implode nor explode.
+%p Your Manic realm is the realm in which you are willing and able use energy but resist having to get energy; you have no aversion to using energy, but getting energy in this realm is sometimes painful. You enjoy the beginning but not the end of your time in this realm. Since you enjoy using energy more than getting it, these energy reserves are usually decreasing and may implode.
+%p Your Depressed realm is the realm in which you you resist having to use energy but are willing and able to get energy; using energy in this realm is sometimes painful, but you have no aversion to getting energy. You enjoy the end but not the beginning of your time in this realm. Since you enjoy getting energy more than using it, these energy reserves are usually increasing and may explode.
+%p Your Mixed realm is the realm in which you resist having to use or get energy; you have an aversion to both using energy and getting energy in this realm. Spending time in this realm is often painful. Since you dislike using and getting energy equally, these energy reserves are unstable but no more apt to implode than explode.
+%h2 The First Half of the Solution
+%p The second tenet of BipolarType is that not all behaviors are painful and that aversive behaviors can be replaced with non-aversive behaviors.
+%table
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=realm.name
+
+  %tr
+    %th Binge Aversion
+    -Realm.each do |realm|
+      %td.p I don’t want to #{realm.harvest_resources}; I will #{realm.get} too much and feel #{realm.sick}.
+  %tr
+    %th Getting Energy without Binging
+    -Realm.each do |realm|
+      %td.p #{realm.get_staples.capitalize}; not all #{realm.resources} trigger #{realm.neuro} and make you want to #{realm.get} more, only #{realm.triggers} do.
+
+  %tr
+    %th Splurge Aversion
+    -Realm.each do |realm|
+      %td.p I don’t want to #{realm.achieve} any#{realm.thing}; I will only feel #{realm.sore}. I’m just going to remain #{realm.passive}
+  %tr
+    %th Using Energy without Splurging
+    -Realm.each do |realm|
+      %td.p #{realm.waste_energy.capitalize}; #{realm.dont_achieve} some#{realm.thing} new and you can stop #{realm.use_energy.ing} and rest as soon as your #{realm.strength} #{realm.strength.is} exhausted and before you feel #{realm.sore}.
+%h2 The Second Half of the Solution
+%p The third tenet of BipolarType is that when you do something is an indication of how important it is to you.
+%ol
+  %li Morning: you feel active and ready to achieve extra goals.
+  %li Midday: you are starting to tire and will only achieve important goals.
+  %li Afternoon: you feel receptive and ready to harvest extra resources.
+  %li Evening: you feel tired and will only harvest important resources.
+  %li Night: you just want to sleep.
+%p If you are awake and achieving goals or harvesting resources in the middle of the night it’s because you wasted time during the day and have to steal extra time from the only place you can get it.
+%p If you have an energy surplus (often in your Manic realm, sometimes in your Mixed realm, occassionaly in your Stable realm, almost never in your Depressed realm) then the best time to get rid of that energy surplus is first thing in the morning. You will find it much easier to waste energy on unimportant goals, or just practice

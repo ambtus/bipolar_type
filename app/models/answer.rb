@@ -13,6 +13,7 @@ class Answer
   def index; number - 1; end
   def finished?; number > 4; end
 
+
   def chosen; subtype_paths.collect{|path| Subtype.send(path)}; end
   def constrained; chosen.map(&:siblings).flatten.uniq; end
 
@@ -32,5 +33,16 @@ class Answer
 
   def subtypes; (Subtype.all - constrained).sort; end
   def type_path; subtypes.map(&:realm).map(&:path).join; end
+
+
+  def dominant; chosen.first.realm; end
+  def method_missing(meth, *arguments, &block)
+    if dominant.respond_to?(meth)
+      dominant.send(meth, *arguments, &block)
+    else
+      super
+    end
+  end
+
 
 end

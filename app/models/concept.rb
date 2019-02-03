@@ -17,6 +17,8 @@ class Concept
   def self.paths; self::SYMBOLS; end
   def self.all; self::ALL; end
 
+  def self.each(&block);self::ALL.each(&block); end
+
   def inspect; @symbol; end
   def symbol; @symbol; end
 

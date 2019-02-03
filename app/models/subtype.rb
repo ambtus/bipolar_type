@@ -41,4 +41,6 @@ class Subtype
 
   def types; Type.all.select{|t| t.subtypes.include?(self)}; end
 
+  def other_goals; @realm.others.map(&:goals); end
+
 end

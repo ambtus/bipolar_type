@@ -1,11 +1,12 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-%p.center
-  Once you chose a realm, later choices in
-  %span.warning previously chosen
-  realms will become unavailable.
 -unless @answer.number == 1
   %p.center
-    If you get stuck you can
+    %span.warning Previously chosen realms
+    are unavailable.
+  %p.center
+    If you don’t like the available
+    =@answer.number == 4 ? "choice," : "choices,"
+    you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 %dl
   -@attitude.subtypes.each do |subtype|
@@ -13,4 +14,13 @@
       %dt=link_to subtype.name, answer_path(@answer.next(subtype), :sort => params[:sort])
     -else
       %dt=subtype.name
-    %dd{:class => @answer.css(subtype)}=render "problem", subtype: subtype
+    %dd{:class => @answer.css(subtype)}=render "subtype", subtype: subtype
+
+%table
+  %caption Definitions
+  %tr
+    -Realm.each do |realm|
+      %td.p #{realm.sick}: #{realm.adjective}ly ill and unwilling to #{realm.get_energy} any more
+  %tr
+    -Realm.each do |realm|
+      %td.p #{realm.sore}: #{realm.adjective}ly exhausted and unwilling to #{realm.use_energy} anymore
