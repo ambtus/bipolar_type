@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "cdba"; end
+  def self.my_path; "dacb"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)

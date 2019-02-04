@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth to_word words to_phrase is_mbti? s ed ly ing some enough more many too_much a_few plural? little few fewer less much many that those is are them it they}.each do |meth|
+%w{chip second third fourth to_word words to_phrase is_mbti? s ed ly ing an some enough more many too_much a_few plural? little few fewer less much many that those is are them it they}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -81,6 +81,9 @@ class String
     else
       "#{self} enough"
     end
+  end
+  def an
+    %w{a e i o u}.include?(self.first) ? "an" : "a"
   end
   def some
     if self.match(" ")

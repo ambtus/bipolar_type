@@ -1,26 +1,35 @@
--content_for(:title, "Question ##{@answer.number} of 4")
+-content_for(:title, "Question ##{@answer.number} of 3")
+%p
+  Once you have
+  %span.chosen chosen
+  something, the other choices in the
+  %span.warning same
+  Realm or Attitude will become unavailable.
 -unless @answer.number == 1
   %p.center
-    %span.warning Previously chosen realms
-    are unavailable.
-  %p.center
-    If you don’t like the available
-    =@answer.number == 4 ? "choice," : "choices,"
-    you can
+    If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
-%dl
-  -@attitude.subtypes.each do |subtype|
-    -if @answer.css(subtype) == "free"
-      %dt=link_to subtype.name, answer_path(@answer.next(subtype), :sort => params[:sort])
-    -else
-      %dt=subtype.name
-    %dd{:class => @answer.css(subtype)}=render "subtype", subtype: subtype
-
 %table
-  %caption Definitions
   %tr
-    -Realm.each do |realm|
-      %td.p #{realm.sick}: #{realm.adjective}ly ill and unwilling to #{realm.get_energy} any more
-  %tr
-    -Realm.each do |realm|
-      %td.p #{realm.sore}: #{realm.adjective}ly exhausted and unwilling to #{realm.use_energy} anymore
+    %td.none
+      -if @by_attitude
+        =link_to "Transpose realms and attitudes", url_for(params.merge(:sort => "r"))
+        -cols = Realm.all
+        -rows = Attitude.all
+      -else
+        =link_to "Transpose attitudes and realms", url_for(params.merge(:sort => "a"))
+        -cols = Attitude.all
+        -rows = Realm.all
+    -cols.each do |col|
+      %th=col.name
+  -rows.each do |row|
+    %tr
+      %th=row.name
+      -row.subtypes.each do |subtype|
+        %td.p
+          %div{:class => @answer.css(subtype)}
+            -if @answer.css(subtype) == "free"
+              =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
+                =render "priorities", subtype: subtype
+            -else
+              =render "priorities", subtype: subtype

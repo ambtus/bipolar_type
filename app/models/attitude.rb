@@ -10,12 +10,12 @@ class Attitude < Concept
   end
   ########
 
-  def self.question_order; ALL.values_at(1, 2, 0, 3); end
-
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  def episode; %w{misery mania depression euthymia}[index]; end
-  def name; episode.titleize; end
+  def adjective; %w{hyperactive greedy lazy apathetic}[index]; end
 
+  def goal_oriented?; index.even? ;end
+  def now?; index < 2; end
+  def fat?; [0,3].include?(index); end
 end

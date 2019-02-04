@@ -5,7 +5,7 @@
     %th
     -@subtypes.each do |subtype|
       %th.quarter=link_to subtype.name, subtype_path(subtype.path)
-  -%w{do morning daytime evening nighttime}.each do |how|
+  -%w{priorities problem misery happiness}.each do |how|
     %tr
       %th=how.titleize
       -@subtypes.each do |subtype|
