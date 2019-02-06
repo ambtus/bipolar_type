@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "dacb"; end
+  def self.my_path; "cadb"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -23,8 +23,8 @@ class Type
 
   def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
 
-  Attitude.all.map(&:adjective).each_with_index do |episode, index|
-    define_method(episode) {@realms[index]}
+  Attitude.all.map(&:problem).each_with_index do |problem, index|
+    define_method(problem) {subtypes[index]}
   end
 end
 

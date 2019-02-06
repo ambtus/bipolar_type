@@ -1,0 +1,17 @@
+- content_for(:title, @name)
+%p.center=render "header"
+%p If you are extremely manic and you cannot #{@type.finicky.high_energy_harvest}, then #{@type.greedy.high_energy_harvest}. Otherwise, make every effort to only #{@type.greedy.low_energy_harvest}.
+%p If you are extremely depressed and you cannot #{@type.lazy.high_energy_harvest}, then #{@type.hyperactive.high_energy_harvest}. Otherwise, make every effort to only #{@type.hyperactive.low_energy_harvest}.
+%table
+  %tr
+    %th
+    %th my goal-oriented realms
+    %th my reserve-oriented realms
+  %tr
+    %th my manic realms
+    %td.top=render "subtypes/cell", subtype: @type.hyperactive
+    %td.top=render "subtypes/cell", subtype: @type.finicky
+  %tr
+    %th my depressed realms
+    %td.top=render "subtypes/cell", subtype: @type.lazy
+    %td.top=render "subtypes/cell", subtype: @type.greedy

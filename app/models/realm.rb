@@ -9,6 +9,10 @@ class Realm < Concept
   end
   ########
 
+  SYMBOLS.each do |symbol|
+    define_singleton_method(symbol.downcase) {ALL[SYMBOLS.index(symbol)]}
+  end
+
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
@@ -16,48 +20,40 @@ class Realm < Concept
 
   def energy; %w{affect glucose currency data}[index]; end
   def aka; %w{emotions calories money information}[index]; end
-  def stored_energy; %w{self-confidence fat savings knowledge}[index]; end
-
-  ## Use energy
-  def use_energy; "use #{aka}"; end
+  def stored_energy; %w{ego fat savings knowledge}[index]; end
 
   ## To achieve goals
   def achieve; %w{tell go buy understand}[index]; end
   def goal; %w{person place thing idea}[index]; end
   def goals; goal.s; end
   def achieve_goals; [achieve, goals].join(" "); end
+  def achieve_more; [achieve, "more", goals].join(" "); end
 
-  ## Get energy
-
-  def get_energy; "get #{aka}"; end
-
-  ## By harvesting resources
-
-  def harvest; %w{hear eat collect learn}[index]; end
-  def resource; %w{story meal income results}[index]; end
-  def resources; %w{stories meals income results}[index]; end
-  def harvest_resources; [harvest, resources].join(" "); end
-
-  ## Goals
+  def passive; %w{silent still frugal calm}[index]; end
   def thing; %w{one where thing thing}[index]; end
   def achieve_something; [achieve, "some#{thing}"].join(" "); end
 
-  def them; %w{them there it it}[index]; end
-  def achieve_them; [achieve, them].join(" "); end
+  ## Use energy
 
-  def use_energy_now; [high_energy_actions, goals].join(" "); end
-  def use_energy_later; [low_energy_actions, goals].join(" "); end
-  def high_energy_actions; %w{talk\ to walk charge synthesize}[index]; end
-  def low_energy_actions; %w{write\ to drive save\ up\ for analyze}[index]; end
+  def low_energy_activities; %w{write drive spend\ cash analyze\ linearly}[index]; end
+  def high_energy_activities; %w{talk walk use\ credit visualize\ spatially}[index]; end
 
-  ## Resources
 
-  def harvest_something; [harvest, "something"].join(" "); end
-  def harvest_them; [harvest, "it"].join(" "); end
+  ## Harvest resources
 
-  def get_energy_now; [harvest, high_energy_resources].join(" "); end
-  def get_energy_later; [harvest, low_energy_resources].join(" "); end
-  def high_energy_resources; %w{music carbs wages specifics}[index]; end
-  def low_energy_resources; %w{words protein investment\ income generalities}[index]; end
+  def harvest; %w{hear taste touch see}[index]; end
+  def resource; %w{feeling food income answer}[index]; end
+  def resources; %w{feelings food income answers}[index]; end
+  def harvest_resources; [harvest, resources].join(" "); end
+
+  ## To Get energy
+  def get_less_energy; %w{read eat collect look\ at}[index]; end
+  def get_more_energy; %w{listen\ to eat earn look\ at}[index]; end
+
+  def low_energy_resources; %w{words savories interest shapes}[index]; end
+  def high_energy_resources; %w{music sweets wages colors}[index]; end
+
+  def low_energy_harvest; [get_less_energy, low_energy_resources].join(" "); end
+  def high_energy_harvest; [get_more_energy, high_energy_resources].join(" "); end
 
 end

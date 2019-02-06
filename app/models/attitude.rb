@@ -13,9 +13,16 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  def adjective; %w{hyperactive greedy lazy apathetic}[index]; end
+  PROBLEMS = %w{hyperactive finicky lazy greedy}
+  def problem; PROBLEMS[index]; end
+  def name; problem.capitalize; end
 
-  def goal_oriented?; index.even? ;end
-  def now?; index < 2; end
-  def fat?; [0,3].include?(index); end
+  PROBLEMS.each do |problem|
+    define_singleton_method(problem.first) {ALL[PROBLEMS.index(problem)]}
+  end
+
+  def high_energy?; %w{greedy hyperactive}.include?(problem); end
+  def conservative?; %w{greedy lazy}.include?(problem); end
+  def goal_oriented?; %w{hyperactive lazy}.include?(problem); end
+
 end

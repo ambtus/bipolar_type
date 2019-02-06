@@ -1,0 +1,6 @@
+- content_for(:title, @name)
+%p.center=render "header"
+%table
+  %caption.heading The Four #{@attitude.name} Subtypes
+  -Realm.each do |realm|
+    %td.top=render "subtypes/cell", subtype: @attitude + realm
