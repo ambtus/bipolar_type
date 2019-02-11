@@ -1,9 +1,9 @@
 -case subtype.problem
--when "hyperactive"
-  =subtype.achieve_goals.too_much
--when "finicky"
-  too #{subtype.stored_energy.little} #{subtype.stored_energy}
--when "lazy"
-  =subtype.achieve_goals.too_little
 -when "greedy"
-  too #{subtype.stored_energy.much} #{subtype.stored_energy}
+  Why do I #{subtype.harvest_resources} I don’t want to #{subtype.harvest}?
+-when "finicky"
+  Why can’t I #{subtype.harvest} the #{subtype.resources} I do want to #{subtype.harvest}?
+-when "hyperactive"
+  Why do I #{subtype.achieve_goals} I don’t want to #{subtype.achieve}?
+-when "lazy"
+  Why can’t I #{subtype.achieve} the #{subtype.goals} I do want to #{subtype.achieve}?

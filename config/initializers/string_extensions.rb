@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth to_word words to_phrase is_mbti? s ed ly ing an some enough more many too_much too_little a_few plural? little few fewer less much many that those is are them it they}.each do |meth|
+%w{chip second third fourth to_word words to_phrase first_word is_mbti? s ed ly ing an some enough more many too_much too_little a_few plural? little few fewer less much many that those is are them it they}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -15,6 +15,8 @@ class String
   def words; split.map(&:to_word); end
   def to_phrase; Phrase.new words; end
   def to_word_or_phrase; words.size > 1 ? to_phrase : words.first; end
+
+  def first_word; split.first; end
 
   MBTIS = %w{ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ

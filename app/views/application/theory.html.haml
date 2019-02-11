@@ -1,23 +1,32 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines four realms of behavior based on four different types of energy. Each realm of behavior uses energy to achieve goals and gets energy by harvesting resources.
-%table
-  %caption.heading The Four Realms
-  %tr
-    %th.narrow
-    -Realm.each do |realm|
-      %th=realm.name
-
-  -%w{ energy achieve_goals low_energy_activities high_energy_activities harvest_resources  low_energy_resources high_energy_resources}.each do |word|
-    %tr
-      %th=word.titleize
-      -Realm.each do |realm|
-        %td=realm.send(word)
-%p Some people use a lot of energy even when performing low energy activities (liberal use of energy); some people use very little energy even when performing high energy activities (conservative use of energy). Some people achieve more goals after harvesting high energy resources (goal-oriented); some people achieve fewer goals after harvesting high energy resources (reserve-oriented).
-=render "realms/table", realm: Realm.s
+%p BipolarType defines mania as a state where it is easy to use energy to achieve goals and difficult to harvest resources to get energy. Depression is the opposite.
+%p Mania and depression follow each other in a neverending cycle with your focus shifting from goals to resources and back to goals and then on to resources.
+%p What is a problem for you during depression is never a problem during mania. When your focus shifts, so do your problems.
+%p There are four possible problems
+%ul
+  %li
+    Hyperactive Mania: why am I wasting energy on these uninteresting goals? Because you are currently goal oriented. If you don’t want to focus on
+    %em uninteresting
+    goals, then focus on
+    %em interesting
+    goals.
+  %li
+    Finicky Mania: why can’t I calm down and focus on these interesting resources? Because you are currently goal oriented. If you need to get energy, find resources that are a quick and easy source of energy and don’t require so much attention to harvest.
+  %li
+    Greedy Depression: why am I getting energy from these uninteresting resources? Because you are currently resource oriented. If you don’t want to focus on
+    %em uninteresting
+    resources, then focus on
+    %em interesting
+    resources.
+  %li
+    Lazy Depression: why can’t I rev up and focus on these interesting goals? Because you are currently resource oriented. If you need to use energy, find goals that are a quick and easy drain on energy and don’t require so much attention to achieve.
+%p These four problems resolve themselves into the following two pairs.
+%ul
+  %li Goals: the kind I want to achieve but can’t because I am currently depressed and the kind I don’t care about achieving but do because I am currently manic.
+  %li Resources: the kind I want to harves but can’t because I am currently manic and the kind I don’t care about harvesting but do because I am currently depressed.
 %p
-  There are similar tables for the other realms:
-  -Realm.s.others.each_with_index do |realm, index|
-    =link_to realm.name, realm_path(realm.path)
-    ="|" unless index == 2
-%p A BipolarType is made up of four different attitudes towards the four realms: two manic realms and two depressed realms. Within the two manic realms, mania is more problematic for one because you achieve too many goals (your hyperactive realm) and the other is more problematic because you lose too many reserves (your finicky realm). Within the two depressed realms, depression is more problematic for one because you don’t achieve enough goals (your lazy realm) and the other is more problematic because you gain too many reserves (your greedy realm).
-%p BipolarType gives advice on a realm by realm basis, because giving sedatives to someone who is manic so that they will be less liberal with their energy, makes them lazier and greedier. Similarly, giving stimulants to someone who is depressed so that they will be less conservative with their energy, makes them more hyperactive and finickier.
+  The BipolarType solution to mania and depression is, unlike traditional solutions, not to end the mania or depression, but to change your focus while you are manic or depressed. That is, BipolarType doesn’t recommend sedatives for mania or stimulants for depression. It recommends focusing on
+  %em important
+  goals when manic, and
+  %em important
+  resources when depressed.

@@ -1,9 +1,14 @@
 - content_for(:title, "The Four Attitudes")
+=render "header"
 %table
+  %caption.heading The Four Attitudes
   %tr
-    -Attitude.all.each do |attitude|
-      %th=link_to attitude.name, attitude_path(attitude.path)
-  -%w{  }.each do |word|
+    %th.narrow
+    -Attitude.each do |attitude|
+      %th=attitude.name
+
+  -%w{ orientation direction result }.each do |word|
     %tr
-      -Attitude.all.each do |attitude|
+      %th=word.titleize
+      -Attitude.each do |attitude|
         %td=attitude.send(word)

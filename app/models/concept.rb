@@ -36,5 +36,5 @@ class Concept
   def first?; self.ordinal == "first"; end
   def last?; self.ordinal == "fourth"; end
 
-  def self.names; self::ALL.map(&:name).to_sentence; end
+  def self.names; self::ALL.map(&:name); end
 end

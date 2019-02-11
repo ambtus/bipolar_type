@@ -1,17 +1,32 @@
 - content_for(:title, @name)
-%p.center=render "header"
-%p If you are extremely manic and you cannot #{@type.finicky.high_energy_harvest}, then #{@type.greedy.high_energy_harvest}. Otherwise, make every effort to only #{@type.greedy.low_energy_harvest}.
-%p If you are extremely depressed and you cannot #{@type.lazy.high_energy_harvest}, then #{@type.hyperactive.high_energy_harvest}. Otherwise, make every effort to only #{@type.hyperactive.low_energy_harvest}.
-%table
-  %tr
-    %th
-    %th my goal-oriented realms
-    %th my reserve-oriented realms
-  %tr
-    %th my manic realms
-    %td.top=render "subtypes/cell", subtype: @type.hyperactive
-    %td.top=render "subtypes/cell", subtype: @type.finicky
-  %tr
-    %th my depressed realms
-    %td.top=render "subtypes/cell", subtype: @type.lazy
-    %td.top=render "subtypes/cell", subtype: @type.greedy
+=render "header"
+%div.center
+  -@type.subtypes.each_with_index do |subtype, index|
+    -if index.even?
+      %br
+    -else
+      &
+    =link_to subtype.name, subtype_path(subtype.path)
+%h2 Mania (Goal Oriented)
+%p When you are manic you should make every attempt to #{@type.lazy.achieve_goals} because #{@type.lazy.goals} are the goals you actually want to achieve.
+%p You should also try to #{@type.finicky.high_energy_activities}, or at least #{@type.finicky.low_energy_activities}. Not because you want to #{@type.finicky.achieve_goals}, but because the more #{@type.finicky.energy} you use now, the more #{@type.finicky.resources} you will be able to #{@type.finicky.harvest} when you are depressed.
+%p
+  When you are manic you should make every attempt to
+  %em not
+  #{@type.hyperactive.high_energy_activities}. Partly because you don’t care that much about #{@type.hyperactive.achieve_goals.ing}, but mostly because the more #{@type.hyperactive.energy} you use now, the more time you will have to waste #{@type.hyperactive.high_energy_harvest.ing} when you are depressed. If you do need to #{@type.hyperactive.achieve_something}, then #{@type.hyperactive.low_energy_activities}.
+%p
+  You are always going to want to #{@type.greedy.low_energy_activities} when you need to #{@type.greedy.achieve_something}. Whether or not you should #{@type.greedy.high_energy_activities} when you
+  %em don’t
+  have any#{@type.greedy.thing} you want to #{@type.greedy.achieve} depends on how #{@type.greedy.stored_energy.much} #{@type.greedy.stored_energy} you have and whether or not you are trying to get rid of it.
+
+%h2 Depression (Resource Oriented)
+%p When you are depressed you should make every attempt to #{@type.finicky.harvest_resources} because #{@type.finicky.resources} are the resources you actually want to harvest.
+%p You should also try to #{@type.lazy.high_energy_harvest}, or at least #{@type.lazy.low_energy_harvest}. Not because you want to #{@type.lazy.harvest_resources}, but because the more #{@type.lazy.energy} you get now, the more #{@type.lazy.goals} you will be able to #{@type.lazy.achieve} when you are manic.
+%p
+  When you are depressed you should make every attempt to
+  %em not
+  #{@type.greedy.high_energy_harvest}. Partly because you don’t care that much about #{@type.greedy.harvest_resources.ing}, but mostly because the more #{@type.greedy.energy} you get now, the more time you will have to waste #{@type.greedy.high_energy_activities.ing} when you are manic. If you do need to #{@type.greedy.harvest} something, then #{@type.greedy.low_energy_harvest}.
+%p
+  You are always going to want to #{@type.hyperactive.low_energy_harvest} when you need to #{@type.hyperactive.harvest} something. Whether or not you should #{@type.hyperactive.high_energy_harvest} when you
+  %em don’t
+  have anything you want to #{@type.hyperactive.harvest} depends on how #{@type.hyperactive.stored_energy.much} #{@type.hyperactive.stored_energy} you have and whether or not you are trying to gain more.

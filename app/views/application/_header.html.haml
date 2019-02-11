@@ -1,2 +1,6 @@
-=render "realms/links"
-=render "attitudes/links"
+%p.center
+  =(link_to_unless_current "The Four Realms", realms_path) + ":"
+  =render "realms/links"
+  %br
+  =(link_to_unless_current "The Four Attitudes", attitudes_path) + ":"
+  =render "attitudes/links"

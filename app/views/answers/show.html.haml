@@ -27,7 +27,7 @@
       %th=row.name
       -row.subtypes.each do |subtype|
         %td.p{:class => @answer.css(subtype)}
-          =subtype.goal_oriented? ? "I" : "I have"
+          -#=subtype.stimulated? ? "I" : "I have"
           -if @answer.css(subtype) == "free"
             =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
               =render "problem", subtype: subtype
