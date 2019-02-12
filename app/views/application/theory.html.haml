@@ -1,32 +1,50 @@
 - content_for(:title, 'The Theory')
 %p BipolarType defines mania as a state where it is easy to use energy to achieve goals and difficult to harvest resources to get energy. Depression is the opposite.
-%p Mania and depression follow each other in a neverending cycle with your focus shifting from goals to resources and back to goals and then on to resources.
-%p What is a problem for you during depression is never a problem during mania. When your focus shifts, so do your problems.
-%p There are four possible problems
-%ul
-  %li
-    Hyperactive Mania: why am I wasting energy on these uninteresting goals? Because you are currently goal oriented. If you don’t want to focus on
-    %em uninteresting
-    goals, then focus on
-    %em interesting
-    goals.
-  %li
-    Finicky Mania: why can’t I calm down and focus on these interesting resources? Because you are currently goal oriented. If you need to get energy, find resources that are a quick and easy source of energy and don’t require so much attention to harvest.
-  %li
-    Greedy Depression: why am I getting energy from these uninteresting resources? Because you are currently resource oriented. If you don’t want to focus on
-    %em uninteresting
-    resources, then focus on
-    %em interesting
-    resources.
-  %li
-    Lazy Depression: why can’t I rev up and focus on these interesting goals? Because you are currently resource oriented. If you need to use energy, find goals that are a quick and easy drain on energy and don’t require so much attention to achieve.
-%p These four problems resolve themselves into the following two pairs.
-%ul
-  %li Goals: the kind I want to achieve but can’t because I am currently depressed and the kind I don’t care about achieving but do because I am currently manic.
-  %li Resources: the kind I want to harves but can’t because I am currently manic and the kind I don’t care about harvesting but do because I am currently depressed.
+%p Mania and depression follow each other in a neverending cycle with your focus shifting from goals to resources and back to goals and then on to resources. An episode can last from a few hours to a few months. During a manic episode it is possible to harvest resources, but not easy. During a depressed episode it is possible to achieve goals, but not easy.
+%p Mania and depression, being negative terms for abnormal behavior, always focus on what you can’t do. BipolarType always focuses on what you can do.
+%table
+  %caption The Four Attitudes
+  %tr
+    %th
+    %th Mania
+    %th Depression
+  %tr
+    %th Goals
+    %td.p
+      Hyperactive Mania: why can’t I stop achieving these goals? Because you are currently goal oriented. If you don’t want to achieve
+      %em unimportant
+      goals, then focus on
+      %em important
+      goals.
+    %td.p Lazy Depression: why can’t I rev up and achieve these goals? Because you are currently resource oriented. You will be back to manic productivity as soon as you’ve harvested enough resources.
+  %tr
+    %th Resources
+    %td.p Fussy Mania: why can’t I calm down and harvest these resources? Because you are currently goal oriented. You will be back to depressed appreciation as soon as you’ve achieved enough goals.
+    %td.p
+      Greedy Depression: why can’t I stop harvesting these resources? Because you are currently resource oriented. If you don’t want to harvest
+      %em unimportant
+      resources, then focus on
+      %em important
+      resources.
 %p
   The BipolarType solution to mania and depression is, unlike traditional solutions, not to end the mania or depression, but to change your focus while you are manic or depressed. That is, BipolarType doesn’t recommend sedatives for mania or stimulants for depression. It recommends focusing on
   %em important
   goals when manic, and
   %em important
   resources when depressed.
+%p What is important, however, depends on your own personal priorities.
+%p BipolarType defines four realms of activities, each of which revolves around a different kind of energy and each of which has its own behaviors which use that energy to achieve goals and harvest resources to get that energy.
+%table
+  %caption The Four Realms
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=realm.name
+  -%w{energy achieve_goals harvest_resources}.each do |word|
+    %tr
+      %th=word.titleize
+      -Realm.each do |realm|
+        %td=realm.send(word)
+%p Everyone has a realm in which achieving goals is most important to them and thus being depressed and unable to achieve goals in that realm is most distressing to them. Of the three remaining realms, there is one in which harvesting resources is most important to them and thus being manic and unable to harvest resources in that realm is the most distressing to them.
+%p But it is the two remaining realms which are “crazy”. Because they aren’t important, and the individual knows they aren’t important but doesn’t know why they are wasting time on them. Of the two, one tends to be more goal oriented and so the depressed harvesting at least makes sense since they need to replace the energy they used while manic even if they don’t know why they were achieving those goals in the first place. The other tends to be more resource oriented and so the manic achieving at least makes sense since they need to use the energy they harvested while depressed even if they don’t know why they were harvesting those resources in the first place.
+

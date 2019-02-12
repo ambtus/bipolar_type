@@ -23,7 +23,7 @@ class Realm < Concept
   def stored_energy; %w{ego fat savings knowledge}[index]; end
 
   ## To achieve goals
-  def achieve; %w{tell go buy consider}[index]; end
+  def achieve; %w{tell go buy understand}[index]; end
   def goal; %w{person place thing idea}[index]; end
   def goals; goal.s; end
   def achieve_goals; [achieve, goals].join(" "); end
@@ -43,7 +43,8 @@ class Realm < Concept
 
   ## Harvest resources
 
-  def harvest; %w{hear taste touch see}[index]; end
+  def notice; %w{hear smell touch see}[index]; end
+  def harvest; %w{listen\ to eat collect believe}[index]; end
   def resource; %w{voice food income answer}[index]; end
   def resources; %w{voices food income answers}[index]; end
   def harvest_resources; [harvest, resources].join(" "); end
@@ -65,6 +66,6 @@ class Realm < Concept
 
   def highest_energy_harvest; [get_more_energy, good, high_energy_resources].join(" "); end
 
-  def sick; %w{bad nauseated angry afraid}[index]; end
+  def sick; %w{sad nauseated angry afraid}[index]; end
 
 end
