@@ -13,24 +13,18 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  PROBLEMS = %w{ fussy greedy hyperactive  lazy  }
-  def self.problems; PROBLEMS; end
+  NAMES = %w{ manic productive  appreciative depressed   }
 
-  def problem; PROBLEMS[index]; end
-  def name; problem.capitalize; end
+  def adjective; NAMES[index]; end
 
-  PROBLEMS.each do |problem|
-    define_singleton_method(problem.first) {ALL[PROBLEMS.index(problem)]}
+  NAMES.each do |adjective|
+    define_singleton_method(adjective.first) {ALL[NAMES.index(adjective)]}
   end
 
-  def goals?; %w{hyperactive lazy}.include?(problem); end
-  def manic?; %w{fussy hyperactive}.include?(problem); end
-  def compulsive?; %w{greedy hyperactive}.include?(problem); end
+  def goals?; %w{productive manic}.include?(adjective); end
+  def manic?; %w{appreciative manic}.include?(adjective); end
+  def compulsive?; %w{depressed manic}.include?(adjective); end
 
-  def orientation; goals? ? "goals" : "resources"; end
-  def episode; manic? ? "mania" : "depression"; end
-  def direction; compulsive? ? "compulsion" : "aversion"; end
+  def pleasure; goals? ? "goals" : "resources"; end
 
-  def opposite; ALL.find{|x| x.orientation == self.orientation && x != self}; end
-  def envies; opposite.name; end
 end

@@ -1,6 +1,9 @@
 - content_for(:title, @name)
 =render "header"
-=render "subtypes/cell", subtype: @subtype
+%h2 Mania (Goal Oriented)
+%p=render "manic", subtype: @subtype
+%h2 Depression (Resource Oriented)
+%p=render "depressed", subtype: @subtype
 %h2=link_to "BipolarTypes with this Problem", answer_path(@subtype.answer_path)
 -@subtype.types.each do |type|
   %h3=link_to type.name, type_path(type.path)

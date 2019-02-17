@@ -30,6 +30,6 @@
           -#=subtype.stimulated? ? "I" : "I have"
           -if @answer.css(subtype) == "free"
             =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-              =render "problem", subtype: subtype
+              =render "description", subtype: subtype
           -else
-            =render "problem", subtype: subtype
+            =render "description", subtype: subtype

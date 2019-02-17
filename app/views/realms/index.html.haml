@@ -8,7 +8,7 @@
     -Realm.each do |realm|
       %th=realm.name
 
-  -%w{ energy achieve_goals low_energy_activities high_energy_activities harvest_resources  low_energy_resources high_energy_resources}.each do |word|
+  -%w{ energy aka question achieve_goals  low_energy_activities high_energy_activities tired harvest_resources low_energy_resources high_energy_resources overwhelmed}.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|

@@ -6,9 +6,17 @@
     %th.narrow
     -Attitude.each do |attitude|
       %th=attitude.name
-
-  -%w{ orientation direction result }.each do |word|
-    %tr
-      %th=word.titleize
-      -Attitude.each do |attitude|
-        %td=attitude.send(word)
+  %tr
+    %th Achieving Goals
+    %td Compulsive
+    %td Pleasurable
+    %td Pointless
+    %td Painful
+  %tr
+    %th Harvesting Resources
+    %td Painful
+    %td Pointless
+    %td Pleasurable
+    %td Compulsive
+%p A compulsive behavior is one whose pleasure is tainted by anticipation of the pain to come.
+%p The goal of BipolarType is to replace painful behaviors with pointless behaviors so that pleasurable behaviors will replace compulsive behaviors.
