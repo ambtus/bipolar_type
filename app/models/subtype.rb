@@ -45,4 +45,11 @@ class Subtype
 
   def answer_path; Answer.first.next(self); end
 
+  def verb; @realm.send(@attitude.verb); end
+  def different; nouns.send(@attitude.different); end
+  def nouns; @realm.send(@attitude.nouns); end
+
+  def behave; [verb, different, nouns].join(" "); end
+
+  def result; @realm.send(@attitude.result); end
 end

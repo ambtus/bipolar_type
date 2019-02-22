@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "dbca"; end
+  def self.my_path; "bdac"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -16,8 +16,8 @@ class Type
 
   def subtypes; realms.add(Attitude.all); end
 
-  def manic_order; subtypes.values_at(1,2,0,3); end
-  def depressed_order; subtypes.values_at(2,1,3,0); end
+  def manic_order; subtypes.values_at(1,0,3,2); end
+  def depressed_order; subtypes.values_at(2,3,0,1); end
 
   def symbol; realms.map(&:symbol).join; end
   def inspect; symbol; end

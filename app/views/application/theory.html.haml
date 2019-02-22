@@ -1,52 +1,26 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines mania as a state where it is easy to use energy to achieve goals but difficult to harvest resources to get energy. Thus, while manic a person will only harvest the resources they absolutely must harvest, but will achieve extra goals that don’t need to be achieved. During mania, energy reserves are depleted.
-%p Depression is the opposite state where it is easy to harvest resources to get energy but difficult to use energy to achieve goals. Thus, while depressed a person will only achieve the goals they absolutely must achieve, but will harvest extra resources that don’t need to be harvested. During depression, energy reserves are augmented.
-%p Mania and depression follow each other in a neverending cycle with the focus shifting from extra goals to extra resources and back to goals and then on to resources. An episode can last from a few hours to a few months.
-%p Everyone has a bipolar cycle. Some people are happily content in their cycle: productively depleting their reserves to achieve extra goals while manic and appreciatively augmenting their reserves by harvesting extra resources when depressed.
-%p Some people are miserably unhappy in their cycle: forced to achieve extra painful goals when manic to deplete their reserves and forced to harvest extra painful resources when depressed to augment their reserves. If there were only one type of energy, they would merely stop both
-%p They cannot stop the painful behaviors because they have an energy imbalance. If there were only one type of energy, they could cut out both the painful extras. But the pain of using extra energy when manic is balanced by the pleasure
-%p Suicidal unhappiness occurs when the pain outweighs the pleasure. The pleasure from one side in no way compensates for the pain from the other. Or, you cannot enjoy the pleasure because of the anticipation of the pain to come. The only time you can completely escape the pain is when you are asleep. The only way to escape the pain permanently is to die.
-%p BipolarType defines four realms of activities, each of which revolves around a different kind of energy and each of which has behaviors which use that energy to achieve goals and behaviors which harvest resources to get that energy.
+%p BipolarType defines four realms of behavior, each of which revolves around a different kind of energy. Each realm has behaviors which achieve goals (energy out) and other behaviors which harvest resources (energy in).
 %table
-  %caption The Four Realms
+  %caption.heading The Four Realms
   %tr
-    %th
+    %th.narrow
     -Realm.each do |realm|
       %th=link_to realm.name, realm_path(realm.path)
-  -%w{energy achieve_goals harvest_resources}.each do |word|
+  -%w{energy goals resources}.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|
         %td=realm.send(word)
-%p
-  You cannot get energy in one realm and then use it in another. You must get and use energy in the same realm. Thus, if getting energy in one realm is  painful, but using energy in that realm is pleasurable, then in order to  decrease the pain you also have to
-  %em decrease the pleasure.
-  Then find another realm in which using energy is pleasurable, but getting energy seems pointless but which actually gives you more energy to achieve pleasurable goals.
-%p In other words, the goal of BipolarType is to replace painful behaviors with pointless behaviors while keeping pleasure constant.
+%p Balance is achieved when energy out equals energy in. Short term energy deficits or surpluses are possible, but in the long run an equilibirum must be established.
 %table
-  %caption The Four Attitudes
+  %caption.heading The Four Attitudes
   %tr
-    %th Painful
-    %td.top
-      =link_to "Depressed", attitude_path("d")
-      %p Achieving extra Goals is painful.
-    %td.top
-      =link_to "Manic", attitude_path("m")
-      %p Harvesting extra Resources is painful.
-  %tr
-    %th Pleasurable
-    %td.p Harvesting extra Resources is pleasurable.
-    %td.p Achieving extra Goals is pleasurable.
-  %tr
-    %th Pointless
-    %td.top
-      =link_to "Appreciative", attitude_path("a")
-      %p Achieving extra Goals is pointless.
-    %td.top
-      =link_to "Productive", attitude_path("p")
-      %p Harvesting extra Resources is pointless.
-  %tr
-    %th Solution
-    %td.p Harvesting pleasurable resources to achieve painful goals is replaced by harvesting pleasurable resources to achieve pointless goals.
-    %td.p Achieving pleasurable goals to harvest painful resources is replaced by achieving pleasurable goals to harvest pointless resources.
-%p There will still be times when life itself forces you to achieve painful goals or harvest painful resources, but at least you are no longer inflicting pain upon yourself in order to redress the energy imbalance created from fleeting pleasures which do not fully compensate you for the resultant pain.
+    %th.narrow
+    -Attitude.each do |attitude|
+      %th=link_to attitude.name, attitude_path(attitude.path)
+  -%w{imbalance solution}.each do |word|
+    %tr
+      %th=word.titleize
+      -Attitude.each do |attitude|
+        %td=attitude.send(word)
+%p A BipolarType is the four attitudes distributed over the four realms: one realm for each attitude.

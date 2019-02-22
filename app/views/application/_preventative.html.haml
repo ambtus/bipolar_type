@@ -1,0 +1,32 @@
+If you
+-case subtype.problem
+-when "lazy"
+  =subtype.high_energy_harvest
+-when "hyperactive"
+  =subtype.low_energy_harvest
+-when "fussy"
+  =subtype.high_energy_activities
+-when "greedy"
+  =subtype.low_energy_activities
+=subtype.compulsive? ? "instead of" : "as well as"
+-case subtype.problem
+-when "lazy"
+  =subtype.low_energy_harvest.ing
+-when "hyperactive"
+  =subtype.high_energy_harvest.ing
+-when "fussy"
+  =subtype.low_energy_activities.ing
+-when "greedy"
+  =subtype.high_energy_activities.ing
+when you want to
+-case subtype.problem
+-when "lazy", "hyperactive"
+  =subtype.harvest_something
+-when "fussy", "greedy"
+  =subtype.achieve_something
+you will not feel
+=subtype.result
+and become
+=subtype.episode
+in the first place; however, you might as well make it a habit to
+=render "advice", subtype: subtype

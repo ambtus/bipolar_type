@@ -1,0 +1,11 @@
+- content_for(:title, @name)
+=render "header"
+%table
+  %caption.heading The Four #{@name} Subtypes
+  %tr
+    -@subtypes.each do |subtype|
+      %th.quarter=link_to subtype.name, subtype_path(subtype.path)
+  -%w{description solution preventative}.each do |word|
+    %tr
+      -@subtypes.each do |subtype|
+        %td.p=render word, subtype: subtype

@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
   def show
     @answer = Answer.new params[:id]
     redirect_to type_path(@answer.type_path) and return if @answer.finished?
-    @by_attitude = true unless params[:sort] == "r"
+    @by_attitude = true if params[:sort] == "a"
   end
 
 end

@@ -13,18 +13,35 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  NAMES = %w{ manic productive  appreciative depressed   }
+  PROBLEMS = %w{greedy lazy fussy hyperactive}
+  def self.problems; PROBLEMS; end
 
-  def adjective; NAMES[index]; end
+  def problem; PROBLEMS[index]; end
+  def name; problem.capitalize; end
 
-  NAMES.each do |adjective|
-    define_singleton_method(adjective.first) {ALL[NAMES.index(adjective)]}
+  PROBLEMS.each do |problem|
+    define_singleton_method(problem.first) {ALL[PROBLEMS.index(problem)]}
   end
 
-  def goals?; %w{productive manic}.include?(adjective); end
-  def manic?; %w{appreciative manic}.include?(adjective); end
-  def compulsive?; %w{depressed manic}.include?(adjective); end
+  def manic?; %w{hyperactive fussy}.include?(problem); end
+  def goals?; %w{hyperactive lazy}.include?(problem); end
+  def compulsive?; %w{hyperactive greedy}.include?(problem); end
 
-  def pleasure; goals? ? "goals" : "resources"; end
+  def episode; manic? ? "manic" : "depressed"; end
 
+  def imbalance; manic? ? "deficit" : "surplus"; end
+
+  def drugs; manic? ? "sedatives" : "stimulants"; end
+
+  def verb; goals? ? "achieve" : "harvest"; end
+  def differently; compulsive? ? "less" : "more"; end
+  def solution; [verb, differently].join(" "); end
+
+  def nouns; goals? ? "goals" : "resources"; end
+  def different; compulsive? ? "fewer" : "more"; end
+
+  def opposite; ALL.find{|x| x.manic? == self.manic? && x != self}; end
+
+  def episode_trigger; opposite.solution.ed; end
+  def result; %w{exhausted lethargic restless overstimulated}[index]; end
 end
