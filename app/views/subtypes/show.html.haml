@@ -1,9 +1,18 @@
 - content_for(:title, @name)
 =render "header"
-%h2 Mania (Goal Oriented)
-%p=render "manic", subtype: @subtype
-%h2 Depression (Resource Oriented)
-%p=render "depressed", subtype: @subtype
+-%w{nature problem solution}.each do |word|
+  %p
+    #{word.capitalize}:
+    =render word, subtype: @subtype
+%p
+  If
+  =(render "if", subtype: @subtype)
+  then
+  =(render "then", subtype: @subtype)
+%p
+  In addition,
+  =render "and", subtype: @subtype
+
 %h2=link_to "BipolarTypes with this Problem", answer_path(@subtype.answer_path)
 -@subtype.types.each do |type|
   %h3=link_to type.name, type_path(type.path)

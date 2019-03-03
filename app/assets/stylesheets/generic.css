@@ -31,3 +31,9 @@ p { text-align: left; max-width: 62em}
 .green {color: green;}
 .blue {color: blue;}
 .yellow {color: orange;}
+
+blockquote {
+  margin: 5px;
+  padding-left: 10px;
+  border-left: 3px solid #ccc;
+}

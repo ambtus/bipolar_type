@@ -1,11 +1,19 @@
 - content_for(:title, @name)
 =render "header"
+-if @type
+  %h2 Quick Status Check
+  %ul.center
+    -@type.subtypes.each do |subtype|
+      %li Have you #{subtype.done} enough #{subtype.basics}?
+  %p.center Yes? Then relax. That’s all you have to do.
 %table
   %caption.heading The Four #{@name} Subtypes
   %tr
+    %th.narrow
     -@subtypes.each do |subtype|
       %th.quarter=link_to subtype.name, subtype_path(subtype.path)
-  -%w{description solution preventative}.each do |word|
+  -%w{nature problem solution and}.each do |word|
     %tr
+      %th=word.capitalize
       -@subtypes.each do |subtype|
         %td.p=render word, subtype: subtype

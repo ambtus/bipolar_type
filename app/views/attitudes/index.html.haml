@@ -6,7 +6,7 @@
     %th.narrow
     -Attitude.each do |attitude|
       %th=attitude.name
-  -%w{ imbalance solution episode_trigger result episode}.each do |word|
+  -%w{cause effect result solution }.each do |word|
     %tr
       %th=word.titleize
       -Attitude.each do |attitude|

@@ -29,7 +29,7 @@ class Subtype
   def <=>(other); attitude.index <=> other.attitude.index; end
 
   def path; @pair.map(&:path).join; end
-  def symbol; @pair.map(&:symbol).join; end
+  def symbol; @attitude.symbol.first + @realm.symbol + @attitude.symbol.second; end
   def inspect; symbol; end
 
   def name; @pair.map(&:name).join("ly "); end
@@ -39,17 +39,22 @@ class Subtype
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def types; Type.all.select{|t| t.subtypes.include?(self)}; end
+  def same_attitude; @attitude.subtypes - [self]; end
 
-  def other_goals; @realm.others.map(&:goals); end
+  def opposite; @realm + @attitude.opposite; end
+
+  def types; Type.all.select{|t| t.subtypes.include?(self)}; end
 
   def answer_path; Answer.first.next(self); end
 
-  def verb; @realm.send(@attitude.verb); end
-  def different; nouns.send(@attitude.different); end
-  def nouns; @realm.send(@attitude.nouns); end
+  def bad; @realm.send("#{@attitude.stimulus}_pain"); end
+  def opposite_pain; @realm.send("#{@attitude.opposite_stimulus}_pain"); end
 
-  def behave; [verb, different, nouns].join(" "); end
+  def behave; @realm.send(@attitude.behavior); end
 
-  def result; @realm.send(@attitude.result); end
+  def done; behave.en; end
+  def basics; @realm.send("basic_#{@attitude.stimulus}"); end
+
+  def extras; @realm.send("painful_#{@attitude.stimulus}"); end
+
 end

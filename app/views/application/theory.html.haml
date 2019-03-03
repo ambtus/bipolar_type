@@ -1,26 +1,38 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines four realms of behavior, each of which revolves around a different kind of energy. Each realm has behaviors which achieve goals (energy out) and other behaviors which harvest resources (energy in).
+%p BipolarType defines four realms, each of which revolves around a different type of energy. Each realm has behaviors which harvest and process resources (energy in) and other behaviors which achieve goals (energy out).
 %table
   %caption.heading The Four Realms
   %tr
     %th.narrow
     -Realm.each do |realm|
-      %th=link_to realm.name, realm_path(realm.path)
-  -%w{energy goals resources}.each do |word|
+      %th.quarter=realm.name
+  -%w{ resources energy goals }.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|
         %td=realm.send(word)
-%p Balance is achieved when energy out equals energy in. Short term energy deficits or surpluses are possible, but in the long run an equilibirum must be established.
+%p Input pain occurs when you cannot easily process a resource. If processing this resource is painful, your time might be better spent harvesting other resources which you will not have to reject.
+%p Output pain occurs when you cannot easily improve a goal. If influencing this goal is painful, your time and energy might be better spent improving other goals which you will not have to abandon.
+%p Some people are more or less sensitive than others to pain. Depending on your environment, being sensitive or insensitive to pain can be adaptive or maladaptive. A variety of responses means that there are some people well adapted to almost any environment.
+%p BipolarType defines four attitudes towards a “typical” environment. Too much or too little pain on one side of the equation leads to an energy imbalance.
 %table
   %caption.heading The Four Attitudes
   %tr
     %th.narrow
     -Attitude.each do |attitude|
-      %th=link_to attitude.name, attitude_path(attitude.path)
-  -%w{imbalance solution}.each do |word|
+      %th.quarter=attitude.name
+  -%w{cause effect result}.each do |word|
     %tr
       %th=word.titleize
       -Attitude.each do |attitude|
-        %td=attitude.send(word)
-%p A BipolarType is the four attitudes distributed over the four realms: one realm for each attitude.
+        %td.p=attitude.send(word)
+%p
+  Bipolar disorders and drug addictions tend to emerge during early adolescence and young adulthood when parental control over your goals and resources disappears. If you view your
+  %em sensitivity
+  as a “problem” which needs to be “fixed”, instead of viewing your
+  %em environment
+  as a bad fit for your nature, then you will try to change that sensitivity with drugs.
+%p Sedatives decrease input pain while increasing output pain. Alcohol and other sedatives treat mania and make it easier to get extra input but harder to use and develop new strengths. Sedatives remedy an energy deficit.
+%p Stimulants decrease output pain while increasing input pain. Caffeine and other stimulants treat depression and make it easier to use and develop new strengths but harder to get extra input. Stimulants remedy an energy surplus.
+%p The problem with drugs is that our behaviors are rarely constrained to one realm. A targeted stimulant which only increases input pain in a realm with an unwanted energy surplus can cause an unwanted energy deficit in a second realm because you won’t spend as much time in an activity which harvests both kinds of resources at the same time. Furthermore, you will probably use the extra time to do more of some other activity, unbalancing a third realm as well.
+%p An alternative to using sedatives and stimulants to change your nature to fit your focus is to change your focus to fit your nature.

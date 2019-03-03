@@ -1,47 +1,46 @@
 class Attitude < Concept
 
+  SYMBOLS = %w{IP EP EJ IJ}
+
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   PATHS.each do |path|
     define_singleton_method(path) {ALL[PATHS.index(path)]}
   end
-  %w{first second third fourth}.each_with_index do |ordinal, index|
-    define_singleton_method(ordinal) {ALL[index]}
-  end
   ########
+
+  def self.answer_order; ALL.values_at(0,3,1,2); end
+
+  SYMBOLS.each do |symbol|
+    define_singleton_method(symbol.downcase) {ALL[SYMBOLS.index(symbol)]}
+  end
 
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  PROBLEMS = %w{greedy lazy fussy hyperactive}
-  def self.problems; PROBLEMS; end
+  def adjective; %w{thin fat strong weak}[index]; end
+  alias problem :adjective
 
-  def problem; PROBLEMS[index]; end
-  def name; problem.capitalize; end
+  def input?; %w{thin fat}.include?(adjective); end
+  def pain?; %w{thin weak}.include?(adjective); end
+  def surplus?; %w{fat weak}.include?(adjective); end
 
-  PROBLEMS.each do |problem|
-    define_singleton_method(problem.first) {ALL[PROBLEMS.index(problem)]}
-  end
+  def first_amount; pain? ? "much" : "little"; end
+  def stimulus; input? ? "input" : "output"; end
+  def cause; "too #{first_amount} #{stimulus} pain"; end
 
-  def manic?; %w{hyperactive fussy}.include?(problem); end
-  def goals?; %w{hyperactive lazy}.include?(problem); end
-  def compulsive?; %w{hyperactive greedy}.include?(problem); end
+  def second_amount; pain? ? "little" : "much"; end
+  def behavior; input? ? "input" : "output"; end
+  def effect; "too #{second_amount} #{behavior}"; end
 
-  def episode; manic? ? "manic" : "depressed"; end
+  def result; surplus? ? "energy surplus" : "energy deficit"; end
 
-  def imbalance; manic? ? "deficit" : "surplus"; end
+  def opposite_stimulus; input? ? "output" : "input"; end
 
-  def drugs; manic? ? "sedatives" : "stimulants"; end
+  def opposite; others.find{|x| x.symbol.first != self.symbol.first && x.symbol.second != self.symbol.second}; end
 
-  def verb; goals? ? "achieve" : "harvest"; end
-  def differently; compulsive? ? "less" : "more"; end
-  def solution; [verb, differently].join(" "); end
+  def targets; input? ? "resources" : "goals"; end
 
-  def nouns; goals? ? "goals" : "resources"; end
-  def different; compulsive? ? "fewer" : "more"; end
+  def solution; "focus on basic #{targets}"; end
 
-  def opposite; ALL.find{|x| x.manic? == self.manic? && x != self}; end
-
-  def episode_trigger; opposite.solution.ed; end
-  def result; %w{exhausted lethargic restless overstimulated}[index]; end
 end

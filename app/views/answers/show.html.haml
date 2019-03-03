@@ -1,4 +1,4 @@
--content_for(:title, "Question ##{@answer.number} of 3")
+-content_for(:title, "Question ##{@answer.number} of 4")
 %p
   Once you have
   %span.chosen chosen
@@ -15,10 +15,10 @@
       -if @by_attitude
         =link_to "Transpose", url_for(params.merge(:sort => "r"))
         -cols = Realm.all
-        -rows = Attitude.all
+        -rows = Attitude.answer_order
       -else
         =link_to "Transpose", url_for(params.merge(:sort => "a"))
-        -cols = Attitude.all
+        -cols = Attitude.answer_order
         -rows = Realm.all
     -cols.each do |col|
       %th.quarter=col.name
@@ -27,9 +27,8 @@
       %th=row.name
       -row.subtypes.each do |subtype|
         %td.p{:class => @answer.css(subtype)}
-
           -if @answer.css(subtype) == "free"
             =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-              =subtype.behave
+              =render "nature", subtype: subtype
           -else
-            =subtype.behave
+            =render "nature", subtype: subtype

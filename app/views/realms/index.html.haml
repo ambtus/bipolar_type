@@ -7,7 +7,7 @@
     %th.narrow
     -Realm.each do |realm|
       %th=realm.name
-  -%w{ energy aka question achieve_goals  low_energy_activities high_energy_activities exhausted harvest_resources low_energy_resources high_energy_resources overstimulated}.each do |word|
+  -%w{ energy reserves strengths harvest process resources basic_input painful_input input_pain neuro achieve goals basic_output harder painful_output output_pain question}.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|

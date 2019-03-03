@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth to_word words to_phrase first_word is_mbti? s ed ly ing an some enough  many too_much too_little a_few plural? little few more fewer less much many that those is are them it they}.each do |meth|
+%w{chip second third fourth to_word words to_phrase first_word is_mbti? s ed en ly ing an some enough  many too_much too_little a_few plural? little few more fewer less much many that those is are them it they}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -52,11 +52,28 @@ class String
     return "hit" if self=="hit"
     return "saw" if self=="see"
     return "shopped" if self=="shop"
+    return "planned" if self=="plan"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ed, second].join(" ")
     else
       self.sub(/e$/, "") + "ed"
+    end
+  end
+
+  def en
+    return "eaten" if self=="eat"
+    return "forgotten" if self=="forget"
+    return "done" if self=="do"
+    return "run" if self=="run"
+    return "seen" if self=="see"
+    return "paid" if self=="pay"
+    return "gone" if self=="go"
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first.en, second].join(" ")
+    else
+      self.ed
     end
   end
 

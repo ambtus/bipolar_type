@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "bdac"; end
+  def self.my_path; "abcd"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -19,7 +19,7 @@ class Type
   def manic_order; subtypes.values_at(1,0,3,2); end
   def depressed_order; subtypes.values_at(2,3,0,1); end
 
-  def symbol; realms.map(&:symbol).join; end
+  def symbol; subtypes.map(&:symbol).join("•"); end
   def inspect; symbol; end
 
   def name; symbol; end
