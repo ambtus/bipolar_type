@@ -1,0 +1,54 @@
+- content_for(:title, @name)
+=render "header"
+%h2=@type.description
+%p.heading
+  =render "p", realm: @type.p
+  %br
+  =render "j", realm: @type.j
+%h2 Input
+%h3 Pefectly
+%p When it works perfectly, you anticipate #{@type.p.triggers} (getting lots of extra #{@type.p.energy} that triggers #{@type.p.neurochemicals}), you produce enough endogenous sedatives to calm down and be able to #{@type.P.harvest} #{@type.P.triggers} (getting lots of extra #{@type.P.energy} that triggers #{@type.P.neurochemicals}), and then — for one reason or another — you never actually #{@type.p.harvest} many if any of the #{@type.p.triggers} you anticipated #{@type.p.harvest.ing}.
+%h3 Badly
+%p When it works badly, you anticipate the #{@type.p.triggers}, you produce enough endogenous sedatives to calm down and be able to #{@type.P.harvest} the #{@type.P.resources} you want to #{@type.P.harvest}, and then you actually #{@type.p.harvest} all if not more of the #{@type.p.triggers} that you anticipated #{@type.p.harvest.ing}.
+%p After which you gain a lot of stored #{@type.p.energy} and/or you have to #{@type.p.output} a lot more which makes you feel #{@type.p.exhausted} when you don’t even have any#{@type.p.thing} you want to #{@type.p.hit}.
+%h3 Broken
+%p
+  When it breaks, you do
+  %em not
+  anticipate #{@type.p.triggers}. Either because you do not want to be #{@type.p.adverb} fat, or because you are #{@type.p.exhausted} and cannot #{@type.p.output} any more.
+%p
+  You do
+  %em not
+  produce enough endogenous sedatives to calm down and be able to #{@type.P.harvest} #{@type.P.triggers} without feeling so #{@type.P.overwhelmed} and #{@type.P.reject.ing} so much that you cannot #{@type.P.input} anything or #{@type.P.harvest}
+  %em any
+  #{@type.P.resources}.
+%h3 Solution
+%p
+  If you want to be able to #{@type.P.input} and #{@type.P.harvest_resources}, then you have to
+  %em anticipate
+  #{@type.p.triggers} without ever actually
+  %em #{@type.p.harvest.ing}
+  them.
+
+%h2 Output
+%h3 Pefectly
+%p When it works perfectly, you anticipate #{@type.j.do_work.ing} (using lots of extra #{@type.j.energy} that triggers #{@type.j.neurochemicals}), you produce enough endogenous stimulants to rev up and be able to #{@type.J.do_work} (using lots of extra #{@type.J.energy} that triggers #{@type.J.neurochemicals}), and then — for one reason or another — you never actually #{@type.j.hit} many if any of the #{@type.j.targets} you anticipated #{@type.j.hit.ing}.
+%h3 Badly
+%p When it works badly, you anticipate #{@type.j.do_work.ing}, you produce enough endogenous stimulants to rev up and be able to #{@type.J.hit} the #{@type.J.targets} you want to #{@type.J.hit}, and then you actually #{@type.j.hit} all if not more of the #{@type.j.targets} that you anticipated #{@type.j.hit.ing}.
+%p After which you lose a lot of stored #{@type.j.energy} and/or you have to #{@type.j.input} a lot more which makes you feel #{@type.j.overwhelmed} when you have to #{@type.j.harvest} #{@type.j.triggers}.
+%h3 Broken
+%p
+  When it breaks, you do
+  %em not
+  anticipate #{@type.j.do_work.ing}. Either because you do not want to be #{@type.j.adverb} thin, or because you are #{@type.j.overwhelmed} and cannot #{@type.j.input} any more.
+%p
+  You do
+  %em not
+  produce enough endogenous stimulant to rev up and be able to #{@type.J.do_work} without feeling so #{@type.J.exhausted} and #{@type.J.stall.ing} that you cannot #{@type.J.output} at all or #{@type.J.hit}
+  %em any#{@type.J.thing}.
+%h3 Solution
+%p
+  If you want to be able to #{@type.J.output} and #{@type.J.do_work}, then you have to
+  %em anticipate
+  #{@type.j.do_work.ing} without ever actually
+  %em #{@type.j.output.ing}.

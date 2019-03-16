@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "acbd"; end
+  def self.my_path; "abcd"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -16,18 +16,25 @@ class Type
 
   def subtypes; realms.add(Attitude.all); end
 
-  def manic_order; subtypes.values_at(1,0,3,2); end
-  def depressed_order; subtypes.values_at(2,3,0,1); end
+  def inputs; @realms[0,2]; end
+  def outputs; @realms[2,2]; end
 
-  def symbol; @realms.map(&:symbol).join("•"); end
+  def symbol; "P#{inputs.map(&:symbol).join}•#{outputs.map(&:symbol).join}J"; end
   def inspect; symbol; end
+  def name; symbol; end
 
-  def name; @realms.map(&:name).join("•"); end
+  def description
+    [@realms.first.resources, @realms.second.triggers,
+     @realms.third.hit, @realms.fourth.targets].join("•")
+  end
 
   def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
 
   Attitude.all.map(&:adjective).each_with_index do |adjective, index|
     define_method(adjective) {subtypes[index]}
+  end
+  Attitude.all.map(&:symbol).each_with_index do |symbol, index|
+    define_method(symbol) {subtypes[index]}
   end
 end
 

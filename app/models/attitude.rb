@@ -1,5 +1,7 @@
 class Attitude < Concept
 
+  SYMBOLS = %w{P p j J}
+
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   PATHS.each do |path|
@@ -17,7 +19,7 @@ class Attitude < Concept
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
 
-  def act; %w{reject splurge binge stall}[index]; end
+  def act; %w{reject binge splurge stall}[index]; end
   def action; %w{rejection splurge binge stall}[index]; end
   def name; action.capitalize; end
 
@@ -27,8 +29,4 @@ class Attitude < Concept
 
   def opposite; others.find{|x| x.input? != self.input? && x.surplus? != self.surplus?}; end
 
-  def preposition; "on" if index > 0; end
-  def preference; pain? ? "want to" : "do not want to"; end
-
-  def drugs; surplus? ? "stimulants" : "sedatives"; end
 end

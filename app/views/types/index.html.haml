@@ -1,8 +1,13 @@
 - content_for(:title, "The 24 BipolarTypes")
 =render "header"
 -Type.all.each do |type|
-  %p.heading
-    =link_to type.name, type_path(type.path)
-    %ul
-      -type.subtypes.each do |subtype|
-        %li=subtype.name
+  %h3=link_to type.name, type_path(type.path)
+  =type.description
+  %br
+  =render "p", realm: type.p
+  so you can
+  =type.P.harvest_resources
+  %br
+  =render "j", realm: type.j
+  so you can
+  =type.J.do_work
