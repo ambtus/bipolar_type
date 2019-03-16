@@ -1,5 +1,6 @@
 - content_for(:title, "The Four Realms")
 =render "header"
+=render "energy"
 =render "affect"
 %table
   %caption.heading The Four Realms
@@ -7,7 +8,7 @@
     %th.narrow
     -Realm.each do |realm|
       %th=realm.name
-  -%w{ energy reserves strengths harvest process resources basic_input painful_input input_pain neuro achieve goals basic_output harder painful_output output_pain question}.each do |word|
+  -%w{energy harvest_resources triggers neurochemicals overwhelmed do_work exhausted  }.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|

@@ -1,19 +1,10 @@
 - content_for(:title, @name)
-=render "header"
--%w{nature problem solution}.each do |word|
-  %p
-    #{word.capitalize}:
-    =render word, subtype: @subtype
-%p
-  If
-  =(render "if", subtype: @subtype)
-  then
-  =(render "then", subtype: @subtype)
-%p
-  In addition,
-  =render "and", subtype: @subtype
+-%w{attitude manic depressed neither}.each do |word|
+  %h2=word.capitalize
+  %p=render word, subtype: @subtype
 
-%h2=link_to "BipolarTypes with this Problem", answer_path(@subtype.answer_path)
+%h2 BipolarTypes with this Subtype
+%p.heading=link_to "Start with this Subtype", answer_path(@subtype.answer_path)
 -@subtype.types.each do |type|
   %h3=link_to type.name, type_path(type.path)
   =type.subtypes.map(&:name).to_sentence

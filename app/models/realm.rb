@@ -17,50 +17,33 @@ class Realm < Concept
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
   def adjective; %w{spiritual physical material mental}[index]; end
-  def adjective; %w{affective physical financial mental}[index]; end
-  def adverb; "#{adjective}ly"; end
+  def adverb; adjective + "ly"; end
 
-  def neuro; %w{oxytocin serotonin dopamine norepinephrine}[index]; end
-
-  def energy; %w{affect glucose currency data}[index]; end
-  def reserves; %w{moods fat savings knowledge}[index]; end
-  def strengths; %w{words muscles credit mental\ models}[index]; end
-
-  ### INPUT
-  def input; %w{listen\ to eat collect look\ for}[index]; end
-  def basic_input; %w{praise protein your\ stipend commonalities}[index]; end
-  def painful_input; %w{criticism sweets rewards exceptions}[index]; end
-
-  def harvest; %w{hear smell touch see}[index]; end
-  def process; %w{care\ about digest use believe}[index]; end
-  def resources; %w{opinions food tools facts}[index]; end
-
-  def input_pain; %w{suicidal nauseated angry afraid}[index]; end
-
-
-  ### OUTPUT
-  def output; %w{tell go buy plan\ for}[index]; end
-  def basic_output; %w{yourself home necessities probabilities}[index]; end
-  def harder; %w{heterogenous farther more\ expensive more\ unlikely}[index]; end
-  def painful_output; %w{crowds away luxuries possibilities}[index]; end
-
-  def achieve; %w{influence travel own envision}[index]; end
-  def goals; %w{people places things ideas}[index]; end
-
-  def output_pain; %w{misunderstood sore indebted stupid}[index]; end
-
-  def question; %w{who where what why}[index]; end
+  def target; %w{person place thing idea}[index]; end
+  def targets; target.s; end
   def thing; %w{one where thing thing}[index]; end
-  def them; %w{them there them them}[index]; end
+  def name; targets.capitalize; end
 
+  def sense; %w{hear smell/taste touch see}[index]; end
+
+  def energy; %w{affect calories money information}[index]; end
+  def energetic; %w{affective caloric financial knowledge}[index]; end
+  def an_energetic; [energetic.an, energetic].join(" "); end
+
+  def overwhelmed; %w{guilty sick angry afraid}[index]; end
+  def exhausted; %w{misunderstood sore indebted stupid}[index]; end
+
+  def input; %w{listen eat earn watch}[index]; end
+  def output; %w{talk walk buy think}[index]; end
+
+  def harvest; %w{listen\ to eat use look\ for}[index]; end
+  def resource; %w{opinion food tool fact}[index]; end
+  def resources; resource.s; end
+  def harvest_resources; [harvest, resources].join(" "); end
+  def triggers; %w{whines carbs weapons exceptions}[index]; end
+  def neurochemicals; %w{oxytocin serotonin dopmaine adrenaline}[index]; end
+
+  def hit; %w{tell go buy consider}[index]; end
+  def do_work; [hit, targets].join(" "); end
 
 end
-
-
-# N output words
-# steady: synthesis. compare. analogy. similarities. spatial. put together. decide
-# extra: analyze. contrast. logic (nor). differences. linear. split apart. choose
-
-# F output words
-# steady: expressive. intonation. music. sing. emotional. whine. emoticons
-# extra: lexical. words. lyrics. write. meaningful. explain. letters

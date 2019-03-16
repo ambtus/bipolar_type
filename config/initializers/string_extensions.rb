@@ -27,6 +27,7 @@ class String
   def s
     return "people" if self=="person"
     return "speaches" if self=="speach"
+    return "relaxes" if self=="relax"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.s, second].join(" ")
@@ -53,6 +54,7 @@ class String
     return "saw" if self=="see"
     return "shopped" if self=="shop"
     return "planned" if self=="plan"
+    return "understood" if self=="understand"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ed, second].join(" ")
@@ -82,6 +84,9 @@ class String
   def ing
     return "lying" if self=="lie"
     return "listening" if self=="listen"
+    return "abandoning" if self=="abandon"
+    return "quitting" if self=="quit"
+    return "panicking" if self=="panic"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ing, second].join(" ")

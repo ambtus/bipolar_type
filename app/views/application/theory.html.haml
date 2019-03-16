@@ -1,38 +1,28 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines four realms, each of which revolves around a different type of energy. Each realm has behaviors which harvest and process resources (energy in) and other behaviors which achieve goals (energy out).
+%p BipolarType defines four realms. Each realm has targets on which to use energy, and senses with which to get energy from resources.
 %table
   %caption.heading The Four Realms
-  %tr
-    %th.narrow
-    -Realm.each do |realm|
-      %th.quarter=realm.name
-  -%w{ resources energy goals }.each do |word|
+  -%w{targets energy sense resources}.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|
         %td=realm.send(word)
-%p Input pain occurs when you cannot easily process a resource. If processing this resource is painful, your time might be better spent harvesting other resources which you will not have to reject.
-%p Output pain occurs when you cannot easily improve a goal. If influencing this goal is painful, your time and energy might be better spent improving other goals which you will not have to abandon.
-%p Some people are more or less sensitive than others to pain. Depending on your environment, being sensitive or insensitive to pain can be adaptive or maladaptive. A variety of responses means that there are some people well adapted to almost any environment.
-%p BipolarType defines four attitudes towards a “typical” environment. Too much or too little pain on one side of the equation leads to an energy imbalance.
+=render "affect"
+%p BipolarType defines two states: Mania and Depression. Mania is a stimulated state in which your focus narrows and using energy on elusive targets becomes easier. Depression is a sedated state in which your senses dull and getting energy from painful sources becomes easier. The bipolar cycle is Mania followed by Depression. In other words, stimulated enough to use energy to do work followed by sedated enough to harvest resources to get energy.
+%p BipolarType defines four attitudes. Each attitude has a tendency towards an energy imbalance, a reason for that imbalance, and an attitude towards the bipolar cycle.
 %table
   %caption.heading The Four Attitudes
   %tr
-    %th.narrow
-    -Attitude.each do |attitude|
-      %th.quarter=attitude.name
-  -%w{cause effect result}.each do |word|
-    %tr
-      %th=word.titleize
-      -Attitude.each do |attitude|
-        %td.p=attitude.send(word)
-%p
-  Bipolar disorders and drug addictions tend to emerge during early adolescence and young adulthood when parental control over your goals and resources disappears. If you view your
-  %em sensitivity
-  as a “problem” which needs to be “fixed”, instead of viewing your
-  %em environment
-  as a bad fit for your nature, then you will try to change that sensitivity with drugs.
-%p Sedatives decrease input pain while increasing output pain. Alcohol and other sedatives treat mania and make it easier to get extra input but harder to use and develop new strengths. Sedatives remedy an energy deficit.
-%p Stimulants decrease output pain while increasing input pain. Caffeine and other stimulants treat depression and make it easier to use and develop new strengths but harder to get extra input. Stimulants remedy an energy surplus.
-%p The problem with drugs is that our behaviors are rarely constrained to one realm. A targeted stimulant which only increases input pain in a realm with an unwanted energy surplus can cause an unwanted energy deficit in a second realm because you won’t spend as much time in an activity which harvests both kinds of resources at the same time. Furthermore, you will probably use the extra time to do more of some other activity, unbalancing a third realm as well.
-%p An alternative to using sedatives and stimulants to change your nature to fit your focus is to change your focus to fit your nature.
+    %td{colspan: 2} Energy deficit
+    %td{colspan: 2} Energy surplus
+  %tr
+    %td.p Getting energy is too difficult
+    %td.p Using energy is too easy
+    %td.p Getting energy is too easy
+    %td.p Using energy is too difficult
+  %tr
+    %td.p I want to be depressed
+    %td.p I don’t want to be manic
+    %td.p I don’t want to be depressed
+    %td.p I want to be manic
+%p I believe that mania and depression are equally as beneficial to the two outside attitudes as they are harmful to the two inside attitudes. BipolarType is an attempt to prevent or at least mitigate the harm while maximizing the benefit without the use of sedatives or stimulants.

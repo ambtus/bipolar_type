@@ -1,7 +1,5 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{IP EP EJ IJ}
-
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   PATHS.each do |path|
@@ -9,7 +7,7 @@ class Attitude < Concept
   end
   ########
 
-  def self.answer_order; ALL.values_at(0,3,1,2); end
+  def self.answer_order; ALL; end
 
   SYMBOLS.each do |symbol|
     define_singleton_method(symbol.downcase) {ALL[SYMBOLS.index(symbol)]}
@@ -18,29 +16,19 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  def adjective; %w{thin fat strong weak}[index]; end
-  alias problem :adjective
 
-  def input?; %w{thin fat}.include?(adjective); end
-  def pain?; %w{thin weak}.include?(adjective); end
-  def surplus?; %w{fat weak}.include?(adjective); end
+  def act; %w{reject splurge binge stall}[index]; end
+  def action; %w{rejection splurge binge stall}[index]; end
+  def name; action.capitalize; end
 
-  def first_amount; pain? ? "much" : "little"; end
-  def stimulus; input? ? "input" : "output"; end
-  def cause; "too #{first_amount} #{stimulus} pain"; end
+  def surplus?; %w{binge stall}.include?(action); end
+  def input?; %w{binge rejection}.include?(action); end
+  def pain?; %w{stall rejection}.include?(action); end
 
-  def second_amount; pain? ? "little" : "much"; end
-  def behavior; input? ? "input" : "output"; end
-  def effect; "too #{second_amount} #{behavior}"; end
+  def opposite; others.find{|x| x.input? != self.input? && x.surplus? != self.surplus?}; end
 
-  def result; surplus? ? "energy surplus" : "energy deficit"; end
+  def preposition; "on" if index > 0; end
+  def preference; pain? ? "want to" : "do not want to"; end
 
-  def opposite_stimulus; input? ? "output" : "input"; end
-
-  def opposite; others.find{|x| x.symbol.first != self.symbol.first && x.symbol.second != self.symbol.second}; end
-
-  def targets; input? ? "resources" : "goals"; end
-
-  def solution; "focus on basic #{targets}"; end
-
+  def drugs; surplus? ? "stimulants" : "sedatives"; end
 end

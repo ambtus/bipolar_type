@@ -30,7 +30,7 @@ class Concept
 
   def path; PATHS[index]; end
   def adjective; %w{alpha beta gamma delta}[index]; end
-  def name; adjective.capitalize; end
+  def name; adjective.titleize; end
   def ordinal; %w{first second third fourth}[index]; end
 
   def first?; self.ordinal == "first"; end

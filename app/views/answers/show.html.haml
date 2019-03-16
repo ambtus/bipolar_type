@@ -10,25 +10,12 @@
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 %table
-  %tr
-    %td.narrow.none
-      -if @by_attitude
-        =link_to "Transpose", url_for(params.merge(:sort => "r"))
-        -cols = Realm.all
-        -rows = Attitude.answer_order
-      -else
-        =link_to "Transpose", url_for(params.merge(:sort => "a"))
-        -cols = Attitude.answer_order
-        -rows = Realm.all
-    -cols.each do |col|
-      %th.quarter=col.name
-  -rows.each do |row|
+  -Attitude.each do |row|
     %tr
-      %th=row.name
       -row.subtypes.each do |subtype|
-        %td.p{:class => @answer.css(subtype)}
+        %td.p.quarter{:class => @answer.css(subtype)}
           -if @answer.css(subtype) == "free"
             =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-              =render "nature", subtype: subtype
+              =render "attitude", subtype: subtype
           -else
-            =render "nature", subtype: subtype
+            =render "attitude", subtype: subtype

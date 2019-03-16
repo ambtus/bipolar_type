@@ -29,10 +29,11 @@ class Subtype
   def <=>(other); attitude.index <=> other.attitude.index; end
 
   def path; @pair.map(&:path).join; end
-  def symbol; @attitude.symbol.first + @realm.symbol + @attitude.symbol.second; end
+  def symbol; @pair.map(&:symbol).join; end
   def inspect; symbol; end
 
-  def name; @pair.map(&:name).join("ly "); end
+  def behavior; "#{adjective} #{@attitude.action}"; end
+  def name; behavior.titleize; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
@@ -47,14 +48,7 @@ class Subtype
 
   def answer_path; Answer.first.next(self); end
 
-  def bad; @realm.send("#{@attitude.stimulus}_pain"); end
-  def opposite_pain; @realm.send("#{@attitude.opposite_stimulus}_pain"); end
-
-  def behave; @realm.send(@attitude.behavior); end
-
-  def done; behave.en; end
-  def basics; @realm.send("basic_#{@attitude.stimulus}"); end
-
-  def extras; @realm.send("painful_#{@attitude.stimulus}"); end
+  def nouns; input? ? resources : targets; end
+  def verb; input? ? harvest : hit; end
 
 end
