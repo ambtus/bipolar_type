@@ -1,28 +1,29 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines four realms. Each realm has targets on which to use energy, and senses with which to get energy from resources.
+%p BipolarType defines four realms of energy. Each realm has behaviors which get energy by harvesting and processing resources and behaviors which use energy to do work and achieve goals.
 %table
   %caption.heading The Four Realms
-  -%w{targets energy sense resources}.each do |word|
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=realm.name
+  -%w{ energy process_resources achieve_goals}.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|
         %td=realm.send(word)
-=render "affect"
-%p BipolarType defines two states: Mania and Depression. Mania is a stimulated state in which your focus narrows and using energy on elusive targets becomes easier. Depression is a sedated state in which your senses dull and getting energy from painful sources becomes easier. The bipolar cycle is Mania followed by Depression. In other words, stimulated enough to use energy to do work followed by sedated enough to harvest resources to get energy.
-%p BipolarType defines four attitudes. Each attitude has a tendency towards an energy imbalance, a reason for that imbalance, and an attitude towards the bipolar cycle.
+%p BipolarType defines two energy imbalances. Mania is when you are using more energy than you are getting and are creating an energy defict. Depression is when you are getting more energy than you are using and are creating an energy surplus.
+%p Mania and Depression cannot be maintained forever. Eventually you have to find a way to equalize energy inflow with energy outflow.
+%p BipolarType defines four attitudes. Each attitude has a natural behavior, a resulting energy imbalance, a “cure” for the imbalance which is only a red herring since two wrongs may cancel each other out but they don’t actually make things right.
 %table
   %caption.heading The Four Attitudes
   %tr
-    %td{colspan: 2} Energy deficit
-    %td{colspan: 2} Energy surplus
-  %tr
-    %td.p Getting energy is too difficult
-    %td.p Using energy is too easy
-    %td.p Getting energy is too easy
-    %td.p Using energy is too difficult
-  %tr
-    %td.p I want to be depressed
-    %td.p I don’t want to be manic
-    %td.p I don’t want to be depressed
-    %td.p I want to be manic
-%p I believe that mania and depression are equally as beneficial to the two outside attitudes as they are harmful to the two inside attitudes. BipolarType is an attempt to prevent or at least mitigate the harm while maximizing the benefit without the use of sedatives or stimulants.
+    %th
+    -Attitude.each do |attitude|
+      %th=attitude.name
+  -%w{nature imbalance cure advice}.each do |word|
+    %tr
+      %th=word.titleize
+      -Attitude.each do |attitude|
+        %td=attitude.send(word)
+%p The first half of BipolarType is knowing what is causing your problem. Are you fat because you are greedy or lazy? Are you skinny because you are hyperactive or picky? If you think you are both you will never be able to focus on the real problem long enough to actually solve it. If you chose the wrong one, you will find the advice easy to implement, but essentially ineffective since it is the red-herring “cure”.
+%p The second half of BipolarType is sticking to the advice for the imbalance even though it is extremely difficult to implement — it goes against your nature — but is much more effective in the long run since it targets the cause of the imbalance.

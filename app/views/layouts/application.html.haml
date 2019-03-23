@@ -8,6 +8,9 @@
     =render "layouts/favicon"
   %body
     %p.header=render "layouts/links"
-    %h1="BipolarType: " + yield(:title)
+    %p.subheader=render "layouts/sublinks"
+    -unless @type
+      %h1="BipolarType: " + yield(:title)
     =yield
+    %p.subfooter=render "layouts/sublinks"
     %p.footer=render "layouts/links"

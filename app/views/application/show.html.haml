@@ -1,13 +1,8 @@
 - content_for(:title, @name)
-=render "header"
-%table
-  %caption.heading The Four Subtypes
-  %tr
-    %th.narrow
-    -@subtypes.each do |subtype|
-      %th.quarter=link_to subtype.name, subtype_path(subtype.path)
-  -%w{attitude manic depressed neither}.each do |word|
-    %tr
-      %th=word.capitalize
-      -@subtypes.each do |subtype|
-        %td.p=render word, subtype: subtype
+-if @realm
+  %p Get #{@realm.energy}: #{@realm.sense}, #{@realm.harvest}, and #{@realm.process} #{@realm.resources}.
+  %p Use #{@realm.energy}: #{@realm.do_work} and #{@realm.achieve} #{@realm.goals} and do #{@realm.adjective} labor.
+-@subtypes.each do |subtype|
+  %h3=link_to subtype.name, subtype_path(subtype.path)
+  %p.heading=subtype.nature
+  =render "subtype", subtype: subtype

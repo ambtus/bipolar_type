@@ -1,7 +1,11 @@
 body { font-size: 125% }
 p { text-align: left; max-width: 62em}
-.header { padding-bottom: 1em; font-size: .8em }
-.footer { padding-top: 3em; font-size: .8em}
+
+.header {  font-size: .8em }
+.subheader { padding-bottom: 1em; font-size: .8em }
+.footer {font-size: .8em}
+.subfooter { padding-top: 3em; font-size: .8em}
+
 .warning {color: grey; font-style: italic}
 .free {}
 .chosen {color: purple; font-style: italic}

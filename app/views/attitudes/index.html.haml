@@ -1,0 +1,11 @@
+- content_for(:title, "The Four Attitudes")
+%table
+  %tr
+    %th.narrow
+    -Attitude.each do |attitude|
+      %th=attitude.name
+  -%w{nature imbalance cure red_herring advice useful_clue}.each do |word|
+    %tr
+      %th=word.titleize
+      -Attitude.each do |attitude|
+        %td=attitude.send(word)

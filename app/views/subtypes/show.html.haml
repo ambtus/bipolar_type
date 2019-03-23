@@ -1,18 +1,14 @@
 - content_for(:title, @name)
--%w{attitude manic depressed neither}.each do |word|
-  %h2=word.capitalize
-  %p=render word, subtype: @subtype
-
+=render "subtype", subtype: @subtype
+%p You are #{@subtype.adjective} because the #{@subtype.targets} are bad for you. They are #{@subtype.adverb} unhealthy and if you have any control over your environment at all you should avoid them by focusing on #{@subtype.good} #{@subtype.targets}.
+%p However, if you are running #{@subtype.an_energetic} #{@subtype.imbalance}, you do need to be able to #{@subtype.right_action}. Trying to force yourself to be #{@subtype.adverb} #{@subtype.opposite.adjective} isn’t the right answer because you are not #{@subtype.adverb} #{@subtype.same_result.adjective}.
+%p
+  You can’t be #{@subtype.adverb} #{@subtype.same_focus.adjective} because
+  =@subtype.pain? ? "you don’t want to feel" : "you don’t feel"
+  #{@subtype.bad}, but you can #{@subtype.right_action} by #{@subtype.useful_clue.ing}.
+%p If you don’t have any control over the #{@subtype.targets}, then a #{@subtype.drug} can help you #{@subtype.drug_reaction} #{@subtype.hit} unhealthy ones.
 %h2 BipolarTypes with this Subtype
-%p.heading=link_to "Start with this Subtype", answer_path(@subtype.answer_path)
+%p.heading=link_to "Start Your BipolarType with this Subtype", answer_path(@subtype.answer_path)
 -@subtype.types.each do |type|
   %h3=link_to type.name, type_path(type.path)
-  =type.description
-  %br
-  =render "p", realm: type.p
-  so you can
-  =type.P.harvest_resources
-  %br
-  =render "j", realm: type.j
-  so you can
-  =type.J.do_work
+  =type.subtypes.map(&:name).and

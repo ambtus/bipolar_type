@@ -17,36 +17,37 @@ class Realm < Concept
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
   def adjective; %w{spiritual physical material mental}[index]; end
-  def adverb; %w{emotionally physically financially mentally}[index]; end
+  def adverb; adjective + "ly"; end
 
-  def target; %w{person place thing idea}[index]; end
-  def targets; target.s; end
-  def thing; %w{one where thing thing}[index]; end
-  def name; targets.capitalize; end
-
-  def sense; %w{hear smell/taste touch see}[index]; end
-
-  def energy; %w{affect glucose cash data}[index]; end
-  def energetic; %w{affective caloric financial knowledge}[index]; end
+  def energy; %w{affect glucose currency data}[index]; end
+  def energetic; %w{moral caloric financial informational}[index]; end
   def an_energetic; [energetic.an, energetic].join(" "); end
+  def reserves; %w{moods fat savings memories}[index]; end
 
-  def overwhelmed; %w{guilty sick angry afraid}[index]; end
-  def exhausted; %w{misunderstood sore indebted stupid}[index]; end
+  def goal; %w{person place thing idea}[index]; end
+  def goals; goal.s; end
+  def thing; %w{one where thing thing}[index]; end
 
-  def input; %w{hear eat earn watch}[index]; end
-  def output; %w{talk walk buy think}[index]; end
+  def do_work; %w{talk\ about walk\ around pay\ for think\ about}[index]; end
+  def act; do_work.split.first; end
+  def achieve; %w{influence visit build understand }[index]; end
+  def achieve_goals; [achieve, goals].join(" "); end
 
-  def harvest; %w{listen\ to eat use look\ for}[index]; end
+  def sense; %w{hear smell touch see}[index]; end
+  def harvest; %w{listen taste hold watch}[index]; end
+  def process; %w{agree\ with eat use believe}[index]; end
   def resource; %w{opinion food tool fact}[index]; end
   def resources; resource.s; end
-  def harvest_resources; [harvest, resources].join(" "); end
-  def triggers; %w{whines sweets weapons exceptions}[index]; end
-  def neurochemicals; %w{oxytocin serotonin dopmaine adrenaline}[index]; end
+  def process_resources; [process, resources].join(" "); end
 
-  def hit; %w{tell go own understand}[index]; end
-  def do_work; [hit, targets].join(" "); end
+  def neurochemical; %w{oxytocin serotonin dopamine adrenaline}[index]; end
 
-  def reject; %w{cry vomit fight panic}[index]; end
-  def stall; %w{stammer stumble max\ out make\ mistakes}[index]; end
+  def manic; %w{miserable disgusted angry afraid}[index]; end
+  def mania; %w{misery disgust anger fear}[index]; end
+
+  def depressed; %w{disliked sore indebted stupid}[index]; end
+
+  def healthy; %w{loving nutritious useful symmetric}[index]; end
+  def important; %w{nice fertile sturdy falsifiable}[index]; end
 
 end

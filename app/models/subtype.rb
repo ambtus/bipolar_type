@@ -32,23 +32,31 @@ class Subtype
   def symbol; @pair.map(&:symbol).join; end
   def inspect; symbol; end
 
-  def behavior; "#{adjective} #{@attitude.action}"; end
-  def name; behavior.titleize; end
+  def adjective; @pair.map(&:adjective).join("ly "); end
+  def name; adjective.titleize; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
 
-  def same_attitude; @attitude.subtypes - [self]; end
-
-  def opposite; @realm + @attitude.opposite; end
-
   def types; Type.all.select{|t| t.subtypes.include?(self)}; end
 
   def answer_path; Answer.first.next(self); end
 
-  def nouns; input? ? resources : targets; end
-  def verb; input? ? harvest : hit; end
+  def targets; realm.send(attitude.targets); end
+  def hit; realm.send(attitude.hit); end
+  def bad; realm.send(attitude.bad); end
+  def pain; realm.send(attitude.pain); end
+  def good; realm.send(attitude.good); end
+
+  def nature; "there are too #{amount} #{targets} I want to #{hit}"; end
+
+  def red_herring; "#{realm.send(opposite.hit)} #{same_amount} #{realm.send(opposite.targets)}"; end
+  def useful_clue; "#{hit} only #{better} #{targets}"; end
+
+  def right_action; "#{realm.send(same_focus.pre_hit)} #{same_focus.pre_hit_amount}"; end
+
+  def same_focus_behavior; "#{realm.send(same_focus.hit)} too #{same_focus.amount} #{realm.send(same_focus.targets)}"; end
 
 end

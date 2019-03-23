@@ -1,6 +1,6 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{P p j J}
+  SYMBOLS = %w{i j p e}
 
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
@@ -19,14 +19,41 @@ class Attitude < Concept
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
 
-  def act; %w{reject binge splurge stall}[index]; end
-  def action; %w{rejection splurge binge stall}[index]; end
-  def name; action.capitalize; end
+  def adjective; %w{picky lazy greedy hyperactive}[index]; end
+  def problem; %w{manic depressed fat skinny}[index]; end
 
-  def surplus?; %w{binge stall}.include?(action); end
-  def input?; %w{binge rejection}.include?(action); end
-  def pain?; %w{stall rejection}.include?(action); end
+  def surplus?; %w{greedy lazy}.include?(adjective); end
+  def input?; %w{greedy picky}.include?(adjective); end
+  def pain?; %w{lazy picky}.include?(adjective); end
 
-  def opposite; others.find{|x| x.input? != self.input? && x.surplus? != self.surplus?}; end
+  def amount; pain? ? "few" : "many"; end
+  def hit; input? ? "process" : "achieve"; end
+  def targets; input? ? "resources" : "goals"; end
+  def nature; "there are too #{amount} #{targets} I want to #{hit}"; end
+
+  def bad; input? ? "manic" : "depressed"; end
+
+  def imbalance; surplus? ? "surplus" : "deficit"; end
+  def imbalancing; surplus? ? "gaining unwanted" : "losing critical"; end
+
+  def drug; surplus? ? "stimulant" : "sedative"; end
+  def drug_reaction; pain? ? "tolerate having to" : "avoid wanting to"; end
+
+  def same_result; others.find{|x| x.surplus? == self.surplus? && x != self}; end
+  def same_focus; others.find{|x| x.input? == self.input? && x != self}; end
+  def opposite; (others - [self, same_result, same_focus]).first; end
+
+  def same_amount; pain? ? "fewer" : "more"; end
+  def cure; "be #{opposite.adjective}"; end
+  def red_herring; "#{opposite.hit} #{same_amount} #{opposite.targets}"; end
+
+  def advice; "be #{same_focus.adjective}"; end
+  def better; pain? ? "appealing" : "necessary"; end
+  def useful_clue; "#{hit} #{better} #{targets}"; end
+
+  def good; pain? ? "healthy" : "important"; end
+
+  def pre_hit; input? ? "harvest" : "act"; end
+  def pre_hit_amount; pain? ? "less" : "more"; end
 
 end
