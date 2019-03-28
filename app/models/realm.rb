@@ -20,34 +20,59 @@ class Realm < Concept
   def adverb; adjective + "ly"; end
 
   def energy; %w{affect glucose currency data}[index]; end
-  def energetic; %w{moral caloric financial informational}[index]; end
+  def energetic; %w{confidence caloric financial informational}[index]; end
   def an_energetic; [energetic.an, energetic].join(" "); end
-  def reserves; %w{moods fat savings memories}[index]; end
+  def reserves; %w{self-esteem fat savings knowledge}[index]; end
+  def many_reserves; [reserves.many, reserves].join(" "); end
 
   def goal; %w{person place thing idea}[index]; end
   def goals; goal.s; end
   def thing; %w{one where thing thing}[index]; end
+  def question; %w{who where what what}[index]; end
 
-  def do_work; %w{talk\ about walk\ around pay\ for think\ about}[index]; end
-  def act; do_work.split.first; end
-  def achieve; %w{influence visit build understand }[index]; end
+  def achieve; %w{talk\ to walk\ around buy think\ about}[index]; end
+  def use_energy; achieve.first_word; end
   def achieve_goals; [achieve, goals].join(" "); end
 
-  def sense; %w{hear smell touch see}[index]; end
-  def harvest; %w{listen taste hold watch}[index]; end
-  def process; %w{agree\ with eat use believe}[index]; end
   def resource; %w{opinion food tool fact}[index]; end
   def resources; resource.s; end
-  def process_resources; [process, resources].join(" "); end
 
-  def neurochemical; %w{oxytocin serotonin dopamine adrenaline}[index]; end
+  def sense; %w{hear smell touch see}[index]; end
+  def harvest; %w{listen\ to eat work\ with look\ at}[index]; end
+  def harvest_resources; [harvest, resources].join(" "); end
 
-  def manic; %w{miserable disgusted angry afraid}[index]; end
-  def mania; %w{misery disgust anger fear}[index]; end
+  def get_energy; harvest.first_word; end
+  def process; %w{agree\ with digest use believe}[index]; end
+  def process_energy; [process, resources].join(" "); end
+  def reject_toxic_resources; %w{cry vomit fight panic}[index]; end
 
-  def depressed; %w{disliked sore indebted stupid}[index]; end
+  def triggers; %w{whines carbs weapons colors}[index]; end
+  def neurochemical; %w{oxytocin serotonin dopamine epinephrine}[index]; end
 
-  def healthy; %w{loving nutritious useful symmetric}[index]; end
-  def important; %w{nice fertile sturdy falsifiable}[index]; end
+  def emotion; %w{misery disgust anger fear}[index]; end
+  def emotional; %w{miserable disgusted angry afraid}[index]; end
+  def mild_emotion; %w{unhappy nauseous irritated anxious}[index]; end
 
+  def strength; %w{vocabulary muscles credit logic}[index]; end
+  def much_strength; [strength.much, strength].join(" "); end
+  def exhausted; %w{inarticulate sore indebted stupid}[index]; end
+  def attempt; %w{influence go buy consider}[index]; end
+  def restful; %w{quiet seated frugal baffled}[index]; end
+  def rest; "remain #{restful}"; end
+
+  def empty; %w{ashamed hungry poor unsure}[index]; end
+  def full; %w{proud satisfied rich confident}[index]; end
+  def appear; %w{sound taste feel look}[index]; end
+  def healthy; %w{loving savory useful verifiable}[index]; end
+
+  alias hyperactive :use_energy
+  alias lazy :goals
+  alias picky :resources
+  alias greedy :get_energy
+
+  def fat; %w{conceited fat rich trivial}[index]; end
+  def skinny; %w{humble skinny poor ignorant}[index]; end
+
+  def provided_for; %w{told\ to cooked\ for made\ for shown\ to}[index]; end
+  def real; %w{listening outside tangible visible}[index]; end
 end

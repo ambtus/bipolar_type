@@ -1,4 +1,9 @@
 - content_for(:title, "The 24 BipolarTypes")
--Type.all.each do |type|
-  %h3=link_to type.name, type_path(type.path)
-  =type.subtypes.map(&:name).and
+%table
+  -Type.all.in_groups_of(2) do |row|
+    %tr
+      -row.each do |type|
+        %td.top
+          %h3=link_to type.subtypes.map(&:name).and, type_path(type.path)
+          %p When #{type.lazy.targets} make you feel #{type.lazy.bad}, you stop #{type.lazy.hit.first_word.ing} and start #{type.greedy.hit.first_word.ing}.
+          %p When #{type.picky.targets} make you feel #{type.picky.bad}, you stop #{type.picky.hit.first_word.ing} and start #{type.hyperactive.hit.first_word.ing}.

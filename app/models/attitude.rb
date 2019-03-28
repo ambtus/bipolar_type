@@ -1,7 +1,5 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{i j p e}
-
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   PATHS.each do |path|
@@ -19,41 +17,32 @@ class Attitude < Concept
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
 
-  def adjective; %w{picky lazy greedy hyperactive}[index]; end
-  def problem; %w{manic depressed fat skinny}[index]; end
+  def adjective; %w{greedy hyperactive lazy picky}[index]; end
 
-  def surplus?; %w{greedy lazy}.include?(adjective); end
   def input?; %w{greedy picky}.include?(adjective); end
-  def pain?; %w{lazy picky}.include?(adjective); end
+  def averse?; %w{picky lazy}.include?(adjective); end
+  def surplus?; %w{greedy lazy}.include?(adjective); end
 
-  def amount; pain? ? "few" : "many"; end
-  def hit; input? ? "process" : "achieve"; end
-  def targets; input? ? "resources" : "goals"; end
-  def nature; "there are too #{amount} #{targets} I want to #{hit}"; end
+  def behavior; input? ? "get energy" : "use energy"; end
+  def focus; averse? ? "hit the target" : "just do it"; end
+  def compulsion; input? ? "binge" : "splurge"; end
 
-  def bad; input? ? "manic" : "depressed"; end
+  def hit; input? ? "harvest" : "achieve"; end
+  def target; input? ? "resource" : "goal"; end
+  def targets; target.s; end
+
+  def result; surplus? ? "fat" : "skinny"; end
 
   def imbalance; surplus? ? "surplus" : "deficit"; end
-  def imbalancing; surplus? ? "gaining unwanted" : "losing critical"; end
+  def rebalance; surplus? ? "lose excess" : "gain critical"; end
+  def problem; "energy #{imbalance}"; end
+  def change; surplus? ? "gain" : "lose"; end
+  def episode; "#{change.ing} energy"; end
 
-  def drug; surplus? ? "stimulant" : "sedative"; end
-  def drug_reaction; pain? ? "tolerate having to" : "avoid wanting to"; end
+  def drugs; surplus? ? "stimulants" : "sedatives"; end
 
-  def same_result; others.find{|x| x.surplus? == self.surplus? && x != self}; end
-  def same_focus; others.find{|x| x.input? == self.input? && x != self}; end
-  def opposite; (others - [self, same_result, same_focus]).first; end
-
-  def same_amount; pain? ? "fewer" : "more"; end
-  def cure; "be #{opposite.adjective}"; end
-  def red_herring; "#{opposite.hit} #{same_amount} #{opposite.targets}"; end
-
-  def advice; "be #{same_focus.adjective}"; end
-  def better; pain? ? "appealing" : "necessary"; end
-  def useful_clue; "#{hit} #{better} #{targets}"; end
-
-  def good; pain? ? "healthy" : "important"; end
-
-  def pre_hit; input? ? "harvest" : "act"; end
-  def pre_hit_amount; pain? ? "less" : "more"; end
+  def same_target; others.find{|x| x.input? == self.input? && x != self}; end
+  def same_aversion; others.find{|x| x.averse? == self.averse? && x != self}; end
+  def same_imbalance; others.find{|x| x.surplus? == self.surplus? && x != self}; end
 
 end

@@ -1,0 +1,12 @@
+- content_for(:title, @name)
+%p
+  %ul
+    %li get #{@realm.energy} from #{@realm.reserves} => feel #{@realm.empty}
+    %li #{@realm.harvest_resources} => get more #{@realm.energy}
+    %li #{@realm.triggers} trigger #{@realm.neurochemical} => feel #{@realm.emotion} & #{@realm.reject_toxic_resources}
+%p
+  %ul
+    %li use #{@realm.energy} => #{@realm.achieve_goals}
+    %li strain your #{@realm.strength} => feel #{@realm.exhausted} & #{@realm.rest}
+    %li feel #{@realm.full} => store excess #{@realm.energy} in #{@realm.reserves}
+=render "table"

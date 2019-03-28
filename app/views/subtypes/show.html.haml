@@ -1,14 +1,34 @@
 - content_for(:title, @name)
-=render "subtype", subtype: @subtype
-%p You are #{@subtype.adjective} because the #{@subtype.targets} are bad for you. They are #{@subtype.adverb} unhealthy and if you have any control over your environment at all you should avoid them by focusing on #{@subtype.good} #{@subtype.targets}.
-%p However, if you are running #{@subtype.an_energetic} #{@subtype.imbalance}, you do need to be able to #{@subtype.right_action}. Trying to force yourself to be #{@subtype.adverb} #{@subtype.opposite.adjective} isn’t the right answer because you are not #{@subtype.adverb} #{@subtype.same_result.adjective}.
+%p.heading=render "subtype", subtype: @subtype
+%p=render "first", subtype: @subtype
 %p
-  You can’t be #{@subtype.adverb} #{@subtype.same_focus.adjective} because
-  =@subtype.pain? ? "you don’t want to feel" : "you don’t feel"
-  #{@subtype.bad}, but you can #{@subtype.right_action} by #{@subtype.useful_clue.ing}.
-%p If you don’t have any control over the #{@subtype.targets}, then a #{@subtype.drug} can help you #{@subtype.drug_reaction} #{@subtype.hit} unhealthy ones.
+  The first problem cannot be solved. Different people have different personality types and you cannot expect them to be just like you and they cannot expect you to be just like them. Don’t try to force them
+  ="not" if @subtype.averse?
+  to #{@subtype.hit} the #{@subtype.targets} they
+  ="don’t" unless @subtype.averse?
+  want to #{@subtype.hit} and don’t allow them to force you
+  ="not" unless @subtype.averse?
+  to #{@subtype.hit} the #{@subtype.targets}
+  that you
+  ="don’t" if @subtype.averse?
+  want to #{@subtype.hit}.
+%p=render "second", subtype: @subtype
+%p The second problem can be solved in so many different ways that finding one that works is actually quite difficult. The advice given here is only one possible solution. Alternative solutions are taking #{@subtype.drugs} and/or allowing other people to decide #{@subtype.what} you #{@subtype.hit}. Not because you are bad or wrong to be the way you are, but because being the way you are in the current environment creates #{@subtype.an_energetic} #{@subtype.imbalance}.
+%p If you don’t want to or cannot take #{@subtype.drugs} and/or don’t have someone else to enforce what you #{@subtype.hit}, then try the following steps until you no longer have #{@subtype.an_energetic} #{@subtype.imbalance}. The more #{@subtype.reserves} you want to #{@subtype.rebalance.first_word}, the more of the steps you have to follow. You can abandon the latter ones once you are no longer #{@subtype.episode.ing}.
+%ol
+  %li=render "advice", subtype: @subtype
+  =render "advice/#{@subtype.attitude.adjective}", realm: @subtype.realm
+%h2 Siblings
+%p.heading
+  -@subtype.siblings.in_groups_of(3) do |row|
+    -row.each_with_index do |subtype, index|
+      =link_to subtype.name, subtype_path(subtype.path)
+      ="|" unless index == 2
+    %br
 %h2 BipolarTypes with this Subtype
+%ul.center
+  -@subtype.types.each do |type|
+    %li
+      =link_to type_path(type.path) do
+        =type.subtypes.map(&:name).join(", ")
 %p.heading=link_to "Start Your BipolarType with this Subtype", answer_path(@subtype.answer_path)
--@subtype.types.each do |type|
-  %h3=link_to type.name, type_path(type.path)
-  =type.subtypes.map(&:name).and

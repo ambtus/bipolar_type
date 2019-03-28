@@ -1,8 +1,0 @@
-- content_for(:title, @name)
--if @realm
-  %p Get #{@realm.energy}: #{@realm.sense}, #{@realm.harvest}, and #{@realm.process} #{@realm.resources}.
-  %p Use #{@realm.energy}: #{@realm.do_work} and #{@realm.achieve} #{@realm.goals} and do #{@realm.adjective} labor.
--@subtypes.each do |subtype|
-  %h3=link_to subtype.name, subtype_path(subtype.path)
-  %p.heading=subtype.nature
-  =render "subtype", subtype: subtype

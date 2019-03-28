@@ -1,29 +1,31 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines four realms of energy. Each realm has behaviors which get energy by harvesting and processing resources and behaviors which use energy to do work and achieve goals.
-%table
-  %caption.heading The Four Realms
+%p BipolarType defines four attitudes (#{Attitude.names.and}) and four realms (#{Realm.names.and}).
+%p A Subtype is a realm based attitude (e.g. Physically Greedy or Mentally Lazy). There are sixteen subtypes.
+%p The Physical realm is centered around glucose (physical energy). You gain glucose by sitting and eating and you lose glucose by walking and fasting. If you gain too much glucose you will store the surplus in your fat cells and become fatter. If you lose too much glucose you will withdraw the deficit from your fat cells and become skinnier.
+%table.wide
+  %caption.heading The Four Physical Subtypes
+  %tr
+    %td.p The Physically Greedy subtype is fat because they eat too often.
+    %td.p The Physically Picky subtype is skinny because they fast too often.
+  %tr
+    %td.p The Physically Lazy subytype is fat because they sit too often.
+    %td.p The Physically Hyperactive subtype is skinny because they walk too often.
+%p One way to treat the energy imbalance is with psychopharmaceuticals (stimulants and sedatives) and behavior enforcers (coaches and dietitians).
+%table.wide
+  %caption.heading The Traditional Solutions
   %tr
     %th
-    -Realm.each do |realm|
-      %th=realm.name
-  -%w{ energy process_resources achieve_goals}.each do |word|
-    %tr
-      %th=word.titleize
-      -Realm.each do |realm|
-        %td=realm.send(word)
-%p BipolarType defines two energy imbalances. Mania is when you are using more energy than you are getting and are creating an energy defict. Depression is when you are getting more energy than you are using and are creating an energy surplus.
-%p Mania and Depression cannot be maintained forever. Eventually you have to find a way to equalize energy inflow with energy outflow.
-%p BipolarType defines four attitudes. Each attitude has a natural behavior, a resulting energy imbalance, a “cure” for the imbalance which is only a red herring since two wrongs may cancel each other out but they don’t actually make things right.
-%table
-  %caption.heading The Four Attitudes
+    %th Stimulants
+    %th Sedatives
   %tr
-    %th
-    -Attitude.each do |attitude|
-      %th=attitude.name
-  -%w{nature imbalance cure advice}.each do |word|
-    %tr
-      %th=word.titleize
-      -Attitude.each do |attitude|
-        %td=attitude.send(word)
-%p The first half of BipolarType is knowing what is causing your problem. Are you fat because you are greedy or lazy? Are you skinny because you are hyperactive or picky? If you think you are both you will never be able to focus on the real problem long enough to actually solve it. If you chose the wrong one, you will find the advice easy to implement, but essentially ineffective since it is the red-herring “cure”.
-%p The second half of BipolarType is sticking to the advice for the imbalance even though it is extremely difficult to implement — it goes against your nature — but is much more effective in the long run since it targets the cause of the imbalance.
+    %th Dietitian
+    %td.p Encourage Physically Greedy subtypes to fast more.
+    %td.p Encourage Physically Picky subtypes to eat more.
+  %tr
+    %th Coach
+    %td.p Encourage Physically Lazy subytypes to walk more.
+    %td.p Encourage Physically Hyperactive subtypes to sit more.
+%p BipolarType is a systems approach to personality. In other words, if you are Physically Greedy, you cannot just change your eating habits. You cannot even just change your eating and walking habits. There is a reason why you keep stopping to eat but you have to look beyond the Physical realm to the #{Realm.s.others.map(&:name).and} realms to find it. Until you figure out how to treat your #{Realm.s.others.map(&:adjective).or} exhuastion, you will continue to want to stop and eat despite all the stimulants and dietitians in the world.
+%p A BipolarType is the set of four attitudes distributed across the four realms. The Lazy and Picky realms are the triggering realms. The Greedy and Hyperactive realms are the responding realms.
+%p Your Lazy realm is easily exhausted. When it becomes exhausted, you stop using energy and start getting energy. Your Greedy realm is always willing and able to get energy, so that’s the realm which responds to your Lazy realm’s stress.
+%p Your Picky realm is easily overwhelmed. When it becomes overwhelmed, you stop getting energy and start using energy. Your Hyperactive realm is always willing and able to use energy, so that’s the realm which responds to your Picky realm’s stress.

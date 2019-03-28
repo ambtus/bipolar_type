@@ -55,6 +55,7 @@ class String
     return "shopped" if self=="shop"
     return "planned" if self=="plan"
     return "understood" if self=="understand"
+    return "lost" if self=="lose"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ed, second].join(" ")
