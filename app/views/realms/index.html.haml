@@ -6,7 +6,7 @@
     %th.narrow
     -Realm.each do |realm|
       %th=realm.name
-  -%w{ energy goals resources use_energy get_energy sense process neurochemical emotion reject_toxic_resources }.each do |word|
+  -%w{ energy locations resources use_energy get_energy sense process neurochemical emotion reject_toxic_resources }.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|

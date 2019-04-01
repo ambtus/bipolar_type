@@ -1,23 +1,5 @@
 - content_for(:title, @name)
 %p.heading=render "subtype", subtype: @subtype
-%p=render "first", subtype: @subtype
-%p
-  The first problem cannot be solved. Different people have different personality types and you cannot expect them to be just like you and they cannot expect you to be just like them. Don’t try to force them
-  ="not" if @subtype.averse?
-  to #{@subtype.hit} the #{@subtype.targets} they
-  ="don’t" unless @subtype.averse?
-  want to #{@subtype.hit} and don’t allow them to force you
-  ="not" unless @subtype.averse?
-  to #{@subtype.hit} the #{@subtype.targets}
-  that you
-  ="don’t" if @subtype.averse?
-  want to #{@subtype.hit}.
-%p=render "second", subtype: @subtype
-%p The second problem can be solved in so many different ways that finding one that works is actually quite difficult. The advice given here is only one possible solution. Alternative solutions are taking #{@subtype.drugs} and/or allowing other people to decide #{@subtype.what} you #{@subtype.hit}. Not because you are bad or wrong to be the way you are, but because being the way you are in the current environment creates #{@subtype.an_energetic} #{@subtype.imbalance}.
-%p If you don’t want to or cannot take #{@subtype.drugs} and/or don’t have someone else to enforce what you #{@subtype.hit}, then try the following steps until you no longer have #{@subtype.an_energetic} #{@subtype.imbalance}. The more #{@subtype.reserves} you want to #{@subtype.rebalance.first_word}, the more of the steps you have to follow. You can abandon the latter ones once you are no longer #{@subtype.episode.ing}.
-%ol
-  %li=render "advice", subtype: @subtype
-  =render "advice/#{@subtype.attitude.adjective}", realm: @subtype.realm
 %h2 Siblings
 %p.heading
   -@subtype.siblings.in_groups_of(3) do |row|

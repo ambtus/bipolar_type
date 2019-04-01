@@ -32,7 +32,7 @@ class Subtype
   def symbol; @pair.map(&:symbol).join; end
   def inspect; symbol; end
 
-  def adjective; realm.send(attitude.adjective); end
+  def adjective; "#{realm.adverb} #{attitude.adjective}"; end
   def name; adjective.titleize; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
@@ -43,16 +43,5 @@ class Subtype
   def types; Type.all.select{|t| t.subtypes.include?(self)}; end
 
   def answer_path; Answer.first.next(self); end
-
-  def episode; "#{change} #{reserves}"; end
-
-  def hit; realm.send(attitude.hit); end
-  def target; realm.send(attitude.target); end
-  def result; realm.send(attitude.result); end
-
-  def targets; target.s; end
-  def what; input? ? "what" : realm.question; end
-  def thing; input? ? "thing" : realm.thing; end
-  def bad; input? ? emotional : exhausted; end
 
 end

@@ -10,5 +10,5 @@
           -attitude.subtypes.each do |subtype|
             %td.p
               =link_to subtype.name, subtype_path(subtype.path)
-              %p=render "subtype", subtype: subtype
-              %p=render "advice", subtype: subtype
+              %p=render "problem", subtype: subtype
+              %p=render "solution", subtype: subtype

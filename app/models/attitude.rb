@@ -1,5 +1,7 @@
 class Attitude < Concept
 
+  SYMBOLS = %w{G L P H}
+
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   PATHS.each do |path|
@@ -17,25 +19,25 @@ class Attitude < Concept
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
 
-  def adjective; %w{greedy hyperactive lazy picky}[index]; end
+  def adjective; %w{greedy lazy picky hyperactive}[index]; end
+  alias problem :adjective
 
   def input?; %w{greedy picky}.include?(adjective); end
-  def averse?; %w{picky lazy}.include?(adjective); end
+  def averse?; %w{lazy picky}.include?(adjective); end
   def surplus?; %w{greedy lazy}.include?(adjective); end
 
   def behavior; input? ? "get energy" : "use energy"; end
   def focus; averse? ? "hit the target" : "just do it"; end
   def compulsion; input? ? "binge" : "splurge"; end
 
-  def hit; input? ? "harvest" : "achieve"; end
-  def target; input? ? "resource" : "goal"; end
+  def hit; input? ? "harvest" : "change"; end
+  def target; input? ? "resource" : "location"; end
   def targets; target.s; end
 
   def result; surplus? ? "fat" : "skinny"; end
 
   def imbalance; surplus? ? "surplus" : "deficit"; end
   def rebalance; surplus? ? "lose excess" : "gain critical"; end
-  def problem; "energy #{imbalance}"; end
   def change; surplus? ? "gain" : "lose"; end
   def episode; "#{change.ing} energy"; end
 

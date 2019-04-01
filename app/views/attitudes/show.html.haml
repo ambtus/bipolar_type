@@ -1,6 +1,0 @@
-- content_for(:title, @name)
-%table
-  -@subtypes.each do |subtype|
-    %td
-      %h3=link_to subtype.name, subtype_path(subtype.path)
-      %p.center=render "advice", subtype: subtype

@@ -25,8 +25,6 @@ class String
   def is_mbti?; MBTIS.include? self; end
 
   def s
-    return "people" if self=="person"
-    return "speaches" if self=="speach"
     return "relaxes" if self=="relax"
     if self.match(" ")
       first, second = self.split(' ', 2)
@@ -56,6 +54,7 @@ class String
     return "planned" if self=="plan"
     return "understood" if self=="understand"
     return "lost" if self=="lose"
+    return "held" if self=="hold"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ed, second].join(" ")

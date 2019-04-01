@@ -5,5 +5,4 @@
       -row.each do |type|
         %td.top
           %h3=link_to type.subtypes.map(&:name).and, type_path(type.path)
-          %p When #{type.lazy.targets} make you feel #{type.lazy.bad}, you stop #{type.lazy.hit.first_word.ing} and start #{type.greedy.hit.first_word.ing}.
-          %p When #{type.picky.targets} make you feel #{type.picky.bad}, you stop #{type.picky.hit.first_word.ing} and start #{type.hyperactive.hit.first_word.ing}.
+          =render "schedule", type: type
