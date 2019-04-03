@@ -16,6 +16,6 @@
         %td.p.quarter{:class => @answer.css(subtype)}
           -if @answer.css(subtype) == "free"
             =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-              =render "choice", subtype: subtype
+              =render "attitude", subtype: subtype
           -else
             =subtype.name

@@ -44,4 +44,6 @@ class Subtype
 
   def answer_path; Answer.first.next(self); end
 
+  def bad; surplus? ? exhausted : emotional; end
+
 end

@@ -1,51 +1,25 @@
 - content_for(:title, 'The Theory')
-%table
-  %caption.heading The Bipolar Cycle
-  %tr
-    %td
-      Euphoric Depression
-      %br
-      Getting energy makes you feel joyful.
-      %br
-      Pleasurable Refreshments →
-    %td
-      Dysphoric Depression
-      %br
-      Having to use the energy you got feels painful.
-      %br
-      Painful Labors ↓
-  %tr
-    %td
-      Dysphoric Mania
-      %br
-      Having to get the energy you used feels painful.
-      %br
-      Painful Refreshments ↑
-    %td
-      Euphoric Mania
-      %br
-      Using energy makes you feel joyful.
-      %br
-      Pleasurable Labors ←
-%p Dysphoric Mania is caused because, in general, your labors are rarely painful and often pleasurable, but your refreshments are rarely pleasureable and often painful.
-%p If you are currently suffering from Dysphoric Mania, you have to suffer through it because you need to get energy and so you have to get it from whatever refreshments are available, even if they are painful. But once the Dysphoric Mania has ended, you have two choices. You can make an effort to seek out more pleasurable refreshments. The next time you are desperate to get energy, you have a better chance of slipping right through Dysphoric Mania into Euphoric Depression. Or, you can avoid pleasurable labors. If you don’t experience Euphoric Mania, you will not become so desperate to get energy that you have to suffer painful refreshments.
-%p Dysphoric Depression is caused because, in general, your refreshments are rarely painful and often pleasurable, but your labors are rarely pleasureable and often painful.
-%p If you are currently suffering from Dysphoric Depression, you have to suffer through it because you need to use energy and so you have to use it on whatever labors are available, even if they are painful. But once the Dysphoric Depression has ended, you have two choices. You can make an effort to seek out more pleasurable labors. The next time you are desperate to use energy, you have a better chance of slipping right through Dysphoric Depression into Euphoric Mania. Or, you can avoid pleasurable refreshments. If you don’t experience Euphoric Depression, you will not become so desperate to use energy that you have to suffer painful labors.
-%table
-  %caption.heading The Four Attitudes
-  %tr
-    %th Using energy is painful
-    %td Avoid pleasurable Refreshments
-    %td Seek pleasurable Labors
-  %tr
-    %th Getting energy is painful
-    %td Seek pleasurable Refreshments
-    %td Avoid pleasurable Labors
-%p BipolarType defines four realms: #{Realm.names.and}. Each realm is centered around its own type of energy and its own labors and refreshments.
-%p All behaviors take time, and time is finite. Balancing energy requires equal time spend laboring and refreshing. Thus, if you start seeking pleasurable refreshments in one realm, you must perforce avoid pleasurable refreshments in another realm. Similarly, if you avoid pleasurable labors in one realm you must perforce seek out pleasurable labors in another. Assuming you started with both manic and depressed dysphoric episodes, maximising joy means you must end up with one of the above attitudes in each realm.
-%p In other words, the end result is
-%ul
-  %li A realm in which you seek out more pleasurable labors in order to minimize dysphoric depression. You spend more time using energy to balance the time you were already spending getting energy in non-painful refreshments.
-  %li A realm in which you avoid more pleasurable refreshments in order to minimize dysphoric depression. You spend less time getting energy to balance the time you were already not spending using energy in painful labor.
-  %li A realm in which you seek out more pleasurable refreshments in order to minimize dysphoric mania. You spend more time getting energy to balance the time you were already spending using energy in non-painful labor.
-  %li A realm in which you avoid more pleasurable labors in order to minimize dysphoric mania. You spend less time using energy to balance the time you were already not spending getting energy in painful refreshments.
+%p UsingEnergy and GettingEnergy follow each other in a never ending cycle.
+%p UsingEnergy is when you are converting potential energy to kinetic energy in order to do labor.
+%p GettingEnergy is when you are converting kinetic energy to potential energy in order to fill reserves.
+%p When the energy in from GettingEnergy equals the energy out from UsingEnergy, the cycle is regular and sustainable and controlled.
+%p When the energy in from GettingEnergy does not equal the energy out from UsingEnergy, the cycle is irregular and unsustainable and uncontrollable.
+%p If energy in is greater than energy out, then eventually you will run out of potential energy in the middle of a UsingEnergy episode and start GettingEnergy unexpectedly and inconveniently when you are trying to use energy.
+%p If energy out is greater than energy in, then eventually you will run out of capacity in the middle of a GettingEnergy episode and start UsingEnergy unexpectedly and inconveniently when you are trying to get energy.
+%p If there were only one kind of energy, the imbalance would be easy to solve with psychopharmaceuticals.
+%p If you wanted to spend less time GettingEnergy and more time UsingEnergy in order to prevent an energy surplus, then you would merely use more stimulants such as caffeine.
+%p If you wanted to spend more time GettingEnergy and less time UsingEnergy in order to prevent an energy deficit, then you would merely use more sedatives such as alcohol.
+%p Unfortunately, as soon as you start manipulating the cycle to solve one energy imbalance any energy which was previously in balance will be thrown out of balance.
+%p If, for example, you want to lose fat (physical potential energy) you can use stimulants so that you spend less time GettingEnergy (eating and getting calories) and more time UsingEnergy (walking and using calories). But if you use stimulants you will also spend less time working and getting money and more time shopping and using money. Thus, if your assets (financial potential energy) were previously stable, when you start manipulating the cycle in order to lose fat you will also lose assets.
+%p Rather than using psychopharmaceuticals to change how long you spend in the two states, BipolarType advises changing which energy you get more of when GettingEnergy and which energy you use more of when UsingEnergy.
+%p If you only have two realms with imbalances, one of which has a surplus and the other of which has a deficit, this advice is very easy to follow.
+%p For example, if you wanted to both lose fat (stored calories) and gain assets (stored money), you would spend more time getting money when GettingEnergy (which would automatically leave less time for getting calories) and more time using calories when UsingEnergy (which would automatically leave less time for using money). You would focus on working more when GettingEnergy and walking more when UsingEnergy and you would lose unwanted fat and gain wanted assets.
+%p BipolarType defines four realms of energy, which makes the advice a little more difficult to implement.
+%p First you may have to start or stop using psychopharmaceuticals in order to balance the four realms so that two have a surplus and two a deficit. Then, you have to start balancing the realms, two by two.
+%p Unfortunately, if you have two focuses for one episode, you will focus on the one that is easier to implement, which means you have left the other unbalanced.
+%p
+  It is easier to explain the BipolarType advice with specific realms, instead of descriptions such as “the realm with an energy deficit in which it is easier to get energy”. Thus, the actual solution will be described after you
+  =(link_to "chose a BipolarType", answer_path(Answer.first_path)) + "."
+  Or you can skip to the solution for
+  =(link_to "my BipolarType", type_path(Type.my_path)) + "."
+
