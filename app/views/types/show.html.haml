@@ -3,20 +3,3 @@
   -@subtypes.each_with_index do |subtype, index|
     =link_to subtype.name, subtype_path(subtype.path)
     ="|" unless index == 3
-%h2 Do #{@type.l.use_energy.capitalize}
-%p If you can #{@type.l.use_energy}, do. #{@type.l.use_energy.capitalize} while you are #{@type.p.use_energy.ing}. #{@type.l.use_energy.capitalize} while you are #{@type.g.use_energy.ing}. #{@type.l.use_energy.capitalize} as long as you can before you #{@type.h.attempt} any#{@type.h.thing}.
-%p Find #{@type.l.locations} to #{@type.l.attempt} that you want to #{@type.l.change} and that don’t make you feel #{@type.l.exhausted}.
-
-
-%h2 Do #{@type.p.get_energy.capitalize}
-%p If you can #{@type.p.get_energy}, do. #{@type.p.get_energy.capitalize} while you are #{@type.h.get_energy.ing}. #{@type.p.get_energy.capitalize} while you are #{@type.l.get_energy.ing}. #{@type.p.get_energy.capitalize} as long as you can before you #{@type.g.harvest} anything.
-%p Find #{@type.p.resources} to #{@type.p.process} that you want to #{@type.p.harvest} and that don’t make you feel #{@type.p.emotional}.
-
-%h2 Don’t #{@type.g.use_energy.capitalize}
-%p Although you are capable of #{@type.g.use_energy.ing} more to rebalance your #{@type.g.potential} surplus, having to spend more time using #{@type.g.energy} — #{@type.g.use_energy.ing} and #{@type.g.attempt.ing} #{@type.g.locations} and doing #{@type.g.realm.adjective} labor — will take time away from #{@type.l.use_energy.ing} and using #{@type.l.energy}.
-%p Just don’t #{@type.g.harvest} #{@type.g.resources} you don’t need to #{@type.g.harvest}: #{@type.g.binges}.
-
-%h2 Don’t #{@type.h.get_energy.capitalize}
-%p Although you are capable of #{@type.h.get_energy.ing} more to rebalance your #{@type.h.potential} deficit, having to spend more time getting #{@type.h.energy} — #{@type.h.get_energy.ing} and #{@type.h.process.ing} #{@type.h.resources} and doing #{@type.h.realm.adjective} refreshment — will take time away from #{@type.p.get_energy.ing} and  getting #{@type.p.energy}.
-%p Just don’t #{@type.h.attempt} #{@type.h.locations} you don’t need to #{@type.h.attempt}: #{@type.h.splurges}.
-

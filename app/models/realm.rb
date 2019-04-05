@@ -57,7 +57,7 @@ class Realm < Concept
     when "S" #go extra places
       "holidays, vacations, extra trips"
     when "T" #buy extra things
-      "luxuries, upgrades, extra features"
+      "upgrades, luxuries, extra features"
     when "N" #consider extra ideas
       "improbabilites, fantasies, extra possibilities"
     when "F" #tell extra people
