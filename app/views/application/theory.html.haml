@@ -1,34 +1,31 @@
 - content_for(:title, 'The Theory')
-%p After you have slept, you feel rested and energetic and spend the Morning using energy to do work. After you have labored, you feel tired and empty and spend the Evening getting energy to refresh and replenish the energy you have used. After you have recharged, you feel full and sleepy and spend the Night sleeping.
-%table
-  %caption.heading The Three Time Periods
-  %tr
-    %th
-    %th Morning
-    %th Evening
-    %th Night
-  %tr
-    %th Before
-    %td rested & energetic
-    %td tired & empty
-    %td full & sleepy
-  %tr
-    %th Activity
-    %td Labor
-    %td Recharge
-    %td Sleep
-  %tr
-    %th Energy
-    %td Use Energy
-    %td Get Energy
-    %td Conserve Energy
-  %tr
-    %th After
-    %td tired & empty
-    %td full & sleepy
-    %td rested & energetic
-%p Depressed is when you start the Morning feeling tired. You don’t want to use energy to labor. You want to continue to conserve energy until it’s time get energy to recharge. Depression is an aversion to Mornings. Depression can be treated with stimulants. People who require caffeine to use energy and labor are depressed. People who require prescription stimulants are clinically depressed.
-%p Manic is when you start the Evening feeling full. You don’t want to get energy to  recharge. You want to continue to use energy until it’s time to sleep and conserve energy. Mania is an aversion to Evenings. Mania can be treated with sedatives. People who require alcohol to get energy and recharge are manic. People who require prescription sedatives are clinically manic.
-%p Suicidal is when you are averse to both Mornings and Evenings and you just want to go to sleep and stay asleep forever. Trying to get the right prescription stimulants to make Mornings tolerable at the same time as you are trying to get the right prescription sedatives to make Evenings tolerable is extremely difficult.
-%p BipolarType tries to understand and solve the underlying aversion, instead of using drugs to manage the resultant behavior.
-%p If you are Depressed, you “feel tired”. You don’t “want” to use energy to labor. So you don’t. Maybe you will do it tomorrow. Or the next day. By the time you are no longer feeling tired and are willing to do labor, you have three times as much labor to do, no way to do it all in the time allotted, and so you don’t even try.
+%p BipolarType defines four Realms:
+%ul
+  -Realm.each do |realm|
+    %li #{realm.name}: #{realm.nouns}
+%p Each realm has its own energy and actions which use that energy to take action and improve the realm:
+%ul
+  -Realm.each do |realm|
+    %li #{realm.name}: #{realm.energy} => #{realm.act} & #{realm.improve} #{realm.nouns}
+%p Each realm has a sense to locate energy and a painful emotion which identifies sources from which energy should not be extracted:
+%ul
+  -Realm.each do |realm|
+    %li #{realm.name}: #{realm.sense}; #{realm.emotion} => don’t #{realm.process} #{realm.preposition} this #{realm.noun}
+%p Although you can do any of the eight actions at any time and in any combination, they tend to fall into two states.
+%ul
+  %li Receptive: willing and able to get energy: #{Realm.all.map(&:process).and}
+  %li Productive: willing and able to use energy: #{Realm.all.map(&:act).and}
+%p Within a state, some actions take longer than others.
+
+%p If you continue in the Receptive state until you have gotten all the energy you need, one realm will have the largest energy surplus. I call that the #{Attitude.g.name} attitude. If you stop after only some of the realms have gotten the energy they need, one realm will have the largest energy deficit.  I call that the #{Attitude.p.name} attitude. If you are #{Attitude.g.name} in one realm, you are necessarily #{Attitude.p.name} in another. If you are never #{Attitude.g.name}  that means you are always #{Attitude.p.name}. If you are never #{Attitude.p.name} that means you are always #{Attitude.g.name}. If you don’t think you are either, then you are both at times. If you think you are both, then you are neither at times.
+
+%p If you continue in the Productive state until you have used all the energy you have, one realm will have the largest energy deficit. I call that the #{Attitude.h.name} attitude. If you stop after only some of the realms have used the energy they need, one realm will have the largest energy surplus.  I call that the #{Attitude.l.name} attitude. If you are #{Attitude.h.name} in one realm, you are necessarily #{Attitude.l.name} in another. If you are never #{Attitude.h.name}  that means you are always #{Attitude.l.name}. If you are never #{Attitude.l.name} that means you are always #{Attitude.h.name}. If you don’t think you are either, then you are both at times. If you think you are both, then you are neither at times.
+
+%p The point of BipolarType is not to call you names or advise you or tell you what you “should” do. The point is to allow you to find the balance that makes you happiest by giving you the information you need in order to make an informed decision.
+%p
+  In other words, I try as hard as I can to make BipolarType stick to the mental realm: #{Realm.n.nouns} and #{Realm.n.energy}. However, because it is concerned with #{Realm.n.nouns} about
+  %em #{Realm.f.nouns},
+  #{Realm.f.energy} and the #{Realm.f.name} realm is bound to creep in. I was unable to find words for the attitudes that did not have a negative connotation so I tried to make them all equally negative.
+
+%p I appologize in advance if BipolarType sounds either moralizing or dogmatic as that is not my intent.
+

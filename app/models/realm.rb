@@ -1,6 +1,6 @@
 class Realm < Concept
 
-  SYMBOLS = %w{S N F T}
+  SYMBOLS = %w{F S T N}
 
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
@@ -16,65 +16,34 @@ class Realm < Concept
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
-  def adjective; %w{physical mental spiritual material}[index]; end
+  def rights; ALL.select{|x| x.index > self.index}; end
+
+
+  def noun; %w{person place thing concept}[index]; end
+  def nouns; noun.pluralize; end
+  def a_noun; [noun.an, noun].join(" "); end
+
+  def adjective; %w{spiritual physical material mental}[index]; end
   def adverb; adjective + "ly"; end
 
-  def kinetic; %w{thermal electrical sound mechanical}[index]; end
-  def energy; %w{calories data affect money}[index]; end
-  def potential; %w{fat knowledge moral assets}[index]; end
+  def energy; %w{affect calories money data}[index]; end
+  def energetic; %w{affective caloric financial informational}[index]; end
+  def an_energetic; [energetic.an, energetic].join(" "); end
 
-  def self.measurements; ALL.map(&:measurement); end
+  def sense; %w{hear smell touch see}[index]; end
+  def emotion; %w{misery disgust anger fear}[index]; end
+  def emotional; %w{miserable disgusted angry afraid}[index]; end
+  def less_emotional; %w{gloomy nauseated irritable anxious}[index]; end
 
-  def sense; %w{smell sight hearing touch}[index]; end
-  def appear; %w{smell look sound feel}[index]; end
+  def process; %w{listen eat work look}[index]; end
+  def preposition; %w{to in with at}[index]; end
 
-  def change; %w{walk\ around think\ about talk\ to shop\ for}[index]; end
-  def use_energy; change.first_word; end
-  def location; %w{place idea person thing}[index]; end
-  def thing; %w{where thing one thing}[index]; end
-  def locations; location.pluralize; end
-  def a_location; [location.an, location].join(" "); end
-  def change_locations; [change, locations].join(" "); end
-  def exhausted; %w{sore stupid inarticulate mistrusted}[index]; end
-  def attempt; %w{go consider tell buy}[index]; end
+  def act; %w{talk walk buy think}[index]; end
 
-  def harvest; %w{eat look\ at empathize\ with work\ with}[index]; end
-  def get_energy; harvest.first_word; end
-  def resource; %w{food sight voice tool}[index]; end
-  def resources; resource.pluralize; end
-  def a_resource; [resource.an, resource].join(" "); end
-  def many_resources; [resources.many, resources].join(" "); end
-  def harvest_resources; [harvest, resources].join(" "); end
-  def emotional; %w{disgusted afraid miserable angry}[index]; end
-  def process; %w{digest analyze listen\ to use}[index]; end
+  def improve; %w{advise cultivate build postulate}[index]; end
 
-  def healthy; %w{nutritious predictive loving useful}[index]; end
-  def strength; %w{muscles logic words credit}[index]; end
-  def less_strength; [strength.less, strength].join(" "); end
 
-  def splurges
-    case symbol
-    when "S" #go extra places
-      "holidays, vacations, extra trips"
-    when "T" #buy extra things
-      "upgrades, luxuries, extra features"
-    when "N" #consider extra ideas
-      "improbabilites, fantasies, extra possibilities"
-    when "F" #tell extra people
-      "strangers, outsiders, extra people"
-    end
-  end
-  def binges
-    case symbol
-    when "S" #eat triggery foods
-      "sweets, desserts, extra carbs"
-    when "T" #work with triggery tools
-      "knives, guns, extra weapons"
-    when "N" #look at triggery sights
-      "art, pictures, extra colorful details"
-    when "F" #listen to triggery voices
-      "music, songs, extra intonation"
-    end
-  end
+  def reserves; %w{faith fat savings knowledge}[index]; end
+  def empty; %w{hopeless hungry overdrawn unsure}[index]; end
 
 end

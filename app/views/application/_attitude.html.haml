@@ -1,7 +1,9 @@
-It’s easier to
-=subtype.surplus? ? subtype.get_energy : subtype.use_energy
-than
-=subtype.surplus? ? subtype.use_energy : subtype.get_energy
-=subtype.averse? ? "and I sometimes" : "but I rarely"
-feel so bad I can’t
-=subtype.surplus? ? subtype.use_energy : subtype.get_energy
+-case subtype.problem
+-when "greedy"
+  I can’t take too many sedatives or I will #{subtype.process} too much and I don’t need or want to get more #{subtype.reserves}
+-when "lazy"
+  I would take more stimulants gladly in order to be able to #{subtype.act} more and be #{subtype.adverb} productive if I never had to be unemotional and receptive.
+-when "hyperactive"
+  I can’t take too many stimulants or I will #{subtype.act} too much and I don’t need or want to use up my #{subtype.reserves}
+-when "picky"
+  I would take more sedatives gladly in order to be able to #{subtype.process} more without feeling so #{subtype.emotional} if I never had to be energetic and productive.

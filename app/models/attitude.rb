@@ -1,6 +1,6 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{G L P H}
+  SYMBOLS = %w{G P L H}
 
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
@@ -19,7 +19,7 @@ class Attitude < Concept
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
 
-  def adjective; %w{greedy lazy picky hyperactive}[index]; end
+  def adjective; %w{greedy picky lazy hyperactive}[index]; end
   alias problem :adjective
 
   def input?; %w{greedy picky}.include?(adjective); end
