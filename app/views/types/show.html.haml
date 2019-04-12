@@ -3,15 +3,5 @@
   -@subtypes.each_with_index do |subtype, index|
     =link_to subtype.name, subtype_path(subtype.path)
     ="|" unless index == 3
-%p
-  It doesn’t take me very long to #{@type.g.process}, but it sometimes takes me a long time to #{@type.p.process}. Mostly because I rarely feel #{@type.g.emotional} but often feel #{@type.p.emotional}. That means I sometime #{@type.g.process} when the reason I am in the Receptive state is because I need to get more #{@type.p.energy}. This causes #{@type.g.an_energetic} surplus. I can try to #{@type.g.act} more or #{@type.g.process} less, but even if I manage to solve the #{@type.g.energetic} surplus, I am still not getting enough #{@type.p.energy}. Wanting to #{@type.g.process} when I do not need to get #{@type.g.energy} is a sign that I have #{@type.p.energetic.an}
-  %em=@type.p.energetic
-  deficit. I can either #{@type.p.act} less or #{@type.p.process} more, but I will never stop
-  %em wanting
-  to #{@type.g.process} until the #{@type.p.energetic} deficit has been resolved and I can exit the Receptive state and start being Productive again.
-%p
-  Conversely, it doesn’t take me very long to #{@type.h.act}, but it sometimes takes me a long time to #{@type.l.act}. Mostly because I usually just want to #{@type.h.act} without actually #{@type.h.improve.ing} new #{@type.h.nouns} but rarely #{@type.l.act} without trying to #{@type.l.improve} new #{@type.l.nouns}. That means I sometime #{@type.h.act} when the reason I am in the Productive state is because I need to use more #{@type.l.energy}. This causes #{@type.h.an_energetic} deficit. I can try to #{@type.h.process} more or #{@type.h.act} less, but even if I manage to solve the #{@type.h.energetic} deficit, I am still not using enough #{@type.l.energy}. Wanting to #{@type.h.act} when I do not need to use #{@type.h.energy} is a sign that I have #{@type.l.energetic.an}
-  %em=@type.l.energetic
-  surplus. I can either #{@type.l.process} less or #{@type.l.act} more, but I will never stop
-  %em wanting
-  to #{@type.h.act} until the #{@type.l.energetic} surplus has been resolved and I can exit the Productive state and start being Receptive again.
+=render "depression"
+=render "mania"

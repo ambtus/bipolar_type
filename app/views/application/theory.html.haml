@@ -1,31 +1,73 @@
 - content_for(:title, 'The Theory')
-%p BipolarType defines four Realms:
+%p The goal of Bipolartype is to maximise long term happiness by making life joyful and worth living while maintaining a healthy balance.
+
+%p A healthy balance requires that energy in equals energy out.
+
+%p Depression is when you get energy without using energy and create an unhealthy energy surplus. Given a depressed energy surplus, getting less or using more energy will make different people happier in the long run.
+
+%p Mania is when you use energy without getting energy and create an unhealthy energy deficit. Given a manic energy deficit, getting more or using less energy will make different people happier in the long run.
+
+%p BipolarType tries to explain why is it so hard to implement behaviors that you know will make you happier. Why do you destroy your long term happiness by getting energy you don’t need more of or using energy you don’t have enough of when you are perfectly well aware that doing so makes you more unhappy in the long run? Why do you sabotage yourself and allow yourself to remain in a miserable situation by not using energy that you have plenty of or not getting energy that you need more of when you know you could improve your situation with just a little effort?
+
+%h2 The Four Realms
+
+%p BipolarType defines four realms of behavior:
+
 %ul
   -Realm.each do |realm|
     %li #{realm.name}: #{realm.nouns}
-%p Each realm has its own energy and actions which use that energy to take action and improve the realm:
+
+%p Each realm of behavior has its own type of energy:
+
 %ul
   -Realm.each do |realm|
-    %li #{realm.name}: #{realm.energy} => #{realm.act} & #{realm.improve} #{realm.nouns}
-%p Each realm has a sense to locate energy and a painful emotion which identifies sources from which energy should not be extracted:
+    %li #{realm.name}: #{realm.energy}
+
+%p Each realm of behavior has behaviors which get energy (energy in):
+
 %ul
   -Realm.each do |realm|
-    %li #{realm.name}: #{realm.sense}; #{realm.emotion} => don’t #{realm.process} #{realm.preposition} this #{realm.noun}
-%p Although you can do any of the eight actions at any time and in any combination, they tend to fall into two states.
+    %li #{realm.name}: #{realm.sense} and #{realm.process} #{realm.preposition} #{realm.nouns} for #{realm.energy}
+
+%p And behaviors which use energy (energy out):
+
 %ul
-  %li Receptive: willing and able to get energy: #{Realm.all.map(&:process).and}
-  %li Productive: willing and able to use energy: #{Realm.all.map(&:act).and}
-%p Within a state, some actions take longer than others.
+  -Realm.each do |realm|
+    %li #{realm.name}: #{realm.act} and #{realm.improve} #{realm.nouns} with #{realm.energy}
 
-%p If you continue in the Receptive state until you have gotten all the energy you need, one realm will have the largest energy surplus. I call that the #{Attitude.g.name} attitude. If you stop after only some of the realms have gotten the energy they need, one realm will have the largest energy deficit.  I call that the #{Attitude.p.name} attitude. If you are #{Attitude.g.name} in one realm, you are necessarily #{Attitude.p.name} in another. If you are never #{Attitude.g.name}  that means you are always #{Attitude.p.name}. If you are never #{Attitude.p.name} that means you are always #{Attitude.g.name}. If you don’t think you are either, then you are both at times. If you think you are both, then you are neither at times.
+%h2 Depression (energy surplus)
 
-%p If you continue in the Productive state until you have used all the energy you have, one realm will have the largest energy deficit. I call that the #{Attitude.h.name} attitude. If you stop after only some of the realms have used the energy they need, one realm will have the largest energy surplus.  I call that the #{Attitude.l.name} attitude. If you are #{Attitude.h.name} in one realm, you are necessarily #{Attitude.l.name} in another. If you are never #{Attitude.h.name}  that means you are always #{Attitude.l.name}. If you are never #{Attitude.l.name} that means you are always #{Attitude.h.name}. If you don’t think you are either, then you are both at times. If you think you are both, then you are neither at times.
+%p Performing get energy behaviors compulsively and irrationally (you would be happier if you got less energy)
 
-%p The point of BipolarType is not to call you names or advise you or tell you what you “should” do. The point is to allow you to find the balance that makes you happiest by giving you the information you need in order to make an informed decision.
-%p
-  In other words, I try as hard as I can to make BipolarType stick to the mental realm: #{Realm.n.nouns} and #{Realm.n.energy}. However, because it is concerned with #{Realm.n.nouns} about
-  %em #{Realm.f.nouns},
-  #{Realm.f.energy} and the #{Realm.f.name} realm is bound to creep in. I was unable to find words for the attitudes that did not have a negative connotation so I tried to make them all equally negative.
+%ul
+  -Realm.each do |realm|
+    %li
+      #{realm.name}:
+      =render "attitude", subtype: realm + Attitude.g
 
-%p I appologize in advance if BipolarType sounds either moralizing or dogmatic as that is not my intent.
+%p While avoiding use energy behaviors (you would be happier if you used more energy)
+
+%ul
+  -Realm.each do |realm|
+    %li
+      #{realm.name}:
+      =render "attitude", subtype: realm + Attitude.l
+
+%h2 Mania (energy deficit)
+%p Performing use energy behaviors compulsively and irrationally (you would be happier if you used less energy)
+
+%ul
+  -Realm.each do |realm|
+    %li
+      #{realm.name}:
+      =render "attitude", subtype: realm + Attitude.h
+
+%p While avoiding get energy behaviors (you would be happier if you got more energy)
+
+%ul
+  -Realm.each do |realm|
+    %li
+      #{realm.name}:
+      =render "attitude", subtype: realm + Attitude.p
+
 
