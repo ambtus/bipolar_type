@@ -10,7 +10,8 @@
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 %table
-  -Attitude.each do |row|
+  %caption.heading If I had four wishes, I would wish for the ability to…
+  -Attitude.answer_order.each do |row|
     %tr
       -row.subtypes.each do |subtype|
         %td.p.quarter{:class => @answer.css(subtype)}

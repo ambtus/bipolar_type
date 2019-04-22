@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "badc"; end
+  def self.my_path; "bcad"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)

@@ -1,0 +1,11 @@
+- content_for(:title, @name)
+%table
+  %tr
+    -@subtypes.each do |subtype|
+      %th.quarter=link_to subtype.name, subtype_path(subtype.path)
+  %tr
+    %td.heading{colspan: 4} If I had four wishes, I would wish for the ability to…
+  -%w{attitude result solution}.each do |word|
+    %tr
+      -@subtypes.each do |subtype|
+        %td.p=render word, subtype: subtype

@@ -1,73 +1,91 @@
 - content_for(:title, 'The Theory')
-%p The goal of Bipolartype is to maximise long term happiness by making life joyful and worth living while maintaining a healthy balance.
 
-%p A healthy balance requires that energy in equals energy out.
 
-%p Depression is when you get energy without using energy and create an unhealthy energy surplus. Given a depressed energy surplus, getting less or using more energy will make different people happier in the long run.
+%table
+  %caption The Four Realms
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=realm.name
+  -%w{ targets pain energy }.each do |word|
+    %tr
+      %th=word.titleize
+      -Realm.each do |realm|
+        %td=realm.send(word)
 
-%p Mania is when you use energy without getting energy and create an unhealthy energy deficit. Given a manic energy deficit, getting more or using less energy will make different people happier in the long run.
-
-%p BipolarType tries to explain why is it so hard to implement behaviors that you know will make you happier. Why do you destroy your long term happiness by getting energy you don’t need more of or using energy you don’t have enough of when you are perfectly well aware that doing so makes you more unhappy in the long run? Why do you sabotage yourself and allow yourself to remain in a miserable situation by not using energy that you have plenty of or not getting energy that you need more of when you know you could improve your situation with just a little effort?
-
-%h2 The Four Realms
-
-%p BipolarType defines four realms of behavior:
-
-%ul
-  -Realm.each do |realm|
-    %li #{realm.name}: #{realm.nouns}
-
-%p Each realm of behavior has its own type of energy:
+%h2 Balance
 
 %ul
+  %li Balance (stable reserves): energy used on targets = energy gotten from targets
   -Realm.each do |realm|
-    %li #{realm.name}: #{realm.energy}
+    %li #{realm.name} balance (stable #{realm.reserves}): #{realm.energy} used to #{realm.use_energy} = #{realm.energy} gotten from #{realm.getting_energy}
 
-%p Each realm of behavior has behaviors which get energy (energy in):
+%h2 Happiness
 
 %ul
+  %li Happiness (minimize pain): use energy without creating pain & get energy without feeling pain
   -Realm.each do |realm|
-    %li #{realm.name}: #{realm.sense} and #{realm.process} #{realm.preposition} #{realm.nouns} for #{realm.energy}
-
-%p And behaviors which use energy (energy out):
-
-%ul
-  -Realm.each do |realm|
-    %li #{realm.name}: #{realm.act} and #{realm.improve} #{realm.nouns} with #{realm.energy}
-
-%h2 Depression (energy surplus)
-
-%p Performing get energy behaviors compulsively and irrationally (you would be happier if you got less energy)
-
-%ul
-  -Realm.each do |realm|
-    %li
-      #{realm.name}:
-      =render "attitude", subtype: realm + Attitude.g
-
-%p While avoiding use energy behaviors (you would be happier if you used more energy)
-
-%ul
-  -Realm.each do |realm|
-    %li
-      #{realm.name}:
-      =render "attitude", subtype: realm + Attitude.l
-
-%h2 Mania (energy deficit)
-%p Performing use energy behaviors compulsively and irrationally (you would be happier if you used less energy)
-
-%ul
-  -Realm.each do |realm|
-    %li
-      #{realm.name}:
-      =render "attitude", subtype: realm + Attitude.h
-
-%p While avoiding get energy behaviors (you would be happier if you got more energy)
-
-%ul
-  -Realm.each do |realm|
-    %li
-      #{realm.name}:
-      =render "attitude", subtype: realm + Attitude.p
+    %li #{realm.name} happiness (minimize #{realm.pain}): #{realm.using_energy} does not make you #{realm.appear} #{realm.painful} & #{realm.getting_energy} doesn’t make you feel #{realm.pained}
 
 
+%h2 Happy Balance
+
+%p If you are naturally balanced, you are going to be unhappy at times.
+
+%p People who are naturally balanced find it difficult to gain or lose reserves. When they get more energy, they automatically use more energy. When they use more energy, they automatically get more energy.
+
+%p
+  If getting energy makes you unhappy, then using energy was not painful but now you have to get more energy which feels painful. But. Energy is energy. You don’t have to get energy from painful targets. Getting energy from targets that make you unhappy is
+  %em not
+  healthier or better for you than getting energy from targets that make you happy. In order to achieve a
+  %em happy
+  balance, you just need to get your energy from other targets.
+
+%p
+  If using energy makes you unhappy, then getting energy was not painful but now you have to use more energy which causes pain. But. Energy is energy. You don’t have to use energy on painful targets. Using energy on targets that make you unhappy is
+  %em not
+  healthier or better for you than using energy on targets that make you happy. In order to achieve a
+  %em happy
+  balance, you need to use your energy on other targets.
+
+%h2 Balanced Happiness
+
+%p If you are naturally happy, you are going to be unbalanced at times.
+
+%p People who are naturally happy find it difficult to cause or feel pain. When they cause pain, they automatically stop using energy. When they feel pain, they automatically stop getting energy.
+
+%p
+  If you have an energy surplus, then using energy was painful and so you stopped using it and gave it to your reserves until you found a less painful way to use it. But. You never did. You never found a target on which to use energy without creating pain. Using extra energy on targets which make you unhappy is
+  %em not
+  healthier or better for you than not getting the extra energy in the first place. In order to achieve a
+  %em balanced
+  happiness, you need to stop getting extra energy.
+
+%p
+  If you have an energy deficit, then getting energy was painful and so you stopped getting it and took it from your reserves until you found a less painful way to get it. But. You never did. You never found a target from which to get energy without creating pain. Getting extra energy from targets which make you unhappy is
+  %em not
+  healthier or better for you than not using the extra energy in the first place. In order to achieve a
+  %em balanced
+  happiness, you need to stop using extra energy.
+
+
+%h2 BipolarType
+
+%p A BipolarType is one attitude for each realm.
+
+%table
+  %caption.heading The Four Attitudes
+  %tr
+    %th
+    %th Happy
+    %th Balanced
+  %tr
+    %th Using energy is painful
+    %td.p Energy Surplus
+    %td.p Causes Pain
+  %tr
+    %th Getting energy is painful
+    %td.p Energy Deficit
+    %td.p Feels Pain
+
+%p I don’t actually know if everyone has a BipolarType. It’s possible that someone could have the same attitude for two different realms.

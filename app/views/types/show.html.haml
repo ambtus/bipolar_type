@@ -1,7 +1,0 @@
-- content_for(:title, @name)
-%p.center
-  -@subtypes.each_with_index do |subtype, index|
-    =link_to subtype.name, subtype_path(subtype.path)
-    ="|" unless index == 3
-=render "depression"
-=render "mania"

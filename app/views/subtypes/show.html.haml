@@ -1,5 +1,11 @@
 - content_for(:title, @name)
-%p.heading=render "subtype", subtype: @subtype
+
+-%w{attitude result solution}.each do |word|
+  %p
+    -if word == "attitude"
+      I wish I could
+    =(render word, subtype: @subtype) + "."
+
 %h2 Siblings
 %p.heading
   -@subtype.siblings.in_groups_of(3) do |row|

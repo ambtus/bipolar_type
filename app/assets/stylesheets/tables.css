@@ -9,11 +9,14 @@ td {
   padding: 1em;
   border: 1px solid grey;
   text-align: center;
+  overflow-wrap: break-word;
 }
 td.bottom { vertical-align: bottom;}
 td.top { vertical-align: top; }
 td.none {border: none;}
 td.short {padding: 0;}
 
-
-td.p {vertical-align: top; text-align: left;}
+td.p {
+  vertical-align: top; 
+  text-align: left;
+}

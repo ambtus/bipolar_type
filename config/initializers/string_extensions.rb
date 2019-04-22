@@ -56,6 +56,7 @@ class String
     return "lost" if self=="lose"
     return "held" if self=="hold"
     return "built" if self=="build"
+    return "spoke" if self=="speak"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ed, second].join(" ")
@@ -72,6 +73,7 @@ class String
     return "seen" if self=="see"
     return "paid" if self=="pay"
     return "gone" if self=="go"
+    return "spoken" if self=="speak"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.en, second].join(" ")
@@ -88,6 +90,7 @@ class String
     return "abandoning" if self=="abandon"
     return "quitting" if self=="quit"
     return "visiting" if self=="visit"
+    return "positing" if self=="posit"
     return "developing" if self=="develop"
     return "panicking" if self=="panic"
     if self.match(" ")
