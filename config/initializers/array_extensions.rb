@@ -1,6 +1,6 @@
 # Restart required even in development mode when you modify this file.
 
-%w{sixth multiply add duplicates without remove_consecutive_dupes check_constraints and or to_phrase}.each do |meth|
+%w{sixth multiply add duplicates without discard remove_consecutive_dupes check_constraints and or to_phrase}.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 
@@ -38,6 +38,8 @@ class Array
   def without(element)
     reject{|x| x == element}
   end
+
+  alias discard :without
 
   def remove_consecutive_duplicates
     result = []

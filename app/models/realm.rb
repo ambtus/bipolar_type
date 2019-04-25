@@ -23,7 +23,7 @@ class Realm < Concept
   def adjective; %w{spiritual physical material mental}[index]; end
   def energetic; %w{social caloric financial informational}[index]; end
   def energy; %w{affect glucose currency data}[index]; end
-  def reserves; %w{attachments fat savings knowledge}[index]; end
+  def reserves; %w{self-esteem fat savings knowledge}[index]; end
 
   def targets; target.pluralize; end
   def a_target; [target.an, target].to_phrase; end
@@ -34,8 +34,8 @@ class Realm < Concept
   def many_reserves; [reserves.many, reserves].to_phrase; end
   def few_reserves; [reserves.few, reserves].to_phrase; end
 
-  def output; %w{talk walk buy think}[index]; end
-  def oprep; %w{about in \  about }[index]; end
+  def output; %w{talk move spend think}[index]; end
+  def oprep; %w{about around \  about }[index]; end
   def output_with_object; [output, oprep].to_phrase; end
 
   def intake; %w{listen eat work learn}[index]; end

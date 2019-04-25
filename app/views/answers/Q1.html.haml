@@ -1,0 +1,3 @@
+-content_for(:title, "Question ##{@answer.number} of 4")
+-Realm.each do |realm|
+  %p=link_to "too #{realm.many_reserves}", answer_path(@answer.next(realm))
