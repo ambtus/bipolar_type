@@ -1,15 +1,9 @@
--case subtype.problem
--when "fat", "pained"
-  #{subtype.intake} or #{subtype.intake2}
--when "skinny", "painful"
-  #{subtype.output} or #{subtype.output2}
-as much as I wanted without ever
--case subtype.problem
--when "fat"
-  gaining #{subtype.reserves}
--when "skinny"
-  running out of #{subtype.reserves}
--when "painful"
-  becoming #{subtype.painful}
--when "pained"
-  feeling #{subtype.pained}
+-case subtype.attitude.symbol
+  -when "F"
+    I would rather spend more time finding #{subtype.better_targets} to #{subtype.intake_with_object} than not allow myself to #{subtype.output}
+  -when "N"
+    I would rather spend more time finding #{subtype.better_targets} to #{subtype.output_with_object} than not allow myself to #{subtype.intake}
+  -when "T"
+    I would rather postpone #{subtype.output.ing} until some later date than have to spend more time #{subtype.intake.ing}
+  -when "S"
+    I would rather postpone #{subtype.intake.ing} until some later date than have to spend more time #{subtype.output.ing}

@@ -5,4 +5,4 @@
       -attitude.subtypes.each do |subtype|
         %td.p
           =link_to subtype.name, subtype_path(subtype.path)
-          %p=render "result", subtype: subtype
+          %p=render "first", subtype: subtype

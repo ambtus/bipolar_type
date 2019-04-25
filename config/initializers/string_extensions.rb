@@ -93,12 +93,18 @@ class String
     return "positing" if self=="posit"
     return "developing" if self=="develop"
     return "panicking" if self=="panic"
-    if self.match(" ")
-      first, second = self.split(' ', 2)
-      [first.ing, second].join(" ")
+    if self.match(" and ")
+      first, second = self.split(' and ', 2)
+      [first.ing, second.ing].join(" and ")
+    elsif self.match(" or ")
+      first, second = self.split(' or ', 2)
+      [first.ing, second.ing].join(" or ")
     elsif self.match("/")
       first, second = self.split('/', 2)
       [first.ing, second.ing].join("/")
+    elsif self.match(" ")
+      first, second = self.split(' ', 2)
+      [first.ing, second].join(" ")
     else
       self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + "ing"
     end
