@@ -20,5 +20,7 @@ class Answer
   def paths(realm); all(realm).map(&:path).join; end
   def next(realm); "#{question.next}:#{paths(realm)}"; end
 
-  def type_path; realm_paths.values_at(2,3,0,1).join; end
+  def attitude; Attitude.all.values_at(3,2,0,1)[index]; end
+
+  def type_path; realm_paths.values_at(2,3,1,0).join; end
 end

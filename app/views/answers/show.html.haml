@@ -1,21 +1,8 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-%p
-  Once you have
-  %span.chosen chosen
-  something, the other choices in the
-  %span.warning same
-  Realm or Attitude will become unavailable.
--unless @answer.number == 1
+-@answer.realms.each do |realm|
   %p.center
-    If you are stuck you can
-    =link_to_unless_current "start over", answer_path(Answer.first_path)
-%table
-  -Attitude.answer_order.each do |row|
-    %tr
-      -row.subtypes.each do |subtype|
-        %td.p.quarter{:class => @answer.css(subtype)}
-          -if @answer.css(subtype) == "free"
-            =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-              =render "attitude", subtype: subtype
-          -else
-            =subtype.name
+    =link_to answer_path(@answer.next(realm)) do
+      =render "attitude", subtype: @answer.attitude + realm
+
+-unless @answer.number == 1
+  %p.heading=link_to "start over", answer_path(Answer.first_path)

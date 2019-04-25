@@ -13,24 +13,17 @@
       -Realm.each do |realm|
         %td=realm.send(word)
 
-%p Balance is when energy in equals energy out.
-%ul
+%p.heading Balance is when energy in equals energy out
+%ul.center
   -Realm.each do |realm|
     %li #{realm.name} balance: #{realm.energy} from #{realm.intake.ing} =  #{realm.energy} used to #{realm.output}
 
-%p Happiness is when both sides of the equation are free of pain
-%ul
+%p.heading Happiness is when both sides of the equation are pleasurable
+%ul.center
   -Realm.each do |realm|
-    %li #{realm.name} happiness: I am not #{realm.pained} & the #{realm.targets} are not #{realm.painful}
+    %li
+      #{realm.name} happiness:
+      %ul
+        %li I do not feel #{realm.pained} when #{realm.intake_with_object.ing} #{realm.targets}
+        %li The #{realm.targets} I am #{realm.output_with_object.ing} are not #{realm.painful}
 
-%p You have the right to pursue happiness as long as you also take responsibility for maintaining balance.
-
-%p There are Surplus types (Extroverts) for whom using energy is often painful. They rarely have an energy deficit but often have an energy surplus. They can maintain a happy balance either by getting less energy so they don’t have to use as much energy or by finding less painful targets on which to use energy. If they can’t tolerate the pain, they can use stimulants such as caffeine to make using energy less painful and getting energy more painful and balance easier to achieve.
-
-%p There are Deficit types (Introverts) for whom getting energy is often painful. They rarely have an energy surplus but often have an energy deficit. They can maintain a happy balance either by using less energy so they don’t have to get as much energy or by finding less painful targets from which to get energy. If they can’t tolerate the pain, they can use sedatives such as alcohol to make getting energy less painful and using energy more painful and balance easier to achieve.
-
-%p Bipolar types (Ambiverts) have both problems. They have Surplus realms in which using energy is often painful, and Deficit realms in which getting energy is often painful. Using stimulants to make their Surplus realms easier to balance makes their Deficit realms more unbalanced. Using sedatives to make their Deficit realms easier to balance makes their Surplus realms more unbalanced.
-
-%p True Bipolar types, unlike Unipolar types, cannot rely on drugs to make their lives more balanced as the more drugs they take for one realm the more unbalanced they become in another realm. They must use behavioral modifications to control the pain. And they cannot avoid all painful behaviors and then find balance by avoiding all pleasurable behaviors, because that leaves them nothing to do. They must find less painful targets, but they cannot find less painful targets in all four realms, because that leaves them no time to rest.
-
-%p The BipolarType solution is to designate one Surplus realm as the one in which you will spend time finding less painful targets on which to use energy in the morning so that you can continue to get energy, and one Surplus realm as the one in which you will just accept getting less energy so as not to have to use so much energy in the morning. Similarly, you designate one Deficit realm as the one in which you will spend time finding less painful targets from which to get energy in the afternoon so that you can continue to use energy, and one Deficit realm as the one in which you will just accept using less energy so as not to have to get so much energy in the afternoon.

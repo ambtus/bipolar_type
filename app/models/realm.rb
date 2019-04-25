@@ -25,6 +25,8 @@ class Realm < Concept
   def energy; %w{affect glucose currency data}[index]; end
   def reserves; %w{self-esteem fat savings knowledge}[index]; end
 
+  def thing; %w{one where thing thing}[index]; end
+
   def targets; target.pluralize; end
   def a_target; [target.an, target].to_phrase; end
   def adverb; adjective + "ly"; end
@@ -34,11 +36,11 @@ class Realm < Concept
   def many_reserves; [reserves.many, reserves].to_phrase; end
   def few_reserves; [reserves.few, reserves].to_phrase; end
 
-  def output; %w{talk move spend think}[index]; end
-  def oprep; %w{about around \  about }[index]; end
+  def output; %w{talk move spend predict}[index]; end
+  def oprep; %w{about around \  \  }[index]; end
   def output_with_object; [output, oprep].to_phrase; end
 
-  def intake; %w{listen eat work learn}[index]; end
+  def intake; %w{listen eat earn learn}[index]; end
   def iprep; %w{to in with about }[index]; end
   def intake_with_object; [intake, iprep].to_phrase; end
 
