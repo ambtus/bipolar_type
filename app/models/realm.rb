@@ -21,11 +21,14 @@ class Realm < Concept
 
   def target; %w{person place thing event}[index]; end
   def adjective; %w{spiritual physical material mental}[index]; end
+  def energy; %w{affect calories money data}[index]; end
   def energetic; %w{social caloric financial informational}[index]; end
-  def energy; %w{affect glucose currency data}[index]; end
   def reserves; %w{self-esteem fat savings knowledge}[index]; end
+  def neurochemical; %w{oxytocin serotonin dopamine glutamate?}[index]; end
 
   def thing; %w{one where thing thing}[index]; end
+  def what; %w{who where what what}[index]; end
+  def that; %w{whom where that that}[index]; end
 
   def targets; target.pluralize; end
   def a_target; [target.an, target].to_phrase; end
@@ -36,19 +39,20 @@ class Realm < Concept
   def many_reserves; [reserves.many, reserves].to_phrase; end
   def few_reserves; [reserves.few, reserves].to_phrase; end
 
-  def output; %w{talk move spend predict}[index]; end
-  def oprep; %w{about around \  \  }[index]; end
+  def output; %w{talk walk buy predict}[index]; end
+  def oprep; %w{about \  \  \  }[index]; end
   def output_with_object; [output, oprep].to_phrase; end
+  def use_energy; [output, oprep, targets].to_phrase; end
 
   def intake; %w{listen eat earn learn}[index]; end
-  def iprep; %w{to in with about }[index]; end
+  def iprep; %w{to in \  about }[index]; end
   def intake_with_object; [intake, iprep].to_phrase; end
+  def get_energy; [intake, iprep, targets].to_phrase; end
 
   def appear; %w{sound smell feel look}[index]; end
 
-  def pain; %w{hate disgust anger fear}[index]; end
-  def pained; %w{ashamed nauseated angry afraid}[index]; end
+  def pain; %w{shame disgust anger fear}[index]; end
+  def pained; %w{suicidal nauseated angry afraid}[index]; end
   def painful; %w{hateful disgusting infuriating frightening}[index]; end
 
-  def better_targets; "less #{painful} #{targets}"; end
 end

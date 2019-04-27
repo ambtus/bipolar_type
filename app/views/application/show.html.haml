@@ -3,7 +3,7 @@
   %tr
     -@subtypes.each do |subtype|
       %th.quarter=link_to subtype.name, subtype_path(subtype.path)
-  -%w{attitude advice rationale}.each do |word|
+  -%w{attitude short advice rationale}.each do |word|
     %tr
       -@subtypes.each do |subtype|
         %td.p=render word, subtype: subtype

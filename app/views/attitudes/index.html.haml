@@ -3,8 +3,8 @@
   %tr
     %th.narrow
     -Attitude.each do |attitude|
-      %th=attitude.name
-  -%w{behavior focus imbalance }.each do |word|
+      %th=link_to attitude.name, attitude_path(attitude.path)
+  -%w{pain happy? balanced?}.each do |word|
     %tr
       %th=word.titleize
       -Attitude.each do |attitude|
