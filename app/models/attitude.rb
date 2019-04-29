@@ -18,11 +18,10 @@ class Attitude < Concept
   def subtypes; Subtype.all.select{|s| s.attitude == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
-  def sf?; %w{S F}.include?(symbol); end
-  def st?; %w{S T}.include?(symbol); end
-  def sn?; %w{S N}.include?(symbol); end
-  def nf?; %w{N F}.include?(symbol); end
-  def ft?; %w{F T}.include?(symbol); end
+  SYMBOLS.permutation(2).each do |ary|
+    pair = ary.join.downcase
+    define_method(pair + "?") {ary.include?(@symbol)}
+  end
 
   def adjective; %w{fat sore sick thin}[index]; end
 

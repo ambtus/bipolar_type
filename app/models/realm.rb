@@ -39,10 +39,14 @@ class Realm < Concept
   def many_reserves; [reserves.many, reserves].to_phrase; end
   def few_reserves; [reserves.few, reserves].to_phrase; end
 
+  def full; %w{emotional restless rich sure}[index]; end
+
   def output; %w{talk walk buy predict}[index]; end
   def oprep; %w{about \  \  \  }[index]; end
   def output_with_object; [output, oprep].to_phrase; end
   def use_energy; [output, oprep, targets].to_phrase; end
+
+  def empty; %w{lonely hungry envious curious}[index]; end
 
   def intake; %w{listen eat earn learn}[index]; end
   def iprep; %w{to in \  about }[index]; end

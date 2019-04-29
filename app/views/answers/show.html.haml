@@ -23,5 +23,4 @@
             =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
               =render "attitude", subtype: subtype
           -else
-            =render "attitude", subtype: subtype
-=render "affect"
+            =subtype.name

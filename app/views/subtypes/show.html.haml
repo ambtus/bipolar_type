@@ -1,6 +1,8 @@
 - content_for(:title, @name)
 
--%w{attitude advice rationale}.each do |word|
+%p.heading=render "short", subtype: @subtype
+
+-%w{attitude first second}.each do |word|
   %p=render word, subtype: @subtype
 
 %h2 Siblings
