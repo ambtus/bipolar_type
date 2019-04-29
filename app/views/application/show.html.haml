@@ -1,4 +1,7 @@
 - content_for(:title, @name)
+-if @type
+  %p If you are miserable, then #{@type.first.intake.ing} is always safer than #{@type.fourth.output.ing}. If you can spare the time to make an informed choice, do whichever is currently less unbalanced: if you don’t have too much #{@type.first.reserves} then #{@type.first.intake}; if you have plenty of #{@type.fourth.reserves} then #{@type.fourth.output}.
+  %p However, it’s even better to prevent the misery. #{@type.first.intake.ing.capitalize} and #{@type.fourth.output.ing} now and then rebalancing your #{@type.first.reserves} and #{@type.fourth.reserves} later is fine, but only if later eventually comes. You will never become balanced if you don’t reduce the pain by #{@type.second.output.ing} and #{@type.third.intake.ing} before you try to #{@type.second.intake} or #{@type.third.output}.
 %table
   %tr
     -@subtypes.each do |subtype|
