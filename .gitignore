@@ -17,3 +17,5 @@
 
 public/assets/*
 vendor
+
+/config/master.key
