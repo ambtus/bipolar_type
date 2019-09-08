@@ -4,7 +4,7 @@
   %span.chosen chosen
   something, the other choices in the
   %span.warning same
-  Realm or Attitude will become unavailable.
+  quadrant will become unavailable.
 -unless @answer.number == 1
   %p.center
     If you are stuck you can
@@ -12,15 +12,13 @@
 %table
   %tr
     %th
-    -Realm.each do |realm|
-      %th=realm.name
-  -Attitude.answer_order.each do |row|
-    %tr
-      %th=row.name
-      -row.subtypes.each do |subtype|
-        %td.p.quarter{:class => @answer.css(subtype)}
-          -if @answer.css(subtype) == "free"
-            =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-              =render "attitude", subtype: subtype
-          -else
-            =subtype.name
+    %th Energy
+    %th Strength
+  %tr
+    %th Intake
+    %td=render "table", attitude: Attitude.ep
+    %td=render "table", attitude: Attitude.ej
+  %tr
+    %th Output
+    %td=render "table", attitude: Attitude.ip
+    %td=render "table", attitude: Attitude.ij

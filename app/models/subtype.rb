@@ -29,10 +29,10 @@ class Subtype
   def <=>(other); attitude.index <=> other.attitude.index; end
 
   def path; @pair.map(&:path).join; end
-  def symbol; @pair.map(&:symbol).join; end
+  def symbol; [@attitude.symbol.first, @realm.symbol, @attitude.symbol.second].join; end
   def inspect; symbol; end
 
-  def name; @pair.map(&:name).join("ly "); end
+  def name; symbol; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
@@ -43,6 +43,9 @@ class Subtype
 
   def answer_path; Answer.first.next(self); end
 
-  def bad; surplus? ? exhausted : emotional; end
 
+  def dominant; @realm.send(@attitude.dominant); end
+  def divert; @realm.send(@attitude.divert); end
+  def balance; @realm.send(@attitude.balance); end
+  def opposite; @realm.send(@attitude.opposite); end
 end

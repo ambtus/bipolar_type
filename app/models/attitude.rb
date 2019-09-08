@@ -1,6 +1,6 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{S N F T}
+  SYMBOLS = %w{EP EJ IP IJ}
 
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
@@ -23,10 +23,8 @@ class Attitude < Concept
     define_method(pair + "?") {ary.include?(@symbol)}
   end
 
-  def adjective; %w{fat sore sick thin}[index]; end
-
-  def happy?; st?; end
-  def balanced?; nf?; end
-  def pain; sn? ? "output" : "intake"; end
-
+  def dominant; %w{get_energy get_strength use_energy use_strength}[index]; end
+  def divert; %w{ get_strength get_energy  use_strength use_energy}[index]; end
+  def balance; %w{use_energy use_strength get_energy get_strength}[index]; end
+  def opposite; %w{use_strength use_energy get_strength  get_energy}[index]; end
 end
