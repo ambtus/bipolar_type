@@ -4,21 +4,25 @@
   %span.chosen chosen
   something, the other choices in the
   %span.warning same
-  quadrant will become unavailable.
+  Attitude or Realm will become unavailable.
 -unless @answer.number == 1
   %p.center
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 %table
-  %tr
-    %th
-    %th Energy
-    %th Strength
-  %tr
-    %th Intake
-    %td=render "table", attitude: Attitude.ep
-    %td=render "table", attitude: Attitude.ej
-  %tr
-    %th Output
-    %td=render "table", attitude: Attitude.ip
-    %td=render "table", attitude: Attitude.ij
+  -if @group_by
+    =link_to "group by attitude", url_for(params.merge(:group_by => "a").permit(:group_by))
+    %tr
+      %td.top=render "table_r", realm: Realm.first
+      %td.top=render "table_r", realm: Realm.second
+    %tr
+      %td.top=render "table_r", realm: Realm.third
+      %td.top=render "table_r", realm: Realm.fourth
+  -else
+    =link_to "group by realm", url_for(params.merge(:group_by => "r").permit(:group_by))
+    %tr
+      %td.top=render "table_a", attitude: Attitude.first
+      %td.top=render "table_a", attitude: Attitude.second
+    %tr
+      %td.top=render "table_a", attitude: Attitude.third
+      %td.top=render "table_a", attitude: Attitude.fourth

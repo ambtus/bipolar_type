@@ -32,7 +32,7 @@ class Subtype
   def symbol; [@attitude.symbol.first, @realm.symbol, @attitude.symbol.second].join; end
   def inspect; symbol; end
 
-  def name; symbol; end
+  def name; @pair.map(&:name).to_phrase; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
@@ -44,8 +44,7 @@ class Subtype
   def answer_path; Answer.first.next(self); end
 
 
-  def dominant; @realm.send(@attitude.dominant); end
-  def divert; @realm.send(@attitude.divert); end
-  def balance; @realm.send(@attitude.balance); end
-  def opposite; @realm.send(@attitude.opposite); end
+  def behave; @realm.send(@attitude.behave); end
+
+
 end

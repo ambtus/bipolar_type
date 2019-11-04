@@ -1,9 +1,6 @@
 - content_for(:title, @name)
 %table
-  %tr
-    -@subtypes.each do |subtype|
-      %th.quarter=link_to subtype.name, subtype_path(subtype.path)
-  -%w{short attitude first second}.each do |word|
+  -@subtypes.in_groups_of(2) do |row|
     %tr
-      -@subtypes.each do |subtype|
-        %td.p=render word, subtype: subtype
+      -row.each do |subtype|
+        %td.top=render "td", subtype: subtype

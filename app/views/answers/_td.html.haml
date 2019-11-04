@@ -1,6 +1,5 @@
-%td.p.quarter{:class => @answer.css(subtype)}
+%td.top.half{:class => @answer.css(subtype)}
+  .heading=subtype.name
   -if @answer.css(subtype) == "free"
     =link_to answer_path(@answer.next(subtype), :sort => params[:sort]), :class => "answer" do
-      =render "attitude", subtype: subtype
-  -else
-    =subtype.name
+      .left=render subtype.problem, realm: subtype.realm
