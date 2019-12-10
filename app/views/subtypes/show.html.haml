@@ -1,6 +1,6 @@
 - content_for(:title, @name)
 
-
+=render "td", subtype: @subtype
 %h2 Siblings
 %p.heading
   -@subtype.siblings.in_groups_of(3) do |row|

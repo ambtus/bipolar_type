@@ -4,13 +4,8 @@
     %th.narrow
     -Realm.each do |realm|
       %th=link_to realm.name, realm_path(realm.path)
-  -%w{ get_energy intake_pain intake process energy reserves strength output output_pain use_energy}.each do |word|
+  -%w{energy get_energy intake_pain  intake  output output_pain  use_energy  strength reserves}.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|
         %td=realm.send(word)
-  -%w{mania depression splurge binge}.each do |word|
-    %tr
-      %th=word.titleize
-      -Realm.each do |realm|
-        %td.p=render word, realm: realm

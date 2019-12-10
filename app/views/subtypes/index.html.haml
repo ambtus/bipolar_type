@@ -3,6 +3,4 @@
   -Attitude.all.each do |attitude|
     %tr
       -attitude.subtypes.each do |subtype|
-        %td.p
-          =link_to subtype.name, subtype_path(subtype.path)
-          %p=render "attitude", subtype: subtype
+        %td.top=render "td", subtype: subtype
