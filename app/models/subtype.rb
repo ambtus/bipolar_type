@@ -32,8 +32,6 @@ class Subtype
   def symbol; [@attitude.symbol.first, @realm.symbol, @attitude.symbol.second].join; end
   def inspect; symbol; end
 
-  def name; @pair.map(&:name).to_phrase; end
-
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
@@ -44,7 +42,8 @@ class Subtype
   def answer_path; Answer.first.next(self); end
 
 
-  def behave; @realm.send(@attitude.behave); end
-
+  def get_or_use; @realm.send(@attitude.get_or_use + "_energy"); end
+  def goal; [get_or_use, less_or_more].to_phrase; end
+  def name; goal.titleize; end
 
 end
