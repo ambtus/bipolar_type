@@ -1,6 +1,13 @@
 - content_for(:title, @name)
+-if @type
+  %p #{@type.depressed.get_energy.capitalize} and #{@type.manic.use_energy} only at midday when you are completely awake and alert and able to evaluate the quality of the #{@type.depressed.sources} you are #{@type.depressed.evaluate.ing} and the #{@type.manic.goals} you are #{@type.manic.achieve.ing}.
+  %p If you want to #{@type.depressed.get_energy} and it’s morning or evening, #{@type.discriminating.get_energy}. If you can’t #{@type.discriminating.get_energy}, find better #{@type.discriminating.sources} to #{@type.discriminating.evaluate}.
+  %p If you want to #{@type.manic.use_energy} and it’s morning or evening, #{@type.productive.use_energy}. If you can’t #{@type.productive.use_energy}, find better #{@type.productive.goals} to #{@type.productive.achieve}.
 %table
   -@subtypes.in_groups_of(2) do |row|
     %tr
       -row.each do |subtype|
-        %td.top=render "td", subtype: subtype
+        %td
+          %h3=link_to subtype.name, subtype_path(subtype.path)
+          -%w{short}.each do |word|
+            %p=render word, subtype: subtype

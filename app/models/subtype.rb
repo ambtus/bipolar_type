@@ -41,9 +41,13 @@ class Subtype
 
   def answer_path; Answer.first.next(self); end
 
+  def less_or_more
+    return "more" if @attitude.less_or_more == "more"
+    return @realm.less
+  end
+  def goal; [get_or_use, less_or_more, energy].to_phrase; end
 
-  def get_or_use; @realm.send(@attitude.get_or_use + "_energy"); end
-  def goal; [get_or_use, less_or_more].to_phrase; end
-  def name; goal.titleize; end
+  def adjective; [adverb, @attitude.adjective].to_phrase; end
+  def name; adjective.titleize; end
 
 end

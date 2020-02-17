@@ -1,10 +1,9 @@
-I enjoy
-=subtype.p? ? subtype.intake.ing : subtype.output.ing
-more than
-=subtype.p? ? subtype.output.ing : subtype.intake.ing
-=subtype.balanced? ? "but" : "and"
-=subtype.e? ? subtype.intake.ing : subtype.output.ing
-is
-=subtype.balanced? ? "much" : "also"
-easier than
-=subtype.e? ? subtype.output.ing : subtype.intake.ing
+-case subtype.attitude.adjective
+-when "manic"
+  I keep #{subtype.use_energy.ing} even when the #{subtype.goals} are no longer #{subtype.unhealthy} and I don’t have a lot of extra #{subtype.energy}
+-when "depressed"
+  I keep #{subtype.get_energy.ing} even when the #{subtype.sources} have become #{subtype.unhealthy} and I don’t need the #{subtype.energy}
+-when "productive"
+  I stop #{subtype.use_energy.ing} when the #{subtype.goals} are no longer #{subtype.unhealthy} even if I have extra #{subtype.energy} to spare
+-when "discriminating"
+  I stop #{subtype.get_energy.ing} when the #{subtype.sources} have become #{subtype.unhealthy} even if I  need the #{subtype.energy}

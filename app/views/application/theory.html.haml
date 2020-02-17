@@ -1,47 +1,60 @@
 - content_for(:title, 'Theory')
-%h2 Definitions
-%dl
-  %dt mania
-  %dd alert and active when you should be asleep: hyperalert / hyperactive
-%dl
-  %dt depression
-  %dd nonresponsive and lethargic when you should be awake: hypoalert / hypoactive
-%dl
-  %dt alert
-  %dd capable of perceiving sensory signals and getting energy from that source
-%dl
-  %dt active
-  %dd capable of determining a goal and using energy in order to reach that goal
-%dl
-  %dt realm
-  %dd a set of behaviors which get and use a specific type of energy
-%dl
-  %dt balance
-  %dd behaviors which get energy balance behaviors which use energy: energy in == energy out
-%dl
-  %dt attitude
-  %dd an individual’s behavioral goals when they are out of balance in a specific realm
+%h2 The Four Realms
+%p BipolarType defines four realms of behavior. Each realm is centered around a different kind of energy and has behaviors which get and use that type of energy.
+%p Most behaviors are a mix of different realms. Many behaviors use energy in one realm to get energy in a different realm. Nevertheless, almost every behavior can be categorized as primarily getting or using energy in a single realm.
+%p Balance in a realm is achieved when energy in equals energy out.
 %table
-  %caption
-    %h2 The Four Realms
   %tr
     %th.narrow
     -Realm.each do |realm|
       %th=link_to realm.name, realm_path(realm.path)
-  -%w{energy perceive_sources get_energy use_energy achieve_goals}.each do |word|
+  -%w{energy evaluate_sources get_energy use_energy achieve_goals}.each do |word|
     %tr
       %th=word.titleize
       -Realm.each do |realm|
         %td=realm.send(word)
+%h2 The Four Attitudes
+%p BipolarType defines four attitudes.
 %table
-  %caption
-    %h2 The Four Attitudes
   %tr
-    %th.narrow
-    -Attitude.each do |attitude|
-      %th=link_to attitude.name, attitude_path(attitude.path)
-  -%w{imbalance episode focus goal }.each do |word|
-    %tr
-      %th=word.titleize
-      -Attitude.each do |attitude|
-        %td=attitude.send(word)
+    %th
+    %th Getting Energy
+    %th Using Energy
+  %tr
+    %th Energy Surplus
+    %td
+      %dt=link_to "Depressed", attitude_path("a")
+      %dd acquiring energy from "unhealthy" or "inferior" sources
+    %td
+      %dt=link_to "Productive", attitude_path("b")
+      %dd using energy only on "important" or "major" goals
+  %tr
+    %th Energy Deficit
+    %td
+      %dt=link_to "Discriminating", attitude_path("c")
+      %dd getting energy only from "healthy" or "quality" sources
+    %td
+      %dt=link_to "Manic", attitude_path("d")
+      %dd wasting energy on "unimportant" or "minor" goals
+%p The Bipolar cycle is one where you start out productive, and then become manic when you continue to use energy long after you should have switched to getting energy. When mania ends, you start out discriminating, and then become depressed when you continue to get energy long after you should have switched to using energy.
+%p Psychiatrists see that you are manic, and give you sedatives so that you will stop wasting energy, or see that you are depressed and give you stimulants so that you will stop getting energy and start using it.
+%p
+  BipolarTypen sees that you are manic, and suggests that you
+  %em change realms
+  so that instead of wasting too much energy on
+  %em unimportant
+  goals in your “manic” realm, you are using more energy on
+  %em important
+  goals in your “productive” realm
+%p
+  Similary, if you are depressed, BipolarType suggests that you
+  %em change realms
+  so that instead of getting too much energy from
+  %em unhealthy
+  sources in your “depressed” realm, you are getting more of energy from
+  %em healthy
+  sources in your “discriminating” realm.
+
+
+
+
