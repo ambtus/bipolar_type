@@ -1,0 +1,17 @@
+%table
+  -if @group_by == "realm"
+    =link_to "group by attitude", url_for(params.merge(:group_by => "attitude").permit(:group_by))
+    %tr
+      %td.top=render "table_r", realm: @realms.first
+      %td.top=render "table_r", realm: @realms.second
+    %tr
+      %td.top=render "table_r", realm: @realms.third
+      %td.top=render "table_r", realm: @realms.fourth
+  -else
+    =link_to "group by realm", url_for(params.merge(:group_by => "realm").permit(:group_by))
+    %tr
+      %td.top=render "table_a", attitude: Attitude.first
+      %td.top=render "table_a", attitude: Attitude.second
+    %tr
+      %td.top=render "table_a", attitude: Attitude.third
+      %td.top=render "table_a", attitude: Attitude.fourth

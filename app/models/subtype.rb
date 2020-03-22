@@ -29,7 +29,8 @@ class Subtype
   def <=>(other); attitude.index <=> other.attitude.index; end
 
   def path; @pair.map(&:path).join; end
-  def symbol; [@attitude.symbol.first, @realm.symbol, @attitude.symbol.second].join; end
+  def symbol_tmp; @pair.map(&:symbol).join; end
+  def symbol; realm_first? ? symbol_tmp : symbol_tmp.reverse; end
   def inspect; symbol; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}

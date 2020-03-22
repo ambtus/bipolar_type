@@ -9,20 +9,4 @@
   %p.center
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
-%table
-  -if @group_by
-    =link_to "group by attitude", url_for(params.merge(:group_by => "a").permit(:group_by))
-    %tr
-      %td.top=render "table_r", realm: Realm.first
-      %td.top=render "table_r", realm: Realm.second
-    %tr
-      %td.top=render "table_r", realm: Realm.third
-      %td.top=render "table_r", realm: Realm.fourth
-  -else
-    =link_to "group by realm", url_for(params.merge(:group_by => "r").permit(:group_by))
-    %tr
-      %td.top=render "table_a", attitude: Attitude.first
-      %td.top=render "table_a", attitude: Attitude.second
-    %tr
-      %td.top=render "table_a", attitude: Attitude.third
-      %td.top=render "table_a", attitude: Attitude.fourth
+=render "table"

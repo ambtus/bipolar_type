@@ -18,25 +18,18 @@ class Realm < Concept
 
   def rights; ALL.select{|x| x.index > self.index}; end
 
-  def adjective; %w{physical mental spiritual material}[index]; end
+  def adjective; %w{physical mental emotional financial}[index]; end
   def adverb; adjective + "ly"; end
 
-  def energy; %w{calories facts emotions money}[index]; end
-  def less; %w{fewer fewer less less}[index]; end
+  def energy; %w{calories information emotions money}[index]; end
 
-  def evaluate; %w{smell see hear touch}[index]; end
-  def source; %w{food result voice tool}[index]; end
-  def sources; source.pluralize; end
-  def evaluate_sources; [evaluate, sources].to_phrase; end
-  def appear; %w{taste look sound feel}[index]; end
-  def unhealthy; %w{disgusting frightening hateful frustrating}[index]; end
-  def sick; %w{disgusted afraid ashamed angry}[index]; end
+  def target; %w{place idea person thing}[index]; end
+  def targets; target.pluralize; end
+  def hit; %w{go consider tell buy}[index]; end
 
-  def achieve; %w{cultivate imagine influence build}[index]; end
-  def goal; %w{place possibility person thing}[index]; end
-  def goals; goal.pluralize; end
-  def achieve_goals; [achieve, goals].to_phrase; end
+  def intake; %w{eat look\ at listen\ to collect}[index]; end
+  def strengtheners; %w{protein results sermons earnings}[index]; end
+  def energizers; %w{carbs art music profits}[index]; end
+  def bad; %w{sick afraid ashamed angry}[index]; end
 
-  def get_energy; %w{eat analyze listen earn}[index]; end
-  def use_energy; %w{move synthesize talk spend}[index]; end
 end

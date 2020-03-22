@@ -3,7 +3,8 @@ class TypesController < ApplicationController
 #     begin
     @type = Type.new params[:id]
     @name = @type.name
-    @subtypes = @type.subtypes
+    @realms = @type.realms
+    @group_by = params[:group_by] || "attitude"
 #     rescue
 #       redirect_to root_path and return
 #     end

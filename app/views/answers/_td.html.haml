@@ -1,4 +1,4 @@
-%td.top.half{:class => @answer.css(subtype)}
+%td.top.left.half{:class => @answer.css(subtype)}
   -if @answer.css(subtype) == "free"
     =link_to answer_path(@answer.next(subtype), :group_by => params[:group_by]), :class => "answer" do
       =render "short", subtype: subtype

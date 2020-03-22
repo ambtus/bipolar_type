@@ -1,9 +1,14 @@
--case subtype.attitude.adjective
--when "manic"
-  I keep #{subtype.use_energy.ing} even when the #{subtype.goals} are no longer #{subtype.unhealthy} and I don’t have a lot of extra #{subtype.energy}
--when "depressed"
-  I keep #{subtype.get_energy.ing} even when the #{subtype.sources} have become #{subtype.unhealthy} and I don’t need the #{subtype.energy}
--when "productive"
-  I stop #{subtype.use_energy.ing} when the #{subtype.goals} are no longer #{subtype.unhealthy} even if I have extra #{subtype.energy} to spare
--when "discriminating"
-  I stop #{subtype.get_energy.ing} when the #{subtype.sources} have become #{subtype.unhealthy} even if I  need the #{subtype.energy}
+%p
+There are
+=subtype.restless? ? "very few" : "lots of"
+=subtype.targets
+I want to
+=subtype.hit + "."
+%p
+I
+=subtype.sensitive? ? "often" : "rarely"
+feel
+=subtype.bad
+when trying to
+=subtype.intake
+=subtype.strengtheners + "."
