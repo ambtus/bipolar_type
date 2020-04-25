@@ -1,60 +1,42 @@
-- content_for(:title, 'Theory')
-%h2 The Four Realms
-%p BipolarType defines four realms of behavior. Each realm is centered around a different kind of energy and has behaviors which get and use that type of energy.
-%p Most behaviors are a mix of different realms. Many behaviors use energy in one realm to get energy in a different realm. Nevertheless, almost every behavior can be categorized as primarily getting or using energy in a single realm.
-%p Balance in a realm is achieved when energy in equals energy out.
-%table
-  %tr
-    %th.narrow
-    -Realm.each do |realm|
-      %th=link_to realm.name, realm_path(realm.path)
-  -%w{energy evaluate_sources get_energy use_energy achieve_goals}.each do |word|
-    %tr
-      %th=word.titleize
-      -Realm.each do |realm|
-        %td=realm.send(word)
+- content_for(:title, 'The Theory')
 %h2 The Four Attitudes
-%p BipolarType defines four attitudes.
-%table
-  %tr
-    %th
-    %th Getting Energy
-    %th Using Energy
-  %tr
-    %th Energy Surplus
-    %td
-      %dt=link_to "Depressed", attitude_path("a")
-      %dd acquiring energy from "unhealthy" or "inferior" sources
-    %td
-      %dt=link_to "Productive", attitude_path("b")
-      %dd using energy only on "important" or "major" goals
-  %tr
-    %th Energy Deficit
-    %td
-      %dt=link_to "Discriminating", attitude_path("c")
-      %dd getting energy only from "healthy" or "quality" sources
-    %td
-      %dt=link_to "Manic", attitude_path("d")
-      %dd wasting energy on "unimportant" or "minor" goals
-%p The Bipolar cycle is one where you start out productive, and then become manic when you continue to use energy long after you should have switched to getting energy. When mania ends, you start out discriminating, and then become depressed when you continue to get energy long after you should have switched to using energy.
-%p Psychiatrists see that you are manic, and give you sedatives so that you will stop wasting energy, or see that you are depressed and give you stimulants so that you will stop getting energy and start using it.
+%dl
+  -Attitude.each do |attitude|
+    %dt #{attitude.name}
+    %dd
+      #{attitude.beginning} through #{attitude.mid} to #{attitude.ending}
+      %br
+      #{attitude.behavior}: #{attitude.energy_flow}
+%h2 The Four Realms
+%dl
+  -Realm.each do |realm|
+    %dt #{realm.name}
+    %dd
+      dream: #{realm.dream("you")}
+      %br
+      work: #{realm.work} (#{realm.use} your #{realm.reserves} #{realm.on} #{realm.whole})
+      %br
+      refreshment: #{realm.refresh} (get #{realm.energy})
+      %br
+      play: #{realm.play} (#{realm.use} extra #{realm.energy} #{realm.on} other #{realm.nouns})
+      %br
+      sleep: #{realm.sleep}
+%h2 The Twenty-Four BipolarTypes
 %p
-  BipolarTypen sees that you are manic, and suggests that you
-  %em change realms
-  so that instead of wasting too much energy on
-  %em unimportant
-  goals in your “manic” realm, you are using more energy on
-  %em important
-  goals in your “productive” realm
+  If there is a realm in which your work is extremely important to you, that means two things. First, that there is no
+  %em other
+  realm in which work is quite as important. Second, that there is no other
+  %em behavior
+  in that realm which is quite as important.
 %p
-  Similary, if you are depressed, BipolarType suggests that you
-  %em change realms
-  so that instead of getting too much energy from
-  %em unhealthy
-  sources in your “depressed” realm, you are getting more of energy from
-  %em healthy
-  sources in your “discriminating” realm.
-
-
-
-
+  Most people know a few things about themselves. Perhaps they know what their work is. Or, perhaps they know what their favorite dreams are. Or what refreshments they prefer.
+%p
+  BipolarType asserts that if you know a few things, you can
+  %em logically infer
+  the rest. And once you know what is important
+  %em to you,
+  you can stop wasting your time and energy on things that are
+  %em not
+  important to you
+  %em without
+  losing your balance.

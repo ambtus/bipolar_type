@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "abcd"; end
+  def self.my_path; "nfst"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -10,21 +10,14 @@ class Type
   end
   attr_reader :path, :realms
 
-  %w{first second third fourth}.each_with_index do |ordinal, index|
-    define_method(ordinal) {@realms[index]}
-  end
-
   def subtypes; realms.add(Attitude.all); end
 
-  def symbol; subtypes.map(&:symbol).join("•"); end
+  def symbol; realms.map(&:symbol).join("•"); end
   def inspect; symbol; end
-  def name; symbol; end
+  def name; realms.map(&:name).join("•"); end
 
   def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
 
-  Attitude.all.map(&:adjective).each_with_index do |adjective, index|
-    define_method(adjective) {subtypes[index]}
-  end
   Attitude.all.map(&:symbol).each_with_index do |symbol, index|
     define_method(symbol.downcase) {subtypes[index]}
   end

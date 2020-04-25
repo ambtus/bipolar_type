@@ -29,26 +29,23 @@ class Subtype
   def <=>(other); attitude.index <=> other.attitude.index; end
 
   def path; @pair.map(&:path).join; end
-  def symbol_tmp; @pair.map(&:symbol).join; end
-  def symbol; realm_first? ? symbol_tmp : symbol_tmp.reverse; end
+  def symbol; @pair.map(&:symbol).join; end
   def inspect; symbol; end
+
+  def name; @pair.map(&:name).join(" "); end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
 
   def siblings; attitude.subtypes + realm.subtypes - [self]; end
+  def opposite; @realm + @attitude.opposite; end
+  def previous; @realm + @attitude.previous; end
+  def subsequent; @realm + @attitude.subsequent; end
 
   def types; Type.all.select{|t| t.subtypes.include?(self)}; end
 
   def answer_path; Answer.first.next(self); end
 
-  def less_or_more
-    return "more" if @attitude.less_or_more == "more"
-    return @realm.less
-  end
-  def goal; [get_or_use, less_or_more, energy].to_phrase; end
-
-  def adjective; [adverb, @attitude.adjective].to_phrase; end
-  def name; adjective.titleize; end
+  def behavior; realm.send(attitude.behavior.words.first); end
 
 end

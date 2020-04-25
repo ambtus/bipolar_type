@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth to_word words to_phrase first_word is_mbti? s ed en ly ing an some enough  many too_much too_little a_few plural? little few more fewer less much many that those is are them it they}.each do |meth|
+%w{chip second third fourth to_word words to_phrase first_word is_mbti? s ed en ly ing an some enough  many too_much too_little a_few plural? little few more fewer less much many that those is are them it they able un begins_with?}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -34,6 +34,8 @@ class String
     end
   end
   def ed
+    return "sang" if self=="sing"
+    return "paid" if self=="pay"
     return "ate" if self=="eat"
     return "forgot" if self=="forget"
     return "left" if self=="leave"
@@ -66,6 +68,7 @@ class String
   end
 
   def en
+    return "sung" if self=="sing"
     return "eaten" if self=="eat"
     return "forgotten" if self=="forget"
     return "done" if self=="do"
@@ -84,6 +87,16 @@ class String
 
   def ly; self + "ly"; end
 
+  def able
+      return "comprehensible" if self == "comprehend"
+      self.sub(/e$/, "") + "able"
+  end
+
+  def un
+    return "incomprehensible" if self == "comprehensible"
+    "un#{self}"
+  end
+
   def ing
     return "lying" if self=="lie"
     return "listening" if self=="listen"
@@ -93,21 +106,18 @@ class String
     return "positing" if self=="posit"
     return "developing" if self=="develop"
     return "panicking" if self=="panic"
-    if self.match(" and ")
-      first, second = self.split(' and ', 2)
-      [first.ing, second.ing].join(" and ")
-    elsif self.match(" or ")
-      first, second = self.split(' or ', 2)
-      [first.ing, second.ing].join(" or ")
-    elsif self.match("/")
-      first, second = self.split('/', 2)
-      [first.ing, second.ing].join("/")
-    elsif self.match(" ")
-      first, second = self.split(' ', 2)
-      [first.ing, second].join(" ")
-    else
-      self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + "ing"
+    return "reasoning" if self=="reason"
+    [" and ", " or ", "/", " & "].each do |connector|
+      if self.match(connector)
+        first, second = self.split(connector, 2)
+        return [first.ing, second.ing].join(connector)
+      end
     end
+    if self.match(" ")
+      first, second = self.split(" ", 2)
+      return [first.ing, second].join(" ")
+    end
+    self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + "ing"
   end
 
   def enough
@@ -164,9 +174,12 @@ class String
 
   def plural?
     return true if self == "people"
+    return true if self == "family"
     return true if self[-1] == "s"
     return false
   end
+
+  def begins_with?(string); self.match(/\A#{string}/); end
 
   def little; plural? ? "few" : "little"; end
   alias few :little
