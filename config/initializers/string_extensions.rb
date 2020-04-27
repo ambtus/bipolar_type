@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth to_word words to_phrase first_word is_mbti? s ed en ly ing an some enough  many too_much too_little a_few plural? little few more fewer less much many that those is are them it they able un begins_with?}.each do |meth|
+%w{chip second third fourth words to_phrase first_word is_mbti? s ed en ly ing an some enough  many too_much too_little a_few plural? little few more fewer less much many that those is are them it they able un begins_with?}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -11,8 +11,7 @@ class String
   def second; chars.second; end
   def third; chars.third; end
   def fourth; chars.fourth; end
-  def to_word; Word.new self ; end
-  def words; split.map(&:to_word); end
+  def words; split(/\s+/); end
   def to_phrase; Phrase.new words; end
   def to_word_or_phrase; words.size > 1 ? to_phrase : words.first; end
 
@@ -107,6 +106,7 @@ class String
     return "developing" if self=="develop"
     return "panicking" if self=="panic"
     return "reasoning" if self=="reason"
+    return "gardening" if self=="garden"
     [" and ", " or ", "/", " & "].each do |connector|
       if self.match(connector)
         first, second = self.split(connector, 2)

@@ -97,7 +97,7 @@ dl {
 dt {
   float: left;
   clear: left;
-  width: 14ch; /* currently the longest word is "Sleep & Dream" which is 13 characters */
+  width: 9ch; /* currently the longest word is "Financial" which is 9 characters */
   text-align: right;
   font-weight: bold;
 }
@@ -105,7 +105,7 @@ dt::after {
   content: ":";
 }
 dd {
-  margin: 0 0 0 15ch;  /* 1 more than the width in dt */
+  margin: 0 0 0 10ch;  /* 1 more than the width in dt */
 }
 
 

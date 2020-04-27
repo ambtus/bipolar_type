@@ -46,6 +46,6 @@ class Subtype
 
   def answer_path; Answer.first.next(self); end
 
-  def behavior; realm.send(attitude.behavior.words.first); end
+  def behavior; realm.send(attitude.behavior.words.last); end
 
 end
