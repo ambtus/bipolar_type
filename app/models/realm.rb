@@ -15,7 +15,7 @@ class Realm < Concept
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
-  def adjective; %w{social physical financial mental}[index]; end
+  def adjective; %w{affective physical financial mental}[index]; end
   def name; adjective.capitalize; end
 
   def verb; %w{influence go\ to improve organize}[index]; end
