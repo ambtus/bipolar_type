@@ -1,6 +1,6 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{ E S W N }
+  SYMBOLS = %w{EP EJ IP IJ}
 
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}

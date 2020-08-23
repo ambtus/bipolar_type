@@ -1,25 +1,28 @@
 %table
   %tr
     %td
-      fill up on energy and explode;
-      assertive use of
-      =render "td"
-      to achieve important goals
-    %td use energy (J)
+      %h3 Auxiliary Happiness
+      %p.heading could be more receptive if using energy was less painful
+      =render "td", attitude: Attitude.ej
     %td
-      manic waste of
-      =render "td"
-      to splurge on unimportant goals
-  %tr
-    %td E (fat)
-    %td.none
-    %td I (thin)
+      %h3 Dominant Productivity
+      %p.heading effective but also enjoys getting energy
+      =render "td", attitude: Attitude.ep
   %tr
     %td
-      depressed acceptance of unhealthy resources to binge on
-      =render "td"
-    %td get energy (P)
+      accept things and be happy
+      %br
+      (receptive)
     %td
-      run out of energy and crash;
-      receptive acceptance of healthy resources to get
-      =render "td"
+      change things and be productive
+      %br
+      (effective)
+  %tr
+    %td
+      %h3 Dominant Happiness
+      %p.heading receptive but also enjoys using energy
+      =render "td", attitude: Attitude.ip
+    %td
+      %h3 Auxiliary Productivity
+      %p.heading could be more effective if getting energy was less painful
+      =render "td", attitude: Attitude.ij

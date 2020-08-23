@@ -1,7 +1,5 @@
 -@realms.each do |realm|
+  -subtype = realm + attitude
   =link_to answer_path(@answer.next(realm)) do
-    %br
-    =realm.adjective
-%br
-energy
+    %p=subtype.name
 
