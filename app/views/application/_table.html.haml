@@ -1,28 +1,36 @@
 %table
   %tr
     %td
-      %h3 Auxiliary Happiness
-      %p.heading could be more receptive if using energy was less painful
-      =render "td", attitude: Attitude.ej
-    %td
-      %h3 Dominant Productivity
-      %p.heading effective but also enjoys getting energy
+      %p.heading use more (or get less) later
       =render "td", attitude: Attitude.ep
+    %td
+      Active:
+      %br
+      <= use energy now =>
+    %td
+      %p.heading get more (or use less) later
+      =render "td", attitude: Attitude.ej
   %tr
     %td
-      accept things and be happy
+      Manic (energized):
       %br
-      (receptive)
+      losing reserves
     %td
-      change things and be productive
+      Centered:
       %br
-      (effective)
+      stable reserves
+    %td
+      Depressed (sedated):
+      %br
+      gaining reserves
   %tr
     %td
-      %h3 Dominant Happiness
-      %p.heading receptive but also enjoys using energy
+      %p.heading use more (or get less) later
       =render "td", attitude: Attitude.ip
     %td
-      %h3 Auxiliary Productivity
-      %p.heading could be more effective if getting energy was less painful
+      Receptive:
+      %br
+      <= get energy now =>
+    %td
+      %p.heading get more (or use less) later
       =render "td", attitude: Attitude.ij

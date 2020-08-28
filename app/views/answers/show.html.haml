@@ -1,4 +1,10 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
+%p.center
+  Once you have
+  %span.chosen chosen
+  something, the other choices in the
+  %span.warning same
+  Attitude or Realm will become unavailable.
 -unless @answer.number == 1
   %p.center
     If you are stuck you can

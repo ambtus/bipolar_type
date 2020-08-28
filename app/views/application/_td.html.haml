@@ -1,3 +1,2 @@
-%td.top.left.half
-  =link_to subtype.name, subtype_path(subtype.path)
-  =render "short", attitude: attitude
+-subtype = @type.send(attitude)
+=subtype.name

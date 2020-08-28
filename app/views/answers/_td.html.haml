@@ -1,5 +1,8 @@
 -@realms.each do |realm|
   -subtype = realm + attitude
-  =link_to answer_path(@answer.next(realm)) do
-    %p=subtype.name
-
+  %p{:class => @answer.css(subtype)}
+    -if @answer.css(subtype) == "free"
+      =link_to answer_path(@answer.next(subtype)) do
+        =render "problem", subtype: subtype
+    -else
+      =subtype.name
