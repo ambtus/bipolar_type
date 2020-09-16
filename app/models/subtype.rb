@@ -28,11 +28,12 @@ class Subtype
 
   def <=>(other); attitude.index <=> other.attitude.index; end
 
-  def path; @pair.map(&:path).join; end
-  def symbol; @pair.map(&:symbol).join; end
+  def symbol
+    @pair.map(&:symbol).join.chars.values_at(1,0,2).join
+  end
+  def path; symbol.downcase; end
   def inspect; symbol; end
 
-  def name; @pair.map(&:name).join(" "); end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
@@ -47,5 +48,7 @@ class Subtype
   def answer_path; Answer.first.next(self); end
 
   def behavior; realm.send(attitude.behavior.words.last); end
+  def bad; realm.send(attitude.bad); end
+  def name; symbol; end
 
 end

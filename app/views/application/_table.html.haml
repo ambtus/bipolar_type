@@ -1,36 +1,21 @@
 %table
   %tr
+    %th.narrow
+    %th.third Unbalanced (P)
+    %th.third Unhappy (J)
+  %tr
+    %th Natural Surplus (E)
     %td
-      %p.heading use more (or get less) later
+      %h2=link_to_unless controller.controller_name == "answers",  Attitude.ep.name, attitude_path("ep")
       =render "td", attitude: Attitude.ep
     %td
-      Active:
-      %br
-      <= use energy now =>
-    %td
-      %p.heading get more (or use less) later
+      %h2=link_to_unless controller.controller_name == "answers",  Attitude.ej.name, attitude_path("ej")
       =render "td", attitude: Attitude.ej
   %tr
+    %th Natural Deficit (I)
     %td
-      Manic (energized):
-      %br
-      losing reserves
-    %td
-      Centered:
-      %br
-      stable reserves
-    %td
-      Depressed (sedated):
-      %br
-      gaining reserves
-  %tr
-    %td
-      %p.heading use more (or get less) later
+      %h2=link_to_unless controller.controller_name == "answers",  Attitude.ip.name, attitude_path("ip")
       =render "td", attitude: Attitude.ip
     %td
-      Receptive:
-      %br
-      <= get energy now =>
-    %td
-      %p.heading get more (or use less) later
+      %h2=link_to_unless controller.controller_name == "answers",  Attitude.ij.name, attitude_path("ij")
       =render "td", attitude: Attitude.ij

@@ -1,8 +1,9 @@
+Sometimes I feel compelled to:
 -@realms.each do |realm|
   -subtype = realm + attitude
   %p{:class => @answer.css(subtype)}
     -if @answer.css(subtype) == "free"
       =link_to answer_path(@answer.next(subtype)) do
-        =render "problem", subtype: subtype
+        =render "compulsion", subtype: subtype
     -else
       =subtype.name

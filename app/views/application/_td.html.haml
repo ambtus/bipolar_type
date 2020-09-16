@@ -1,2 +1,6 @@
--subtype = @type.send(attitude)
-=subtype.name
+-subtype = @type.send(attitude.symbol) if @type
+-subtype = @realm + attitude if @realm
+%h3=link_to subtype.name, subtype_path(subtype.path)
+%p
+  Sometimes I feel compelled to
+  =render "compulsion", subtype: subtype

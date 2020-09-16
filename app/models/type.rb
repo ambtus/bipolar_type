@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "nfst"; end
+  def self.my_path; "snft"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -14,12 +14,12 @@ class Type
 
   def symbol; realms.map(&:symbol).join("•"); end
   def inspect; symbol; end
-  def name; realms.map(&:name).join("•"); end
+  def name; subtypes.map(&:name).join("•"); end
 
   def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
 
   Attitude.all.map(&:symbol).each_with_index do |symbol, index|
-    define_method(symbol.downcase) {subtypes[index]}
+    define_method(symbol) {subtypes[index]}
   end
 
 end
