@@ -14,6 +14,7 @@ class Subtype
         end.flatten
 
   def self.all; ALL; end
+  def self.each(&block);ALL.each(&block); end
 
   def method_missing(meth, *arguments, &block)
     if realm.respond_to?(meth)
@@ -27,11 +28,16 @@ class Subtype
 
   def <=>(other); attitude.index <=> other.attitude.index; end
 
-  def path; @pair.map(&:path).join; end
-  def symbol; @pair.map(&:symbol).join; end
+  def symbol; @pair.map(&:symbol).map(&:chars).flatten.values_at(1,0,2).join; end
   def inspect; symbol; end
 
-  def description; "#{realm.adjective} #{attitude.disorder}"; end
+  SYMBOLS = ALL.map(&:symbol)
+  SYMBOLS.each do |path|
+    define_singleton_method(path) {ALL[SYMBOLS.index(path)]}
+  end
+
+
+  def description; "#{verb} #{adjective} #{noun}"; end
   def name; "#{description.titleize}"; end
 
   ALL.each{|s| define_singleton_method(s.path) {s}}

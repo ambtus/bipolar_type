@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "dcab"; end
+  def self.my_path; "abcd"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -16,7 +16,7 @@ class Type
 
   def subtypes; realms.add(Attitude.all); end
 
-  def symbol; realms.map(&:symbol).join("•"); end
+  def symbol; subtypes.map(&:symbol).join("•"); end
   def inspect; symbol; end
 
   def name; symbol; end

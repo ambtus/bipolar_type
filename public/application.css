@@ -1,0 +1,45 @@
+p { text-align: left; max-width: 62em}
+
+.header {  text-align: center; padding-bottom: 1em; font-size: .8em }
+.footer { text-align: center; font-size: .8em}
+
+.first {color: green; font-weight: bold;}
+.second {color: orange; font-style: italic;}
+.third {color: red; text-decoration: line-through}
+
+.yellow {color: orange;}
+.red {color: red;}
+
+h1 {
+  font-size: 1.3em;
+  font-style: bold;
+  text-align: center;
+}
+h2 {
+  font-size: 1.2em;
+  font-style: bold;
+  text-align: center;
+}
+h3 {
+  font-size: 1.1em;
+  font-style: italic;
+  text-align: center;
+}
+
+a.external:link {text-decoration: none; color: grey;}
+a.external:visited {text-decoration: none; color: grey;}
+a.external:active {text-decoration: none}
+a.external:hover {text-decoration: underline; color: grey;}
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom: 1em;
+}
+td {
+  padding-left: 1em;
+  padding-right: 1em;
+  border: 1px solid grey;
+}

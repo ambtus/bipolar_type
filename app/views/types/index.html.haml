@@ -1,8 +1,0 @@
-- content_for(:title, "The 24 BipolarTypes")
-%p.center=render "header"
--Type.all.each do |type|
-  %p.heading
-    =link_to type_path(type.path) do
-      =type.subtypes.map(&:name).join(", ")
-  -@type=type
-  =render "overview"

@@ -1,13 +1,3 @@
 - content_for(:title, @name)
-%p.center=render "header"
-=render "overview"
-%table
-  %tr
-    %th
-    -@subtypes.each do |subtype|
-      %th.quarter=subtype.name
-  -%w{problem result solution theory oops}.each do |section|
-    %tr
-      %th=section.capitalize
-      -@subtypes.each do |subtype|
-        %td.top.left=render section, subtype: subtype
+-@subtypes.each do |subtype|
+  %h2=subtype.name

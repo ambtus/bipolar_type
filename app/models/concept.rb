@@ -7,15 +7,17 @@ class Concept
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   PATHS.each do |path|
-    define_singleton_method(path) {ALL[PATHS.index(path)]}
+    define_singleton_method(path) {self::ALL[PATHS.index(path)]}
   end
   %w{first second third fourth}.each_with_index do |ordinal, index|
-    define_singleton_method(ordinal) {ALL[index]}
+    define_singleton_method(ordinal) {self::ALL[index]}
   end
   ########
 
   def self.paths; self::SYMBOLS; end
   def self.all; self::ALL; end
+
+  def self.each(&block);self::ALL.each(&block); end
 
   def inspect; @symbol; end
   def symbol; @symbol; end

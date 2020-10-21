@@ -1,9 +1,0 @@
-- content_for(:title, "The Four Realms")
-%table
-  %tr
-    -Realm.all.each do |realm|
-      %th=link_to realm.name, realm_path(realm.path)
-  -%w{ strong thin weak fat }.each do |word|
-    %tr
-      -Realm.all.each do |realm|
-        %td=realm.send(word)

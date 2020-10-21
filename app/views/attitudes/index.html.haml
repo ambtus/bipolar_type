@@ -1,9 +1,0 @@
-- content_for(:title, "The Four Attitudes")
-%table
-  %tr
-    -Attitude.all.each do |attitude|
-      %th=link_to attitude.name, attitude_path(attitude.path)
-  -%w{  }.each do |word|
-    %tr
-      -Attitude.all.each do |attitude|
-        %td=attitude.send(word)

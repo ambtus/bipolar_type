@@ -1,6 +1,6 @@
 # Restart required even in development mode when you modify this file.
 
-%w{sixth multiply add duplicates without remove_consecutive_dupes check_constraints}.each do |meth|
+%w{sixth multiply add duplicates discard remove_consecutive_dupes check_constraints and or to_phrase}.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 
@@ -35,7 +35,7 @@ class Array
     duplicates.delete_if {|k,v| v.size == 1}.keys
   end
 
-  def without(element)
+  def discard(element)
     reject{|x| x == element}
   end
 
@@ -56,4 +56,8 @@ class Array
   end
 
   def sixth; self[5]; end
+
+  def and; to_sentence; end
+  def or; to_sentence(last_word_connector: ", or ", two_words_connector: " or "); end
+  def to_phrase; join(" ").squish; end
 end
