@@ -10,6 +10,8 @@ p { text-align: left; max-width: 62em}
 .yellow {color: orange;}
 .red {color: red;}
 
+.center{text-align: center;}
+
 h1 {
   font-size: 1.3em;
   font-style: bold;
@@ -18,12 +20,10 @@ h1 {
 h2 {
   font-size: 1.2em;
   font-style: bold;
-  text-align: center;
 }
 h3 {
   font-size: 1.1em;
   font-style: italic;
-  text-align: center;
 }
 
 a.external:link {text-decoration: none; color: grey;}
@@ -43,3 +43,5 @@ td {
   padding-right: 1em;
   border: 1px solid grey;
 }
+.half { width: 50% ;}
+.quarter { width: 25% ;}
