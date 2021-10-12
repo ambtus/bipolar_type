@@ -1,21 +1,15 @@
 %table
   %tr
-    %th.narrow
-    %th.third Unbalanced (P)
-    %th.third Unhappy (J)
-  %tr
-    %th Natural Surplus (E)
-    %td
+    %td.top.half
       %h2=link_to_unless controller.controller_name == "answers",  Attitude.ep.name, attitude_path("ep")
       =render "td", attitude: Attitude.ep
-    %td
+    %td.top.half
       %h2=link_to_unless controller.controller_name == "answers",  Attitude.ej.name, attitude_path("ej")
       =render "td", attitude: Attitude.ej
   %tr
-    %th Natural Deficit (I)
-    %td
+    %td.top
       %h2=link_to_unless controller.controller_name == "answers",  Attitude.ip.name, attitude_path("ip")
       =render "td", attitude: Attitude.ip
-    %td
+    %td.top
       %h2=link_to_unless controller.controller_name == "answers",  Attitude.ij.name, attitude_path("ij")
       =render "td", attitude: Attitude.ij

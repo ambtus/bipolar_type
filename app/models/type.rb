@@ -14,7 +14,7 @@ class Type
 
   def symbol; realms.map(&:symbol).join("•"); end
   def inspect; symbol; end
-  def name; subtypes.map(&:name).join("•"); end
+  def name; subtypes.map(&:symbol).join("•"); end
 
   def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
 

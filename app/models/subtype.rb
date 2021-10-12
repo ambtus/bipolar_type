@@ -48,7 +48,10 @@ class Subtype
   def answer_path; Answer.first.next(self); end
 
   def behavior; realm.send(attitude.behavior.words.last); end
-  def bad; realm.send(attitude.bad); end
-  def name; symbol; end
+  def bad; attitude.bad; end
+  def name; [bad, behavior].to_phrase; end
 
+  def description
+    "#{name} (#{attitude.behavior} too #{realm.send(attitude.amount.words.last)} #{realm.energy})"
+  end
 end

@@ -1,99 +1,19 @@
 - content_for(:title, 'The Theory')
-%h2 The Four Attitudes
-%dl
-  -Attitude.each do |attitude|
-    %dt #{attitude.name}
-    %dd
-      #{attitude.beginning} to #{attitude.ending} (around #{attitude.mid})
-      %br
-      #{attitude.behavior}: #{attitude.energy_flow}
-%h2 The Four Realms
-%dl
-  -Realm.each do |realm|
-    %dt #{realm.name}
-    %dd
-      dream: #{realm.dream("you")}
-      %br
-      work: #{realm.work} (#{realm.use} #{realm.reserves} #{realm.on} your #{realm.whole})
-      %br
-      refresh: stop #{realm.work.ing} and #{realm.refresh} (get #{realm.energy})
-      %br
-      play: #{realm.play} (#{realm.use} your #{realm.energy} #{realm.on} other #{realm.nouns})
-      %br
-      sleep: stop #{realm.play.ing} and #{realm.sleep}
-%h2 Bipolar
+%h2 The Bipolar Cycle
 %h3 Depression
-%p BipolarType asserts that depression is when you are working in the wrong realm.
-%p
-  You
-  %em need
-  to achieve goals. Everyone needs to feel productive at times, or life is not worth living.
-%p
-  But you aren’t working in the realm in which you have
-  %em goals you want to achieve.
-%p
-  Your productivity in the morning is wasted effort because you are using stored energy to achieve goals that you either don’t have the
-  %em ability
-  to achieve (acute depression) or don’t
-  %em want
-  to achieve (chronic depression).
-%p
-  Meanwhile the goals you
-  %em do
-  want to achieve are being neglected.
-%p
-  And the more you neglect the goals you
-  %em want
-  to achieve, the less capable you will become; and the less capable you become, the less inclined you are to work in that realm; and the less inclined you are to work in that realm, the more apt you are to work in the
-  %em wrong
-  realm.
+%p BipolarType defines depression as a period of time during which the dominant behaviors are focused on getting energy.
+%p Depression is the first half of the cycle. You cannot use energy, after all, until you have some.
+%p The life cycle begins with depression. An infant soaks up all the energies around them, but cannot use them well or consistently.
 %h3 Mania
-%p BipolarType asserts that mania is when you are playing in the wrong realm.
-%p
-  You
-  %em need
-  to pursue happiness. Everyone needs to feel happy at times, or life is not worth living.
-%p
-  But you aren’t playing in the realm in which you have
-  %em excess fresh energy.
-%p
-  Your pursuit of happiness in the evening is self-destructive because you’re using fresh energy that you either
-  %em need to save
-  (acute mania)
-  or
-  %em don’t like getting
-  (chronic mania).
-%p
-  Meanwhile the excess fresh energy you
-  %em do
-  have is converted to reserves of energy which will not be used in the morning because you don’t have any goals which require that kind of energy.
-%p
-  And the more energy you have
-  %em stored,
-  the less fresh energy you will try to get; and the less fresh energy you have, the less inclined you are to play in that realm; and the less inclined you are to play in that realm, the more apt you are to play in the
-  %em wrong
-  realm.
-%h2 Type
-%p
-  If there is a realm in which your work is extremely important to you, that means two things. First, that there is no
-  %em other
-  realm in which work is quite as important. Second, that there is no other
-  %em behavior
-  in that realm which is quite as important as achieving goals.
-%p
-  If there is a realm in which you can easily obtain fresh energy in excess of the amount you need in order to achieve your goals, that means two things. First, that there is no
-  %em other
-  realm in which energy is quite as abundant. Second, that there is no other
-  %em behavior
-  in that realm which is quite as necessary as pursuing happiness.
-%p
-  BipolarType asserts that your work and play and refresh and dream realms are
-  %em yours.
-%p
-  If you try to work and play in realms that
-  %em other people
-  think you should be working and playing in, you will only end up Manic and/or Depressed.
-%p
-  If you stay true to your
-  %em own
-  type you can stop taking stimulants to force yourself to work in the morning on goals that you can’t or don’t want to achieve (depression) or taking sedatives in the evening to prevent yourself from pursue happiness with energy you can’t or don’t want to get (mania).
+%p BipolarType defines mania as a period of time during which the dominant behaviors are focused on using energy.
+%p Mania is the second half of the cycle. Getting energy creates a restless pressure to use it for something.
+%p The life cycle ends with mania. At some point the individual runs out of energy and dies.
+%h3 Cyclothymia
+%p There are many cycles besides the life cycle. There are yearly solar cycles, monthly lunar cycles, weekly midweek/weekend cycles, and daily sleep/wake cycles. All of these, and others, cycle between getting and using energy and combine to create a modulating cycle of getting and using energy.
+%p Most periods of time are some mixture of getting energy and using energy. But almost any given time has a slight manic or depressed aspect. The intensity and length of the episode determines whether it’s merely a part of the never-ending cycle or something that needs to be addressed.
+%p Prolonged depression (getting energy without using it) is problematic, but rarely fatal. Uncontrolled mania (using energy without getting it) is always fatal if you run out of energy and are unable or unwilling to get more.
+%h2 Individual Type Differences
+%p BipolarType is concerned with four types of energy: #{Realm.all.map(&:energy).and}.
+
+%p Calories and money are both measurable. If someone is gaining or losing fat (caloric reserves) or savings (monetary reserves), it’s measurable.
+%p Information gain and loss is measurable in bytes in a computer, but the amount of memories (informational reserves) in a human brain is not measurable. Self-esteem (affective reserves)

@@ -1,9 +1,23 @@
-Sometimes I feel compelled to:
+%p
+  I
+  -if attitude.compulsive?
+    %em always
+  -else
+    %em cannot
+  -if attitude.intake?
+    get
+  -else
+    use
+  energy when I am
+  -if attitude.insensitive?
+    depressed.
+  -else
+    manic.
 -@realms.each do |realm|
   -subtype = realm + attitude
   %p{:class => @answer.css(subtype)}
     -if @answer.css(subtype) == "free"
       =link_to answer_path(@answer.next(subtype)) do
-        =render "compulsion", subtype: subtype
+        =subtype.description
     -else
       =subtype.name

@@ -25,17 +25,16 @@ class Attitude < Concept
 
 
   def insensitive?; symbol.first == "E"; end
-  def happy?; symbol.last == "P"; end
-  def receptive?; symbol == "EP" || symbol == "IJ"; end
+  def compulsive?; symbol.last == "P"; end
+  def intake?; symbol == "EP" || symbol == "IJ"; end
 
-  def un; happy? ? "unbalanced" : "unhappy"; end
-  def reason; happy? ? "unhappy" : "unbalanced"; end
-  def bad; %w{full exhausted empty overwhelmed}[index]; end
+  def bad; compulsive? ? "over" : "under"; end
+  def amount; compulsive? ? "too much" : "too little"; end
+  def behavior; intake? ? "get" : "use"; end
 
-  def phoria; happy? ? "euphoric" : "dysphoric"; end
+  def phoria; compulsive? ? "compulsive" : "aversive"; end
   def state; insensitive? ? "depression" : "mania"; end
   def description; [phoria, state].to_phrase; end
   def name; description.titleize; end
 
-  def imbalance; insensitive? ? "full" : "empty"; end
 end

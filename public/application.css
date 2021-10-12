@@ -97,7 +97,7 @@ dl {
 dt {
   float: left;
   clear: left;
-  width: 9ch; /* currently the longest word is "Financial" which is 9 characters */
+  width: 21ch; /* currently the longest word is "Compulsive depression" which is 9 characters */
   text-align: right;
   font-weight: bold;
 }
@@ -105,7 +105,7 @@ dt::after {
   content: ":";
 }
 dd {
-  margin: 0 0 0 10ch;  /* 1 more than the width in dt */
+  margin: 0 0 0 22ch;  /* 1 more than the width in dt */
 }
 
 
