@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "snft"; end
+  def self.my_path; "stfn"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)

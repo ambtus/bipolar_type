@@ -3,17 +3,60 @@
 %h3 Depression
 %p BipolarType defines depression as a period of time during which the dominant behaviors are focused on getting energy.
 %p Depression is the first half of the cycle. You cannot use energy, after all, until you have some.
-%p The life cycle begins with depression. An infant soaks up all the energies around them, but cannot use them well or consistently.
 %h3 Mania
 %p BipolarType defines mania as a period of time during which the dominant behaviors are focused on using energy.
-%p Mania is the second half of the cycle. Getting energy creates a restless pressure to use it for something.
-%p The life cycle ends with mania. At some point the individual runs out of energy and dies.
-%h3 Cyclothymia
-%p There are many cycles besides the life cycle. There are yearly solar cycles, monthly lunar cycles, weekly midweek/weekend cycles, and daily sleep/wake cycles. All of these, and others, cycle between getting and using energy and combine to create a modulating cycle of getting and using energy.
-%p Most periods of time are some mixture of getting energy and using energy. But almost any given time has a slight manic or depressed aspect. The intensity and length of the episode determines whether it’s merely a part of the never-ending cycle or something that needs to be addressed.
-%p Prolonged depression (getting energy without using it) is problematic, but rarely fatal. Uncontrolled mania (using energy without getting it) is always fatal if you run out of energy and are unable or unwilling to get more.
-%h2 Individual Type Differences
-%p BipolarType is concerned with four types of energy: #{Realm.all.map(&:energy).and}.
-
-%p Calories and money are both measurable. If someone is gaining or losing fat (caloric reserves) or savings (monetary reserves), it’s measurable.
-%p Information gain and loss is measurable in bytes in a computer, but the amount of memories (informational reserves) in a human brain is not measurable. Self-esteem (affective reserves)
+%p Mania is the second half of the cycle. Having energy creates an energetic feeling encouraging you to use it.
+%h2 Individual Differences
+%p
+  BipolarType is concerned with four types of energy:
+  %ul
+    -Realm.each do |realm|
+      %li The #{realm.adjective} realm gets and uses #{realm.energy}
+%p
+  All people who are bipolar go through the Manic-Depressive cycle. But they don’t all exhibit the same symptoms. Which are normal behaviors and which are bipolar
+  %em symptoms
+  depends on which of the eight behaviors are intrinsic to their personality.
+%p
+  %table
+    %tr
+      %th
+      %th Get Energy
+      %th Use Energy
+    -Realm.each do |realm|
+      %tr
+        %th=realm.energy
+        %td=realm.get
+        %td=realm.use
+%p
+  Some people define themselves as Depressed when they keep #{Realm.s.intake.ing} and #{Realm.s.intake.ing} but can’t #{Realm.s.output}. But they don’t consider themselves
+  %em manic
+  when they #{Realm.s.intake} less and #{Realm.s.work} more. That’s normal, or “good” behavior.
+%p
+  Other people define themselves as Manic when they keep #{Realm.s.play.ing} and #{Realm.s.play.ing} but can’t #{Realm.s.intake}. But they don’t consider themselves
+  %em depressed
+  when they #{Realm.s.output} less and #{Realm.s.intake} more. That’s normal, or “good” behavior.
+%h2 BipolarType
+%p
+  The BipolarType theory says it’s the symptoms that you
+  %em don’t
+  notice that are the problem.
+%p If you are out of #{Realm.s.energy} but you just keep forcing yourself to continue to #{Realm.s.output} without #{Realm.s.intake.ing}, you’ll lose #{Realm.s.reserves} but the depression won’t lift.
+%p If you are full of #{Realm.s.energy} but you just keep forcing yourself to continue to #{Realm.s.intake} without #{Realm.s.output.ing}, you’ll gain #{Realm.s.reserves}, but the mania won’t end.
+%p So if you don’t have the symptoms (because you are overcompensating), how can you know which realm needs more energy when you’re depressed, and which needs less when you’re manic.
+%p BipolarType uses a process of elimination.
+%p
+  If you notice that you are getting too much energy when you’re depressed, you can be sure that that is
+  %em not
+  the reason you are depressed. Similarly, if notice that you are using too much energy when you’re manic, you can be sure that that’s not the reason you are manic.
+%p
+  So if you eliminate the three realms in which you
+  %em notice
+  you are depressed, that means the one left over is the
+  %em cause
+  of your depression.
+%p
+  Similarly if you eliminate the three realms in which you
+  %em notice
+  you are manic, that means the one left over is the
+  %em cause
+  of your mania.

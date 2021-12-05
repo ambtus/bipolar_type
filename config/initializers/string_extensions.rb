@@ -28,6 +28,9 @@ class String
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.s, second].join(" ")
+    elsif self.match("/")
+      first, second = self.split('/', 2)
+      [first.s, second.s].join("/")
     else
       self.sub(/e?y$/, "ie") + "s"
     end

@@ -1,4 +1,4 @@
 -subtype = @type.send(attitude.symbol) if @type
 -subtype = @realm + attitude if @realm
-%h3=link_to subtype.name, subtype_path(subtype.path)
+%h3=link_to subtype.description, subtype_path(subtype.path)
 =render attitude.path, realm: subtype.realm

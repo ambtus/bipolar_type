@@ -1,6 +1,6 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{EP EJ IP IJ}
+  SYMBOLS = %w{UL UR LL LR}
 
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
@@ -24,17 +24,15 @@ class Attitude < Concept
   def subsequent; ALL[(index + 1).modulo(4)]; end
 
 
-  def insensitive?; symbol.first == "E"; end
-  def compulsive?; symbol.last == "P"; end
-  def intake?; symbol == "EP" || symbol == "IJ"; end
+  def upper?; symbol.first == "U"; end
+  def left?; symbol.last == "L"; end
+  def diagonal?; symbol == "UL" || symbol == "LR"; end
 
-  def bad; compulsive? ? "over" : "under"; end
-  def amount; compulsive? ? "too much" : "too little"; end
-  def behavior; intake? ? "get" : "use"; end
 
-  def phoria; compulsive? ? "compulsive" : "aversive"; end
-  def state; insensitive? ? "depression" : "mania"; end
-  def description; [phoria, state].to_phrase; end
+
+  def causality; upper? ? "effect" : "cause"; end
+  def episode; left? ? "depression" : "mania"; end
+  def description; [episode, causality].to_phrase; end
   def name; description.titleize; end
 
 end

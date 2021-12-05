@@ -47,11 +47,17 @@ class Subtype
 
   def answer_path; Answer.first.next(self); end
 
-  def behavior; realm.send(attitude.behavior.words.last); end
-  def bad; attitude.bad; end
-  def name; [bad, behavior].to_phrase; end
 
   def description
-    "#{name} (#{attitude.behavior} too #{realm.send(attitude.amount.words.last)} #{realm.energy})"
+    case attitude.path
+    when "ul"
+      "often #{realm.intake} too much, sometimes #{realm.play} a lot"
+    when "ll"
+      "sometimes #{realm.play} a lot, never #{realm.attend} too much"
+    when "ur"
+      "often #{realm.work} too much, sometimes #{realm.intake} a lot"
+    when "lr"
+      "sometimes #{realm.attend} a lot, never #{realm.work} too much"
+    end
   end
 end

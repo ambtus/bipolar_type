@@ -1,18 +1,13 @@
 %p
-  I
-  -if attitude.compulsive?
-    %em always
-  -else
-    %em cannot
-  -if attitude.intake?
-    get
-  -else
-    use
-  energy when I am
-  -if attitude.insensitive?
-    depressed.
-  -else
-    manic.
+  -case attitude.path
+  -when "ul"
+    Severe depression and mild mania
+  -when "ll"
+    Mild mania and no depression
+  -when "ur"
+    Severe mania and mild depression
+  -when "lr"
+    Mild depression and no mania
 -@realms.each do |realm|
   -subtype = realm + attitude
   %p{:class => @answer.css(subtype)}

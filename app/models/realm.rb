@@ -15,37 +15,26 @@ class Realm < Concept
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
+  def appears; %w{smells looks sounds feels}[index]; end
 
-  def intake1; %w{eat watch listen work}[index]; end
-  def intake2; %w{drink learn understand sell}[index]; end
-  def get; [intake1, intake2].join("/"); end
+  def notice; %w{smell see hear touch}[index]; end
+  def attend; %w{taste watch listen take}[index]; end
+  def intake; %w{eat learn understand collect}[index]; end
+  def get; [notice, attend, intake].join("/"); end
 
-  def output1; %w{walk think laugh buy}[index]; end
-  def output2; %w{move imagine cry rent}[index]; end
-  def use; [output1, output2].join("/"); end
+  def output; %w{move imagine care pay}[index]; end
+  def play; %w{walk predict talk buy}[index]; end
+  def work; %w{labor plan write own}[index]; end
+  def use; [output, play, work].join("/"); end
 
-  def energy; %w{calories information love money}[index]; end
-  def much; energy.much; end
-  def little; energy.little; end
+  def energy; %w{glucose facts emotions money}[index]; end
 
   def adjective; %w{physical mental social financial}[index]; end
-  def name; energy.capitalize; end
+  def name; adjective.capitalize; end
 
-  def reserves; %w{fat memories ?? savings}[index]; end
+  def reserves; %w{fat knowledge ego savings}[index]; end
+  def much; reserves.much; end
+  def little; reserves.little; end
 
-  def hit; %w{go plan evaluate have}[index]; end
-  def target; %w{place events person things}[index]; end
-  def targets; target.pluralize; end
-  def use_energy; [hit, targets].to_phrase; end
-
-  def seek; %w{taste see hear use}[index]; end
-  def resource; %w{food result opinion tool}[index]; end
-  def resources; resource.pluralize; end
-  def get_energy; [seek, resources].to_phrase; end
-
-  def empty; %w{anorexic ignorant suicidal poor}[index]; end
-  def full; %w{obese trivial homicidal rich}[index]; end
-  def overwhelmed; %w{sick afraid ashamed angry}[index]; end
-  def exhausted; %w{sore stupid incoherent indebted}[index]; end
 
 end
