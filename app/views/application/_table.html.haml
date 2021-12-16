@@ -1,15 +1,11 @@
 %table
   %tr
     %td.top.half
-      %h2=link_to_unless controller.controller_name == "answers",  Attitude.ul.name, attitude_path("ul")
       =render "td", attitude: Attitude.ul
     %td.top.half
-      %h2=link_to_unless controller.controller_name == "answers",  Attitude.ur.name, attitude_path("ur")
       =render "td", attitude: Attitude.ur
   %tr
     %td.top
-      %h2=link_to_unless controller.controller_name == "answers",  Attitude.ll.name, attitude_path("ll")
       =render "td", attitude: Attitude.ll
     %td.top
-      %h2=link_to_unless controller.controller_name == "answers",  Attitude.lr.name, attitude_path("lt")
       =render "td", attitude: Attitude.lr

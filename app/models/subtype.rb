@@ -34,6 +34,8 @@ class Subtype
   def path; symbol.downcase; end
   def inspect; symbol; end
 
+  def name; [@realm.name.ly, @attitude.name].to_phrase; end
+
 
   ALL.each{|s| define_singleton_method(s.path) {s}}
   def self.paths; ALL.map(&:path); end
@@ -47,17 +49,4 @@ class Subtype
 
   def answer_path; Answer.first.next(self); end
 
-
-  def description
-    case attitude.path
-    when "ul"
-      "often #{realm.intake} too much, sometimes #{realm.play} a lot"
-    when "ll"
-      "sometimes #{realm.play} a lot, never #{realm.attend} too much"
-    when "ur"
-      "often #{realm.work} too much, sometimes #{realm.intake} a lot"
-    when "lr"
-      "sometimes #{realm.attend} a lot, never #{realm.work} too much"
-    end
-  end
 end

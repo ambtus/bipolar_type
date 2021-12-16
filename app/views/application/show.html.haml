@@ -1,2 +1,4 @@
 - content_for(:title, @name)
+-if @type
+  %p=render "type", type: @type
 =render "table"

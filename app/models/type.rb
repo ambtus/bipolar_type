@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "stfn"; end
+  def self.my_path; "fstn"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -12,9 +12,9 @@ class Type
 
   def subtypes; realms.add(Attitude.all); end
 
-  def symbol; realms.map(&:symbol).join("•"); end
+  def symbol; "#{realms.first.symbol}#{realms.second.symbol}P•#{realms.fourth.symbol}#{realms.third.symbol}J"; end
   def inspect; symbol; end
-  def name; subtypes.map(&:symbol).join("•"); end
+  def name; symbol; end
 
   def self.all;Realm::PATHS.permutation(4).map(&:join).collect{|p| new(p)};end
 

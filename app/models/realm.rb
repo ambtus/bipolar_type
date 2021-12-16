@@ -22,10 +22,13 @@ class Realm < Concept
   def intake; %w{eat learn understand collect}[index]; end
   def get; [notice, attend, intake].join("/"); end
 
-  def output; %w{move imagine care pay}[index]; end
-  def play; %w{walk predict talk buy}[index]; end
-  def work; %w{labor plan write own}[index]; end
-  def use; [output, play, work].join("/"); end
+  def output; %w{move imagine care spend}[index]; end
+  def play; %w{walk predict talk rent}[index]; end
+  def achieve; %w{go plan tell buy}[index]; end
+  def goals; %w{places events people things}[index]; end
+  def work; [achieve, goals].to_phrase; end
+  def outs; [output, play, work]; end
+  def outings; outs.map(&:ing); end
 
   def energy; %w{glucose facts emotions money}[index]; end
 

@@ -1,5 +1,5 @@
 - content_for(:title, "The 24 BipolarTypes")
-%ul
+%dl
   -Type.all.each do |type|
-    %li=link_to type.subtypes.map(&:name).join(", "), type_path(type.path), :class => "answer"
-
+    %dt=link_to type.name, type_path(type.path), :class => "answer"
+    %dd=render "type", type: type

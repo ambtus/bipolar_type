@@ -2,7 +2,4 @@
 %table
   %tr
     -Realm.each do |realm|
-      %th=link_to realm.name, realm_path(realm.path)
-  %tr
-    -Realm.each do |realm|
       %td=render "td", subtype: realm + @attitude

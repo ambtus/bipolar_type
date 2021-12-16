@@ -1,18 +1,8 @@
-%p
-  -case attitude.path
-  -when "ul"
-    Severe depression and mild mania
-  -when "ll"
-    Mild mania and no depression
-  -when "ur"
-    Severe mania and mild depression
-  -when "lr"
-    Mild depression and no mania
 -@realms.each do |realm|
   -subtype = realm + attitude
   %p{:class => @answer.css(subtype)}
     -if @answer.css(subtype) == "free"
-      =link_to answer_path(@answer.next(subtype)) do
-        =subtype.description
+      =link_to subtype.name, answer_path(@answer.next(subtype))
+      =render attitude.path, realm: realm
     -else
       =subtype.name
