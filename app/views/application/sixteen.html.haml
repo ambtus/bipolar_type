@@ -1,78 +1,36 @@
 - content_for(:title, 'The Sixteen Behaviors')
 %table
-  %thead
-    %tr
-      %th
-      %th.quarter Financial (money)
-      %th.quarter Mental (information)
-      %th.quarter Physical (calories)
-      %th.quarter Social (affect)
-  %tbody
-    %tr
-      %th{:rowspan => "2"} Energy
-      %td
-        %h2 Collect Wages
-        %p Earned income. Winnings. Prizes. Rewards.
-      %td
-        %h2 Zoom In
-        %p Foreground. Colors. Features. Movement. Details.
-      %td
-        %h2 Eat Carbs
-        %p Sweets. Grains. Starches. Fruits. Vegetables. Sports drink.
-      %td
-        %h2 Listen to Music
-        %p Harmony. Agreement. Shared sympathies. Universal human emotions.
-    %tr
-      %td
-        %h2 Pay with Cash
-        %p Checking. Savings. Debit. Coins.
-      %td
-        %h2 Use Intuition
-        %p Use knowledge. Spatial evidence. Inference.
-      %td
-        %h2 Walk Long Distances
-        %p Aerobics. Marathons. Triathalons. Cross-country skiing.
-      %td
-        %h2 Use Intonation
-        %p Express emotion. Scream and shout. Laugh and cry. Sing.
-    %tr
-      %th{:rowspan => "2"} Strength
-      %td
-        %h2 Collect Investment Income
-        %p Interest. Dividends. Rent. Annuities.
-      %td
-        %h2 Zoom Out
-        %p Background. Outlines. Peripherals. Landmarks. Patterns.
-      %td
-        %h2 Eat Protein
-        %p Savories. Meats. Poultry. Nuts. Cheese. Protein shakes.
-      %td
-        %h2 Listen to Opinions
-        %p Priorities. Arguments. Debate. Dissonant points of view.
-    %tr
-      %td
-        %h2 Pay with Credit
-        %p Loans. Mortgages. Leases. Installments.
-      %td
-        %h2 Use Logic
-        %p Use Rules. Linear Reasoning. Deduction.
-      %td
-        %h2 Lift Heavy Weights
-        %p Anerobics. Boxing. Wrestling. Rowing.
-      %td
-        %h2 Use Words
-        %p Write. Lecture. Preach. Teach. Tell stories.
-  %tfoot
-    %tr
-      %th
-      %td{:colspan => "4"}
-        %p
-          affect: used in communication to express or understand what someone
-          %em feels
-          about something (as opposed to what they
-          %em know
-          about it)
-        %p
-          I have done the best I can to verbalize what I
-          %em know
-          about the sixteen behaviors, but I apologize in advance for any personal feelings which have resulted in pejorative word choices.
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th.quarter
+        #{realm.name}
+        (#{realm.notice})
+  %tr
+    %th Get Energy
+    -Realm.each do |realm|
+      %td.p
+        #{realm.get} #{realm.resources}
+        %br
+        (to get #{realm.energy})
+  %tr
+    %th Use Energy
+    -Realm.each do |realm|
+      %td.p
+        use #{realm.energy}
+        %br
+        (to #{realm.pursue} #{realm.nouns})
+  %tr
+    %th Get Resources
+    -Realm.each do |realm|
+      %td.p
+        #{realm.pursue} #{realm.nouns}
+        %br
+        (to get #{realm.resources})
+  %tr
+    %th Use Resources
+    -Realm.each do |realm|
+      %td.p
+        #{realm.process} #{realm.resources}
+        %br
+        (to make them #{realm.gettable})
