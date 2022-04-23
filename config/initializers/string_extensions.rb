@@ -25,6 +25,7 @@ class String
 
   def s
     return "relaxes" if self=="relax"
+    return "goes" if self=="go"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.s, second].join(" ")
@@ -32,7 +33,7 @@ class String
       first, second = self.split('/', 2)
       [first.s, second.s].join("/")
     else
-      self.sub(/e?y$/, "ie") + "s"
+      self.sub(/ey$/, "ie").sub(/ch$/, "che") + "s"
     end
   end
   def ed
@@ -70,6 +71,8 @@ class String
   end
 
   def en
+    return "fed" if self=="feed"
+    return "shown" if self=="show"
     return "sung" if self=="sing"
     return "eaten" if self=="eat"
     return "forgotten" if self=="forget"
@@ -150,6 +153,14 @@ class String
       "#{self} a lot"
     end
   end
+  def more
+    if self.match(" ")
+      first, second = self.split(' ', 2)
+      [first.more, second].join(" ")
+    else
+      "#{self} more"
+    end
+  end
   def a_few
     if self.match(" ")
       first, second = self.split(' ', 2)
@@ -188,7 +199,6 @@ class String
   alias few :little
   def fewer; plural? ? "fewer" : "less"; end
   alias less :fewer
-  def more; "more"; end
   def much; plural? ? "many" : "much"; end
   alias many :much
   def that; plural? ? "those" : "that"; end

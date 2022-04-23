@@ -1,7 +1,5 @@
 -subtype = @type.send(attitude.symbol) if @type
 -subtype = @realm + attitude if @realm
 -subtype = subtype if subtype
-%h3
-  =link_to subtype.realm.name.ly, realm_path(subtype.realm.path)
-  =link_to subtype.attitude.name, attitude_path(subtype.attitude.path)
-=render subtype.attitude.path, realm: subtype.realm
+%h3=link_to subtype.mbti, subtype_path(subtype.path)
+%p.heading=render subtype.attitude.path, realm: subtype.realm

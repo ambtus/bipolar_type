@@ -34,7 +34,10 @@ class Subtype
   def path; symbol.downcase; end
   def inspect; symbol; end
 
-  def name; [@realm.name.ly, @attitude.name].to_phrase; end
+  def description; [@attitude.adjective, @realm.adjective, @attitude.noun].to_phrase; end
+  def name; description.titleize; end
+
+  def mbti; [@attitude.mbti_first, @realm.mbti, @attitude.mbti_second].join; end
 
 
   ALL.each{|s| define_singleton_method(s.path) {s}}

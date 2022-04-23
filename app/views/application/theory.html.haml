@@ -1,62 +1,56 @@
 - content_for(:title, 'The Theory')
-%h2 The Bipolar Cycle
-%h3 Depression
-%p BipolarType defines depression as a period of time during which the dominant behaviors are focused on getting energy.
-%p Depression is the first half of the cycle. You cannot use energy, after all, until you have some.
-%h3 Mania
-%p BipolarType defines mania as a period of time during which the dominant behaviors are focused on using energy.
-%p Mania is the second half of the cycle. Having energy creates an energetic feeling encouraging you to use it.
-%h2 Individual Differences
-%p
-  BipolarType is concerned with four types of energy:
-  %ul
-    -Realm.each do |realm|
-      %li The #{realm.adjective} realm gets and uses #{realm.energy}
-%p
-  All people who are bipolar go through the Manic-Depressive cycle. But they don’t all exhibit the same symptoms. Which are normal behaviors and which are bipolar
-  %em symptoms
-  depends on which of the eight behaviors are intrinsic to their personality.
-%p
+%p There are four realms and four attitudes. Realms are  associated with a specific type of energy and Attitudes are associated with a specific type of bipolar episode.
+-Realm.all.each_with_index do |realm, external|
+  %h2{id: realm.adjective}
+    -Realm.all.each_with_index do |realm, internal|
+      -if realm.index == external
+        =realm.name
+      -else
+        =link_to realm.name, anchor: realm.adjective
+      -if internal != 3
+        ="|"
+  %p.center
+    Get and use
+    %em=realm.energy
+    (#{realm.get} & #{realm.use})
+  %p Normally, you #{realm.attend} and #{realm.get} until you feel full, and then #{realm.use} and #{realm.work} until you feel empty, and then #{realm.get} again, and #{realm.use} again, and #{realm.get} again in a never-ending cycle. The amount of #{realm.energy} stored in your #{realm.reserves} as #{realm.potential} fluctuates over time, but does not increase or decrease outside of normal limits.
+
   %table
     %tr
-      %th
-      %th Get Energy
-      %th Use Energy
-    -Realm.each do |realm|
-      %tr
-        %th=realm.energy
-        %td=realm.get
-        %td=realm.use
-%p
-  Some people define themselves as Depressed when they keep #{Realm.s.intake.ing} and #{Realm.s.intake.ing} but can’t #{Realm.s.output}. But they don’t consider themselves
-  %em manic
-  when they #{Realm.s.intake} less and #{Realm.s.work} more. That’s normal, or “good” behavior.
-%p
-  Other people define themselves as Manic when they keep #{Realm.s.play.ing} and #{Realm.s.play.ing} but can’t #{Realm.s.intake}. But they don’t consider themselves
-  %em depressed
-  when they #{Realm.s.output} less and #{Realm.s.intake} more. That’s normal, or “good” behavior.
-%h2 BipolarType
-%p
-  The BipolarType theory says it’s the symptoms that you
-  %em don’t
-  notice that are the problem.
-%p If you are out of #{Realm.s.energy} but you just keep forcing yourself to continue to #{Realm.s.output} without #{Realm.s.intake.ing}, you’ll lose #{Realm.s.reserves} but the depression won’t lift.
-%p If you are full of #{Realm.s.energy} but you just keep forcing yourself to continue to #{Realm.s.intake} without #{Realm.s.output.ing}, you’ll gain #{Realm.s.reserves}, but the mania won’t end.
-%p So if you don’t have the symptoms (because you are overcompensating), how can you know which realm needs more energy when you’re depressed, and which needs less when you’re manic.
-%p BipolarType uses a process of elimination.
-%p
-  If you notice that you are getting too much energy when you’re depressed, you can be sure that that is
-  %em not
-  the reason you are depressed. Similarly, if notice that you are using too much energy when you’re manic, you can be sure that that’s not the reason you are manic.
-%p
-  So if you eliminate the three realms in which you
-  %em notice
-  you are depressed, that means the one left over is the
-  %em cause
-  of your depression.
-%p
-  Similarly if you eliminate the three realms in which you
-  %em notice
-  you are manic, that means the one left over is the
-  %em cause
-  of your mania.
+      %th.third
+      %td.third
+        Like to #{realm.get}
+        %p I #{realm.use} because I have excess energy (not because I want to #{realm.change} some#{realm.thing}); I #{realm.get} because I like the #{realm.resources} (not because I am #{realm.empty}); and I feel happier after I’ve #{realm.get.en}.
+
+
+      %td
+        Like to #{realm.work}
+        %p I #{realm.get} because I am #{realm.empty} (not because I like the #{realm.resources}); I #{realm.use} because I want to #{realm.change} some#{realm.thing} (not because I feel compelled to #{realm.stress}); and I feel better after I’ve #{realm.change.en}.
+
+
+    %tr
+      %td
+        #{realm.adjective.capitalize} Depression
+        %p The amount of #{realm.potential} in your #{realm.reserves} increases to the point where it is #{realm.adverb} unhealthy.
+
+      %td
+        =link_to "Chronic #{realm.adjective.capitalize}  Depression",subtype_path("u#{realm.path}r")
+        %p I feel guilty for not #{realm.change.ing} all the #{realm.things} I should be #{realm.change.ing}, and for #{realm.get.ing} more #{realm.resources} than I should be #{realm.get.ing}. I’m a bad person.
+
+      %td
+        =link_to "Acute #{realm.adjective.capitalize} Depression", subtype_path("u#{realm.path}l")
+        %p
+          I’m still #{realm.change.ing} every#{realm.thing} I should #{realm.change} and I only #{realm.get} when I am #{realm.empty}. I’m clearly not #{realm.use.ing} enough, but I don’t really know why.
+
+    %tr
+      %td
+        #{realm.adjective.capitalize} Mania
+        %p The amount of  #{realm.potential} in your #{realm.reserves} decreases to the point where it is #{realm.adverb} dangerous.
+
+      %td
+        =link_to "Acute #{realm.adjective.capitalize} Mania", subtype_path("l#{realm.path}l")
+        %p
+
+      %td
+        =link_to "Chronic #{realm.adjective.capitalize}  Mania",subtype_path("l#{realm.path}r")
+        %p

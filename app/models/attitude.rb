@@ -23,7 +23,11 @@ class Attitude < Concept
   def left?; symbol.last == "L"; end
   def diagonal?; symbol == "UL" || symbol == "LR"; end
 
-  def adjective; %w{depressed energetic relaxed  manic}[index]; end
-  def name; adjective.capitalize; end
+  def length; upper? ? "chronic" : "acute"; end
+  def noun; left? ? "depression" : "mania"; end
+  def adjective; [length, noun].to_phrase; end
+  def name; adjective.titleize; end
 
+  def mbti_first; upper? ? "E" : "I"; end
+  def mbti_second; left? ? "P" : "J"; end
 end

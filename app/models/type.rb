@@ -12,7 +12,7 @@ class Type
 
   def subtypes; realms.add(Attitude.all); end
 
-  def symbol; "#{realms.first.symbol}#{realms.second.symbol}P•#{realms.fourth.symbol}#{realms.third.symbol}J"; end
+  def symbol; subtypes.map(&:mbti).join("•"); end
   def inspect; symbol; end
   def name; symbol; end
 
