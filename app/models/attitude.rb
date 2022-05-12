@@ -1,6 +1,6 @@
 class Attitude < Concept
 
-  SYMBOLS = %w{LL UL UR LR}
+  SYMBOLS = %w{UL UR LL LR}
 
   ########
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
@@ -23,11 +23,11 @@ class Attitude < Concept
   def left?; symbol.last == "L"; end
   def diagonal?; symbol == "UL" || symbol == "LR"; end
 
-  def length; upper? ? "chronic" : "acute"; end
-  def noun; left? ? "depression" : "mania"; end
-  def adjective; [length, noun].to_phrase; end
-  def name; adjective.titleize; end
+  def now_or_later; left? ? "now" : "later"; end
+  def get_or_use; diagonal? ? "use" : "get"; end
+  def phrase; [get_or_use, "Energy", now_or_later].to_phrase; end
+  def name; phrase.titleize; end
 
   def mbti_first; upper? ? "E" : "I"; end
-  def mbti_second; left? ? "P" : "J"; end
+  def mbti_second; diagonal? ? "J" : "P"; end
 end

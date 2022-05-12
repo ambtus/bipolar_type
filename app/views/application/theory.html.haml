@@ -1,5 +1,7 @@
 - content_for(:title, 'The Theory')
-%p There are four realms and four attitudes. Realms are  associated with a specific type of energy and Attitudes are associated with a specific type of bipolar episode.
+%p There are four realms, each associated with a different kind of energy.
+%p Everyone has to both get and use energy, but not everyone does it at the same time. This is because many behaviors are transactional: I get energy by taking it from someone, and then use energy by giving it to someone else. This means we can’t all be getting and using energy at the same time.
+
 -Realm.all.each_with_index do |realm, external|
   %h2{id: realm.adjective}
     -Realm.all.each_with_index do |realm, internal|
@@ -13,44 +15,20 @@
     Get and use
     %em=realm.energy
     (#{realm.get} & #{realm.use})
-  %p Normally, you #{realm.attend} and #{realm.get} until you feel full, and then #{realm.use} and #{realm.work} until you feel empty, and then #{realm.get} again, and #{realm.use} again, and #{realm.get} again in a never-ending cycle. The amount of #{realm.energy} stored in your #{realm.reserves} as #{realm.potential} fluctuates over time, but does not increase or decrease outside of normal limits.
+  %p You #{realm.get} until you feel #{realm.adverb} restless, and then #{realm.use} until you feel #{realm.adverb} tired, and then #{realm.get} again, #{realm.use} again, and #{realm.get} again in a never-ending cycle of #{realm.adjective} intake and output.
+  %p Some people #{realm.get} and then #{realm.use}, whereas others #{realm.use} and then #{realm.get}. This allows some people to #{realm.get} while others are #{realm.use.ing}. Your type is nurtured into you as a child and is the opposite of your primary #{realm.adjective} caretaker (but the same as their primary caretaker). 
 
   %table
     %tr
-      %th.third
-      %td.third
-        Like to #{realm.get}
-        %p I #{realm.use} because I have excess energy (not because I want to #{realm.change} some#{realm.thing}); I #{realm.get} because I like the #{realm.resources} (not because I am #{realm.empty}); and I feel happier after I’ve #{realm.get.en}.
-
-
-      %td
-        Like to #{realm.work}
-        %p I #{realm.get} because I am #{realm.empty} (not because I like the #{realm.resources}); I #{realm.use} because I want to #{realm.change} some#{realm.thing} (not because I feel compelled to #{realm.stress}); and I feel better after I’ve #{realm.change.en}.
-
-
+      %th
+      %th Get energy (#{realm.get})
+      %th Use energy (#{realm.use})
     %tr
-      %td
-        #{realm.adjective.capitalize} Depression
-        %p The amount of #{realm.potential} in your #{realm.reserves} increases to the point where it is #{realm.adverb} unhealthy.
-
-      %td
-        =link_to "Chronic #{realm.adjective.capitalize}  Depression",subtype_path("u#{realm.path}r")
-        %p I feel guilty for not #{realm.change.ing} all the #{realm.things} I should be #{realm.change.ing}, and for #{realm.get.ing} more #{realm.resources} than I should be #{realm.get.ing}. I’m a bad person.
-
-      %td
-        =link_to "Acute #{realm.adjective.capitalize} Depression", subtype_path("u#{realm.path}l")
-        %p
-          I’m still #{realm.change.ing} every#{realm.thing} I should #{realm.change} and I only #{realm.get} when I am #{realm.empty}. I’m clearly not #{realm.use.ing} enough, but I don’t really know why.
-
+      %th Now
+      %td.top=render "td", subtype: realm + Attitude.ul
+      %td.top=render "td", subtype: realm + Attitude.ur
     %tr
-      %td
-        #{realm.adjective.capitalize} Mania
-        %p The amount of  #{realm.potential} in your #{realm.reserves} decreases to the point where it is #{realm.adverb} dangerous.
+      %th Later
+      %td.top=render "td", subtype: realm + Attitude.ll
+      %td.top=render "td", subtype: realm + Attitude.lr
 
-      %td
-        =link_to "Acute #{realm.adjective.capitalize} Mania", subtype_path("l#{realm.path}l")
-        %p
-
-      %td
-        =link_to "Chronic #{realm.adjective.capitalize}  Mania",subtype_path("l#{realm.path}r")
-        %p

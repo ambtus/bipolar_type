@@ -17,35 +17,41 @@ class Realm < Concept
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
 
-
-  def attend; %w{drink watch listen take}[index]; end
-  def get; %w{eat learn care sell}[index]; end
-  def resources; %w{foods lessons voices tools}[index]; end
-  def appear; %w{tastes look sound feel}[index]; end
-
-  def stimulants; %w{carbs exceptions music rewards}[index]; end
-  def strengtheners; %w{protein rules words investment\ income}[index]; end
-
-  def use; %w{walk think talk buy}[index]; end
-  def change; %w{go plan tell build}[index]; end
-  def things; %w{places events people things}[index]; end
-  def thing; %w{where thing one thing}[index]; end
-  def work; [change, things].to_phrase; end
-
-  def play; %w{dance daydream sing splurge}[index]; end
-  def stress; %w{pace worry cry shop}[index]; end
-
-  def empty; %w{hungry unsure lonely overdrawn}[index]; end
-
   def energy; %w{calories facts love money}[index]; end
-  def name; energy.capitalize; end
 
-  def adjective; %w{physical mental social financial}[index]; end
+  def adjective; %w{physical mental social material}[index]; end
   def adverb; adjective.ly; end
+  def name; adjective.capitalize; end
 
-  def potential; %w{fat knowledge love savings}[index]; end
-  def reserves; %w{body head heart bank}[index]; end
+  def given; %w{fed shown told ??}[index]; end
+  def resources; %w{food information stories ??}[index]; end
 
-  def bad; %w{sick afraid suicidal angry}[index]; end
+  def get; %w{eat watch listen sell}[index]; end
+  def get_preposition; [nil, "the", "to", nil][index]; end
+  def get_verb; [get, get_preposition].to_phrase; end
 
+  def now_targets; %w{breakfast actions encouragement goods}[index]; end
+  def get_now; [get, get_preposition, now_targets].to_phrase; end
+
+  def later_targets; %w{dinner results praise services}[index]; end
+  def get_later; [get, get_preposition, later_targets].to_phrase; end
+
+
+  def use; %w{move think talk buy}[index]; end
+
+  def taken; %w{led given asked sold}[index]; end
+  def nouns; %w{places problems questions things}[index]; end
+  def thing; %w{where thing one thing}[index]; end
+
+  def use_verb; %w{go decide ask buy}[index]; end
+  def use_preposition; [nil, "how to", nil, nil][index]; end
+
+  def now_goals; %w{out start permission goods}[index]; end
+  def use_now; [use_verb, use_preposition, now_goals].to_phrase; end
+
+  def later_goals; %w{home finish forgiveness services}[index]; end
+  def use_later; [use_verb, use_preposition, later_goals].to_phrase; end
+
+  def get_and_use_now; [get_now, use_now].and; end
+  def get_and_use_later; [use_later, get_later].and; end
 end

@@ -18,7 +18,9 @@ p { text-align: left; max-width: 62em}
 .half { width: 50% }
 .wide { width: 80% }
 .full { width: 96% }
-.narrow { padding: 0; width: 4%; hyphens: auto; }
+.narrow { padding: 0;
+width: 10ch; /* currently the longest word is "(abundant" which is 9 characters */
+hyphens: auto; }
 
 .heading {font-style: italic; text-align: center; }
 .center { text-align: center; }

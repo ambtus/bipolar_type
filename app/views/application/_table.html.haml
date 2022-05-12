@@ -1,10 +1,16 @@
 %table
   %tr
-    %td.top.half
+    %th.narrow
+    %th Now
+    %th Later
+  %tr
+    %th Surplus (abundant energy)
+    %td.top
       =render "td", attitude: Attitude.ul
-    %td.top.half
+    %td.top
       =render "td", attitude: Attitude.ur
   %tr
+    %th Deficit (scarce energy)
     %td.top
       =render "td", attitude: Attitude.ll
     %td.top

@@ -34,7 +34,9 @@ class Subtype
   def path; symbol.downcase; end
   def inspect; symbol; end
 
-  def description; [@attitude.adjective, @realm.adjective, @attitude.noun].to_phrase; end
+  def get_or_use; @realm.send(@attitude.get_or_use); end
+
+  def description; [get_or_use, now_or_later].to_phrase; end
   def name; description.titleize; end
 
   def mbti; [@attitude.mbti_first, @realm.mbti, @attitude.mbti_second].join; end
