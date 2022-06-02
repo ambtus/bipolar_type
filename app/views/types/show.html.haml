@@ -1,39 +1,33 @@
--manic_realm = Realm.financial
--receptive_realm = Realm.emotional
--depressed_realm = Realm.physical
--productive_realm = Realm.mental
-%table
-%table
-  %tbody
-    %tr
-      %th=manic_realm.symbol
-      %th 😳
-      %th=receptive_realm.symbol
-    %tr
-      %th 😃
-      %th 🔁
-      %th 😌
-    %tr
-      %th=productive_realm.symbol
-      %th 😞
-      %th=depressed_realm.symbol
-%h2 #{manic_realm.symbol} #{manic_realm.name} Mania
+=render "table", type: @type
+%h2 #{@type.manic_realm.symbol} #{@type.manic_realm.name} Mania
 %p
-  You need to stop spending so much and start earning more. If you’re manic, you
+  I want to stop #{@type.manic_realm.use.ing} so much.
+%p
+  But I
   %em can’t.
-  Not without sedatives that will also cause you to walk less and eat more.
-%h2 #{receptive_realm.symbol} #{receptive_realm.name} Receptivity
+  Not without sedatives that will also cause me to #{@type.depressed_realm.use} less and #{@type.depressed_realm.get} more.
+%h2 #{@type.receptive_realm.symbol} #{@type.receptive_realm.name} Receptivity
 %p
-  What you
+  What I
   %strong can
-  do is stop caring and start listening. This will cause you to calm down and stop over-spending. You’ll also be able to earn more, but since you are no longer spending as much, you may not have to.
-%h2 #{depressed_realm.symbol} #{depressed_realm.name} Depression
+  do is stop #{@type.receptive_realm.use.ing} and start #{@type.receptive_realm.get.ing}. This will calm me down and I’ll be able to stop #{@type.manic_realm.achieve.ing} #{@type.manic_realm.results}.
 %p
-  You need to stop eating so much and start walking more. If you’re depressed, you
+  I’ll also be able to #{@type.manic_realm.get} more, but I will no longer
+  %em have
+  to.
+%h2 #{@type.depressed_realm.symbol} #{@type.depressed_realm.name} Depression
+%p
+  I want to stop #{@type.depressed_realm.get.ing} so much.
+%p
+  But I
   %em can’t.
-  Not without stimulants that will also cause you to earn less and spend more.
-%h2 #{productive_realm.symbol} #{productive_realm.name} Productivity
+  Not without stimulants that will also cause me to #{@type.manic_realm.get} less and #{@type.manic_realm.use} more.
+%h2 #{@type.productive_realm.symbol} #{@type.productive_realm.name} Productivity
 %p
-  What you
+  What I
   %strong can
-  do is stop watching and start creating solutions. This will cause you to rev up and stop over-eating. You’ll also be able to walk more, but since you are no longer eating as much, you may not have to.
+  do is stop #{@type.productive_realm.get.ing} and start #{@type.productive_realm.use.ing}. #{@type.productive_realm.achieve.ing.capitalize} #{@type.productive_realm.results} will rev me up and I will be able to stop #{@type.depressed_realm.get.ing}.
+%p
+  I’ll also be able to #{@type.depressed_realm.use} more, but I will no longer
+  %em have
+  to.

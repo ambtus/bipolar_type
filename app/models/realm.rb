@@ -38,9 +38,9 @@ class Realm
   def get; %w{eat watch earn listen }[index]; end
   def use; %w{walk think spend care }[index]; end
 
-  def get2; %w{drink learn collect understand }[index]; end
+  def consume; %w{drink learn collect understand }[index]; end
 
-  def achieve; %w{go design buy tell }[index]; end
+  def achieve; %w{go create buy tell }[index]; end
   def results; %w{places solutions things people }[index]; end
   def use2; [achieve, results].to_phrase; end
 

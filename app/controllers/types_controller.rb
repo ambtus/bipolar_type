@@ -4,10 +4,5 @@ class TypesController < ApplicationController
     @title = @type.symbol
   end
 
-  def my
-    @type = Type.my_type
-    render :show
-  end
-
   def index; @title = 'The 24 BipolarTypes'; end
 end

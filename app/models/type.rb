@@ -16,13 +16,15 @@ class Type
   end
 
   def inspect; @symbol; end
-  def manic; @realms.first; end
-  def receptive; @realms.second; end
-  def depressed; @realms.third; end
-  def productive; @realms.fourth; end
+  def manic_realm; @realms.first; end
+  def receptive_realm; @realms.second; end
+  def depressed_realm; @realms.third; end
+  def productive_realm; @realms.fourth; end
   def path; @symbol; end
 
-  def descriptions; ["#{manic.name} Mania", "#{receptive.name} Receptivity", "#{depressed.name} Depression", "#{productive.name} Productivity"]; end
+  def descriptions; ["#{manic_realm.symbol}
+↗️","#{receptive_realm.symbol}↘️","#{depressed_realm.symbol}↙️
+","#{productive_realm.symbol}↖️"]; end
 
   def description; descriptions.join(", "); end
 
