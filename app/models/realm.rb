@@ -1,57 +1,47 @@
-class Realm < Concept
+class Realm
 
-  SYMBOLS = %w{S N F T}
+  def initialize(symbol, name); @symbol = symbol; @name = name; end
 
-  ########
-  ALL = SYMBOLS.collect {|symbol| self.new symbol}
-  PATHS = SYMBOLS.map(&:downcase)
-  PATHS.each do |path|
-    define_singleton_method(path) {ALL[PATHS.index(path)]}
+  SYMBOLS = %w{ 😷 🧐 🤑 🥰 }
+  NAMES = %w{Physical Mental Financial Emotional}
+  ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
+
+  attr_reader :name, :symbol
+
+  # class methods
+  %w{first second third fourth}.each_with_index do |ordinal, index|
+    define_singleton_method(ordinal) {ALL[index]}
   end
-  ########
+  SYMBOLS.each do |symbol|
+    define_singleton_method(symbol) {ALL[SYMBOLS.index(symbol)]}
+  end
+  NAMES.each do |name|
+    define_singleton_method(name.downcase) {ALL[NAMES.index(name)]}
+  end
+  class << self
+    def each(&block); ALL.each(&block); end
+    def each_with_index(&block); ALL.each_with_index(&block); end
+    def symbols; SYMBOLS; end
+    def names; NAMES; end
+    def shorts; names.map(&:first); end
+  end
 
-  def path; PATHS[index]; end
+  def inspect; "#{@name}#{@symbol}"; end
 
-  def mbti; symbol; end
+  def path; @name.downcase; end
+  def adverb; path.ly; end
+  def adjective; path; end
 
-  def subtypes; Subtype.all.select{|s| s.realm == self}; end
-  def +(attitude); subtypes.find{|s| s.attitude == attitude}; end
+  def index; SYMBOLS.index @symbol; end
 
-  def energy; %w{calories facts love money}[index]; end
+  def energy; %w{calories facts money love}[index]; end
+  def get; %w{eat watch earn listen }[index]; end
+  def use; %w{walk think spend care }[index]; end
 
-  def adjective; %w{physical mental social material}[index]; end
-  def adverb; adjective.ly; end
-  def name; adjective.capitalize; end
+  def get2; %w{drink learn collect understand }[index]; end
 
-  def given; %w{fed shown told ??}[index]; end
-  def resources; %w{food information stories ??}[index]; end
+  def achieve; %w{go design buy tell }[index]; end
+  def results; %w{places solutions things people }[index]; end
+  def use2; [achieve, results].to_phrase; end
 
-  def get; %w{eat watch listen sell}[index]; end
-  def get_preposition; [nil, "the", "to", nil][index]; end
-  def get_verb; [get, get_preposition].to_phrase; end
-
-  def now_targets; %w{breakfast actions encouragement goods}[index]; end
-  def get_now; [get, get_preposition, now_targets].to_phrase; end
-
-  def later_targets; %w{dinner results praise services}[index]; end
-  def get_later; [get, get_preposition, later_targets].to_phrase; end
-
-
-  def use; %w{move think talk buy}[index]; end
-
-  def taken; %w{led given asked sold}[index]; end
-  def nouns; %w{places problems questions things}[index]; end
-  def thing; %w{where thing one thing}[index]; end
-
-  def use_verb; %w{go decide ask buy}[index]; end
-  def use_preposition; [nil, "how to", nil, nil][index]; end
-
-  def now_goals; %w{out start permission goods}[index]; end
-  def use_now; [use_verb, use_preposition, now_goals].to_phrase; end
-
-  def later_goals; %w{home finish forgiveness services}[index]; end
-  def use_later; [use_verb, use_preposition, later_goals].to_phrase; end
-
-  def get_and_use_now; [get_now, use_now].and; end
-  def get_and_use_later; [use_later, get_later].and; end
 end

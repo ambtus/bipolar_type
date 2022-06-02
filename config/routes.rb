@@ -4,7 +4,5 @@ Rails.application.routes.draw do
   get '/story' => "start#story", as: :story
   resources :answers, only: [:show]
   resources :realms, only: [:index, :show]
-  resources :attitudes, only: [:index, :show]
-  resources :subtypes, only: [:index, :show]
   resources :types, only: [:index, :show]
 end

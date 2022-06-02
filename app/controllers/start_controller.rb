@@ -1,5 +1,5 @@
 class StartController < ApplicationController
-  def home; end
-  def theory; end
-  def story; end
+  def home; @title = 'Introduction'; end
+  def theory; @title = 'The Theory'; end
+  def story; @title = 'My Story'; end
 end

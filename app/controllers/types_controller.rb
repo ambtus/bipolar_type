@@ -1,14 +1,13 @@
 class TypesController < ApplicationController
   def show
-#     begin
     @type = Type.new params[:id]
-    @name = @type.name
-    @realms = @type.realms
-    @group_by = params[:group_by] || "attitude"
-#     rescue
-#       redirect_to root_path and return
-#     end
+    @title = @type.symbol
   end
 
-  def index; end
+  def my
+    @type = Type.my_type
+    render :show
+  end
+
+  def index; @title = 'The 24 BipolarTypes'; end
 end

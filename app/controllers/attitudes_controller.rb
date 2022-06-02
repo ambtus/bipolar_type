@@ -1,8 +1,8 @@
 class AttitudesController < ApplicationController
-  def index; @attitudes = Attitude.all; end
+  def index; @title = 'The Four Attitudes'; end
   def show
     @attitude = Attitude.send params[:id]
-    @name = @attitude.name
+    @title = @attitude.name
     @subtypes = @attitude.subtypes
   end
 end

@@ -43,29 +43,27 @@ blockquote {
   border-left: 3px solid #ccc;
 }
 
+.indented {padding-left: 1em}
 
 
 h1 {
-  font-size: 1.3em;
-  font-style: bold;
-  text-align: center;
-}
-h2 {
   font-size: 1.2em;
   font-style: bold;
   text-align: center;
 }
-h3 {
+h2 {
   font-size: 1.1em;
+  font-style: bold;
+  text-align: left;
+}
+h3 {
+  font-style: italic;
+  text-align: center;
+}
+h4 {
   font-style: italic;
   text-align: left;
 }
-h4 {
-  font-size: 1em;
-  text-align: center;
-  font-style: italic;
-}
-
 
 
 a.external:link {text-decoration: none; color: grey;}
@@ -100,7 +98,7 @@ dl {
 dt {
   float: left;
   clear: left;
-  width: 21ch; /* currently the longest word is "Compulsive depression" which is 9 characters */
+  width: 11ch; /* currently the longest word is "Get energy" which is 10 characters */
   text-align: right;
   font-weight: bold;
 }
@@ -108,7 +106,8 @@ dt::after {
   content: ":";
 }
 dd {
-  margin: 0 0 0 22ch;  /* 1 more than the width in dt */
+  text-align: left;
+  margin: 0 0 0 12ch;  /* 1 more than the width in dt */
 }
 
 
@@ -119,6 +118,8 @@ table {
   margin-left:auto;
   margin-right:auto;
 }
+
+table.left{ margin-left:1em }
 td {
   padding: 1em;
   border: 1px solid grey;

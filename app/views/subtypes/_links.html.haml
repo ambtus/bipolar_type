@@ -1,6 +1,0 @@
-%table
-  -Realm.all.each do |realm|
-    %tr
-      -realm.subtypes.each do |subtype|
-        %td
-          =link_to subtype.name, subtype_path(subtype.path)

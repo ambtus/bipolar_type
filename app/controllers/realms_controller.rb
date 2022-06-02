@@ -1,9 +1,9 @@
 class RealmsController < ApplicationController
-  def index; end
+  def index; @title = 'The Four Realms'; end
 
   def show
     @realm = Realm.send params[:id]
-    @name = @realm.name
+    @title = @realm.name
     @subtypes = @realm.subtypes
   end
 end

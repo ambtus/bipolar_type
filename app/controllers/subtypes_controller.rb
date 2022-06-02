@@ -1,7 +1,7 @@
 class SubtypesController < ApplicationController
-  def index; end
+  def index; @title = 'The 16 Subtypes'; end
   def show
     @subtype = Subtype.send params[:id]
-    @name = @subtype.name
+    @title = @subtype.name
   end
 end

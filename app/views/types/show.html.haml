@@ -1,0 +1,39 @@
+-manic_realm = Realm.financial
+-receptive_realm = Realm.emotional
+-depressed_realm = Realm.physical
+-productive_realm = Realm.mental
+%table
+%table
+  %tbody
+    %tr
+      %th=manic_realm.symbol
+      %th 😳
+      %th=receptive_realm.symbol
+    %tr
+      %th 😃
+      %th 🔁
+      %th 😌
+    %tr
+      %th=productive_realm.symbol
+      %th 😞
+      %th=depressed_realm.symbol
+%h2 #{manic_realm.symbol} #{manic_realm.name} Mania
+%p
+  You need to stop spending so much and start earning more. If you’re manic, you
+  %em can’t.
+  Not without sedatives that will also cause you to walk less and eat more.
+%h2 #{receptive_realm.symbol} #{receptive_realm.name} Receptivity
+%p
+  What you
+  %strong can
+  do is stop caring and start listening. This will cause you to calm down and stop over-spending. You’ll also be able to earn more, but since you are no longer spending as much, you may not have to.
+%h2 #{depressed_realm.symbol} #{depressed_realm.name} Depression
+%p
+  You need to stop eating so much and start walking more. If you’re depressed, you
+  %em can’t.
+  Not without stimulants that will also cause you to earn less and spend more.
+%h2 #{productive_realm.symbol} #{productive_realm.name} Productivity
+%p
+  What you
+  %strong can
+  do is stop watching and start creating solutions. This will cause you to rev up and stop over-eating. You’ll also be able to walk more, but since you are no longer eating as much, you may not have to.

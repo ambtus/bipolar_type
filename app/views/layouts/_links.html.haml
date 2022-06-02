@@ -2,10 +2,8 @@
 |
 =link_to_unless_current "Theory", theory_path
 |
-=link_to_unless_current "My BipolarType", type_path(Type.my_path)
+=link_to_unless_current "My BipolarType", type_path(Type.my_type.path)
 |
-=link_to_unless_current "The 16 subtypes", subtypes_path
+=link_to_unless_current "The 24 BipolarTypes", types_path
 |
 =link_to_unless controller.controller_name == "answers", "Your BipolarType", answer_path(Answer.first_path)
-|
-=link_to "SourceCode", "https://github.com/ambtus/bipolar_type", :class => "external"
