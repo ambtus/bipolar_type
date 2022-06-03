@@ -113,7 +113,7 @@ class String
     return "panicking" if self=="panic"
     return "reasoning" if self=="reason"
     return "gardening" if self=="garden"
-    [" and ", " or ", "/", " & "].each do |connector|
+    [" and ", " or ", " & "].each do |connector|
       if self.match(connector)
         first, second = self.split(connector, 2)
         return [first.ing, second.ing].join(connector)

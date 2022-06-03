@@ -25,6 +25,6 @@
   =list_of Realm.each do |realm|
     %ul.none
       %li #{realm.symbol} #{realm.name}: Get and use #{realm.energy}
-      %li.indented Get #{realm.energy}: #{realm.get} and #{realm.consume}
-      %li.indented Use #{realm.energy}: #{realm.use2} (#{realm.use})
+      %li.indented Get #{realm.energy}: #{realm.get} and #{realm.receive}
+      %li.indented Use #{realm.energy}: #{realm.produce} (#{realm.use})
 %p BipolarType tries to maximize #{Realm.names.map(&:downcase).and} health by focusing on the solution instead of the problem.

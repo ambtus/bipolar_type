@@ -121,7 +121,7 @@ table {
 
 table.left{ margin-left:1em }
 td {
-  padding: 1em;
+  padding: 0.25em;
   border: 1px solid grey;
   text-align: center;
   overflow-wrap: break-word;

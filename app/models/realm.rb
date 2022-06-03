@@ -35,13 +35,19 @@ class Realm
   def index; SYMBOLS.index @symbol; end
 
   def energy; %w{calories facts money love}[index]; end
-  def get; %w{eat watch earn listen }[index]; end
-  def use; %w{walk think spend care }[index]; end
+  def get; %w{eat watch earn hear }[index]; end
+  def use; %w{exercise think spend care }[index]; end
 
-  def consume; %w{drink learn collect understand }[index]; end
+  def process; %w{digest analyze sell understand }[index]; end
+  def process_alt; %w{eat look\ at sell listen\ to }[index]; end
+  def resources; %w{foods results goods/services words }[index]; end
+  def receive; [process, resources].to_phrase; end
+  def appear; %w{smell look feel sound }[index]; end
 
   def achieve; %w{go create buy tell }[index]; end
   def results; %w{places solutions things people }[index]; end
-  def use2; [achieve, results].to_phrase; end
+  def something; %w{somewhere something something someone }[index]; end
+
+  def produce; [achieve, results].to_phrase; end
 
 end
