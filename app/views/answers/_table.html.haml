@@ -1,8 +1,15 @@
 %table
-  %tbody
-    %tr
-      %th Manic realm: #{Realm.symbols.join}
-      %th Receptive realm: #{Realm.symbols.join}
-    %tr
-      %th Productive realm: #{Realm.symbols.join}
-      %th Depressed realm: #{Realm.symbols.join}
+  %tr
+    %td.none
+      %strong Manic realm
+      =render "choice", number: "1"
+    %td.none
+      %strong Receptive realm
+      =render "choice", number: "2"
+  %tr
+    %td.none
+      %strong Productive realm
+      =render "choice", number: "4"
+    %td.none
+      %strong Depressed realm
+      =render "choice", number: "3"

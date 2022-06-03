@@ -1,0 +1,10 @@
+-@realms.each do |realm|
+  -choice = number + realm.symbol
+  %div{:class => @answer.css(choice)}
+    -if @answer.css(choice) == "free"
+      =link_to answer_path(@answer.next(choice)) do
+        =realm.symbol
+        %br
+        =render "text", realm: realm, number: number
+    -else
+      =realm.inspect
