@@ -22,7 +22,8 @@ class Answer
 
   def next(choice); question.next + ":" + @subtype_string + choice; end
 
-  def type_path; subtypes.sort.map(&:second).join; end
+  ARROWS = Realm::ARROWS.map(&:first)
+  def type_path; subtypes.sort_by{|s| ARROWS.index(s.second) }.map(&:first).join; end
 
   private
   def subtypes; @subtype_string.scan(/../); end

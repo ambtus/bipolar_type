@@ -1,12 +1,14 @@
 class Realm
 
   def initialize(symbol, name); @symbol = symbol; @name = name; end
+  attr_reader :symbol, :name
 
-  SYMBOLS = %w{ 😷 🧐 🤑 🥰 }
-  NAMES = %w{Physical Mental Financial Emotional}
+  SYMBOLS = %w{😷 🧐 🥰 🤑}
+  NAMES = %w{physical mental spiritual material}
   ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
 
-  attr_reader :name, :symbol
+  ARROWS = %w{↗️ ↘️ ↙️ ↖️}
+  GENERICS = 4.times.collect {|i| new ARROWS[i], "towards_#{Position.all[i].next.name}"}
 
   # class methods
   %w{first second third fourth}.each_with_index do |ordinal, index|
@@ -15,39 +17,35 @@ class Realm
   SYMBOLS.each do |symbol|
     define_singleton_method(symbol) {ALL[SYMBOLS.index(symbol)]}
   end
-  NAMES.each do |name|
-    define_singleton_method(name.downcase) {ALL[NAMES.index(name)]}
+  ARROWS.each do |arrow|
+    define_singleton_method(arrow) {GENERICS[ARROWS.index(arrow)]}
   end
   class << self
+    def all; ALL; end
+    def generics; GENERICS; end
     def each(&block); ALL.each(&block); end
     def each_with_index(&block); ALL.each_with_index(&block); end
     def symbols; SYMBOLS; end
-    def names; NAMES; end
-    def shorts; names.map(&:first); end
   end
 
-  def inspect; "#{@name}#{@symbol}"; end
+  def title; @name.titleize; end
+  def inspect; "#{@symbol}#{title}"; end
 
-  def path; @name.downcase; end
-  def adverb; path.ly; end
-  def adjective; path; end
+  def path; @symbol; end
 
-  def index; SYMBOLS.index @symbol; end
+  def index; SYMBOLS.index(@symbol) || 4 ; end
 
-  def energy; %w{calories facts money love}[index]; end
-  def get; %w{eat watch earn hear }[index]; end
-  def use; %w{exercise think spend care }[index]; end
+  def energy; %w{calories facts love money energy}[index]; end
+  def get; %w{eat watch listen sell intake}[index]; end
+  def use; %w{move think care buy output}[index]; end
 
-  def process; %w{digest analyze sell understand }[index]; end
-  def process_alt; %w{eat look\ at sell listen\ to }[index]; end
-  def resources; %w{foods results goods/services words }[index]; end
-  def receive; [process, resources].to_phrase; end
-  def appear; %w{smell look feel sound }[index]; end
+  def definition; "get and use #{energy} (#{get} and #{use})"; end
 
-  def achieve; %w{go create buy tell }[index]; end
-  def results; %w{places solutions things people }[index]; end
-  def something; %w{somewhere something something someone }[index]; end
+  def adjective; @name; end
+  def adverb; adjective.ly; end
 
-  def produce; [achieve, results].to_phrase; end
-
+  def towards_mania;       "use #{energy} easily (#{use.ing} is easy) but #{get.ing} is hard"; end
+  def towards_depression;  "get #{energy} easily (#{get.ing} is easy) but #{use.ing} is hard"; end
+  def towards_receptivity; "use #{energy} constantly (#{use}) but often fail to get #{energy.it} (#{get})"; end
+  def towards_productivity;"get #{energy} constantly (#{get}) but often fail to use #{energy.it} (#{use})"; end
 end

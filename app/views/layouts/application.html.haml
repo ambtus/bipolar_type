@@ -7,7 +7,6 @@
     =stylesheet_link_tag '/application.css'
     =render "layouts/favicon"
   %body
-    %p.header=render "layouts/links"
+    %p.center.smaller.padded_bottom=render "layouts/top_links"
     =yield
-    %p.subfooter=render "layouts/links"
-    %p.footer=render "layouts/sublinks"
+    %p.center.smaller.padded_top=render "layouts/bottom_links"

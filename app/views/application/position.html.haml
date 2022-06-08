@@ -1,0 +1,13 @@
+%p.bigger.bold.center=@position.inspect
+%p.center.italic=@position.definition
+
+=render "table", type: Type.generic
+
+-Realm.each do |realm|
+  %p.bigger.bold.center=realm.inspect+@position.inspect
+  %p.center
+    #{@position.x_energy} #{realm.energy}
+    -if @position.bipolar?
+      (become #{realm.adverb} #{@position.state})
+    -else
+      (#{realm.send(@position.x_energy)})

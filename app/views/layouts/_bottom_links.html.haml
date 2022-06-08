@@ -1,0 +1,7 @@
+-Position.each_with_index do |thing, index|
+  ="|" unless index == 0
+  =link_to_unless_current thing.inspect, position_path(thing.path)
+%br
+-Realm.each_with_index do |thing, index|
+  ="|" unless index == 0
+  =link_to_unless_current thing.inspect, realm_path(thing.path)
