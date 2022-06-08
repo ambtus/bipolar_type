@@ -15,8 +15,8 @@ class Answer
 
   def css(choice)
     return "chosen" if subtypes.include?(choice)
-    return "constrained" if positions.include?(choice.first)
-    return "constrained" if realms.include?(choice.second)
+    return "constrained" if realms.include?(choice.first)
+    return "constrained" if positions.include?(choice.second)
     return "free"
   end
 
@@ -27,7 +27,7 @@ class Answer
 
   private
   def subtypes; @subtype_string.scan(/../); end
-  def realms; subtypes.map(&:second); end
-  def positions; subtypes.map(&:first); end
+  def realms; subtypes.map(&:first); end
+  def positions; subtypes.map(&:second); end
 
 end

@@ -35,17 +35,19 @@ class Realm
 
   def index; SYMBOLS.index(@symbol) || 4 ; end
 
-  def energy; %w{calories facts love money energy}[index]; end
+  def energy; %w{calories facts affect money energy}[index]; end
   def get; %w{eat watch listen sell intake}[index]; end
+  def getting; %w{ eating watching listening selling intaking}[index]; end
   def use; %w{move think care buy output}[index]; end
+  def using; %w{moving thinking caring buying outputing}[index]; end
 
   def definition; "get and use #{energy} (#{get} and #{use})"; end
 
   def adjective; @name; end
-  def adverb; adjective.ly; end
+  def adverb; adjective + "ly"; end
 
-  def towards_mania;       "use #{energy} easily (#{use.ing} is easy) but #{get.ing} is hard"; end
-  def towards_depression;  "get #{energy} easily (#{get.ing} is easy) but #{use.ing} is hard"; end
-  def towards_receptivity; "use #{energy} constantly (#{use}) but often fail to get #{energy.it} (#{get})"; end
-  def towards_productivity;"get #{energy} constantly (#{get}) but often fail to use #{energy.it} (#{use})"; end
+  def towards_mania;         "Using #{energy} (#{using}) is easy but #{getting} is hard"; end
+  def towards_depression;  "Getting #{energy} (#{getting}) is easy but #{using} is hard"; end
+  def towards_receptivity;   "Using #{energy} (#{using}) is constant but #{getting} is intermittent"; end
+  def towards_productivity;"Getting #{energy} (#{getting}) is constant but #{using} is intermittent"; end
 end

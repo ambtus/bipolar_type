@@ -6,33 +6,33 @@
 =render "table", type: @type
 
 %p.bigger.bold.center=@t.inspect+Position.second.inspect
-%p.center.italic Postpone #{@t.use.ing} as long as possible.
-%p You #{@t.towards_mania}, which can cause you to burn through your #{@t.energy} at an alarming rate (#{@t.inspect}#{Position.second.inspect}).
+%p.center.italic Postpone #{@t.using} as long as possible.
+%p #{@t.towards_mania}, which can cause you to lose #{@t.energy} at an alarming rate (#{@t.inspect}#{Position.second.inspect}).
 %p
-  It’s easier for you to slow down your output than speed up your intake, so postpone #{@t.use.ing} until
+  It’s easier for you to slow down your output than speed up your intake, so postpone #{@t.using} until
   %em after
   you get all the #{@t.energy} you need.
 
 %p.bigger.bold.center=@f.inspect+Position.second.inspect
-%p.center.italic Prepone #{@f.get.ing} as soon as possible.
-%p You #{@f.towards_receptivity}, which can cause you to burn through your #{@f.energy} at an alarming rate (#{@f.inspect}#{Position.second.inspect}).
+%p.center.italic Prepone #{@f.getting} as soon as possible.
+%p #{@f.towards_receptivity}, which can cause you to burn through your #{@f.energy} at an alarming rate (#{@f.inspect}#{Position.second.inspect}).
 %p
-  It’s easier for you to speed up your intake than slow down your output, so prepone #{@f.get.ing}
+  It’s easier for you to speed up your intake than slow down your output, so prepone #{@f.getting}
   %em before
-  you use all the #{@f.energy} you have.
+  you use up all your #{@f.energy}.
 
 %p.bigger.bold.center=@s.inspect+Position.fourth.inspect
-%p.center.italic Postpone #{@s.get.ing} as long as possible.
-%p You #{@s.towards_depression}, which can cause you to accumulate #{@s.energy} at an alarming rate (#{@s.inspect}#{Position.fourth.inspect}).
+%p.center.italic Postpone #{@s.getting} as long as possible.
+%p #{@s.towards_depression}, which can cause you to gain #{@s.energy} at an alarming rate (#{@s.inspect}#{Position.fourth.inspect}).
 %p
-  It’s easier for you to slow down your intake than speed up your output, so postpone #{@s.get.ing} until
+  It’s easier for you to slow down your intake than speed up your output, so postpone #{@s.getting} until
   %em after
-  you use all the #{@s.energy} you have.
+  you use up all your #{@s.energy}.
 
 %p.bigger.bold.center=@n.inspect+Position.fourth.inspect
-%p.center.italic Prepone #{@n.use.ing} as soon as possible.
-%p You #{@n.towards_productivity}, which can cause you to accumulate #{@n.energy} at an alarming rate (#{@n.inspect}#{Position.fourth.inspect}).
+%p.center.italic Prepone #{@n.using} as soon as possible.
+%p #{@n.towards_productivity}, which can cause you to accumulate #{@n.energy} at an alarming rate (#{@n.inspect}#{Position.fourth.inspect}).
 %p
-  It’s easier for you to speed up your output than slow down your intake, so prepone #{@n.use.ing}
+  It’s easier for you to speed up your output than slow down your intake, so prepone #{@n.using}
   %em before
   you get all the #{@n.energy} you need.

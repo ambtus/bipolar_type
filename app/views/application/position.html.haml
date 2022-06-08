@@ -1,8 +1,6 @@
 %p.bigger.bold.center=@position.inspect
 %p.center.italic=@position.definition
 
-=render "table", type: Type.generic
-
 -Realm.each do |realm|
   %p.bigger.bold.center=realm.inspect+@position.inspect
   %p.center

@@ -3,6 +3,6 @@
   %div{:class => @answer.css(choice)}
     -if @answer.css(choice) == "free"
       =link_to answer_path(@answer.next(choice)) do
-        %p #{realm.symbol} I #{realm.send(generic.name)}
+        %p #{realm.symbol} #{realm.send(generic.name)}
     -else
       =realm.inspect + generic.symbol
