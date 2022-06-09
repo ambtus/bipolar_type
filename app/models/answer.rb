@@ -16,18 +16,18 @@ class Answer
   def css(choice)
     return "chosen" if subtypes.include?(choice)
     return "constrained" if realms.include?(choice.first)
-    return "constrained" if positions.include?(choice.second)
+    return "constrained" if positions.include?(choice.chars.second)
     return "free"
   end
 
   def next(choice); question.next + ":" + @subtype_string + choice; end
 
   ARROWS = Realm::ARROWS.map(&:first)
-  def type_path; subtypes.sort_by{|s| ARROWS.index(s.second) }.map(&:first).join; end
+  def type_path; subtypes.sort_by{|s| ARROWS.index(s.chars.second) }.map(&:first).join; end
 
   private
   def subtypes; @subtype_string.scan(/../); end
   def realms; subtypes.map(&:first); end
-  def positions; subtypes.map(&:second); end
+  def positions; subtypes.map(&:chars).map(&:second); end
 
 end
