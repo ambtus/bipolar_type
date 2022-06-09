@@ -1,6 +1,6 @@
 == README
 
-* Ruby version: 2.0 or 2.2
+* Ruby version: 2.7
 
 * System dependencies: none that I know of
 
