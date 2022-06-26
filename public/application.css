@@ -12,7 +12,7 @@
 .float { display: inline; }
 .clear { clear: both;}
 
-p.center { text-align: center; }
+.center { text-align: center; }
 ul.none { list-style-type: none; padding: 0; }
 
 table { border-collapse: collapse; }

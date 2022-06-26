@@ -7,7 +7,7 @@ class Realm
   NAMES = %w{physical mental spiritual material}
   ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
 
-  ARROWS = %w{↗️ ↘️ ↙️ ↖️}
+  ARROWS = %w{ high up down low }
   GENERICS = 4.times.collect {|i| new ARROWS[i], "towards_#{Position.all[i].next.name}"}
 
   # class methods
@@ -46,8 +46,8 @@ class Realm
   def adjective; @name; end
   def adverb; adjective + "ly"; end
 
-  def towards_mania;         "Using #{energy} (#{using}) is easy but #{getting} is hard"; end
+  def towards_mania;       "Using #{energy} (#{using}) is easy but #{getting} is hard"; end
   def towards_depression;  "Getting #{energy} (#{getting}) is easy but #{using} is hard"; end
-  def towards_receptivity;   "Using #{energy} (#{using}) is constant but #{getting} is intermittent"; end
+  def towards_receptivity; "Using #{energy} (#{using}) is constant but #{getting} is intermittent"; end
   def towards_productivity;"Getting #{energy} (#{getting}) is constant but #{using} is intermittent"; end
 end

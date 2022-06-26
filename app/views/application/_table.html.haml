@@ -1,17 +1,11 @@
 %table{class: @class}
   %tr
-    %th=type.first_realm.symbol
-    %th=Position.second.symbol
-    %th=type.second_realm.symbol
-  %tr
     %th=Position.first.symbol
-    %th
-      -if @index
-        =type.index + 1
-      -elsif @omit.blank?
-        🔁
+    %th=Position.second.symbol
     %th=Position.third.symbol
-  %tr
-    %th=type.fourth_realm.symbol
     %th=Position.fourth.symbol
+  %tr
+    %th=type.first_realm.symbol
+    %th=type.second_realm.symbol
     %th=type.third_realm.symbol
+    %th=type.fourth_realm.symbol

@@ -10,7 +10,7 @@ class Type
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def my_realms; %w{🤑 🥰 😷 🧐}; end
+    def my_realms; %w{🤑 🥰 🧐 😷 }; end
     def my_type; ALL.find{|type| type.emoji == my_realms}; end
     def generic_realms; Realm::ARROWS ; end
     def generic; Type.new(generic_realms); end

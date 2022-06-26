@@ -1,15 +1,11 @@
-%p.bigger.bold.center The BipolarType Energy Cycle
+%p.bigger.bold.center The BipolarType States
 
-=render "table", type: Type.generic
-
-%ul.none
+%ul.none.center
   =list_of Position.each do |position|
     %li #{position.inspect}: #{position.definition}
 
 %p.bigger.bold.center The BipolarType Energies
 
-%ul.none
+%ul.none.center
   =list_of Realm.each do |realm|
     %li #{realm.inspect}: #{realm.definition}
-
-%p The goal of BipolarType is to stabilize the intake and output of each energy in order to reduce or eliminate unwanted deficits and surpluses.

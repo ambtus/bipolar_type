@@ -3,8 +3,8 @@ class Position
   def initialize(symbol, name); @symbol = symbol; @name = name; end
   attr_reader :symbol, :name
 
-  SYMBOLS = %w{ 📤 🔥 📥 🧊 }
-  NAMES = %w{productivity mania receptivity depression}
+  SYMBOLS = %w{ ⇞ ↑ ↓ ⇟ }
+  NAMES = %w{mania high low depression}
   ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
 
   # class methods
@@ -28,12 +28,12 @@ class Position
   def index; SYMBOLS.index @symbol; end
   def next; ALL[index + 1] || Position.first; end
 
-  def x_energy; %w{use lose get gain}[index]; end
-  def energy_x; %w{output deficit intake surplus }[index]; end
+  def x_energy; %w{lose use get gain}[index]; end
+  def energy_x; %w{deficit output intake surplus }[index]; end
 
   def definition; "energy #{energy_x} (#{x_energy} energy)"; end
 
-  def bipolar?; index.odd? ; end
+  def bipolar?; [1,2].inlude?(index) ; end
   def state; index < 2 ? "skinny" : "fat" ; end
 
 end

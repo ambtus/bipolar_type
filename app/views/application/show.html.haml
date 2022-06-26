@@ -1,11 +1,11 @@
 %p.bigger.bold.center
   #{@t.inspect} and #{@f.inspect} #{Position.second.inspect}
   %br
-  #{@s.inspect} and #{@n.inspect} #{Position.fourth.inspect}
+  #{@n.inspect} and #{@s.inspect} #{Position.third.inspect}
 
 =render "table", type: @type
 
-%p.bigger.bold.center=@t.inspect+Position.second.inspect
+%p.bigger.bold.center=@t.inspect+Position.first.inspect
 %p.center.italic Postpone #{@t.using} as long as possible.
 %p #{@t.towards_mania}, which can cause you to lose #{@t.energy} at an alarming rate (#{@t.inspect}#{Position.second.inspect}).
 %p
@@ -21,18 +21,18 @@
   %em before
   you use up all your #{@f.energy}.
 
+%p.bigger.bold.center=@n.inspect+Position.third.inspect
+%p.center.italic Prepone #{@n.using} as soon as possible.
+%p #{@n.towards_depression}, which can cause you to gain #{@n.energy} at an alarming rate (#{@n.inspect}#{Position.fourth.inspect}).
+%p
+  It’s easier for you to slow down your intake than speed up your output, so postpone #{@n.getting} until
+  %em after
+  you use up all your #{@n.energy}.
+
 %p.bigger.bold.center=@s.inspect+Position.fourth.inspect
 %p.center.italic Postpone #{@s.getting} as long as possible.
-%p #{@s.towards_depression}, which can cause you to gain #{@s.energy} at an alarming rate (#{@s.inspect}#{Position.fourth.inspect}).
+%p #{@s.towards_productivity}, which can cause you to accumulate #{@s.energy} at an alarming rate (#{@s.inspect}#{Position.fourth.inspect}).
 %p
-  It’s easier for you to slow down your intake than speed up your output, so postpone #{@s.getting} until
-  %em after
-  you use up all your #{@s.energy}.
-
-%p.bigger.bold.center=@n.inspect+Position.fourth.inspect
-%p.center.italic Prepone #{@n.using} as soon as possible.
-%p #{@n.towards_productivity}, which can cause you to accumulate #{@n.energy} at an alarming rate (#{@n.inspect}#{Position.fourth.inspect}).
-%p
-  It’s easier for you to speed up your output than slow down your intake, so prepone #{@n.using}
+  It’s easier for you to speed up your output than slow down your intake, so prepone #{@s.using}
   %em before
-  you get all the #{@n.energy} you need.
+  you get all the #{@s.energy} you need.
