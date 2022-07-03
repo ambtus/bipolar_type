@@ -1,11 +1,22 @@
-%p.bigger.bold.center The BipolarType States
+%p.bigger.bold.center The Four Time Periods
 
 %ul.none.center
   =list_of Position.each do |position|
     %li #{position.inspect}: #{position.definition}
 
-%p.bigger.bold.center The BipolarType Energies
+%p.bigger.bold.center The Four Energy Realms
 
 %ul.none.center
   =list_of Realm.each do |realm|
     %li #{realm.inspect}: #{realm.definition}
+
+%p.bigger.bold.center The Sixteen Behaviors
+
+%table
+  %tr
+    -Realm.each do |realm|
+      %th=realm.inspect
+  -Position.each do |position|
+    %tr
+      -Realm.each do |realm|
+        %td=position.description(realm)

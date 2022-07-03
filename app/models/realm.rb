@@ -3,23 +3,10 @@ class Realm
   def initialize(symbol, name); @symbol = symbol; @name = name; end
   attr_reader :symbol, :name
 
-  SYMBOLS = %w{😷 🧐 🥰 🤑}
-  NAMES = %w{physical mental spiritual material}
+  SYMBOLS = %w{🥰 😷 🤑 🧐}
+  NAMES = %w{emotions calories currency facts}
   ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
 
-  ARROWS = %w{ high up down low }
-  GENERICS = 4.times.collect {|i| new ARROWS[i], "towards_#{Position.all[i].next.name}"}
-
-  # class methods
-  %w{first second third fourth}.each_with_index do |ordinal, index|
-    define_singleton_method(ordinal) {ALL[index]}
-  end
-  SYMBOLS.each do |symbol|
-    define_singleton_method(symbol) {ALL[SYMBOLS.index(symbol)]}
-  end
-  ARROWS.each do |arrow|
-    define_singleton_method(arrow) {GENERICS[ARROWS.index(arrow)]}
-  end
   class << self
     def all; ALL; end
     def generics; GENERICS; end
@@ -35,19 +22,19 @@ class Realm
 
   def index; SYMBOLS.index(@symbol) || 4 ; end
 
-  def energy; %w{calories facts affect money energy}[index]; end
-  def get; %w{eat watch listen sell intake}[index]; end
-  def getting; %w{ eating watching listening selling intaking}[index]; end
-  def use; %w{move think care buy output}[index]; end
-  def using; %w{moving thinking caring buying outputing}[index]; end
+  def get; %w{listen taste touch look}[index]; end
+  def getting; %w{listening tasting touching looking}[index]; end
+  def use; %w{care move buy think}[index]; end
+  def using; %w{caring moving buying thinking}[index]; end
 
-  def definition; "get and use #{energy} (#{get} and #{use})"; end
+  def iverb; %w{understand eat use analyze}[index]; end
+  def inoun; %w{voices foods tools events}[index]; end
+  def intake; [iverb, inoun].join(" "); end
 
-  def adjective; @name; end
-  def adverb; adjective + "ly"; end
+  def overb; %w{tell go build plan}[index]; end
+  def onoun; %w{people places things actions}[index]; end
+  def output; [overb, onoun].join(" "); end
 
-  def towards_mania;       "Using #{energy} (#{using}) is easy but #{getting} is hard"; end
-  def towards_depression;  "Getting #{energy} (#{getting}) is easy but #{using} is hard"; end
-  def towards_receptivity; "Using #{energy} (#{using}) is constant but #{getting} is intermittent"; end
-  def towards_productivity;"Getting #{energy} (#{getting}) is constant but #{using} is intermittent"; end
+  def definition; "#{use} (#{output}) and #{get} (#{intake})"; end
+
 end

@@ -1,4 +1,4 @@
-%p
+%p.center
   Once you have
   %span.chosen chosen
   something, other choices will become
@@ -9,18 +9,6 @@
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 
-%table
-  %tr
-    %td
-      %p.bold.center=Realm.generics.first.inspect
-      =render "choice", generic: Realm.generics.first
-    %td
-      %p.bold.center=Realm.generics.second.inspect
-      =render "choice", generic: Realm.generics.second
-  %tr
-    %td
-      %p.bold.center=Realm.generics.fourth.inspect
-      =render "choice", generic: Realm.generics.fourth
-    %td
-      %p.bold.center=Realm.generics.third.inspect
-      =render "choice", generic: Realm.generics.third
+-Position.each do |position|
+  %p.bold.center #{position.inspect} #{position.definition}
+  =render "choice", position: position

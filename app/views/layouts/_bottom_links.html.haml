@@ -5,3 +5,5 @@
 -Realm.each_with_index do |thing, index|
   ="|" unless index == 0
   =link_to_unless_current thing.inspect, realm_path(thing.path)
+%br
+=render "layouts/top_links"

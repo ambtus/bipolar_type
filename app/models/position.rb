@@ -3,8 +3,8 @@ class Position
   def initialize(symbol, name); @symbol = symbol; @name = name; end
   attr_reader :symbol, :name
 
-  SYMBOLS = %w{ ⇞ ↑ ↓ ⇟ }
-  NAMES = %w{mania high low depression}
+  SYMBOLS = %w{🀦 🀧 🀨 🀩}
+  NAMES = %w{spring summer autumn winter}
   ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
 
   # class methods
@@ -28,12 +28,35 @@ class Position
   def index; SYMBOLS.index @symbol; end
   def next; ALL[index + 1] || Position.first; end
 
-  def x_energy; %w{lose use get gain}[index]; end
-  def energy_x; %w{deficit output intake surplus }[index]; end
+  def action; %w{wake sow reap sleep}[index]; end
+  def time; %w{morning noon evening night}[index]; end
 
-  def definition; "energy #{energy_x} (#{x_energy} energy)"; end
+  def long
+    case index
+    when 0
+      "rev up"
+    when 1
+      "use energy"
+    when 2
+      "get energy"
+    when 3
+      "calm down"
+    end
+  end
 
-  def bipolar?; [1,2].inlude?(index) ; end
-  def state; index < 2 ? "skinny" : "fat" ; end
+  def description(realm)
+    case index
+    when 0
+      "start #{realm.getting} to wake up in the morning"
+    when 1
+      "start #{realm.using} to #{realm.output} during the day"
+    when 2
+      "stop #{realm.using} to #{realm.intake} in the evening"
+    when 3
+      "stop #{realm.getting} to fall asleep in the evening"
+    end
+  end
+
+  def definition; "#{time} (#{action}; #{long})"; end
 
 end
