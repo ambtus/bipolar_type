@@ -1,38 +1,32 @@
-%p.bigger.bold.center
-  #{@t.inspect} and #{@f.inspect} #{Position.second.inspect}
-  %br
-  #{@n.inspect} and #{@s.inspect} #{Position.third.inspect}
-
-=render "table", type: @type
-
-%p.bigger.bold.center=@t.inspect+Position.first.inspect
-%p.center.italic Postpone #{@t.using} as long as possible.
-%p #{@t.towards_mania}, which can cause you to lose #{@t.energy} at an alarming rate (#{@t.inspect}#{Position.second.inspect}).
+I#{@type.first_realm.symbol}: #{@type.first_realm.take} => #{@type.first_realm.transform}
+<br>
+#{@type.second_realm.symbol}P: #{@type.second_realm.transform} => #{@type.second_realm.take}
+<br>
+="--"
+<br>
+E#{@type.third_realm.symbol}: #{@type.third_realm.gather} =>  #{@type.third_realm.control}
+<br>
+#{@type.fourth_realm.symbol}J: #{@type.fourth_realm.control} => #{@type.fourth_realm.gather}
+%h2 Depression
 %p
-  It’s easier for you to slow down your output than speed up your intake, so postpone #{@t.using} until
-  %em after
-  you get all the #{@t.energy} you need.
+  Depression is caused by getting your #{Position.first.name} wires crossed; you feel #{@type.first_realm.adverb} exhausted/lethargic and so you #{@type.first_realm.take} even though you don’t need more
+  %em #{@type.first_realm.energy},
+  you need
+  %strong #{@type.second_realm.energy}.
+%p If you’re depressed you need to #{@type.second_realm.take} more, but you don’t have to #{@type.second_realm.transform}; there are many people willing to #{@type.second_realm.transform} and #{@type.second_realm.give} you.
+%p If you #{@type.first_realm.transform} you won’t want to #{@type.first_realm.take} as much.
+%p Don’t #{@type.third_realm.take} too much, it will make you manic, but feel free to #{@type.third_realm.transform}.
+%p The more you #{@type.fourth_realm.transform}, the less you will have to  #{@type.fourth_realm.take} what other people want to #{@type.fourth_realm.give} you.
 
-%p.bigger.bold.center=@f.inspect+Position.second.inspect
-%p.center.italic Prepone #{@f.getting} as soon as possible.
-%p #{@f.towards_receptivity}, which can cause you to burn through your #{@f.energy} at an alarming rate (#{@f.inspect}#{Position.second.inspect}).
-%p
-  It’s easier for you to speed up your intake than slow down your output, so prepone #{@f.getting}
-  %em before
-  you use up all your #{@f.energy}.
 
-%p.bigger.bold.center=@n.inspect+Position.third.inspect
-%p.center.italic Prepone #{@n.using} as soon as possible.
-%p #{@n.towards_depression}, which can cause you to gain #{@n.energy} at an alarming rate (#{@n.inspect}#{Position.fourth.inspect}).
+%h2 Mania
 %p
-  It’s easier for you to slow down your intake than speed up your output, so postpone #{@n.getting} until
-  %em after
-  you use up all your #{@n.energy}.
+  Depression is caused by getting your #{Position.fourth.name} wires crossed; you
+  %em have
+  #{@type.third_realm.energy}, but you
+  %em feel
+  #{@type.fourth_realm.adverb} energetic/restless and you #{@type.fourth_realm.control} even though you don’t have excess #{@type.fourth_realm.energy}.
 
-%p.bigger.bold.center=@s.inspect+Position.fourth.inspect
-%p.center.italic Postpone #{@s.getting} as long as possible.
-%p #{@s.towards_productivity}, which can cause you to accumulate #{@s.energy} at an alarming rate (#{@s.inspect}#{Position.fourth.inspect}).
-%p
-  It’s easier for you to speed up your output than slow down your intake, so prepone #{@s.using}
-  %em before
-  you get all the #{@s.energy} you need.
+%p If you’re manic you need to #{@type.third_realm.control} more, but if you #{@type.fourth_realm.gather} you won’t need to #{@type.fourth_realm.control} as much.
+
+%p Don’t #{@type.second_realm.control} too much, it will make you depressed, but feel free to #{@type.second_realm.gather}. The more you  #{@type.first_realm.gather} the less you will have to #{@type.first_realm.control}.

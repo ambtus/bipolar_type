@@ -3,8 +3,8 @@ class Position
   def initialize(symbol, name); @symbol = symbol; @name = name; end
   attr_reader :symbol, :name
 
-  SYMBOLS = %w{🀦 🀧 🀨 🀩}
-  NAMES = %w{spring summer autumn winter}
+  SYMBOLS = %w{I P E J}
+  NAMES = %w{intake transformation extraction control}
   ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
 
   # class methods
@@ -21,42 +21,27 @@ class Position
   end
 
   def title; @name.titleize; end
-  def inspect; "#{@symbol}#{title}"; end
+  def inspect; "#{@symbol}: #{title}"; end
 
   def path; @symbol; end
 
   def index; SYMBOLS.index @symbol; end
   def next; ALL[index + 1] || Position.first; end
+  def previous; ALL[index - 1] || Position.fourth; end
 
-  def action; %w{wake sow reap sleep}[index]; end
-  def time; %w{morning noon evening night}[index]; end
+  def mbti; %w{I P J E}[index]; end
 
-  def long
+  def description
     case index
     when 0
-      "rev up"
+      "get energy from the wholes"
     when 1
-      "use energy"
+      "create wholes from the parts"
     when 2
-      "get energy"
+      "get parts from your environment"
     when 3
-      "calm down"
+      "create your environment from the world"
     end
   end
-
-  def description(realm)
-    case index
-    when 0
-      "start #{realm.getting} to wake up in the morning"
-    when 1
-      "start #{realm.using} to #{realm.output} during the day"
-    when 2
-      "stop #{realm.using} to #{realm.intake} in the evening"
-    when 3
-      "stop #{realm.getting} to fall asleep in the evening"
-    end
-  end
-
-  def definition; "#{time} (#{action}; #{long})"; end
 
 end

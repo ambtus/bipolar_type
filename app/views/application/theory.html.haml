@@ -1,22 +1,43 @@
-%p.bigger.bold.center The Four Time Periods
+%p.bigger.bold.center The Four Behaviors
 
 %ul.none.center
   =list_of Position.each do |position|
-    %li #{position.inspect}: #{position.definition}
+    %li #{position.inspect}: #{position.description}
 
 %p.bigger.bold.center The Four Energy Realms
 
 %ul.none.center
   =list_of Realm.each do |realm|
-    %li #{realm.inspect}: #{realm.definition}
+    %li #{realm.inspect}: #{realm.description}
 
 %p.bigger.bold.center The Sixteen Behaviors
 
 %table
   %tr
+    %th
     -Realm.each do |realm|
       %th=realm.inspect
-  -Position.each do |position|
-    %tr
-      -Realm.each do |realm|
-        %td=position.description(realm)
+  %tr
+    %th=Position.first.inspect
+    -Realm.each do |realm|
+      %td
+        %strong #{realm.take}:
+        get #{realm.energy} from #{realm.wholes}
+  %tr
+    %th=Position.second.inspect
+    -Realm.each do |realm|
+      %td
+        %strong #{realm.transform}:
+        create #{realm.wholes} from #{realm.parts}
+  %tr
+    %th=Position.third.inspect
+    -Realm.each do |realm|
+      %td
+        %strong #{realm.gather}:
+        get #{realm.parts} from your #{realm.environ}
+  %tr
+    %th=Position.fourth.inspect
+    -Realm.each do |realm|
+      %td
+        %strong #{realm.control}:
+        create your #{realm.environ} from other #{realm.world}
