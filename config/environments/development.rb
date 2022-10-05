@@ -20,6 +20,6 @@ Rails.application.configure do
   config.active_support.deprecation = :log
 
   config.hosts << `hostname`.chomp.downcase
-  config.hosts << `hostname`.chomp.downcase + ".local"
+  config.hosts << `hostname`.chomp.downcase.split(".").first + ".local"
 
 end

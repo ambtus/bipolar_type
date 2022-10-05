@@ -13,20 +13,20 @@ class Answer
   def index; number - 1; end
   def finished?; number > 4; end
 
-  def css(choice)
-    return "chosen" if subtypes.include?(choice)
-    return "constrained" if realms.include?(choice.first)
-    return "constrained" if positions.include?(choice.chars.second)
+  def css(subtype)
+    return "chosen" if subtypes.include?(subtype)
+    return "constrained" if realms.include?(subtype.realm)
+    return "constrained" if positions.include?(subtype.position)
     return "free"
   end
 
-  def next(choice); question.next + ":" + @subtype_string + choice; end
+  def next(choice); question.next + ":" + @subtype_string + choice.path; end
 
-  def type_path; subtypes.sort_by{|s| ARROWS.index(s.chars.second) }.map(&:first).join; end
+  def type_path; subtypes.sort_by{|s| s.position.index}.map(&:realm).map(&:path).join; end
 
   private
-  def subtypes; @subtype_string.scan(/../); end
-  def realms; subtypes.map(&:first); end
-  def positions; subtypes.map(&:chars).map(&:second); end
+  def subtypes; @subtype_string.scan(/.../).collect{|s| Subtype.find(s)}; end
+  def realms; subtypes.map(&:realm); end
+  def positions; subtypes.map(&:position); end
 
 end

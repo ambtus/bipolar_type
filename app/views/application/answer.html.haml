@@ -10,5 +10,5 @@
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 
 -Position.each do |position|
-  %p.bold.center #{position.inspect} #{position.definition}
+  %p.bold.center #{position.name} (#{position.description})
   =render "choice", position: position

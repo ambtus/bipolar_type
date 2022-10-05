@@ -3,8 +3,8 @@ class Realm
   def initialize(symbol, name); @symbol = symbol; @name = name; end
   attr_reader :symbol, :name
 
-  SYMBOLS = %w{S T F N}
-  NAMES = %w{physical material spiritual mental}
+  SYMBOLS = %w{S N F T}
+  NAMES = %w{physical mental spiritual/social material/financial}
   ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
 
   SYMBOLS.each do |symbol|
@@ -24,11 +24,15 @@ class Realm
 
   def index; SYMBOLS.index(@symbol) ; end
 
-  def accept; %w{eat use say follow}[index]; end
-  def things; %w{foods tools words plans}[index]; end
+  def energy; %w{calories facts morals money}[index]; end
+  def strengths; %w{muscles theories\ or\ procedures\ or\ generalities language\ or\ vocabulary credit/debts}[index]; end
+  def notice; %w{smell/taste see hear touch}[index]; end
+  def process; %w{eat\ &\ digest watch\ &\ learn listen\ &\ understand hold\ &\ use}[index]; end
+  def resources; %w{foods events/results stories\ or\ songs tools\ (goods\ or\ services)}[index]; end
+  def fast_energy; %w{simple\ carbs colorful\ details music\ and\ intonation hourly\ wages\ or\ cash\ sales}[index]; end
+  def slow_energy; %w{protein stable\ patterns lyrics\ and\ words monthly\ salaries\ or\ investment\ interest\ &\ dividends}[index]; end
+  def energetic_action; %w{walk\ or\ run guess\ or\ choose talk,\ sing\ or\ cry pay\ cash\ upfront}[index]; end
+  def strong_action; %w{lift\ weights prove\ or\ plan write charge\ or\ lease\ or\ rent}[index]; end
 
-  def description
-    "#{accept} the #{things}"
-  end
 
 end

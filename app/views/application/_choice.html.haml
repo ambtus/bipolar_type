@@ -1,8 +1,8 @@
 -Realm.each do |realm|
-  -choice = realm.symbol + position.symbol.first
-  %div{:class => @answer.css(choice)}
-    -if @answer.css(choice) == "free"
-      =link_to answer_path(@answer.next(choice)) do
-        %p #{realm.symbol}
+  -subtype = Subtype.select(realm, position)
+  %div{:class => @answer.css(subtype)}
+    -if @answer.css(subtype) == "free"
+      =link_to answer_path(@answer.next(subtype)) do
+        %p #{subtype.symbol}
     -else
-      =realm.inspect + position.inspect
+      =subtype.solution

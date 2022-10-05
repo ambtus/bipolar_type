@@ -5,5 +5,5 @@ class TypesController < ApplicationController
     @class = "center"
   end
 
-  def index; @title = 'The 24 BipolarTypes'; @class = "index"; @index = true ; end
+  def index; @title = 'The 16 Subtypes'; end
 end

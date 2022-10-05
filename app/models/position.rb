@@ -3,8 +3,8 @@ class Position
   def initialize(symbol, name); @symbol = symbol; @name = name; end
   attr_reader :symbol, :name
 
-  SYMBOLS = %w{ip ep ej ij}
-  NAMES = %w{child adolescent adult parent}
+  SYMBOLS = %w{IP EP EJ IJ}
+  NAMES = %w{Morning Midday Afternoon Night}
   ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
 
   # class methods
@@ -28,5 +28,9 @@ class Position
   def index; SYMBOLS.index @symbol; end
   def next; ALL[index + 1] || Position.first; end
   def previous; ALL[index - 1] || Position.fourth; end
+
+  def severity; [0,3].include?(index) ? "reactive" : "primary"; end
+  def episode; index < 2 ? "depression" : "mania"; end
+  def description; [severity, episode].join(" "); end
 
 end

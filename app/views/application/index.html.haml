@@ -1,5 +1,6 @@
--Type.each do |type|
-  =link_to type_path(type.path), class: "none" do
-    =render "table", type: type
-.clear
+-Subtype.each do |subtype|
+  %p
+    =(link_to subtype.inspect, answer_path(subtype.path)) + ":"
+    =subtype.solution
+
 

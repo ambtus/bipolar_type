@@ -1,25 +1,59 @@
-%p.bigger.bold.center The Four States
+%p.bigger.bold.center The Four Problems
 
-%ul.none.center
-  =list_of Position.each do |position|
-    %li #{position.name}
+%ol
+  %li You are not alert enough to wake up or stay awake in the morning (reactive depression / empty)
+  %li You are not active enough to use all the energy you get during the day (primary depression / energy surplus)
+  %li You you are not receptive enough to get all the energy you use during the day (primary mania / energy deficit)
+  %li You are not relaxed enough to fall asleep or stay asleep at night (reactive mania / full)
+
+
+%p.bigger.bold.center The Four Solutions
+%ol
+  %li Get easy to process, quick acting energy to keep you alert in the morning
+  %li Build and maintain strengths, to continue draining energy when you are not active
+  %li Shed and neglect strengths, to conserve energy when you are not receptive
+  %li Avoid easy to process, quick acting energy to keep you calm in the evening
 
 %p.bigger.bold.center The Four Realms
-
-%ul.none.center
-  =list_of Realm.each do |realm|
-    %li #{realm.name}: #{realm.description}
-
-%p
-  As a #{Position.first.name}, you
-  #{Realm.all.map(&:description).to_sentence}
-  you are given by your parents, guardians, and teachers.
-
-%p
-  As an #{Position.second.name}, you learn to create your own #{Realm.all.map(&:things).to_sentence}
-
-%p
-  As an #{Position.third.name}, you start to create #{Realm.all.map(&:things).to_sentence} for others to #{Realm.all.map(&:accept).to_sentence}.
-
-%p
-  As a #{Position.fourth.name}, you must provide the #{Realm.all.map(&:things).to_sentence} that your children, dependents, and students will #{Realm.all.map(&:accept).to_sentence}.
+%p I’m not very good with words. If you don’t like the words I’ve used to describe the following concepts, feel free to substitute other words that have more meaning to you.
+%table
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=realm.name
+  %tr
+    %th Energy
+    -Realm.each do |realm|
+      %td=realm.energy
+  %tr
+    %th Notice (pay attention)
+    -Realm.each do |realm|
+      %td=realm.notice
+  %tr
+    %th Get & process
+    -Realm.each do |realm|
+      %td=realm.process
+  %tr
+    %th Energy resources
+    -Realm.each do |realm|
+      %td=realm.resources
+  %tr
+    %th quick acting energy (makes you alert)
+    -Realm.each do |realm|
+      %td=realm.fast_energy
+  %tr
+    %th energetic actions (uses mostly energy)
+    -Realm.each do |realm|
+      %td=realm.energetic_action
+  %tr
+    %th Strengths
+    -Realm.each do |realm|
+      %td=realm.strengths
+  %tr
+    %th slow acting energy (helps build strength)
+    -Realm.each do |realm|
+      %td=realm.slow_energy
+  %tr
+    %th strong actions (requires and builds strength)
+    -Realm.each do |realm|
+      %td=realm.strong_action
