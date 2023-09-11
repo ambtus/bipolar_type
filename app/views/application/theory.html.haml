@@ -1,59 +1,17 @@
-%p.bigger.bold.center The Four Problems
+- content_for(:title, 'The Theory')
 
-%ol
-  %li You are not alert enough to wake up or stay awake in the morning (reactive depression / empty)
-  %li You are not active enough to use all the energy you get during the day (primary depression / energy surplus)
-  %li You you are not receptive enough to get all the energy you use during the day (primary mania / energy deficit)
-  %li You are not relaxed enough to fall asleep or stay asleep at night (reactive mania / full)
-
-
-%p.bigger.bold.center The Four Solutions
-%ol
-  %li Get easy to process, quick acting energy to keep you alert in the morning
-  %li Build and maintain strengths, to continue draining energy when you are not active
-  %li Shed and neglect strengths, to conserve energy when you are not receptive
-  %li Avoid easy to process, quick acting energy to keep you calm in the evening
-
-%p.bigger.bold.center The Four Realms
-%p I’m not very good with words. If you don’t like the words I’ve used to describe the following concepts, feel free to substitute other words that have more meaning to you.
-%table
-  %tr
-    %th
-    -Realm.each do |realm|
-      %th=realm.name
-  %tr
-    %th Energy
-    -Realm.each do |realm|
-      %td=realm.energy
-  %tr
-    %th Notice (pay attention)
-    -Realm.each do |realm|
-      %td=realm.notice
-  %tr
-    %th Get & process
-    -Realm.each do |realm|
-      %td=realm.process
-  %tr
-    %th Energy resources
-    -Realm.each do |realm|
-      %td=realm.resources
-  %tr
-    %th quick acting energy (makes you alert)
-    -Realm.each do |realm|
-      %td=realm.fast_energy
-  %tr
-    %th energetic actions (uses mostly energy)
-    -Realm.each do |realm|
-      %td=realm.energetic_action
-  %tr
-    %th Strengths
-    -Realm.each do |realm|
-      %td=realm.strengths
-  %tr
-    %th slow acting energy (helps build strength)
-    -Realm.each do |realm|
-      %td=realm.slow_energy
-  %tr
-    %th strong actions (requires and builds strength)
-    -Realm.each do |realm|
-      %td=realm.strong_action
+%h2 The Four Realms
+-Realm.each do |realm|
+  %h3=link_to realm.name, realm_path(realm.path)
+  %ul
+    %li Get #{realm.center}: #{realm.get_energy} & #{realm.external_strength}
+    %li Use #{realm.center}: #{realm.use_strength} & #{realm.internal_energy}
+    %li Mania: #{realm.adjective} deficit (#{realm.use} too much and/or do not #{realm.get_short} enough)
+    %li Depression: #{realm.adjective} surplus (#{realm.get_short} too much and/or do not #{realm.use} enough)
+%h2 The Four Generic Solutions
+-Position.each do |position|
+  %h3=link_to position.name, position_path(position.path)
+  %ul
+    %li Problem: #{position.problem}
+    %li Reason: #{position.reason}
+    %li Solution: #{position.solution}

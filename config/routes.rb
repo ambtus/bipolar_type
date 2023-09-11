@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :answers, only: [:show]
   resources :realms, only: [:show]
   resources :positions, only: [:show]
+  resources :subtypes, only: [:index, :show]
 end

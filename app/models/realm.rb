@@ -1,11 +1,10 @@
 class Realm
 
-  def initialize(symbol, name); @symbol = symbol; @name = name; end
-  attr_reader :symbol, :name
+  def initialize(symbol); @symbol = symbol; end
+  attr_reader :symbol
 
   SYMBOLS = %w{S N F T}
-  NAMES = %w{physical mental spiritual/social material/financial}
-  ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
+  ALL = 4.times.collect {|i| new SYMBOLS[i]}
 
   SYMBOLS.each do |symbol|
     define_singleton_method(symbol) {ALL[SYMBOLS.index(symbol)]}
@@ -17,22 +16,29 @@ class Realm
     def symbols; SYMBOLS; end
   end
 
-  def name; @name.titleize; end
+  def center; %w{calories knowledge motivation money}[index]; end
+  def adjective; %w{caloric knowledge motivational monetary}[index]; end
+  def name; center.capitalize; end
   def inspect; "#{@symbol}: #{name}"; end
 
   def path; @symbol; end
 
   def index; SYMBOLS.index(@symbol) ; end
 
-  def energy; %w{calories facts morals money}[index]; end
-  def strengths; %w{muscles theories\ or\ procedures\ or\ generalities language\ or\ vocabulary credit/debts}[index]; end
-  def notice; %w{smell/taste see hear touch}[index]; end
-  def process; %w{eat\ &\ digest watch\ &\ learn listen\ &\ understand hold\ &\ use}[index]; end
-  def resources; %w{foods events/results stories\ or\ songs tools\ (goods\ or\ services)}[index]; end
-  def fast_energy; %w{simple\ carbs colorful\ details music\ and\ intonation hourly\ wages\ or\ cash\ sales}[index]; end
-  def slow_energy; %w{protein stable\ patterns lyrics\ and\ words monthly\ salaries\ or\ investment\ interest\ &\ dividends}[index]; end
-  def energetic_action; %w{walk\ or\ run guess\ or\ choose talk,\ sing\ or\ cry pay\ cash\ upfront}[index]; end
-  def strong_action; %w{lift\ weights prove\ or\ plan write charge\ or\ lease\ or\ rent}[index]; end
 
+  def get; %w{eat watch listen\ to earn\ from}[index]; end
+  def get_short; get.split(" ").first; end
+  def external_less; %w{fewer fewer less less}[index]; end
+  def external_energy; %w{carbs colors music wages}[index]; end
+  def external_strength; %w{protein movement words investments}[index]; end
+  def get_energy; "#{get} #{external_energy}"; end
+  def get_strength; "#{get} #{external_strength}"; end
+  def get_less_energy; "#{get} #{external_less} #{external_energy}"; end
+
+  def use; %w{move decide communicate spend}[index]; end
+  def internal_energy; %w{glycogen specifics emotion cash}[index]; end
+  def use_energy; "#{use} using #{internal_energy}"; end
+  def internal_strength; %w{muscles rules meaning credit}[index]; end
+  def use_strength; "#{use} using #{internal_strength}"; end
 
 end

@@ -1,11 +1,10 @@
 class Position
 
-  def initialize(symbol, name); @symbol = symbol; @name = name; end
+  def initialize(symbol); @symbol = symbol; end
   attr_reader :symbol, :name
 
-  SYMBOLS = %w{IP EP EJ IJ}
-  NAMES = %w{Morning Midday Afternoon Night}
-  ALL = 4.times.collect {|i| new SYMBOLS[i], NAMES[i]}
+  SYMBOLS = %w{IJ IP EJ EP}
+  ALL = 4.times.collect {|i| new SYMBOLS[i]}
 
   # class methods
   %w{first second third fourth}.each_with_index do |ordinal, index|
@@ -20,17 +19,34 @@ class Position
     def each_with_index(&block); ALL.each_with_index(&block); end
   end
 
-  def name; @name.titleize; end
+  def subtypes; Subtype.all.select{|s| s.position == self}; end
+
+  def index; SYMBOLS.index @symbol; end
+  def surplus_or_deficit; index > 1 ? "surplus" : "deficit"; end
+  def manic_or_depressed; index > 1 ? "depressed" : "manic"; end
+  def problem; "#{manic_or_depressed} #{surplus_or_deficit}"; end
+
+  def get_or_use; index.even? ? "use" : "get"; end
+  def more_or_less; [0,3].include?(index) ? "less" : "more"; end
+  def solution; "#{get_or_use} #{more_or_less}"; end
+  def description; "#{problem} (#{solution})" ; end
+  def name; solution.titleize; end
+
   def inspect; "#{@symbol}: #{name}"; end
 
   def path; @symbol; end
 
-  def index; SYMBOLS.index @symbol; end
-  def next; ALL[index + 1] || Position.first; end
-  def previous; ALL[index - 1] || Position.fourth; end
-
-  def severity; [0,3].include?(index) ? "reactive" : "primary"; end
-  def episode; index < 2 ? "depression" : "mania"; end
-  def description; [severity, episode].join(" "); end
+  def reason
+    case index
+    when 0
+      "cannot get enough when manic"
+    when 1
+      "use too much when manic"
+    when 2
+      "get too much when depressed"
+    when 3
+      "cannot use enough when depressed"
+    end
+  end
 
 end

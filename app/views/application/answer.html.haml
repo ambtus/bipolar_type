@@ -9,6 +9,22 @@
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 
--Position.each do |position|
-  %p.bold.center #{position.name} (#{position.description})
-  =render "choice", position: position
+%table
+  %tr
+    -Realm.each do |realm|
+      %th=realm.name
+  -Position.each do |position|
+    %tr
+      -Realm.each do |realm|
+        -subtype = Subtype.select(realm, position)
+        %td
+          %div{:class => @answer.css(subtype)}
+          -if @answer.css(subtype) == "free"
+            =subtype.symbol
+            =subtype.adjective
+            =subtype.surplus_or_deficit
+            %br
+            =link_to subtype.reason, answer_path(@answer.next(subtype))
+
+          -else
+            =subtype.solution

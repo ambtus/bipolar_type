@@ -10,7 +10,7 @@ class Type
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def my_realm_strings; %w{F S T N}; end
+    def my_realm_strings; %w{T F N S}; end
     def my_type; ALL.find{|type| type.realms.map(&:path) == my_realm_strings}; end
   end
 

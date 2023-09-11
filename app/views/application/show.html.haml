@@ -1,2 +1,8 @@
+- content_for(:title, @title)
+
 -@type.subtypes.each do |subtype|
-  %h2=subtype.solution
+  %h2=link_to subtype.symbol, subtype_path(subtype.path)
+  %ul
+    %li Problem: #{subtype.problem}
+    %li Reason: #{subtype.reason}
+    %li Solution: #{subtype.solution}
