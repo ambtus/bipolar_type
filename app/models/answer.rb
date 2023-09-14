@@ -4,30 +4,30 @@ class Answer
   def self.first; Answer.new(first_path); end
 
   def initialize(string)
-    @question,subtype_string = string.split(":")
-    @subtype_string = subtype_string || ""
+    @question,@realm_paths = string.split(":")
+    @realm_paths = @realm_paths || ""
   end
-  attr_reader :question
+  attr_reader :question, :realm_paths
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
+  def solution; Solution.all[index]; end
   def finished?; number > 4; end
 
-  def css(choice)
-    return "chosen" if subtypes.include?(choice)
-    return "constrained" if realms.include?(choice.first)
-    return "constrained" if positions.include?(choice.chars.second)
-    return "free"
+  def realms; @realm_paths.scan(/./).collect{|x| Realm.send(x)}; end
+  def solutions; Solution.all[0..index]; end
+  def subtypes; realms.add(solutions); end
+
+  def chosen?(subtype); realms.include?(subtype.realm); end
+
+  def css(subtype)
+    chosen?(subtype) ? "chosen" : "free"
   end
 
-  def next(choice); question.next + ":" + @subtype_string + choice; end
+  def paths(realm); [realm_paths, realm.symbol].join; end
+  def next(realm); "#{question.next}:#{paths(realm)}"; end
 
-  ARROWS = Realm::ARROWS.map(&:first)
-  def type_path; subtypes.sort_by{|s| ARROWS.index(s.chars.second) }.map(&:first).join; end
+  def type_path; @realm_paths; end
 
-  private
-  def subtypes; @subtype_string.scan(/../); end
-  def realms; subtypes.map(&:first); end
-  def positions; subtypes.map(&:chars).map(&:second); end
 
 end

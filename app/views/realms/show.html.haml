@@ -1,0 +1,11 @@
+- content_for(:title, "The #{@realm.symbol} (#{@realm.adjective}) Realm")
+%p If you use too much #{@realm.symbol} strength or do not get enough #{@realm.symbol} energy, you will create #{@realm.adjective.an} #{@realm.adjective} deficit.
+
+-%w{use get}.each do |g_or_u|
+  -%w{strength energy}.each do |e_or_s|
+    %p
+      Some examples of #{g_or_u} #{@realm.symbol} #{e_or_s} are:
+      =render "examples/#{g_or_u}_#{@realm.adjective}_#{e_or_s}"
+
+-@realm.subtypes.each do |subtype|
+  =link_to subtype.description, subtype_path(subtype.symbol)

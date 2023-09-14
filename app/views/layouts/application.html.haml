@@ -1,13 +1,14 @@
 !!!
 %html{:lang=>"en"}
   %head
-    %title="BipolarType: #{@title}"
+    %title="BipolarType: " + yield(:title)
     %meta{:content => "text/html; charset=utf-8"}
     %meta{:name => "viewport", :content=>"initial-scale=1"}
     =stylesheet_link_tag '/application.css'
     =render "layouts/favicon"
   %body
-    %p.center.smaller.padded_bottom=render "layouts/top_links"
+    %p.header=render "layouts/links"
+    %h1="BipolarType: " + yield(:title)
     =yield
-    %p.center.smaller.padded_top=render "layouts/top_links"
-    %p.center.smaller=render "layouts/bottom_links"
+    %p.subfooter=render "layouts/links"
+    %p.footer=render "layouts/sublinks"

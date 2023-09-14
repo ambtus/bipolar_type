@@ -18,4 +18,5 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'AKA'
+  inflect.uncountable 'income'
 end

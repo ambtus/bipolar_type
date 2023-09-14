@@ -1,0 +1,3 @@
+- content_for(:title, "The #{@solution.symbol} (#{@solution.description}) Solution")
+-@solution.subtypes.each do |subtype|
+  =link_to subtype.description, subtype_path(subtype.symbol)

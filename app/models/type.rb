@@ -1,28 +1,18 @@
 class Type
 
-  def initialize(array)
-    @emoji = array
-    @symbol = array.join
-  end
-  attr_reader :symbol, :emoji
+  def self.my_path; "FAMP"; end
+  def self.my_type; self.new my_path; end
 
-  ALL = Realm.symbols.permutation(4).collect{|p| new(p)}
-  class << self
-    def all; ALL; end
-    def each(&block); ALL.each(&block); end
-    def my_realms; %w{🤑 🥰 😷 🧐}; end
-    def my_type; ALL.find{|type| type.emoji == my_realms}; end
-    def generic_realms; Realm::ARROWS ; end
-    def generic; Type.new(generic_realms); end
+  def initialize(string)
+    @symbol = string
+    @realms = string.scan(/./).collect{|x| Realm.send(x)}
+    @realms.check_constraints Realm, 4, 4
   end
+  attr_reader :symbol, :realms
+
+  ALL = Realm::SYMBOLS.permutation(4).collect{|x| new(x.join)}
+
+  def subtypes; realms.add(Solution.all); end
 
   def inspect; @symbol; end
-  def path; inspect ; end
-  def index; ALL.index self; end
-
-  %w{first second third fourth}.each do |ordinal|
-    define_method(ordinal + "_realm") {Realm.send @emoji.send(ordinal)}
-  end
-
 end
-

@@ -1,8 +1,0 @@
--@realms.each do |realm|
-  -choice = realm.symbol + generic.symbol.first
-  %div{:class => @answer.css(choice)}
-    -if @answer.css(choice) == "free"
-      =link_to answer_path(@answer.next(choice)) do
-        %p #{realm.symbol} #{realm.send(generic.name)}
-    -else
-      =realm.inspect + generic.symbol

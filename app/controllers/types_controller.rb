@@ -1,13 +1,13 @@
 class TypesController < ApplicationController
   def show
-    @type = Type.new params[:id].scan(/./)
-    @title = @type.symbol
-    @class = "center"
-    @t = @type.first_realm
-    @f = @type.second_realm
-    @s = @type.third_realm
-    @n = @type.fourth_realm
+    begin
+      @type = Type.new params[:id]
+      @subtypes = @type.subtypes
+    rescue
+      Rails.logger.debug "DEBUG: problems with #{params[:id]}"
+      redirect_to root_path and return
+    end
   end
 
-  def index; @title = 'The 24 BipolarTypes'; @class = "index"; @index = true ; end
+  def index; end
 end

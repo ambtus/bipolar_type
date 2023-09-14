@@ -1,9 +1,8 @@
 class RealmsController < ApplicationController
+  def index; end
+
   def show
     @realm = Realm.send params[:id]
-    @title = @realm.inspect
-    @class = "center"
-    @omit = true
-    render "realm"
+    @subtypes = @realm.subtypes
   end
 end

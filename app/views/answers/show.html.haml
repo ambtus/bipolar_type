@@ -1,0 +1,11 @@
+-content_for(:title, "Question ##{@answer.number} of 4")
+%h2 The #{@solution.description.titleize} Problem
+-unless @answer.number == 1
+  %p.center
+    If you are stuck you can
+    =link_to_unless_current "start over", answer_path(Answer.first_path)
+-@solution.subtypes.each do |subtype|
+  %p
+    %div{:class => @answer.css(subtype)}
+      -if @answer.css(subtype) == "free"
+        =link_to subtype.description.titleize, answer_path(@answer.next(subtype.realm))

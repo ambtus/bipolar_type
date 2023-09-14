@@ -1,0 +1,3 @@
+-Solution.all.each_with_index do |solution, index|
+  ="|" unless index == 0
+  =link_to_unless_current solution.description, solution_path(solution.symbol)
