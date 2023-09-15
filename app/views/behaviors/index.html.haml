@@ -1,0 +1,13 @@
+- content_for(:title, 'The 16 Behaviors')
+%table
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=realm.name
+  -CycleBehavior.each do |cb|
+    %tr
+      %th=cb.name
+      -cb.behaviors.each do |behavior|
+        %td
+          =link_to behavior.name, behavior_path(behavior.symbol)
+          =render "behaviors/#{behavior.underscored}"

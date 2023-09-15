@@ -15,7 +15,16 @@ class Realm < Concept
   def subtypes; Subtype.all.select{|s| s.realm == self}; end
   def +(solution); subtypes.find{|s| s.solution == solution}; end
 
-  def center; %w{calories information affect posessions}[index]; end
+  def behaviors; Behavior.all.select{|s| s.realm == self}; end
+
   def adjective; %w{physical mental affective financial}[index]; end
+
+  def name; adjective.capitalize; end
+
+  def stored_energy; %w{fat knowledge self-esteem savings}[index]; end
+
+  def surplus; %w{obese know-it-all homicidal cash-rich}[index]; end
+
+  def deficit; %w{anorexic ignorant suicidal cash-starved}[index]; end
 
 end

@@ -12,6 +12,7 @@ class Answer
   def number; @question.last.to_i ; end
   def index; number - 1; end
   def solution; Solution.all[index]; end
+  def behavior; Behavior.all[index]; end
   def finished?; number > 4; end
 
   def realms; @realm_paths.scan(/./).collect{|x| Realm.send(x)}; end

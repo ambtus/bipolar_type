@@ -19,6 +19,7 @@ class Subtype < Concept
 
   def problem; Problem.send(@realm.symbol + @nurture.symbol); end
   def solution; Solution.send(@nature.symbol + @nurture.symbol); end
+  def behavior; realm.behaviors[solution.index]; end
 
   def method_missing(meth, *arguments, &block)
     if nature.respond_to?(meth)

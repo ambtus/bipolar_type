@@ -4,8 +4,14 @@
   %p.center
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
+%p.heading
+  The following behaviors are often
+  %em #{@solution.nature.attitude}:
 -@solution.subtypes.each do |subtype|
   %p
     %div{:class => @answer.css(subtype)}
+      =render "behaviors/#{subtype.behavior.underscored}"
       -if @answer.css(subtype) == "free"
         =link_to subtype.description.titleize, answer_path(@answer.next(subtype.realm))
+      -else
+        =subtype.description

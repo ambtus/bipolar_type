@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :problems, only: [:show]
   resources :solutions, only: [:show]
   resources :subtypes, only: [:index, :show]
+  resources :behaviors, only: [:index, :show]
   resources :types, only: [:show]
   resources :answers, only: [:show]
 end

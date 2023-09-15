@@ -1,11 +1,10 @@
-- content_for(:title, "The #{@realm.symbol} (#{@realm.adjective}) Realm")
-%p If you use too much #{@realm.symbol} strength or do not get enough #{@realm.symbol} energy, you will create #{@realm.adjective.an} #{@realm.adjective} deficit.
+- content_for(:title, "The #{@realm.name} Realm")
+%p If you use too much #{@realm.adjective} strength or do not get enough #{@realm.adjective} energy, you will have insuficient #{@realm.stored_energy} (#{@realm.deficit}). If you get too much #{@realm.adjective} energy or do not use enough #{@realm.adjective} strength, you will have excess #{@realm.stored_energy} (#{@realm.surplus}).
 
--%w{use get}.each do |g_or_u|
-  -%w{strength energy}.each do |e_or_s|
-    %p
-      Some examples of #{g_or_u} #{@realm.symbol} #{e_or_s} are:
-      =render "examples/#{g_or_u}_#{@realm.adjective}_#{e_or_s}"
+-@realm.behaviors.each do |behavior|
+  %p
+    Some examples of #{behavior.name} are:
+    =render "behaviors/#{behavior.underscored}"
 
 -@realm.subtypes.each do |subtype|
   =link_to subtype.description, subtype_path(subtype.symbol)
