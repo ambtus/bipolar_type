@@ -1,97 +1,100 @@
 - content_for(:title, 'The Theory')
-%h2 The Four Realms
-%dl
-  -Realm.each do |realm|
-    %dt=link_to realm.name, realm_path(realm.symbol)
-    %dd getting and using #{realm.adjective} strength and energy
 %h2 The Bipolar Cycle
-%p The bipolar cycle is a constant round of Use behaviors (mania) and Get behaviors (depression).
-%p The more strength you use when manic, the more energy you need to get when depressed to fuel all the strength that you developed.
-%p And the more energy you get when depressed, the more strength you need to use when manic to burn through all the energy that you stored.
-%h2 The Two Problems
-%p
-  =link_to "Deficit", nurture_path("D")
-  realms are those in which you were taught that using strength is productive and learned that developing and using strength makes you feel good. But you were not taught, or didn’t realize, that you would have to get energy in order to
-  %em fuel
-  that strength.
-%dl
-  -Realm.each do |realm|
-    %dt #{realm.name} deficit
-    %dd insufficient #{realm.stored_energy} (#{realm.deficit})
-%p
-  =link_to "Surplus", nurture_path("S")
-  realms are those in which you were taught that getting energy is pleasurable and learned that getting and storing energy makes you feel good. But you were not taught, or didn’t realize, that you would have to use strength in order to
-  %em burn
-  that energy.
-%dl
-  -Realm.each do |realm|
-    %dt #{realm.name} surplus
-    %dd excessive #{realm.stored_energy} (#{realm.surplus})
-%h2 The Four Solutions
+%table
+  %tr
+    %td
+      %b=GenericBehavior.UE.name
+      %br
+      Essential Use
+    %th
+    %td
+      %b=GenericBehavior.US.name
+      %br
+      Optional Use
+  %tr
+    %th
+    %th ↻
+    %th
+  %tr
+    %td
+      %b=GenericBehavior.GE.name
+      %br
+      Optional Get
+    %th
+    %td
+      %b=GenericBehavior.GS.name
+      %br
+      Essential Get
 
--Solution.each do |solution|
-  %h3=link_to solution.description.titleize, solution_path(solution.symbol)
-  -case solution.symbol
-    -when "PD"
-      %p
-        Getting energy is
-        %em painful
-        even if you can control what energies you get.
-        Being able to use strength is
-        %em not
-        worth having to get energy.
-      %p
-        The solution is to use more
-        %em energy
-        while manic, so as not to develop more strength, and get more
-        %em strength
-        when depressed, which is not as painful.
-      %p This is a “less” realm. You’ll be happier spending less of your time in this realm so you’ll need to compensate by spending more time in your “more” realms.
-    -when "WD"
-      %p
-        Getting energy
-        %em can
-        be pleasurable. It is only painful if you have no
-        %em control
-        over what energies you get.
-        Being able to use strength
-        %em is
-        worth having to get energy.
-      %p
-        The solution is to continue using strength while manic but get energy that make
-        %em you
-        feel pleasure when depressed.
-      %p This is a “more” realm. You’ll be happier spending more of your time in this realm so you’ll need to compensate by spending less time in your “less” realms.
-    -when "WS"
-      %p
-        Using strength
-        %em can
-        be productive. It is only painful if you have no
-        %em control
-        over what strengths you use.
-        Being able to get energy
-        %em is
-        worth having to use energy.
-      %p
-        The solution is to continue getting energy while depressed but use strengths that make
-        %em you
-        feel productive when manic.
-      %p This is a “more” realm. You’ll be happier spending more of your time in this realm so you’ll need to compensate by spending less time in your “less” realms.
-    -when "PS"
-      %p
-        Using strength is
-        %em painful
-        even if you can control what strengths you use.
-        Being able to get energy is
-        %em not
-        worth having to use strength.
-      %p
-        The solution is to get more
-        %em strength
-        while depressed so as not to store more energy and use more
-        %em energy
-        when manic, which is not as painful.
-      %p This is a “less” realm. You’ll be happier spending less of your time in this realm so you’ll need to compensate by spending more time in your “more” realms.
+
+%h2 The Four Balanced Types
+%p Everyone is given a steak, and as many potatoes as they want to eat. Then they all travel a mile as fast as they want to go. The GetStrength (one steak) and the UseEnergy (one mile) are fixed, but the GetEnergy (extra potatoes) and UseStrength (extra speed) are optional and left up to the individual.
+%table
+  %tr
+    %td.top.half
+      %b Hates Potatoes
+      %p Eats fewer potatoes (less GetEnergy)
+      %p Moves very slowly (natural consequence)
+    %td.top
+      %b Loves Potatoes
+      %p Eats more potatoes (more GetEnergy)
+      %p Moves very quickly (natural consequence)
+  %tr
+    %td.top.half
+      %b Hates Running
+      %p Moves very slowly (less UseStrength)
+      %p Eats fewer potatoes (natural consequence)
+    %td.top
+      %b Loves Running
+      %p Moves very quickly (more UseStrength)
+      %p Eats more potatoes (natural consequence)
+  %tr
+    %td.p Haters develop more slow-twitch muscle fibers that neither demand to be fed many potatoes nor are capable of running very quickly.
+    %td.p Lovers develop more fast-twitch muscle fibers that both demand to be fed many potatoes and are capable of running very quickly.
+
+%h2 The Four Unbalanced Types
+%p Everyone is given a steak, and as many potatoes as their parent wants them to eat. Then they all travel a mile as fast as their parent wants them to go. The GetStrength (one steak) and the UseEnergy (one mile) are fixed, but the GetEnergy (extra potatoes) and UseStrength (extra speed) are left up to the parent who has an opposite type and thinks the child is being “difficult” rather than “different”.
+%table
+  %tr
+    %td.top.half
+      %b Hates Potatoes
+      %p Eats more potatoes (under protest)
+      %p Moves very quickly (natural consequence)
+      %p Develops fast-twitch muscles that demand to be fed potatoes.
+      %p Your hatred of potatoes is innate and cannot be changed (without drugs); your love of running is nurtured and can be unlearned; you can eat fewer potatoes if you teach yourself to move more slowly.
+    %td.top
+      %b Loves Potatoes
+      %p Eats fewer potatoes (under protest)
+      %p Moves very slowly (natural consequence)
+      %p Develops slow-twitch muscles that refuse to be fed potatoes.
+      %p Your love of potatoes is innate and cannot be changed (without drugs); your hatred of running is nurtured and can be unlearned; you can eat more potatoes if you teach yourself to move more quickly.
+  %tr
+    %td.top.half
+      %b Hates Running
+      %p Moves very quickly (under protest)
+      %p Eats more potatoes (natural consequence)
+      %p Develops fast-twitch muscles that demand to run quickly.
+      %p Your hatred of running is innate and cannot be changed (without drugs); your love of potatoes is nurtured and can be unlearned; you can move more slowly if you teach yourself to eat fewer potatoes.
+    %td.top
+      %b Loves Running
+      %p Moves very slowly (under protest)
+      %p Eats fewer potatoes (natural consequence)
+      %p Develops slow-twitch muscles that refuse to run quickly.
+      %p Your love of running is innate and cannot be changed (without drugs); your hatred of potatoes is nurtured and can be unlearned; you can move more quickly if you teach yourself to eat more potatoes.
+
+%h2 The Four Realms
+%table
+  %tr
+    %th
+    %th GetEnergy
+    %th UseStrength
+  -Realm.each do |realm|
+    %tr
+      %th.right=link_to realm.name, realm_path(realm.symbol)
+      %td=realm.get_energy
+      %td=realm.use_strength
+
 %h2 BipolarType
-%p The four realms and the four solutions fit together differently for different people.
-%p Even if you are not bipolar — even if you do not have significant or problematic imbalances — you still have a BipolarType with “more” realms which include pleasurable and productive balancing behaviors and “less” realms where balancing is more painful.
+%p The four realms and the four behavioral solutions fit together differently for different people.
+%p Even if you are not bipolar you still have a BipolarType.
+%p Following the advice for your type and increasing and decreasing certain behaviors should allow you to continue to Get and Use in balance while reducing your need for sedatives such as alcohol or stimulants such as caffeine.

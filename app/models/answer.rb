@@ -4,31 +4,26 @@ class Answer
   def self.first; Answer.new(first_path); end
 
   def initialize(string)
-    @question,@realm_paths = string.split(":")
-    @realm_paths = @realm_paths || ""
+    @question,@solution_paths = string.split(":")
+    @solution_paths = @solution_paths || ""
   end
-  attr_reader :question, :realm_paths
+  attr_reader :question, :solution_paths
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
-  def solution; Solution.all[index]; end
-  def behavior; Behavior.all[index]; end
   def finished?; number > 4; end
 
-  def realms; @realm_paths.scan(/./).collect{|x| Realm.send(x)}; end
-  def solutions; Solution.all[0..index]; end
-  def subtypes; realms.add(solutions); end
+  def solutions; @solution_paths.scan(/.../).collect{|s| Solution.send(s)}.sort; end
 
-  def chosen?(subtype); realms.include?(subtype.realm); end
+  def realm_taken?(realm); solutions.map(&:realm).include?(realm); end
+  def generic_taken?(generic); solutions.map(&:generic_solution).include?(generic); end
+  def taken?(solution); realm_taken?(solution.realm) || generic_taken?(solution.generic_solution); end
 
-  def css(subtype)
-    chosen?(subtype) ? "chosen" : "free"
-  end
 
-  def paths(realm); [realm_paths, realm.symbol].join; end
-  def next(realm); "#{question.next}:#{paths(realm)}"; end
+  def paths(solution); [solution_paths, solution.symbol].join; end
+  def next(solution); "#{question.next}:#{paths(solution)}"; end
 
-  def type_path; @realm_paths; end
+  def type_path; solutions.map(&:realm).map(&:symbol).join; end
 
 
 end

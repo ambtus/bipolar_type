@@ -1,3 +1,4 @@
-- content_for(:title, @name)
--@subtypes.each do |subtype|
-  %h2=link_to subtype.description, subtype_path(subtype.symbol)
+- content_for(:title, @type.name)
+-@type.solutions.each do |solution|
+  %h2=solution.name
+  %p=solution.realm.send(solution.generic_solution.words.gsub(" ", "_"))

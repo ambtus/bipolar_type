@@ -13,6 +13,12 @@ class Concept
   def self.all; self::ALL; end
   def self.each(&block);self::ALL.each(&block); end
 
+  def self.first; self::ALL.first; end
+
+
+  def word; %w{alpha beta psi omega}[index]; end
+  def name; words.titleize.squash rescue word.capitalize ; end
+
 
   def index; self.class::SYMBOLS.index @symbol; end
 

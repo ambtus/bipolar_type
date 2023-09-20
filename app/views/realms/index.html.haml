@@ -1,0 +1,44 @@
+- content_for(:title, 'The Four Realms')
+%table
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=link_to realm.name, realm_path(realm.symbol)
+  %tr
+    %th Manic deficit to Depressed surplus
+    -Realm.each do |realm|
+      %td #{realm.deficit} to #{realm.surplus}
+  %tr
+    %th Get
+    -Realm.each do |realm|
+      %td #{realm.intake} & #{realm.get}
+  %tr
+    %th External Strengths
+    -Realm.each do |realm|
+      %td
+        =realm.external_strength+":"
+        =realm.external_strength_examples.join(", ")
+  %tr
+    %th External Energy
+    -Realm.each do |realm|
+      %td
+        =realm.external_energy+":"
+        =realm.external_energy_examples.join(", ")
+
+  %tr
+    %th Use
+    -Realm.each do |realm|
+      %td #{realm.output} & #{realm.use}
+  %tr
+    %th Energetic
+    -Realm.each do |realm|
+      %td
+        use #{realm.internal_energy}:
+        =realm.use_energy_examples.join(", ")
+
+  %tr
+    %th Strong
+    -Realm.each do |realm|
+      %td
+        use #{realm.internal_strength}:
+        =realm.use_strength_examples.join(", ")

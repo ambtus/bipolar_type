@@ -12,7 +12,9 @@ class Type
 
   ALL = Realm::SYMBOLS.permutation(4).collect{|x| new(x.join)}
 
-  def subtypes; realms.add(Solution.all); end
+  def solutions; realms.add(GenericSolution.all); end
+
+  def name; "i#{realms.map(&:mbti).join}e"; end
 
   def inspect; @symbol; end
 end

@@ -1,17 +1,22 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-%h2 The #{@solution.description.titleize} Problem
+%p.heading Once you have chosen something, other choices in the same row or column will become unavailable.
 -unless @answer.number == 1
   %p.center
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
-%p.heading
-  The following behaviors are often
-  %em #{@solution.nature.attitude}:
--@solution.subtypes.each do |subtype|
-  %p
-    %div{:class => @answer.css(subtype)}
-      =render "behaviors/#{subtype.behavior.underscored}"
-      -if @answer.css(subtype) == "free"
-        =link_to subtype.description.titleize, answer_path(@answer.next(subtype.realm))
-      -else
-        =subtype.description
+
+%table
+  -GenericSolution.each do |gs|
+    %tr
+      -gs.solutions.each do |solution|
+        %td
+          =link_to_unless @answer.taken?(solution), solution.name, answer_path(@answer.next(solution))
+          %p
+            I am naturally
+            =solution.problem + "."
+          %p
+            When
+            =solution.state
+            I
+            %em=solution.ability
+            =solution.problem_behavior

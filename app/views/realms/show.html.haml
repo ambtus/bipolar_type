@@ -1,10 +1,34 @@
 - content_for(:title, "The #{@realm.name} Realm")
-%p If you use too much #{@realm.adjective} strength or do not get enough #{@realm.adjective} energy, you will have insuficient #{@realm.stored_energy} (#{@realm.deficit}). If you get too much #{@realm.adjective} energy or do not use enough #{@realm.adjective} strength, you will have excess #{@realm.stored_energy} (#{@realm.surplus}).
-
--@realm.behaviors.each do |behavior|
-  %p
-    Some examples of #{behavior.name} are:
-    =render "behaviors/#{behavior.underscored}"
-
--@realm.subtypes.each do |subtype|
-  =link_to subtype.description, subtype_path(subtype.symbol)
+%p.heading #{@realm.use} & #{@realm.get}
+%table
+  %caption The Four #{@realm.name} Behaviors
+  %tr
+    %td
+      =link_to "Use#{@realm.name}Energy", behavior_path("U#{@realm.symbol}E")
+      %br
+      =@realm.use_energy
+    %th
+    %td
+      =link_to "Use#{@realm.name}Strength", behavior_path("U#{@realm.symbol}S")
+      %br
+      =@realm.use_strength
+  %tr
+    %th
+    %th ↻
+    %th
+  %tr
+    %td
+      =link_to "Get#{@realm.name}Energy", behavior_path("G#{@realm.symbol}E")
+      %br
+      =@realm.get_energy
+    %th
+    %td
+      =link_to "Get#{@realm.name}Strength", behavior_path("G#{@realm.symbol}S")
+      %br
+      =@realm.get_strength
+%p.heading #{@realm.deficit} to #{@realm.surplus}
+%table
+  %caption The Four #{@realm.name} Solutions
+  -@realm.solutions.each do |solution|
+    %tr
+      %td=link_to solution.name, solution_path(solution.symbol)

@@ -1,7 +1,11 @@
 class SolutionsController < ApplicationController
-  def index; @solutions = Solution.all; end
+  def index; end
   def show
-    @solution = Solution.send params[:id]
-    @subtypes = @solution.subtypes
+    if params[:id].length == 2
+      @solution = GenericSolution.send params[:id]
+    else
+      @solution = Solution.send params[:id]
+    end
+    @name = @solution.name
   end
 end

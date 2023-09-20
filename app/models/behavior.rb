@@ -2,23 +2,26 @@ class Behavior < Concept
 
   def initialize(string)
     @symbol = string
-    @cycle = Cycle.send(string.first)
+    @verb = Verb.send(string.first)
     @realm = Realm.send(string.second)
-    @cycle_type = CycleType.send(string.third)
+    @noun = Noun.send(string.third)
   end
-  attr_reader :symbol, :cycle, :realm, :cycle_type
+  attr_reader :symbol, :verb, :realm, :noun
 
-  ALL = CycleBehavior::SYMBOLS.collect do |cb|
+  def generic_behavior; @verb + @noun; end
+
+  ########
+  ALL = GenericBehavior::SYMBOLS.collect do |phrase|
           Realm::SYMBOLS.collect do |realm|
-            self.new [cb.first, realm, cb.second].join
+            self.new [phrase.first, realm, phrase.second].join
           end
         end.flatten
-  def self.all; self::ALL; end
-  def self.each(&block);self::ALL.each(&block); end
-  ALL.each{|s| define_singleton_method(s.symbol) {s}}
+  SYMBOLS = ALL.map(&:symbol)
+  SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
+  ########
 
-  def description; [cycle.verb, realm.adjective, cycle_type.noun].to_phrase; end
-  def underscored; description.gsub(" ", "_"); end
-  def name; underscored.camelcase; end
+  def words; [verb.word, realm.word, noun.word].to_phrase; end
 
+  def aka; [realm.send(verb.word), verb.realm, realm.send(generic_behavior.underscored2)].to_phrase; end
+  def eg; realm.send(generic_behavior.underscored); end
 end

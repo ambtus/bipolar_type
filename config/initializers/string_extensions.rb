@@ -1,13 +1,14 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words to_phrase n first_word last_words last_word parenthesize is_mbti? s ed en ly ing an some enough many too_much too_little a_few plural? little few more fewer less much many that those is are was were them it they has have do does}.each do |meth|
+%w{chip squash second third fourth words to_phrase n first_word last_words last_word parenthesize is_mbti? s ed en ly ing an some enough many too_much too_little a_few plural? little few more fewer less much many that those is are was were them it they has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
 class String
 
   def chip; self[1..-1]; end
+  def squash; self.gsub(/\s/, '');end
   def second; chars.second; end
   def third; chars.third; end
   def fourth; chars.fourth; end
