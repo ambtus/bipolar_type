@@ -26,73 +26,31 @@
       %br
       Essential Get
 
-
-%h2 The Four Balanced Types
-%p Everyone is given a steak, and as many potatoes as they want to eat. Then they all travel a mile as fast as they want to go. The GetStrength (one steak) and the UseEnergy (one mile) are fixed, but the GetEnergy (extra potatoes) and UseStrength (extra speed) are optional and left up to the individual.
-%table
-  %tr
-    %td.top.half
-      %b Hates Potatoes
-      %p Eats fewer potatoes (less GetEnergy)
-      %p Moves very slowly (natural consequence)
-    %td.top
-      %b Loves Potatoes
-      %p Eats more potatoes (more GetEnergy)
-      %p Moves very quickly (natural consequence)
-  %tr
-    %td.top.half
-      %b Hates Running
-      %p Moves very slowly (less UseStrength)
-      %p Eats fewer potatoes (natural consequence)
-    %td.top
-      %b Loves Running
-      %p Moves very quickly (more UseStrength)
-      %p Eats more potatoes (natural consequence)
-  %tr
-    %td.p Haters develop more slow-twitch muscle fibers that neither demand to be fed many potatoes nor are capable of running very quickly.
-    %td.p Lovers develop more fast-twitch muscle fibers that both demand to be fed many potatoes and are capable of running very quickly.
-
-%h2 The Four Unbalanced Types
-%p Everyone is given a steak, and as many potatoes as their parent wants them to eat. Then they all travel a mile as fast as their parent wants them to go. The GetStrength (one steak) and the UseEnergy (one mile) are fixed, but the GetEnergy (extra potatoes) and UseStrength (extra speed) are left up to the parent who has an opposite type and thinks the child is being “difficult” rather than “different”.
-%table
-  %tr
-    %td.top.half
-      %b Hates Potatoes
-      %p Eats more potatoes (under protest)
-      %p Moves very quickly (natural consequence)
-      %p Develops fast-twitch muscles that demand to be fed potatoes.
-      %p Your hatred of potatoes is innate and cannot be changed (without drugs); your love of running is nurtured and can be unlearned; you can eat fewer potatoes if you teach yourself to move more slowly.
-    %td.top
-      %b Loves Potatoes
-      %p Eats fewer potatoes (under protest)
-      %p Moves very slowly (natural consequence)
-      %p Develops slow-twitch muscles that refuse to be fed potatoes.
-      %p Your love of potatoes is innate and cannot be changed (without drugs); your hatred of running is nurtured and can be unlearned; you can eat more potatoes if you teach yourself to move more quickly.
-  %tr
-    %td.top.half
-      %b Hates Running
-      %p Moves very quickly (under protest)
-      %p Eats more potatoes (natural consequence)
-      %p Develops fast-twitch muscles that demand to run quickly.
-      %p Your hatred of running is innate and cannot be changed (without drugs); your love of potatoes is nurtured and can be unlearned; you can move more slowly if you teach yourself to eat fewer potatoes.
-    %td.top
-      %b Loves Running
-      %p Moves very slowly (under protest)
-      %p Eats fewer potatoes (natural consequence)
-      %p Develops slow-twitch muscles that refuse to run quickly.
-      %p Your love of running is innate and cannot be changed (without drugs); your hatred of potatoes is nurtured and can be unlearned; you can move more quickly if you teach yourself to eat more potatoes.
-
+%h2 The Two Unbalanced Types
+%h3 GetEnergy but do not UseStrength
+%p Fat & Weak. Depressed. Unhealthy.
+%p If UseStrength is painful (requires stimulants), need to omit GetEnergy to become balanced. Compulsive GetEnergy means you did UseStrength. Remember to UseEnergy instead. My Physical (walk slowly and eat protein)
+%p If GetEnergy is pleasurable (makes UseStrength worth doing), need to add UseStrength to become balanced. Inability to UseStrength means you did not GetEnergy. My Mental (look at pictures and think logically)
+%h3 UseStrength but do not GetEnergy
+%p Thin & Strong. Manic. Potentially fatal.
+%p If GetEnergy is painful (requires sedatives), need to omit UseStrength to become balanced. Compulsive UseStrength means you did GetEnergy. Remember to GetStrength instead. My Financial (invest & pay cash)
+%p If  is pleasurable (makes GetEnergy worth doing), need to add GetEnergy to become balanced. Inability to GetEnergy means you did not UseStrength. My Affective. use words and listen to music
 %h2 The Four Realms
-%table
-  %tr
-    %th
-    %th GetEnergy
-    %th UseStrength
-  -Realm.each do |realm|
+-Realm.each do |realm|
+  %h3=link_to realm.name, realm_path(realm.symbol)
+  %table
     %tr
-      %th.right=link_to realm.name, realm_path(realm.symbol)
-      %td=realm.get_energy
-      %td=realm.use_strength
+      %th=realm.use_energy
+      %td=realm.use
+      %th=realm.use_strength
+    %tr
+      %td=realm.energy
+      %th ↻
+      %td=realm.strength
+    %tr
+      %th=realm.get_energy
+      %td=realm.get
+      %th=realm.get_strength
 
 %h2 BipolarType
 %p The four realms and the four behavioral solutions fit together differently for different people.
