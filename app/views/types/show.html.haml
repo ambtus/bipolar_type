@@ -1,4 +1,3 @@
 - content_for(:title, @type.name)
 -@type.solutions.each do |solution|
   %h2=solution.name
-  %p=solution.realm.send(solution.generic_solution.words.gsub(" ", "_"))

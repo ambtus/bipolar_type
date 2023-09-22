@@ -22,6 +22,4 @@ class Behavior < Concept
 
   def words; [verb.word, realm.word, noun.word].to_phrase; end
 
-  def aka; [realm.send(verb.word), verb.realm, realm.send(generic_behavior.underscored2)].to_phrase; end
-  def eg; realm.send(generic_behavior.underscored); end
 end

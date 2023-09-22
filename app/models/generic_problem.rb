@@ -1,20 +1,16 @@
 class GenericProblem < Concept
 
-  def initialize(string)
-    @symbol = string
-    @attitude = Attitude.send(string.first)
-    @state = State.send(string.second)
-  end
-  attr_reader :symbol, :attitude, :state
-
   ########
-  SYMBOLS = %w{UM DM DD UD}
+  SYMBOLS = %w{D S}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
-  def problems; Problem.all.select{|b| b.generic_problem == self}; end
+  def imbalance; %w{deficit surplus}[index]; end
+  def state; %w{manic depressed}[index]; end
 
-  def words; [attitude, state].map(&:word).to_phrase; end
+  def words; [state, imbalance].to_phrase; end
+
+  def solutions; GenericSolution.all.select{|s| s.problem == self}; end
 
 end

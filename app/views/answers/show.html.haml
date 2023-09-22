@@ -10,13 +10,4 @@
     %tr
       -gs.solutions.each do |solution|
         %td
-          =link_to_unless @answer.taken?(solution), solution.name, answer_path(@answer.next(solution))
-          %p
-            I am naturally
-            =solution.problem + "."
-          %p
-            When
-            =solution.state
-            I
-            %em=solution.ability
-            =solution.problem_behavior
+          =link_to_unless @answer.taken?(solution), solution.symbol, answer_path(@answer.next(solution))

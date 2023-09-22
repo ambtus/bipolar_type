@@ -26,10 +26,6 @@ class Solution < Concept
 
   def words; [verb, determiner, realm, focus].map(&:word).to_phrase; end
 
-  def problem; realm.send(generic_solution.problem); end
-  def state; generic_solution.state; end
-  def ability; generic_solution.ability; end
-
-  def problem_behavior; realm.send(generic_solution.problem_behavior); end
+  def problem; realm + generic_solution.problem; end
 
 end

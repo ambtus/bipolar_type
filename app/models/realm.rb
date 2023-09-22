@@ -14,20 +14,15 @@ class Realm < Concept
 
   def behaviors; Behavior.all.select{|s| s.realm == self}; end
   def solutions; Solution.all.select{|s| s.realm == self}; end
+  def problems; Problem.all.select{|s| s.realm == self}; end
   def +(thing)
      behaviors.find{|b| b.generic_behavior == thing} ||
-     solutions.find{|s| s.generic_solution == thing}
+     solutions.find{|s| s.generic_solution == thing} ||
+     problems.find{|p| p.generic_problem == thing}
   end
 
   def word; %w{physical mental affective financial}[index]; end
 
-  def use; %w{move think talk pay}[index]; end
-  def get; %w{eat look listen invest}[index]; end
-  def energy; %w{carbs colors tones time}[index]; end
-  def strength; %w{protein outlines words money}[index]; end
-
-  def get_strength; %w{meat rules stories dividends}[index]; end
-  def get_energy; %w{potatoes facts songs wages}[index]; end
-  def use_energy; %w{gather specify sing cash}[index]; end
-  def use_strength; %w{hunt generalize write interest}[index]; end
+  def sense; %w{smell/taste sight hearing touch}[index]; end
+  def neuro; %w{serotonin glutamate oxytocin dopamine}[index]; end
 end

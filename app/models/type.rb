@@ -14,7 +14,7 @@ class Type
 
   def solutions; realms.add(GenericSolution.all); end
 
-  def name; "i#{realms.map(&:symbol).join}e"; end
+  def name; realms.map(&:symbol).join; end
 
   def inspect; @symbol; end
 end

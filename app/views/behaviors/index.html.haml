@@ -1,9 +1,0 @@
-- content_for(:title, 'The 16 Behaviors')
-%table
-  -GenericBehavior.each do |gb|
-    %tr
-      -gb.behaviors.each do |behavior|
-        %td
-          =link_to behavior.name, behavior_path(behavior.symbol)
-          %br
-          =behavior.eg

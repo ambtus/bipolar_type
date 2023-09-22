@@ -1,34 +1,28 @@
 - content_for(:title, "The #{@realm.name} Realm")
-%p.heading #{@realm.use} & #{@realm.get}
+%h2 The Four #{@realm.name} Behaviors
 %table
-  %caption The Four #{@realm.name} Behaviors
   %tr
     %td
-      =link_to "Use#{@realm.name}Energy", behavior_path("U#{@realm.symbol}E")
+      =link_to @realm.behaviors.third.name, behaviors_path(@realm.behaviors.third.name)
       %br
-      =@realm.use_energy
     %th
     %td
-      =link_to "Use#{@realm.name}Strength", behavior_path("U#{@realm.symbol}S")
+      =link_to @realm.behaviors.fourth.name, behaviors_path(@realm.behaviors.fourth.name)
       %br
-      =@realm.use_strength
   %tr
     %th
     %th ↻
     %th
   %tr
     %td
-      =link_to "Get#{@realm.name}Energy", behavior_path("G#{@realm.symbol}E")
+      =link_to @realm.behaviors.second.name, behaviors_path(@realm.behaviors.second.name)
       %br
-      =@realm.get_energy
     %th
     %td
-      =link_to "Get#{@realm.name}Strength", behavior_path("G#{@realm.symbol}S")
+      =link_to @realm.behaviors.first.name, behaviors_path(@realm.behaviors.first.name)
       %br
-      =@realm.get_strength
-%p.heading #{@realm.deficit} to #{@realm.surplus}
-%table
-  %caption The Four #{@realm.name} Solutions
-  -@realm.solutions.each do |solution|
-    %tr
-      %td=link_to solution.name, solution_path(solution.symbol)
+%h2 The Two #{@realm.name} Problems and their Solutions
+-@realm.problems.each do |problem|
+  %h3=link_to problem.name, problem_path(problem.symbol)
+  -problem.solutions.each do |solution|
+    %h4=link_to solution.name, solution_path(solution.symbol)

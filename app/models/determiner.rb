@@ -8,6 +8,4 @@ class Determiner < Concept
 
   def word; %w{less more}[index]; end
 
-  def ability; %w{can’t don’t}[index]; end
-
 end

@@ -5,12 +5,10 @@
     %td
       %b=GenericBehavior.UE.name
       %br
-      Essential Use
     %th
     %td
       %b=GenericBehavior.US.name
       %br
-      Optional Use
   %tr
     %th
     %th ↻
@@ -19,40 +17,41 @@
     %td
       %b=GenericBehavior.GE.name
       %br
-      Optional Get
     %th
     %td
       %b=GenericBehavior.GS.name
       %br
-      Essential Get
 
-%h2 The Two Unbalanced Types
-%h3 GetEnergy but do not UseStrength
-%p Fat & Weak. Depressed. Unhealthy.
-%p If UseStrength is painful (requires stimulants), need to omit GetEnergy to become balanced. Compulsive GetEnergy means you did UseStrength. Remember to UseEnergy instead. My Physical (walk slowly and eat protein)
-%p If GetEnergy is pleasurable (makes UseStrength worth doing), need to add UseStrength to become balanced. Inability to UseStrength means you did not GetEnergy. My Mental (look at pictures and think logically)
-%h3 UseStrength but do not GetEnergy
-%p Thin & Strong. Manic. Potentially fatal.
-%p If GetEnergy is painful (requires sedatives), need to omit UseStrength to become balanced. Compulsive UseStrength means you did GetEnergy. Remember to GetStrength instead. My Financial (invest & pay cash)
-%p If  is pleasurable (makes GetEnergy worth doing), need to add GetEnergy to become balanced. Inability to GetEnergy means you did not UseStrength. My Affective. use words and listen to music
+%h2 Two Imbalances & Four Solutions
+%ul
+  %li
+    %b=GenericProblem.D.name + ":"
+    UseStrength but do not GetEnergy.
+    %ul
+      %li
+        %b=GenericSolution.UL.name
+        if GetEnergy is actively painful (sedatives required)
+      %li
+        %b=GenericSolution.GM.name
+        if GetEnergy is merely aversive (sedatives counterproductive)
+  %li
+    %b=GenericProblem.S.name + ":"
+    GetEnergy but do not UseStrength.
+    %ul
+      %li
+        %b=GenericSolution.UM.name
+        if UseStrength is merely aversive (stimulants counterproductive)
+      %li
+        %b=GenericSolution.GL.name
+        if UseStrength is actively painful (stimulants required)
+
 %h2 The Four Realms
--Realm.each do |realm|
-  %h3=link_to realm.name, realm_path(realm.symbol)
-  %table
-    %tr
-      %th=realm.use_energy
-      %td=realm.use
-      %th=realm.use_strength
-    %tr
-      %td=realm.energy
-      %th ↻
-      %td=realm.strength
-    %tr
-      %th=realm.get_energy
-      %td=realm.get
-      %th=realm.get_strength
+%ul
+  -Realm.each do |realm|
+    %li
+      %b=realm.name
+      =realm.sense
+      (#{realm.neuro})
 
-%h2 BipolarType
-%p The four realms and the four behavioral solutions fit together differently for different people.
-%p Even if you are not bipolar you still have a BipolarType.
-%p Following the advice for your type and increasing and decreasing certain behaviors should allow you to continue to Get and Use in balance while reducing your need for sedatives such as alcohol or stimulants such as caffeine.
+%h2 The 24 BipolarTypes
+%p The MBTI only has 16 types, because they assume that Physical & Mental and Affective & Financial are opposites. BipolarType does not group the four Realms into two sets of two so there are 24 BipolarTypes (4x3x2 instead of 4x2x2)
