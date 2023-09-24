@@ -4,26 +4,32 @@ class Answer
   def self.first; Answer.new(first_path); end
 
   def initialize(string)
-    @question,@solution_paths = string.split(":")
-    @solution_paths = @solution_paths || ""
+    @question,@behavior_paths = string.split(":")
+    @behavior_paths = @behavior_paths || ""
   end
-  attr_reader :question, :solution_paths
+  attr_reader :question, :behavior_paths
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
   def finished?; number > 4; end
 
-  def solutions; @solution_paths.scan(/.../).collect{|s| Solution.send(s)}.sort; end
+  def behaviors; @behavior_paths.scan(/.../).collect{|s| Behavior.send(s)}.sort; end
 
-  def realm_taken?(realm); solutions.map(&:realm).include?(realm); end
-  def generic_taken?(generic); solutions.map(&:generic_solution).include?(generic); end
-  def taken?(solution); realm_taken?(solution.realm) || generic_taken?(solution.generic_solution); end
+  def realm_taken?(realm); behaviors.map(&:realm).include?(realm); end
+  def behavior_taken?(generic_behavior); behaviors.map(&:generic_behavior).include?(generic_behavior); end
+  def taken?(behavior); realm_taken?(behavior.realm) || behavior_taken?(behavior.generic_behavior); end
+
+  def css(behavior)
+    return "chosen" if behaviors.include?(behavior)
+    return "constrained" if taken?(behavior)
+    return "free"
+  end
 
 
-  def paths(solution); [solution_paths, solution.symbol].join; end
-  def next(solution); "#{question.next}:#{paths(solution)}"; end
+  def paths(behavior); [behavior_paths, behavior.symbol].join; end
+  def next(behavior); "#{question.next}:#{paths(behavior)}"; end
 
-  def type_path; solutions.map(&:realm).map(&:symbol).join; end
+  def type_path; behaviors.map(&:realm).map(&:symbol).join; end
 
 
 end

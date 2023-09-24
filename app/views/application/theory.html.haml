@@ -1,57 +1,64 @@
 - content_for(:title, 'The Theory')
-%h2 The Bipolar Cycle
+%h2 The Four Behaviors
 %table
   %tr
-    %td
-      %b=GenericBehavior.UE.name
-      %br
+    %td=link_to GenericBehavior.UE.name, behavior_path("UE")
     %th
-    %td
-      %b=GenericBehavior.US.name
-      %br
+    %td=link_to GenericBehavior.US.name, behavior_path("US")
   %tr
     %th
     %th ↻
     %th
   %tr
-    %td
-      %b=GenericBehavior.GE.name
-      %br
+    %td=link_to GenericBehavior.GE.name, behavior_path("GE")
     %th
-    %td
-      %b=GenericBehavior.GS.name
-      %br
-
-%h2 Two Imbalances & Four Solutions
-%ul
-  %li
-    %b=GenericProblem.D.name + ":"
-    UseStrength but do not GetEnergy.
-    %ul
-      %li
-        %b=GenericSolution.UL.name
-        if GetEnergy is actively painful (sedatives required)
-      %li
-        %b=GenericSolution.GM.name
-        if GetEnergy is merely aversive (sedatives counterproductive)
-  %li
-    %b=GenericProblem.S.name + ":"
-    GetEnergy but do not UseStrength.
-    %ul
-      %li
-        %b=GenericSolution.UM.name
-        if UseStrength is merely aversive (stimulants counterproductive)
-      %li
-        %b=GenericSolution.GL.name
-        if UseStrength is actively painful (stimulants required)
+    %td=link_to GenericBehavior.GS.name, behavior_path("GS")
 
 %h2 The Four Realms
-%ul
-  -Realm.each do |realm|
-    %li
-      %b=realm.name
-      =realm.sense
-      (#{realm.neuro})
+%div.center
+  -Realm.all.each_with_index do |realm, index|
+    ="|" unless index == 0
+    =link_to realm.name, realm_path(realm.symbol)
+
+%h2 The Four Problems
+%table
+  %tr
+    %th
+    %td
+      =link_to GenericProblem.M.name, problem_path("M")
+      %br
+      All Use, no Get
+    %th
+  %tr
+    %td
+      =link_to GenericProblem.R.name, problem_path("R")
+      %br
+      All Energy, no Strength
+    %th ↻
+    %td
+      =link_to GenericProblem.C.name, problem_path("C")
+      %br
+      All Strength, no Energy
+  %tr
+    %th
+    %td
+      =link_to GenericProblem.D.name, problem_path("D")
+      %br
+      All Get, no Use
+    %th
+
 
 %h2 The 24 BipolarTypes
-%p The MBTI only has 16 types, because they assume that Physical & Mental and Affective & Financial are opposites. BipolarType does not group the four Realms into two sets of two so there are 24 BipolarTypes (4x3x2 instead of 4x2x2)
+%table
+  %tr
+    %td Excess Use RealmA Energy
+    %td A&B #{GenericProblem.M.name}
+    %td Excess Use RealmB Strength
+  %tr
+    %td D&A #{GenericProblem.R.name}
+    %th ↻
+    %td B&C #{GenericProblem.C.name}
+  %tr
+    %td Excess Get RealmD Energy
+    %td C&D #{GenericProblem.D.name}
+    %td Excess Get RealmC Strength

@@ -13,16 +13,14 @@ class Realm < Concept
   def index; self.class::SYMBOLS.index @symbol; end
 
   def behaviors; Behavior.all.select{|s| s.realm == self}; end
-  def solutions; Solution.all.select{|s| s.realm == self}; end
   def problems; Problem.all.select{|s| s.realm == self}; end
   def +(thing)
      behaviors.find{|b| b.generic_behavior == thing} ||
-     solutions.find{|s| s.generic_solution == thing} ||
      problems.find{|p| p.generic_problem == thing}
   end
 
   def word; %w{physical mental affective financial}[index]; end
 
-  def sense; %w{smell/taste sight hearing touch}[index]; end
-  def neuro; %w{serotonin glutamate oxytocin dopamine}[index]; end
+  def mbti; %w{S N F T}[index]; end
+
 end

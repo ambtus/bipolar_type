@@ -1,16 +1,13 @@
 class GenericProblem < Concept
 
   ########
-  SYMBOLS = %w{D S}
+  SYMBOLS = %w{M C D R}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
-  def imbalance; %w{deficit surplus}[index]; end
-  def state; %w{manic depressed}[index]; end
+  def problems; Problem.all.select{|b| b.generic_problem == self}; end
 
-  def words; [state, imbalance].to_phrase; end
-
-  def solutions; GenericSolution.all.select{|s| s.problem == self}; end
+  def word; %w{mania exhaustion depression weakness}[index]; end
 
 end

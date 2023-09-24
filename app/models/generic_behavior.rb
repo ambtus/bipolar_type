@@ -8,7 +8,7 @@ class GenericBehavior < Concept
   attr_reader :symbol, :verb, :noun
 
   ########
-  SYMBOLS = %w{GS GE UE US}
+  SYMBOLS = %w{UE US GS GE}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########

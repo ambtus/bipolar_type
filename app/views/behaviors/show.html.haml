@@ -1,0 +1,7 @@
+- content_for(:title, "Examples of the #{@behavior.name} Behavior")
+-if @behavior.is_a? GenericBehavior
+  -@behavior.behaviors.each do |behavior|
+    %h2=behavior.name
+    =render "behaviors/#{behavior.symbol}"
+-else
+  =render "behaviors/#{@behavior.symbol}"

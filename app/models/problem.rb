@@ -17,8 +17,8 @@ class Problem < Concept
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
-  def words; [realm.word, generic_problem.imbalance].to_phrase; end
+  def words; [realm, generic_problem].map(&:word).to_phrase; end
 
-  def solutions; Solution.all.select{|s| s.problem == self}; end
+  def <=>(other); self.generic_problem.index <=> other.generic_problem.index; end
 
 end

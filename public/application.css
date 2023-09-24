@@ -8,6 +8,7 @@ p { text-align: left; max-width: 62em}
 .warning {color: grey; font-style: italic}
 .free {}
 .chosen {color: purple; font-style: italic}
+.constrained {color: green; font-style: italic}
 .bold {font-weight: bold}
 
 .ninth { width: 11%; }

@@ -3,26 +3,35 @@
 %table
   %tr
     %td
-      =link_to @realm.behaviors.third.name, behaviors_path(@realm.behaviors.third.name)
-      %br
+      =@realm.behaviors.first.name
+      =render "behaviors/#{@realm.behaviors.first.symbol}"
     %th
     %td
-      =link_to @realm.behaviors.fourth.name, behaviors_path(@realm.behaviors.fourth.name)
-      %br
+      =@realm.behaviors.second.name
+      =render "behaviors/#{@realm.behaviors.second.symbol}"
   %tr
     %th
     %th ↻
     %th
   %tr
     %td
-      =link_to @realm.behaviors.second.name, behaviors_path(@realm.behaviors.second.name)
-      %br
+      =@realm.behaviors.fourth.name
+      =render "behaviors/#{@realm.behaviors.fourth.symbol}"
     %th
     %td
-      =link_to @realm.behaviors.first.name, behaviors_path(@realm.behaviors.first.name)
-      %br
-%h2 The Two #{@realm.name} Problems and their Solutions
--@realm.problems.each do |problem|
-  %h3=link_to problem.name, problem_path(problem.symbol)
-  -problem.solutions.each do |solution|
-    %h4=link_to solution.name, solution_path(solution.symbol)
+      =@realm.behaviors.third.name
+      =render "behaviors/#{@realm.behaviors.third.symbol}"
+%h2 The Four #{@realm.name} Problems
+%table
+  %tr
+    %td=@realm.behaviors.first.bad
+    %td #{@realm.name} #{GenericProblem.M.name}
+    %td=@realm.behaviors.second.bad
+  %tr
+    %td #{@realm.name} #{GenericProblem.R.name}
+    %th ↻
+    %td #{@realm.name} #{GenericProblem.C.name}
+  %tr
+    %td=@realm.behaviors.fourth.bad
+    %td #{@realm.name} #{GenericProblem.D.name}
+    %td=@realm.behaviors.third.bad
