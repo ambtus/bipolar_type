@@ -1,0 +1,10 @@
+- content_for(:title, 'The 16 Behaviors')
+
+%table
+  -GenericBehavior.all.each do |gb|
+    %tr
+      -gb.behaviors.each do |behavior|
+        %td
+          =behavior.name
+          %b=behavior.problem_names
+          =render "behaviors/#{behavior.symbol}"

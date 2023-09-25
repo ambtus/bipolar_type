@@ -2,18 +2,35 @@
 %h2 The Four #{@realm.name} Problems
 %table
   %tr
-    %td=link_to @realm.behaviors.second.unwanted, answer_path(Answer.first.next(@realm.behaviors.second))
+    %td
+      =link_to @realm.behaviors.second.problem_names, answer_path(Answer.first.next(@realm.behaviors.second))
+      %br
+      =@realm.behaviors.second.unwanted
 
     %td #{@realm.name} #{GenericProblem.M.name}
-    %td=link_to @realm.behaviors.third.unwanted, answer_path(Answer.first.next(@realm.behaviors.third))
+
+    %td
+      =link_to @realm.behaviors.first.problem_names, answer_path(Answer.first.next(@realm.behaviors.third))
+      %br
+      =@realm.behaviors.third.unwanted
+
   %tr
     %td #{@realm.name.ly} #{GenericProblem.W.name}
     %th ↻
     %td #{@realm.name.ly} #{GenericProblem.E.name}
+
   %tr
-    %td=link_to @realm.behaviors.first.unwanted, answer_path(Answer.first.next(@realm.behaviors.first))
+    %td
+      =link_to @realm.behaviors.first.problem_names, answer_path(Answer.first.next(@realm.behaviors.first))
+      %br
+      =@realm.behaviors.first.unwanted
+
     %td #{@realm.name} #{GenericProblem.D.name}
-    %td=link_to @realm.behaviors.fourth.unwanted, answer_path(Answer.first.next(@realm.behaviors.fourth))
+
+    %td
+      =link_to @realm.behaviors.fourth.problem_names, answer_path(Answer.first.next(@realm.behaviors.fourth))
+      %br
+      =@realm.behaviors.fourth.unwanted
 
 %h2 The Four #{@realm.name} Behaviors
 %table

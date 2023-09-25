@@ -10,17 +10,17 @@ class Concept
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
+  def index; self.class::SYMBOLS.index @symbol; end
+
   def self.all; self::ALL; end
   def self.each(&block);self::ALL.each(&block); end
 
   def self.first; self::ALL.first; end
+  def self.last; self::ALL.last; end
 
+  def next; self.class::ALL[index+1] || self.class.first; end
+  def previous; self.class::ALL[index-1] || self.class.last; end
 
-  def word; %w{alpha beta psi omega}[index]; end
-  def name; words.titleize.squash rescue word.capitalize ; end
-
-
-  def index; self.class::SYMBOLS.index @symbol; end
 
   def others; self.class::ALL - [self]; end
   def other
@@ -31,5 +31,7 @@ class Concept
     end
   end
 
-  def next; (self.class::ALL + self.class::ALL)[index+1]; end
+  def word; %w{alpha beta psi omega}[index]; end
+  def name; words.titleize.squash rescue word.capitalize ; end
+
 end

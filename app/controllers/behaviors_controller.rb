@@ -8,4 +8,5 @@ class BehaviorsController < ApplicationController
     @name = @behavior.name
     render "behavior"
   end
+  def index; end
 end

@@ -19,7 +19,6 @@ class Type
      define_method("#{gb.symbol.downcase}_realm") {behaviors.find{|b| b.generic_behavior == gb}.realm}
   end
 
-
   def name; realms.map(&:symbol).join; end
   def inspect; @symbol; end
 

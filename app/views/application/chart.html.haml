@@ -1,26 +1,22 @@
 - content_for(:title, 'Conversion Chart')
-%p There are only four BipolarTypes that correspond to MBTI types, so it’s unlikely that knowing your MBTI type will convert directly to your BipolarType, but it should give you somewhere to start.
 %p
-  The MBTI defines you as what you are
-  %em best
-  at (your dominant function),
-  %em good
-  at (your auxiliary function),
-  %em bad
-  at (your tertiary function), and
-  %em worst
-  at (your inferior function).
-  The MBTI assumes any imbalances caused by excessive behaviors are minimal or easily remedied with a little alcohol (for introverted behaviors) or caffeine (for extroverted behaviors).
+  The MBTI theory defines you as what you
+  %em prefer
+  most (your dominant
+  =(link_to "function-attitude", "https://en.wikipedia.org/wiki/Jungian_cognitive_functions", class: "external") + ")"
+  and adds what you prefer second as an auxiliary function-attitude (constrained by the MBTI theory to only two choices based on your first choice). Tertiary and Inferior function-attitudes are also constrained by the theory (based on your first two choices). Thus the MBTI has sixteen types (eight times two).
 %p
-  But if you are bipolar, what you are best at becomes a
-  %em problem
-  because you do it
-  %em too much
-  and even what you are
-  %em worst
-  at becomes a problem when you do it too much!
+  The BipolarType theory defines your type based not on what you prefer, but on what you are most
+  %em balanced
+  in. But BipolarType does not constrain realms except in that they must be unique. Thus BipolarType has twenty-four types (four factorial).
 %p
-  So BipolarType doesn’t actually care whether you are good at something or not, you still have to deal with it. For that reason, the order of preference of the MBTI functions is irrelevant to BipolarType and all sixteen MBTI types map onto only four BipolarTypes.
+  Of the twenty-four BipolarTypes, only four correspond to MBTI types. Even if you have determined your
+  =link_to "best-fit MBTI type", "https://www.myersbriggs.org/unique-features-of-myers-briggs/best-fit-type/", class: "external"
+  it probably does
+  %em not
+  determine your BipolarType. However, you can still try starting with the GetStrength realm of that type as that’s the first question on the
+  =link_to "Your BipolarType", answer_path(Answer.first_path)
+  page.
 %table
   %tr
     %td

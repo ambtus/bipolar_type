@@ -20,11 +20,13 @@ class String
   def last_word; words.last; end
   def parenthesize; "(#{self})"; end
 
-  MBTIS = %w{ISTP ISFP INTP INFP
-             ISTJ ISFJ INTJ INFJ
-             ESTP ESFP ENTP ENFP
-             ESTJ ESFJ ENTJ ENFJ}
+#   MBTIS = %w{ISTP ISFP INTP INFP
+#              ISTJ ISFJ INTJ INFJ
+#              ESTP ESFP ENTP ENFP
+#              ESTJ ESFJ ENTJ ENFJ}
+  MBTIS = %w{ESP ENP ITP IFP ISJ INJ ETJ EFJ}
   def is_mbti?; MBTIS.include? self; end
+  def mbti_index; is_mbti? && MBTIS.index(self)/2; end
 
   def s
     return "watches" if self=="watch"
