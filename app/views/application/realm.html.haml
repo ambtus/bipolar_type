@@ -1,0 +1,42 @@
+- content_for(:title, "The #{@realm.name} Realm")
+%h2 The Four #{@realm.name} Problems
+%table
+  %tr
+    %td=link_to @realm.behaviors.second.unwanted, answer_path(Answer.first.next(@realm.behaviors.second))
+
+    %td #{@realm.name} #{GenericProblem.M.name}
+    %td=link_to @realm.behaviors.third.unwanted, answer_path(Answer.first.next(@realm.behaviors.third))
+  %tr
+    %td #{@realm.name.ly} #{GenericProblem.W.name}
+    %th ↻
+    %td #{@realm.name.ly} #{GenericProblem.E.name}
+  %tr
+    %td=link_to @realm.behaviors.first.unwanted, answer_path(Answer.first.next(@realm.behaviors.first))
+    %td #{@realm.name} #{GenericProblem.D.name}
+    %td=link_to @realm.behaviors.fourth.unwanted, answer_path(Answer.first.next(@realm.behaviors.fourth))
+
+%h2 The Four #{@realm.name} Behaviors
+%table
+  %tr
+    %td
+      =@realm.behaviors.second.name
+      =render "behaviors/#{@realm.behaviors.second.symbol}"
+    %th
+    %td
+      =@realm.behaviors.third.name
+      =render "behaviors/#{@realm.behaviors.third.symbol}"
+  %tr
+    %th
+    %th ↻
+    %th
+  %tr
+    %td
+      =@realm.behaviors.first.name
+      =render "behaviors/#{@realm.behaviors.first.symbol}"
+    %th
+    %td
+      =@realm.behaviors.fourth.name
+      =render "behaviors/#{@realm.behaviors.fourth.symbol}"
+
+
+%p.heading=render "behaviors/improvements"

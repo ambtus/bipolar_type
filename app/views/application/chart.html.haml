@@ -1,0 +1,92 @@
+- content_for(:title, 'Conversion Chart')
+%p There are only four BipolarTypes that correspond to MBTI types, so it’s unlikely that knowing your MBTI type will convert directly to your BipolarType, but it should give you somewhere to start.
+%p
+  The MBTI defines you as what you are
+  %em best
+  at (your dominant function),
+  %em good
+  at (your auxiliary function),
+  %em bad
+  at (your tertiary function), and
+  %em worst
+  at (your inferior function).
+  The MBTI assumes any imbalances caused by excessive behaviors are minimal or easily remedied with a little alcohol (for introverted behaviors) or caffeine (for extroverted behaviors).
+%p
+  But if you are bipolar, what you are best at becomes a
+  %em problem
+  because you do it
+  %em too much
+  and even what you are
+  %em worst
+  at becomes a problem when you do it too much!
+%p
+  So BipolarType doesn’t actually care whether you are good at something or not, you still have to deal with it. For that reason, the order of preference of the MBTI functions is irrelevant to BipolarType and all sixteen MBTI types map onto only four BipolarTypes.
+%table
+  %tr
+    %td
+      %b ISTJ
+      %p=render "mbti", components: %w{ISJ ETJ IFP ENP}
+      =link_to "MAPF", type_path("MAPF")
+    %td
+      %b ISFJ
+      %p=render "mbti", components: %w{ISJ EFJ ITP ENP}
+      =link_to "MFPA", type_path("MFPA")
+    %td
+      %b INFJ
+      %p=render "mbti", components: %w{INJ EFJ ITP ESP}
+      =link_to "PFMA", type_path("PFMA")
+    %td
+      %b INTJ
+      %p=render "mbti", components: %w{INJ ETJ IFP ESP}
+      =link_to "PAMF", type_path("PAMF")
+  %tr
+    %td
+      %b ISTP
+      %p=render "mbti", components: %w{ITP ESP INJ EFJ}
+      =link_to "PFMA", type_path("PFMA")
+    %td
+      %b ISFP
+      %p=render "mbti", components: %w{IFP ESP INJ ETJ}
+      =link_to "PAMF", type_path("PAMF")
+    %td
+      %b INFP
+      %p=render "mbti", components: %w{IFP ENP ISJ ETJ}
+      =link_to "MAPF", type_path("MAPF")
+    %td
+      %b INTP
+      %p=render "mbti", components: %w{ITP ENP ISJ EFJ}
+      =link_to "MFPA", type_path("MFPA")
+  %tr
+    %td
+      %b ESTP
+      %p=render "mbti", components: %w{ESP ITP EFJ INJ}
+      =link_to "PFMA", type_path("PFMA")
+    %td
+      %b ESFP
+      %p=render "mbti", components: %w{ESP IFP ETJ INJ }
+      =link_to "PAMF", type_path("PAMF")
+    %td
+      %b ENFP
+      %p=render "mbti", components: %w{ENP IFP ETJ ISJ }
+      =link_to "MAPF", type_path("MAPF")
+    %td
+      %b ENTP
+      %p=render "mbti", components: %w{ENP ITP EFJ ISJ }
+      =link_to "MFPA", type_path("MFPA")
+  %tr
+    %td
+      %b ESTJ
+      %p=render "mbti", components: %w{ETJ ISJ ENP IFP }
+      =link_to "MAPF", type_path("MAPF")
+    %td
+      %b ESFJ
+      %p=render "mbti", components: %w{EFJ ISJ ENP ITP }
+      =link_to "MFPA", type_path("MFPA")
+    %td
+      %b ENFJ
+      %p=render "mbti", components: %w{EFJ INJ ESP ITP }
+      =link_to "PFMA", type_path("PFMA")
+    %td
+      %b ENTJ
+      %p=render "mbti", components: %w{ETJ INJ ESP IFP }
+      =link_to "PAMF", type_path("PAMF")

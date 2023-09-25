@@ -1,7 +1,11 @@
-- content_for(:title, "Examples of the #{@behavior.name} Behavior")
+- content_for(:title, @behavior.name)
 -if @behavior.is_a? GenericBehavior
+  %div.center=@behavior.inline_description
   -@behavior.behaviors.each do |behavior|
     %h2=behavior.name
     =render "behaviors/#{behavior.symbol}"
 -else
+  %div.center=@behavior.generic_behavior.inline_description
   =render "behaviors/#{@behavior.symbol}"
+
+%p.heading=render "behaviors/improvements"

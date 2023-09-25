@@ -22,17 +22,21 @@ class Behavior < Concept
 
   def words; [verb.word, realm.word, noun.word].to_phrase; end
 
+  def mbti; [verb, realm, noun].map(&:mbti).join; end
+
+  def self.find_by_mbti(tls); all.find{|b| b.mbti == tls}; end
+
   def <=>(other); self.generic_behavior.index <=> other.generic_behavior.index; end
 
-  def bad; "I #{verb.word} too much #{realm.word} #{noun.word}."; end
-
-  def good; "I don’t #{verb.other.word} enough #{realm.word} #{noun.other.word}."; end
+  def unwanted; "I #{name} too much."; end
+  def wanted; "I don’t #{opposite.name} enough."; end
 
   def opposite; Behavior.send("#{verb.other.symbol}#{realm.symbol}#{noun.other.symbol}"); end
   def horizontal; Behavior.send("#{verb.symbol}#{realm.symbol}#{noun.other.symbol}"); end
   def vertical; Behavior.send("#{verb.other.symbol}#{realm.symbol}#{noun.symbol}"); end
 
-  def problems; [GenericProblem.all[generic_behavior.index], GenericProblem.all[(generic_behavior.index-1)%4]]; end
-  def problem_names; [realm.name, problems.map(&:name).and].to_phrase; end
+  def next; realm + generic_behavior.next; end
+
+  def problem_names; [noun.problem, realm, verb.problem].map(&:name).to_phrase; end
 
 end

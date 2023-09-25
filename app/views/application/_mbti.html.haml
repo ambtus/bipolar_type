@@ -1,0 +1,7 @@
+-components.each_with_index do |tls, index|
+  =link_to tls, answer_path(Answer.first.next(Behavior.find_by_mbti(tls)))
+  -prefix = %w{Best Good Bad Worst}[index]
+  #{prefix}: #{Behavior.find_by_mbti(tls).words}
+  %br
+
+

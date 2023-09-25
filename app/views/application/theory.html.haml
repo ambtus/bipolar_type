@@ -2,17 +2,29 @@
 %h2 The Four Behaviors
 %table
   %tr
-    %td=link_to GenericBehavior.UE.name, behavior_path("UE")
+    %td
+      =link_to GenericBehavior.UE.name, behavior_path("UE")
+      %br
+      =GenericBehavior.UE.description
     %th
-    %td=link_to GenericBehavior.US.name, behavior_path("US")
+    %td
+      =link_to GenericBehavior.US.name, behavior_path("US")
+      %br
+      =GenericBehavior.US.description
   %tr
     %th
     %th ↻
     %th
   %tr
-    %td=link_to GenericBehavior.GE.name, behavior_path("GE")
+    %td
+      =link_to GenericBehavior.GE.name, behavior_path("GE")
+      %br
+      =GenericBehavior.GE.description
     %th
-    %td=link_to GenericBehavior.GS.name, behavior_path("GS")
+    %td
+      =link_to GenericBehavior.GS.name, behavior_path("GS")
+      %br
+      =GenericBehavior.GS.description
 
 %h2 The Four Realms
 %div.center
@@ -20,45 +32,57 @@
     ="|" unless index == 0
     =link_to realm.name, realm_path(realm.symbol)
 
-%h2 The Four Problems
+%h2 The Bipolar Cycle
 %table
   %tr
     %th
     %td
-      =link_to GenericProblem.M.name, problem_path("M")
+      %b=GenericProblem.M.name
       %br
-      All Use, no Get
+      =GenericProblem.M.description
     %th
   %tr
     %td
-      =link_to GenericProblem.R.name, problem_path("R")
+      %b=GenericProblem.W.name
       %br
-      All Energy, no Strength
+      =GenericProblem.W.description
     %th ↻
     %td
-      =link_to GenericProblem.C.name, problem_path("C")
+      %b=GenericProblem.E.name
       %br
-      All Strength, no Energy
+      =GenericProblem.E.description
   %tr
     %th
     %td
-      =link_to GenericProblem.D.name, problem_path("D")
+      %b=GenericProblem.D.name
       %br
-      All Get, no Use
+      =GenericProblem.D.description
     %th
 
 
-%h2 The 24 BipolarTypes
+%h2 The 24 BipolarTypes (4!)
 %table
   %tr
-    %td Excess Use RealmA Energy
-    %td A&B #{GenericProblem.M.name}
-    %td Excess Use RealmB Strength
+    %td
+      #{GenericProblem.W.name} #{GenericProblem.M.name} Realm:
+      %br
+      =GenericBehavior.UE.unwanted
+    %th
+    %td
+      #{GenericProblem.E.name} #{GenericProblem.M.name} Realm:
+      %br
+      =GenericBehavior.US.unwanted
   %tr
-    %td D&A #{GenericProblem.R.name}
+    %th
     %th ↻
-    %td B&C #{GenericProblem.C.name}
+    %th
   %tr
-    %td Excess Get RealmD Energy
-    %td C&D #{GenericProblem.D.name}
-    %td Excess Get RealmC Strength
+    %td
+      #{GenericProblem.W.name} #{GenericProblem.D.name} Realm:
+      %br
+      =GenericBehavior.GE.unwanted
+    %th
+    %td
+      #{GenericProblem.E.name} #{GenericProblem.D.name} Realm:
+      %br
+      =GenericBehavior.GS.unwanted

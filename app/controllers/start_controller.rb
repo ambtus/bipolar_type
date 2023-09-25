@@ -1,5 +1,5 @@
 class StartController < ApplicationController
-  def home; end
+  def intro; end
   def theory; end
-  def story; end
+  def chart; end
 end

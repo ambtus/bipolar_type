@@ -24,6 +24,7 @@ p { text-align: left; max-width: 62em}
 
 .heading {font-style: italic; text-align: center; }
 .center { text-align: center; }
+.inside_left { display: inline-block; text-align: left; }
 .left { text-align: left; }
 .right { text-align: right; }
 .small { font-size: small;}

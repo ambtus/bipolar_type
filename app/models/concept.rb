@@ -31,4 +31,5 @@ class Concept
     end
   end
 
+  def next; (self.class::ALL + self.class::ALL)[index+1]; end
 end

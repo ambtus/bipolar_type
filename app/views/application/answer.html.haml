@@ -1,0 +1,35 @@
+-content_for(:title, "Question ##{@answer.number} of 4")
+%p.center
+  Once you have
+  %span.chosen chosen
+  something, other choices will become
+  %span.constrained unavailable.
+
+
+%p.center
+  -if @answer.number == 1
+    If you know your MBTI type, you can start
+    =link_to "there", chart_path
+    although it’s not a one-to-one conversion.
+  -else
+    If you are stuck you can
+    =link_to_unless_current "start over", answer_path(Answer.first_path)
+
+%table
+  %caption
+    Choose your Bipolar tendencies
+    %br
+    (behaviors you would, or do, drug yourself to change)
+  -GenericBehavior.each do |gb|
+    %tr
+      -gb.behaviors.each do |behavior|
+        %td{class: @answer.css(behavior)}
+          =link_to_unless @answer.taken?(behavior), "#{behavior.problem_names} (#{behavior.mbti})", answer_path(@answer.next(behavior))
+          %p
+            I
+            =link_to behavior.name, behavior_path(behavior.symbol), class: "external"
+            too much.
+          %p
+            I don’t
+            =link_to behavior.opposite.name, behavior_path(behavior.opposite.symbol), class: "external"
+            enough.

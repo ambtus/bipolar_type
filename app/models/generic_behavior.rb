@@ -8,14 +8,34 @@ class GenericBehavior < Concept
   attr_reader :symbol, :verb, :noun
 
   ########
-  SYMBOLS = %w{UE US GS GE}
+  SYMBOLS = %w{GE UE US GS}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
-  def behaviors; Behavior.all.select{|b| b.generic_behavior == self}; end
+  def behaviors; Realm.all.add(self); end
+
+  def problems; [verb.problem, noun.problem]; end
+
+  def mbti; [verb, noun].map(&:mbti).join; end
 
   def words; [verb.word, noun.word].to_phrase; end
-  def underscored; words.gsub(" ", '_'); end
+
+  def unwanted; "I #{name} too much."; end
+
+  def description
+    case symbol
+    when "GE"
+      "Baby<br>Spring<br>Waxing Moon<br>Monday<br>Morning".html_safe
+    when "UE"
+      "Child<br>Summer<br>Full Moon<br>Midweek<br>Midday".html_safe
+    when "US"
+      "Adolescent<br>Autumn<br>Waning Moon<br>Friday<br>Afternoon".html_safe
+    when "GS"
+      "Adult<br>Winter<br>New Moon<br>Weekend<br>Evening".html_safe
+    end
+  end
+
+  def inline_description; description.split('<br>').values_at(3,4,1).join(" | "); end
 
 end

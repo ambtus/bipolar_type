@@ -17,6 +17,7 @@ class Answer
 
   def realm_taken?(realm); behaviors.map(&:realm).include?(realm); end
   def behavior_taken?(generic_behavior); behaviors.map(&:generic_behavior).include?(generic_behavior); end
+
   def taken?(behavior); realm_taken?(behavior.realm) || behavior_taken?(behavior.generic_behavior); end
 
   def css(behavior)

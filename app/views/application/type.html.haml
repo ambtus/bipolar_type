@@ -1,0 +1,128 @@
+- content_for(:title, @type.name)
+%table
+  %tr
+    %caption The #{@type.name} Problems
+    %td
+      %p=link_to @type.ue_behavior.unwanted, behavior_path("U#{@type.ue_realm.symbol}E"), class: "external"
+      %p=link_to @type.gs_behavior.wanted, behavior_path("U#{@type.gs_realm.symbol}E"), class: "external"
+
+    %td
+      #{GenericProblem.M.name}:
+      %br
+      #{@type.ue_realm.name} & #{@type.us_realm.name}
+
+    %td
+      %p=link_to @type.us_behavior.unwanted, behavior_path("U#{@type.us_realm.symbol}S"), class: "external"
+      %p=link_to @type.ge_behavior.wanted, behavior_path("U#{@type.ge_realm.symbol}S"), class: "external"
+
+  %tr
+    %td
+      #{GenericProblem.W.name}:
+      %br
+      #{@type.ge_realm.name} & #{@type.ue_realm.name}
+    %th ↻
+    %td
+      #{GenericProblem.E.name}:
+      %br
+      #{@type.us_realm.name} & #{@type.gs_realm.name}
+
+  %tr
+    %td
+      %p=link_to @type.ge_behavior.unwanted, behavior_path("G#{@type.ge_realm.symbol}E"), class: "external"
+      %p=link_to @type.us_behavior.wanted, behavior_path("G#{@type.us_realm.symbol}E"), class: "external"
+
+    %td
+      #{GenericProblem.D.name}:
+      %br
+      #{@type.ge_realm.name} & #{@type.ue_realm.name}
+
+    %td
+      %p=link_to @type.gs_behavior.unwanted, behavior_path("G#{@type.gs_realm.symbol}S"), class: "external"
+      %p=link_to @type.ue_behavior.wanted, behavior_path("G#{@type.ue_realm.symbol}S"), class: "external"
+
+%ul
+  %li
+    %p
+      You
+      %em can
+      do less than you are able, as long as you replace the behavior with similar behaviors that you
+      %em like
+      doing.
+  %li
+    %p
+      You do not
+      %em have
+      to do things that are painful, as long as you replace the behavior with behaviors that achieve similar results.
+  %li
+    %p
+      If you find yourself performing a behavior you do
+      %em not
+      want to do (either because you have overdone it, or because it is painful), then replace it with other behaviors in the same corner that you
+      %em like
+      to do and which balance out the behaviors that are painful or excessive.
+
+%table
+  %caption The #{@type.name} Solutions
+  %tr
+    %td=render "solution", behaviors: [@type.ue_behavior, @type.ge_behavior, @type.us_behavior, @type.gs_behavior]
+    %th
+    %td=render "solution", behaviors: [@type.us_behavior, @type.gs_behavior, @type.ue_behavior, @type.ge_behavior]
+
+  %tr
+    %th
+    %th ↻
+    %th
+
+  %tr
+    %td=render "solution", behaviors: [@type.ge_behavior, @type.ue_behavior, @type.gs_behavior, @type.us_behavior ]
+    %th
+    %td=render "solution", behaviors: [@type.gs_behavior, @type.us_behavior, @type.ge_behavior, @type.ue_behavior]
+
+
+%ul
+  %li
+    %p
+      The following is for those who know their MBTI types and want to compare it to their BipolarType.
+  %li
+    %p
+      I have provided a
+      =link_to "conversion chart", chart_path
+      if you need help deconstructing your MBTI type into its functions.
+
+%table
+  %tr
+    %caption The #{@type.name} and the MBTI
+    %td
+      =@type.ue_behavior.mbti
+      %br
+      I am good at
+      =@type.ue_behavior.words.ing + "."
+
+    %th
+
+    %td
+      =@type.us_behavior.mbti
+      %br
+      I am good at
+      =@type.us_behavior.words.ing + "."
+
+
+  %tr
+    %th
+    %th ↻
+    %th
+
+  %tr
+    %td
+      =@type.ge_behavior.mbti
+      %br
+      I am good at
+      =@type.ge_behavior.words.ing + "."
+
+    %th
+
+    %td
+      =@type.gs_behavior.mbti
+      %br
+      I am good at
+      =@type.gs_behavior.words.ing + "."

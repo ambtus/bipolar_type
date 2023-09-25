@@ -1,5 +1,4 @@
 class BehaviorsController < ApplicationController
-  def index; end
   def show
     if params[:id].length == 2
       @behavior = GenericBehavior.send params[:id]
@@ -7,5 +6,6 @@ class BehaviorsController < ApplicationController
       @behavior = Behavior.send params[:id]
     end
     @name = @behavior.name
+    render "behavior"
   end
 end

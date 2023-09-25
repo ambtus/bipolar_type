@@ -7,14 +7,12 @@ class Verb < Concept
   ########
 
   def generic_behaviors; GenericBehavior.all.select{|gb| gb.verb == self}; end
-  def generic_solutions; GenericSolution.all.select{|gs| gs.verb == self}; end
-  def +(thing)
-     generic_behaviors.find{|gb| gb.noun == thing} ||
-     generic_solutions.find{|gs| gs.determiner == thing}
-  end
-
-  def focus; symbol == "U" ? Noun.S : Noun.E; end
+  def +(noun); generic_behaviors.find{|gb| gb.noun == noun}; end
 
   def word; %w{use get}[index]; end
+
+  def problem; [GenericProblem.M, GenericProblem.D][index]; end
+
+  def mbti; %w{I E}[index]; end
 
 end

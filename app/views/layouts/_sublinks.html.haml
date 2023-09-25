@@ -1,3 +1,7 @@
-=render "realms/links"
+-Realm.all.each_with_index do |realm, index|
+  ="|" unless index == 0
+  =link_to_unless_current realm.name, realm_path(realm.symbol)
 %br
-=render "behaviors/links"
+-GenericBehavior.all.each_with_index do |behavior, index|
+  ="|" unless index == 0
+  =link_to_unless_current behavior.name, behavior_path(behavior.symbol)
