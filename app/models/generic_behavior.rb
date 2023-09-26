@@ -17,7 +17,8 @@ class GenericBehavior < Concept
 
   def opposite; self.next.next; end
 
-  def problems; [verb.problem, noun.problem]; end
+  def problems; [noun.problem, verb.problem]; end
+  def problem_names; problems.map(&:name).join; end
 
   def mbti; [verb, noun].map(&:mbti).join; end
 
@@ -30,18 +31,22 @@ class GenericBehavior < Concept
     when "GE"
       "Baby<br>Spring<br>Waxing Moon<br>Monday<br>Morning".html_safe
     when "UE"
-      "Child<br>Summer<br>Full Moon<br>Midweek<br>Noon".html_safe
+      "Child<br>Summer<br>Full Moon<br>Midweek<br>Day".html_safe
     when "US"
       "Adolescent<br>Autumn<br>Waning Moon<br>Friday<br>Afternoon".html_safe
     when "GS"
-      "Adult<br>Winter<br>New Moon<br>Weekend<br>Evening".html_safe
+      "Adult<br>Winter<br>New Moon<br>Weekend<br>Night".html_safe
     end
   end
+  def inline_description; description.gsub('<br>', " | "); end
 
   def at; index == 1 ? "at " : "in the "; end
-  def time; description.split('<br>').last.downcase; end
-  def season; description.split('<br>').second.downcase; end
+  def time; description.split('<br>').last; end
+  def season; description.split('<br>').second; end
 
-  def inline_description; description.split('<br>').values_at(3,4,1).join(" | "); end
+  def day; description.split('<br>').fourth; end
+
+  def short_description; [day, time, "in", season].to_phrase; end
+
 
 end

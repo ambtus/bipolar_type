@@ -42,12 +42,12 @@
       =GenericProblem.M.description
     %th
   %tr
-    %td
+    %td.top
       %b=GenericProblem.W.name
       %br
       =GenericProblem.W.description
     %th ↻
-    %td
+    %td.top
       %b=GenericProblem.E.name
       %br
       =GenericProblem.E.description
@@ -60,29 +60,17 @@
     %th
 
 
-%h2 The BipolarType Behaviors
+%h2 The BipolarType Problems
 %table
   %tr
-    %td
-      #{GenericProblem.W.name} #{GenericProblem.M.name} Realm:
-      %br
-      =GenericBehavior.UE.unwanted
+    %td.top=render "problem", behavior: GenericBehavior.UE
     %th
-    %td
-      #{GenericProblem.E.name} #{GenericProblem.M.name} Realm:
-      %br
-      =GenericBehavior.US.unwanted
+    %td.top=render "problem", behavior: GenericBehavior.US
   %tr
     %th
     %th ↻
     %th
   %tr
-    %td
-      #{GenericProblem.W.name} #{GenericProblem.D.name} Realm:
-      %br
-      =GenericBehavior.GE.unwanted
+    %td.top=render "problem", behavior: GenericBehavior.GE
     %th
-    %td
-      #{GenericProblem.E.name} #{GenericProblem.D.name} Realm:
-      %br
-      =GenericBehavior.GS.unwanted
+    %td.top=render "problem", behavior: GenericBehavior.GS

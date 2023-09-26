@@ -1,4 +1,5 @@
 class Realm < Concept
+  # Jungian Function
 
   SYMBOLS = %w{P M A F}
 

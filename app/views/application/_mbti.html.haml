@@ -1,7 +1,0 @@
--components.each_with_index do |tls, index|
-  =%w{Dominant Auxiliary Tertiary Inferior}[index] + ":"
-  #{Behavior.find_by_mbti(tls).words}
-  =link_to_if tls.match(/E.J/), tls, answer_path(Answer.first.next(Behavior.find_by_mbti(tls)))
-  %br
-
-

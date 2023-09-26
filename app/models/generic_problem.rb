@@ -10,6 +10,7 @@ class GenericProblem < Concept
 
   def word; %w{weak mania exhausted depression }[index]; end
 
+  
   def description
     case symbol
     when "W"

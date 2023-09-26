@@ -1,88 +1,35 @@
-- content_for(:title, 'Conversion Chart')
+- content_for(:title, 'Comparison Chart')
 %p
-  The MBTI theory defines you as what you
-  %em prefer
-  most (your dominant
-  =(link_to "function-attitude", "https://en.wikipedia.org/wiki/Jungian_cognitive_functions", class: "external") + ")"
-  and adds what you prefer second as an auxiliary function-attitude (constrained by the MBTI theory to only two choices based on your first choice). Tertiary and Inferior function-attitudes are also constrained by the theory (based on your first two choices). Thus the MBTI has sixteen types (eight times two).
+  The MBTI theory defines your personality type based on which of eight behaviors you prefer
+  %em overall
+  (your Dominant
+  =succeed ")" do
+    =link_to "function-attitude", "https://en.wikipedia.org/wiki/Jungian_cognitive_functions", class: "external"
+  and then adds an Auxiliary function-attitude constrained by the MBTI theory to one of two function-attitudes depending on your first choice. Thus the MBTI has sixteen types (eight times two).
 %p
-  The BipolarType theory defines your type based not on what you prefer, but on what you are most
-  %em balanced
-  in. But BipolarType does not constrain realms except in that they must be unique. Thus BipolarType has twenty-four types (four factorial).
+  The BipolarType theory defines your personality type based on which of four behaviors you prefer most at
+  %em four different times.
+  BipolarType does not constrain the function of adjacent attitudes except in that they must be unique. Thus BipolarType has twenty-four types (four factorial).
 %p
-  Of the twenty-four BipolarTypes, only four correspond to MBTI types. Even if you have determined your
+  Although sixteen doesn’t map onto twenty-four, you can still use your MBTI type to get you part-way to your BipolarType (as long as it is an actual
   =link_to "best-fit MBTI type", "https://www.myersbriggs.org/unique-features-of-myers-briggs/best-fit-type/", class: "external"
-  it probably does
-  %em not
-  determine your BipolarType. However, you can still try starting with the GetStrength realm of that type as that’s the first question on the
-  =link_to "Your BipolarType", answer_path(Answer.first_path)
-  page.
+  and not just a test result).
 %table
-  %tr
-    %td
-      %b ISTJ
-      %p=render "mbti", components: %w{ISJ ETJ IFP ENP}
-      =link_to "MAPF", type_path("MAPF")
-    %td
-      %b ISFJ
-      %p=render "mbti", components: %w{ISJ EFJ ITP ENP}
-      =link_to "MFPA", type_path("MFPA")
-    %td
-      %b INFJ
-      %p=render "mbti", components: %w{INJ EFJ ITP ESP}
-      =link_to "PFMA", type_path("PFMA")
-    %td
-      %b INTJ
-      %p=render "mbti", components: %w{INJ ETJ IFP ESP}
-      =link_to "PAMF", type_path("PAMF")
-  %tr
-    %td
-      %b ISTP
-      %p=render "mbti", components: %w{ITP ESP INJ EFJ}
-      =link_to "PFMA", type_path("PFMA")
-    %td
-      %b ISFP
-      %p=render "mbti", components: %w{IFP ESP INJ ETJ}
-      =link_to "PAMF", type_path("PAMF")
-    %td
-      %b INFP
-      %p=render "mbti", components: %w{IFP ENP ISJ ETJ}
-      =link_to "MAPF", type_path("MAPF")
-    %td
-      %b INTP
-      %p=render "mbti", components: %w{ITP ENP ISJ EFJ}
-      =link_to "MFPA", type_path("MFPA")
-  %tr
-    %td
-      %b ESTP
-      %p=render "mbti", components: %w{ESP ITP EFJ INJ}
-      =link_to "PFMA", type_path("PFMA")
-    %td
-      %b ESFP
-      %p=render "mbti", components: %w{ESP IFP ETJ INJ }
-      =link_to "PAMF", type_path("PAMF")
-    %td
-      %b ENFP
-      %p=render "mbti", components: %w{ENP IFP ETJ ISJ }
-      =link_to "MAPF", type_path("MAPF")
-    %td
-      %b ENTP
-      %p=render "mbti", components: %w{ENP ITP EFJ ISJ }
-      =link_to "MFPA", type_path("MFPA")
-  %tr
-    %td
-      %b ESTJ
-      %p=render "mbti", components: %w{ETJ ISJ ENP IFP }
-      =link_to "MAPF", type_path("MAPF")
-    %td
-      %b ESFJ
-      %p=render "mbti", components: %w{EFJ ISJ ENP ITP }
-      =link_to "MFPA", type_path("MFPA")
-    %td
-      %b ENFJ
-      %p=render "mbti", components: %w{EFJ INJ ESP ITP }
-      =link_to "PFMA", type_path("PFMA")
-    %td
-      %b ENTJ
-      %p=render "mbti", components: %w{ETJ INJ ESP IFP }
-      =link_to "PAMF", type_path("PAMF")
+  -String::MBTI.in_groups_of(4).each_with_index do |row, index|
+    %tr
+      -row.each do |mbti|
+        %td
+          %b #{mbti}: #{mbti.jungian}
+          %br
+          =mbti.dominant.to_fa + ":"
+          -dominant = Behavior.find_by_mbti(mbti.dominant)
+          =link_to dominant.symbol, behavior_path(dominant.symbol), class: "external"
+          %br
+          =mbti.auxiliary.to_fa + ":"
+          -auxiliary = Behavior.find_by_mbti(mbti.auxiliary)
+          =link_to auxiliary.symbol, behavior_path(auxiliary.symbol), class: "external"
+          %br
+          =link_to "#{mbti} BipolarTypes", answer_path(Answer.jump_path(dominant, auxiliary))
+
+
+

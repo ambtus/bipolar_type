@@ -1,23 +1,31 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-
--if @answer.number == 1
-  %p.center
-    If you know your MBTI type, you can start
-    =link_to "there", chart_path
-    although it’s not a one-to-one conversion.
-
--unless @answer.number == 1
-  %p.center
-    If you are stuck you can
-    =link_to_unless_current "start over", answer_path(Answer.first_path)
+%p.heading #{@generic_behavior.name} / #{@generic_behavior.short_description} / #{@generic_behavior.problem_names}
+-unless @answer.behaviors.empty?
+  %div.chosen
+    Previously chosen:
+    %ul
+      -@answer.behaviors.each do |behavior|
+        %li=behavior.name
 
 %table
   %caption
     Pick the one you are
-    %em best
+    %em=@answer.number > 2 ? "better" : "best"
     at.
+    %br
+    Not the one which you think you
+    %em should
+    do.
+    %br
+    The one which is
+    %em=@answer.number > 2 ? "easier" : "easiest"
+    and automatic or subconcious.
+    -unless @answer.number == 1
+      %br
+      If you are stuck you can
+      =link_to_unless_current "start over", answer_path(Answer.first_path)
   %tr
-    -@answer.generic_behavior.behaviors.each do |behavior|
+    -@generic_behavior.behaviors.each do |behavior|
       %td.top{class: @answer.css(behavior)}
         =link_to_if @answer.free?(behavior), behavior.name, answer_path(@answer.next(behavior))
         %p

@@ -1,4 +1,5 @@
 class Verb < Concept
+  # Jungian Attitude
 
   ########
   SYMBOLS = %w{U G}

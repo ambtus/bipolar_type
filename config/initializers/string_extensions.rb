@@ -1,32 +1,80 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip squash second third fourth words to_phrase n first_word last_words last_word parenthesize is_mbti? s ed en ly ing an some enough many too_much too_little a_few plural? little few more fewer less much many that those is are was were them it they has have do does}.each do |meth|
+MINE = %w{chip squash second third fourth words first_word last_words last_word wrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ly ing enough an some a_lot a_few many too_much too_little  plural? little few fewer less more much many that those is are them it they has have was were does do}
+
+MINE.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
 class String
 
   def chip; self[1..-1]; end
-  def squash; self.gsub(/\s/, '');end
+  def squash; self.gsub(/\s/, ''); end
   def second; chars.second; end
   def third; chars.third; end
   def fourth; chars.fourth; end
   def words; split; end
 
-  def n; words.size - 1;end
   def first_word; words.first; end
-  def last_words; words.last(n).to_phrase; end
   def last_word; words.last; end
-  def parenthesize; "(#{self})"; end
+  def last_words; words.drop(1).to_phrase; end
 
-#   MBTIS = %w{ISTP ISFP INTP INFP
-#              ISTJ ISFJ INTJ INFJ
-#              ESTP ESFP ENTP ENFP
-#              ESTJ ESFJ ENTJ ENFJ}
-  MBTIS = %w{ESP ENP ITP IFP ISJ INJ ETJ EFJ}
-  def is_mbti?; MBTIS.include? self; end
-  def mbti_index; is_mbti? && MBTIS.index(self)/2; end
+  def wrap(*ary)
+     case ary.size
+     when 0
+       before, after = '(', ')'
+     when 1
+       before, after = ary*2
+     when 2
+       before, after = ary
+     else
+       raise "sorry, must have 0, 1, or 2 arguments"
+     end
+     "#{before}#{self}#{after}"
+  end
+
+  TLS = %w{
+           ESP ENP
+           ITP IFP
+           ISJ INJ
+           ETJ EFJ
+          }
+  def is_tls?; TLS.include?(self); end
+
+  FA = %w{Se Ne Ti Fi Si Ni Te Fe} # function-attitudes
+
+  def to_fa
+    raise "can only be called on one of #{TLS}" unless is_tls?
+    FA[TLS.index(self)]
+  end
+
+  MBTI = %w{
+             ESTP ESFP ENTP ENFP
+             ISTP ISFP INTP INFP
+             ISTJ ISFJ INTJ INFJ
+             ESTJ ESFJ ENTJ ENFJ
+            }
+
+  def is_mbti?; MBTI.include?(self); end
+  def mbti_index; is_mbti? && MBTI.index(self); end
+  def mbti_row; mbti_index/4; end
+
+  def dominant
+    raise "can only be called on MBTI types" unless is_mbti?
+    mbti_row.even? ? chars.values_at(0,1,3).join : chars.values_at(0,2,3).join
+  end
+
+  def switch(a, b); self.gsub(a, "x").gsub(b, a).gsub('x', b); end
+
+  def auxiliary
+    raise "can only be called on MBTI types" unless is_mbti?
+    verted = self.switch('E', 'I')
+    mbti_row.even? ? verted.chars.values_at(0,2,3).join : verted.chars.values_at(0,1,3).join
+  end
+
+  def jungian; [dominant, auxiliary].map(&:to_fa).join; end
+
 
   def s
     return "watches" if self=="watch"

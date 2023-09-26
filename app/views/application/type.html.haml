@@ -1,72 +1,48 @@
 - content_for(:title, @type.name)
 %table
+  %caption The #{@type.name} Problems
   %tr
-    %caption The #{@type.name} Problems
-    %td
-      %p=link_to @type.ue_behavior.unwanted, behavior_path("U#{@type.ue_realm.symbol}E"), class: "external"
-      %p=link_to @type.gs_behavior.wanted, behavior_path("U#{@type.gs_realm.symbol}E"), class: "external"
-
-    %td
-      #{GenericProblem.M.name}:
-      %br
-      #{@type.ue_realm.name} & #{@type.us_realm.name}
-
-    %td
-      %p=link_to @type.us_behavior.unwanted, behavior_path("U#{@type.us_realm.symbol}S"), class: "external"
-      %p=link_to @type.ge_behavior.wanted, behavior_path("U#{@type.ge_realm.symbol}S"), class: "external"
-
+    %td=render "problem", behavior: @type.ue_behavior
+    %th
+    %td=render "problem", behavior: @type.us_behavior
   %tr
-    %td
-      #{GenericProblem.W.name}:
-      %br
-      #{@type.ge_realm.name} & #{@type.ue_realm.name}
+    %th
     %th ↻
-    %td
-      #{GenericProblem.E.name}:
-      %br
-      #{@type.us_realm.name} & #{@type.gs_realm.name}
-
+    %th
   %tr
-    %td
-      %p=link_to @type.ge_behavior.unwanted, behavior_path("G#{@type.ge_realm.symbol}E"), class: "external"
-      %p=link_to @type.us_behavior.wanted, behavior_path("G#{@type.us_realm.symbol}E"), class: "external"
+    %td=render "problem", behavior: @type.ge_behavior
+    %th
+    %td=render "problem", behavior: @type.gs_behavior
 
-    %td
-      #{GenericProblem.D.name}:
-      %br
-      #{@type.ge_realm.name} & #{@type.ue_realm.name}
-
-    %td
-      %p=link_to @type.gs_behavior.unwanted, behavior_path("G#{@type.gs_realm.symbol}S"), class: "external"
-      %p=link_to @type.ue_behavior.wanted, behavior_path("G#{@type.ue_realm.symbol}S"), class: "external"
-
-%ul
+%ol
   %li
     %p
-      You
-      %em can
-      resist the cravings, as long as you can replace the behavior with similar behaviors that you
-      %em enjoy
-      doing.
+      Those things you “should” be doing? You
+      %em cannot
+      do them when your cycle is out of phase for that behavior, unless you take drugs to change where you are in your cycle.
   %li
     %p
-      You do not
-      %em have
-      to do things that are painful, as long as you replace the behavior with behaviors that achieve similar results.
+      Those things you “shouldn’t” be doing? You
+      %em will
+      do them when your cycle is in phase for that behavior, unless you have
+      %em something else
+      that you want to do that you are
+      %em also
+      in phase for.
   %li
     %p
-      If you find yourself performing a behavior you do
+      If you find yourself doing something you do
       %em not
-      want to do (either because you have overdone it, or because it is painful), then replace it with other behaviors in the same corner that you
-      %em like
-      to do and which balance out the behaviors that are painful or excessive.
+      want to do (whether it is too easy or too hard), then replace those behaviors with other behaviors that you
+      %em enjoy
+      doing and which balance out the problematic behaviors.
 
 %table
   %caption The #{@type.name} Solutions
   %tr
-    %td=render "solution", behaviors: [@type.ue_behavior, @type.ge_behavior, @type.us_behavior, @type.gs_behavior]
+    %td.top=render "solution", behaviors: @type.behaviors.values_at(1,0,2,3)
     %th
-    %td=render "solution", behaviors: [@type.us_behavior, @type.gs_behavior, @type.ue_behavior, @type.ge_behavior]
+    %td.top=render "solution", behaviors: @type.behaviors.values_at(2,3,1,0)
 
   %tr
     %th
@@ -74,38 +50,27 @@
     %th
 
   %tr
-    %td=render "solution", behaviors: [@type.ge_behavior, @type.ue_behavior, @type.gs_behavior, @type.us_behavior ]
+    %td.top=render "solution", behaviors: @type.behaviors.values_at(0,1,3,2)
     %th
-    %td=render "solution", behaviors: [@type.gs_behavior, @type.us_behavior, @type.ge_behavior, @type.ue_behavior]
+    %td.top=render "solution", behaviors: @type.behaviors.values_at(3,2,0,1)
 
 
 %ul
   %li
     %p
-      The following is for those who know their MBTI types and want to compare it to their BipolarType.
+      The following is for those who want to compare their BipolarType to their MBTI type.
   %li
     %p
       I have provided a
-      =link_to "conversion chart", chart_path
-      if you need help deconstructing your MBTI type into its functions.
+      =link_to "comparison chart", chart_path
+      if you want to understand the differences.
 
 %table
   %tr
     %caption The #{@type.name} and the MBTI
-    %td
-      =@type.ue_behavior.mbti
-      %p
-        I am good at
-        =@type.ue_behavior.mastered
-
+    %td #{@type.ue_behavior.mbti} (#{@type.ue_behavior.jungian})
     %th
-
-    %td
-      =@type.us_behavior.mbti
-      %p
-        I am good at
-        =@type.us_behavior.mastered
-
+    %td #{@type.us_behavior.mbti} (#{@type.us_behavior.jungian})
 
   %tr
     %th
@@ -113,16 +78,6 @@
     %th
 
   %tr
-    %td
-      =@type.ge_behavior.mbti
-      %p
-        I am good at
-        =@type.ge_behavior.mastered
-
+    %td #{@type.ge_behavior.mbti} (#{@type.ge_behavior.jungian})
     %th
-
-    %td
-      =@type.gs_behavior.mbti
-      %p
-        I am good at
-        =@type.gs_behavior.mastered
+    %td #{@type.gs_behavior.mbti} (#{@type.gs_behavior.jungian})
