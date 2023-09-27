@@ -1,5 +1,5 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-%p.heading #{@generic_behavior.name} / #{@generic_behavior.short_description} / #{@generic_behavior.problem_names}
+%p.heading #{@generic_behavior.name} on a #{@generic_behavior.short_description} / #{@generic_behavior.opposite.problem_names}
 -unless @answer.behaviors.empty?
   %div.chosen
     Previously chosen:
@@ -29,5 +29,8 @@
       %td.top{class: @answer.css(behavior)}
         =link_to_if @answer.free?(behavior), behavior.name, answer_path(@answer.next(behavior))
         =render "behaviors/#{behavior.symbol}"
+        e.g. I pretty much
+        %em always
+        #{behavior.eg}, even when everyone else is #{behavior.opposite.eg.ing}
 
 %p.heading=render "behaviors/improvements"

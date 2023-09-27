@@ -23,12 +23,19 @@ class GenericBehavior < Concept
   def mbti; [verb, noun].map(&:mbti).join; end
 
   def words; [verb.word, noun.word].to_phrase; end
+  alias eg :words
+  def underscored; words.gsub(' ', '_'); end
 
-  def at; index == 0 ? "at " : "in the "; end
-  def time; %w{Morning Day Afternoon Night}[index]; end
+  def switch_attitude; verb.other + noun; end
+
+
+  def at; index == 1 ? "at " : "in the "; end
+  def time; %w{Morning Noon Afternoon Evening}[index]; end
   def day; %w{Monday Wednesday Friday Weekend}[index]; end
   def moon; %w{Waxing Full Waning New}[index]; end
   def season; %w{Spring Summer Fall Winter}[index]; end
+
+  def at_time; [at, time.downcase].to_phrase; end
 
   def short_description; [day, time, "in", season].to_phrase; end
 

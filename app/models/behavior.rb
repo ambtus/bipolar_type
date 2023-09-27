@@ -23,7 +23,7 @@ class Behavior < Concept
 
   def generic_behavior; @verb + @noun; end
 
-  def opposite; realm + generic_beahavior.opposite; end
+  def opposite; realm + generic_behavior.opposite; end
   def next; realm + generic_behavior.next; end
   def previous; realm + generic_behavior.previous; end
 
@@ -36,11 +36,15 @@ class Behavior < Concept
   end
 
   def tls; [verb, realm, noun].map(&:mbti).join; end
+  alias mbti :tls
   def tls2; tls.switch('E', 'I'); end
   def jungian; tls.is_tls? ? tls.to_fa : tls2.to_fa+'?'; end
-  def mbti; tls.is_tls? ? tls : realm.mbti; end
 
   def self.find_by_mbti(tls); all.find{|b| b.mbti == tls}; end
 
   def behavior_path; "behaviors/#{symbol}"; end
+
+  def eg; realm.send(underscored); end
+  def switch_attitude; realm + generic_behavior.switch_attitude; end
+
 end

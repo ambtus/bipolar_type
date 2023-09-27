@@ -120,6 +120,8 @@ class String
     return "held" if self=="hold"
     return "built" if self=="build"
     return "spoke" if self=="speak"
+    return "wrote" if self=="write"
+    return "read" if self=="read"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ed, second].join(" ")

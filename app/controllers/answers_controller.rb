@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
 
   def show
-    if params[:id].length == 2
+    if GenericBehavior::SYMBOLS.include? params[:id]
       @answer = Answer.first
       @generic_behavior = GenericBehavior.send params[:id]
     else

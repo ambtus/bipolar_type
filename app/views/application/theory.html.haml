@@ -1,5 +1,10 @@
 - content_for(:title, 'The Theory')
-%h2 Four Phases
+
+%h2 The Natural Cycle
+-chunks = GenericBehavior.each.collect {|gb| "#{link_to gb.name, behavior_path(gb.symbol)}<p>#{gb.description}</p>".html_safe}
+=render "cycle", chunks: chunks
+
+%h2 The Bipolar Cycle
 -chunks = GenericBehavior.each.collect {|gb| "#{render 'problem', behavior: gb}".html_safe}
 =render "cycle", chunks: chunks
 

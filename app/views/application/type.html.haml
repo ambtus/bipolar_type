@@ -4,23 +4,8 @@
 -chunks = @type.behaviors.each.collect {|b| "#{render 'problem', behavior: b}".html_safe}
 =render "cycle", chunks: chunks, caption: caption
 
-%ul.none.center
-  %li
-    Replace the behaviors you do
-    %em not
-    want to do with behaviors
-  %li
-    you
-    %em need
-    to do because they balance other behaviors,
-  %li
-    you
-    %em can
-    do because it is the right time,
-  %li
-    and you
-    %em like
-    to do.
+%p
+  Replace the behaviors that don’t feel satisfying and are unbalancing you with behaviors that do feel satisfying and are balancing.
 
 -caption = "The #{@type.name} Solutions"
 -chunks = @type.behaviors.each.collect {|b| "#{render 'solution', behavior: b}".html_safe}
@@ -31,6 +16,6 @@
   =link_to "compare", chart_path
   this BipolarType to an MBTI type.
 
--caption = "The #{@type.name} as MBTI or Jungian letters"
--chunks = @type.behaviors.each.collect {|b| "#{b.mbti} (#{b.jungian})".html_safe}
+-caption = "The #{@type.name} as Jungian function-attitudes"
+-chunks = @type.best_at.each.collect {|b| "#{b.mbti} (#{b.jungian})".html_safe}
 =render "cycle", chunks: chunks, caption: caption

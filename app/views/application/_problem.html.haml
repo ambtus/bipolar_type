@@ -1,5 +1,8 @@
-=link_to behavior.problem_names, answer_path(behavior.symbol)
+-if behavior.is_a? Behavior
+  =link_to behavior.problem_names, answer_path(Answer.jump_path(behavior.opposite))
+-else
+  =link_to behavior.problem_names, answer_path(behavior.opposite.symbol)
 %p
-  Trapped in excessive and unbalancing
-  =link_to behavior.name, behavior_path(behavior.symbol), class: "external"
-  behaviors.
+  =link_to behavior.opposite.eg.ing.capitalize, behavior_path(behavior.opposite.symbol), class: "external"
+  when you should be
+  =link_to behavior.eg.ing + ".", behavior_path(behavior.symbol), class: "external"

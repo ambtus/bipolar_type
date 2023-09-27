@@ -34,7 +34,7 @@ class Answer
   def next(behavior); "#{question.next}:#{paths(behavior)}"; end
 
 
-  def type_path; finished? && behaviors.sort.map(&:realm).map(&:symbol).join; end
+  def type_path; finished? && behaviors.sort.map(&:realm).map(&:symbol).values_at(2,3,0,1).join; end
 
 
 end
