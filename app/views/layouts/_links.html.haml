@@ -5,3 +5,11 @@
 =link_to_unless_current "Comparison", chart_path
 |
 =link_to_unless_current "My BipolarType", type_path(Type.my_path)
+%br
+-GenericBehavior.all.each_with_index do |behavior, index|
+  ="|" unless index == 0
+  =link_to_unless_current behavior.name, behavior_path(behavior.symbol)
+%br
+-Realm.all.each_with_index do |realm, index|
+  ="|" unless index == 0
+  =link_to_unless_current realm.name, realm_path(realm.symbol)

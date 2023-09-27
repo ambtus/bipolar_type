@@ -7,9 +7,7 @@
     =stylesheet_link_tag '/application.css'
     =render "layouts/favicon"
   %body
-    %p.subheader=render "layouts/links"
-    %p.header=render "layouts/sublinks"
+    %p.header=render "layouts/links"
     %h1="BipolarType: " + yield(:title)
     =yield
-    %p.subfooter=render "layouts/links"
-    %p.footer=render "layouts/sublinks"
+    %p.footer=render "layouts/links"

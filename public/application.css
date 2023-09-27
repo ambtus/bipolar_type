@@ -2,9 +2,8 @@ body { font-size: 125% }
 p { text-align: left; max-width: 62em}
 
 .header {  text-align: center; padding-bottom: 1em; font-size: .8em }
-.subheader { text-align: center; font-size: .8em}
-.footer { text-align: center; font-size: .8em}
-.subfooter { text-align: center;  padding-top: 3em; font-size: .8em}
+
+.footer { text-align: center;  padding-top: 2em; font-size: .8em}
 
 .warning {color: grey; font-style: italic}
 .free {}
@@ -81,7 +80,7 @@ a.answer:active {text-decoration: none}
 a.answer:hover {text-decoration: underline; color: black;}
 
 
-ol, ul { list-style-position: inside; padding: 0;}
+ol, ul { list-style-position: inside; padding: 0; text-align: left;}
 ul.none { list-style-type: none; }
 ul.no-vmargin{ margin-top:0; margin-bottom:0 }
 

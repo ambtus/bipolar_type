@@ -1,23 +1,11 @@
 %p.heading
-  Every #{behaviors.first.time}
+  Every #{behavior.time}
   %br
-  Every #{behaviors.first.day}
+  Every #{behavior.day}
   %br
-  Every #{behaviors.first.season}
+  Every #{behavior.season}
 
 %p
   Replace
-  =link_to behaviors.first.name, behavior_path(behaviors.first.symbol), class: "external"
+  =link_to behavior.name, behavior_path(behavior.symbol), class: "external"
   with
-  =link_to behaviors.second.vertical.name, behavior_path(behaviors.second.vertical.symbol), class: "external"
-  &
-  =link_to behaviors.third.horizontal.name, behavior_path(behaviors.third.horizontal.symbol), class: "external"
-  and only
-  =link_to behaviors.fourth.opposite.name, behavior_path(behaviors.fourth.opposite.symbol), class: "external"
-  if you 
-  =[0,2].include?(behaviors.first.generic_behavior.index) ? "did not" : "cannot wait to"
-  
-  =behaviors.fourth.vertical.name
-  in the
-  =[0,2].include?(behaviors.first.generic_behavior.index) ? "previous" : "next"
-  phase.

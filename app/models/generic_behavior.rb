@@ -8,45 +8,32 @@ class GenericBehavior < Concept
   attr_reader :symbol, :verb, :noun
 
   ########
-  SYMBOLS = %w{GE UE US GS}
+  SYMBOLS = %w{UE GE US GS}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
-  def behaviors; Realm.all.add(self); end
-
   def opposite; self.next.next; end
 
-  def problems; [noun.problem, verb.problem]; end
-  def problem_names; problems.map(&:name).join; end
+  def behaviors; Realm.all.add(self); end
+
+  def problems; [season, verb.problem.name]; end
+  def problem_names; problems.join; end
 
   def mbti; [verb, noun].map(&:mbti).join; end
 
   def words; [verb.word, noun.word].to_phrase; end
 
-  def unwanted; "stuck doing #{name} behaviors"; end
-
-  def description
-    case symbol
-    when "GE"
-      "Baby<br>Spring<br>Waxing Moon<br>Monday<br>Morning".html_safe
-    when "UE"
-      "Child<br>Summer<br>Full Moon<br>Midweek<br>Day".html_safe
-    when "US"
-      "Adolescent<br>Autumn<br>Waning Moon<br>Friday<br>Afternoon".html_safe
-    when "GS"
-      "Adult<br>Winter<br>New Moon<br>Weekend<br>Night".html_safe
-    end
-  end
-  def inline_description; description.gsub('<br>', " | "); end
-
-  def at; index == 1 ? "at " : "in the "; end
-  def time; description.split('<br>').last; end
-  def season; description.split('<br>').second; end
-
-  def day; description.split('<br>').fourth; end
+  def at; index == 0 ? "at " : "in the "; end
+  def time; %w{Morning Day Afternoon Night}[index]; end
+  def day; %w{Monday Wednesday Friday Weekend}[index]; end
+  def moon; %w{Waxing Full Waning New}[index]; end
+  def season; %w{Spring Summer Fall Winter}[index]; end
 
   def short_description; [day, time, "in", season].to_phrase; end
 
+  def inline_description; [season, moon + " Moon", day, time].join(" | "); end
+
+  def description; inline_description.gsub(" | ", '<br>').html_safe; end
 
 end

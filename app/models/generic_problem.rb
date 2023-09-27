@@ -10,17 +10,16 @@ class GenericProblem < Concept
 
   def word; %w{weak mania exhausted depression }[index]; end
 
-  
   def description
     case symbol
     when "W"
-      "all Energy, no Strength".html_safe
+      "all Energy, no Strength"
     when "M"
-      "all Use, no Get".html_safe
+      "all Use, no Get"
     when "E"
-      "all Strength, no Energy".html_safe
+      "all Strength, no Energy"
     when "D"
-      "all Get, no Use".html_safe
+      "all Get, no Use"
     end
   end
 

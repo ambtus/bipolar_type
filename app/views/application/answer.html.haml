@@ -19,7 +19,7 @@
     %br
     The one which is
     %em=@answer.number > 2 ? "easier" : "easiest"
-    and automatic or subconcious.
+    and more automatic or subconcious.
     -unless @answer.number == 1
       %br
       If you are stuck you can
@@ -28,7 +28,6 @@
     -@generic_behavior.behaviors.each do |behavior|
       %td.top{class: @answer.css(behavior)}
         =link_to_if @answer.free?(behavior), behavior.name, answer_path(@answer.next(behavior))
-        %p
-          %div.left=render "behaviors/#{behavior.symbol}"
+        =render "behaviors/#{behavior.symbol}"
 
 %p.heading=render "behaviors/improvements"

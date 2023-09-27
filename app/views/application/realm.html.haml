@@ -1,47 +1,9 @@
 - content_for(:title, "The #{@realm.name} Realm")
 %h2 The Four #{@realm.name} Problems
-%table
-  %tr
-    %td=link_to @realm.behaviors.second.problem_names, answer_path(Answer.jump_path(@realm.behaviors.second))
-
-    %td #{@realm.name} #{GenericProblem.M.name}
-
-    %td=link_to @realm.behaviors.third.problem_names, answer_path(Answer.jump_path(@realm.behaviors.third))
-
-  %tr
-    %td #{@realm.name.ly} #{GenericProblem.W.name}
-    %th ↻
-    %td #{@realm.name.ly} #{GenericProblem.E.name}
-
-  %tr
-    %td=link_to @realm.behaviors.first.problem_names, answer_path(Answer.jump_path(@realm.behaviors.first))
-
-    %td #{@realm.name} #{GenericProblem.D.name}
-
-    %td=link_to @realm.behaviors.fourth.problem_names, answer_path(Answer.jump_path(@realm.behaviors.fourth))
-
+-chunks = @realm.behaviors.each.collect {|b| "#{link_to b.problem_names, answer_path(Answer.jump_path(b))}<p>#{b.verb.name} too much #{b.realm.word} #{b.noun.word}.".html_safe}
+=render "cycle", chunks: chunks
 %h2 The Four #{@realm.name} Behaviors
-%table
-  %tr
-    %td
-      =@realm.behaviors.second.name
-      =render "behaviors/#{@realm.behaviors.second.symbol}"
-    %th
-    %td
-      =@realm.behaviors.third.name
-      =render "behaviors/#{@realm.behaviors.third.symbol}"
-  %tr
-    %th
-    %th ↻
-    %th
-  %tr
-    %td
-      =@realm.behaviors.first.name
-      =render "behaviors/#{@realm.behaviors.first.symbol}"
-    %th
-    %td
-      =@realm.behaviors.fourth.name
-      =render "behaviors/#{@realm.behaviors.fourth.symbol}"
-
+-chunks = @realm.behaviors.each.collect {|b| "#{b.name}#{render b.behavior_path}".html_safe}
+=render "cycle", chunks: chunks
 
 %p.heading=render "behaviors/improvements"

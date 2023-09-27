@@ -1,7 +1,10 @@
 - content_for(:title, @behavior.name)
 -if @behavior.is_a? GenericBehavior
-  %p.heading All people do all four behaviors when necessary, but they are easiest during the #{@behavior.name} times.
   %div.center=@behavior.inline_description
+  %p.heading
+    All people do all four behaviors when necessary.
+    %br
+    They are #{@behavior.problem_names} if you become trapped doing them.
   -@behavior.behaviors.each do |behavior|
     %h2=link_to behavior.name, answer_path(Answer.jump_path(behavior))
     %div.center=render "behaviors/#{behavior.symbol}"
