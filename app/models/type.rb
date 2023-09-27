@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "FMAP"; end
+  def self.my_path; "PAFM"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -13,8 +13,6 @@ class Type
   ALL = Realm::SYMBOLS.permutation(4).collect{|x| new(x.join)}
 
   def behaviors; realms.add(GenericBehavior.all); end
-
-  def best_at; realms.values_at(2,3,0,1).add(GenericBehavior.all); end
 
   def name; realms.map(&:symbol).join; end
   def inspect; @symbol; end

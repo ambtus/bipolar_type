@@ -2,14 +2,16 @@
 -if @behavior.is_a? GenericBehavior
   %div.center=@behavior.inline_description
   %p.heading
-    All people do all four behaviors on a #{@behavior.short_description} and at other times when necessary.
+    All people do all four behaviors when necessary.
     %br
-    They are #{@behavior.opposite.problem_names} if you get trapped into doing them to excess at the wrong time.
+    They are labeled #{@behavior.problem_names} if you are doing them to excess.
   -@behavior.behaviors.each do |behavior|
-    %h2=link_to behavior.name, answer_path(Answer.jump_path(behavior))
-    %div.center=render "behaviors/#{behavior.symbol}"
--else
+    %h2=behavior.name
+    =link_to behavior.problem_names, answer_path(Answer.jump_path(behavior))
+    =behavior.eg.too_much.wrap
+    =render "behaviors/#{behavior.symbol}"
+-elsif @behavior.is_a? Behavior
   %div.center=@behavior.generic_behavior.inline_description
-  =render "behaviors/#{@behavior.symbol}"
+  %div.center=render "behaviors/#{@behavior.symbol}"
 
 %p.heading=render "behaviors/improvements"

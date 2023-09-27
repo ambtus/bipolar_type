@@ -5,7 +5,9 @@
     Previously chosen:
     %ul
       -@answer.behaviors.each do |behavior|
-        %li=behavior.name
+        %li
+          =behavior.name
+          =behavior.eg.too_much.wrap
 
 %table
   %caption
@@ -28,9 +30,8 @@
     -@generic_behavior.behaviors.each do |behavior|
       %td.top{class: @answer.css(behavior)}
         =link_to_if @answer.free?(behavior), behavior.name, answer_path(@answer.next(behavior))
-        =render "behaviors/#{behavior.symbol}"
-        e.g. I pretty much
-        %em always
-        #{behavior.eg}, even when everyone else is #{behavior.opposite.eg.ing}
+        %p.no_bottom
+          I #{behavior.eg.too_much}:
+          =render "behaviors/#{behavior.symbol}"
 
 %p.heading=render "behaviors/improvements"

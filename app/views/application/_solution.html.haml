@@ -5,29 +5,24 @@
   %br
   Every #{behavior.season}
 
-%p
-  Replace
-  =link_to behavior.opposite.eg.ing, behavior_path(behavior.opposite.symbol), class: "external"
-  with:
-  %ol
-    %li
-      -replace = @type.next_behavior(behavior).previous
-      =link_to replace.eg.ing, behavior_path(replace.symbol), class: "external"
-      (if you #{replace.previous.eg.ed} in the previous phase)
-    %li
-      =link_to behavior.eg.ing, behavior_path(behavior.symbol), class: "external"
-      (which will satisfy you much more than #{behavior.opposite.eg.ing} does)
-    %li
-      -replace = @type.previous_behavior(behavior).next
-      =link_to replace.eg.ing, behavior_path(replace.symbol), class: "external"
-      (if you want to #{replace.next.eg} in the next phase)
-%p
-  -best_at = @type.best_at[@type.index(behavior)]
-  You can
-  =link_to best_at.eg, behavior_path(best_at.symbol), class: "external"
-  if you have been been #{best_at.opposite.eg.ing} #{best_at.opposite.at_time}
-  %em and
-  you are #{best_at.switch_attitude.eg.ing}
-  enough. Otherwise, you should
-  =link_to best_at.opposite.eg, behavior_path(best_at.opposite.symbol), class: "external"
-  even though it is not the usual time for it.
+%ol
+  %li
+    Do
+    %em not
+    =link_to behavior.eg, behavior_path(behavior.symbol), class: "external"
+    (you have already #{behavior.eg.en.too_much})
+  %li
+    Do not
+    -opposite = @type.opposite_behavior(behavior).opposite
+    =link_to opposite.eg, behavior_path(opposite.symbol), class: "external"
+    unless you
+    %em have
+    to or it is in your prefered realm. But it won’t distract you, and you will probably #{behavior.eg} while you’re #{opposite.eg.ing}.
+  %li
+    %em Do
+    -nb = @type.next_behavior(behavior).previous
+    =link_to nb.eg, behavior_path(nb.symbol), class: "external"
+    and
+    -pb = @type.previous_behavior(behavior).next
+    =link_to pb.eg, behavior_path(pb.symbol), class: "external"
+    (you will enjoy it, and they will be good for you)

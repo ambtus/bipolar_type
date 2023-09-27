@@ -4,10 +4,12 @@
 =render "cycle", chunks: chunks, caption: caption
 %p.heading=render "behaviors/improvements"
 
-%p If you #{@realm.behaviors.first.eg} more you’ll feel tired and #{@realm.behaviors.second.eg} more. If you #{@realm.behaviors.third.eg} more you’ll feel worn out and #{@realm.behaviors.fourth.eg} more. That is the healthy and balancing #{@realm.word} cycle.
+%p
+  If you #{@realm.behaviors.first.eg} more you’ll feel energetic and #{@realm.behaviors.second.eg} more. If you #{@realm.behaviors.third.eg} more you’ll feel worn out and #{@realm.behaviors.fourth.eg} more. That is the healthy and balanced #{@realm.word} cycle. Overdoing
+  %em any one
+  of the four behaviors without balancing it is #{@realm.word.ly} unhealthy. Mania tends to be more dangerous in the short run, but Depression is also bad for your #{@realm.word} health.
 
 -caption = "The Four #{@realm.name} Problems"
--chunks = @realm.behaviors.each.collect {|b| "#{link_to b.problem_names, answer_path(Answer.jump_path(b.opposite))}<br>#{b.opposite.eg.capitalize} too much<p>You #{b.previous.eg.ed} a lot and should now be #{b.eg.ing} but are #{b.opposite.eg.ing} instead because you can <em>always</em> #{b.opposite.eg}, even when it’s not the right time.<p>#{b.opposite.eg.ing.capitalize} doesn’t actually feel satisfying, but instead of #{b.eg.ing} – which <em>would</em> satisfy you and allow you to stop – you just #{b.opposite.eg} <em>more</em>.</p>".html_safe}
+-chunks = @realm.behaviors.each.collect {|b| "#{render 'problem', behavior: b}".html_safe}
 =render "cycle", chunks: chunks, caption: caption
-
 

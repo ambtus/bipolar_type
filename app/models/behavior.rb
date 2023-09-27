@@ -8,7 +8,6 @@ class Behavior < Concept
   end
   attr_reader :symbol, :verb, :realm, :noun
 
-
   ########
   ALL = GenericBehavior::SYMBOLS.collect do |phrase|
           Realm::SYMBOLS.collect do |realm|
@@ -26,6 +25,9 @@ class Behavior < Concept
   def opposite; realm + generic_behavior.opposite; end
   def next; realm + generic_behavior.next; end
   def previous; realm + generic_behavior.previous; end
+
+  def problems; [problem, realm.name, verb.problem]; end
+  def problem_names; problems.join.squash; end
 
   def method_missing(meth, *arguments, &block)
     if generic_behavior.respond_to?(meth)
@@ -46,5 +48,7 @@ class Behavior < Concept
 
   def eg; realm.send(underscored); end
   def switch_attitude; realm + generic_behavior.switch_attitude; end
+
+  def switch_focus; realm + generic_behavior.switch_focus; end
 
 end

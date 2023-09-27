@@ -122,6 +122,7 @@ class String
     return "spoke" if self=="speak"
     return "wrote" if self=="write"
     return "read" if self=="read"
+    return "got" if self=="get"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.ed, second].join(" ")
@@ -141,6 +142,7 @@ class String
     return "said" if self=="say"
     return "gone" if self=="go"
     return "spoken" if self=="speak"
+    return "gotten" if self=="get"
     if self.match(" ")
       first, second = self.split(' ', 2)
       [first.en, second].join(" ")

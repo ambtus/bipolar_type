@@ -4,6 +4,8 @@
 -chunks = GenericBehavior.each.collect {|gb| "#{link_to gb.name, behavior_path(gb.symbol)}<p>#{gb.description}</p>".html_safe}
 =render "cycle", chunks: chunks
 
+%p BipolarType omits Night between the Dusk and Dawn (when you have access to none of the behaviors) and Summer between Spring and Fall (when you have access to all of the behaviors).
+
 %h2 The Bipolar Cycle
 -chunks = GenericBehavior.each.collect {|gb| "#{render 'problem', behavior: gb}".html_safe}
 =render "cycle", chunks: chunks

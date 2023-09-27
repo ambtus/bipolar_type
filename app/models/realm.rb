@@ -26,8 +26,8 @@ class Realm < Concept
 
   # The following are examples, not definitions, behavior.eg, not behavior.ie
   def use_energy; %w{walk imagine talk buy}[index]; end
-  def get_energy; %w{binge inspect listen work}[index]; end
-  def use_strength; %w{toil theorize write borrow}[index]; end
+  def get_energy; %w{binge look listen earn}[index]; end
+  def use_strength; %w{lift theorize write borrow}[index]; end
   def get_strength; %w{gorge watch read invest}[index]; end
 
 end

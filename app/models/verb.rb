@@ -12,7 +12,7 @@ class Verb < Concept
 
   def word; %w{use get}[index]; end
 
-  def problem; [GenericProblem.M, GenericProblem.D][index]; end
+  def problem; %w{Mania Depression}[index]; end
 
   def mbti; %w{I E}[index]; end
 
