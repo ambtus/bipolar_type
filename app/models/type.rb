@@ -1,6 +1,6 @@
 class Type
 
-  def self.my_path; "PAFM"; end
+  def self.my_path; "AFMP"; end
   def self.my_type; self.new my_path; end
 
   def initialize(string)
@@ -11,16 +11,17 @@ class Type
   attr_reader :symbol, :realms
 
   ALL = Realm::SYMBOLS.permutation(4).collect{|x| new(x.join)}
+  def self.all; self::ALL; end
 
   def behaviors; realms.add(GenericBehavior.all); end
 
-  def name; realms.map(&:symbol).join; end
+  def mbtis; behaviors.map(&:mbti).join("•"); end
   def inspect; @symbol; end
 
-  def index(behavior); behaviors.index(behavior); end
+  def name; behaviors.map(&:symbol).join("•"); end
 
-  def next_behavior(behavior); behaviors[index(behavior)+1] || behaviors.first; end
-  def previous_behavior(behavior); behaviors[index(behavior)-1] || behaviors.last; end
-  def opposite_behavior(behavior); next_behavior(next_behavior(behavior)); end
-
+  def less_behavior(behavior); behaviors.map(&:less).find{|b| b.generic_behavior == behavior.generic_behavior}; end
+  def more_behavior(behavior); behaviors.map(&:more).find{|b| b.generic_behavior == behavior.generic_behavior}; end
+  def instead_behavior(behavior); behaviors.map(&:instead).find{|b| b.generic_behavior == behavior.generic_behavior}; end
 end
+

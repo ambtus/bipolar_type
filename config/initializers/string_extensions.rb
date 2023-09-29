@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-MINE = %w{chip squash second third fourth words first_word last_words last_word wrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ly ing enough an some a_lot a_few many too_much too_little  plural? little few fewer less more much many that those is are them it they has have was were does do}
+MINE = %w{chip squash second third fourth camelcased? words first_word last_word last_words slot wrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ly ing enough an some a_lot a_few many too_much too_little more plural? little few fewer less much many that those is are them it they has have was were does do}
 
 MINE.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
@@ -14,11 +14,26 @@ class String
   def second; chars.second; end
   def third; chars.third; end
   def fourth; chars.fourth; end
-  def words; split; end
+
+  def camelcased?; underscore.match('_'); end
+  def words
+    if self.match(' ')
+      split
+    elsif self.camelcased?
+      self.underscore.split("_").map(&:capitalize)
+    else
+      [self]
+    end
+  end
 
   def first_word; words.first; end
   def last_word; words.last; end
   def last_words; words.drop(1).to_phrase; end
+
+  def slot(word)
+    new_words = words.size == 1 ? [word,self] : words.insert(1,word)
+    camelcased? ? new_words.join : new_words.join(" ")
+  end
 
   def wrap(*ary)
      case ary.size
@@ -85,7 +100,7 @@ class String
     return "relaxes" if self=="relax"
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first.s, second].join(" ")
+      [first.s, second].to_phrase
     elsif self.match("/")
       first, second = self.split('/', 2)
       [first.s, second.s].join("/")
@@ -125,7 +140,7 @@ class String
     return "got" if self=="get"
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first.ed, second].join(" ")
+      [first.ed, second].to_phrase
     else
       self.sub(/e$/, "") + "ed"
     end
@@ -145,7 +160,7 @@ class String
     return "gotten" if self=="get"
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first.en, second].join(" ")
+      [first.en, second].to_phrase
     else
       self.ed
     end
@@ -174,7 +189,7 @@ class String
       [first.ing, second.ing].join("/")
     elsif self.match(" ")
       first, second = self.split(' ', 2)
-      [first.ing, second].join(" ")
+      [first.ing, second].to_phrase
     else
       self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + "ing"
     end
@@ -183,18 +198,18 @@ class String
   def enough
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first, "enough", second].join(" ")
+      [first, "enough", second].to_phrase
     else
       "#{self} enough"
     end
   end
   def an
-    %w{a e i o u}.include?(self.first) ? "an" : "a"
+    %w{a e i o u}.include?(self.first.downcase) ? "an #{self}" : "a #{self}"
   end
   def some
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first, "some", second].join(" ")
+      [first, "some", second].to_phrase
     else
       "#{self} some"
     end
@@ -202,7 +217,7 @@ class String
   def a_lot
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first, second.many, second].join(" ")
+      [first, second.many, second].to_phrase
     else
       "#{self} a lot"
     end
@@ -210,7 +225,7 @@ class String
   def a_few
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first, "a", second.few, second].join(" ")
+      [first, "a", second.few, second].to_phrase
     else
       "#{self} a little"
     end
@@ -218,7 +233,7 @@ class String
   def too_much
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first, "too", second.much, second].join(" ")
+      [first, "too", second.much, second].to_phrase
     else
       "#{self} too much"
     end
@@ -226,9 +241,16 @@ class String
   def too_little
     if self.match(" ")
       first, second = self.split(' ', 2)
-      [first, "too", second.little, second].join(" ")
+      [first, "too", second.little, second].to_phrase
     else
       "#{self} too little"
+    end
+  end
+  def more
+    if self.match(" ")
+      [first_word, "more", last_words].to_phrase
+    else
+      "#{self} more"
     end
   end
 
@@ -238,11 +260,25 @@ class String
     return false
   end
 
+  def fewer
+    f_or_l = plural? ? "fewer" : "less"
+    if self.match(" ")
+      [first_word, f_or_l, last_words].to_phrase
+    else
+      "#{f_or_l} #{self}"
+    end
+  end
+
+  def less
+    if self.match(" ")
+      [first_word, last_words.fewer].to_phrase
+    else
+      "#{self} less"
+    end
+  end
+
   def little; plural? ? "few" : "little"; end
   alias few :little
-  def fewer; plural? ? "fewer" : "less"; end
-  alias less :fewer
-  def more; "more"; end
   def much; plural? ? "many" : "much"; end
   alias many :much
   def that; plural? ? "those" : "that"; end

@@ -1,33 +1,66 @@
-- content_for(:title, 'Comparison Chart')
+- content_for(:title, 'Comparison Charts')
+%table
+  %tr
+    %th Function
+    %th Realms
+  %tr
+    %td S(ensation)
+    %td P(hysical)
+  %tr
+    %td i(N)tuition
+    %td M(ental)
+  %tr
+    %td T(hinking)
+    %td F(inancial)
+  %tr
+    %td F(eeling)
+    %td A(ffective)
+%table
+  %tr
+    %th MBTI attitude
+    %th Phase
+  %tr
+    %td E(troverted)P(erception)
+    %td G(et)E(nergy)
+  %tr
+    %td I(ntroverted)P(erception)
+    %td U(se)E(nergy)
+  %tr
+    %td E(troverted)J(udging)
+    %td G(et)E(Strength)
+  %tr
+    %td I(ntroverted)J(udging)
+    %td U(se)S(trength)
+%p The MBTI theory defines your type based on the eight Jungian function-attitudes: #{String::FA.and}. The one you prefer first is your Dominant and the one you prefer next is your Auxiliary. The MBTI theory constrains your second choice to one of two possibilities: the Auxiliary must be the opposite attitude (Xe vs Xi) and function group (SN vs FT) to the dominant. Thus the MBTI has sixteen types (eight times two).
+%table
+  %tr
+    %th Attitude
+    %th Behavior
+  %tr
+    %td Xi
+    %td (U)se
+  %tr
+    %td Xe
+    %td (G)et
 %p
-  The MBTI theory defines your personality type based on which of eight behaviors you prefer
-  %em overall
-  (your Dominant
-  =succeed ")" do
-    =link_to "function-attitude", "https://en.wikipedia.org/wiki/Jungian_cognitive_functions", class: "external"
-  and then adds an Auxiliary function-attitude constrained by the MBTI theory to one of two function-attitudes depending on your first choice. Thus the MBTI has sixteen types (eight times two).
-%p
-  The BipolarType theory defines your personality type based on which of four behaviors you prefer most at four different times. BipolarType does not constrain the function of adjacent attitudes except in that they must be unique. Thus BipolarType has twenty-four types (four factorial).
-%p
-  Although sixteen doesn’t map well onto twenty-four, you can still use your MBTI type to get you part-way to your BipolarType (as long as it is an actual
-  =link_to "best-fit MBTI type", "https://www.myersbriggs.org/unique-features-of-myers-briggs/best-fit-type/", class: "external"
-  and not just a test result).
+  Originally Fe represented the
+  %em extroverted
+  feeling function and Fi the
+  %em introverted
+  feeling function. But in the MBTI, the original introverted and extroverted indications are replaced by I and E. An IFJ is an introvert (I) with Fe as their extroverted Auxiliary function-attitude. So despite eight MBTI types with F in their four-letter code, there are only two feeling functions: Fi (the four FPs) and Fe (the four FJs).
+%p The BipolarType theory defines your type based on the sixteen BipolarType behaviors: #{Behavior::SYMBOLS.and}. The BipolarType theory constrains your choices to only one realm for each phase of the cycle but doesn’t take preferences into account, since you have to live through all four phases. Thus BipolarType has twenty-four types (four factorial).
+%p BipolarType requires four Affective (the BipolarType words for Feeling) functions.
 %table
   -String::MBTI.in_groups_of(4).each_with_index do |row, index|
     %tr
       -row.each do |mbti|
         %td
-          %b #{mbti}: #{mbti.jungian}
+          %b #{mbti}: #{mbti.dominant} + #{mbti.auxiliary} (#{mbti.jungian})
           %br
-          =mbti.dominant.to_fa + ":"
+
           -dominant = Behavior.find_by_mbti(mbti.dominant)
-          =link_to dominant.symbol, behavior_path(dominant.symbol), class: "external"
-          %br
-          =mbti.auxiliary.to_fa + ":"
           -auxiliary = Behavior.find_by_mbti(mbti.auxiliary)
-          =link_to auxiliary.symbol, behavior_path(auxiliary.symbol), class: "external"
-          %br
-          =link_to "#{mbti} BipolarTypes", answer_path(Answer.jump_path(dominant, auxiliary))
 
-
-
+          =link_to "#{dominant.jungian}: #{dominant.name}", dominant.path
+          with
+          =link_to auxiliary.name, auxiliary.path

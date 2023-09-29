@@ -1,15 +1,6 @@
 - content_for(:title, "The #{@realm.name} Realm")
--caption = "The Four #{@realm.name} Behaviors"
--chunks = @realm.behaviors.each.collect {|b| "#{b.name} (e.g. #{b.eg})#{render b.behavior_path}".html_safe}
-=render "cycle", chunks: chunks, caption: caption
+
+-chunks = @realm.behaviors.each.collect {|b| "#{render 'behavior', behavior: b}".html_safe}
+=render "cycle", chunks: chunks
+
 %p.heading=render "behaviors/improvements"
-
-%p
-  If you #{@realm.behaviors.first.eg} more you’ll feel energetic and #{@realm.behaviors.second.eg} more. If you #{@realm.behaviors.third.eg} more you’ll feel worn out and #{@realm.behaviors.fourth.eg} more. That is the healthy and balanced #{@realm.word} cycle. Overdoing
-  %em any one
-  of the four behaviors without balancing it is #{@realm.word.ly} unhealthy. Mania tends to be more dangerous in the short run, but Depression is also bad for your #{@realm.word} health.
-
--caption = "The Four #{@realm.name} Problems"
--chunks = @realm.behaviors.each.collect {|b| "#{render 'problem', behavior: b}".html_safe}
-=render "cycle", chunks: chunks, caption: caption
-

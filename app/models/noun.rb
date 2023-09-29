@@ -7,8 +7,7 @@ class Noun < Concept
   ########
 
   def word; %w{energy strength}[index]; end
-
-  def problem; [GenericProblem.W, GenericProblem.E][index]; end
+  def strong?; index == 1; end
 
   def mbti; %w{P J}[index]; end
 

@@ -1,0 +1,10 @@
+%h2 #{behavior.symbol} (e.g. #{behavior.eg})
+=render behavior.example_path
+-if @realm || @behavior.generic?
+  %p.left
+    Compulsive #{behavior.name} (e.g. can’t stop #{behavior.eg.ing}) when you don’t
+    =behavior.manic? ? "have enough" : "need the"
+    #{behavior.realm.word} #{behavior.noun.word} is
+    %b=behavior.severity
+    =link_to behavior.episode.wrap, behavior.answer_path
+    and makes you #{behavior.imbalance}.

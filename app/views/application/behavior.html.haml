@@ -1,17 +1,14 @@
 - content_for(:title, @behavior.name)
--if @behavior.is_a? GenericBehavior
-  %div.center=@behavior.inline_description
-  %p.heading
-    All people do all four behaviors when necessary.
-    %br
-    They are labeled #{@behavior.problem_names} if you are doing them to excess.
-  -@behavior.behaviors.each do |behavior|
-    %h2=behavior.name
-    =link_to behavior.problem_names, answer_path(Answer.jump_path(behavior))
-    =behavior.eg.too_much.wrap
-    =render "behaviors/#{behavior.symbol}"
--elsif @behavior.is_a? Behavior
-  %div.center=@behavior.generic_behavior.inline_description
-  %div.center=render "behaviors/#{@behavior.symbol}"
+%div.center=@behavior.horizontal_when
+-unless @behavior.generic?
+  =render "behavior", behavior: @behavior
+  =render "long", behavior: @behavior
+
+-if @behavior.generic?
+  -chunks = @behavior.behaviors.each.collect {|b| "#{render 'behavior', behavior: b}".html_safe}
+  %table
+    -chunks.each do |chunk|
+      %tr
+        %td.top=chunk
 
 %p.heading=render "behaviors/improvements"

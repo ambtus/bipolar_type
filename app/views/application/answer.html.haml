@@ -1,37 +1,25 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
-%p.heading #{@generic_behavior.name} on a #{@generic_behavior.short_description} / #{@generic_behavior.opposite.problem_names}
--unless @answer.behaviors.empty?
-  %div.chosen
-    Previously chosen:
-    %ul
-      -@answer.behaviors.each do |behavior|
-        %li
-          =behavior.name
-          =behavior.eg.too_much.wrap
+%p.heading=@generic_behavior.episode
 
 %table
-  %caption
-    Pick the one you are
-    %em=@answer.number > 2 ? "better" : "best"
-    at.
-    %br
-    Not the one which you think you
-    %em should
-    do.
-    %br
-    The one which is
-    %em=@answer.number > 2 ? "easier" : "easiest"
-    and more automatic or subconcious.
-    -unless @answer.number == 1
-      %br
-      If you are stuck you can
-      =link_to_unless_current "start over", answer_path(Answer.first_path)
-  %tr
-    -@generic_behavior.behaviors.each do |behavior|
+  -@generic_behavior.behaviors.each do |behavior|
+    %tr
       %td.top{class: @answer.css(behavior)}
         =link_to_if @answer.free?(behavior), behavior.name, answer_path(@answer.next(behavior))
-        %p.no_bottom
-          I #{behavior.eg.too_much}:
-          =render "behaviors/#{behavior.symbol}"
+        %br
+        =link_to behavior.eg.too_much, behavior.path, class: "external"
+        %br
+        (#{behavior.imbalance})
+        %br
+        Similar to #{behavior.mbti}
+
+-unless @answer.behaviors.empty?
+  %p.center
+    If you are stuck you can
+    =link_to_unless_current "start over", answer_path(Answer.first_path)
+  %dl.chosen
+    %dt Previously chosen
+    -@answer.behaviors.each do |behavior|
+      %dd #{behavior.episode} #{behavior.mbti.wrap} #{behavior.eg.too_much} #{behavior.imbalance.wrap}
 
 %p.heading=render "behaviors/improvements"

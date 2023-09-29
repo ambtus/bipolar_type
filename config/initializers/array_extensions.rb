@@ -1,6 +1,6 @@
 # Restart required even in development mode when you modify this file.
 
-%w{sixth multiply add duplicates discard remove_consecutive_dupes check_constraints and or to_phrase}.each do |meth|
+%w{ multiply add duplicates discard remove_consecutive_dupes check_constraints sixth and or to_phrase }.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 

@@ -1,0 +1,16 @@
+%b=behavior.time
+%br
+%ol
+  %li
+    Don’t
+    =link_to behavior.eg, behavior.path, class: "external"
+  %li
+    =link_to @type.less_behavior(behavior).eg.less.capitalize, @type.less_behavior(behavior).path, class: "external"
+  %li
+    =link_to @type.more_behavior(behavior).eg.more.capitalize, @type.more_behavior(behavior).path, class: "external"
+  %li
+    Do
+    =link_to @type.instead_behavior(behavior).eg, @type.instead_behavior(behavior).path, class: "external"
+
+
+

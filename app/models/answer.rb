@@ -25,10 +25,10 @@ class Answer
     return "chosen" if behaviors.include?(behavior)
     return "constrained" if realms.include?(behavior.realm)
     return "constrained" if generics.include?(behavior.generic_behavior)
-    return "free"
+    return "available"
   end
 
-  def free?(behavior); css(behavior) == "free"; end
+  def free?(behavior); css(behavior) == "available"; end
 
   def paths(behavior); [behavior_paths, behavior.symbol].join; end
   def next(behavior); "#{question.next}:#{paths(behavior)}"; end

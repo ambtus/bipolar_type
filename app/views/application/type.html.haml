@@ -1,24 +1,12 @@
 - content_for(:title, @type.name)
+%p.header
+  Similar to
+  =link_to @type.mbtis, chart_path
 
--caption = "The #{@type.name} Problems"
--chunks = @type.behaviors.each.collect {|b| "#{render 'problem', behavior: b}".html_safe}
+-caption = "Daily Recommendations"
+-chunks = @type.behaviors.each.collect {|b| "#{render 'quick', behavior: b}".html_safe}
 =render "cycle", chunks: chunks, caption: caption
 
-%p There are three different recommendations:
-%ol
-  %li Do <em>not</em> do this. You’re already doing it too much at other times. Don’t do it <em>now</em> when your nature will overcome your previous determination to refrain.
-  %li Only do this if you <em>have</em> to, you won’t enjoy it and it won’t distract you.
-  %li Do these two. You will enjoy them, and they will distract you while balancing you and making you healthier.
-
--caption = "The #{@type.name} Solutions"
--chunks = @type.behaviors.each.collect {|b| "#{render 'solution', behavior: b}".html_safe}
-=render "cycle", chunks: chunks, caption: caption
-
-%p.center
-  The following is for those who want to
-  =link_to "compare", chart_path
-  this BipolarType to an MBTI type.
-
--caption = "The #{@type.name} as Jungian function-attitudes"
--chunks = @type.behaviors.each.collect {|b| "#{b.mbti} (#{b.jungian})".html_safe}
-=render "cycle", chunks: chunks, caption: caption
+-chunks = @type.behaviors.collect {|b| "#{render 'long', behavior: b}".html_safe}
+-chunks.each do |chunk|
+  =chunk
