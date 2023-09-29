@@ -16,15 +16,15 @@ class Answer
   def finished?; number > 4; end
 
   def behaviors; @behavior_paths.scan(/.../).collect{|x| Behavior.send(x)}; end
-  def generics; behaviors.map(&:generic_behavior); end
+  def phases; behaviors.map(&:phase); end
   def realms; behaviors.map(&:realm); end
 
-  def generic_behavior; (GenericBehavior.all - generics).first; end
+  def phase; (Phase.all - phases).first; end
 
   def css(behavior)
     return "chosen" if behaviors.include?(behavior)
     return "constrained" if realms.include?(behavior.realm)
-    return "constrained" if generics.include?(behavior.generic_behavior)
+    return "constrained" if phases.include?(behavior.phase)
     return "available"
   end
 

@@ -1,7 +1,7 @@
 - content_for(:title, 'The Theory')
 
 %h2 The Four Phases
--chunks = GenericBehavior.each.collect {|gb| "#{link_to gb.name, gb.path}<p>#{gb.vertical_when}</p>".html_safe}
+-chunks = Phase.each.collect {|gb| "#{link_to gb.name, gb.path}<p>#{gb.vertical_when}</p>".html_safe}
 =render "cycle", chunks: chunks
 
 %h2 The Four Realms
@@ -13,6 +13,6 @@
 %h2 The Twenty-four BipolarTypes
 %p A BipolarType is the four realms distributed over the four phases of the natural cycle. For each phase you have a different realm which is most problematic:
 
--chunks = GenericBehavior.each.collect {|gb| "#{link_to gb.episode, answer_path(gb.symbol)}<p class='left'>#{gb.words.ing.capitalize} when you don’t #{gb.manic? ? 'have' : 'need'} it is <b>#{gb.severity}</b>.</p>".html_safe}
+-chunks = Phase.each.collect {|gb| "#{link_to gb.episode, answer_path(gb.symbol)}<p class='left'>#{gb.words.ing.capitalize} when you don’t #{gb.manic? ? 'have' : 'need'} it is <b>#{gb.severity}</b>.</p>".html_safe}
 =render "cycle", chunks: chunks
 

@@ -7,8 +7,8 @@ class Verb < Concept
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
-  def generic_behaviors; GenericBehavior.all.select{|gb| gb.verb == self}; end
-  def +(noun); generic_behaviors.find{|gb| gb.noun == noun}; end
+  def phases; Phase.all.select{|gb| gb.verb == self}; end
+  def +(noun); phases.find{|gb| gb.noun == noun}; end
 
   def word; %w{use get}[index]; end
 

@@ -1,5 +1,4 @@
 class Behavior < Concept
-  def generic?; false; end
 
   def initialize(string)
     @symbol = string
@@ -14,7 +13,7 @@ class Behavior < Concept
   def answer_path; Rails.application.routes.url_helpers.answer_path(Answer.jump_path(self)); end
 
   ########
-  ALL = GenericBehavior::SYMBOLS.collect do |phrase|
+  ALL = Phase::SYMBOLS.collect do |phrase|
           Realm::SYMBOLS.collect do |realm|
             self.new [phrase.first, realm, phrase.second].join
           end
@@ -25,19 +24,19 @@ class Behavior < Concept
 
   def words; [verb.word, realm.word, noun.word].to_phrase; end
 
-  def generic_behavior; @verb + @noun; end
+  def phase; @verb + @noun; end
 
-  def instead; realm + generic_behavior.previous; end
-  def more; realm + generic_behavior.next; end
-  def less; realm + generic_behavior.opposite; end
+  def instead; realm + phase.previous; end
+  def more; realm + phase.next; end
+  def less; realm + phase.opposite; end
 
-  def episode; generic_behavior.episode.slot(realm.name).squash; end
-  def imbalance; "#{realm.word.ly} #{generic_behavior.imbalance}"; end
+  def episode; phase.episode.slot(realm.name).squash; end
+  def imbalance; "#{realm.word.ly} #{phase.imbalance}"; end
 
 
   def method_missing(meth, *arguments, &block)
-    if generic_behavior.respond_to?(meth)
-      generic_behavior.send(meth, *arguments, &block)
+    if phase.respond_to?(meth)
+      phase.send(meth, *arguments, &block)
     elsif verb.respond_to?(meth)
       verb.send(meth, *arguments, &block)
     elsif noun.respond_to?(meth)
@@ -55,8 +54,8 @@ class Behavior < Concept
   def self.find_by_mbti(tls); all.find{|b| b.mbti == tls}; end
 
   def eg; realm.send(underscored); end
-  def switch_attitude; realm + generic_behavior.switch_attitude; end
+  def switch_attitude; realm + phase.switch_attitude; end
 
-  def switch_focus; realm + generic_behavior.switch_focus; end
+  def switch_focus; realm + phase.switch_focus; end
 
 end

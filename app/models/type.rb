@@ -13,15 +13,15 @@ class Type
   ALL = Realm::SYMBOLS.permutation(4).collect{|x| new(x.join)}
   def self.all; self::ALL; end
 
-  def behaviors; realms.add(GenericBehavior.all); end
+  def behaviors; realms.add(Phase.all); end
 
   def mbtis; behaviors.map(&:mbti).join("•"); end
   def inspect; @symbol; end
 
   def name; behaviors.map(&:symbol).join("•"); end
 
-  def less_behavior(behavior); behaviors.map(&:less).find{|b| b.generic_behavior == behavior.generic_behavior}; end
-  def more_behavior(behavior); behaviors.map(&:more).find{|b| b.generic_behavior == behavior.generic_behavior}; end
-  def instead_behavior(behavior); behaviors.map(&:instead).find{|b| b.generic_behavior == behavior.generic_behavior}; end
+  def less_behavior(behavior); behaviors.map(&:less).find{|b| b.phase == behavior.phase}; end
+  def more_behavior(behavior); behaviors.map(&:more).find{|b| b.phase == behavior.phase}; end
+  def instead_behavior(behavior); behaviors.map(&:instead).find{|b| b.phase == behavior.phase}; end
 end
 

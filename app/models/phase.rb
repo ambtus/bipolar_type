@@ -1,5 +1,4 @@
-class GenericBehavior < Concept
-  def generic?; true; end
+class Phase < Concept
 
   def initialize(string)
     @symbol = string

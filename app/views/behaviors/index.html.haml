@@ -1,7 +1,7 @@
 - content_for(:title, 'The 16 Behaviors')
 
 %table
-  -GenericBehavior.all.each do |gb|
+  -Phase.all.each do |gb|
     %tr
       -gb.behaviors.each do |behavior|
         %td

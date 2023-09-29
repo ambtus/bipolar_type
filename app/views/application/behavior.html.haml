@@ -1,10 +1,10 @@
 - content_for(:title, @behavior.name)
 %div.center=@behavior.horizontal_when
--unless @behavior.generic?
+-if @behavior.is_a?(Behavior)
   =render "behavior", behavior: @behavior
   =render "long", behavior: @behavior
 
--if @behavior.generic?
+-if @behavior.is_a?(Phase)
   -chunks = @behavior.behaviors.each.collect {|b| "#{render 'behavior', behavior: b}".html_safe}
   %table
     -chunks.each do |chunk|
