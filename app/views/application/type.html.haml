@@ -1,10 +1,10 @@
 - content_for(:title, @type.name)
 %p.header
-  Similar to
   =link_to @type.mbtis, chart_path
 
+
 -caption = "Daily Recommendations"
--chunks = @type.behaviors.each.collect {|b| "#{render 'quick', behavior: b}".html_safe}
+-chunks = @type.by_phase.each.collect {|b| "#{render 'quick', behavior: b}".html_safe}
 =render "cycle", chunks: chunks, caption: caption
 
 -chunks = @type.behaviors.collect {|b| "#{render 'long', behavior: b}".html_safe}

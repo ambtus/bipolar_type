@@ -8,8 +8,15 @@ class AnswersController < ApplicationController
       @answer = Answer.new params[:id]
       @phase = @answer.phase
     end
-    redirect_to type_path(@answer.type_path) and return if @answer.finished?
-    render "answer"
+    if @answer.finished?
+      if @answer.prioritized?
+        redirect_to type_path(@answer.type_path) and return
+      else
+        render "preference"
+      end
+    else
+      render "answer"
+    end
   end
 
 end

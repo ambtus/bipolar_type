@@ -10,9 +10,14 @@
     ="|" unless index == 0
     =link_to realm.name, realm_path(realm.symbol)
 
-%h2 The Twenty-four BipolarTypes
-%p A BipolarType is the four realms distributed over the four phases of the natural cycle. For each phase you have a different realm which is most problematic:
+%h2 The BipolarTypes
+%p A BipolarType is the four realms distributed over the four phases of the natural cycle. For each phase you have a different realm which is most problematic.
 
 -chunks = Phase.each.collect {|gb| "#{link_to gb.episode, answer_path(gb.symbol)}<p class='left'>#{gb.words.ing.capitalize} when you don’t #{gb.manic? ? 'have' : 'need'} it is <b>#{gb.severity}</b>.</p>".html_safe}
 =render "cycle", chunks: chunks
 
+%p There are 576 BipolarTypes: Choose a dominant realm (4), choose its preferred phase (4), choose another realm from the ones remaining (3), choose its preferred phase from the ones remaining (3), choose one of two remaing realms (2), and one of two remaining phases (2) = 4x4x3x3x2x2 =  576.
+
+%p
+  =link_to "Contrast that with the MBTI", chart_path
+  which has only sixteen different types.

@@ -42,7 +42,7 @@ class Phase < Concept
   def season; %w{Early\ Summer Late\ Summer Early\ Winter Late\ Winter }[index]; end
   def moon; %w{Waxing🌔Gibbous Waning🌖Gibbous Waning🌘Crescent Waxing🌒Crescent }[index]; end
   def day; %w{ Wednesday Friday Weekend Monday}[index]; end
-  def time; %w{ Noonish Afternoon Evening Morning}[index]; end
+  def time; %w{ Forenoon Afternoon Evening Morning}[index]; end
 
   def short_when; [season, time].to_phrase; end
 

@@ -1,0 +1,12 @@
+-content_for(:title, "Question ##{@answer.number} of 7")
+%p.heading=@answer.behaviors.map(&:symbol).join("•")
+%p
+  I
+  =@answer.number == 7 ? "more" : "most"
+  want to be able to:
+-@answer.behaviors.each do |b|
+  %p
+    =link_to answer_path(@answer.next(b)) do
+      =b.less.eg
+      in the
+      =b.less.time

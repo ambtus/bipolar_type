@@ -1,4 +1,4 @@
--content_for(:title, "Question ##{@answer.number} of 4")
+-content_for(:title, "Question ##{@answer.number} of 7")
 %p.heading=@phase.episode
 
 %table
@@ -18,6 +18,6 @@
   %dl.chosen
     %dt Previously chosen
     -@answer.behaviors.each do |behavior|
-      %dd #{behavior.episode} #{behavior.eg.too_much} #{behavior.imbalance.wrap}
+      %dd #{behavior.episode}: #{behavior.eg.too_much} #{behavior.imbalance.wrap}
 
 %p.heading=render "behaviors/improvements"
