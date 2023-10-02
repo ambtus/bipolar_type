@@ -1,8 +1,9 @@
 - content_for(:title, 'The Theory')
 
 %h2 The Four Phases
--chunks = Phase.each.collect {|gb| "#{link_to gb.name, gb.path}<p>#{gb.vertical_when}</p>".html_safe}
+-chunks = Phase.each.collect {|p| "#{link_to p.name, p.path}<p>#{p.vertical_when}</p>".html_safe}
 =render "cycle", chunks: chunks
+%p.center=link_to "#{Phase.day_order.map(&:time).and} Hours", hours_path
 
 %h2 The Four Realms
 %div.center
@@ -10,14 +11,13 @@
     ="|" unless index == 0
     =link_to realm.name, realm_path(realm.symbol)
 
-%h2 The BipolarTypes
+%h2 The 576 BipolarTypes
 %p A BipolarType is the four realms distributed over the four phases of the natural cycle. For each phase you have a different realm which is most problematic.
 
--chunks = Phase.each.collect {|gb| "#{link_to gb.episode, answer_path(gb.symbol)}<p class='left'>#{gb.words.ing.capitalize} when you don’t #{gb.manic? ? 'have' : 'need'} it is <b>#{gb.severity}</b>.</p>".html_safe}
+-chunks = Phase.each.collect {|p| "#{link_to p.episode, answer_path(p.symbol)}<p class='left'>#{render 'problem', behavior: p}</p>".html_safe}
 =render "cycle", chunks: chunks
 
-%p There are 576 BipolarTypes: Choose a dominant realm (4), choose its preferred phase (4), choose another realm from the ones remaining (3), choose its preferred phase from the ones remaining (3), choose one of two remaing realms (2), and one of two remaining phases (2) = 4x4x3x3x2x2 =  576.
-
 %p
-  =link_to "Contrast that with the MBTI", chart_path
-  which has only sixteen different types.
+  Why 576? A dominant realm (4) with its preferred phase (4), an auxiliary realm from the ones remaining (3) with its preferred phase from the ones remaining (3), a tertiary realm from the ones remaining (2) with its preferred phase from the ones remaining (2), leaving an inferior realm (1) with its phase (1) remaing => 4x4x3x3x2x2x1x1 = 576.
+  =link_to "Compare that with the MBTI", chart_path
+  which is much more restrictive. It has the same number of concepts but only sixteen types. Probalby because keeping track of 576 different types wasn’t really possible when the MBIT was developed, so they simplified.

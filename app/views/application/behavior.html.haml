@@ -2,7 +2,20 @@
 %div.center=@behavior.horizontal_when
 -if @behavior.is_a?(Behavior)
   =render "behavior", behavior: @behavior
-  =render "long", behavior: @behavior
+  %h2=link_to @behavior.episode, @behavior.answer_path
+  %p.left=render 'problem', behavior: @behavior
+  -chunks = @behavior.siblings.collect{|b| "#{link_to_unless_current b.symbol, b.path}<br />#{b.eg}".html_safe}
+  -title = "Same #{@behavior.realm.name} Realm"
+  =render 'cycle', chunks: chunks, caption: "#{link_to title, realm_path(@behavior.realm.symbol)}".html_safe
+  <br>
+  %table
+    %caption=link_to "Same #{@behavior.phase.name} Phase", @behavior.phase.path
+    %tr
+      -@behavior.cousins.each do |b|
+        %td
+          =link_to_unless_current b.symbol, b.path
+          %br
+          =b.eg
 
 -if @behavior.is_a?(Phase)
   -chunks = @behavior.behaviors.each.collect {|b| "#{render 'behavior', behavior: b}".html_safe}

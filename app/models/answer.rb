@@ -36,7 +36,7 @@ class Answer
 
   def paths(behavior)
     if finished?
-      behaviors.discard(behavior).map(&:symbol).join + ":" + preferences.push(behavior).map(&:symbol).join
+      behaviors.without(behavior).map(&:symbol).join + ":" + preferences.push(behavior).map(&:symbol).join
     else
       [behavior_paths, behavior.symbol].join
     end

@@ -1,10 +1,14 @@
 # Restart required even in development mode when you modify this file.
 
-%w{ multiply add duplicates discard remove_consecutive_dupes check_constraints sixth and or to_phrase }.each do |meth|
+%w{clip multiply add duplicates remove_consecutive_dupes check_constraints sixth and or to_phrase }.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 
 class Array
+
+  def clip n=1
+    take size - n
+  end
 
   def multiply(target, method=:+)
     array_of_arrays = []
@@ -33,10 +37,6 @@ class Array
       (duplicates[val] ||= []) << idx
     end
     duplicates.delete_if {|k,v| v.size == 1}.keys
-  end
-
-  def discard(element)
-    reject{|x| x == element}
   end
 
   def remove_consecutive_duplicates

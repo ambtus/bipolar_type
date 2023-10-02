@@ -1,12 +1,18 @@
 -content_for(:title, "Question ##{@answer.number} of 7")
 %p.heading=@answer.behaviors.map(&:symbol).join("•")
+
 %p
-  I
+  Of the following, I
   =@answer.number == 7 ? "more" : "most"
-  want to be able to:
--@answer.behaviors.each do |b|
-  %p
-    =link_to answer_path(@answer.next(b)) do
-      =b.less.eg
-      in the
-      =b.less.time
+  %em want to
+  (not “should”):
+  -@answer.behaviors.each do |b|
+    %br
+    -case @answer.number
+      -when 5
+        =link_to b.opposite.eg, answer_path(@answer.next(b))
+      -when 6
+        =link_to b.balancer.eg, answer_path(@answer.next(b))
+      -when 7
+        =link_to b.displacer.eg, answer_path(@answer.next(b))
+  %br

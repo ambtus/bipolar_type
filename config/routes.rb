@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/theory' => "start#theory", as: :theory
   get '/story' => "start#story", as: :story
   get '/chart' => "start#chart", as: :chart
+  get '/hours' => "start#hours", as: :hours
   resources :answers, only: [:show]
   resources :realms, only: [:show]
   resources :behaviors, only: [:index, :show]

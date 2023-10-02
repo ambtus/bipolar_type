@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-MINE = %w{chip squash second third fourth camelcased? words first_word last_word last_words slot wrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ly ing enough an some a_lot a_few many too_much too_little more plural? little few fewer less much many that those is are them it they has have was were does do}
+MINE = %w{chip squash second third fourth phrase? camelcased? words first_word second_word last_word last_words first_words prefix suffix slot slide wrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less little few much many as_much as_many that those is are them it they has have was were does do}
 
 MINE.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
@@ -15,9 +15,10 @@ class String
   def third; chars.third; end
   def fourth; chars.fourth; end
 
+  def phrase?; self.match(' '); end
   def camelcased?; underscore.match('_'); end
   def words
-    if self.match(' ')
+    if phrase?
       split
     elsif self.camelcased?
       self.underscore.split("_").map(&:capitalize)
@@ -27,11 +28,21 @@ class String
   end
 
   def first_word; words.first; end
+  def second_word; words.second; end
   def last_word; words.last; end
   def last_words; words.drop(1).to_phrase; end
+  def first_words; words.clip.to_phrase; end
 
-  def slot(word)
+  def prefix(word); [word, *words].to_phrase; end
+  def suffix(word); [*words, word].to_phrase; end
+
+  def slot(word) #slot me in after the word
     new_words = words.size == 1 ? [word,self] : words.insert(1,word)
+    camelcased? ? new_words.join : new_words.join(" ")
+  end
+
+  def slide(word) #slide me in before the word
+    new_words = words.size == 1 ? [self,word] : words.insert(1,word)
     camelcased? ? new_words.join : new_words.join(" ")
   end
 
@@ -97,15 +108,13 @@ class String
     return "says" if self=="say"
     return "does" if self=="do"
     return "goes" if self=="go"
-    return "relaxes" if self=="relax"
-    if self.match(" ")
-      first, second = self.split(' ', 2)
-      [first.s, second].to_phrase
+    if phrase?
+      [first_word.s, last_words].to_phrase
     elsif self.match("/")
       first, second = self.split('/', 2)
       [first.s, second.s].join("/")
     else
-      self.sub(/e?y$/, "ie") + "s"
+      self.sub(/e?y$/, "ie").sub(/ax/, "axe") + "s"
     end
   end
   def ed
@@ -138,11 +147,11 @@ class String
     return "wrote" if self=="write"
     return "read" if self=="read"
     return "got" if self=="get"
-    if self.match(" ")
-      first, second = self.split(' ', 2)
-      [first.ed, second].to_phrase
+    return "knew" if self=="know"
+    if phrase?
+      [first_word.ed, last_words].to_phrase
     else
-      self.sub(/e$/, "") + "ed"
+      self.sub(/e$/, "").sub(/ty$/, "ti") + "ed"
     end
   end
 
@@ -158,15 +167,15 @@ class String
     return "gone" if self=="go"
     return "spoken" if self=="speak"
     return "gotten" if self=="get"
-    if self.match(" ")
-      first, second = self.split(' ', 2)
-      [first.en, second].to_phrase
+    return "known" if self=="knew"
+    if phrase?
+      [first_word.en, last_words].to_phrase
     else
       self.ed
     end
   end
 
-  def ly; self + "ly"; end
+  def ly; self.sub(/y$/, "i") + "ly"; end
 
   def ing
     return "hardening" if self=="harden"
@@ -177,6 +186,7 @@ class String
     return "visiting" if self=="visit"
     return "positing" if self=="posit"
     return "developing" if self=="develop"
+    return "overdeveloping" if self=="overdevelop"
     return "panicking" if self=="panic"
     if self.match(" and ")
       first, second = self.split(' and ', 2)
@@ -187,49 +197,17 @@ class String
     elsif self.match("/")
       first, second = self.split('/', 2)
       [first.ing, second.ing].join("/")
-    elsif self.match(" ")
-      first, second = self.split(' ', 2)
-      [first.ing, second].to_phrase
+    elsif phrase?
+      [first_word.ing, last_words].to_phrase
     else
       self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + "ing"
     end
   end
 
-  def enough
-    if self.match(" ")
-      first, second = self.split(' ', 2)
-      [first, "enough", second].to_phrase
-    else
-      "#{self} enough"
-    end
-  end
   def an
     %w{a e i o u}.include?(self.first.downcase) ? "an #{self}" : "a #{self}"
   end
-  def some
-    if self.match(" ")
-      first, second = self.split(' ', 2)
-      [first, "some", second].to_phrase
-    else
-      "#{self} some"
-    end
-  end
-  def a_lot
-    if self.match(" ")
-      first, second = self.split(' ', 2)
-      [first, second.many, second].to_phrase
-    else
-      "#{self} a lot"
-    end
-  end
-  def a_few
-    if self.match(" ")
-      first, second = self.split(' ', 2)
-      [first, "a", second.few, second].to_phrase
-    else
-      "#{self} a little"
-    end
-  end
+
   def too_much
     if self.match(" ")
       first, second = self.split(' ', 2)
@@ -246,15 +224,29 @@ class String
       "#{self} too little"
     end
   end
-  def more
-    if self.match(" ")
-      [first_word, "more", last_words].to_phrase
+
+  def compound_verb?
+    return true if self.match(/^listen to/)
+    return true if self.match(/^look at/)
+    return false
+  end
+
+  def compounded(word)
+    if compound_verb?
+      [first_words, word, last_word].to_phrase
+    elsif phrase?
+      slot(word)
     else
-      "#{self} more"
+      slide(word)
     end
   end
 
+  def more; compounded("more"); end
+  def even_more; compounded("even more"); end
+  def enough; compounded("enough"); end
+
   def plural?
+    return false if self == "guess"
     return true if self == "people"
     return true if self[-1] == "s"
     return false
@@ -262,38 +254,54 @@ class String
 
   def fewer
     f_or_l = plural? ? "fewer" : "less"
-    if self.match(" ")
+    if compound_verb?
+      [first_words, f_or_l, last_word].to_phrase
+    elsif phrase?
       [first_word, f_or_l, last_words].to_phrase
+    elsif plural?
+      slot("fewer")
     else
-      "#{f_or_l} #{self}"
+      slide("less")
+    end
+  end
+  alias less :fewer
+
+  def as_much
+    as = plural? ? "as many" : "as much"
+    if compound_verb?
+      [first_words, as, last_word].to_phrase
+    elsif phrase?
+      slot(as)
+    else
+      slide(as)
+    end
+  end
+  alias as_many :as_much
+
+  def a_lot
+    if phrase?
+      [first_word, "a lot of", last_words].to_phrase
+    else
+      "#{self} a lot"
     end
   end
 
-  def less
-    if self.match(" ")
-      [first_word, last_words.fewer].to_phrase
-    else
-      "#{self} less"
-    end
-  end
-
-  def little; plural? ? "few" : "little"; end
+  def little; plural? ? prefix("few") : prefix("little"); end
   alias few :little
-  def much; plural? ? "many" : "much"; end
+  def much; plural? ? suffix("many") : suffix("much"); end
   alias many :much
-  def that; plural? ? "those" : "that"; end
+  def that; plural? ? prefix("those") : prefix("that"); end
   alias those :that
-  def is; plural? ? "are" : "is"; end
+  def is; plural? ? suffix("are") : suffix("is"); end
   alias are :is
-  def them; plural? ? "them" : "it"; end
+  def them; plural? ? suffix("them") : suffix("it"); end
   alias it :them
-  def they; plural? ? "they" : "it"; end
-
-  def has; plural? ? "have" : "has"; end
+  def they; plural? ? prefix("they") : prefix("it"); end
+  def has; plural? ? suffix("have") : suffix("has"); end
   alias have :has
-  def was; plural? ? "were" : "was"; end
+  def was; plural? ? suffix("were") : suffix("was"); end
   alias were :was
-  def does; plural? ? "do" : "does"; end
+  def does; plural? ? suffix("do") : suffix("does"); end
   alias do :does
 
 end

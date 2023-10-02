@@ -26,12 +26,20 @@ class Behavior < Concept
 
   def phase; @verb + @noun; end
 
-  def instead; realm + phase.previous; end
-  def more; realm + phase.next; end
-  def less; realm + phase.opposite; end
+  def balancer; realm + phase.switch_attitude; end
+  def displacer; realm + phase.switch_focus; end
+  def opposite; realm + phase.opposite;end
+
+
+  def siblings; Phase.all.add(realm); end
+  def cousins; Realm.all.add(phase); end
 
   def episode; phase.episode.slot(realm.name).squash; end
-  def imbalance; "#{realm.word.ly} #{phase.imbalance}"; end
+  def assets; [realm.word, phase.assets].to_phrase; end
+  def assets_eg; realm.send(phase.assets); end
+
+  def my_problem; [realm.word.ly, phase.lessers.first].to_phrase; end
+  def solution; Phase.find_solution(phase.unbalance.ed) + realm; end
 
 
   def method_missing(meth, *arguments, &block)
@@ -54,8 +62,5 @@ class Behavior < Concept
   def self.find_by_mbti(tls); all.find{|b| b.mbti == tls}; end
 
   def eg; realm.send(underscored); end
-  def switch_attitude; realm + phase.switch_attitude; end
-
-  def switch_focus; realm + phase.switch_focus; end
 
 end

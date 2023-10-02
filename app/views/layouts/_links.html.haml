@@ -3,11 +3,3 @@
 =link_to_unless_current "The Theory", theory_path
 |
 =link_to_unless_current "Your BipolarType", answer_path(Answer.first_path)
-%br
--Phase.all.each_with_index do |behavior, index|
-  ="|" unless index == 0
-  =link_to_unless_current behavior.name, behavior.path
-%br
--Realm.all.each_with_index do |realm, index|
-  ="|" unless index == 0
-  =link_to_unless_current realm.name, realm_path(realm.symbol)

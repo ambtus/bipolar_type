@@ -21,9 +21,12 @@ class Realm < Concept
   def mbti; %w{S N F T}[index]; end
 
   # The following are examples, not definitions, behavior.eg, not behavior.ie
-  def use_energy; %w{walk guess emote pay\ upfront}[index]; end
-  def get_energy; %w{eat\ carbs look listen earn}[index]; end
-  def use_strength; %w{lift theorize write borrow}[index]; end
-  def get_strength; %w{eat\ protein watch read invest}[index]; end
+  def use_energy; %w{walk know sing spend\ cash}[index]; end
+  def get_energy; %w{eat\ carbs look\ at\ facts listen\ to\ music earn\ cash}[index]; end
+  def use_strength; %w{lift\ weights theorize write\ words borrow}[index]; end
+  def get_strength; %w{eat\ protein watch\ results read\ words invest}[index]; end
+
+  def reserves; %w{fat\ cells ?? mood ??}[index]; end
+  def powers; %w{muscles mental\ models vocabulary credit\ limit}[index]; end
 
 end

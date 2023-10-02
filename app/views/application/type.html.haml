@@ -1,12 +1,20 @@
 - content_for(:title, @type.name)
-%p.header
-  =link_to @type.mbtis, chart_path
+%p.header=link_to @type.mbti_prefix + @type.mbtis, chart_path
 
-
--caption = "Daily Recommendations"
+-caption = "Seasonal and #{link_to 'Daily', hours_path} Recommendations".html_safe
 -chunks = @type.by_phase.each.collect {|b| "#{render 'quick', behavior: b}".html_safe}
 =render "cycle", chunks: chunks, caption: caption
 
--chunks = @type.behaviors.collect {|b| "#{render 'long', behavior: b}".html_safe}
--chunks.each do |chunk|
-  =chunk
+.div.center
+  If the <span class='red'>”less” recommendations</span> don’t seem right, this is not your
+  =succeed "." do
+    =link_to "BipolarType", answer_path(Answer.first_path)
+.div.center
+  If the <span class='green'>”more” recommendations</span> don’t seem right, your
+  =link_to "priorities", answer_path(Answer.jump_path(*@type.behaviors))
+  may have changed.
+.div.center=render "behaviors/improvements"
+
+-@type.behaviors.each_with_index do |behavior, index|
+  %h2=behavior.episode
+  =render %w{dominant auxiliary tertiary inferior}[index], behavior: behavior

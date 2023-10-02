@@ -1,15 +1,18 @@
 -content_for(:title, "Question ##{@answer.number} of 7")
 %p.heading=@phase.episode
 
-%table
-  -@phase.behaviors.each do |behavior|
-    %tr
-      %td.top{class: @answer.css(behavior)}
-        =link_to_if @answer.free?(behavior), behavior.name, answer_path(@answer.next(behavior))
-        %br
-        =link_to behavior.eg.too_much, behavior.path, class: "external"
-        %br
-        (#{behavior.imbalance})
+-@phase.behaviors.each do |behavior|
+  %p{class: @answer.css(behavior)}
+    =succeed ":" do
+      =link_to_if @answer.free?(behavior), behavior.episode, answer_path(@answer.next(behavior))
+    =behavior.words.ing.capitalize
+    =link_to behavior.eg.ing.wrap, behavior.path, class: "internal"
+    comes easy for you but
+    =behavior.opposite.words.ing
+    =link_to behavior.opposite.eg.ing.wrap, behavior.path, class: "internal"
+    takes a conscious effort.
+
+
 
 -unless @answer.behaviors.empty?
   %p.center
@@ -18,6 +21,6 @@
   %dl.chosen
     %dt Previously chosen
     -@answer.behaviors.each do |behavior|
-      %dd #{behavior.episode}: #{behavior.eg.too_much} #{behavior.imbalance.wrap}
+      %dd #{behavior.episode}: #{behavior.eg.too_much}
 
 %p.heading=render "behaviors/improvements"
