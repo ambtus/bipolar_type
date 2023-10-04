@@ -1,20 +1,16 @@
 - content_for(:title, @type.name)
 %p.header=link_to @type.mbti_prefix + @type.mbtis, chart_path
 
--caption = "Seasonal and #{link_to 'Daily', hours_path} Recommendations".html_safe
--chunks = @type.by_phase.each.collect {|b| "#{render 'quick', behavior: b}".html_safe}
-=render "cycle", chunks: chunks, caption: caption
+=render 'cycle',
+  chunks: @type.by_phase.each.collect {|b| "#{render 'quick', behavior: b}".html_safe}
 
-.div.center
-  If the <span class='red'>”less” recommendations</span> don’t seem right, this is not your
-  =succeed "." do
-    =link_to "BipolarType", answer_path(Answer.first_path)
-.div.center
-  If the <span class='green'>”more” recommendations</span> don’t seem right, your
-  =link_to "priorities", answer_path(Answer.jump_path(*@type.behaviors))
-  may have changed.
-.div.center=render "behaviors/improvements"
+.div.center If the <span class='red'>too easy/compulsive</span> and <span class='yellow'>too hard/aversive</span> behaviors don’t seem right, this BipolarType does not describe your Nature. Try a different one.
+.div.center If the order or size of the <span class='green'>“more” recommendations</span> don’t seem quite right, your #{link_to 'Nurture', answer_path(Answer.jump_path(*@type.behaviors))} may have changed.
+.div.center If you don’t like the times, you can change your #{link_to @avian.name, answer_path(Answer.hours_path(*@type.behaviors))} designation
+.div.center=render 'behaviors/improvements'
 
--@type.behaviors.each_with_index do |behavior, index|
+-@type.behaviors.each do |behavior|
   %h2=behavior.episode
-  =render %w{dominant auxiliary tertiary inferior}[index], behavior: behavior
+  =render 'long',
+    behavior: behavior,
+    goal: @type.goal(behavior)

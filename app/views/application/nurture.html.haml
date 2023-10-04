@@ -1,0 +1,22 @@
+-content_for(:title, "Question ##{@answer.number} of 8")
+%p.heading=@answer.behaviors.map(&:symbol).join('•')
+
+%table
+  -@answer.behaviors.each do |behavior|
+    -case @answer.number
+      -when 5
+        -b = behavior.opposite
+      -when 6
+        -b = behavior.balancer
+      -when 7
+        -b = behavior.displacer
+      -when 8
+        -b = behavior
+    %tr
+      %th
+        I #{link_to b.name, answer_path(@answer.next(behavior))} for
+        %em fun.
+      %td=render b.example_path
+
+-if @answer.number == 8
+  %p.center.red If the above is not true, you might as well go back and try again.

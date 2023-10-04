@@ -4,6 +4,7 @@ class Answer
   def self.first; Answer.new(first_path); end
 
   def self.jump_path(*behaviors); "Q#{behaviors.size + 1}:#{behaviors.map(&:symbol).join}"; end
+  def self.hours_path(*behaviors); "Q10:#{behaviors.map(&:symbol).join}"; end
 
   def initialize(string)
     @question,@behavior_paths,@preference_paths = string.split(":")
@@ -14,8 +15,9 @@ class Answer
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
-  def finished?; number > 4; end
-  def prioritized?; number > 7; end
+  def natured?; number > 4; end
+  def nurtured?; number > 8; end
+  def finished?; number > 9; end
 
   def behaviors; @behavior_paths.scan(/.../).collect{|x| Behavior.send(x)}; end
   def phases; behaviors.map(&:phase); end
@@ -35,7 +37,7 @@ class Answer
   def preferences; @preference_paths.scan(/.../).collect{|x| Behavior.send(x)}; end
 
   def paths(behavior)
-    if finished?
+    if natured?
       behaviors.without(behavior).map(&:symbol).join + ":" + preferences.push(behavior).map(&:symbol).join
     else
       [behavior_paths, behavior.symbol].join
@@ -44,7 +46,13 @@ class Answer
   def next(behavior); "#{question.next}:#{paths(behavior)}"; end
 
 
-  def type_path; prioritized? && preferences.map(&:symbol).join + behavior_paths; end
+  def type_path;
+    if finished?
+      behaviors.map(&:symbol).join('•')
+    elsif nurtured?
+      preferences.map(&:symbol).join('•')
+    end
+  end
 
 
 end

@@ -1,8 +1,8 @@
-%div.bigger In the #{behavior.time}
-%ul
+%div.bigger #{@avian.hours(behavior.phase)} | #{@type.months(behavior.phase)}
+%ol
   -unless @type.firsts(behavior).empty?
-    %li.green.bigger=@type.firsts(behavior).collect{|b| "#{link_to b.eg, b.path, class: 'internal'}"}.join(' & ').html_safe
+    %li.green.bigger.bold=@type.firsts(behavior).collect{|b| "#{link_to b.name, b.path, class: 'internal'}"}.join(' & ').html_safe
   -unless @type.seconds(behavior).empty?
-    %li.green.big=@type.seconds(behavior).collect{|b| "#{link_to b.eg, b.path, class: 'internal'}"}.join(' & ').html_safe
-  %li.yellow=link_to @type.thirds(behavior).eg, @type.thirds(behavior).path, class: "internal"
-  %li.red.small=link_to behavior.eg, behavior.path, class: "internal"
+    %li.green.big=@type.seconds(behavior).collect{|b| "#{link_to b.name, b.path, class: 'internal'}"}.join(' & ').html_safe
+  %li.yellow=link_to @type.thirds(behavior).name, @type.thirds(behavior).path, class: "internal"
+  %li.red.small=link_to behavior.name, behavior.path, class: "internal"

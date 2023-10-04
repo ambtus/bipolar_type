@@ -1,23 +1,39 @@
 - content_for(:title, 'The Theory')
 
 %h2 The Four Phases
--chunks = Phase.each.collect {|p| "#{link_to p.name, p.path}<p>#{p.vertical_when}</p>".html_safe}
-=render "cycle", chunks: chunks
-%p.center=link_to "#{Phase.day_order.map(&:time).and} Hours", hours_path
+=render 'cycle',
+  chunks: Phase.collect{|p| "<b>#{p.name}</b><p>#{p.vertical_when}</p>".html_safe}
 
 %h2 The Four Realms
-%div.center
-  -Realm.all.each_with_index do |realm, index|
-    ="|" unless index == 0
-    =link_to realm.name, realm_path(realm.symbol)
+%table
+  %tr
+    %td=Realm.collect{|r| "<b>#{r.name}</b>"}.to_phrase.html_safe
+
+%h2{id: 'sixteen'} The Sixteen Behaviors
+=render 'cycle',
+  caption: 'A Behavior is a Realm in a Phase',
+  chunks: Phase.all.multiply(Realm.all).collect{|g| g.collect{|b| "<b>#{link_to b.symbol, b.path, class: 'internal'}</b>"}.to_phrase.html_safe}
+
+%h2 The Four Bipolar States
+%p The phases themselves are perfectly natural, and if you cycle through all four of them in turn, you will remain balanced and healthy. But if you get “stuck” in a phase, you will become unbalanced and unhealthy.
+
+=render "cycle",
+  chunks: Phase.each.collect{|p| "#{render 'nature', behavior: p, no_links: true}".html_safe}
 
 %h2 The 576 BipolarTypes
-%p A BipolarType is the four realms distributed over the four phases of the natural cycle. For each phase you have a different realm which is most problematic.
+%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology) and your Nurture (which behaviors are prioritized by you based on your culture and how you were raised).
 
--chunks = Phase.each.collect {|p| "#{link_to p.episode, answer_path(p.symbol)}<p class='left'>#{render 'problem', behavior: p}</p>".html_safe}
-=render "cycle", chunks: chunks
+%p Everyone has a realm (4) with its preferred phase (4), another realm from the ones remaining (3) with its preferred phase from the ones remaining (3), a third realm from the ones remaining (2) with its preferred phase from the ones remaining (2), leaving one realm (1) and phase (1) remaining which is 4x4x3x3x2x2x1x1, or 576 possible BipolarTypes. Whittling it down to which one is <em>yours</em> is not a simple or trivial task.
 
 %p
-  Why 576? A dominant realm (4) with its preferred phase (4), an auxiliary realm from the ones remaining (3) with its preferred phase from the ones remaining (3), a tertiary realm from the ones remaining (2) with its preferred phase from the ones remaining (2), leaving an inferior realm (1) with its phase (1) remaing => 4x4x3x3x2x2x1x1 = 576.
-  =link_to "Compare that with the MBTI", chart_path
-  which is much more restrictive. It has the same number of concepts but only sixteen types. Probalby because keeping track of 576 different types wasn’t really possible when the MBIT was developed, so they simplified.
+  If you are bipolar, try starting with your initial diagnosis:
+  %dl
+    -%w{Bipolar\ I Bipolar\ II Depression Major\ Depression}.each_with_index do |diagnosis, index|
+      %dt=diagnosis
+      %dd=link_to Phase[index].episode, Phase[index].path
+
+%p If you know your MBTI type, #{link_to 'try starting with that', chart_path}.
+
+%p Or start with the realm you find most problematic: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}.
+
+%p The Sixteen Behaviors, <a href="#sixteen">listed above</a>, are also clickable links.

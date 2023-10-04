@@ -12,7 +12,7 @@ class Verb < Concept
 
   def word; %w{use get}[index]; end
 
-  def problem; %w{anorexic obese}[index]; end
+  def nature; %w{empty full}[index]; end
 
   def episode; %w{Mania Depression}[index]; end
   def manic?; index == 0; end

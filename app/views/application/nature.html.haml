@@ -1,0 +1,25 @@
+-content_for(:title, "Question ##{@answer.number} of 8")
+
+-@phase.behaviors.each do |behavior|
+  -if @answer.free?(behavior)
+    %h2=behavior.episode
+    .div{class: @answer.css(behavior)}
+      -if @answer.number == 4 && @answer.free?(behavior)
+        .center.red If the following is not true, you might as well go back and try again.
+      .center I’d rather #{behavior.name} than #{behavior.opposite.name}
+      %table
+        %tr
+          %th=link_to_if @answer.free?(behavior), behavior.name, answer_path(@answer.next(behavior))
+          %th=behavior.opposite.name
+        %tr
+          %td.green=render behavior.example_path
+          %td.red=render behavior.opposite.example_path
+
+
+-unless @answer.behaviors.empty?
+  %dl.chosen
+    %dt Previously chosen
+    -@answer.behaviors.each do |behavior|
+      %dd #{behavior.episode}: #{behavior.name}
+
+%p.heading=render 'behaviors/improvements'

@@ -1,7 +1,4 @@
-%h2 #{behavior.symbol} (e.g. #{behavior.eg})
+%h2 #{behavior.symbol}
 =render behavior.example_path
--if @realm || @behavior.is_a?(Phase)
-  %p.left
-    =succeed ":" do
-      =link_to behavior.episode, behavior.answer_path
-    =render 'problem', behavior: behavior
+-if @realm || @phase
+  =render 'nature', behavior: behavior

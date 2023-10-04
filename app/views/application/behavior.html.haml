@@ -1,12 +1,12 @@
 - content_for(:title, @behavior.name)
 %div.center=@behavior.horizontal_when
 -if @behavior.is_a?(Behavior)
-  =render "behavior", behavior: @behavior
-  %h2=link_to @behavior.episode, @behavior.answer_path
-  %p.left=render 'problem', behavior: @behavior
-  -chunks = @behavior.siblings.collect{|b| "#{link_to_unless_current b.symbol, b.path}<br />#{b.eg}".html_safe}
-  -title = "Same #{@behavior.realm.name} Realm"
-  =render 'cycle', chunks: chunks, caption: "#{link_to title, realm_path(@behavior.realm.symbol)}".html_safe
+  =render 'behavior', behavior: @behavior
+  .center=render 'nature', behavior: @behavior
+  <br>
+  =render 'cycle',
+    caption: %Q[#{link_to "Same #{@behavior.realm.name} Realm", realm_path(@behavior.realm.symbol)}].html_safe,
+    chunks: @behavior.siblings.collect{|b| "#{link_to_unless_current b.symbol, b.path}<br />#{b.name}".html_safe}
   <br>
   %table
     %caption=link_to "Same #{@behavior.phase.name} Phase", @behavior.phase.path
@@ -15,13 +15,5 @@
         %td
           =link_to_unless_current b.symbol, b.path
           %br
-          =b.eg
+          =b.name
 
--if @behavior.is_a?(Phase)
-  -chunks = @behavior.behaviors.each.collect {|b| "#{render 'behavior', behavior: b}".html_safe}
-  %table
-    -chunks.each do |chunk|
-      %tr
-        %td.top=chunk
-
-%p.heading=render "behaviors/improvements"

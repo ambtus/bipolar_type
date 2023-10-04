@@ -1,80 +1,17 @@
 - content_for(:title, 'Waking Hours')
-%p Your available waking hours are the 24 hours of the day minus the hours you are asleep and have no access to any concious behaviors while your strengths repair and build.
-%p If there are no “&”s in your Recommendations, then split your waking hours into four equal chunks. If there are “&”s in your Recommendations, then give more time to the larger and more important recommendations.
+%p Your available waking hours are the 24 hours of the day minus the hours you are asleep and have no access to any concious behaviors while your strengths build and repair.
+%p Some people are more sensitive to light and others more sensitive to temperature.
+%p BipolarType derived your sensitivity based on your type, but feel free to change it if you live in an environment full of artificial lights and air conditioning.
 %table
   %tr
-    %th
-    -Phase.day_order.each do |phase|
-      %th=phase.time
-  %tr
-    %th.right
-      Average Bipolar
-      %div.small.unbold (average sensitivity to sunlight)
-    %td 6am—10am
-    %td 10am—2pm
-    %td 2pm—6pm
-    %td 6pm—10pm
-  %tr
-    %th.right
-      Early Bird Bipolar
-      %div.small.unbold (strong sensitivity to sunlight)
-    %td 4am—8am
-    %td 8am—noon
-    %td noon—4pm
-    %td 4pm—8pm
-  %tr
-    %th.right
-      Night Owl Bipolar
-      %div.small.unbold (weak sensitivity to sunlight)
-    %td 8am—noon
-    %td noon—4pm
-    %td 4pm—8pm
-    %td 8pm—midnight
-  %tr
-    %th.right
-      Bipolar with Severe Mania
-      %div.small.unbold (4 hours sleep)
-    %td 4am—9am
-    %td 9am—2pm
-    %td 2pm—7pm
-    %td 7pm—midnight
-  %tr
-    %th.right
-      Bipolar with Severe Depression
-      %div.small.unbold (12 hours sleep)
-    %td 8am—11am
-    %td 11am—2pm
-    %td 2pm—5pm
-    %td 5pm—8pm
-  %tr
-    %th.right
-      Average I
-      %div.small.unbold needs more time to Get
-    %td 6am—noon
-    %td noon—2pm
-    %td 2pm—4pm
-    %td 4pm—10pm
-  %tr
-    %th.right
-      Average E
-      %div.small.unbold needs more time to Use
-    %td 6am—8am
-    %td 8am—2pm
-    %td 2pm—8pm
-    %td 8pm—10pm
-  %tr
-    %th.right
-      Average J
-      %div.small.unbold needs more time for Strength
-    %td 6am—8am
-    %td 8am—10am
-    %td 10am—4pm
-    %td 4pm—10pm
-  %tr
-    %th.right
-      Average P
-      %div.small.unbold needs more time for Energy
-    %td 6am—noon
-    %td noon—6pm
-    %td 6pm—8pm
-    %td 8pm—10pm
+    %th.third
+    -Phase.each do |phase|
+      %th #{phase.hour} • #{phase.season}
+  -Avian.each do |avian|
+    %tr
+      %th
+        =link_to avian.name, type_path([@path, avian.symbol].join('•'))
+        .small.unbold.left=avian.description
+      -Phase.each do |phase|
+        %td=[avian.hours(phase), avian.months(phase)].join(' • ')
+

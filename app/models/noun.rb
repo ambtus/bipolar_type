@@ -8,7 +8,7 @@ class Noun < Concept
 
   def word; %w{energy strength}[index]; end
   def strong?; index == 1; end
-  def problem; %w{weak too\ strong}[index]; end
+  def nature; %w{weak strong}[index]; end
 
   def assets; %w{reserves powers}[index]; end
 

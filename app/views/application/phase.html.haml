@@ -1,0 +1,8 @@
+- content_for(:title, "The #{@phase.name} Phase")
+
+%table
+  -@phase.behaviors.each do |behavior|
+    %tr
+      %td=render 'behavior', behavior: behavior
+
+%p.heading=render 'behaviors/improvements'
