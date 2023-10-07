@@ -1,5 +1,3 @@
-- content_for(:title, 'The Theory')
-
 %h2 The Four Phases
 =render 'cycle',
   chunks: Phase.collect{|p| "<b>#{p.name}</b><p>#{p.vertical_when}</p>".html_safe}
@@ -9,31 +7,50 @@
   %tr
     %td=Realm.collect{|r| "<b>#{r.name}</b>"}.to_phrase.html_safe
 
-%h2{id: 'sixteen'} The Sixteen Behaviors
+%h2 The Sixteen Behaviors
 =render 'cycle',
   caption: 'A Behavior is a Realm in a Phase',
-  chunks: Phase.all.multiply(Realm.all).collect{|g| g.collect{|b| "<b>#{link_to b.symbol, b.path, class: 'internal'}</b>"}.to_phrase.html_safe}
+  chunks: Phase.all.multiply(Realm.all).collect{|g| g.collect{|b| "<b>#{b.symbol}</b>"}.to_phrase.html_safe}
 
 %h2 The Four Bipolar States
 %p The phases themselves are perfectly natural, and if you cycle through all four of them in turn, you will remain balanced and healthy. But if you get “stuck” in a phase, you will become unbalanced and unhealthy.
 
 =render "cycle",
-  chunks: Phase.each.collect{|p| "#{render 'nature', behavior: p, no_links: true}".html_safe}
+  chunks: Phase.each.collect{|p| "#{render 'episode', behavior: p, no_links: true}".html_safe}
+
+%h2 Balancing and Displacing
+
+%p It’s easy to say “eat less and exercise more” if you are physically unbalanced and overweight. But eat less of <em>what</em> and do more of what <em>kind</em> of exercise? And when? And how do you do more of something you clearly find difficult, or else you’d already be doing more of it, and less of something you clearly find easy, or you’d already be doing less of it?
+%p BipolarType encourages balancing behaviors by scheduling them when they are easiest to do and encourages displacing behaviors by scheduling them when <em>they</em> are easiest to do (not when the unbalancing behavior is easiest to do). If you schedule enough balancing and displacing behaviors when you would otherwise be doing easy and <em>unbalancing</em> behaviors, those unbalalancing behaviors will be displaced and balanced with much less effort on your part.
+
+%p Unfortunately, every unbalanced behavior has an opposite, and balancing the unbalanced behavior displaces the opposite, whereas displacing the unbalanced behavior balances the opposite. Which you see as more desirable depends on how you feel about the behavior being affected, which depends on your Nurture.
+=render 'cycle',
+chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and displaces ⇒<br />which displaces and unbalances⇗</div>|.html_safe,
+  %Q|<div class='big'>#{Phase.second.name}</div>displaces ⇒<br />and balances ⇓<br />which displaces and unbalances⇘|.html_safe,
+  %Q|<div class='big'>#{Phase.third.name}</div>⇐displaces<br />and balances ⇓<br />which displaces and unbalances⇙</div>|.html_safe,
+  %Q|<div class='big'>#{Phase.fourth.name}</div>balances ⇑<br />and ⇐displaces<br />which displaces and unbalances⇖</div>|.html_safe ]
+
 
 %h2 The 576 BipolarTypes
-%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology) and your Nurture (which behaviors are prioritized by you based on your culture and how you were raised).
+%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology) and your Nurture (which behaviors are prioritized by you based on your culture and how you were raised). That is, your Nature determines which behaviors are most unbalancing while your Nurture determines whether you should balance or displace them or both depending on how you feel about the opposite behavior in the same realm.
 
-%p Everyone has a realm (4) with its preferred phase (4), another realm from the ones remaining (3) with its preferred phase from the ones remaining (3), a third realm from the ones remaining (2) with its preferred phase from the ones remaining (2), leaving one realm (1) and phase (1) remaining which is 4x4x3x3x2x2x1x1, or 576 possible BipolarTypes. Whittling it down to which one is <em>yours</em> is not a simple or trivial task.
+%p Displacing behaviors are better in realms in which you want to balance the opposite behavior, whereas balancing behaviors are better in realms in which you are more willing to displace the opposite behavior.
+
+%p The goal is to get one displacing and one balancing behavior in each phase. Displacing behaviors are easier, whereas balancing behaviors are harder, so having one of each balances the overall difficulty of each phase.
+
+%p These restrictions bring down the possible BipolarTypes from over six thousand possibilities to under six hundred. Nevertheless, whittling that many possibilities down to the one which is <em>yours</em> is not a simple or trivial task.
 
 %p
   If you are bipolar, try starting with your initial diagnosis:
   %dl
     -%w{Bipolar\ I Bipolar\ II Depression Major\ Depression}.each_with_index do |diagnosis, index|
       %dt=diagnosis
-      %dd=link_to Phase[index].episode, Phase[index].path
+      %dd=link_to Phase[index].next.episode, Phase[index].next.path
 
-%p If you know your MBTI type, #{link_to 'try starting with that', chart_path}.
+%p If you know your MBTI type, #{link_to 'try starting with that', mbti_path}.
 
-%p Or start with the realm you find most problematic: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}.
+%p Or start with the realm in which you are most unbalanced: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}.
 
-%p The Sixteen Behaviors, <a href="#sixteen">listed above</a>, are also clickable links.
+%p Or start with the behavior which is most unbalanced:
+=render 'cycle',
+  chunks: Phase.all.multiply(Realm.all).collect{|g| g.collect{|b| "<b>#{link_to b.name, b.path}</b>"}.join('<br />').html_safe}

@@ -1,15 +1,11 @@
-- content_for(:title, @type.name)
-%p.header=link_to @type.mbti_prefix + @type.mbtis, chart_path
+%p.header=link_to @type.mbti_prefix + @type.mbtis, mbti_path
 
 =render 'cycle',
-  chunks: @type.by_phase.each.collect {|b| "#{render 'quick', behavior: b}".html_safe}
+  chunks: @type.by_phase.each.collect {|b| "#{render 'quick', behavior: b}".html_safe},
+  caption: "<div class='center'>Modify your #{link_to 'Seasons', months_path(@type.symbol)}, #{link_to 'Times', hours_path(@type.symbol)}, or #{link_to 'Preferences', answer_path(Answer.jump_path(*@type.natures))}</div>".html_safe
 
-.div.center If the <span class='red'>too easy/compulsive</span> and <span class='yellow'>too hard/aversive</span> behaviors don’t seem right, this BipolarType does not describe your Nature. Try a different one.
-.div.center If the order or size of the <span class='green'>“more” recommendations</span> don’t seem quite right, your #{link_to 'Nurture', answer_path(Answer.jump_path(*@type.behaviors))} may have changed.
-.div.center If you don’t like the times, you can change your #{link_to @avian.name, answer_path(Answer.hours_path(*@type.behaviors))} designation
-.div.center=render 'behaviors/improvements'
 
--@type.behaviors.each do |behavior|
+-@type.natures.each do |behavior|
   %h2=behavior.episode
   =render 'long',
     behavior: behavior,

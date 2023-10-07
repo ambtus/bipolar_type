@@ -1,17 +1,15 @@
-- content_for(:title, 'Waking Hours')
-%p Your available waking hours are the 24 hours of the day minus the hours you are asleep and have no access to any concious behaviors while your strengths build and repair.
-%p Some people are more sensitive to light and others more sensitive to temperature.
-%p BipolarType derived your sensitivity based on your type, but feel free to change it if you live in an environment full of artificial lights and air conditioning.
+%p Your natural rhythms are impacted by central heating, air conditioners, and artificial lights; choose whichever seems closest to your daily cycle.
+
 %table
   %tr
-    %th.third
+    %th
     -Phase.each do |phase|
-      %th #{phase.hour} • #{phase.season}
-  -Avian.each do |avian|
+      %th.fifth
+        #{phase.time} (#{phase.hour})
+  -Hours.each do |avian|
     %tr
       %th
-        =link_to avian.name, type_path([@path, avian.symbol].join('•'))
+        =link_to avian.name, type_path(@type.set_hours(avian))
         .small.unbold.left=avian.description
       -Phase.each do |phase|
-        %td=[avian.hours(phase), avian.months(phase)].join(' • ')
-
+        %td=avian.range(phase)

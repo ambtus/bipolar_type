@@ -101,8 +101,8 @@ end
 
 class Time
   def military; strftime('%R'); end
-  def short_month; strftime('%b'); end
+  def short_month; [strftime('%b'),strftime('%e').to_i.ordinalize].to_phrase; end
   def short_hour; strftime('%l%P').squash; end
 end
 
-GT = Time.utc(2019,12,22) # day of winter solstice (time was 4:19, but I don’t care)
+GT = Time.utc(2023,12,21) # midnight of winter solstice (approximately)

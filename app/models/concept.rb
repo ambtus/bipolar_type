@@ -29,12 +29,6 @@ class Concept
   def opposite; (self.class::ALL + self.class::ALL)[index + self.class::ALL.size/2]; end
 
   def word; %w{alpha beta psi omega}[index]; end
-  def name; words.titleize.squash rescue word.capitalize ; end
-
-  def priority; %w{first second third fourth}[index]; end
-  def difficulty; %w{the\ easiest also\ easy hard the\ hardest}[index]; end
-
-  def self.priorities; all.map(&:priority); end
-  def self.difficulties; all.map(&:difficulty); end
+  def name; words.to_wbr.html_safe rescue word.capitalize ; end
 
 end

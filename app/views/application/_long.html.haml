@@ -1,4 +1,4 @@
 .center Goal: #{goal.name}
 =render 'cycle',
-  caption: "Nature: #{behavior.name}",
-  chunks: behavior.siblings.collect{|s| "#{s.name}<br />#{behavior.nature(s).prefix('is')}#{render s.example_path}".html_safe}
+  caption: "Nature: #{behavior.name}".html_safe,
+  chunks: behavior.siblings.collect{|s| "#{link_to s.symbol, s.path}<br />#{behavior.nature(s).prefix('is')}".html_safe}

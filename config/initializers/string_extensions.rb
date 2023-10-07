@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-MINE = %w{chip squash second third fourth without phrase? camelcased? words first_word second_word last_word last_words first_words prefix suffix slot slide wrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less little few much many as_much as_many that those is are them it they has have was were does do}
+MINE = %w{chip squash second third fourth without uncapitalize  split_camelcased invert_case phrase? camelcased? words first_word second_word last_word last_words first_words to_wbr prefix suffix slot slide wrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less little few much many as_much as_many that those is are them it they has have was were does do}
 
 MINE.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
@@ -17,13 +17,18 @@ class String
 
   def without(excluded); [self.chars - excluded.chars].join; end
 
+  def uncapitalize; self[0] = self[0].downcase; self; end
+  def split_camelcased; self.split('<wbr>'); end
+  def invert_case; split_camelcased.map(&:upcase).map(&:uncapitalize).join('<wbr>') ; end
+
   def phrase?; self.match(' '); end
   def camelcased?; underscore.match('_'); end
+
   def words
     if phrase?
       split
     elsif self.camelcased?
-      self.underscore.split('_').map(&:capitalize)
+      split_camelcased
     else
       [self]
     end
@@ -34,6 +39,8 @@ class String
   def last_word; words.last; end
   def last_words; words.drop(1).to_phrase; end
   def first_words; words.clip.to_phrase; end
+
+  def to_wbr; words.map(&:titleize).join('<wbr>'); end
 
   def prefix(word); [word, *words].to_phrase; end
   def suffix(word); [*words, word].to_phrase; end

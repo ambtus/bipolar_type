@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   root 'start#intro'
   get '/theory' => "start#theory", as: :theory
-  get '/story' => "start#story", as: :story
-  get '/chart' => "start#chart", as: :chart
-  get '/hours' => "start#hours", as: :hours
+  get '/mbti' => "start#mbti", as: :mbti
+  get '/hours/(:id)' => "start#hours", as: :hours
+  get '/months/(:id)' => "start#months", as: :months
   resources :answers, only: [:show]
   resources :realms, only: [:show]
-  resources :behaviors, only: [:index, :show]
-  resources :problems, only: [:index, :show]
-  resources :types, only: [:index, :show]
+  resources :behaviors, only: [:show]
+  resources :types, only: [:show]
 end

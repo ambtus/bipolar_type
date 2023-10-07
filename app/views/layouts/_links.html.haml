@@ -1,3 +1,7 @@
-=link_to_unless_current "Introduction", root_path
+=link_to_unless_current 'Introduction', root_path
 |
-=link_to_unless_current "The Theory", theory_path
+=link_to_unless_current 'The Theory', theory_path
+-#
+  |
+  =Realm.collect{|r| link_to_unless_current r.name, r.path}.join(' | ').html_safe
+

@@ -36,15 +36,13 @@ class Behavior < Concept
   def balancer; realm + phase.switch_attitude; end
   def displacer; realm + phase.switch_focus; end
   def opposite; realm + phase.opposite;end
+  # b.opposite.balancer == b.displacer
 
   def my_siblings; [self, displacer, balancer, opposite]; end
-  def nature(s)
-    Concept.difficulties[my_siblings.index(s)]
-  end
+  def my_natures; %w{the\ easiest also\ easy hard the\ hardest}; end
+  def nature(s); my_natures[my_siblings.index(s)]; end
 
-  def nurture(i); my_siblings.reverse[i] ; end
-
-  def episode; phase.episode.slot(realm.name).squash; end
+  def episode; [episode_adjective, realm.name, verb.episode].to_phrase.to_wbr.html_safe; end
   def assets; [realm.word, phase.assets].to_phrase; end
 
   def method_missing(meth, *arguments, &block)

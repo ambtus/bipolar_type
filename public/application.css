@@ -1,12 +1,12 @@
 .block {display: block;}
 
-.header { text-align: center; margin-bottom: 1em; /* font-size: .8em */ }
-.footer { text-align: center; margin-top: 2em; /* font-size: .8em */}
+.header { text-align: center; margin-bottom: 1em; margin-top 0; /* font-size: .8em */ }
+.footer { text-align: center; margin-top: 1em; margin-bottom 0; /* font-size: .8em */}
 
 .none { border: none; }
 .clear { clear: both; }
 
-.chosen {color: green; font-style: italic}
+.chosen {color: #FFBF00; font-style: italic}
 .constrained {color: grey; text-decoration:line-through;}
 
 .heading {font-style: italic; text-align: center; }
@@ -16,6 +16,7 @@
 .right { text-align: right; }
 .none {padding: 0}
 
+.biggest {font-size: 1.3em;}
 .bigger {font-size: 1.2em;}
 .big {font-size: 1.1em;}
 .small { font-size: .9em; }
@@ -32,6 +33,7 @@
 
 h1 { font-size: 1.3em; font-weight: bold; text-align: center; }
 h2 { font-size: 1.2em; font-weight: bold; text-align: center; }
+h3 { font-size: 1.1em; font-style: italic; text-align: center; }
 
 a.internal:link {text-decoration: none; color: inherit;}
 a.internal:visited {text-decoration: none; color: inherit;}
@@ -43,8 +45,9 @@ a.external:visited {text-decoration: none; color: grey;}
 a.external:active {text-decoration: none}
 a.external:hover {text-decoration: underline; color: grey;}
 
-ol, ul { list-style-position: inside; margin: 0; padding: 0; text-align: left;}
+ol, ul { list-style-position: inside; margin: 0; padding: 0; text-align: left; display: inline-block; }
 ul.none { list-style-type: none; }
+.outdent { margin-left: 1em; }
 
 dt { float: left; clear: left; text-align: right; font-weight: bold; width: 16ch; }
 /* width of the longest word used as a dt in the app: "Major Depression".length */dt::after { content: ":"; }

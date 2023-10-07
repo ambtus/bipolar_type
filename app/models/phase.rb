@@ -41,7 +41,7 @@ class Phase < Concept
     end
   end
 
-  def season; %w{Winter Spring Summer Fall}[index]; end
+  def season; %w{Late\ Winter Early\ Summer Late\ Summer Early\ Winter}[index]; end
   def month; %w{February May August November}[index]; end
 
   def moon; %w{Waxing🌒Crescent Waxing🌔Gibbous Waning🌖Gibbous Waning🌘Crescent}[index]; end
@@ -53,7 +53,9 @@ class Phase < Concept
 
   def horizontal_when; [season, month, moon, day, time, hour].join(' | '); end
   def vertical_when; horizontal_when.gsub(' | ', '<br>').html_safe; end
+  def short_when; "#{hour} in #{month}"; end
 
-  def episode; [season.first_word, verb.episode].join; end
+  def episode_adjective; %w{Lethagic Euphoric Irritable Agitated}[index]; end
+  def episode; [episode_adjective, verb.episode].to_phrase.to_wbr.html_safe; end
 
 end

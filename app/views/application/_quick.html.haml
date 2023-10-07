@@ -1,4 +1,4 @@
-%div.bigger #{@avian.hours(behavior.phase)} | #{@type.months(behavior.phase)}
+%div.bigger #{@type.hours_range(behavior.phase)}<br />#{@type.months_range(behavior.phase)}
 %ol
   -unless @type.firsts(behavior).empty?
     %li.green.bigger.bold=@type.firsts(behavior).collect{|b| "#{link_to b.name, b.path, class: 'internal'}"}.join(' & ').html_safe

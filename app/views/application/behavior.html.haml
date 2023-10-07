@@ -1,19 +1,17 @@
-- content_for(:title, @behavior.name)
-%div.center=@behavior.horizontal_when
--if @behavior.is_a?(Behavior)
-  =render 'behavior', behavior: @behavior
-  .center=render 'nature', behavior: @behavior
-  <br>
-  =render 'cycle',
-    caption: %Q[#{link_to "Same #{@behavior.realm.name} Realm", realm_path(@behavior.realm.symbol)}].html_safe,
-    chunks: @behavior.siblings.collect{|b| "#{link_to_unless_current b.symbol, b.path}<br />#{b.name}".html_safe}
-  <br>
-  %table
-    %caption=link_to "Same #{@behavior.phase.name} Phase", @behavior.phase.path
-    %tr
-      -@behavior.cousins.each do |b|
-        %td
-          =link_to_unless_current b.symbol, b.path
-          %br
-          =b.name
+%p.center=@behavior.horizontal_when
+.center=render @behavior.example_path
+.center=render 'episode', behavior: @behavior
+<br>
+=render 'cycle',
+  caption: %Q[#{link_to "Same #{@behavior.realm.name} Realm", realm_path(@behavior.realm.symbol)}].html_safe,
+  chunks: @behavior.siblings.collect{|b| "#{link_to_unless_current b.symbol, b.path}<br />#{b.name}".html_safe}
+<br>
+%table
+  %caption=link_to "Same #{@behavior.phase.name} Phase".html_safe, @behavior.phase.path
+  %tr
+    -@behavior.cousins.each do |b|
+      %td
+        =link_to_unless_current b.symbol, b.path
+        %br
+        =b.name
 

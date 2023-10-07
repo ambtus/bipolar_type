@@ -15,6 +15,7 @@ class Verb < Concept
   def nature; %w{empty full}[index]; end
 
   def episode; %w{Mania Depression}[index]; end
+  def sick; %w{manic depressed}[index]; end
   def manic?; index == 0; end
 
   def focus; %w{output intake}[index]; end

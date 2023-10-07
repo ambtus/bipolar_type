@@ -1,7 +1,7 @@
 class TypesController < ApplicationController
   def show
     @type = Type.new params[:id]
-    @avian = @type.avian
+    @title = @type.name
     render "type"
   end
 end

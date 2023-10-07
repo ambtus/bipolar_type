@@ -2,16 +2,14 @@ class AnswersController < ApplicationController
 
   def show
     @answer = Answer.new params[:id]
-    if @answer.finished?
-      @path = @answer.type_path
-      render "hours"
-    elsif @answer.nurtured?
-      redirect_to type_path(@answer.type_path) and return
+    @title = "Question ##{@answer.number} of 8"
+    if @answer.nurtured?
+      redirect_to type_path(@answer.type_path)
     elsif @answer.natured?
-      render "nurture"
+      render 'nurture'
     else
      @phase = @answer.phase
-     render "nature"
+     render 'nature'
     end
   end
 

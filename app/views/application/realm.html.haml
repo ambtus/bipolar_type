@@ -1,6 +1,4 @@
-- content_for(:title, "The #{@realm.name} Realm")
-
 =render 'cycle',
-  chunks: @realm.behaviors.each.collect {|b| "#{render 'behavior', behavior: b}".html_safe}
+  chunks: @realm.behaviors.each.collect {|b| "<h2>#{b.name}</h2>#{render b.example_path}#{render 'episode', behavior: b}".html_safe}
 
 %p.heading=render 'behaviors/improvements'

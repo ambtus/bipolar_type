@@ -1,5 +1,7 @@
--content_for(:title, "Question ##{@answer.number} of 8")
 %p.heading=@answer.behaviors.map(&:symbol).join('•')
+
+-if @answer.number == 8
+  %p.center.red If the following is not true, you might as well go back and try again.
 
 %table
   -@answer.behaviors.each do |behavior|
@@ -18,5 +20,3 @@
         %em fun.
       %td=render b.example_path
 
--if @answer.number == 8
-  %p.center.red If the above is not true, you might as well go back and try again.
