@@ -1,6 +1,6 @@
 %p.center=@behavior.horizontal_when
 .center=render @behavior.example_path
-.center=render 'episode', behavior: @behavior
+.hz.center=render 'episode', behavior: @behavior
 <br>
 =render 'cycle',
   caption: %Q[#{link_to "Same #{@behavior.realm.name} Realm", realm_path(@behavior.realm.symbol)}].html_safe,

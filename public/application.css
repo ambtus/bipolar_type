@@ -5,6 +5,7 @@
 
 .none { border: none; }
 .clear { clear: both; }
+.hz { margin: 0 auto; display: table; }
 
 .chosen {color: #FFBF00; font-style: italic}
 .constrained {color: grey; text-decoration:line-through;}
@@ -49,9 +50,10 @@ ol, ul { list-style-position: inside; margin: 0; padding: 0; text-align: left; d
 ul.none { list-style-type: none; }
 .outdent { margin-left: 1em; }
 
-dt { float: left; clear: left; text-align: right; font-weight: bold; width: 16ch; }
-/* width of the longest word used as a dt in the app: "Major Depression".length */dt::after { content: ":"; }
-dd { margin: 0 0 0 17ch; }
+dt { float: left; clear: left; text-align: right; font-weight: bold; width: 10ch; }
+/* width of the longest word used as a dt in the app */
+dt::after { content: ":"; }
+dd { margin: 0 0 0 11ch; }
 /* 1 more than the width in dt */
 
 table { border-collapse: collapse; margin-left: auto; margin-right: auto; }

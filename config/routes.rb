@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get '/months/(:id)' => "start#months", as: :months
   resources :answers, only: [:show]
   resources :realms, only: [:show]
-  resources :behaviors, only: [:show]
+  resources :behaviors, only: [:show, :index]
   resources :types, only: [:show]
 end

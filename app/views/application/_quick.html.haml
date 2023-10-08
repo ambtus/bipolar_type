@@ -1,8 +1,6 @@
 %div.bigger #{@type.hours_range(behavior.phase)}<br />#{@type.months_range(behavior.phase)}
 %ol
-  -unless @type.firsts(behavior).empty?
-    %li.green.bigger.bold=@type.firsts(behavior).collect{|b| "#{link_to b.name, b.path, class: 'internal'}"}.join(' & ').html_safe
-  -unless @type.seconds(behavior).empty?
-    %li.green.big=@type.seconds(behavior).collect{|b| "#{link_to b.name, b.path, class: 'internal'}"}.join(' & ').html_safe
-  %li.yellow=link_to @type.thirds(behavior).name, @type.thirds(behavior).path, class: "internal"
+  %li.green.bigger.bold=link_to @type.balancer(behavior).name, @type.balancer(behavior).path, class: 'internal'
+  %li.green.big=link_to @type.displacer(behavior).name, @type.displacer(behavior).path, class: 'internal'
+  %li.yellow=link_to @type.opposite(behavior).name, @type.opposite(behavior).path, class: "internal"
   %li.red.small=link_to behavior.name, behavior.path, class: "internal"

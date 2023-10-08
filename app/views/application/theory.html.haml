@@ -1,56 +1,30 @@
 %h2 The Four Phases
+
+%p Manic depression (as bipolar disorder used to be called) is a <em>cyclic</em> disorder. It is most problematic as a seasonal disorder, because an episode that lasts for months may be fatal. But there are actually four overlapping cycles; the seasonal one is the longest, but the monthly (lunar), weekly, and daily cycles all follow the same pattern.
+
 =render 'cycle',
   chunks: Phase.collect{|p| "<b>#{p.name}</b><p>#{p.vertical_when}</p>".html_safe}
 
-%h2 The Four Realms
-%table
-  %tr
-    %td=Realm.collect{|r| "<b>#{r.name}</b>"}.to_phrase.html_safe
-
-%h2 The Sixteen Behaviors
-=render 'cycle',
-  caption: 'A Behavior is a Realm in a Phase',
-  chunks: Phase.all.multiply(Realm.all).collect{|g| g.collect{|b| "<b>#{b.symbol}</b>"}.to_phrase.html_safe}
-
-%h2 The Four Bipolar States
-%p The phases themselves are perfectly natural, and if you cycle through all four of them in turn, you will remain balanced and healthy. But if you get “stuck” in a phase, you will become unbalanced and unhealthy.
-
-=render "cycle",
-  chunks: Phase.each.collect{|p| "#{render 'episode', behavior: p, no_links: true}".html_safe}
 
 %h2 Balancing and Displacing
 
-%p It’s easy to say “eat less and exercise more” if you are physically unbalanced and overweight. But eat less of <em>what</em> and do more of what <em>kind</em> of exercise? And when? And how do you do more of something you clearly find difficult, or else you’d already be doing more of it, and less of something you clearly find easy, or you’d already be doing less of it?
-%p BipolarType encourages balancing behaviors by scheduling them when they are easiest to do and encourages displacing behaviors by scheduling them when <em>they</em> are easiest to do (not when the unbalancing behavior is easiest to do). If you schedule enough balancing and displacing behaviors when you would otherwise be doing easy and <em>unbalancing</em> behaviors, those unbalalancing behaviors will be displaced and balanced with much less effort on your part.
+%p Balancing behaviors are those that reverse the imbalance: if you have gotten too much energy, the balancing behavior is to #{Phase.UE.name}  to balance the #{Phase.GE.name} behavior.
 
-%p Unfortunately, every unbalanced behavior has an opposite, and balancing the unbalanced behavior displaces the opposite, whereas displacing the unbalanced behavior balances the opposite. Which you see as more desirable depends on how you feel about the behavior being affected, which depends on your Nurture.
+%p Displacing behaviors are those that prevent the imbalance: if you expect to get too much energy, the displacing behavior is to #{Phase.GS.name}  to displace the #{Phase.GE.name} behavior.
+
+%p In other words, if you are physically overweight, balancing behaviors help you lose fat and displacing behaviors help prevent you from gaining it back again. If you want to lose fat sooner, balancing behaviors are more useful. If you just want to stop gaining, displacing behaviors are more useful. You will probably want to do both, but which to do first depends on your priorities.
+
 =render 'cycle',
-chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and displaces ⇒<br />which displaces and unbalances⇗</div>|.html_safe,
-  %Q|<div class='big'>#{Phase.second.name}</div>displaces ⇒<br />and balances ⇓<br />which displaces and unbalances⇘|.html_safe,
-  %Q|<div class='big'>#{Phase.third.name}</div>⇐displaces<br />and balances ⇓<br />which displaces and unbalances⇙</div>|.html_safe,
-  %Q|<div class='big'>#{Phase.fourth.name}</div>balances ⇑<br />and ⇐displaces<br />which displaces and unbalances⇖</div>|.html_safe ]
+chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and displaces ⇒<br />displaces and unbalances⇗</div>|.html_safe,
+  %Q|<div class='big'>#{Phase.second.name}</div>displaces ⇒<br />and balances ⇓<br />displaces and unbalances⇘|.html_safe,
+  %Q|<div class='big'>#{Phase.third.name}</div>⇐displaces<br />and balances ⇓<br />displaces and unbalances⇙</div>|.html_safe,
+  %Q|<div class='big'>#{Phase.fourth.name}</div>balances ⇑<br />and ⇐displaces<br />displaces and unbalances⇖</div>|.html_safe ]
 
 
-%h2 The 576 BipolarTypes
-%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology) and your Nurture (which behaviors are prioritized by you based on your culture and how you were raised). That is, your Nature determines which behaviors are most unbalancing while your Nurture determines whether you should balance or displace them or both depending on how you feel about the opposite behavior in the same realm.
+%h2 Your BipolarType
 
-%p Displacing behaviors are better in realms in which you want to balance the opposite behavior, whereas balancing behaviors are better in realms in which you are more willing to displace the opposite behavior.
+%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology, and thus most likely to <em>create</em> an imbalance during a bipolar episode) and your Nurture (which imbalances are most shameful for you based on your culture, and thus mostly likely to <em>need</em> balancing more than prevention).
 
-%p The goal is to get one displacing and one balancing behavior in each phase. Displacing behaviors are easier, whereas balancing behaviors are harder, so having one of each balances the overall difficulty of each phase.
+%p Displacing behaviors are easier than balancing behaviors so the goal is to have one of each in each phase. This means you always have something easy to do which is not unbalancing and something a little harder to do which is actively reversing an imbalance. 
 
-%p These restrictions bring down the possible BipolarTypes from over six thousand possibilities to under six hundred. Nevertheless, whittling that many possibilities down to the one which is <em>yours</em> is not a simple or trivial task.
-
-%p
-  If you are bipolar, try starting with your initial diagnosis:
-  %dl
-    -%w{Bipolar\ I Bipolar\ II Depression Major\ Depression}.each_with_index do |diagnosis, index|
-      %dt=diagnosis
-      %dd=link_to Phase[index].next.episode, Phase[index].next.path
-
-%p If you know your MBTI type, #{link_to 'try starting with that', mbti_path}.
-
-%p Or start with the realm in which you are most unbalanced: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}.
-
-%p Or start with the behavior which is most unbalanced:
-=render 'cycle',
-  chunks: Phase.all.multiply(Realm.all).collect{|g| g.collect{|b| "<b>#{link_to b.name, b.path}</b>"}.join('<br />').html_safe}
+%p To discover your own BipolarType, start with an unbalanced realm: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}, or a compulsive #{link_to 'behavior', behaviors_path}.

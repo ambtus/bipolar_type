@@ -1,4 +1,2 @@
 =render 'cycle',
-  chunks: @realm.behaviors.each.collect {|b| "<h2>#{b.name}</h2>#{render b.example_path}#{render 'episode', behavior: b}".html_safe}
-
-%p.heading=render 'behaviors/improvements'
+  chunks: @realm.behaviors.each.collect {|b| %Q|#{render 'episode', behavior: b, index: b.phase.index}<a href="#{b.path}" class='internal'>#{render b.example_path}</a>|.html_safe}

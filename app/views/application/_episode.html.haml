@@ -6,5 +6,8 @@
     =link_to behavior.episode, behavior.answer_path
   %br
   =behavior.natural_state.wrap
-  %p.left #{behavior.words.ing.capitalize} is becoming easier and easier, but #{behavior.opposite.words.ing} is becoming more and more difficult.
-
+  %p.left
+    #{behavior.words.ing.capitalize} is easy, but #{behavior.opposite.words.ing}
+    -if defined? index
+      =%w|⇗ ⇘ ⇙ ⇖|[index]
+    is hard.

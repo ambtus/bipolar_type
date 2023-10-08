@@ -1,12 +1,22 @@
-%p.header=link_to @type.mbti_prefix + @type.mbtis, mbti_path
-
 =render 'cycle',
   chunks: @type.by_phase.each.collect {|b| "#{render 'quick', behavior: b}".html_safe},
-  caption: "<div class='center'>Modify your #{link_to 'Seasons', months_path(@type.symbol)}, #{link_to 'Times', hours_path(@type.symbol)}, or #{link_to 'Preferences', answer_path(Answer.jump_path(*@type.natures))}</div>".html_safe
+  caption: "<div class='center'>Modify your #{link_to 'Seasons', months_path(@type.symbol)} or #{link_to 'Times', hours_path(@type.symbol)}</div>".html_safe
+%dl.hz
+  %dt <span class='green bigger bold'>Balancers</span>
+  %dd Reversing behaviors (harder)
+  %dt <span class='green big'>Displacers</span>
+  %dd Preventative behaviors (easier)
+  %dt <span class='yellow'>Opposites</span>
+  %dd Both helps and harms (hardest)
+  %dt <span class='red small'>Natures</span>
+  %dd Unbalancing behaviors (easiest)
 
 
--@type.natures.each do |behavior|
+-@type.natures.values_at(1,0,2,3).each do |behavior|
   %h2=behavior.episode
-  =render 'long',
-    behavior: behavior,
-    goal: @type.goal(behavior)
+  %dl.hz
+    %dt=behavior.imbalance
+    %dd=render behavior.imbalance_path
+
+  =render 'cycle',
+    chunks: behavior.siblings.collect{|s| "#{link_to s.name, s.path}<br />#{behavior.nature(s)}".html_safe}

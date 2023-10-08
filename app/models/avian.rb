@@ -11,17 +11,6 @@ class Avian < Concept
 
   def self.average; self::ALL[2]; end
 
-  def self.derive_from(realms)
-    string = realms.map(&:symbol).join
-    if string.without('PA') == 'MF'
-      string.first == 'M' ? 'EE': 'BB'
-    elsif string.without('PA') == 'FM'
-      string.first == 'F' ? 'OO' : 'NN'
-    else
-      'AA'
-    end
-  end
-
   def first; %w{early night average early night}[index]; end
   def second; %w{bird bird avian owl owl}[index]; end
   def words; [first, second].to_phrase; end

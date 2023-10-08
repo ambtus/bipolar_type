@@ -10,4 +10,7 @@ class BehaviorsController < ApplicationController
       render 'behavior'
     end
   end
+
+  def index; @title = 'The 16 Behaviors'; end
+
 end

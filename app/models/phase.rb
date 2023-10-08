@@ -41,21 +41,26 @@ class Phase < Concept
     end
   end
 
+  def size; %w{large large smaller smaller}[index]; end
+
   def season; %w{Late\ Winter Early\ Summer Late\ Summer Early\ Winter}[index]; end
-  def month; %w{February May August November}[index]; end
+  def month; '~' + %w{February May August November}[index]; end
+
+  def season_eg; [season, month.wrap].to_phrase; end
 
   def moon; %w{Waxing🌒Crescent Waxing🌔Gibbous Waning🌖Gibbous Waning🌘Crescent}[index]; end
 
   def day; %w{Monday Tuesday Thursday Friday}[index]; end
 
   def time; %w{Morning Midday Afternoon Evening}[index]; end
-  def hour; %w{8am 12noon 4pm 8pm}[index]; end
+  def hour; '~' + %w{8am 12noon 4pm 8pm}[index]; end
 
-  def horizontal_when; [season, month, moon, day, time, hour].join(' | '); end
+  def time_eg; [time, hour.wrap].to_phrase; end
+
+  def horizontal_when; [season_eg, moon, day, time_eg].join(' | '); end
   def vertical_when; horizontal_when.gsub(' | ', '<br>').html_safe; end
   def short_when; "#{hour} in #{month}"; end
 
-  def episode_adjective; %w{Lethagic Euphoric Irritable Agitated}[index]; end
-  def episode; [episode_adjective, verb.episode].to_phrase.to_wbr.html_safe; end
+  def episode; [noun.nature, verb.episode].to_phrase.to_wbr.html_safe; end
 
 end

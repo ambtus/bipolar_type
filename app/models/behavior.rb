@@ -10,6 +10,7 @@ class Behavior < Concept
 
   def path; Rails.application.routes.url_helpers.behavior_path(self.symbol); end
   def example_path; "behaviors/#{symbol}"; end
+  def imbalance_path; "behaviors/#{@realm.symbol + @verb.imbalance_symbol}"; end
   def answer_path; Rails.application.routes.url_helpers.answer_path(Answer.jump_path(self)); end
 
   ########
@@ -26,9 +27,12 @@ class Behavior < Concept
 
   def phase; @verb + @noun; end
 
+  def <=>(other); self.phase <=> other.phase; end
+
   def natural_state; phase.natural_state.prefix(realm.word.ly); end
-  def first_nature; natures.first.prefix(realm.word.ly); end
-  def second_nature; natures.second.prefix(realm.word.ly); end
+  def unbalanced; phase.nature.prefix(realm.word.ly); end
+  def imbalance; [phase.size, realm.word, verb.imbalance].to_phrase; end
+
 
   def siblings; Phase.all.add(realm); end
   def cousins; Realm.all.add(phase); end
@@ -39,10 +43,10 @@ class Behavior < Concept
   # b.opposite.balancer == b.displacer
 
   def my_siblings; [self, displacer, balancer, opposite]; end
-  def my_natures; %w{the\ easiest also\ easy hard the\ hardest}; end
+  def my_natures; %w{unbalancing displacer\ (easier) balancer\ (harder) opposite\ (hardest)}; end
   def nature(s); my_natures[my_siblings.index(s)]; end
 
-  def episode; [episode_adjective, realm.name, verb.episode].to_phrase.to_wbr.html_safe; end
+  def episode; [noun.nature, realm.name, verb.episode].to_phrase.to_wbr.html_safe; end
   def assets; [realm.word, phase.assets].to_phrase; end
 
   def method_missing(meth, *arguments, &block)

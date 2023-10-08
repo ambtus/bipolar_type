@@ -3,7 +3,6 @@
     %tr
       %td
         %h2 #{behavior.name}
-        =render behavior.example_path
+        =link_to behavior.path, class: 'internal' do
+          =render behavior.example_path
         =render 'episode', behavior: behavior
-
-%p.heading=render 'behaviors/improvements'

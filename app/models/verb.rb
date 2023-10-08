@@ -12,7 +12,9 @@ class Verb < Concept
 
   def word; %w{use get}[index]; end
 
-  def nature; %w{empty full}[index]; end
+  def nature; %w{thin fat}[index]; end
+  def imbalance; %w{deficit surplus}[index]; end
+  def imbalance_symbol; imbalance.first.upcase; end
 
   def episode; %w{Mania Depression}[index]; end
   def sick; %w{manic depressed}[index]; end

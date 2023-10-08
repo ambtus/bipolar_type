@@ -9,6 +9,27 @@
   =succeed ')' do
     =link_to 'falsifiable', 'https://en.wikipedia.org/wiki/Falsifiability', :class => 'external'
   but it has not been validated by the medical, psychiatric, psychological, or type communities.
-%p BipolarType is not an attempt to stop the cycling, it’s just an attempt to wear a seatbelt on the roller-coaster.
-%p
-  I am sharing it on the web in the hope that you may find it useful or interesting but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path)}.
+
+%p I hope you find BipolarType useful or interesting but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path), class: 'internal'}.
+
+%h2 The Four Bipolar States
+
+=render "cycle",
+  chunks: Phase.each.collect{|p| "#{render 'episode', behavior: p, index: p.index, no_links: true}".html_safe}
+
+%p The phases themselves are perfectly natural, and if you cycle through all four in turn you will remain balanced. But if you get “stuck” in a phase, you will become unbalanced.
+
+%h2 The Four Realms of Behavior
+%table
+  %tr
+  -Realm.each do |r|
+    %td.bold=r.name
+
+%p It’s easy to say “eat less and exercise more” if you are physically depressed and overweight. But eat less of <em>what</em> and do more of what <em>kind</em> of exercise? And when?
+
+%p It’s easy to say “spend less and earn more” if you are financially manic and in debt. But earn more of <em>what</em> and do less of what <em>kind</em> of spending? And when?
+
+%p Mental and affective imbalances are not even measurable. All you know is that something is wrong but not what you should do more or less of. All you can do is take sedatives if you’re manic or stimulants if you’re depressed.
+
+%p BipolarType is not an attempt to stop the cycling. It’s an attempt to find a seatbelt to wear on the roller-coaster so that imbalances no longer persist over the full cycle until they becomes so unhealthy they become fatal on subsequent cycles.
+
