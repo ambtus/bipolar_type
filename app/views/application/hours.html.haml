@@ -1,4 +1,4 @@
-%p Your natural rhythms are impacted by central heating, air conditioners, and artificial lights; choose whichever seems easiest for you to follow. I do suggest a regular daily cycle, as it keeps your cycle entrained and not free running.
+%p Choose whichever seems the most congruent with your lifestyle. The schedule will give you the zeitgebers needed to follow it.
 
 %table
   %tr
@@ -6,10 +6,13 @@
     -Phase.each do |phase|
       %th.fifth
         #{phase.time} (#{phase.hour})
-  -Hours.each do |avian|
+  -Hours.each do |hour|
     %tr
       %th
-        =link_to avian.name, type_path(@type.set_hours(avian))
-        .small.unbold.left=avian.description
+        -if @initial
+          =link_to hour.name, nurture_path(@type.set_hours(hour))
+        -else
+          =link_to hour.name, type_path(@type.set_hours(hour))
+        .small.unbold.left=hour.description
       -Phase.each do |phase|
-        %td=avian.range(phase)
+        %td=hour.range(phase)

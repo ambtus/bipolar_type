@@ -23,7 +23,8 @@
 .small { font-size: .9em; }
 
 .green {color: green;}
-.yellow {color: #FFBF00;}
+.blue {color: blue;}
+.gold {color: #ffbf00;}
 .red {color: red;}
 
 .unbold { font-weight: normal; }
@@ -50,10 +51,15 @@ ol, ul { list-style-position: inside; margin: 0; padding: 0; text-align: left; d
 ul.none { list-style-type: none; }
 .outdent { margin-left: 1em; }
 
-dt { float: left; clear: left; text-align: right; font-weight: bold; width: 10ch; }
-/* width of the longest word used as a dt in the app */
 dt::after { content: ":"; }
-dd { margin: 0 0 0 11ch; }
+dt.short { float: left; clear: left; text-align: right; font-weight: bold; width: 10ch; }
+/* width of the longest word used as a dt in the app */
+dd.short { margin: 0 0 0 11ch; }
+/* 1 more than the width in dt */
+
+dt.long { float: left; clear: left; text-align: right; font-weight: bold; width: 17ch; }
+/* width of the longest word used as a dt in the app */
+dd.long { margin: 0 0 0 18; }
 /* 1 more than the width in dt */
 
 table { border-collapse: collapse; margin-left: auto; margin-right: auto; }

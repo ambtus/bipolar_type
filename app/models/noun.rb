@@ -11,7 +11,6 @@ class Noun < Concept
   def nature; %w{energetic strong}[index]; end
 
   def assets; %w{reserves powers}[index]; end
-
-  def mbti; %w{P J}[index]; end
+  def episode; %w{Rising Falling}[index]; end
 
 end

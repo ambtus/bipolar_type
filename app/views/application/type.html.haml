@@ -1,22 +1,21 @@
 =render 'cycle',
-  chunks: @type.by_phase.each.collect {|b| "#{render 'quick', behavior: b}".html_safe},
-  caption: "<div class='center'>Modify your #{link_to 'Seasons', months_path(@type.symbol)} or #{link_to 'Times', hours_path(@type.symbol)}</div>".html_safe
-%dl.hz
-  %dt <span class='green bigger bold'>Balancers</span>
-  %dd Reversing behaviors (harder)
-  %dt <span class='green big'>Displacers</span>
-  %dd Preventative behaviors (easier)
-  %dt <span class='yellow'>Opposites</span>
-  %dd Both helps and harms (hardest)
-  %dt <span class='red small'>Natures</span>
-  %dd Unbalancing behaviors (easiest)
+  chunks: Phase.collect{|p| render "bipolar#{@type.bipolar}" , phase: p},
+  caption: "<div class='center'>Modify your #{link_to 'Times', hours_path(@type.symbol)} or #{link_to 'Priorities', nurture_path(@type.symbol)}</div>".html_safe
 
 
 -@type.natures.values_at(1,0,2,3).each do |behavior|
   %h2=behavior.episode
   %dl.hz
-    %dt=behavior.imbalance
-    %dd=render behavior.imbalance_path
-
+    %dt.long=behavior.imbalance
+    %dd.long=render behavior.imbalance_path
   =render 'cycle',
     chunks: behavior.siblings.collect{|s| "#{link_to s.name, s.path}<br />#{behavior.nature(s)}".html_safe}
+  %dl.hz
+    %dt.short.green Displacer
+    %dd.short Preventative
+    %dt.short.blue Balancer
+    %dd.short Reversing
+    %dt.short.gold Opposite
+    %dd.short Balances displacer but displaces balancer
+    %dt.short.red Nature
+    %dd.short Unbalancing

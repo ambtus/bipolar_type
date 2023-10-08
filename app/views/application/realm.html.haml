@@ -1,2 +1,2 @@
 =render 'cycle',
-  chunks: @realm.behaviors.each.collect {|b| %Q|#{render 'episode', behavior: b, index: b.phase.index}<a href="#{b.path}" class='internal'>#{render b.example_path}</a>|.html_safe}
+  chunks: @realm.behaviors.each.collect {|b| %Q|<br />#{link_to b.episode, b.answer_path}<br />#{b.natural_state.wrap}<p class='left'>#{b.words.ing.capitalize} is easy, but #{b.opposite.words.ing}#{%w|⇗ ⇘ ⇙ ⇖|[b.phase.index]} is hard.</p>#{b.name} behaviors:<a href="#{b.path}" class='internal'>#{render b.example_path}</a>|.html_safe}

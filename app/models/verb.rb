@@ -24,6 +24,4 @@ class Verb < Concept
 
   def stop_drugs; %w{sedatives stimulants}[index]; end
 
-  def mbti; %w{I E}[index]; end
-
 end

@@ -43,7 +43,7 @@ class Behavior < Concept
   # b.opposite.balancer == b.displacer
 
   def my_siblings; [self, displacer, balancer, opposite]; end
-  def my_natures; %w{unbalancing displacer\ (easier) balancer\ (harder) opposite\ (hardest)}; end
+  def my_natures; %w{nature displacer balancer opposite}; end
   def nature(s); my_natures[my_siblings.index(s)]; end
 
   def episode; [noun.nature, realm.name, verb.episode].to_phrase.to_wbr.html_safe; end
@@ -60,11 +60,5 @@ class Behavior < Concept
       super
     end
   end
-
-  def tls; [verb, realm, noun].map(&:mbti).join; end
-  alias mbti :tls
-  def tls2; tls.switch('E', 'I'); end
-  def jungian; tls.is_tls? ? tls.to_fa : tls2.to_fa; end
-  def self.find_by_mbti(tls); all.find{|b| b.mbti == tls}; end
 
 end

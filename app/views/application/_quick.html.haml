@@ -1,6 +1,0 @@
-%div.bigger #{@type.hours_range(behavior.phase)}<br />#{@type.months_range(behavior.phase)}
-%ol
-  %li.green.bigger.bold=link_to @type.balancer(behavior).name, @type.balancer(behavior).path, class: 'internal'
-  %li.green.big=link_to @type.displacer(behavior).name, @type.displacer(behavior).path, class: 'internal'
-  %li.yellow=link_to @type.opposite(behavior).name, @type.opposite(behavior).path, class: "internal"
-  %li.red.small=link_to behavior.name, behavior.path, class: "internal"

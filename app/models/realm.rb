@@ -17,6 +17,4 @@ class Realm < Concept
 
   def word; %w{physical mental affective financial}[index]; end
 
-  def mbti; %w{S N F T}[index]; end
-
 end

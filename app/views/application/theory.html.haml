@@ -1,3 +1,21 @@
+%p
+  I’ve been working on BipolarType since the 1980s when I was first diagnosed as
+  =link_to 'bipolar', 'https://en.wikipedia.org/wiki/Bipolar_disorder', :class => 'external'
+  at around the same time I first learned about
+  =succeed '.' do
+    =link_to 'personality type', 'https://en.wikipedia.org/wiki/Personality_type', :class => 'external'
+%p
+  I studied many different theories of personality, but none were able to describe my shifting priorities as I went from mania to depression and back again. They were all theories of “normal” personality, and I’m not “normal”. But I’m not <em>abnormal</em> either; I don’t have a
+  =succeed '.' do
+    =link_to 'personality disorder', 'https://en.wikipedia.org/wiki/Personality_disorder', :class => 'external'
+%p
+  This theory is scientific (it is
+  =succeed ')' do
+    =link_to 'falsifiable', 'https://en.wikipedia.org/wiki/Falsifiability', :class => 'external'
+  but it has not been validated by the medical, psychiatric, psychological, or type communities.
+
+%p I hope you find BipolarType useful or interesting but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path), class: 'internal'}.
+
 %h2 The Four Phases
 
 %p Manic depression (as bipolar disorder used to be called) is a <em>cyclic</em> disorder. It is most problematic as a seasonal disorder, because an episode that lasts for months may be fatal. But there are actually four overlapping cycles; the seasonal one is the longest, but the monthly (lunar), weekly, and daily cycles all follow the same pattern.
@@ -5,14 +23,40 @@
 =render 'cycle',
   chunks: Phase.collect{|p| "<b>#{p.name}</b><p>#{p.vertical_when}</p>".html_safe}
 
+%h2 The Bipolar Cycle
+
+%p The psychiatric profession in general views bipolar disorder as abnormalities in the brain which need to be “fixed”. I view bipolar disorder as an extreme manifestation of the above natural cycle.
+
+=render "cycle",
+  chunks: Phase.each.collect{|p| "<b>#{p.episode}</b><br />#{p.natural_state.wrap}<p class='left'>#{p.words.ing.capitalize} is easy, but #{p.opposite.words.ing}#{%w|⇗ ⇘ ⇙ ⇖|[p.index]} is hard.</p>".html_safe}
+
+%p I also believe that <em>how</em> it manifests depends on your personality: my mother, her father, and his mother were all bipolar, and they all had wildly different symptoms from me, despite it most probably being caused by the same genes.
+
+%p BipolarType is not an attempt to stop the cycle but instead offers a seatbelt for the roller-coaster ride so you won’t be thrown off during the highs of mania, left behind during the lows of depression, or lost during the transitions.
+
+
+%h2 The Four Realms of Behavior
+%table
+  %tr
+  -Realm.each do |r|
+    %td.bold=r.name
+
+%p It’s obvious you should “eat less and exercise more” if you are physically depressed and overweight. But eat less of <em>what</em> and do more of what <em>kind</em> of exercise?
+
+%p It’s also obvious you should “spend less and earn more” if you are financially manic and in debt. But earn more of <em>what</em> and do less of what <em>kind</em> of spending?
+
+%p But mental and affective imbalances are not even <em>measurable</em> and there is no obvious advice as to what you should do more or less of. Except to take sedatives if you’re manic and stimulants if you’re depressed. Which is less than helpful if you are both at the same time or cycle rapidly between the two.
+
+%p BipolarType offers specific advice in all four realms. Not only what exactly you should do, but when to do it.
+
 
 %h2 Balancing and Displacing
 
-%p Balancing behaviors are those that reverse the imbalance: if you have gotten too much energy, the balancing behavior is to #{Phase.UE.name}  to balance the #{Phase.GE.name} behavior.
+%p Balancing behaviors are those that reverse an imbalance: if you have gotten too much energy, the balancing behavior is #{Phase.UE.name}.
 
-%p Displacing behaviors are those that prevent the imbalance: if you expect to get too much energy, the displacing behavior is to #{Phase.GS.name}  to displace the #{Phase.GE.name} behavior.
+%p Displacing behaviors are those that prevent an imbalance: if you expect to get too much energy, the displacing behavior is #{Phase.GS.name}.
 
-%p In other words, if you are physically overweight, balancing behaviors help you lose fat and displacing behaviors help prevent you from gaining it back again. If you want to lose fat sooner, balancing behaviors are more useful. If you just want to stop gaining, displacing behaviors are more useful. You will probably want to do both, but which to do first depends on your priorities.
+%p In other words, if you have gained too much fat, balancing behaviors help reverse the gain into a loss and displacing behaviors help prevent you from gaining it back again.
 
 =render 'cycle',
 chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and displaces ⇒<br />displaces and unbalances⇗</div>|.html_safe,
@@ -20,11 +64,10 @@ chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and dis
   %Q|<div class='big'>#{Phase.third.name}</div>⇐displaces<br />and balances ⇓<br />displaces and unbalances⇙</div>|.html_safe,
   %Q|<div class='big'>#{Phase.fourth.name}</div>balances ⇑<br />and ⇐displaces<br />displaces and unbalances⇖</div>|.html_safe ]
 
-
 %h2 Your BipolarType
 
-%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology, and thus most likely to <em>create</em> an imbalance during a bipolar episode) and your Nurture (which imbalances are most shameful for you based on your culture, and thus mostly likely to <em>need</em> balancing more than prevention).
+%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology, and thus most likely to <em>create</em> an imbalance during a prolonged phase of the cycle) and your Nurture (which behaviors are most important and thus must be preserved <em>despite</em> the imbalance they cause).
 
-%p Displacing behaviors are easier than balancing behaviors so the goal is to have one of each in each phase. This means you always have something easy to do which is not unbalancing and something a little harder to do which is actively reversing an imbalance. 
+%p The goal of BipolarType is <em>balance</em>. That means finding a balance between #{Verb.map(&:nature).and} #{Verb.map(&:episode).and.wrap} and between #{Noun.map(&:nature).and} #{Noun.map(&:episode).and.wrap}. It does not mean treating all four realms equally. It does mean finding balance within each realm.
 
 %p To discover your own BipolarType, start with an unbalanced realm: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}, or a compulsive #{link_to 'behavior', behaviors_path}.

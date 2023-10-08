@@ -3,6 +3,11 @@
     %tr
       %td
         %h2 #{behavior.name}
-        =link_to behavior.path, class: 'internal' do
-          =render behavior.example_path
-        =render 'episode', behavior: behavior
+        Example behaviors:
+        =link_to "#{render behavior.example_path}".html_safe, behavior.path, class: 'internal'
+        .clear
+        %br
+        =link_to behavior.episode, behavior.answer_path
+        %br
+        =behavior.natural_state.wrap
+        .left #{behavior.words.ing.capitalize} is easy, but #{behavior.opposite.words.ing} is hard.

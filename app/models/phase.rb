@@ -20,7 +20,6 @@ class Phase < Concept
   def +(realm); behaviors.find{|b| b.realm == realm}; end
 
   def both; [verb, noun]; end
-  def mbti; both.map(&:mbti).join; end
   def words; both.map(&:word).to_phrase; end
 
   def underscored; words.gsub(' ', '_'); end
@@ -61,6 +60,6 @@ class Phase < Concept
   def vertical_when; horizontal_when.gsub(' | ', '<br>').html_safe; end
   def short_when; "#{hour} in #{month}"; end
 
-  def episode; [noun.nature, verb.episode].to_phrase.to_wbr.html_safe; end
+  def episode; [noun.episode, verb.episode].to_phrase.to_wbr.html_safe; end
 
 end
