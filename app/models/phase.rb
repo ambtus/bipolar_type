@@ -40,7 +40,7 @@ class Phase < Concept
     end
   end
 
-  def size; %w{large large smaller smaller}[index]; end
+  def size; index < 2 ? 'large' : 'small'; end
 
   def season; %w{Late\ Winter Early\ Summer Late\ Summer Early\ Winter}[index]; end
   def month; '~' + %w{February May August November}[index]; end

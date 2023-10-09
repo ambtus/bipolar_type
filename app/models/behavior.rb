@@ -9,7 +9,7 @@ class Behavior < Concept
   attr_reader :symbol, :verb, :realm, :noun
 
   def path; Rails.application.routes.url_helpers.behavior_path(self.symbol); end
-  def example_path; "behaviors/#{symbol}"; end
+  def examples_path; "behaviors/#{symbol}"; end
   def imbalance_path; "behaviors/#{@realm.symbol + @verb.imbalance_symbol}"; end
   def answer_path; Rails.application.routes.url_helpers.answer_path(Answer.jump_path(self)); end
 

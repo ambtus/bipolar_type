@@ -1,36 +1,44 @@
 class Hours < Concept
 
+  BT = Time.utc(2023,1,1,21,30)
+  AL = 16.hours
+
   def initialize(string); @symbol = string; end
   attr_reader :symbol
 
   ########
-  SYMBOLS = %w{E B A N O}
+  SYMBOLS = %w{G M N E C D }
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
-  SYMBOLS.each{|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
+  SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
-  def self.average; self.A; end
+  def self.generic; self.G; end
+  def generic?; self == Hours.G; end
 
-  def first; %w{early night average early night}[index]; end
-  def second; %w{bird bird avian owl owl}[index]; end
+  def first; %w{ generic severe mild euthymic mild severe }[index]; end
+  def second; %w{ \  mania mania \  depression depression }[index]; end
   def words; [first, second].to_phrase; end
 
-  def start_of_day; (GT + 4.hours) + self.index.hours; end
+  def sleep_for; [8, 6, 7, 8, 9, 10][index].hours; end
+  def phase_length; (24.hours - sleep_for)/4.0; end
 
   def range(phase)
-    start_of_range = start_of_day + phase.index.hours * 4
-    end_of_range = start_of_range + 4.hours
-    [start_of_range, end_of_range].map(&:short_hour).join('-')
+    if generic?
+      phase.time_eg
+    else
+      start_of_range = BT - (4-phase.index)*phase_length
+      [start_of_range, start_of_range + phase_length].map(&:short_hour).join('-')
+    end
   end
 
   def description
     case index
-    when 0
-      "(stronger sensitivity to sunlight: the day is centered around solar noon)".html_safe
-    when 2
-      '(equally sensitivity to sunlight and temperature)'.html_safe
-    when 4
-      "(stronger sensitivity to temperature: the day is centered around the warmest part which is hours later)".html_safe
+    when 1
+      "(try not to sleep less than 6 hours)".html_safe
+    when 3
+      '(sleep ~8 hours)'.html_safe
+    when 5
+      "(try not to sleep more than 10 hours)".html_safe
     end
   end
 

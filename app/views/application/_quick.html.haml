@@ -1,0 +1,11 @@
+%div.bigger=link_to @type.hours_range(phase), hours_path(@type.symbol), class: 'internal'
+%ol
+  -@type.green(phase).each do |b|
+    %li.green More #{link_to b.name, b.path, class: 'internal'}
+  -@type.blue(phase).each do |b|
+    %li.blue Do #{link_to b.name, b.path, class: 'internal'}
+  -@type.gold(phase).each do |b|
+    %li.gold Limit #{link_to b.name, b.path, class: 'internal'}
+  -@type.red(phase).each do |b|
+    %li.red Don’t #{link_to b.name, b.path, class: 'internal'}
+.clear

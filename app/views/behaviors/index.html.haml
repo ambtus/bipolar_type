@@ -1,2 +1,2 @@
 =render 'cycle',
-  chunks: Phase.all.multiply(Realm.all).collect{|g| g.collect{|b| %Q[<div class='bigger'>#{link_to b.episode, b.answer_path}</div><a href="#{b.path}" class='internal'>#{render b.example_path}</a>]}.join('<p>').html_safe}
+  chunks: Phase.all.multiply(Realm.all).collect{|g| g.collect{|b| %Q[<div class='bigger'>#{link_to b.episode, b.answer_path}</div><a href="#{b.path}" class='internal'>#{render b.examples_path}</a>]}.join('<p>').html_safe}

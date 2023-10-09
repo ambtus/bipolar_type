@@ -1,13 +1,14 @@
-=render 'cycle',
-  chunks: Phase.collect{|p| render "bipolar#{@type.bipolar}" , phase: p},
-  caption: "<div class='center'>Modify your #{link_to 'Times', hours_path(@type.symbol)} or #{link_to 'Priorities', nurture_path(@type.symbol)}</div>".html_safe
+%p.header=link_to "Bipolar#{@type.bipolar}: #{@type.description}", nurture_path(@type.symbol), class: 'internal'
 
+
+=render 'cycle',
+  chunks: Phase.collect{|p| render 'quick' , phase: p}
 
 -@type.natures.values_at(1,0,2,3).each do |behavior|
   %h2=behavior.episode
-  %dl.hz
-    %dt.long=behavior.imbalance
-    %dd.long=render behavior.imbalance_path
+  .hz
+    %b=behavior.imbalance + ":"
+    =render behavior.imbalance_path
   =render 'cycle',
     chunks: behavior.siblings.collect{|s| "#{link_to s.name, s.path}<br />#{behavior.nature(s)}".html_safe}
   %dl.hz

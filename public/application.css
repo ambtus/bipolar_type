@@ -57,9 +57,9 @@ dt.short { float: left; clear: left; text-align: right; font-weight: bold; width
 dd.short { margin: 0 0 0 11ch; }
 /* 1 more than the width in dt */
 
-dt.long { float: left; clear: left; text-align: right; font-weight: bold; width: 17ch; }
+dt.long { float: left; clear: left; text-align: right; font-weight: bold; width: 26ch; }
 /* width of the longest word used as a dt in the app */
-dd.long { margin: 0 0 0 18; }
+dd.long { margin: 0 0 0 27; }
 /* 1 more than the width in dt */
 
 table { border-collapse: collapse; margin-left: auto; margin-right: auto; }

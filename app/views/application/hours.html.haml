@@ -1,18 +1,12 @@
-%p Choose whichever seems the most congruent with your lifestyle. The schedule will give you the zeitgebers needed to follow it.
-
 %table
-  %tr
-    %th
-    -Phase.each do |phase|
-      %th.fifth
-        #{phase.time} (#{phase.hour})
   -Hours.each do |hour|
     %tr
       %th
-        -if @initial
-          =link_to hour.name, nurture_path(@type.set_hours(hour))
-        -else
-          =link_to hour.name, type_path(@type.set_hours(hour))
-        .small.unbold.left=hour.description
+        =link_to hour.name, type_path(@type.set_hours(hour).symbol)
+        .small.unbold=hour.description
       -Phase.each do |phase|
-        %td=hour.range(phase)
+        -if hour.generic?
+          %th=hour.range(phase)
+        -else
+          %td=hour.range(phase)
+

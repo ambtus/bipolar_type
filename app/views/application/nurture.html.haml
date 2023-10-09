@@ -1,48 +1,65 @@
-%table
-  %caption Choose which column describes you better.
-  %tr
-    %th
-    %th
-      =link_to 'Bipolar I', type_path(@type.set_bipolar(1))
-      .unbold #{@type.by_phase[1].realm.name} Mania with #{@type.by_phase[3].realm.name} Depression
-    %th
-      =link_to 'Bipolar 2', type_path(@type.set_bipolar(2))
-      .unbold #{@type.by_phase[0].realm.name} Depression with #{@type.by_phase[2].realm.name} Mania
-  %tr
-    %th
-      Spring Mania
-      .unbold=@type.by_phase[1].imbalance
-    %td.left.red I can’t just <em>stop</em> #{@type.by_phase[1].words.ing}!
-    %td.left.gold Not #{@type.by_phase[1].words.ing} is hard!
-  %tr
-    %th
-      Fall Mania
-      .unbold=@type.by_phase[2].imbalance
-    %td.left.green As long as I don’t #{@type.by_phase[2].words}, it’s not a problem
-    %td.left.blue I can’t just <em>stop</em> #{@type.by_phase[2].words.ing}!
-  %tr
-    %th
-      Early Winter Depression
-      .unbold=@type.by_phase[3].imbalance
-    %td.left.blue I can’t just <em>stop</em> #{@type.by_phase[3].words.ing}!
-    %td.left.green As long as I don’t #{@type.by_phase[3].words}, it’s not a problem
-  %tr
-    %th
-      Late Winter Depression
-      .unbold=@type.by_phase[0].imbalance
-    %td.left.gold Not #{@type.by_phase[0].words.ing} is hard!
-    %td.left.red I can’t just <em>stop</em> #{@type.by_phase[0].words.ing}!
+%p The easiest way to prevent an imbalance is to avoid the behavior causing it.
+%p Whether or not you <em>can</em> bring yourself to avoid a behavior depends more on your nurture than your nature.
+%p Of the two following, which is easier for you to just <em>not do</em>?
 
-%ol.hz
-  %li
-    %span.red.bold Most Distressing:
-    Needs constant balancing because I can’t just stop or avoid the unbalancing behaviors.
-  %li
-    %span.blue.bold More Distressing:
-    Needs constant maintenance because I can’t just stop or avoid the unbalancing behaviors, but my imbalances are not as severe.
-  %li
-    %span.gold.bold Less Distressing:
-    Needs balancing. Someday. I <em>can</em> just stop or avoid the unbalancing behaviors, but it’s <em>hard</em> and I often have more important things to worry about.
-  %li
-    %span.green.bold Least Distressing:
-    Needs occasional maintenance. I just avoid the unbalancing behaviors as much as possible, and it pretty much takes care of itself.
+%table
+  %tr
+    %th=@type.by_phase[2].name
+    %th=@type.by_phase[3].name
+  %tr
+    %td=render @type.by_phase[2].examples_path
+    %td=render @type.by_phase[3].examples_path
+  %tr
+    %td
+      %b=link_to 'Bipolar I', type_path(@type.set_bipolar(1).symbol)
+      %p.left I rarely worry about being #{render @type.by_phase[2].imbalance_path}
+      %p.left I just don’t #{@type.by_phase[2].name} and it’s no longer a problem
+    %td
+      %b=link_to 'Bipolar II', type_path(@type.set_bipolar(2).symbol)
+      %p.left I rarely worry about being #{render @type.by_phase[3].imbalance_path}
+      %p.left I just don’t #{@type.by_phase[3].name} and it’s no longer a problem
+
+
+-#
+  %h2=link_to 'Bipolar I', type_path(@type.set_bipolar(1).symbol)
+  %p.heading Severe spring mania with milder winter depression
+  %p
+    =@type.set_bipolar(1).description
+    (#{@type.by_phase[1].imbalance} with #{@type.by_phase[3].imbalance})
+  %ol
+    %li
+      %span.red I can’t just <em>stop</em> #{@type.by_phase[1].words.ing}!
+      I am often #{render @type.by_phase[1].imbalance_path}
+    %li
+      %span.gold I can’t just <em>stop</em> #{@type.by_phase[3].words.ing}!
+      I am sometimes #{render @type.by_phase[3].imbalance_path}
+    %li
+      %span.blue Not #{@type.by_phase[0].words.ing} is <em>hard</em>!
+      I am often
+      =render @type.by_phase[0].imbalance_path
+      but I have more important things to worry about most of the time
+    %li
+      %span.green As long as I don’t #{@type.by_phase[2].words}, it’s not a problem
+      I am no longer #{render @type.by_phase[2].imbalance_path}
+
+  %h2=link_to 'Bipolar II', type_path(@type.set_bipolar(2).symbol)
+  %p.heading Severe winter depression with milder fall mania:
+  %p
+    =@type.set_bipolar(2).description
+    (#{@type.by_phase[0].imbalance} with #{@type.by_phase[2].imbalance})
+  %ol
+    %li
+      %span.red I can’t just <em>stop</em> #{@type.by_phase[0].words.ing}!
+      I am often #{render @type.by_phase[0].imbalance_path}
+    %li
+      %span.gold I can’t just <em>stop</em> #{@type.by_phase[2].words.ing}!
+      I am sometimes #{render @type.by_phase[2].imbalance_path}
+    %li
+      %span.blue Not #{@type.by_phase[1].words.ing} is <em>hard</em>!
+      I am often
+      =render @type.by_phase[1].imbalance_path
+      but I have more important things to worry about most of the time
+    %li
+      %span.green As long as I don’t #{@type.by_phase[3].words}, it’s not a problem
+      I am no longer #{render @type.by_phase[3].imbalance_path}
+
