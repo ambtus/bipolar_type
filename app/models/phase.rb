@@ -8,7 +8,7 @@ class Phase < Concept
   attr_reader :symbol, :verb, :noun
 
   def path; Rails.application.routes.url_helpers.behavior_path(self.symbol); end
-  def answer_path; Rails.application.routes.url_helpers.answer_path(self.symbol); end
+  def nature_path; Rails.application.routes.url_helpers.nature_path(self.symbol); end
 
   ########
   SYMBOLS = %w{GE UE US GS }
@@ -21,14 +21,12 @@ class Phase < Concept
 
   def both; [verb, noun]; end
   def words; both.map(&:word).to_phrase; end
-
-  def underscored; words.gsub(' ', '_'); end
+  def natures; (strong? ? both.reverse : both).map(&:nature); end
+  def natural_state; natures.join(' & ').html_safe; end
+  def episode; both.reverse.map(&:episode).to_phrase.to_wbr.html_safe; end
 
   def switch_attitude; verb.opposite + noun; end
   def switch_focus; verb + noun.opposite; end
-
-  def natures; (strong? ? both.reverse : both).map(&:nature); end
-  def natural_state; natures.join(' & ').html_safe; end
 
   def method_missing(meth, *arguments, &block)
     if verb.respond_to?(meth)
@@ -40,26 +38,18 @@ class Phase < Concept
     end
   end
 
-  def size; index < 2 ? 'large' : 'small'; end
-
-  def season; %w{Late\ Winter Early\ Summer Late\ Summer Early\ Winter}[index]; end
-  def month; '~' + %w{February May August November}[index]; end
-
+  def season; Words.seasons[symbol]; end
+  def month; '~' + Words.months[symbol]; end
   def season_eg; [season, month.wrap].to_phrase; end
 
-  def moon; %w{Waxing🌒Crescent Waxing🌔Gibbous Waning🌖Gibbous Waning🌘Crescent}[index]; end
+  def moon; Words.moons[symbol]; end
+  def day; Words.days[symbol]; end
 
-  def day; %w{Monday Tuesday Thursday Friday}[index]; end
-
-  def time; %w{Morning Midday Afternoon Evening}[index]; end
-  def hour; '~' + %w{8am 12noon 4pm 8pm}[index]; end
-
+  def time; Words.times[symbol]; end
+  def hour; '~' + Words.hours[symbol]; end
   def time_eg; [time, hour.wrap].to_phrase; end
 
   def horizontal_when; [season_eg, moon, day, time_eg].join(' | '); end
   def vertical_when; horizontal_when.gsub(' | ', '<br>').html_safe; end
-  def short_when; "#{hour} in #{month}"; end
-
-  def episode; [noun.episode, verb.episode].to_phrase.to_wbr.html_safe; end
 
 end

@@ -9,9 +9,7 @@ class Behavior < Concept
   attr_reader :symbol, :verb, :realm, :noun
 
   def path; Rails.application.routes.url_helpers.behavior_path(self.symbol); end
-  def examples_path; "behaviors/#{symbol}"; end
-  def imbalance_path; "behaviors/#{@realm.symbol + @verb.imbalance_symbol}"; end
-  def answer_path; Rails.application.routes.url_helpers.answer_path(Answer.jump_path(self)); end
+  def nature_path; Rails.application.routes.url_helpers.nature_path(Nature.jump_path(self)); end
 
   ########
   ALL = Phase::SYMBOLS.collect do |phrase|
@@ -31,7 +29,6 @@ class Behavior < Concept
 
   def natural_state; phase.natural_state.prefix(realm.word.ly); end
   def unbalanced; phase.nature.prefix(realm.word.ly); end
-  def imbalance; [phase.size, realm.word, verb.imbalance].to_phrase; end
 
 
   def siblings; Phase.all.add(realm); end
@@ -43,11 +40,10 @@ class Behavior < Concept
   # b.opposite.balancer == b.displacer
 
   def my_siblings; [self, displacer, balancer, opposite]; end
-  def my_natures; %w{nature displacer balancer opposite}; end
-  def nature(s); my_natures[my_siblings.index(s)]; end
 
-  def episode; [noun.nature, realm.name, verb.episode].to_phrase.to_wbr.html_safe; end
-  def assets; [realm.word, phase.assets].to_phrase; end
+  def episode; [realm.name, phase.episode].to_phrase.to_wbr.html_safe; end
+
+  def partial_episode; [realm.name, verb.episode].to_phrase; end
 
   def method_missing(meth, *arguments, &block)
     if phase.respond_to?(meth)
@@ -60,5 +56,19 @@ class Behavior < Concept
       super
     end
   end
+
+  def imbalance; [realm.word, verb.imbalance].to_phrase.to_wbr.html_safe; end
+  def imbalance_phrase; Words.imbalances[symbol.chop].join(', '); end
+  def imbalance_first_word; Words.imbalances[symbol.chop].first; end
+  def imbalance_eg; [imbalance, imbalance_first_word.wrap].to_phrase.html_safe; end
+
+
+  def short_phrase; [Words.verb_words[symbol], Words.noun_words[realm.symbol]].to_phrase; end
+  def example_lines; Words.examples[symbol]; end
+  def aka; example_lines.lines.first; end
+  def short_phrase_aka; [short_phrase, aka].to_phrase; end
+  def example_list; example_lines.lines.join('<br />').html_safe; end
+
+  def name_eg; [name, aka].to_phrase.html_safe; end
 
 end

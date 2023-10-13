@@ -1,65 +1,14 @@
-%p The easiest way to prevent an imbalance is to avoid the behavior causing it.
-%p Whether or not you <em>can</em> bring yourself to avoid a behavior depends more on your nurture than your nature.
-%p Of the two following, which is easier for you to just <em>not do</em>?
+-if @nurture.number == 4
+  .red If the following is not true, you might as well go back and #{link_to 'try again', nurture_path(Nurture.jump_path(@nurture.all_behaviors))}
 
-%table
-  %tr
-    %th=@type.by_phase[2].name
-    %th=@type.by_phase[3].name
-  %tr
-    %td=render @type.by_phase[2].examples_path
-    %td=render @type.by_phase[3].examples_path
-  %tr
-    %td
-      %b=link_to 'Bipolar I', type_path(@type.set_bipolar(1).symbol)
-      %p.left I rarely worry about being #{render @type.by_phase[2].imbalance_path}
-      %p.left I just don’t #{@type.by_phase[2].name} and it’s no longer a problem
-    %td
-      %b=link_to 'Bipolar II', type_path(@type.set_bipolar(2).symbol)
-      %p.left I rarely worry about being #{render @type.by_phase[3].imbalance_path}
-      %p.left I just don’t #{@type.by_phase[3].name} and it’s no longer a problem
-
-
--#
-  %h2=link_to 'Bipolar I', type_path(@type.set_bipolar(1).symbol)
-  %p.heading Severe spring mania with milder winter depression
-  %p
-    =@type.set_bipolar(1).description
-    (#{@type.by_phase[1].imbalance} with #{@type.by_phase[3].imbalance})
-  %ol
-    %li
-      %span.red I can’t just <em>stop</em> #{@type.by_phase[1].words.ing}!
-      I am often #{render @type.by_phase[1].imbalance_path}
-    %li
-      %span.gold I can’t just <em>stop</em> #{@type.by_phase[3].words.ing}!
-      I am sometimes #{render @type.by_phase[3].imbalance_path}
-    %li
-      %span.blue Not #{@type.by_phase[0].words.ing} is <em>hard</em>!
-      I am often
-      =render @type.by_phase[0].imbalance_path
-      but I have more important things to worry about most of the time
-    %li
-      %span.green As long as I don’t #{@type.by_phase[2].words}, it’s not a problem
-      I am no longer #{render @type.by_phase[2].imbalance_path}
-
-  %h2=link_to 'Bipolar II', type_path(@type.set_bipolar(2).symbol)
-  %p.heading Severe winter depression with milder fall mania:
-  %p
-    =@type.set_bipolar(2).description
-    (#{@type.by_phase[0].imbalance} with #{@type.by_phase[2].imbalance})
-  %ol
-    %li
-      %span.red I can’t just <em>stop</em> #{@type.by_phase[0].words.ing}!
-      I am often #{render @type.by_phase[0].imbalance_path}
-    %li
-      %span.gold I can’t just <em>stop</em> #{@type.by_phase[2].words.ing}!
-      I am sometimes #{render @type.by_phase[2].imbalance_path}
-    %li
-      %span.blue Not #{@type.by_phase[1].words.ing} is <em>hard</em>!
-      I am often
-      =render @type.by_phase[1].imbalance_path
-      but I have more important things to worry about most of the time
-    %li
-      %span.green As long as I don’t #{@type.by_phase[3].words}, it’s not a problem
-      I am no longer #{render @type.by_phase[3].imbalance_path}
-
+-@nurture.available_behaviors.each do |behavior|
+  %h2=link_to behavior.realm.name, nurture_path(@nurture.next(behavior))
+  -case @nurture.number
+    -when 1
+      I am quite #{behavior.imbalance_first_word}. I hope someday to no longer have to #{behavior.displacer.name_eg} as much and just balance excessive #{behavior.name_eg} with #{behavior.balancer.name_eg}.
+    -when 2
+      I am quite #{behavior.imbalance_first_word}. I hope someday to no longer have to #{behavior.balancer.name_eg} as much and just displace excessive #{behavior.name_eg} with #{behavior.displacer.name_eg}.
+    -when 3
+      I am no longer #{behavior.imbalance_first_word}. I mostly just balance #{behavior.name_eg} with #{behavior.balancer.name_eg}.
+    -when 4
+      I am no longer #{behavior.imbalance_first_word}. I mostly just displace #{behavior.name_eg} with #{behavior.displacer.name_eg}.

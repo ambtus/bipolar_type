@@ -2,7 +2,7 @@
   -Hours.each do |hour|
     %tr
       %th
-        =link_to hour.name, type_path(@type.set_hours(hour).symbol)
+        =link_to hour.name, type_path(@type.set_hour(hour).symbol)
         .small.unbold=hour.description
       -Phase.each do |phase|
         -if hour.generic?

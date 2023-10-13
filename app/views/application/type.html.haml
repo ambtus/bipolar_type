@@ -1,22 +1,5 @@
-%p.header=link_to "Bipolar#{@type.bipolar}: #{@type.description}", nurture_path(@type.symbol), class: 'internal'
+%p.header=link_to @type.description.html_safe, @type.nurture_path, class: 'internal'
 
 
 =render 'cycle',
   chunks: Phase.collect{|p| render 'quick' , phase: p}
-
--@type.natures.values_at(1,0,2,3).each do |behavior|
-  %h2=behavior.episode
-  .hz
-    %b=behavior.imbalance + ":"
-    =render behavior.imbalance_path
-  =render 'cycle',
-    chunks: behavior.siblings.collect{|s| "#{link_to s.name, s.path}<br />#{behavior.nature(s)}".html_safe}
-  %dl.hz
-    %dt.short.green Displacer
-    %dd.short Preventative
-    %dt.short.blue Balancer
-    %dd.short Reversing
-    %dt.short.gold Opposite
-    %dd.short Balances displacer but displaces balancer
-    %dt.short.red Nature
-    %dd.short Unbalancing

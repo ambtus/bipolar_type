@@ -6,11 +6,13 @@ class Noun < Concept
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
 
-  def word; %w{energy strength}[index]; end
-  def strong?; index == 1; end
-  def nature; %w{energetic strong}[index]; end
+  def phases; Phase.all.select{|p| p.noun == self}; end
+  def +(verb); phases.find{|p| p.verb == verb}; end
 
-  def assets; %w{reserves powers}[index]; end
-  def episode; %w{Rising Falling}[index]; end
+  def word; %w{energy strength}[index]; end
+  def nature; %w{weak strong}[index]; end
+  def episode; %w{Spring Fall}[index]; end
+
+  def strong?; index == 1; end
 
 end

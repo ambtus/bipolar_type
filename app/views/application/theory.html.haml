@@ -45,18 +45,18 @@
 
 %p It’s also obvious you should “spend less and earn more” if you are financially manic and in debt. But earn more of <em>what</em> and do less of what <em>kind</em> of spending?
 
-%p But mental and affective imbalances are not even <em>measurable</em> and there is no obvious advice as to what you should do more or less of. Except to take sedatives if you’re manic and stimulants if you’re depressed. Which is less than helpful if you are both at the same time or cycle rapidly between the two.
+%p And mental and affective imbalances are not even <em>measurable</em>. There is also no advice as to what you should do more or less of except take sedatives if you’re manic and stimulants if you’re depressed. Which is less than helpful if you are both at the same time or cycle rapidly between the two.
 
-%p BipolarType offers specific advice in all four realms. Not only what exactly you should do, but when to do it.
+%p BipolarType offers advice in all four realms. Not only what you should do, but when you should do it.
 
 
 %h2 Balancing and Displacing
 
-%p Balancing behaviors are those that reverse an imbalance: if you have gotten too much energy, the balancing behavior is #{Phase.UE.name}.
+%p Balancing behaviors are those that reverse an imbalance: if you have gotten stuck in #{Phase.GE.name}, the balancing behavior is #{Phase.UE.name}.
 
-%p Displacing behaviors are those that prevent an imbalance: if you expect to get too much energy, the displacing behavior is #{Phase.GS.name}.
+%p Displacing behaviors are those that prevent an imbalance: if you expect to get stuck in #{Phase.GE.name}, the displacing behavior is #{Phase.GS.name}.
 
-%p In other words, if you have gained too much fat, balancing behaviors help reverse the gain into a loss and displacing behaviors help prevent you from gaining it back again.
+%p In other words, if you have gained too much, balancing behaviors help reverse the gain whereas displacing behaviors help prevent you from gaining it back again.
 
 =render 'cycle',
 chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and displaces ⇒<br />displaces and unbalances⇗</div>|.html_safe,
@@ -66,8 +66,6 @@ chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and dis
 
 %h2 Your BipolarType
 
-%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology, and thus most likely to <em>create</em> an imbalance during a prolonged phase of the cycle) and your Nurture (which behaviors are most important and thus must be preserved <em>despite</em> the imbalance they cause).
+%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology, and thus most likely to <em>create</em> an imbalance during a prolonged phase of the cycle) and your Nurture (which behaviors are most important to you based on your cultural upbringing, and thus must be preserved <em>despite</em> the imbalance they cause).
 
-%p The goal of BipolarType is <em>balance</em>. That means finding a balance between #{Verb.map(&:nature).and} #{Verb.map(&:episode).and.wrap} and between #{Noun.map(&:nature).and} #{Noun.map(&:episode).and.wrap}. It does not mean treating all four realms equally. It does mean finding balance within each realm.
-
-%p To discover your own BipolarType, start with an unbalanced realm: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}, or a compulsive #{link_to 'behavior', behaviors_path}.
+%p To discover your own BipolarType, start with a realm: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}, or a phase: #{Phase.collect{|p| link_to p.episode, p.path}.or.html_safe}.

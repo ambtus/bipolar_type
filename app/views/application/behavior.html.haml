@@ -1,14 +1,6 @@
-.center=@behavior.horizontal_when
+.center=@behavior.vertical_when
 %br
-.center
-  Example behaviors:
-  =render @behavior.examples_path
-%br
-.hz.center
-  =link_to @behavior.episode, @behavior.answer_path
-  %br
-  =@behavior.natural_state.wrap
-  .left #{@behavior.words.ing.capitalize} is easy, but #{@behavior.opposite.words.ing} is hard.
+.center=render 'behavior', b: @behavior
 %br
 =render 'cycle',
   caption: %Q[#{link_to "Same #{@behavior.realm.name} Realm", realm_path(@behavior.realm.symbol)}].html_safe,

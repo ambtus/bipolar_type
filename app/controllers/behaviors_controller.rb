@@ -6,11 +6,8 @@ class BehaviorsController < ApplicationController
       render 'phase'
     else
       @behavior = Behavior.send params[:id]
-      @title = "The #{@behavior.name} Behavior".html_safe
+      @title = "The #{@behavior.symbol} Behavior".html_safe
       render 'behavior'
     end
   end
-
-  def index; @title = 'The 16 Behaviors'; end
-
 end

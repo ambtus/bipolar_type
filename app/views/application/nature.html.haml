@@ -1,17 +1,23 @@
--unless @answer.behaviors.empty?
+-unless @nature.behaviors.empty?
   %dl.hz
     %dt Previously chosen
-    -@answer.behaviors.each do |behavior|
+    -@nature.behaviors.each do |behavior|
       %dd #{behavior.episode}: #{behavior.name}
 %br
 %table
-  %caption Choose your most compulsive and unbalancing behavior
-  -@answer.available_behaviors.each do |row|
+  %caption
+    -if @nature.number == 4
+      .red If the following is not easy and unbalancing, you might as well go back and #{link_to 'try again', nature_path(Nature.first_path)}
+    -else
+      Choose your most compulsive and unbalancing behavior
+  -@nature.available_behaviors.each do |row|
     %tr
       -row.each do |behavior|
         %td.top
 
-          =link_to behavior.episode, answer_path(@answer.next(behavior))
-          =render behavior.examples_path
+          =link_to behavior.episode, nature_path(@nature.next(behavior))
+          =behavior.example_list
+          %br
+          =behavior.imbalance_eg
 
 %p.note Note: you cannot type someone else. Even if you know what their current behaviors are, you have little way of knowing if they are natural behaviors or nurtured reversals or displacers of natural imbalances.
