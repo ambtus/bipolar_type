@@ -1,13 +1,14 @@
 =link_to_unless_current b.name, b.path
 %br
-=b.short_phrase
+=b.phrase
+%b=b.aka.wrap
+%br
 =b.example_list.html_safe
 %br
--unless defined? @type
-  %br
-  =link_to b.episode, b.nature_path
-  %dl.none
-    %dt=b.natures.first
-    %dd #{b.words.ing} is easy
-    %dt=b.natures.second
-    %dd #{b.opposite.words.ing} is hard
+%br
+=link_to b.episode, b.nature_path
+%br
+%b=b.natures.first
+(#{b.aka.ing} is pleasurable)
+%b="& #{b.natures.second}"
+(#{b.opposite.aka.ing} is painful)

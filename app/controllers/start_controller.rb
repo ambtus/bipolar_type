@@ -5,5 +5,4 @@ class StartController < ApplicationController
     @title = 'Hours'
     @initial = params[:id].split('•').size == 4
   end
-  def nurture; @type=Type.new(params[:id]); @title = 'Priorities'; end
 end

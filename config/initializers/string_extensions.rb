@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-MINE = %w{chip squash second third fourth without uncapitalize  split_camelcased invert_case phrase? camelcased? words first_word second_word last_word last_words first_words to_wbr prefix suffix slot slide wrap unwrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less little few much many as_much as_many that those is are them it they has have was were does do}
+MINE = %w{chip squash second third fourth without uncapitalize  split_camelcased invert_case phrase? camelcased? words first_word second_word last_word last_words first_words to_wbr prefix suffix slot slide wrap unwrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less a_lot a_little little few much many as_much as_many that those is are them it they has have was were does do}
 
 MINE.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
@@ -223,17 +223,15 @@ class String
   end
 
   def too_much
-    if self.match(' ')
-      first, second = self.split(' ', 2)
-      [first, 'too', second.much, second].to_phrase
+    if phrase?
+      [first_word, second_word.plural? ? 'too many' : 'too much', last_words].to_phrase
     else
       "#{self} too much"
     end
   end
   def too_little
-    if self.match(' ')
-      first, second = self.split(' ', 2)
-      [first, 'too', second.little, second].to_phrase
+    if phrase?
+      [first_word, second_word.plural? ? 'too few' : 'too little', last_words].to_phrase
     else
       "#{self} too little"
     end
@@ -297,6 +295,14 @@ class String
       [first_word, 'a lot of', last_words].to_phrase
     else
       "#{self} a lot"
+    end
+  end
+
+  def a_little
+    if phrase?
+      [first_word, 'a little', last_words].to_phrase
+    else
+      "#{self} a little"
     end
   end
 

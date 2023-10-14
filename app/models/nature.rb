@@ -31,6 +31,6 @@ class Nature
   end
   def next(behavior); "#{@question.next}:#{paths(behavior)}"; end
 
-  def nurture_path; 'Q1:' + all_behaviors.map(&:symbol).reverse.join('•'); end
+  def type_path; all_behaviors.sort.map(&:symbol).join('•'); end
 
 end

@@ -28,12 +28,14 @@ class Behavior < Concept
   def <=>(other); self.phase <=> other.phase; end
 
   def natural_state; phase.natural_state.prefix(realm.word.ly); end
-  def unbalanced; phase.nature.prefix(realm.word.ly); end
-
+  def unbalanced; phase.unbalanced.prefix(realm.word.ly); end
+  def displaced; phase.displaced.prefix(realm.word.ly); end
 
   def siblings; Phase.all.add(realm); end
   def cousins; Realm.all.add(phase); end
 
+  def previous; realm + phase.previous; end
+  def next; realm + phase.next; end
   def balancer; realm + phase.switch_attitude; end
   def displacer; realm + phase.switch_focus; end
   def opposite; realm + phase.opposite;end
@@ -57,18 +59,12 @@ class Behavior < Concept
     end
   end
 
-  def imbalance; [realm.word, verb.imbalance].to_phrase.to_wbr.html_safe; end
-  def imbalance_phrase; Words.imbalances[symbol.chop].join(', '); end
-  def imbalance_first_word; Words.imbalances[symbol.chop].first; end
-  def imbalance_eg; [imbalance, imbalance_first_word.wrap].to_phrase.html_safe; end
+  def aka; Words.short_phrase[symbol]; end
+  def name_eg; [name, aka.wrap].to_phrase.html_safe; end
 
+  def phrase; [Words.verb_words[symbol], Words.noun_words[realm.symbol]].to_phrase; end
+  def phrase_aka; [phrase, aka.wrap].to_phrase; end
 
-  def short_phrase; [Words.verb_words[symbol], Words.noun_words[realm.symbol]].to_phrase; end
-  def example_lines; Words.examples[symbol]; end
-  def aka; example_lines.lines.first; end
-  def short_phrase_aka; [short_phrase, aka].to_phrase; end
-  def example_list; example_lines.lines.join('<br />').html_safe; end
-
-  def name_eg; [name, aka].to_phrase.html_safe; end
+  def example_list; Words.examples[symbol].lines.join('<br />'); end
 
 end

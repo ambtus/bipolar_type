@@ -1,8 +1,7 @@
 class Type
 
-  def self.my_path; 'UAE•GPE•GMS•UFS' ; end
+  def self.my_path; 'GPE•UAE•UFS•GMS' ; end
   def self.my_type; self.new my_path; end
-  def nurture_path; Rails.application.routes.url_helpers.nurture_path(Nurture.jump_path(behaviors)); end
 
   def initialize(string)
     parts = string.split('•')
@@ -30,28 +29,24 @@ class Type
   def hours_range(phase); hour.range(phase); end
   def start_time(phase); hour.start_time(phase); end
 
-  def description
-    [behaviors.first.partial_episode, 'with', behaviors.second.partial_episode].to_phrase
-  end
+  def blues; behaviors.map(&:previous); end
+  def reds;   behaviors; end
+  def greens;  behaviors.map(&:next) ; end
+  def yellows; behaviors.map(&:opposite); end
 
-  def reds;   behaviors.values_at(1,3); end
-  def ambers; behaviors.values_at(2).map(&:balancer) +
-              behaviors.values_at(3).map(&:displacer) +
-              behaviors.values_at(0,2).map(&:opposite) ; end
-  def greens; behaviors.values_at(0,1).map(&:balancer) +
-              behaviors.values_at(0,1).map(&:displacer); end
+  def colors; %w{blue green yellow red}; end
+  def by_colors; [blues, greens, yellows, reds]; end
+  def color_hash; [by_colors, (0...colors.size).to_a].transpose.to_h; end
+  def color_index; h={}; color_hash.each {|k,v| k.each{|b| h[b] = v}}; h; end
+  def color(behavior); colors[color_index[behavior]]; end
 
-  def blues; Behavior.all - reds - ambers - greens; end
+  def by_phase(phase, index); color_hash.invert[index].select{|b| b.phase == phase}; end
+  def by_color(behavior); by_colors.collect{|ary| ary.select{|b| b.realm == behavior.realm}}; end
 
-  def colors; [greens, ambers, reds]; end
-  def color_hash; [colors, (0..2).to_a].transpose.to_h; end
+  def prefix(b); ['Do', 'And do', 'But don’t', 'And don’t' ][color_index[b]]; end
+  def suffix(b); ['unless you can’t', 'unless you really don’t want to', 'unless you really want to', 'unless you have to' ][color_index[b]] end
 
-  def quick(phase, index); color_hash.invert[index].select{|b| b.phase == phase}; end
-
-  def color_index;  h={}; color_hash.each {|k,v| k.each{|b| h[b] = v}}; h; end
-  def color(behavior); %w{green amber red}[color_index[behavior]]; end
-
-  def advice(b); ['Do ', 'And do ', 'But don’t '][color_index[b]] + b.aka.squish.unwrap; end
-
+  def long_advice(b); [prefix(b), b.name_eg, 'in the', b.time.downcase, suffix(b)].to_phrase.html_safe;
+end
 end
 

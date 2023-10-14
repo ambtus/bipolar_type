@@ -13,6 +13,4 @@ class Noun < Concept
   def nature; %w{weak strong}[index]; end
   def episode; %w{Spring Fall}[index]; end
 
-  def strong?; index == 1; end
-
 end

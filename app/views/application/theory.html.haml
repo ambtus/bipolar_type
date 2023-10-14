@@ -28,7 +28,7 @@
 %p The psychiatric profession in general views bipolar disorder as abnormalities in the brain which need to be “fixed”. I view bipolar disorder as an extreme manifestation of the above natural cycle.
 
 =render "cycle",
-  chunks: Phase.each.collect{|p| "<b>#{p.episode}</b><br />#{p.natural_state.wrap}<p class='left'>#{p.words.ing.capitalize} is easy, but #{p.opposite.words.ing}#{%w|⇗ ⇘ ⇙ ⇖|[p.index]} is hard.</p>".html_safe}
+  chunks: Phase.each.collect{|p| "<b>#{p.episode}</b><br />#{p.natural_state.wrap}<p class='left'>#{p.words.ing.capitalize} is pleasurable, but #{p.opposite.words.ing}#{%w|⇗ ⇘ ⇙ ⇖|[p.index]} is painful.</p>".html_safe}
 
 %p I also believe that <em>how</em> it manifests depends on your personality: my mother, her father, and his mother were all bipolar, and they all had wildly different symptoms from me, despite it most probably being caused by the same genes.
 
@@ -49,23 +49,10 @@
 
 %p BipolarType offers advice in all four realms. Not only what you should do, but when you should do it.
 
-
-%h2 Balancing and Displacing
-
-%p Balancing behaviors are those that reverse an imbalance: if you have gotten stuck in #{Phase.GE.name}, the balancing behavior is #{Phase.UE.name}.
-
-%p Displacing behaviors are those that prevent an imbalance: if you expect to get stuck in #{Phase.GE.name}, the displacing behavior is #{Phase.GS.name}.
-
-%p In other words, if you have gained too much, balancing behaviors help reverse the gain whereas displacing behaviors help prevent you from gaining it back again.
-
-=render 'cycle',
-chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and displaces ⇒<br />displaces and unbalances⇗</div>|.html_safe,
-  %Q|<div class='big'>#{Phase.second.name}</div>displaces ⇒<br />and balances ⇓<br />displaces and unbalances⇘|.html_safe,
-  %Q|<div class='big'>#{Phase.third.name}</div>⇐displaces<br />and balances ⇓<br />displaces and unbalances⇙</div>|.html_safe,
-  %Q|<div class='big'>#{Phase.fourth.name}</div>balances ⇑<br />and ⇐displaces<br />displaces and unbalances⇖</div>|.html_safe ]
-
 %h2 Your BipolarType
 
-%p Your BipolarType is a combination of your Nature (which behaviors are easiest for you based on your physiology, and thus most likely to <em>create</em> an imbalance during a prolonged phase of the cycle) and your Nurture (which behaviors are most important to you based on your cultural upbringing, and thus must be preserved <em>despite</em> the imbalance they cause).
+%p Your BipolarType is made up of which behavior in each phase is easiest for you, and thus most likely to <em>create</em> an imbalance.
 
-%p To discover your own BipolarType, start with a realm: #{Realm.collect{|r| link_to r.name, r.path}.or.html_safe}, or a phase: #{Phase.collect{|p| link_to p.episode, p.path}.or.html_safe}.
+%p To discover your own BipolarType, start with one of the following:
+%p.center #{Realm.collect{|r| link_to r.name, r.path}.join(' | ').html_safe}
+%p.center #{Phase.collect{|p| link_to p.name, p.path}.join(' | ').html_safe}

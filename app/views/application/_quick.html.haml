@@ -1,5 +1,0 @@
-%div.bigger=link_to @type.start_time(phase), hours_path(@type.symbol), class: 'internal'
-%ol
-  -3.times do |i|
-    -@type.quick(phase, i).each do |b|
-      %li{class: @type.color(b)}=link_to @type.advice(b), b.path, class: 'internal'

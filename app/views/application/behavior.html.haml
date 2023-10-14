@@ -3,15 +3,15 @@
 .center=render 'behavior', b: @behavior
 %br
 =render 'cycle',
-  caption: %Q[#{link_to "Same #{@behavior.realm.name} Realm", realm_path(@behavior.realm.symbol)}].html_safe,
-  chunks: @behavior.siblings.collect{|b| "#{link_to_unless_current b.symbol, b.path}<br />#{b.name}".html_safe}
+  caption: %Q[#{link_to "Same Realm", realm_path(@behavior.realm.symbol)}].html_safe,
+  chunks: @behavior.siblings.collect{|b| "#{link_to_unless_current b.name, b.path}<br /><b>#{b.aka}</b>".html_safe}
 %br
 %table
-  %caption=link_to "Same #{@behavior.phase.name} Phase".html_safe, @behavior.phase.path
+  %caption=link_to "Same Phase".html_safe, @behavior.phase.path
   %tr
     -@behavior.cousins.each do |b|
       %td
-        =link_to_unless_current b.symbol, b.path
+        =link_to_unless_current b.name, b.path
         %br
-        =b.name
+        %b=b.aka
 

@@ -1,0 +1,6 @@
+.bold.bigger=link_to @type.start_time(phase), hours_path(@type.symbol), class: 'internal'
+%br
+%ol
+  -4.times do |i|
+    -@type.by_phase(phase, i).each do |b|
+      %li{class: @type.color(b)}=link_to b.aka, b.path, class: 'internal'

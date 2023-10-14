@@ -21,7 +21,10 @@ class Phase < Concept
 
   def both; [verb, noun]; end
   def words; both.map(&:word).to_phrase; end
-  def natures; (strong? ? both.reverse : both).map(&:nature); end
+
+  def unbalanced; verb.nature; end
+  def displaced; noun.nature; end
+  def natures; (index > 1 ? both.reverse : both).map(&:nature); end
   def natural_state; natures.join(' & ').html_safe; end
   def episode; both.reverse.map(&:episode).to_phrase.to_wbr.html_safe; end
 

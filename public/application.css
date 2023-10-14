@@ -22,9 +22,9 @@
 .big {font-size: 1.1em;}
 .small { font-size: .9em; }
 
-.green {color: green;}
 .blue {color: blue;}
-.amber {color: #ffbf00;}
+.green {color: green;}
+.yellow {color: #ffa500;} /* amber #ffbf00, yellow-orange #ffae42, orange #ffa500*/
 .red {color: red;}
 
 .unbold { font-weight: normal; }

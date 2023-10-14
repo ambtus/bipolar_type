@@ -1,5 +1,22 @@
-%p.header=link_to @type.description.html_safe, @type.nurture_path, class: 'internal'
-
-
+%h2 By Phase
 =render 'cycle',
-  chunks: Phase.collect{|p| render 'quick' , phase: p}
+  chunks: Phase.collect{|p| render 'phase' , phase: p}
+
+%h2 Color code
+%ol.hz
+  %li.blue required for the sake of your health
+  %li.green good for your health, but not required
+  %li.yellow bad for your health, but not forbidden
+  %li.red
+    forbidden for the sake of your health
+    %br (not completely, just during its phase)
+
+%h2 By Realm
+-@type.behaviors.each do |behavior|
+  %h3=behavior.realm.name
+  %ol.hz
+    -@type.by_color(behavior).each_with_index do |color_group, i|
+      -color_group.each do |b|
+        %li=@type.long_advice(b)
+
+
