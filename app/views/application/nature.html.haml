@@ -1,25 +1,6 @@
--unless @nature.behaviors.empty?
-  %dl.hz
-    %dt Previously chosen
-    -@nature.behaviors.each do |behavior|
-      %dd #{behavior.episode}: #{behavior.name}
-%br
-%table
-  %caption
-    -if @nature.number == 4
-      .red If the following is not easy and unbalancing, you might as well go back and #{link_to 'try again', nature_path(Nature.first_path)}
-    -else
-      Choose your most compulsive and unbalancing behavior
-  -@nature.available_behaviors.each do |row|
-    %tr
-      -row.each do |b|
-        %td.top
-          =link_to b.episode, nature_path(@nature.next(b))
-          %br
-          =b.realm.word.ly
-          %b=b.natures.first
-          (#{b.aka.ing} is pleasurable)
-          %b="& #{b.natures.second}"
-          (#{b.opposite.aka.ing} is painful)
+%h2 The #{@realm.name} Realm
+=render 'cycle',
+  caption: 'Choose your most natural state',
+  chunks: @realm.behaviors.collect{|b| %Q|#{link_to b.episode, nature_path(@nature.next(b))}<br /><b>#{b.natures.first}</b> (#{b.aka.ing} is easy)<br/ ><b>& #{b.natures.second}</b> (#{b.opposite.aka.ing} hurts)|.html_safe}
 
-%p.note Note: you cannot type someone else. Even if you know what their current behaviors and states are, you have little way of knowing if they are natural or nurtured.
+%p.note Note: you cannot type someone else. You have little way of knowing if their state is natural or nurtured.

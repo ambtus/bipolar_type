@@ -16,11 +16,7 @@ class Nature
 
   def behaviors; @behavior_paths.split('•')[0,4].collect{|x| Behavior.send(x)}; end
   def available_realms; Realm.all - behaviors.map(&:realm); end
-  def available_phases; Phase.all - behaviors.map(&:phase); end
-
-  def available_behaviors; available_phases.multiply(available_realms); end
-
-  def all_behaviors; behaviors + available_behaviors.flatten; end
+  def realm; available_realms.sample; end
 
   def paths(behavior)
     if @behavior_paths.empty?
@@ -31,6 +27,6 @@ class Nature
   end
   def next(behavior); "#{@question.next}:#{paths(behavior)}"; end
 
-  def type_path; all_behaviors.sort.map(&:symbol).join('•'); end
+  def type_path; behaviors.sort.map(&:symbol).join('•'); end
 
 end

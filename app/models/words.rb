@@ -1,6 +1,5 @@
 class Words
 
-
 def self.seasons; {'GE'=>'Late Winter', 'UE'=>'Early Summer', 'US'=>'Late Summer', 'GS'=>'Early Winter'}; end
 def self.months; {'GE'=>'February', 'UE'=>'May', 'US'=>'August', 'GS'=>'November'}; end
 def self.moons; {'GE'=>'Waxing🌒Crescent', 'UE'=>'Waxing🌔Gibbous', 'US'=>'Waning🌖Gibbous', 'GS'=>'Waning🌘Crescent'}; end
@@ -9,7 +8,6 @@ def self.times; {'GE'=>'Morning', 'UE'=>'Midday', 'US'=>'Afternoon', 'GS'=>'Even
 def self.hours; {'GE'=>'8am', 'UE'=>'12noon', 'US'=>'4pm', 'GS'=>'8pm'}; end
 
 def self.noun_words; {'P'=>'food', 'M'=>'true', 'A'=>'stories', 'F'=>'assets'}; end
-
 def self.verb_words; {
 'GPE'=>'eat plant-based',
 'GME'=>'what was',
@@ -31,19 +29,19 @@ end
 
 def self.short_phrase; {
 'GPE'=>'eat carbs',
-'GME'=>'research facts',
-'GAE'=>'listen to music',
+'GME'=>'research',
+'GAE'=>'listen',
 'GFE'=>'earn cash',
 'UPE'=>'walk or jog',
-'UME'=>'know',
-'UAE'=>'sing or shout',
+'UME'=>'guess',
+'UAE'=>'sing',
 'UFE'=>'pay cash',
 'UPS'=>'lift weights',
 'UMS'=>'think',
 'UAS'=>'write',
 'UFS'=>'borrow',
 'GPS'=>'eat protein',
-'GMS'=>'watch results',
+'GMS'=>'watch',
 'GAS'=>'read',
 'GFS'=>'earn credit' }
 end

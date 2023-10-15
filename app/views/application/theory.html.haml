@@ -8,51 +8,51 @@
   I studied many different theories of personality, but none were able to describe my shifting priorities as I went from mania to depression and back again. They were all theories of “normal” personality, and I’m not “normal”. But I’m not <em>abnormal</em> either; I don’t have a
   =succeed '.' do
     =link_to 'personality disorder', 'https://en.wikipedia.org/wiki/Personality_disorder', :class => 'external'
+  I’m just bipolar.
+%p Although sometimes I <em>feel</em> like a different person depending on whether I’m manic or depressed, I’m still me and I still have the same abilities and preferences. It’s just that a manic me and a depressed me tend to be focused on different aspects of my personality.
 %p
   This theory is scientific (it is
   =succeed ')' do
     =link_to 'falsifiable', 'https://en.wikipedia.org/wiki/Falsifiability', :class => 'external'
   but it has not been validated by the medical, psychiatric, psychological, or type communities.
 
-%p I hope you find BipolarType useful or interesting but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path)}.
+%p I hope you find BipolarType interesting and useful but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path)}.
 
 %h2 The Four Phases
 
-%p Manic depression (as bipolar disorder used to be called) is a <em>cyclic</em> disorder. It is most problematic as a seasonal disorder, because an episode that lasts for months may be fatal. But there are actually four overlapping cycles; the seasonal one is the longest, but the monthly (lunar), weekly, and daily cycles all follow the same pattern.
+%p Manic depression is a <em>cyclic</em> disorder. It is most problematic as a seasonal disorder, because an episode that lasts for months may be fatal. But there are actually four overlapping cycles; the seasonal one is the longest, but the monthly (lunar), weekly, and daily cycles all follow the natural pattern of get energy, use energy, use strength, get strength, repeat.
 
 =render 'cycle',
   chunks: Phase.collect{|p| "<b>#{p.name}</b><p>#{p.vertical_when}</p>".html_safe}
 
-%h2 The Bipolar Cycle
+%h2 The Bipolar Episodes
 
-%p The psychiatric profession in general views bipolar disorder as abnormalities in the brain which need to be “fixed”. I view bipolar disorder as an extreme manifestation of the above natural cycle.
+%p I view bipolar episodes as getting “stuck” in one of the phases. Overdoing the behavior of that phase, while unable to do the balancing behaviors of the other phases.
+
+%p If a behavior is easy for you then it is possible to do it even out of phase. If a behavior is difficult for you, then it is impossible to do except <em>in</em> phase. That means easy behaviors are done too much, but difficult behaviors are done too little, leading to unhealthy imbalances.
+
+%p Instead of just Mania or Depression, BipolarType defines four different episodes, one for each phase.
 
 =render "cycle",
-  chunks: Phase.each.collect{|p| "<b>#{p.episode}</b><br />#{p.natural_state.wrap}<p class='left'>#{p.words.ing.capitalize} is pleasurable, but #{p.opposite.words.ing}#{%w|⇗ ⇘ ⇙ ⇖|[p.index]} is painful.</p>".html_safe}
+  chunks: Phase.each.collect{|p| "<b>#{p.episode}</b><br />#{p.natural_state.wrap}<p class='left'>#{p.words.ing.capitalize} is easy, but #{p.opposite.words.ing}#{%w|⇗ ⇘ ⇙ ⇖|[p.index]} is hard.</p>".html_safe}
 
-%p I also believe that <em>how</em> it manifests depends on your personality: my mother, her father, and his mother were all bipolar, and they all had wildly different symptoms from me, despite it most probably being caused by the same genes.
+%p How this manifests in an individual depends on your personality and which behaviors are hard for you: my mother, her father, and his mother were all bipolar, and the four of us all had different symptoms, despite most probably having the same “bipolar gene”. For example, my mother’s mania was primarily mental, and her depression physical, whereas my mania is primarily affective, and my depression mental.
 
-%p BipolarType is not an attempt to stop the cycle but instead offers a seatbelt for the roller-coaster ride so you won’t be thrown off during the highs of mania, left behind during the lows of depression, or lost during the transitions.
+%p Even the same symptoms aren’t necessarily caused by the same phase imbalance. My mother and I ostensibly had the same problem of gaining weight when depressed, but what worked for her didn’t work for me and I believe that she had #{Behavior.GPS.episode} whereas I have #{Behavior.GPE.episode}.
 
 
 %h2 The Four Realms of Behavior
+
 %table
   %tr
   -Realm.each do |r|
     %td.bold=r.name
 
-%p It’s obvious you should “eat less and exercise more” if you are physically depressed and overweight. But eat less of <em>what</em> and do more of what <em>kind</em> of exercise?
+%p Bipolar disorder is either a #{Realm.M.name} disorder or an #{Realm.A.name} disorder, depending on who you ask, but I believe that it’s a disorder in all four realms. But the #{Realm.P.name} and #{Realm.F.name} realms are <em>measurable</em> and thus imbalances in those realms are more easily broken down into “eating too much and not exercising enough” or “spending too much and not earning enough”.
 
-%p It’s also obvious you should “spend less and earn more” if you are financially manic and in debt. But earn more of <em>what</em> and do less of what <em>kind</em> of spending?
+%p Nobody ever told me I was “talking too much and not listening enough” or “watching too much and not thinking enough”. Or at least, not in the sense that I should be able to <em>change</em> those behaviors, except by taking sedatives when I was manic and stimulants when depressed. Which is less than helpful when I was both at the same time or cycling rapidly between the two.
 
-%p And mental and affective imbalances are not even <em>measurable</em>. There is also no advice as to what you should do more or less of except take sedatives if you’re manic and stimulants if you’re depressed. Which is less than helpful if you are both at the same time or cycle rapidly between the two.
+%p BipolarType offers advice in all four realms. Not only what you should do, but when you should do it: difficult but healthy behaviors need to be done <em>during their phase</em> to give you the largest chance for success. This is especially important for healthy behaviors that come <em>before</em> the unbalancing behaviors, as behaviors that come after tend to be a little more self-regulating.
 
-%p BipolarType offers advice in all four realms. Not only what you should do, but when you should do it.
+%h2=link_to 'Your BipolarType', nature_path(Nature.first_path)
 
-%h2 Your BipolarType
-
-%p Your BipolarType is made up of which behavior in each phase is easiest for you, and thus most likely to <em>create</em> an imbalance.
-
-%p To discover your own BipolarType, start with one of the following:
-%p.center #{Realm.collect{|r| link_to r.name, r.path}.join(' | ').html_safe}
-%p.center #{Phase.collect{|p| link_to p.name, p.path}.join(' | ').html_safe}

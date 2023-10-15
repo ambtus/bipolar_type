@@ -2,15 +2,6 @@
 =render 'cycle',
   chunks: Phase.collect{|p| render 'phase' , phase: p}
 
-%h2 Color code
-%ol.hz
-  %li.blue required for the sake of your health
-  %li.green good for your health, but not required
-  %li.yellow bad for your health, but not forbidden
-  %li.red
-    forbidden for the sake of your health
-    %br (not completely, just during its phase)
-
 %h2 By Realm
 -@type.behaviors.each do |behavior|
   %h3=behavior.realm.name

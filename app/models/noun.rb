@@ -11,6 +11,6 @@ class Noun < Concept
 
   def word; %w{energy strength}[index]; end
   def nature; %w{weak strong}[index]; end
-  def episode; %w{Spring Fall}[index]; end
+  def episode; %w{Rising Falling}[index]; end
 
 end

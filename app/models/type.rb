@@ -44,7 +44,7 @@ class Type
   def by_color(behavior); by_colors.collect{|ary| ary.select{|b| b.realm == behavior.realm}}; end
 
   def prefix(b); ['Do', 'And do', 'But don’t', 'And don’t' ][color_index[b]]; end
-  def suffix(b); ['unless you can’t', 'unless you really don’t want to', 'unless you really want to', 'unless you have to' ][color_index[b]] end
+  def suffix(b); ['unless you can’t', 'unless you don’t want to', 'unless you want to', 'unless you have to' ][color_index[b]] end
 
   def long_advice(b); [prefix(b), b.name_eg, 'in the', b.time.downcase, suffix(b)].to_phrase.html_safe;
 end
