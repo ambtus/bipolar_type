@@ -1,6 +1,6 @@
-%h2 The #{@realm.name} Realm
+%p Choose the easiest and most natural behavior, or the opposite of the hardest and most unatural behavior.
+
 =render 'cycle',
-  caption: 'Choose your most natural state',
-  chunks: @realm.behaviors.collect{|b| %Q|#{link_to b.episode, nature_path(@nature.next(b))}<br /><b>#{b.natures.first}</b> (#{b.aka.ing} is easy)<br/ ><b>& #{b.natures.second}</b> (#{b.opposite.aka.ing} hurts)|.html_safe}
+  chunks: @question.possibles.each_with_index.collect{|s,i| "#{link_to s, nature_path(@nature.next(@question.symbol + i.to_s))}".html_safe}
 
 %p.note Note: you cannot type someone else. You have little way of knowing if their state is natural or nurtured.

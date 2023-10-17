@@ -1,6 +1,6 @@
 # Restart required even in development mode when you modify this file.
 
-%w{clip multiply add duplicates remove_consecutive_dupes check_constraints sixth and or to_phrase }.each do |meth|
+%w{clip multiply add duplicates remove_consecutive_dupes check_constraints sixth and or to_phrase hash_for_mode }.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 
@@ -60,4 +60,13 @@ class Array
   def and; to_sentence; end
   def or; to_sentence(last_word_connector: ", or ", two_words_connector: " or "); end
   def to_phrase; join(" ").squish; end
+
+  # group_by(&:itself).transform_values(&:count)
+  # inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+  def hash_for_mode
+  hash = Hash.new(0)
+  self.each {|i| hash[i]+=1}
+  hash
+  end
+
 end

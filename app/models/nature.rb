@@ -3,29 +3,31 @@ class Nature
   def self.first_path; "Q1"; end
   def self.first; new(first_path); end
 
-  def self.jump_path(*behaviors); "Q#{behaviors.size + 1}:#{behaviors.map(&:symbol).join('•')}"; end
+  def self.jump_path(*answers); "Q#{answers.size + 1}:#{answers.map(&:symbol).join}"; end
 
   def initialize(string)
-    @question,@behavior_paths = string.split(":")
-    @behavior_paths = @behavior_paths || ""
+    @question,@answer_paths = string.split(":")
+    @answer_paths = @answer_paths || ""
   end
 
-  def number; @question.chip.to_i ; end
+  def number; @question.without('Q').to_i ; end
   def index; number - 1; end
-  def finished?; number > 4; end
+  def finished?; number > 24; end
 
-  def behaviors; @behavior_paths.split('•')[0,4].collect{|x| Behavior.send(x)}; end
-  def available_realms; Realm.all - behaviors.map(&:realm); end
-  def realm; available_realms.sample; end
+  def all_questions; Realm::SYMBOLS.multiply(%w{a b c d e f}).flatten; end
 
-  def paths(behavior)
-    if @behavior_paths.empty?
-      behavior.symbol
-    else
-      [@behavior_paths, behavior.symbol].join('•')
-    end
-  end
-  def next(behavior); "#{@question.next}:#{paths(behavior)}"; end
+  def answered_questions; @answer_paths.scan(/.../).collect{|x| Answer.new(x)}; end
+
+  def available_questions; all_questions - answered_questions.map(&:question_set) ; end
+
+  def question; Answer.new(available_questions.sample); end
+
+
+  def next(answer); "Q#{number.next}:#{@answer_paths}#{answer}"; end
+
+  def results; answered_questions.map(&:answer_set).hash_for_mode.select{|k,v| v> 3}.keys; end
+
+  def behaviors; results.collect{|rp| Realm.send(rp.first) + Phase.all[rp.second.to_i]}; end
 
   def type_path; behaviors.sort.map(&:symbol).join('•'); end
 

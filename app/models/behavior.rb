@@ -59,12 +59,19 @@ class Behavior < Concept
     end
   end
 
+  def self.questions; %w{aka phrase prefer choose_the better_at result}; end
+
   def aka; Words.short_phrase[symbol]; end
   def name_eg; [name, aka.wrap].to_phrase.html_safe; end
 
   def phrase; [Words.verb_words[symbol], Words.noun_words[realm.symbol]].to_phrase; end
   def phrase_aka; [phrase, aka.wrap].to_phrase; end
 
-  def example_list; Words.examples[symbol].lines.join('<br />'); end
+  def prefer; Words.prefer[symbol].prefix('prefer'); end
+  def choose_the; Words.choose_the[symbol].prefix('choose the'); end
+  def better_at; Words.better_at[symbol].prefix('better at'); end
+  def result; Words.result[symbol]; end
+
+  def example_list; [prefer, choose_the, better_at, result].join('<br />'); end
 
 end
