@@ -1,0 +1,5 @@
+-Type.each do |type|
+  %h2=link_to type.name, type.path
+  =render 'cycle',
+  chunks: type.behaviors.collect{|b| %Q|#{link_to b.episode, b.path}<br />#{b.natural_state}|.html_safe}
+

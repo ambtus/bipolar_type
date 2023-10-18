@@ -4,7 +4,6 @@ class Realm < Concept
   attr_reader :symbol
 
   def path; Rails.application.routes.url_helpers.realm_path(self.symbol); end
-  def nature_path; Rails.application.routes.url_helpers.nature_path(self.symbol); end
 
   ########
   SYMBOLS = %w{P M A F}

@@ -5,9 +5,5 @@
 %h2 By Realm
 -@type.behaviors.each do |behavior|
   %h3=behavior.realm.name
-  %ol.hz
-    -@type.by_color(behavior).each_with_index do |color_group, i|
-      -color_group.each do |b|
-        %li=@type.long_advice(b)
-
+  =render 'long', b: behavior
 

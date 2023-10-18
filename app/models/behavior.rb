@@ -9,7 +9,6 @@ class Behavior < Concept
   attr_reader :symbol, :verb, :realm, :noun
 
   def path; Rails.application.routes.url_helpers.behavior_path(self.symbol); end
-  def nature_path; Rails.application.routes.url_helpers.nature_path(Nature.jump_path(self)); end
 
   ########
   ALL = Phase::SYMBOLS.collect do |phrase|

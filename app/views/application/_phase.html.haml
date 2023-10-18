@@ -3,4 +3,7 @@
 %ol
   -4.times do |i|
     -@type.by_phase(phase, i).each do |b|
-      %li{class: @type.color(b)}=link_to b.aka, b.path, class: 'internal'
+      -if i > 1
+        %li{class: @type.color(b)}=link_to b.aka.less, b.path, class: 'internal'
+      -else
+        %li{class: @type.color(b)}=link_to b.aka.more, b.path, class: 'internal'

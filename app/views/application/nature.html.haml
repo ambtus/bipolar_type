@@ -1,6 +1,0 @@
-%p Choose the easiest and most natural behavior, or the opposite of the hardest and most unatural behavior.
-
-=render 'cycle',
-  chunks: @question.possibles.each_with_index.collect{|s,i| "#{link_to s, nature_path(@nature.next(@question.symbol + i.to_s))}".html_safe}
-
-%p.note Note: you cannot type someone else. You have little way of knowing if their state is natural or nurtured.

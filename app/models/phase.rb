@@ -8,7 +8,6 @@ class Phase < Concept
   attr_reader :symbol, :verb, :noun
 
   def path; Rails.application.routes.url_helpers.behavior_path(self.symbol); end
-  def nature_path; Rails.application.routes.url_helpers.nature_path(self.symbol); end
 
   ########
   SYMBOLS = %w{GE UE US GS }
