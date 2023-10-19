@@ -5,11 +5,12 @@
 %br
 %b="& #{b.natures.second}"
 (#{b.opposite.aka.ing} is difficult or painful)
-%br
-%br
-=link_to_unless_current b.name, b.path, class: 'internal'
-%br
-=b.phrase
-%b=b.aka.wrap
-%br
-=b.example_list.html_safe
+-if @realm || @behavior
+  %br
+  %br
+  =link_to_unless_current b.name, b.path, class: 'internal'
+  %br
+  =b.phrase
+  %b=b.aka.wrap
+  %br
+  =b.example_list.html_safe
