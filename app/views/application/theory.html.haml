@@ -40,6 +40,17 @@
 
 %p Even the same symptoms aren’t necessarily caused by the same phase imbalance. My mother and I ostensibly had the same problem of gaining weight when depressed, but what worked for her didn’t work for me and I believe that she had #{Behavior.GPS.episode} whereas I have #{Behavior.GPE.episode}.
 
+%h2 Balancing and Displacing
+
+%p Balancing behaviors are curative: the balancing behavior to #{Phase.UE.name} is #{Phase.GE.name}. The more you #{Phase.GE.name}, the more you can #{Phase.UE.name} without creating an imbalance.
+%p Displacing behaviors are preventative: the displacing behavior to #{Phase.UE.name} is #{Phase.US.name}. The more you #{Phase.US.name}, the less you will #{Phase.UE.name}.
+
+=render 'cycle',
+chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and displaces ⇒<br />displaces and unbalances⇗</div>|.html_safe,
+  %Q|<div class='big'>#{Phase.second.name}</div>displaces ⇒<br />and balances ⇓<br />displaces and unbalances⇘|.html_safe,
+  %Q|<div class='big'>#{Phase.third.name}</div>⇐displaces<br />and balances ⇓<br />displaces and unbalances⇙</div>|.html_safe,
+  %Q|<div class='big'>#{Phase.fourth.name}</div>balances ⇑<br />and ⇐displaces<br />displaces and unbalances⇖</div>|.html_safe ]
+
 
 %h2 The Four Realms of Behavior
 
@@ -52,6 +63,6 @@
 
 %p Nobody ever told me I was “talking too much and not listening enough” or “watching too much and not thinking enough”. Or at least, not in the sense that I should be able to <em>change</em> those behaviors, except by taking sedatives when I was manic and stimulants when depressed. Which is less than helpful when I was both at the same time or cycling rapidly between the two.
 
-%p BipolarType offers advice in all four realms. Not only what you should do, but when you should do it: difficult but healthy behaviors need to be done <em>during their phase</em> to give you the largest chance for success. This is especially important for healthy behaviors that come <em>before</em> the unbalancing behaviors, as behaviors that come after tend to be a little more self-regulating.
+%p BipolarType offers advice in all four realms. Not only what you should do, but when you should do it: difficult but healthy behaviors need to be done <em>during their phase</em> to give you the largest chance for success.
 
 %h2=link_to 'The 24 BipolarTypes', types_path
