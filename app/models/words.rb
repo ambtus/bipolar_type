@@ -46,8 +46,8 @@ def self.short_phrase; {
 'UAS'=>'write',
 'GAS'=>'read',
 
-'GFE'=>'sell',
-'UFE'=>'buy',
+'GFE'=>'earn cash',
+'UFE'=>'pay cash',
 'UFS'=>'borrow',
 'GFS'=>'invest' }
 end #short_phrase
