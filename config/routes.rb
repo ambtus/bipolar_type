@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :realms, only: [:show]
   resources :behaviors, only: [:show, :index]
   resources :types, only: [:show, :index]
+  resources :answers, only: [:show]
 end

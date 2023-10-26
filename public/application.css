@@ -7,7 +7,7 @@
 .clear { clear: both; }
 .hz { margin: 0 auto; display: table; }
 
-.chosen {color: #FFBF00; font-style: italic}
+.chosen {color: red; font-style: italic}
 .constrained {color: grey; text-decoration:line-through;}
 
 .heading {font-style: italic; text-align: center; }

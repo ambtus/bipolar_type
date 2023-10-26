@@ -1,0 +1,14 @@
+%p.center
+  Once you have
+  %span.chosen chosen
+  something, other choices will become
+  %span.constrained unavailable.
+
+-unless @answer.number == 1
+  %p.center
+    If you are stuck you can
+    =link_to_unless_current "start over", answer_path(Answer.first_path)
+
+=render 'cycle',
+  caption: 'Choose a Bipolar Episode',
+  chunks: Phase.collect{|p| render 'choice' , phase: p}
