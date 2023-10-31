@@ -60,9 +60,9 @@ dl.none { margin: 0 auto 0 auto; padding: 0; display: table; }
 dt { float: auto; text-align: center; font-weight: bold; }
 dd { margin: auto; text-align: center; }
 
-dt.inline { float: left; clear: left; text-align: right; font-weight: bold; width: 6ch; }
+dt.inline { float: left; clear: left; text-align: right; font-weight: bold; width: 10ch; }
 /* width of the longest word used as a dt in the app */
-dd.inline { margin: 0 0 0 7; }
+dd.inline { margin: 0 0 0 11; }
 /* 1 more than the width in dt */
 
 table { border-collapse: collapse; margin-left: auto; margin-right: auto; }

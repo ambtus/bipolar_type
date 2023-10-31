@@ -16,4 +16,9 @@ class Realm < Concept
 
   def word; %w{physical mental affective financial}[index]; end
 
+  def get; Words.gets[symbol]; end
+  def use; Words.uses[symbol]; end
+  def thin; Words.thins[symbol]; end
+  def fat; Words.fats[symbol]; end
+
 end

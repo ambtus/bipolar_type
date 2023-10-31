@@ -1,10 +1,12 @@
 # Restart required even in development mode when you modify this file.
 
-%w{clip multiply add duplicates remove_consecutive_dupes check_constraints sixth and or to_phrase hash_for_mode }.each do |meth|
+%w{to_wbr clip multiply add duplicates remove_consecutive_dupes check_constraints sixth and or to_phrase hash_for_mode }.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 
 class Array
+
+  def to_wbr; join('<wbr>'); end
 
   def clip n=1
     take size - n

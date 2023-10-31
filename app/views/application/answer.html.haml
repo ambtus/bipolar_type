@@ -10,5 +10,5 @@
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 
 =render 'cycle',
-  caption: 'Choose a Bipolar Episode',
+  caption: 'Choose a Problem',
   chunks: Phase.collect{|p| render 'choice' , phase: p}

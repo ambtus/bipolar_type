@@ -1,9 +1,39 @@
-.bold.bigger=link_to @type.start_time(phase), hours_path(@type.symbol), class: 'internal'
+.bold
+  =link_to phase.name, phase.path
+  %br
+  =phase.short_when
 %br
-%ol
-  -4.times do |i|
-    -@type.by_phase(phase, i).each do |b|
-      -if i > 1
-        %li{class: @type.color(b)}=link_to b.aka.less, b.path, class: 'internal'
-      -else
-        %li{class: @type.color(b)}=link_to b.aka.more, b.path, class: 'internal'
+-case phase.symbol
+
+  -when "GE"
+
+    %ol
+      %li Do #{@type.behaviors.second.balancer.aka}
+      %li Do <em>not</em> #{@type.behaviors.first.aka}
+
+    %p.left #{@type.behaviors.second.balancer.aka} <em>in addition to</em> #{@type.behaviors.second.opposite.aka.ing}
+
+
+  -when "UE"
+
+    %ol
+      %li Do #{@type.behaviors.third.displacer.aka}
+      %li Do #{@type.behaviors.fourth.opposite.aka}
+
+    %p.left #{@type.behaviors.third.displacer.aka} <em>instead of</em> #{@type.behaviors.third.aka.ing}
+
+  -when "US"
+
+    %ol
+      %li Do #{@type.behaviors.fourth.balancer.aka}
+      %li Do <em>not</em> #{@type.behaviors.third.aka}
+
+    %p.left #{@type.behaviors.fourth.balancer.aka} <em>in addition to</em> #{@type.behaviors.fourth.opposite.aka.ing}
+
+  -when "GS"
+
+    %ol
+      %li Do #{@type.behaviors.first.displacer.aka}
+      %li Do #{@type.behaviors.second.opposite.aka}
+
+    %p.left #{@type.behaviors.first.displacer.aka} <em>instead of</em> #{@type.behaviors.first.aka.ing}

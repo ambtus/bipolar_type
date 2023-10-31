@@ -5,64 +5,33 @@
   =succeed '.' do
     =link_to 'personality type', 'https://en.wikipedia.org/wiki/Personality_type', :class => 'external'
 %p
-  I studied many different theories of personality, but none were able to describe my shifting priorities as I went from mania to depression and back again. They were all theories of “normal” personality, and I’m not “normal”. But I’m not <em>abnormal</em> either; I don’t have a
-  =succeed '.' do
-    =link_to 'personality disorder', 'https://en.wikipedia.org/wiki/Personality_disorder', :class => 'external'
-  I’m just bipolar.
-%p Although sometimes I <em>feel</em> like a different person depending on whether I’m manic or depressed, I’m still me and I still have the same abilities and preferences. It’s just that a manic me and a depressed me tend to be focused on different aspects of my personality.
-%p
-  This theory is scientific (it is
+  The theory is scientific (it is
   =succeed ')' do
     =link_to 'falsifiable', 'https://en.wikipedia.org/wiki/Falsifiability', :class => 'external'
-  but it has not been validated by the medical, psychiatric, psychological, or type communities.
-
-%p I hope you find BipolarType interesting and useful but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path)}.
+  but it has not been validated by the medical, psychiatric, psychological, or type communities. I hope you find BipolarType interesting and useful but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path)}.
 
 %h2 The Four Phases
-
-%p Manic depression is a <em>cyclic</em> disorder. It is most problematic as a seasonal disorder, because an episode that lasts for months may be fatal. But there are actually four overlapping cycles; the seasonal one is the longest, but the monthly (lunar), weekly, and daily cycles all follow the natural pattern of get energy, use energy, use strength, get strength, repeat.
 
 =render 'cycle',
   chunks: Phase.collect{|p| "<b>#{p.name}</b><p>#{p.vertical_when}</p>".html_safe}
 
-%h2 The Bipolar Episodes
+%p Any energy you get but do not use is saved for later. The same is not true for strength: you cannot “save” strength for later so there is no urge to get more than you currently need.
 
-%p I view bipolar episodes as getting “stuck” in one of the phases. Overdoing the behavior of that phase, while unable to do the balancing behaviors of the other phases.
-
-%p If a behavior is easy for you then it is possible to do it even out of phase. If a behavior is difficult for you, then it is impossible to do except <em>in</em> phase. That means easy behaviors are done too much, but difficult behaviors are done too little, leading to unhealthy imbalances.
-
-%p Instead of just Mania or Depression, BipolarType defines four different episodes, one for each phase.
+%p If you run out of energy you will hit the wall and stop. The same is not true for strength: you cannot “run out” of strength so there is no urge to preserve what you currently have.
 
 =render "cycle",
-  chunks: Phase.each.collect{|p| "<b>#{p.episode}</b><br />#{p.natural_state.wrap}<p class='left'>#{p.words.ing.capitalize} is easy, but #{p.opposite.words.ing}#{%w|⇗ ⇘ ⇙ ⇖|[p.index]} is hard.</p>".html_safe}
-
-%p How this manifests in an individual depends on your personality and which behaviors are hard for you: my mother, her father, and his mother were all bipolar, and the four of us all had different symptoms, despite most probably having the same “bipolar gene”. For example, my mother’s mania was primarily mental, and her depression physical, whereas my mania is primarily affective, and my depression mental.
-
-%p Even the same symptoms aren’t necessarily caused by the same phase imbalance. My mother and I ostensibly had the same problem of gaining weight when depressed, but what worked for her didn’t work for me and I believe that she had #{Behavior.GPS.episode} whereas I have #{Behavior.GPE.episode}.
-
-%h2 Balancing and Displacing
-
-%p Balancing behaviors are curative: the balancing behavior to #{Phase.UE.name} is #{Phase.GE.name}. The more you #{Phase.GE.name}, the more you can #{Phase.UE.name} without creating an imbalance.
-%p Displacing behaviors are preventative: the displacing behavior to #{Phase.UE.name} is #{Phase.US.name}. The more you #{Phase.US.name}, the less you will #{Phase.UE.name}.
-
-=render 'cycle',
-chunks: [ %Q|<div class='big'>#{Phase.first.name}</div>balances ⇑<br />and displaces ⇒<br />displaces and unbalances⇗</div>|.html_safe,
-  %Q|<div class='big'>#{Phase.second.name}</div>displaces ⇒<br />and balances ⇓<br />displaces and unbalances⇘|.html_safe,
-  %Q|<div class='big'>#{Phase.third.name}</div>⇐displaces<br />and balances ⇓<br />displaces and unbalances⇙</div>|.html_safe,
-  %Q|<div class='big'>#{Phase.fourth.name}</div>balances ⇑<br />and ⇐displaces<br />displaces and unbalances⇖</div>|.html_safe ]
-
+  chunks: Phase.each.collect{|p| "<b>#{p.episode}</b>#{render 'problem', phase: p}".html_safe}
 
 %h2 The Four Realms of Behavior
 
 %table
   %tr
   -Realm.each do |r|
-    %td.bold=r.name
-
-%p Bipolar disorder is either a #{Realm.M.name} disorder or an #{Realm.A.name} disorder, depending on who you ask, but I believe that it’s a disorder in all four realms. But the #{Realm.P.name} and #{Realm.F.name} realms are <em>measurable</em> and thus imbalances in those realms are more easily broken down into “eating too much and not exercising enough” or “spending too much and not earning enough”.
-
-%p Nobody ever told me I was “talking too much and not listening enough” or “watching too much and not thinking enough”. Or at least, not in the sense that I should be able to <em>change</em> those behaviors, except by taking sedatives when I was manic and stimulants when depressed. Which is less than helpful when I was both at the same time or cycling rapidly between the two.
-
-%p BipolarType offers advice in all four realms. Not only what you should do, but when you should do it: difficult but healthy behaviors need to be done <em>during their phase</em> to give you the largest chance for success.
+    %td
+      .bold=r.name
+      %br
+      =r.get
+      &
+      =r.use
 
 %h2=link_to 'Your BipolarType', answer_path(Answer.first_path)

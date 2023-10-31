@@ -10,7 +10,5 @@ class Noun < Concept
   def +(verb); phases.find{|p| p.verb == verb}; end
 
   def word; %w{energy strength}[index]; end
-  def nature; %w{weak lethargic}[index]; end
-  def episode; %w{Rising Falling}[index]; end
 
 end

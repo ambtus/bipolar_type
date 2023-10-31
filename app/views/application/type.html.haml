@@ -1,8 +1,4 @@
+%p.heading=@type.behaviors.map(&:episode).join('<br />').html_safe
+
 =render 'cycle',
   chunks: Phase.collect{|p| render 'phase' , phase: p}
-
-%h2 Bipolar I
-=render 'long', greater: @type.behaviors.second, lesser: @type.behaviors.fourth, first: 'Mania', second: 'Depression'
-%h2 Bipolar II
-=render 'long', greater: @type.behaviors.first, lesser: @type.behaviors.third, first: 'Depression', second: 'Mania'
-

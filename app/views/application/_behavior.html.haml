@@ -1,11 +1,7 @@
 =b.episode
-%br
-%b=b.natures.first
-(#{b.aka.ing} is easy or pleasurable)
-%br
-%b="& #{b.natures.second}"
-(#{b.opposite.aka.ing} is difficult or painful)
--if @realm || @behavior
+%br=b.nature.wrap
+%b=b.problem
+-if @realm || @behavior || @phase
   %br
   %br
   =link_to_unless_current b.name, b.path, class: 'internal'

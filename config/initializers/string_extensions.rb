@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-MINE = %w{alpha_index chip squash second third fourth without uncapitalize  split_camelcased invert_case phrase? camelcased? words first_word second_word last_word last_words first_words to_wbr prefix suffix slot slide wrap unwrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less a_lot a_little little few much many as_much as_many that those is are them it they has have was were does do}
+MINE = %w{alpha_index chip squash second third fourth without uncapitalize  split_camelcased invert_case phrase? camelcased? words first_word second_word last_word last_words first_words to_wbr prefix suffix slot slide wrap unwrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less a_lot a_little little few much many as_much as_many as_little that those is are them it they has have was were does do}
 
 MINE.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
@@ -291,6 +291,17 @@ class String
     end
   end
   alias as_many :as_much
+
+  def as_little
+    as = 'as little'
+    if compound_verb?
+      [first_words, as, last_word].to_phrase
+    elsif phrase?
+      slot(as)
+    else
+      slide(as)
+    end
+  end 
 
   def a_lot
     if phrase?

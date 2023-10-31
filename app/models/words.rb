@@ -1,11 +1,28 @@
 class Words
 
+def self.reasons; {'GE'=>'needs to get less energy', 'UE'=>'needs to get more energy', 'US'=>'needs to use less strength', 'GS'=>'needs to use more strength'}; end
+
+def self.solutions; {'GE'=>'GetStrength instead of GetEnergy', 'UE'=>'GetEnergy in addition to GetStrength', 'US'=>'UseEnergy instead of UseStrength', 'GS'=>'UseStrength as well as UseEnergy'}; end
+
+def self.start_seasons; {'GE'=>'Winter', 'UE'=>'Spring', 'US'=>'Summer', 'GS'=>'Fall'}; end
+def self.month_ranges; {'GE'=>'Jan~Mar', 'UE'=>'Apr~Jun', 'US'=>'Jul~Sep', 'GS'=>'Oct~Dec'}; end
+
 def self.seasons; {'GE'=>'Late Winter', 'UE'=>'Early Summer', 'US'=>'Late Summer', 'GS'=>'Early Winter'}; end
 def self.months; {'GE'=>'February', 'UE'=>'May', 'US'=>'August', 'GS'=>'November'}; end
+
+def self.moon_symbols; {'GE'=>'🌒', 'UE'=>'🌔', 'US'=>'🌖', 'GS'=>'🌘'}; end
+
 def self.moons; {'GE'=>'Waxing🌒Crescent', 'UE'=>'Waxing🌔Gibbous', 'US'=>'Waning🌖Gibbous', 'GS'=>'Waning🌘Crescent'}; end
 def self.days; {'GE'=>'Monday', 'UE'=>'Tuesday', 'US'=>'Thursday', 'GS'=>'Friday'}; end
-def self.times; {'GE'=>'Morning', 'UE'=>'Midday', 'US'=>'Afternoon', 'GS'=>'Evening'}; end
+
+def self.times; {'GE'=>'Sunrise', 'UE'=>'Forenoon', 'US'=>'Afternoon', 'GS'=>'Sunset'}; end
 def self.hours; {'GE'=>'8am', 'UE'=>'12noon', 'US'=>'4pm', 'GS'=>'8pm'}; end
+def self.hour_ranges; {'GE'=>'6am~10am', 'UE'=>'10am~2pm', 'US'=>'2pm~6pm', 'GS'=>'6pm~10pm'}; end
+
+def self.gets; {'P'=>'eat', 'M'=>'learn', 'A'=>'listen', 'F'=>'earn'}; end
+def self.uses; {'P'=>'exercise', 'M'=>'think', 'A'=>'talk', 'F'=>'spend'}; end
+def self.thins; {'P'=>'anorexic', 'M'=>'amnesic', 'A'=>'suicidal', 'F'=>'poor'}; end
+def self.fats; {'P'=>'obese', 'M'=>'fatheaded', 'A'=>'homicidal', 'F'=>'rich'}; end
 
 def self.noun_words; {'P'=>'foods', 'M'=>'truths', 'A'=>'stories', 'F'=>'money'}; end
 def self.verb_words; {
@@ -41,7 +58,7 @@ def self.short_phrase; {
 'UMS'=>'imagine',
 'GMS'=>'watch',
 
-'GAE'=>'listen',
+'GAE'=>'listen to music',
 'UAE'=>'talk',
 'UAS'=>'write',
 'GAS'=>'read',

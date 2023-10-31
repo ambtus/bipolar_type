@@ -30,6 +30,8 @@ class Hours < Concept
 
   def range(phase); [start_time(phase), end_time(phase)].compact.join('-'); end
 
+  def self.range(phase); self.E.range(phase); end
+
   def description
     sleep_for.inspect
   end
