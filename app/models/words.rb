@@ -20,7 +20,7 @@ def self.hours; {'GE'=>'8am', 'UE'=>'12noon', 'US'=>'4pm', 'GS'=>'8pm'}; end
 def self.hour_ranges; {'GE'=>'6am~10am', 'UE'=>'10am~2pm', 'US'=>'2pm~6pm', 'GS'=>'6pm~10pm'}; end
 
 def self.gets; {'P'=>'eat', 'M'=>'learn', 'A'=>'listen', 'F'=>'earn'}; end
-def self.uses; {'P'=>'exercise', 'M'=>'think', 'A'=>'talk', 'F'=>'spend'}; end
+def self.uses; {'P'=>'exercise', 'M'=>'think', 'A'=>'communicate', 'F'=>'spend'}; end
 def self.thins; {'P'=>'anorexic', 'M'=>'amnesic', 'A'=>'suicidal', 'F'=>'poor'}; end
 def self.fats; {'P'=>'obese', 'M'=>'fatheaded', 'A'=>'homicidal', 'F'=>'rich'}; end
 

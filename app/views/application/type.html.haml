@@ -2,3 +2,9 @@
 
 =render 'cycle',
   chunks: Phase.collect{|p| render 'phase' , phase: p}
+
+%p
+ =@type.behaviors[0,2].map(&:use).and.capitalize
+ and
+ =@type.behaviors[2,2].map(&:get).and
+ when you want to or need to, but stop when it becomes painful or “too much”.
