@@ -1,12 +1,10 @@
-=b.episode
-%br=b.nature.wrap
-%b=b.problem
 -if @realm || @behavior || @phase
-  %br
-  %br
   =link_to_unless_current b.name, b.path, class: 'internal'
   %br
   =b.phrase
   %b=b.aka.wrap
   %br
   =b.example_list.html_safe
+%br=b.episode
+%br=b.nature.wrap
+%b=b.problem

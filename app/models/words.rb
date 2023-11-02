@@ -24,7 +24,7 @@ def self.uses; {'P'=>'exercise', 'M'=>'think', 'A'=>'communicate', 'F'=>'spend'}
 def self.thins; {'P'=>'anorexic', 'M'=>'amnesic', 'A'=>'suicidal', 'F'=>'poor'}; end
 def self.fats; {'P'=>'obese', 'M'=>'fatheaded', 'A'=>'homicidal', 'F'=>'rich'}; end
 
-def self.noun_words; {'P'=>'foods', 'M'=>'truths', 'A'=>'stories', 'F'=>'money'}; end
+def self.noun_words; {'P'=>'foods', 'M'=>'truths', 'A'=>'morals', 'F'=>'money'}; end
 def self.verb_words; {
 'GPE'=>'eat plant-based',
 'UPE'=>'gather plant',
@@ -37,7 +37,7 @@ def self.verb_words; {
 'GMS'=>'see emerging',
 
 'GAE'=>'listen to',
-'UAE'=>'tell',
+'UAE'=>'express',
 'UAS'=>'write',
 'GAS'=>'read',
 

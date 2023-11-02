@@ -8,8 +8,12 @@
   -when "GE"
 
     %ol
-      %li Do #{@type.behaviors.second.balancer.aka}
-      %li Do <em>not</em> #{@type.behaviors.first.aka}
+      %li.green
+        Do
+        =link_to @type.behaviors.second.balancer.aka, @type.behaviors.second.balancer.path, class: 'internal'
+      %li.red
+        Do <em>not</em>
+        =link_to @type.behaviors.first.aka, @type.behaviors.first.path, class: 'internal'
 
     %p.left #{@type.behaviors.second.balancer.aka} <em>in addition to</em> #{@type.behaviors.second.opposite.aka.ing}
 
@@ -17,23 +21,35 @@
   -when "UE"
 
     %ol
-      %li Do #{@type.behaviors.third.displacer.aka}
-      %li Do #{@type.behaviors.fourth.opposite.aka}
+      %li.blue
+        Do
+        =link_to @type.behaviors.third.displacer.aka, @type.behaviors.third.displacer.path, class: 'internal'
+      %li.green
+        Do
+        =link_to @type.behaviors.fourth.opposite.aka, @type.behaviors.fourth.opposite.path, class: 'internal'
 
     %p.left #{@type.behaviors.third.displacer.aka} <em>instead of</em> #{@type.behaviors.third.aka.ing}
 
   -when "US"
 
     %ol
-      %li Do #{@type.behaviors.fourth.balancer.aka}
-      %li Do <em>not</em> #{@type.behaviors.third.aka}
+      %li.green
+        Do
+        =link_to @type.behaviors.fourth.balancer.aka, @type.behaviors.fourth.balancer.path, class: 'internal'
+      %li.red
+        Do <em>not</em>
+        =link_to @type.behaviors.third.aka, @type.behaviors.third.path, class: 'internal'
 
     %p.left #{@type.behaviors.fourth.balancer.aka} <em>in addition to</em> #{@type.behaviors.fourth.opposite.aka.ing}
 
   -when "GS"
 
     %ol
-      %li Do #{@type.behaviors.first.displacer.aka}
-      %li Do #{@type.behaviors.second.opposite.aka}
+      %li.blue
+        Do
+        =link_to @type.behaviors.first.displacer.aka, @type.behaviors.first.displacer.path, class: 'internal'
+      %li.green
+        Do
+        =link_to @type.behaviors.second.opposite.aka, @type.behaviors.second.opposite.path, class: 'internal'
 
     %p.left #{@type.behaviors.first.displacer.aka} <em>instead of</em> #{@type.behaviors.first.aka.ing}
