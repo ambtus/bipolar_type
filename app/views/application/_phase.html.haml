@@ -7,6 +7,8 @@
 
   -when "GE"
 
+    %p.left #{@type.behaviors.second.balancer.aka} <em>in addition to</em> #{@type.behaviors.second.opposite.aka.ing}
+
     %ol
       %li.green
         Do
@@ -15,10 +17,10 @@
         Do <em>not</em>
         =link_to @type.behaviors.first.aka, @type.behaviors.first.path, class: 'internal'
 
-    %p.left #{@type.behaviors.second.balancer.aka} <em>in addition to</em> #{@type.behaviors.second.opposite.aka.ing}
-
 
   -when "UE"
+
+    %p.left #{@type.behaviors.third.displacer.aka} <em>instead of</em> #{@type.behaviors.third.aka.ing}
 
     %ol
       %li.blue
@@ -28,9 +30,9 @@
         Do
         =link_to @type.behaviors.fourth.opposite.aka, @type.behaviors.fourth.opposite.path, class: 'internal'
 
-    %p.left #{@type.behaviors.third.displacer.aka} <em>instead of</em> #{@type.behaviors.third.aka.ing}
-
   -when "US"
+
+    %p.left #{@type.behaviors.fourth.balancer.aka} <em>in addition to</em> #{@type.behaviors.fourth.opposite.aka.ing}
 
     %ol
       %li.green
@@ -40,9 +42,9 @@
         Do <em>not</em>
         =link_to @type.behaviors.third.aka, @type.behaviors.third.path, class: 'internal'
 
-    %p.left #{@type.behaviors.fourth.balancer.aka} <em>in addition to</em> #{@type.behaviors.fourth.opposite.aka.ing}
-
   -when "GS"
+
+    %p.left #{@type.behaviors.first.displacer.aka} <em>instead of</em> #{@type.behaviors.first.aka.ing}
 
     %ol
       %li.blue
@@ -52,4 +54,3 @@
         Do
         =link_to @type.behaviors.second.opposite.aka, @type.behaviors.second.opposite.path, class: 'internal'
 
-    %p.left #{@type.behaviors.first.displacer.aka} <em>instead of</em> #{@type.behaviors.first.aka.ing}
