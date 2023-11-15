@@ -2,14 +2,20 @@
   -if defined? caption
     %caption=caption
   %tr
-    %td.top=chunks.second
-    %th 🌕
-    %td.top=chunks.third
+    %td.top.halfish=chunks.second
+    %th
+      Up
+    %td.top.halfish=chunks.third
   %tr
-    %th 🌓
+    %th
+      Early
     %th ↻
-    %th 🌗
+    %th
+      Late
   %tr
     %td.top=chunks.first
-    %th 🌑
+    %th
+      Down
+      .unbold.small
+        ='-reset-'
     %td.top=chunks.fourth

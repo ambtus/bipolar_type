@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-MINE = %w{alpha_index chip squash second third fourth without uncapitalize  split_camelcased invert_case phrase? camelcased? words first_word second_word last_word last_words first_words to_wbr prefix suffix slot slide wrap unwrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less a_lot a_little little few much many as_much as_many as_little that those is are them it they has have was were does do}
+MINE = %w{alpha_index chip squash second third fourth without uncapitalize  split_camelcased invert_case phrase? camelcased? words first_word second_word last_word last_words first_words to_wbr prefix suffix slot slide wrap unwrap is_tls? to_fa is_mbti? mbti_index mbti_row dominant switch auxiliary jungian s ed en ly not_ers er ing an too_much too_little compound_verb? compounded more even_more enough plural? fewer less a_lot a_little little few much many as_much as_many as_little that those is are them it they has have was were does do}
 
 MINE.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
@@ -190,6 +190,15 @@ class String
 
   def ly; self.sub(/y$/, 'i') + 'ly'; end
 
+  def not_ers; %w{obese}.include?(self); end
+  def er
+    return self.prefix('more') if self.not_ers
+    return self.prefix('more') if self.ends_with?('ed')
+    return self.prefix('more') if self.ends_with?('ic')
+    return self.prefix('more') if self.ends_with?('al')
+    self.sub(/y$/, 'i').sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3') + 'er'
+  end
+
   def ing
     return 'hardening' if self=='harden'
     return 'lying' if self=='lie'
@@ -301,7 +310,7 @@ class String
     else
       slide(as)
     end
-  end 
+  end
 
   def a_lot
     if phrase?
@@ -321,13 +330,13 @@ class String
 
   def little; plural? ? prefix('few') : prefix('little'); end
   alias few :little
-  def much; plural? ? suffix('many') : suffix('much'); end
+  def much; plural? ? prefix('many') : prefix('much'); end
   alias many :much
   def that; plural? ? prefix('those') : prefix('that'); end
   alias those :that
   def is; plural? ? suffix('are') : suffix('is'); end
   alias are :is
-  def them; plural? ? suffix('them') : suffix('it'); end
+  def them; plural? ? 'them' : 'it'; end
   alias it :them
   def they; plural? ? prefix('they') : prefix('it'); end
   def has; plural? ? suffix('have') : suffix('has'); end

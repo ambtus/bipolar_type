@@ -7,6 +7,8 @@ def self.solutions; {'GE'=>'GetStrength instead of GetEnergy', 'UE'=>'GetEnergy 
 def self.start_seasons; {'GE'=>'Winter', 'UE'=>'Spring', 'US'=>'Summer', 'GS'=>'Fall'}; end
 def self.month_ranges; {'GE'=>'Jan~Mar', 'UE'=>'Apr~Jun', 'US'=>'Jul~Sep', 'GS'=>'Oct~Dec'}; end
 
+def self.week_ranges; {'GE'=>'1st~7th', 'UE'=>'8th~14th', 'US'=>'15th~21st', 'GS'=>'22nd~28th'}; end
+
 def self.seasons; {'GE'=>'Late Winter', 'UE'=>'Early Summer', 'US'=>'Late Summer', 'GS'=>'Early Winter'}; end
 def self.months; {'GE'=>'February', 'UE'=>'May', 'US'=>'August', 'GS'=>'November'}; end
 
@@ -15,14 +17,19 @@ def self.moon_symbols; {'GE'=>'🌒', 'UE'=>'🌔', 'US'=>'🌖', 'GS'=>'🌘'};
 def self.moons; {'GE'=>'Waxing🌒Crescent', 'UE'=>'Waxing🌔Gibbous', 'US'=>'Waning🌖Gibbous', 'GS'=>'Waning🌘Crescent'}; end
 def self.days; {'GE'=>'Monday', 'UE'=>'Tuesday', 'US'=>'Thursday', 'GS'=>'Friday'}; end
 
-def self.times; {'GE'=>'Sunrise', 'UE'=>'Forenoon', 'US'=>'Afternoon', 'GS'=>'Sunset'}; end
+def self.times; {'GE'=>'Morning', 'UE'=>'Midday', 'US'=>'Afternoon', 'GS'=>'Evening'}; end
 def self.hours; {'GE'=>'8am', 'UE'=>'12noon', 'US'=>'4pm', 'GS'=>'8pm'}; end
 def self.hour_ranges; {'GE'=>'6am~10am', 'UE'=>'10am~2pm', 'US'=>'2pm~6pm', 'GS'=>'6pm~10pm'}; end
 
-def self.gets; {'P'=>'eat', 'M'=>'learn', 'A'=>'listen', 'F'=>'earn'}; end
-def self.uses; {'P'=>'exercise', 'M'=>'think', 'A'=>'communicate', 'F'=>'spend'}; end
-def self.thins; {'P'=>'anorexic', 'M'=>'amnesic', 'A'=>'suicidal', 'F'=>'poor'}; end
-def self.fats; {'P'=>'obese', 'M'=>'fatheaded', 'A'=>'homicidal', 'F'=>'rich'}; end
+def self.actions; {'GE'=>'before', 'UE'=>'active', 'US'=>'productive', 'GS'=>'after'}; end
+
+def self.downs; {'P'=>'eat', 'M'=>'learn', 'A'=>'understand', 'F'=>'earn'}; end
+def self.ups; {'P'=>'move', 'M'=>'think', 'A'=>'communicate', 'F'=>'spend'}; end
+def self.thins; {'P'=>'thin', 'M'=>'open-minded', 'A'=>'pessimistic', 'F'=>'poor'}; end
+def self.fats; {'P'=>'fat', 'M'=>'prejudiced', 'A'=>'optimistic', 'F'=>'rich'}; end
+def self.reserves; {'P'=>'fat', 'M'=>'knowledge', 'A'=>'ego', 'F'=>'savings'}; end
+def self.energies; {'P'=>'glucose', 'M'=>'facts', 'A'=>'emotions', 'F'=>'cash'}; end
+def self.strengths; {'P'=>'muscles', 'M'=>'logic', 'A'=>'words', 'F'=>'credit'}; end
 
 def self.noun_words; {'P'=>'foods', 'M'=>'truths', 'A'=>'morals', 'F'=>'money'}; end
 def self.verb_words; {
@@ -49,8 +56,8 @@ end
 
 def self.short_phrase; {
 'GPE'=>'eat carbs',
-'UPE'=>'walk',
-'UPS'=>'run',
+'UPE'=>'run',
+'UPS'=>'fight',
 'GPS'=>'eat protein',
 
 'GME'=>'look',

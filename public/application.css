@@ -54,19 +54,10 @@ ol, ul { list-style-position: inside; margin: 0; padding: 0; text-align: left; d
 ul.none { list-style-type: none; }
 .outdent { margin-left: 1em; }
 
-dt::after { content: ":"; }
-
-dl.none { margin: 0 auto 0 auto; padding: 0; display: table; }
-dt { float: auto; text-align: center; font-weight: bold; }
-dd { margin: auto; text-align: center; }
-
-dt.inline { float: left; clear: left; text-align: right; font-weight: bold; width: 10ch; }
-/* width of the longest word used as a dt in the app */
-dd.inline { margin: 0 0 0 11; }
-/* 1 more than the width in dt */
-
 table { border-collapse: collapse; margin-left: auto; margin-right: auto; }
 td { padding: 1em; border: 1px solid grey; text-align: center; overflow-wrap: break-word; }
+
+table.fixed { table-layout: fixed;  width: 100%}
 
 .bottom { vertical-align: bottom;}
 .top { vertical-align: top; }
@@ -75,5 +66,7 @@ td { padding: 1em; border: 1px solid grey; text-align: center; overflow-wrap: br
 .quarter { width: 24%; }
 .third { width: 32%; }
 .half { width: 48% }
+
+.halfish { width: 45% }
 
 

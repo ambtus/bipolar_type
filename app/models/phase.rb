@@ -18,16 +18,21 @@ class Phase < Concept
   def behaviors; Behavior.select{|b| b.phase == self}; end
   def +(realm); behaviors.find{|b| b.realm == realm}; end
 
-  def both; [verb, noun]; end
-  def words; both.map(&:word).to_phrase; end
+  def prefix; %w{get burn use fuel}[index]; end
+  def words; "#{prefix} #{noun.word}"; end
+  def action; %w{before active productive after}[index]; end
 
-  def length; index.even? ? 'Chronic' : 'Acute'; end
-  def episode; [length, verb.episode].to_wbr.html_safe; end
+  def timing; index.even? ? 'Late' : 'Early'; end
+  def episode; [timing, verb.episode].to_wbr.html_safe; end
 
   def description; Words.descriptions[symbol]; end
 
   def reason; Words.reasons[symbol]; end
-  def problem; ["too #{verb.nature}", reason].join(': ').html_safe; end
+
+  def amount; index.even? ? 'much' : 'little'; end
+  def problem; ['too', amount, focus].to_phrase; end
+
+  def em_not; index.even? ? '<em>not</em>': ''; end
 
   def solution; Words.solutions[symbol]; end
 
@@ -62,8 +67,9 @@ class Phase < Concept
   def hour_range; Words.hour_ranges[symbol]; end
   def time_eg; [hour_range, hour.wrap].to_phrase; end
 
+  def week_range; Words.week_ranges[symbol]; end
 
-  def horizontal_when; [month_range, moon_symbol, day, hour_range].join(' | '); end
+  def horizontal_when; [month_range, week_range, day, time].join(' | '); end
   def vertical_when; horizontal_when.gsub(' | ', '<br>').html_safe; end
 
 end

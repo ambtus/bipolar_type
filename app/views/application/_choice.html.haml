@@ -3,6 +3,6 @@
   %p{:class => @answer.css(choice)}
     -if @answer.css(choice) == "free"
       =link_to answer_path(@answer.next(choice)) do
-        #{choice.nature}: #{choice.problem}
+        =choice.i_cant
     -else
-      =choice.episode
+      =choice.problem

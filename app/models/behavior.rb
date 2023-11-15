@@ -26,9 +26,6 @@ class Behavior < Concept
 
   def <=>(other); self.phase <=> other.phase; end
 
-  def unbalanced; phase.unbalanced.prefix(realm.word.ly); end
-  def displaced; phase.displaced.prefix(realm.word.ly); end
-
   def siblings; Phase.all.add(realm); end
   def cousins; Realm.all.add(phase); end
 
@@ -41,11 +38,16 @@ class Behavior < Concept
 
   def my_siblings; [self, displacer, balancer, opposite]; end
 
-  def episode; [length, realm.name, verb.episode].to_wbr.html_safe; end
+  def episode; [timing, realm.name, verb.episode].to_wbr.html_safe; end
 
   def partial_episode; [realm.name, verb.episode].to_phrase; end
 
   def nature; realm.send(verb.nature); end
+
+  def problem; ['too', amount, realm.word, focus].to_phrase; end
+
+  def i_cant; ['I can’t', em_not, realm.send(behave), 'when I am', sick].to_phrase.html_safe; end
+  def you_cant; ['you can’t', em_not, realm.send(behave), 'when you are', sick].to_phrase.html_safe; end
 
   def method_missing(meth, *arguments, &block)
     if phase.respond_to?(meth)
@@ -59,19 +61,6 @@ class Behavior < Concept
     else
       super
     end
-  end
-
-  def problem
-    case phase.symbol
-      when 'GE'
-        get.s.too_much
-      when 'UE'
-        "doesn’t #{get.enough}"
-      when 'US'
-        use.s.too_much
-      when 'GS'
-        "doesn’t #{use.enough}"
-      end
   end
 
   def self.questions; %w{aka phrase prefer choose_the better_at result}; end

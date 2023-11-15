@@ -11,6 +11,8 @@ class Verb < Concept
 
   def word; %w{use get}[index]; end
   def nature; %w{thin fat}[index]; end
+  def cycle; %w{up down}[index]; end
   def episode; %w{Mania Depression}[index]; end
+  def sick; %w{manic depressed}[index]; end
 
 end

@@ -1,10 +1,9 @@
-%p.heading=@type.behaviors.map(&:episode).join('<br />').html_safe
+%p.heading=@type.behaviors.map(&:problem).join('<br />').html_safe
 
 =render 'cycle',
   chunks: Phase.collect{|p| render 'phase' , phase: p}
 
-%p
- =@type.behaviors[0,2].map(&:use).and.capitalize
- and
- =@type.behaviors[2,2].map(&:get).and
- when you want to or need to, but stop when it becomes painful or “too much”.
+%p If #{@type.behaviors.first.you_cant}, then #{@type.behaviors.first.displacer.aka} <em>instead of</em> #{@type.behaviors.first.aka.ing} (which is easier if you #{@type.behaviors.first.down} in the evening instead of the morning).
+%p If #{@type.behaviors.second.you_cant}, then #{@type.behaviors.second.down} when you are <em>not</em> manic (which includes every morning and evening).
+%p If #{@type.behaviors.third.you_cant}, then #{@type.behaviors.third.displacer.aka} <em>instead of</em> #{@type.behaviors.third.aka.ing} (which is easier if you #{@type.behaviors.third.up} in the midday instead of the afternoon).
+%p If #{@type.behaviors.fourth.you_cant}, then #{@type.behaviors.fourth.up} when you are <em>not</em> depressed (which includes every midday and afternoon).

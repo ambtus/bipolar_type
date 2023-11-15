@@ -10,5 +10,7 @@ class Noun < Concept
   def +(verb); phases.find{|p| p.verb == verb}; end
 
   def word; %w{energy strength}[index]; end
+  def focus; %w{intake output}[index]; end
+  def behave; %w{down up}[index]; end
 
 end
