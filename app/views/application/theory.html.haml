@@ -12,50 +12,27 @@
 
 %h2 The Bipolar Cycle
 
-%p There are four cycles: Yearly, Monthly, Weekly, and Daily.
+%p
+  The bipolar cycle has two halves: Up (the
+  =link_to 'hyperarousal', 'https://en.wikipedia.org/wiki/Fight-or-flight_response', :class => 'external'
+  half of the cycle when you #{Realm.all.map(&:up).and}) and Down (the other half of the cycle when you #{Realm.all.map(&:down).and}).
 
-%p Each cycle can be split into two halves: Up (the high half of the cycle) and Down (the low half of the cycle).
-
-%ul.none
-  %li <b>Yearly:</b> Six months up, Six months down (with about two weeks off)
-  %li <b>Monthly:</b> Two weeks up, Two weeks down (with about three days off)
-  %li <b>Weekly:</b> Three days up, Three days down (with about one day off)
-  %li <b>Daily:</b> Eight hours up, Eight hours down (with about eight hours off)
-
-%p These cycles are additive: you are Manic (highest) when all four cycles are Up at the same time and you are Depressed (lowest) when all four cycles are Down at the same time.
-
-%p Each bipolar cycle can also be split into two halves based on the off times when the cycle resets: Early (the first half of the cycle which is centered around energy) and Late (the second half of the cycle which is centered around strength).
-
-%p Each cycle can be entrained to run a little faster or shorter or have a little more or less off time. If your cycles have been entrained to the clock and calendar and are reset at common times off for each cycle, you get the following:
+%p The cycle resets at the lowest point of the cycle (in the middle of the Down half) so each cycle can be split into Early (the half after the reset) and Late (the half before reset).
 
 %p
 =render 'cycle',
   caption: 'The Four Phases',
-  chunks: Phase.collect{|p| "<b>#{p.name}</b><p>#{p.vertical_when}</p>".html_safe}
+  chunks: Phase.collect{|p| "<b>#{p.cycle}</b><p>Feel #{p.feel} => #{p.name}</p>".html_safe}
 
-%h2 The Four Realms of Behavior
+%p Sedatives, such as alcohol or mood stabilizers, reduce the average (you spend more time Down) and flatten the amplitude (your feelings and thus your behaviors are muted). Stimulants, such as caffeine or anti-depressants, increase the average (you spend more time Up) and the amplitude (your feelings and thus your behaviors are amplified).
 
-%table.fixed
-  %tr
-    %th
-    -Realm.each do |r|
-      %th=r.name
-  %tr
-    %th Up & Down
-    -Realm.each do |r|
-      %td
-        =r.up
-        &
-        =r.down
-  %tr
-    %th Energy vs Strength
-    -Realm.each do |r|
-      %td
-        =r.energy
-        vs
-        =r.strength
+%p I have four concurrent cycles. The cycles are additive: I am at my highest when all four cycles are Up at the same time and lowest when all four cycles are Down.
 
-%p The important thing to realize is that whatever your cycle, it affects all four realms of behavior equally. That is, you cannot be Up in the Physical realm and Down in the Mental realm. If you are Up, then you are Up in <em>all four</em> realms.
-%p Your BipolarType is based on which realms are easiest for you to <em>act</em> Up or Down in, when you are <em>not</em> Up or Down. That is, can you #{Realm.first.up} when you are Down? Can you <em>not</em> #{Realm.first.up} when you are Up? Can you #{Realm.first.down} when you are Up? Can you <em>not</em> #{Realm.first.down} when you are Down?
+%ul.none
+  %li <b>Months:</b> Six months Up, Six months Down
+  %li <b>Weeks:</b> Two weeks Up, Two weeks Down
+  %li <b>Daily:</b> Three days Up, Three days Down
+  %li <b>Hourly:</b> Four hours Up, Four hours Down
 
+%p Your cycles may be different than mine, but are probably similar in length and number.
 %h2=link_to 'Your BipolarType', answer_path(Answer.first_path)

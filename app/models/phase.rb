@@ -18,14 +18,13 @@ class Phase < Concept
   def behaviors; Behavior.select{|b| b.phase == self}; end
   def +(realm); behaviors.find{|b| b.realm == realm}; end
 
-  def prefix; %w{get burn use fuel}[index]; end
-  def words; "#{prefix} #{noun.word}"; end
-  def action; %w{before active productive after}[index]; end
+  def words; [verb, noun].map(&:word).to_phrase; end
+  def cycle; [noun, verb].map(&:cycle).map(&:capitalize).to_wbr; end
 
   def timing; index.even? ? 'Late' : 'Early'; end
   def episode; [timing, verb.episode].to_wbr.html_safe; end
 
-  def description; Words.descriptions[symbol]; end
+  def feel; Words.feels[symbol]; end
 
   def reason; Words.reasons[symbol]; end
 

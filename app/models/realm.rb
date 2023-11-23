@@ -6,7 +6,7 @@ class Realm < Concept
   def path; Rails.application.routes.url_helpers.realm_path(self.symbol); end
 
   ########
-  SYMBOLS = %w{P M A F}
+  SYMBOLS = %w{ P A M F}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each{|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
@@ -14,7 +14,7 @@ class Realm < Concept
   def behaviors; Behavior.select{|b| b.realm == self}; end
   def +(phase); behaviors.find{|b| b.phase == phase}; end
 
-  def word; %w{physical mental affective financial}[index]; end
+  def word; %w{ physical affective mental financial}[index]; end
 
   def up; Words.ups[symbol]; end
   def down; Words.downs[symbol]; end
@@ -25,5 +25,11 @@ class Realm < Concept
 
   def energy; Words.energies[symbol]; end
   def strength; Words.strengths[symbol]; end
+
+  def work; Words.works[symbol]; end
+  def undertake; Words.undertakes[symbol]; end
+  def power; Words.powers[symbol]; end
+  def verb; Words.verbs[symbol]; end
+  def noun; Words.nouns[symbol]; end
 
 end

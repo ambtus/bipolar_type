@@ -1,8 +1,8 @@
 class Words
 
-def self.reasons; {'GE'=>'needs to get less energy', 'UE'=>'needs to get more energy', 'US'=>'needs to use less strength', 'GS'=>'needs to use more strength'}; end
+def self.feels; {'GE'=>'hungry', 'UE'=>'restless', 'US'=>'frustrated', 'GS'=>'tired'}; end
 
-def self.solutions; {'GE'=>'GetStrength instead of GetEnergy', 'UE'=>'GetEnergy in addition to GetStrength', 'US'=>'UseEnergy instead of UseStrength', 'GS'=>'UseStrength as well as UseEnergy'}; end
+def self.reasons; {'GE'=>'needs to get less energy', 'UE'=>'needs to get more energy', 'US'=>'needs to use less strength', 'GS'=>'needs to use more strength'}; end
 
 def self.start_seasons; {'GE'=>'Winter', 'UE'=>'Spring', 'US'=>'Summer', 'GS'=>'Fall'}; end
 def self.month_ranges; {'GE'=>'Jan~Mar', 'UE'=>'Apr~Jun', 'US'=>'Jul~Sep', 'GS'=>'Oct~Dec'}; end
@@ -21,15 +21,22 @@ def self.times; {'GE'=>'Morning', 'UE'=>'Midday', 'US'=>'Afternoon', 'GS'=>'Even
 def self.hours; {'GE'=>'8am', 'UE'=>'12noon', 'US'=>'4pm', 'GS'=>'8pm'}; end
 def self.hour_ranges; {'GE'=>'6am~10am', 'UE'=>'10am~2pm', 'US'=>'2pm~6pm', 'GS'=>'6pm~10pm'}; end
 
-def self.actions; {'GE'=>'before', 'UE'=>'active', 'US'=>'productive', 'GS'=>'after'}; end
+def self.downs; {'P'=>'eat', 'M'=>'watch', 'A'=>'listen', 'F'=>'sell'}; end
+def self.processes; {'P'=>'digest', 'M'=>'learn', 'A'=>'understand', 'F'=>'collect'}; end
 
-def self.downs; {'P'=>'eat', 'M'=>'learn', 'A'=>'understand', 'F'=>'earn'}; end
-def self.ups; {'P'=>'move', 'M'=>'think', 'A'=>'communicate', 'F'=>'spend'}; end
+def self.ups; {'P'=>'walk', 'M'=>'think', 'A'=>'talk', 'F'=>'buy'}; end
+def self.verbs; {'P'=>'move', 'M'=>'consider', 'A'=>'communicate', 'F'=>'provide'}; end
+def self.nouns; {'P'=>'arms/legs', 'M'=>'goals/objectives', 'A'=>'wants/needs', 'F'=>'goods/services'}; end
+
 def self.thins; {'P'=>'thin', 'M'=>'open-minded', 'A'=>'pessimistic', 'F'=>'poor'}; end
 def self.fats; {'P'=>'fat', 'M'=>'prejudiced', 'A'=>'optimistic', 'F'=>'rich'}; end
 def self.reserves; {'P'=>'fat', 'M'=>'knowledge', 'A'=>'ego', 'F'=>'savings'}; end
 def self.energies; {'P'=>'glucose', 'M'=>'facts', 'A'=>'emotions', 'F'=>'cash'}; end
 def self.strengths; {'P'=>'muscles', 'M'=>'logic', 'A'=>'words', 'F'=>'credit'}; end
+
+def self.works; {'P'=>'go', 'M'=>'plan', 'A'=>'ask', 'F'=>'pay'}; end
+def self.undertakes; {'P'=>'do', 'M'=>'imagine', 'A'=>'say', 'F'=>'give'}; end
+def self.powers; {'P'=>'body', 'M'=>'brain', 'A'=>'voice', 'F'=>'assets'}; end
 
 def self.noun_words; {'P'=>'foods', 'M'=>'truths', 'A'=>'morals', 'F'=>'money'}; end
 def self.verb_words; {
