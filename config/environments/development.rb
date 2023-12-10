@@ -45,5 +45,6 @@ Rails.application.configure do
 
   config.hosts << `hostname`.chomp.downcase
   config.hosts << `hostname`.chomp.downcase.split(".").first + ".local"
+  config.hosts << `hostname`.chomp.downcase.split(".").first + ".ambt.us"
 
 end

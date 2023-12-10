@@ -7,7 +7,7 @@
 %table.fixed
   %tr
     -Phase.each do |p|
-      %th=p.problem.titleize
+      %th=p.name
   %tr
     -Phase.each do |p|
       %td=render 'choice', phase: p

@@ -18,5 +18,5 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'AKA'
-  inflect.uncountable 'income'
+  # inflect.uncountable %w( income food )
 end

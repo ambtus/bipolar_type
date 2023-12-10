@@ -25,7 +25,7 @@ class Answer
   def type_path; subtypes.sort.map(&:realm).map(&:symbol).join; end
 
   private
-  def subtypes; @subtype_string.scan(/.../).collect{|s| Behavior.send(s)}; end
+  def subtypes; @subtype_string.scan(/../).collect{|s| Behavior.send(s)}; end
   def realms; subtypes.map(&:realm); end
   def phases; subtypes.map(&:phase); end
 

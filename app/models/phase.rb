@@ -1,74 +1,22 @@
 class Phase < Concept
 
-  def initialize(string)
-    @symbol = string
-    @verb = Verb.send(string.first)
-    @noun = Noun.send(string.second)
-  end
-  attr_reader :symbol, :verb, :noun
+  def initialize(string); @symbol = string; end
+  attr_reader :symbol
 
-  def path; Rails.application.routes.url_helpers.behavior_path(self.symbol); end
+  def path; Rails.application.routes.url_helpers.realm_path(self.symbol); end
 
   ########
-  SYMBOLS = %w{GE UE US GS }
+  SYMBOLS = %w{J I P E}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
-  SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
+  SYMBOLS.each_with_index{|s, i| define_singleton_method(s) {ALL[i]}}
   ########
 
-  def behaviors; Behavior.select{|b| b.phase == self}; end
-  def +(realm); behaviors.find{|b| b.realm == realm}; end
+  def behaviors; Behavior.select{|b| b.realm == self}; end
+  def +(phase); behaviors.find{|b| b.phase == phase}; end
 
-  def words; [verb, noun].map(&:word).to_phrase; end
-  def cycle; [noun, verb].map(&:cycle).map(&:capitalize).to_wbr; end
+  def word; Words.phases[symbol]; end
+  def description; Words.description[symbol].html_safe; end
 
-  def timing; index.even? ? 'Late' : 'Early'; end
-  def episode; [timing, verb.episode].to_wbr.html_safe; end
-
-  def feel; Words.feels[symbol]; end
-
-  def reason; Words.reasons[symbol]; end
-
-  def amount; index.even? ? 'much' : 'little'; end
-  def problem; ['too', amount, focus].to_phrase; end
-
-  def em_not; index.even? ? '<em>not</em>': ''; end
-
-  def solution; Words.solutions[symbol]; end
-
-  def switch_attitude; verb.opposite + noun; end
-  def switch_focus; verb + noun.opposite; end
-
-  def method_missing(meth, *arguments, &block)
-    if verb.respond_to?(meth)
-      verb.send(meth, *arguments, &block)
-    elsif noun.respond_to?(meth)
-      noun.send(meth, *arguments, &block)
-    else
-      super
-    end
-  end
-
-  def start_season; Words.start_seasons[symbol]; end
-  def short_when; [start_season, time].to_wbr.html_safe; end
-
-
-  def season; Words.seasons[symbol]; end
-  def month; '~' + Words.months[symbol]; end
-  def month_range; Words.month_ranges[symbol]; end
-  def season_eg; [season, month.wrap].to_phrase; end
-
-  def moon; Words.moons[symbol]; end
-  def moon_symbol; Words.moon_symbols[symbol]; end
-  def day; Words.days[symbol]; end
-
-  def time; Words.times[symbol]; end
-  def hour; '~' + Words.hours[symbol]; end
-  def hour_range; Words.hour_ranges[symbol]; end
-  def time_eg; [hour_range, hour.wrap].to_phrase; end
-
-  def week_range; Words.week_ranges[symbol]; end
-
-  def horizontal_when; [month_range, week_range, day, time].join(' | '); end
-  def vertical_when; horizontal_when.gsub(' | ', '<br>').html_safe; end
+  def precursor; Words.precursor[symbol]; end
 
 end

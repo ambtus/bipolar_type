@@ -6,30 +6,25 @@ class Realm < Concept
   def path; Rails.application.routes.url_helpers.realm_path(self.symbol); end
 
   ########
-  SYMBOLS = %w{ P A M F}
+  SYMBOLS = %w{S N F T}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
-  SYMBOLS.each{|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
+  SYMBOLS.each_with_index{|s, i| define_singleton_method(s) {ALL[i]}}
   ########
 
   def behaviors; Behavior.select{|b| b.realm == self}; end
   def +(phase); behaviors.find{|b| b.phase == phase}; end
 
-  def word; %w{ physical affective mental financial}[index]; end
+  def word; Words.realms[symbol]; end
+  def adverb; word.ly ; end
 
-  def up; Words.ups[symbol]; end
-  def down; Words.downs[symbol]; end
+  def resource; Words.resource[symbol]; end
+  def resources; resource.pluralize; end
 
-  def thin; Words.thins[symbol]; end
-  def fat; Words.fats[symbol]; end
-  def reserves; Words.reserves[symbol]; end
+  def other_resources; Words.other_resources[symbol]; end
 
-  def energy; Words.energies[symbol]; end
-  def strength; Words.strengths[symbol]; end
-
-  def work; Words.works[symbol]; end
-  def undertake; Words.undertakes[symbol]; end
-  def power; Words.powers[symbol]; end
-  def verb; Words.verbs[symbol]; end
-  def noun; Words.nouns[symbol]; end
+  def accept; Words.accept[symbol]; end
+  def notice; Words.notice[symbol]; end
+  def good; Words.good[symbol]; end
+  def bad; Words.bad[symbol]; end
 
 end

@@ -1,8 +1,8 @@
--@realms.each do |realm|
+-Realm.each do |realm|
   -choice = realm + phase
   %p{:class => @answer.css(choice)}
     -if @answer.css(choice) == "free"
       =link_to answer_path(@answer.next(choice)) do
-        =choice.i_cant
+        =choice.description.html_safe
     -else
-      =choice.problem
+      =choice.name

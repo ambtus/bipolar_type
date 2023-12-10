@@ -5,7 +5,7 @@ class Concept
   def inspect; @symbol; end
 
   ########
-  SYMBOLS = %w{A B Y Z}
+  SYMBOLS = %w{A B C D}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each {|s| define_singleton_method(s) {ALL[SYMBOLS.index(s)]}}
   ########
@@ -28,7 +28,7 @@ class Concept
   def previous; self.class::ALL[index-1] || self.class.last; end
   def opposite; (self.class::ALL + self.class::ALL)[index + self.class::ALL.size/2]; end
 
-  def word; %w{alpha beta psi omega}[index]; end
+  def word; %w{alpha beta gamma delta}[index]; end
   def name; words.to_wbr.html_safe rescue word.capitalize ; end
 
 end
