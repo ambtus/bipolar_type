@@ -1,72 +1,53 @@
 class Words
 
-def self.phases; {
-  'P'=>'depression',
-  'J'=>'mania',
-  'E'=>'revving up',
-  'I'=>'calming down'
-}; end #phase.word
-
-def self.description; {
-  'P'=>'accept everything',
-  'J'=>'change everything',
-  'E'=>'want to change things',
-  'I'=>'want to accept things',
-}; end #phase.description
-
-def self.precursor; {
-  'J'=>'Productive Mania<br />change bad things',
-  'I'=>'Destructive Mania<br />change good things',
-  'P'=>'Healthy Depression<br />accept good things',
-  'E'=>'Unhealthy Depression<br />accept bad things',
-}; end #phase.precursor
-
 def self.realms; {
-  'S'=>'physical',
-  'N'=>'mental',
-  'F'=>'spritual',
-  'T'=>'material'
+  'S'=>'chemosensory',
+  'N'=>'visible',
+  'F'=>'audible',
+  'T'=>'tangible'
 }; end #realm.realms
-
 def self.notice; {
-  'S'=>'taste',
+  'S'=>'smell',
   'N'=>'see',
   'F'=>'hear',
-  'T'=>'touch'
-}; end #realm.accept
-
+  'T'=>'feel'
+}; end #realm.notice
+def self.appear; {
+  'S'=>'taste',
+  'N'=>'look',
+  'F'=>'sound',
+  'T'=>'feel'
+}; end #realm.appear
 def self.accept; {
   'S'=>'eat',
   'N'=>'follow',
-  'F'=>'believe',
+  'F'=>'assimilate',
   'T'=>'use'
 }; end #realm.accept
-
-def self.resource; {
+def self.change; {
+  'S'=>'prepare',
+  'N'=>'rethink',
+  'F'=>'rewrite',
+  'T'=>'upgrade'
+}; end #realm.change
+def self.thing; {
   'S'=>'food',
-  'N'=>'rule',
-  'F'=>'opinions',
+  'N'=>'plan',
+  'F'=>'story',
   'T'=>'tool'
-}; end #realm.resource
-def self.other_resources; {
-  'S'=>%w{meats fruits vegetables},
-  'N'=>%w{plans directions procedures},
-  'F'=>%w{songs stories speeches},
-  'T'=>%w{clothes shelters machines},
-}; end #realm.resource2
-
-def self.good; {
-  'S'=>'nutritious',
-  'N'=>'logical',
-  'F'=>'loving',
-  'T'=>'useful'
-}; end #realm.good
-def self.bad; {
-  'S'=>'junk',
-  'N'=>'stupid',
+}; end #realm.thing
+def self.acceptable; {
+  'S'=>'edible',
+  'N'=>'rational',
+  'F'=>'ethical',
+  'T'=>'effective'
+}; end #realm.acceptable
+def self.unacceptable; {
+  'S'=>'inedible',
+  'N'=>'illogical',
   'F'=>'hateful',
-  'T'=>'worthless'
-}; end #realm.good
+  'T'=>'broken'
+}; end #realm.unacceptable
 
 end #Words
 

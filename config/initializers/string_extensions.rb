@@ -140,6 +140,7 @@ class String
     return 'sold' if self=='sell'
     return 'felt' if self=='feel'
     return 'bought' if self=='buy'
+    return 'rethought' if self=='rethink'
     return 'thought' if self=='think'
     return 'told' if self=='tell'
     return 'spent' if self=='spend'
@@ -157,6 +158,7 @@ class String
     return 'held' if self=='hold'
     return 'built' if self=='build'
     return 'spoke' if self=='speak'
+    return 'rewrote' if self=='rewrite'
     return 'wrote' if self=='write'
     return 'read' if self=='read'
     return 'got' if self=='get'
@@ -169,6 +171,8 @@ class String
   end
 
   def en
+    return 'rewritten' if self=='rewrite'
+    return 'written' if self=='write'
     return 'shown' if self=='show'
     return 'eaten' if self=='eat'
     return 'forgotten' if self=='forget'

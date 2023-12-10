@@ -8,31 +8,39 @@
   The theory is scientific (it is
   =succeed ')' do
     =link_to 'falsifiable', 'https://en.wikipedia.org/wiki/Falsifiability', :class => 'external'
-  but it has not been validated by the medical, psychiatric, psychological, or type communities. I hope you find BipolarType interesting and useful but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path)}.
+  but it has not been validated by the medical, psychiatric, psychological, or type communities. I hope you find it interesting and useful but I do not assert that it is true or correct, only that it helps #{link_to 'me', type_path(Type.my_path)}.
 
 %h2 Bipolar
-%p Mania is changing things that shouldn’t be changed. Depression is accepting things that shouldn’t be accepted. Euthymia is changing bad things and accepting good things.
-%p
-=render 'cycle',
-  caption: '<b>The Bipolar Cycle</b>'.html_safe,
-  chunks: Phase.collect{|p| p.precursor }
+%table
+  %tr
+    %th
+    %th Change Things
+    %th Accept Things
+  %tr
+    %th Mania
+    %td.left Changing things that should not be changed
+    %td.left Not accepting things that should be accepted
+  %tr
+    %th Euthymia
+    %td.left Changing things that should be changed
+    %td.left Accepting things that should be accepted
+  %tr
+    %th Depression
+    %td.left Not changing things that should be changed
+    %td.left Accepting things that should not be accepted
 
 %h2 Type
-%p Wisdom is knowing the difference between them. BipolarType classifies “things” into four different realms.
 %table
-  %caption.bold The Four Realms
   -Realm.each do |r|
     %tr
-      %th=r.name
       %td
-        .left Things you can #{r.notice} and #{r.accept}:
-        .left #{r.resources}, #{r.other_resources.and}
+        <b>#{r.name}</b>: things you can #{r.notice}
+        %br
+        accepting #{r.things} that #{r.appear} good and are #{r.acceptable}
+        %br
+        changing #{r.things} that #{r.appear} bad or are #{r.unacceptable}
 
-%h2 BipolarType
-%p The goal is to find behaviors that are bipolar, but aren’t <em>harmful</em>.
-%p That is, when you are manic, you <em>will</em> change everything you focus on. But you can focus on realms where changing the things in that realm won’t harm them, and may even improve them. The realms which include things that you <em>can</em> change, even if they aren’t 100% bad.
-%p And when you are depressed, you <em>will</em> accept everything you focus on. But you can focus on realms where accepting the things in that realm won’t harm you, and may even help you. The realms things that you <em>need</em> to accept, even if they aren’t 100% good.
 
 %h2=link_to 'Your BipolarType', answer_path(Answer.first_path)
-%br
+%h2=link_to 'All BipolarTypes', types_path
 %br

@@ -1,5 +1,4 @@
 -Type.each do |type|
   %h2=link_to type.name, type.path
-  =render 'cycle',
-  chunks: type.behaviors.collect{|b| render 'behavior', b: b}
+  =type.goal
 

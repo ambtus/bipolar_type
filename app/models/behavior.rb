@@ -3,7 +3,7 @@ class Behavior < Concept
   def initialize(string)
     @symbol = string
     @phase = Phase.send(string.first)
-    @realm = Realm.send(string.second)
+    @realm = Realm.send(string.last)
   end
   attr_reader :symbol, :phase, :realm
 
@@ -23,18 +23,6 @@ class Behavior < Concept
 
   def <=>(other); self.phase <=> other.phase; end
 
-  def siblings; Phase.all.add(realm); end
-  def cousins; Realm.all.add(phase); end
-
-  def previous; realm + phase.previous; end
-  def next; realm + phase.next; end
-  def balancer; realm + phase.switch_attitude; end
-  def displacer; realm + phase.switch_focus; end
-  def opposite; realm + phase.opposite;end
-  # b.opposite.balancer == b.displacer
-
-  def my_siblings; [self, displacer, balancer, opposite]; end
-
   def method_missing(meth, *arguments, &block)
     if phase.respond_to?(meth)
       phase.send(meth, *arguments, &block)
@@ -44,7 +32,5 @@ class Behavior < Concept
       super
     end
   end
-
-  def description; phase.description.gsub('everything', "all #{realm.resources}").gsub('things', realm.resources); end
 
 end

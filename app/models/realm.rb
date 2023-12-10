@@ -17,14 +17,22 @@ class Realm < Concept
   def word; Words.realms[symbol]; end
   def adverb; word.ly ; end
 
-  def resource; Words.resource[symbol]; end
-  def resources; resource.pluralize; end
+  def thing; Words.thing[symbol]; end
+  def things; thing.pluralize; end
 
-  def other_resources; Words.other_resources[symbol]; end
+  def other_things; Words.other_things[symbol]; end
 
+  def change; Words.change[symbol]; end
   def accept; Words.accept[symbol]; end
+  def acceptable; Words.acceptable[symbol]; end
+  def unacceptable; Words.unacceptable[symbol]; end
   def notice; Words.notice[symbol]; end
+  def appear; Words.appear[symbol]; end
   def good; Words.good[symbol]; end
   def bad; Words.bad[symbol]; end
+
+  def change_things;[change, things].to_phrase; end
+
+  def accept_things;[accept, things].to_phrase; end
 
 end
