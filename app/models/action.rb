@@ -1,16 +1,15 @@
-class Phase < Concept
+class Action < Concept
 
   def initialize(string); @symbol = string; end
   attr_reader :symbol
 
-  def path; Rails.application.routes.url_helpers.realm_path(self.symbol); end
-
   ########
+  SYMBOLS = %w{A B}
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each_with_index{|s, i| define_singleton_method(s) {ALL[i]}}
   ########
 
-  def behaviors; Behavior.select{|b| b.realm == self}; end
-  def +(phase); behaviors.find{|b| b.phase == phase}; end
+  def problems; Problem.select{|x| x.action == self}; end
+  def +(role); problems.find{|x| x.role == role}; end
 
 end

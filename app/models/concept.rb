@@ -15,6 +15,7 @@ class Concept
 
   def self.all; self::ALL; end
   def self.each(&block);self::ALL.each(&block); end
+  def self.each_with_index(&block);self::ALL.each_with_index(&block); end
   def self.collect(&block);self::ALL.collect(&block); end
   def self.select(&block);self::ALL.select(&block); end
   def self.map(&block);self::ALL.map(&block); end
@@ -23,10 +24,6 @@ class Concept
   %w{first second third fourth last}.each do |ordinal|
     define_singleton_method(ordinal) {all.send(ordinal)}
   end
-
-  def next; self.class::ALL[index+1] || self.class.first; end
-  def previous; self.class::ALL[index-1] || self.class.last; end
-  def opposite; (self.class::ALL + self.class::ALL)[index + self.class::ALL.size/2]; end
 
   def word; %w{alpha beta gamma delta}[index]; end
   def name; words.to_wbr.html_safe rescue word.capitalize ; end

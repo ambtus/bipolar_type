@@ -1,6 +1,6 @@
 class Type < Concept
 
-  def self.my_path; 'TFNS' ; end
+  def self.my_path; 'FSNT' ; end
   def self.my_type; self.new my_path; end
 
   def path; Rails.application.routes.url_helpers.type_path(self.symbol); end
@@ -19,14 +19,16 @@ class Type < Concept
   ########
 
   def inspect; @symbol; end
-  def name; realms.map(&:name).map(&:first).join; end
+  def subtypes; realms.add(Problem.all); end
+  def mbti; "#{realms.first.p_symbol}#{realms.first.symbol}Pw/#{realms.second.symbol}•#{realms.third.j_symbol}#{realms.third.symbol}Jw/#{realms.fourth.symbol}"; end
+  def name; "#{receptive.accept_things} while #{calming.accept_things.ing} and #{productive.change_things} while #{revving.change_things.ing}"; end
 
-  def revving; realms.first; end
-  def receptive; realms.second; end
+  def receptive; realms.first; end
+  def calming; realms.second; end
   def productive; realms.third; end
-  def calming; realms.fourth; end
+  def revving; realms.fourth; end
 
-  def goal; "Your goal is to be Productive enough to be able to #{productive.change} the #{productive.things} you need to #{productive.change}, but not so Manic that you #{revving.change} too many #{revving.things} that do <em>not</em> need to be #{revving.change.en}; Receptive enough to be able to #{receptive.accept} the #{receptive.things} that you need to #{receptive.accept}, but not so Depressed that you #{calming.accept} too many #{calming.things} that you should <em>not</em> be #{calming.accept.ing}.".html_safe; end
+  def goal; "Your goals are to #{receptive.accept} the #{receptive.things} that you need to #{receptive.accept} and #{productive.change} the #{productive.things} you need to #{productive.change}. #{calming.accept_things.ing.capitalize} is easy and calms you down enough to #{receptive.accept_things} and #{revving.change_things.ing} is easy and revs you up enough to #{productive.change_things}.".html_safe; end
 
 
 end

@@ -3,44 +3,14 @@
   %span.chosen chosen
   something, other choices will become
   %span.constrained unavailable.
--unless @answer.number == 1
-  %p.center
-    If you are stuck you can
-    =link_to_unless_current "start over", answer_path(Answer.first_path)
+  %br
+  If you get stuck you can
+  =link_to_unless_current "start over", answer_path(Answer.first_path)
 
-%h2 I change things I shouldn’t change (too dominant)
--Realm.each do |r|
-  -choice = r + Phase.first
-  %p{:class => @answer.css(choice)}
-    =link_to_if  (@answer.css(choice) == "free"), r.word + " things:", answer_path(@answer.next(choice))
-    Sometimes I #{r.change_things} that I shouldn’t #{r.change}.
-
-%h2 I don’t accept things I should accept (not submissive enough)
--Realm.each do |r|
-  -choice = r + Phase.second
-  %p{:class => @answer.css(choice)}
-    =link_to_if  (@answer.css(choice) == "free"), r.word + " things:", answer_path(@answer.next(choice))
-    Sometimes I can’t #{r.accept_things} that I should #{r.accept}.
-
-%h2 I don’t change things I should change (not dominant enough)
--Realm.each do |r|
-  -choice = r + Phase.third
-  %p{:class => @answer.css(choice)}
-    =link_to_if  (@answer.css(choice) == "free"), r.word + " things:", answer_path(@answer.next(choice))
-    Sometimes I can’t #{r.change_things} that I should #{r.change}.
-
-%h2 I accept things I shouldn’t accept (too submissive)
--Realm.each do |r|
-  -choice = r + Phase.fourth
-  %p{:class => @answer.css(choice)}
-    =link_to_if  (@answer.css(choice) == "free"), r.word + " things:", answer_path(@answer.next(choice))
-    Sometimes I #{r.accept_things} that I shouldn’t #{r.accept}.
-
-
-
-
--unless @answer.number == 1
-  %p.center
-    If you are stuck you can
-    =link_to_unless_current "start over", answer_path(Answer.first_path)
-
+-Problem.each do |p|
+  %p.bold #{p.issue} #{p.imbalance.wrap}
+  %ul
+    -p.subtypes.each do |s|
+      %li{:class =>@answer.css(s)}
+        =(link_to_if @answer.free?(s), s.things, answer_path(@answer.next(s))) + ':'
+        Sometimes #{s.actual}

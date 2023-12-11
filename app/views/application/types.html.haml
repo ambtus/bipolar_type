@@ -1,4 +1,4 @@
 -Type.each do |type|
-  %h2=link_to type.name, type.path
-  =type.goal
+  %p
+    =link_to type.name.capitalize + '.', type.path, class: 'internal'
 
