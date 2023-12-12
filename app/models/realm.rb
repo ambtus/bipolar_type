@@ -13,6 +13,7 @@ class Realm < Concept
   def +(problem); subtypes.find{|x| x.problem == problem}; end
 
   def word; Words.realms[symbol]; end
+  def adjective; Words.adjective[symbol]; end
 
   def thing; Words.thing[symbol]; end
   def things; thing.pluralize; end

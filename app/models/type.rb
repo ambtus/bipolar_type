@@ -21,14 +21,16 @@ class Type < Concept
   def inspect; @symbol; end
   def subtypes; realms.add(Problem.all); end
   def mbti; "#{realms.first.p_symbol}#{realms.first.symbol}Pw/#{realms.second.symbol}•#{realms.third.j_symbol}#{realms.third.symbol}Jw/#{realms.fourth.symbol}"; end
-  def name; "#{receptive.accept_things} while #{calming.accept_things.ing} and #{productive.change_things} while #{revving.change_things.ing}"; end
+  def under; "#{receptive.accept_things} and #{productive.change_things}"; end
+  def over; "#{submissive.accept_things} and #{dominant.change_things}"; end
+  def name; ['Under: ' + under, 'Over: ' + over].join('<br />').html_safe; end
 
   def receptive; realms.first; end
-  def calming; realms.second; end
+  def submissive; realms.second; end
   def productive; realms.third; end
-  def revving; realms.fourth; end
+  def dominant; realms.fourth; end
 
-  def goal; "Your goals are to #{receptive.accept} the #{receptive.things} that you need to #{receptive.accept} and #{productive.change} the #{productive.things} you need to #{productive.change}. #{calming.accept_things.ing.capitalize} is easy and calms you down enough to #{receptive.accept_things} and #{revving.change_things.ing} is easy and revs you up enough to #{productive.change_things}.".html_safe; end
+  def goal; "Your goals are to #{receptive.accept} the #{receptive.things} that you need to #{receptive.accept} and #{productive.change} the #{productive.things} you need to #{productive.change} without over-#{submissive.accept_things.ing} and over-#{dominant.change_things.ing}.".html_safe; end
 
 
 end

@@ -25,12 +25,12 @@ def self.realms; {
   'F'=>'audible',
   'T'=>'tangible'
 }; end #realm.realms
-def self.emoticon; {
-  'S'=>'🙊',
-  'N'=>'🙈',
-  'F'=>'🙉',
-  'T'=>'🐵'
-}; end #realm.notice
+def self.adjective; {
+  'S'=>'chemosensory',
+  'N'=>'visual',
+  'F'=>'auditory',
+  'T'=>'tactile'
+}; end #realm.adjective
 def self.notice; {
   'S'=>'smell',
   'N'=>'see',
