@@ -30,7 +30,7 @@ class Type < Concept
   def productive; realms.third; end
   def dominant; realms.fourth; end
 
-  def goal; "Your goals are to #{receptive.accept} the #{receptive.things} that you need to #{receptive.accept} and #{productive.change} the #{productive.things} you need to #{productive.change} without over-#{submissive.accept_things.ing} and over-#{dominant.change_things.ing}.".html_safe; end
+  def goal; "Your goals are to #{receptive.accept} the #{receptive.things} that you want to #{receptive.accept} and #{productive.change} the #{productive.things} you want to #{productive.change} without over-#{submissive.accept_things.ing} and over-#{dominant.change_things.ing}.".html_safe; end
 
 
 end
