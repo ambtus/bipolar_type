@@ -8,9 +8,9 @@
   =link_to_unless_current "start over", answer_path(Answer.first_path)
 
 -Problem.each do |p|
-  %p.bold #{p.issue} #{p.imbalance.wrap}
+  %p.bold=p.issue
   %ul
     -p.subtypes.each do |s|
       %li{:class =>@answer.css(s)}
         =(link_to_if @answer.free?(s), s.things, answer_path(@answer.next(s))) + ':'
-        Sometimes #{s.actual}
+        =s.actual

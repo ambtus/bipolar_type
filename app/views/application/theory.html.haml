@@ -36,9 +36,9 @@
       %td
         <b>#{r.name}</b>: things you can #{r.notice}
         %br
-        accepting #{r.things} that #{r.appear} good and are #{r.acceptable}
+        #{r.provide_thing}
         %br
-        changing #{r.things} that #{r.appear} bad or are #{r.unacceptable}
+        #{r.accept_things} that #{r.appear} good and are #{r.acceptable}
 
 
 %h2=link_to 'Your BipolarType', answer_path(Answer.first_path)

@@ -1,6 +1,2 @@
-%ol
-  -Type.each do |type|
-    %li
-      =link_to type.path, class: 'internal' do
-        Under: #{type.under}; Over: #{type.over}
-
+-Type.each_with_index do |type|
+  %p.center=link_to type.name, type.path, class: 'internal'

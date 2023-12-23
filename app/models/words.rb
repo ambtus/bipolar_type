@@ -1,17 +1,11 @@
 class Words
 
 def self.issue; {
-  'AP'=>'I can’t accept the things that I should accept',
-  'BP'=>'I accept things that I shouldn’t accept',
-  'AJ'=>'I can’t change the things that I should change',
-  'BJ'=>'I change things that I shouldn’t change',
+  'AP'=>'The things I want to accept, but can’t',
+  'BP'=>'The things I want to accept, but shouldn’t',
+  'AJ'=>'The things I want to change, but can’t',
+  'BJ'=>'The things I want to change, but shouldn’t',
 }; end #problem.issue
-def self.imbalance; {
-  'AP'=>'not submissive enough',
-  'BP'=>'too submissive',
-  'AJ'=>'not dominant enough',
-  'BJ'=>'too dominant',
-}; end #problem.imbalance
 def self.goal; {
   'AP'=>'accept the things I should accept',
   'BP'=>'not accept the things I shouldn’t accept',
@@ -32,7 +26,7 @@ def self.adjective; {
   'T'=>'tactile'
 }; end #realm.adjective
 def self.notice; {
-  'S'=>'smell',
+  'S'=>'smell/taste',
   'N'=>'see',
   'F'=>'hear',
   'T'=>'feel'
@@ -43,34 +37,46 @@ def self.appear; {
   'F'=>'sound',
   'T'=>'feel'
 }; end #realm.appear
+def self.provide; {
+  'S'=>'feed',
+  'N'=>'show',
+  'F'=>'tell',
+  'T'=>'give'
+}; end #realm.thing
 def self.thing; {
   'S'=>'food',
-  'N'=>'procedure',
-  'F'=>'story',
+  'N'=>'how',
+  'F'=>'why',
   'T'=>'tool'
 }; end #realm.thing
-def self.accept; {
+def self.take; {
   'S'=>'eat',
-  'N'=>'follow',
-  'F'=>'assimilate',
-  'T'=>'use'
+  'N'=>'watch',
+  'F'=>'hear',
+  'T'=>'touch'
+}; end #realm.accept
+def self.accept; {
+  'S'=>'digest',
+  'N'=>'learn',
+  'F'=>'believe',
+  'T'=>'manipulate'
 }; end #realm.accept
 def self.change; {
-  'S'=>'prepare',
+  'S'=>'cook',
   'N'=>'rethink',
   'F'=>'rewrite',
   'T'=>'upgrade'
 }; end #realm.change
 def self.acceptable; {
-  'S'=>'edible',
-  'N'=>'rational',
-  'F'=>'ethical',
-  'T'=>'effective'
+  'S'=>'nutritious',
+  'N'=>'replicable',
+  'F'=>'understandable',
+  'T'=>'useful'
 }; end #realm.acceptable
 def self.unacceptable; {
   'S'=>'inedible',
   'N'=>'illogical',
-  'F'=>'hateful',
+  'F'=>'selfish',
   'T'=>'broken'
 }; end #realm.unacceptable
 

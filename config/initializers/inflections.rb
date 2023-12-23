@@ -19,4 +19,5 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'AKA'
   # inflect.uncountable %w( income food )
+  inflect.irregular 'why', 'whys'
 end
