@@ -1,0 +1,21 @@
+- content_for(:title, 'The Four Problems')
+
+%p If an individual wants to lose fat, they must either #{Realm.p.get_energy.less} or #{Realm.p.use_strength.more}. Conversely, if an individual wants to <em>gain</em> fat, they must either #{Realm.p.get_energy.more} or #{Realm.p.use_strength.less}.
+
+%p The same is true for the other three realms except their energies are not stored as fat. The basic pattern is the same, however, for whatever their energy reserves are.
+
+%table.none
+  %tr
+    %th
+    %th Get Energy
+    %th Use Strength
+  %tr
+    %th Lose Reserves
+    %td.top.left Unwanted Energy (Get Less)
+    %td.top.left Insufficient Strength (Use More)
+  %tr
+    %th Gain Reserves
+    %td.top.left Insufficient Energy (Get More)
+    %td.top.left Unwanted Strength (Use Less)
+
+%p You want to be able to switch back and forth between getting the energy you want (bottom left) and using the strength you want (top right) without having to worry about getting enough energy to fuel unwanted strengths (bottom right), or using enough strength to burn unwanted energy (top left).

@@ -1,13 +1,41 @@
 !!!
 %html{:lang=>"en"}
   %head
-    %title="BipolarType: " + yield(:title)
+    %title="BipolarType: #{yield(:title)}"
     %meta{:content => "text/html; charset=utf-8"}
     %meta{:name => "viewport", :content=>"initial-scale=1"}
-    =stylesheet_link_tag '/application.css'
-    =render "layouts/favicon"
+    :css
+      table {margin: auto; border: 1px solid grey; border-collapse: collapse;}
+      table.none {border: none}
+      table.equal {table-layout: fixed; width: 100%; overflow-wrap:break-word; }
+      td {border: 1px solid grey; padding: .5em; text-align: center;}
+      td.none {border: none;}
+      td.top {vertical-align: top;}
+      {td th}.bottom {vertical-align: bottom;}
+      table.uncollapse {border-collapse: separate;}
+      td.round {border-radius: 40%; border: 1px solid black; }
+      .center {text-align: center;}
+      .left {text-align: left;}
+      .right {text-align: right;}
+      .half {width: 50%;}
+      .third {width: 33%;}
+      hr {width: 75%; border: 1px dotted;}
+      a.external:link {color: grey; text-decoration: none;}
+      a.external:visited {color: grey; text-decoration: none;}
+      a.external:hover {text-decoration: underline;}
+      .bold {font-weight: bold;}
+      .unbold {font-weight: normal;}
+      .italic {font-style: italic;}
+      .normal {font-style: normal;}
+      h1 {font-weight: bold; font-size: 1.3em; display: inline-block; padding: 0; margin: 0;}
+      h2 {text-align: center; font-weight: bold; font-size: 1.2em;}
+      h3 {text-align: center; font-style: italic; font-size: 1.1em;}
+      dt::after {content: ":";}
+
+      =render "layouts/favicon"
+
   %body
-    %p.center.smaller.padded_bottom=render "layouts/links"
-    %h1="BipolarType: " + yield(:title)
+    =render "layouts/links"
     =yield
-    %p.center.smaller.padded_bottom=render "layouts/links"
+    %br
+    =render "layouts/links", footer: true

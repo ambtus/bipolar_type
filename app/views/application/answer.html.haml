@@ -13,10 +13,10 @@
   %tr
     -Realm.each do |realm|
       %th=realm.name
-  -Position.each do |position|
+  -Problem.each do |problem|
     %tr
       -Realm.each do |realm|
-        -subtype = Subtype.select(realm, position)
+        -subtype = realm + problem
         %td
           %div{:class => @answer.css(subtype)}
           -if @answer.css(subtype) == "free"
@@ -27,4 +27,4 @@
             =link_to subtype.reason, answer_path(@answer.next(subtype))
 
           -else
-            =subtype.solution
+            =subtype.problem

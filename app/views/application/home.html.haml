@@ -1,14 +1,17 @@
 - content_for(:title, 'Introduction')
 %p
-  I’ve been working on BipolarType since the 80s when I was first diagnosed as
-  =link_to "bipolar", "https://en.wikipedia.org/wiki/Bipolar_disorder", :class => "external"
+  I’ve been working on BipolarType since the early 1980s when I was first diagnosed as
+  =link_to 'bipolar', 'https://en.wikipedia.org/wiki/Bipolar_disorder', class: 'external'
   at around the same time I first learned about
-  =succeed "." do
-    =link_to "personality type", "https://en.wikipedia.org/wiki/Personality_type", :class => "external"
+  =succeed '.' do
+    =link_to 'personality type', 'https://en.wikipedia.org/wiki/Personality_type', class: 'external'
 %p
   The theory is scientific (it is
-  =succeed ")" do
-    =link_to "falsifiable", "https://en.wikipedia.org/wiki/Falsifiability", :class => "external"
+  =succeed ')' do
+    =link_to 'falsifiable', 'https://en.wikipedia.org/wiki/Falsifiability', class: 'external'
   but it has not been validated by the medical, psychiatric, psychological, or type communities.
 %p
-  I am sharing it on the web because I hope that you may find it useful or interesting but I do not assert that it is true or correct, only that it helps me.
+  I am sharing it on the web because it helps
+  =succeed '.' do
+    =link_to 'me', my_path
+  I hope that you will find it useful or interesting but I do not guarantee it to be true or correct.

@@ -1,44 +1,45 @@
 class Realm
 
+  NAMES = %w{Physical Financial Mental Affective }
+  SYMBOLS = NAMES.map(&:first)
+
   def initialize(symbol); @symbol = symbol; end
   attr_reader :symbol
+  alias path :symbol
 
-  SYMBOLS = %w{S N F T}
-  ALL = 4.times.collect {|i| new SYMBOLS[i]}
+  ALL = SYMBOLS.collect {|symbol| self.new symbol}
+  def self.all; ALL; end
+  def self.each(&block);ALL.each(&block); end
 
-  SYMBOLS.each do |symbol|
-    define_singleton_method(symbol) {ALL[SYMBOLS.index(symbol)]}
-  end
-  class << self
-    def all; ALL; end
-    def each(&block); ALL.each(&block); end
-    def each_with_index(&block); ALL.each_with_index(&block); end
-    def symbols; SYMBOLS; end
+  SYMBOLS.each_with_index do |symbol, index|
+    define_singleton_method(symbol) {Realm.all[index]}
+    define_singleton_method(symbol.downcase) {Realm.all[index]}
   end
 
-  def center; %w{calories knowledge motivation money}[index]; end
-  def adjective; %w{caloric knowledge motivational monetary}[index]; end
-  def name; center.capitalize; end
-  def inspect; "#{@symbol}: #{name}"; end
+  def index; SYMBOLS.index @symbol; end
+  def <=>(other); index <=> other.index; end
 
-  def path; @symbol; end
+  def subtypes; Subtype.all.select{|s| s.realm == self}; end
+  def +(problem); subtypes.find{|s| s.problem == problem}; end
 
-  def index; SYMBOLS.index(@symbol) ; end
+  def name; NAMES[index]; end
+  alias inspect :name
+  def adjective; name.downcase; end
+  def adverb; adjective + "ly"; end
 
+  def energy; %w{calories money information emotions}[index]; end
 
-  def get; %w{eat watch listen\ to earn\ from}[index]; end
-  def get_short; get.split(" ").first; end
-  def external_less; %w{fewer fewer less less}[index]; end
-  def external_energy; %w{carbs colors music wages}[index]; end
-  def external_strength; %w{protein movement words investments}[index]; end
-  def get_energy; "#{get} #{external_energy}"; end
-  def get_strength; "#{get} #{external_strength}"; end
-  def get_less_energy; "#{get} #{external_less} #{external_energy}"; end
+  def get; %w{eat compete\ for learn listen\ to}[index]; end
+  def energizers; %w{carbs rewards details tunes}[index]; end
+  def strengtheners; %w{protein returns generalizations words}[index]; end
+  def get_energy; [get, energizers].to_phrase; end
+  def get_strength; [get, strengtheners].to_phrase; end
 
-  def use; %w{move decide communicate spend}[index]; end
-  def internal_energy; %w{glycogen specifics emotion cash}[index]; end
-  def use_energy; "#{use} using #{internal_energy}"; end
-  def internal_strength; %w{muscles rules meaning credit}[index]; end
-  def use_strength; "#{use} using #{internal_strength}"; end
+  def use_energy; %w{walk pay\ cash guess talk}[index]; end
+  def use_strength; %w{lift\ weights use\ credit theorize write}[index]; end
+  def use; %w{move buy predict explain}[index]; end
 
+  def organ; %w{body wallet}[index]; end
+
+  def period; %w{day year month week}[index]; end
 end

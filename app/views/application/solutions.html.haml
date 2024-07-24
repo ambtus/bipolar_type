@@ -1,0 +1,27 @@
+- content_for(:title, 'The Sixteen Solutions')
+
+-Realm.each do |realm|
+  %table.none
+    %caption
+      %h2 #{realm.name} Solutions
+    %tr
+      %th Episode &rarr;<br />Goal &darr;
+      %th Depression
+      %th Mania
+    %tr
+      %th Lose #{realm.name} Reserves
+      %td.top
+        Unwanted Energy
+        %p.left #{realm.get_energy.less.capitalize} when depressed, and you won&rsquo;t have to #{realm.use_strength.as_much} when depressed.
+      %td.top
+        Insufficient Strength
+        %p.left #{realm.use_strength.more.capitalize} when manic, and you won&rsquo;t have to #{realm.get_energy.less} when depresed.
+    %tr
+      %th Gain #{realm.name} Reserves
+      %td.top
+        Insufficient Energy
+        %p.left #{realm.get_energy.more.capitalize} when depressed, and you won&rsquo;t have to #{realm.use_strength.less} when manic.
+      %td.top
+        Unwanted Strength
+        %p.left #{realm.use_strength.less.capitalize} when manic, and you won&rsquo;t have to #{realm.get_energy.more} when manic.
+

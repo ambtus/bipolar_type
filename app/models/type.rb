@@ -6,19 +6,29 @@ class Type
   end
   attr_reader :symbol, :realms
 
-  ALL = Realm.symbols.permutation(4).collect{|p| new(p)}
+  def inspect; @symbol; end
+  def path; inspect ; end
+
+  ALL = Realm::SYMBOLS.permutation(4).collect{|p| new(p)}
+  def index; ALL.index self; end
+
+  ALL.each_with_index do |type, index|
+    define_singleton_method(type.path) {Type.all[index]}
+    define_singleton_method(type.path.downcase) {Type.all[index]}
+  end
+
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def my_realm_strings; %w{T F N S}; end
-    def my_type; ALL.find{|type| type.realms.map(&:path) == my_realm_strings}; end
+    def my_type; Type.famp; end
+    def my_path; my_type.path; end
   end
 
-  def inspect; @symbol; end
-  def path; inspect ; end
-  def index; ALL.index self; end
+  def subtypes; @realms.add(Problem.all); end
 
-  def subtypes; 4.times.collect{|i| Subtype.select(@realms[i], Position.all[i])}; end
-
+  def anorexic; subtypes.first; end
+  def manic; subtypes.second; end
+  def depressed; subtypes.third; end
+  def obese; subtypes.fourth; end
 end
 

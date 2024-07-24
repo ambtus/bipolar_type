@@ -1,0 +1,18 @@
+- content_for(:title, 'The Four Realms')
+
+%p Bipolar disorder (previously known as Manic Depression) is defined around Mental (cognitive) and Affective (mood) disorders. BipolarType adds Physical and Financial. Partly because they exist, but mostly because they can be <em>measured</em> to see how well your solution is working (or not working).
+
+%table.none.equal
+  -order = %w{ get_energy use_energy use use_strength  get_strength }
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=realm.name
+  -order.each do |behavior|
+    %tr
+      %th=behavior.titleize
+      -Realm.each do |realm|
+        %td.left=realm.send(behavior)
+
+
+%p The words for using energy can also refer to using strength for some people. For someone who is physically obese, walking <em>is</em> lifting weights and thus should be considered using physical strength. If you pay off a debt over time with cash, that is still buying by using financial strength. The more logic behind your guesses, the more mental strength you are using. And talking can also be using affective strength if you speak without much intonation and use &lsquo;big&rsquo; words.
