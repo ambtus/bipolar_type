@@ -4,8 +4,8 @@ class Realm
   SYMBOLS = NAMES.map(&:first)
 
   def initialize(symbol); @symbol = symbol; end
-  def symbol; @symbol == 'B' ? '' : @symbol; end
-  alias path :symbol
+  def generic?; @symbol == 'B'; end
+  def symbol; generic? ? '' : @symbol; end
 
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   def self.all; ALL[0,4]; end

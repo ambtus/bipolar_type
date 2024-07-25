@@ -206,6 +206,8 @@ class String
   def more
     if self.match(' ')
       [first_words, 'more', last_word].join(' ')
+    elsif self.noun?
+      "more #{self}"
     else
       "#{self} more"
     end

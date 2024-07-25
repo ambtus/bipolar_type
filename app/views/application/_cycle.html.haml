@@ -6,9 +6,9 @@
     %td.none
     %td.none U#{realm.symbol}S: #{realm.use_strength}
   %tr
-    %td.none Depressed ↻
+    %td.none #{realm.generic? ? 'Depression' : 'Energy'} ↻
     %td.none ↻
-    %td.none Manic ↻
+    %td.none #{realm.generic? ? 'Mania' : 'Strength'} ↻
   %tr
     %td.none G#{realm.symbol}E: #{realm.get_energy}
     %td.none

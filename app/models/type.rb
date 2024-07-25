@@ -20,8 +20,8 @@ class Type
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def my_type; Type.FPAM; end
-    def my_path; my_type.path; end
+    def my_path; 'FPAM'; end
+    def my_type; Type.send(my_path); end
   end
 
   def subtypes; @realms.add(Problem.all); end
