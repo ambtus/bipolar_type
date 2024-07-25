@@ -22,10 +22,10 @@ class Answer
 
   def next(choice); question.next + ":" + @subtype_string + choice.path; end
 
-  def type_path; subtypes.sort_by{|s| s.position.index}.map(&:realm).map(&:path).join; end
+  def type_path; subtypes.sort_by{|s| s.problem.index}.map(&:realm).map(&:path).join; end
 
-  private
-  def subtypes; @subtype_string.scan(/.../).collect{|s| Subtype.find(s)}; end
+
+  def subtypes; @subtype_string.scan(/../).collect{|s| Subtype.find(s)}; end
   def realms; subtypes.map(&:realm); end
   def problems; subtypes.map(&:problem); end
 

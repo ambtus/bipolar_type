@@ -1,19 +1,19 @@
 class Realm
 
-  NAMES = %w{Physical Financial Mental Affective }
+  NAMES = %w{Physical Financial Mental Affective Bipolar}
   SYMBOLS = NAMES.map(&:first)
 
   def initialize(symbol); @symbol = symbol; end
-  attr_reader :symbol
+  def symbol; @symbol == 'B' ? '' : @symbol; end
   alias path :symbol
 
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
-  def self.all; ALL; end
-  def self.each(&block);ALL.each(&block); end
+  def self.all; ALL[0,4]; end
+  def self.each(&block);ALL[0,4].each(&block); end
 
   SYMBOLS.each_with_index do |symbol, index|
-    define_singleton_method(symbol) {Realm.all[index]}
-    define_singleton_method(symbol.downcase) {Realm.all[index]}
+    define_singleton_method(symbol) {ALL[index]}
+    define_singleton_method(symbol.downcase) {ALL[index]}
   end
 
   def index; SYMBOLS.index @symbol; end
@@ -28,15 +28,19 @@ class Realm
   def adverb; adjective + "ly"; end
 
   def energy; %w{calories money information emotions}[index]; end
+  def strengths; %w{muscles credit rules vocabulary}[index]; end
 
-  def get; %w{eat compete\ for learn listen\ to}[index]; end
-  def energizers; %w{carbs rewards details tunes}[index]; end
-  def strengtheners; %w{protein returns generalizations words}[index]; end
+  def get; %w{eat earn look\ at listen\ to get}[index]; end
+  def process; %w{digest collect learn understand process}[index]; end
+  def energizers; %w{carbs wages the\ details music energy}[index]; end
   def get_energy; [get, energizers].to_phrase; end
+  def process_energy; [process, energizers].to_phrase; end
+  def strengtheners; %w{protein a\ salary the\ results the\ words strength}[index]; end
   def get_strength; [get, strengtheners].to_phrase; end
+  def process_strength; [process, strengtheners].to_phrase; end
 
-  def use_energy; %w{walk pay\ cash guess talk}[index]; end
-  def use_strength; %w{lift\ weights use\ credit theorize write}[index]; end
+  def use_energy; %w{run pay\ cash decide emote use\ energy}[index]; end
+  def use_strength; %w{lift\ weights use\ credit theorize write use\ strength}[index]; end
   def use; %w{move buy predict explain}[index]; end
 
   def organ; %w{body wallet}[index]; end

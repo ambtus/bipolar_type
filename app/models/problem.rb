@@ -1,6 +1,6 @@
 class Problem
 
-  NAMES = %w{Anorexic Skinny Fat Obese}
+  NAMES = %w{ Anorexic Obese Depressed Manic }
   SYMBOLS = NAMES.map(&:first)
 
   def initialize(symbol); @symbol = symbol; end
@@ -25,6 +25,7 @@ class Problem
   def name; NAMES[index]; end
   alias inspect :name
   def adjective; name.downcase; end
+
   def noun; adjective.to_noun; end
 
 end

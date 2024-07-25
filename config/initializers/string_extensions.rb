@@ -30,165 +30,173 @@ class String
              ESTJ ESFJ ENTJ ENFJ}
   def is_mbti?; MBTIS.include? self; end
 
+  NOUNS = %w{anorexia depression mania energy strength obesity goals emptiness hyperactivity weakness calories credit}
+  ADJECTIVES = %w{anorexic depressed manic energetic strong obese goal-oriented empty hyperactive weak caloric indebted}
+  def noun?; NOUNS.include?(self); end
+
+
   def to_noun
-    return 'anorexia' if self=='anorexic'
-    return 'depression' if self=='depressed'
-    return 'mania' if self=='manic'
-    return 'obesity' if self=='obese'
+    index = ADJECTIVES.index(self)
+    index ? NOUNS[index] : "#{self.an} #{self} person"
+  end
+
+  def to_adjective
+    index = NOUNS.index(self)
+    index ? ADJECTIVES[index] : "#{self}-like"
   end
 
   def s
-    return "watches" if self=="watch"
-    return "buys" if self=="buy"
+    return 'watches' if self=='watch'
+    return 'buys' if self=='buy'
     return 'pays' if self=='pay'
-    return "says" if self=="say"
-    return "does" if self=="do"
-    return "goes" if self=="go"
-    return "relaxes" if self=="relax"
+    return 'says' if self=='say'
+    return 'does' if self=='do'
+    return 'goes' if self=='go'
+    return 'relaxes' if self=='relax'
     if self.match(' or ')
       first, second = self.split(' or ', 2)
       [first.s, second.s].join(' or ')
-    elsif self.match(" ")
-      [first_word.s, last_words].join(" ")
-    elsif self.match("/")
+    elsif self.match(' ')
+      [first_word.s, last_words].join(' ')
+    elsif self.match('/')
       first, second = self.split('/', 2)
-      [first.s, second.s].join("/")
+      [first.s, second.s].join('/')
     else
       self.sub(/ss$/, 'sse').sub(/e?y$/, 'ie') + 's'
     end
   end
   def ed
-    return "sang" if self=="sing"
-    return "paid" if self=="pay"
-    return "said" if self=="say"
-    return "sat" if self=="sit"
-    return "went" if self=="go"
-    return "fed" if self=="feed"
-    return "ate" if self=="eat"
-    return "forgot" if self=="forget"
-    return "left" if self=="leave"
-    return "sold" if self=="sell"
-    return "felt" if self=="feel"
-    return "bought" if self=="buy"
-    return "thought" if self=="think"
-    return "told" if self=="tell"
-    return "spent" if self=="spend"
-    return "made" if self=="make"
-    return "heard" if self=="hear"
-    return "did" if self=="do"
-    return "fought" if self=="fight"
-    return "ran" if self=="run"
-    return "hit" if self=="hit"
-    return "saw" if self=="see"
-    return "shopped" if self=="shop"
-    return "planned" if self=="plan"
-    return "understood" if self=="understand"
-    return "lost" if self=="lose"
-    return "held" if self=="hold"
-    return "built" if self=="build"
-    return "spoke" if self=="speak"
-    if self.match(" ")
-      [first_word.ed, last_words].join(" ")
+    return 'sang' if self=='sing'
+    return 'paid' if self=='pay'
+    return 'said' if self=='say'
+    return 'sat' if self=='sit'
+    return 'went' if self=='go'
+    return 'fed' if self=='feed'
+    return 'ate' if self=='eat'
+    return 'forgot' if self=='forget'
+    return 'left' if self=='leave'
+    return 'sold' if self=='sell'
+    return 'felt' if self=='feel'
+    return 'bought' if self=='buy'
+    return 'thought' if self=='think'
+    return 'told' if self=='tell'
+    return 'spent' if self=='spend'
+    return 'made' if self=='make'
+    return 'heard' if self=='hear'
+    return 'did' if self=='do'
+    return 'fought' if self=='fight'
+    return 'ran' if self=='run'
+    return 'hit' if self=='hit'
+    return 'saw' if self=='see'
+    return 'shopped' if self=='shop'
+    return 'planned' if self=='plan'
+    return 'understood' if self=='understand'
+    return 'lost' if self=='lose'
+    return 'held' if self=='hold'
+    return 'built' if self=='build'
+    return 'spoke' if self=='speak'
+    if self.match(' ')
+      [first_word.ed, last_words].join(' ')
     else
-      self.sub(/e$/, "") + "ed"
+      self.sub(/e$/, '') + 'ed'
     end
   end
 
   def en
-    return "shown" if self=="show"
-    return "sung" if self=="sing"
-    return "eaten" if self=="eat"
-    return "forgotten" if self=="forget"
-    return "done" if self=="do"
-    return "run" if self=="run"
-    return "seen" if self=="see"
-    return "gone" if self=="go"
-    return "spoken" if self=="speak"
-    if self.match(" ")
-      [first_word.en, last_words].join(" ")
+    return 'shown' if self=='show'
+    return 'sung' if self=='sing'
+    return 'eaten' if self=='eat'
+    return 'forgotten' if self=='forget'
+    return 'done' if self=='do'
+    return 'run' if self=='run'
+    return 'seen' if self=='see'
+    return 'gone' if self=='go'
+    return 'spoken' if self=='speak'
+    if self.match(' ')
+      [first_word.en, last_words].join(' ')
     else
       self.ed
     end
   end
 
-  def ly; self + "ly"; end
+  def ly; self + 'ly'; end
 
   def able
-      return "comprehensible" if self == "comprehend"
-      self.sub(/e$/, "") + "able"
+      return 'comprehensible' if self == 'comprehend'
+      self.sub(/e$/, '') + 'able'
   end
 
   def un
-    return "incomprehensible" if self == "comprehensible"
+    return 'incomprehensible' if self == 'comprehensible'
     "un#{self}"
   end
 
   def ing
-    return "hardening" if self=="harden"
-    return "lying" if self=="lie"
-    return "listening" if self=="listen"
-    return "abandoning" if self=="abandon"
-    return "quitting" if self=="quit"
-    return "visiting" if self=="visit"
-    return "positing" if self=="posit"
-    return "developing" if self=="develop"
-    return "panicking" if self=="panic"
-    return "reasoning" if self=="reason"
-    return "gardening" if self=="garden"
-    [" and ", " or ", "/", " & "].each do |connector|
+    return 'hardening' if self=='harden'
+    return 'lying' if self=='lie'
+    return 'listening' if self=='listen'
+    return 'abandoning' if self=='abandon'
+    return 'quitting' if self=='quit'
+    return 'visiting' if self=='visit'
+    return 'positing' if self=='posit'
+    return 'developing' if self=='develop'
+    return 'panicking' if self=='panic'
+    return 'reasoning' if self=='reason'
+    return 'gardening' if self=='garden'
+    [' and ', ' or ', '/', ' & '].each do |connector|
       if self.match(connector)
         first, second = self.split(connector, 2)
         return [first.ing, second.ing].join(connector)
       end
     end
-    if self.match(" ")
-      return [first_word.ing, last_words].join(" ")
+    if self.match(' ')
+      return [first_word.ing, last_words].join(' ')
     end
-    self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + "ing"
+    self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + 'ing'
   end
 
   def enough
-    if self.match(" ")
-      [first_words, "enough", last_word].join(" ")
+    if self.match(' ')
+      [first_words, 'enough', last_word].join(' ')
     else
       "#{self} enough"
     end
   end
   def an
-    %w{a e i o u}.include?(self.first) ? "an" : "a"
+    %w{a e i o u}.include?(self.first) ? 'an' : 'a'
   end
   def some
-    if self.match(" ")
-      [first_word, "some", last_words].join(" ")
+    if self.match(' ')
+      [first_word, 'some', last_words].join(' ')
     else
       "#{self} some"
     end
   end
   def a_lot
-    if self.match(" ")
-      [first_words, last_word.many, second].join(" ")
+    if self.match(' ')
+      [first_words, last_word.many, second].join(' ')
     else
       "#{self} a lot"
     end
   end
   def a_few
-    if self.match(" ")
-      [first_words, "a", last_word.few, last_word].join(" ")
+    if self.match(' ')
+      [first_words, 'a', last_word.few, last_word].join(' ')
     else
       "#{self} a little"
     end
   end
   def too_much
-    if self.match(" ")
-      [first_words, "too", last_word.much, last_word].join(" ")
+    if self.match(' ')
+      [first_words, 'too', last_word.much, last_word].join(' ')
     else
       "#{self} too much"
     end
   end
   alias too_many :too_much
   def too_little
-    if self.match(" ")
-      [first_words, "too", last_word.little, last_word].join(" ")
+    if self.match(' ')
+      [first_words, 'too', last_word.little, last_word].join(' ')
     else
       "#{self} too little"
     end
@@ -196,56 +204,78 @@ class String
   alias too_few :too_little
 
   def more
-    if self.match(" ")
-      [first_words, "more", last_word].join(" ")
+    if self.match(' ')
+      [first_words, 'more', last_word].join(' ')
     else
       "#{self} more"
     end
   end
-
-  def less
-    if self.match(" ")
-      [first_words, last_word.fewer, last_word].join(" ")
+  def any_more
+    if self.match(' the ')
+      self.gsub('the', 'any more')
+    elsif self.match(' ')
+      [first_words, 'any more', last_word].join(' ')
     else
-      "#{self} less"
+      "#{self} any more"
     end
   end
 
   def as_much
-    if self.match(" ")
-      [first_words, "as", last_word.much, last_word].join(" ")
+    if self.match(' ')
+      [first_words, 'as', last_word.much, last_word].join(' ')
     else
       "#{self} as much"
     end
   end
   alias as_many :as_much
+  def so_much
+    if self.match(' ')
+      [first_words, 'so', last_word.much, last_word].join(' ')
+    elsif self.noun?
+      "so #{self.much} #{self}"
+    else
+      "#{self} so much"
+    end
+  end
+  alias so_many :so_much
 
   def plural?
-    return true if self == "people"
-    return true if first_word[-1] == "s"
+    return true if self == 'people'
+    return true if first_word[-1] == 's'
     return false
   end
 
+  def fewer; plural? ? 'fewer' : 'less'; end
+  def less
+    if self.match(' ')
+      [first_words, last_word.fewer, last_word].join(' ')
+    else
+      "#{self} less"
+    end
+  end
+
+
+
+
   def begins_with?(string); self.match(/\A#{string}/); end
 
-  def little; plural? ? "few" : "little"; end
+  def little; plural? ? 'few' : 'little'; end
   alias few :little
-  def fewer; plural? ? "fewer" : "less"; end
-  def much; plural? ? "many" : "much"; end
+  def much; plural? ? 'many' : 'much'; end
   alias many :much
-  def that; plural? ? "those" : "that"; end
+  def that; plural? ? 'those' : 'that'; end
   alias those :that
-  def is; plural? ? "are" : "is"; end
+  def is; plural? ? 'are' : 'is'; end
   alias are :is
-  def them; plural? ? "them" : "it"; end
+  def them; plural? ? 'them' : 'it'; end
   alias it :them
-  def they; plural? ? "they" : "it"; end
+  def they; plural? ? 'they' : 'it'; end
 
-  def has; plural? ? "have" : "has"; end
+  def has; plural? ? 'have' : 'has'; end
   alias have :has
-  def was; plural? ? "were" : "was"; end
+  def was; plural? ? 'were' : 'was'; end
   alias were :was
-  def does; plural? ? "do" : "does"; end
+  def does; plural? ? 'do' : 'does'; end
   alias do :does
 
 end

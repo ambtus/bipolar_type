@@ -3,13 +3,14 @@
   %span.chosen chosen
   something, other choices will become
   %span.constrained unavailable.
+%p <small>In my experience, it is easiest to type yourself from the top down (you know what you cannot do), but to type other people from the bottom up (you know what they can do).</small>
 
 -unless @answer.number == 1
   %p.center
     If you are stuck you can
     =link_to_unless_current "start over", answer_path(Answer.first_path)
 
-%table
+%table.none
   %tr
     -Realm.each do |realm|
       %th=realm.name
@@ -17,14 +18,8 @@
     %tr
       -Realm.each do |realm|
         -subtype = realm + problem
-        %td
-          %div{:class => @answer.css(subtype)}
-          -if @answer.css(subtype) == "free"
-            =subtype.symbol
-            =subtype.adjective
-            =subtype.surplus_or_deficit
-            %br
-            =link_to subtype.reason, answer_path(@answer.next(subtype))
+        %td{class: @answer.css(subtype)}
+          .bold=link_to_if  @answer.css(subtype) == "free", subtype.name, answer_path(@answer.next(subtype))
+          %p.left=render problem.adjective, realm: realm
 
-          -else
-            =subtype.problem
+=@answer.subtypes

@@ -7,7 +7,5 @@ class TypesController < ApplicationController
 #     end
   end
 
-  def index; @sort_order = params[:sort_order] || Type::ORDERS.first; end
-
   def me; redirect_to action: 'show', id: Type.my_path; end
 end

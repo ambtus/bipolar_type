@@ -1,20 +1,14 @@
 - content_for(:title, 'The Cycle')
 
-%h2 Use Strength (External Goal)
-%p The strength part of the cycle starts with an external goal. While using  strength to achieve that goal, you will occasionally stop to get strengtheners and rest before returning to using more strength.
-%p The strength part of the cycle ends when you perceive an internal need, not when you achieve the goal. If you achieve the triggering goal, but have no current internal needs, you will find another goal to achieve. If you perceive an urgent internal need, but have not achieved the current goal, you will abandon the goal temporarily until the need is satisfied.
-
-%h2 Get Energy (Internal Need)
-%p The energy part of the cycle starts with an internal need. While getting  energy to satisfy that need, you will occasionally stop to process and burn off extra energy before returning to getting more energy.
-%p The energy part of the cycle ends when you perceive an external goal, not when you satisfy the need. If you satisfy the triggering need, but have no current external goals, you will find another need to satisfy. If you perceive an urgent external goal, but have not satisfied the current need, you will abandon the need temporarily until the goal is achieved.
+=render 'cycle', realm: Realm.b
 
 
-%h2 Cycle Frequency
-%p The length of the full cycle depends on the realm in charge.
-%ul
-  -Realm.all.values_at(0,3,2,1).each do |realm|
-    %li #{realm.name}: one or more cycles per #{realm.period}
-%p Your cycles may be much shorter. For example, seasonal workers and most small businesses have a yearly financial cycle, but you may be paid weekly or monthly and thus have a financial cycle the same length as your affective or mental cycle. The above list is just an indication of how long a cycle <em>can</em> last, not how long your cycles <em>do</em> last.
+%h2 Mania
+%p The manic part of the cycle appears to be a fixation on achieving an external goal.
+%p While using strength to achieve that goal, you will occasionally stop to get strength and rest, but will very shortly return to achieving the goal.
+%p But the goal is <em>not</em> the motivation. Your <em>actual</em> motivation is to avoid having to get energy you do not want or cannot make room for. You fixate on a specific goal but if you manage to achieve that particular goal, you will merely find another to fixate on.
 
--Realm.all.values_at(0,3,2,1).each do |realm|
-  %p If the #{realm.adjective} realm is in charge, a cycle length will be about a #{realm.period} long. The goal is to be <em>balanced</em> so you spend half a #{realm.period} #{realm.get_energy.ing} and #{realm.use_energy.ing} (depressed) and half a #{realm.period} #{realm.use_strength.ing} and #{realm.get_strength.ing} (manic). The order doesn&rsquo;t matter, but the less balanced they are, the more #{realm.adverb} unhealthy you will be.
+%h2 Depression
+%p The depressed part of the cycle appears to be a fixation on satisfying an internal need.
+%p While getting energy to satisfy that need, you will occasionally stop to use energy and rest, but will very shortly return to satisyfing the need.
+%p But the need is <em>not</em> the motivation. Your <em>actual</em> motivation is to avoid having to use strength you do not have or cannot develop. You fixate on a specific need but if you manage to satisfy that particular need, you will merely find another to fixate on.
