@@ -33,8 +33,8 @@ class String
              ESTJ ESFJ ENTJ ENFJ}
   def is_mbti?; MBTIS.include? self; end
 
-  NOUNS = %w{anorexia depression mania energy strength obesity goals emptiness hyperactivity weakness calories credit}
-  ADJECTIVES = %w{anorexic depressed manic energetic strong obese goal-oriented empty hyperactive weak caloric indebted}
+  NOUNS = %w{anorexia depression mania energy strength obesity goals emptiness hyperactivity weakness calories credit information emotions}
+  ADJECTIVES = %w{anorexic depressed manic energetic strong obese goal-oriented empty hyperactive weak caloric indebted informative emotional}
   def noun?; NOUNS.include?(self); end
 
 
@@ -69,9 +69,9 @@ class String
     end
   end
   def ed
+    return 'got' if self=='get'
     return 'sang' if self=='sing'
     return 'paid' if self=='pay'
-    return 'said' if self=='say'
     return 'sat' if self=='sit'
     return 'went' if self=='go'
     return 'fed' if self=='feed'
@@ -80,7 +80,6 @@ class String
     return 'left' if self=='leave'
     return 'sold' if self=='sell'
     return 'felt' if self=='feel'
-    return 'bought' if self=='buy'
     return 'thought' if self=='think'
     return 'told' if self=='tell'
     return 'spent' if self=='spend'
@@ -101,11 +100,12 @@ class String
     if self.match(' ')
       [first_word.ed, last_words].join(' ')
     else
-      self.sub(/e$/, '') + 'ed'
+      self.sub(/e$/, '').sub(/y$/, 'i') + 'ed'
     end
   end
 
   def en
+    return 'gotten' if self=='get'
     return 'shown' if self=='show'
     return 'sung' if self=='sing'
     return 'eaten' if self=='eat'
@@ -122,7 +122,7 @@ class String
     end
   end
 
-  def ly; self + 'ly'; end
+  def ly; self.blank? ? '' : self + 'ly'; end
 
   def able
       return 'comprehensible' if self == 'comprehend'
@@ -192,6 +192,8 @@ class String
   def too_much
     if self.match(' ')
       [first_words, 'too', last_word.much, last_word].join(' ')
+    elsif self.noun?
+      "too #{self.many} #{self}"
     else
       "#{self} too much"
     end

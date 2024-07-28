@@ -1,10 +1,10 @@
-class Problem
+class Behavior
 
   def initialize(symbol); @symbol = symbol; end
   attr_reader :symbol
   alias path :symbol
 
-  NAMES = %w{BurnEnergy UseStrength GetEnergy RecoverStrength} # tltrblbr, not cycle order
+  NAMES = %w{BurnEnergy UseStrength GetEnergy RecoverStrength} # tl,tr,bl,br. not cycle order
   SYMBOLS = NAMES.map(&:first)
 
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
@@ -28,10 +28,17 @@ class Problem
   def symbolic_name; [symbol.colon, first_name].to_safe_phrase; end
 
 
-  def subtypes; Subtype.all.select{|s| s.problem == self}; end
+  def subtypes; Subtype.all.select{|s| s.behavior == self}; end
   def +(realm); subtypes.find{|s| s.realm == realm}; end
 
   def realm; Realm.generic; end
+  def method_missing(meth, *arguments, &block)
+    if realm.respond_to?(meth)
+      realm.send(meth, *arguments, &block)
+    else
+      super
+    end
+  end
 
   def internal?; index > 1 ; end
   def energy?; index.even?; end
@@ -45,8 +52,14 @@ class Problem
   def opposite; CYCLE[cycle_index+2]; end
   def previous; CYCLE[cycle_index+3]; end
 
-  def problem_names; [(unhappy? ? 'Unhappy' : 'Unhealthy'), first_name] ; end
-  def problem_name; [symbol.colon, problem_names.wbr].to_safe_phrase; end
+  def compulsive_names; [(unhappy? ? 'Unhappy' : 'Unhealthy'), first_name] ; end
+  def compulsive_name; [compulsive_names.map(&:first).join.colon, compulsive_names.wbr].to_safe_phrase; end
+  def responsible_names; ['More', first_name] ; end
+  def responsible_name; [responsible_names.map(&:first).join.colon, responsible_names.wbr].to_safe_phrase; end
+  def conscious_names;[(unhappy? ? 'Healthy' : 'Happy'), first_name] ; end
+  def conscious_name; [conscious_names.map(&:first).join.colon, conscious_names.wbr].to_safe_phrase; end
+  def limited_names; ['Less', first_name] ; end
+  def limited_name; [limited_names.map(&:first).join.colon, limited_names.wbr].to_safe_phrase; end
 
   def good_adverb; unhappy? ? 'healthy' : 'happy'; end
 

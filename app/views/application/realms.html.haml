@@ -2,8 +2,13 @@
 
 %p Bipolar disorder (previously known as Manic Depression) is usually defined as  a Mental (cognitive) or Affective (mood) cyclic imbalances. BipolarType adds Physical (caloric) and Financial (monetary).
 
-%p The below are only examples of the behaviors in the four realms. #{Realm.p.burn_energy.ing.capitalize} is certainly not the <em>only</em> way to burn calories (use physical energy); #{Subtype.bp.symbolic_name} behaviors include walking, swimming, dancing, cycling, etc. Any behavior that is primarily just burning calories without achieving any specific goal (except for the goal of being physically healthy).
+.center
+  -Realm.each do |realm|
+    =link_to realm.name, realm_path(realm.path)
 
--Realm.all.each do |realm|
-  =render 'euthymic', subtypes: realm.subtypes, caption: "The #{realm.name} Cycle"
+%p The above give examples of the behaviors in the four realms.
+%p #{Realm.p.burn_energy.ing.capitalize} is certainly not the <em>only</em> way to burn calories (&ldquo;waste&rdquo; physical energy); #{Subtype.bp.symbolic_name} behaviors include walking, swimming, dancing, cycling, etc. Any physical exercise that is burning calories without achieving any specific goal (except for the goal of being physically healthy).
+%p #{Realm.p.use_strength.ing.capitalize} is certainly not the <em>only</em> way to use calories (use physical energy &ldquo;productively&rdquo;); #{Subtype.up.symbolic_name} behaviors include all physical labor. Any work towards a specific goal which requires the use of strong muscles.
+%p Etc.
+
 

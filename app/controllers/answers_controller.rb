@@ -2,9 +2,10 @@ class AnswersController < ApplicationController
 
   def show
     @answer = Answer.new params[:id]
-    @title = "Question ##{@answer.number} of 4"
+    @title = "Question ##{@answer.number} of 3"
     redirect_to type_path(@answer.type_path) and return if @answer.finished?
-    render "answer"
+    @sixteen =  @answer.realm.subtypes.collect{|s| Array.new(4,s)}.flatten
+    render "cycle"
   end
 
 end
