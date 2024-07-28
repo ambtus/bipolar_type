@@ -1,17 +1,10 @@
 - content_for(:title, @type.symbol)
 .center
   %h1.center=@type.symbol
+=render 'stressed', subtypes: @type.subtypes,
+         caption: @dominant.name
 
-%h2 #{@type.manic.name} with #{@type.anorexic.name}
-%p
-  There is a difference between being forced into mania because you <em>cannot #{@type.manic.use_energy}</em> and so switch to #{@type.manic.use_strength.ing} so you don&rsquo;t have to #{@type.manic.get_energy.any_more},
-  and <em>choosing</em> to #{@type.manic.use_strength} so you can stop #{@type.obese.get_energy.ing.so_much} and #{@type.obese.use_strength.more}.
-
-%p You do not <em>have</em> to #{@type.anorexic.use_strength} just because you are in a manic cycle. You can continue to #{@type.anorexic.use_energy} <em>even when manic</em>. You may have to postpone achieving some of your #{@type.anorexic.realm.adjective} &ldquo;wants&rdquo; until <em>after</em> you have #{@type.anorexic.get_energy.en.more} and have an actual <em>goal</em>, but you should be able to #{@type.anorexic.use} most of what you want to #{@type.anorexic.use} eventually.
-
-%h2 #{@type.depressed.name} with #{@type.obese.name}
-%p
-  There is a difference between being forced into depression because you <em>cannot #{@type.depressed.process_strength}</em> and so switch to #{@type.depressed.get_energy.ing} so you don&rsquo;t have to #{@type.depressed.use_strength.any_more},
-  and <em>choosing</em> to #{@type.depressed.get_energy} so you can stop #{@type.anorexic.use_strength.ing.so_much} and #{@type.anorexic.get_energy.more}.
-
-%p You do not <em>have</em> to #{@type.obese.get_energy} just because you are in a depressed cycle. You can continue to #{@type.obese.get_strength} <em>even when depressed</em>. You may have to postpone satisfying some of your #{@type.obese.realm.adjective} &ldquo;wants&rdquo; until <em>after</em> you have #{@type.obese.use_strength.en.more} and have an actual <em>need</em>, but you should be able to #{@type.obese.get} most of what you want to #{@type.obese.get} eventually.
+%dl
+  -%w{dominant auxiliary tertiary inferior}.each do |index|
+    %dt=index.capitalize
+    %dd=@type.send(index).name

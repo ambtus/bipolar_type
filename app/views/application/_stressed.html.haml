@@ -1,0 +1,30 @@
+%table
+  %caption
+    %h2=caption
+  %tr
+    %td.none
+      -subtype = subtypes.first
+      =render 'answer_link', subtype: subtype, name: subtype.problem_name
+      %p.left=render 'bad', subtype: subtype
+    %td.right_border &swarhk;
+    %td.none
+    %td.none
+      -subtype = subtypes.second
+      =render 'answer_link', subtype: subtype, name: subtype.problem_name
+      %p.left=render 'bad', subtype: subtype
+  %tr
+    %td.none &uarr;
+    %td.right_border
+    %td.left_border
+    %td.none &darr;
+  %tr
+    %td.none
+      -subtype = subtypes.third
+      =render 'answer_link', subtype: subtype, name: subtype.problem_name
+      %p.left=render 'bad', subtype: subtype
+    %td.none
+    %td.left_border.top &nearhk;
+    %td.none
+      -subtype = subtypes.fourth
+      =render 'answer_link', subtype: subtype, name: subtype.problem_name
+      %p.left=render 'bad', subtype: subtype

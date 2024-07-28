@@ -1,25 +1,29 @@
-%p.center
-  Once you have
-  %span.chosen chosen
-  something, other choices will become
-  %span.constrained unavailable.
-%p <small>In my experience, it is easiest to type yourself from the top down (you know what you cannot do), but to type other people from the bottom up (you know what they can do).</small>
+%p.center.bold Answer in any order.
+%p If one realm is hard, skip it; you will only chose in three of the four realms (the last is your dominant realm, and it is not as unbalanced as the other three, which is why it is harder to choose).
+%p
+  If you get stuck, you can
+  -if @answer.number > 1
+    =link_to "start over", answer_path(Answer.first_path)
+    or
+  try
+  =link_to "switching the grouping", answer_path(@answer.resort)
+  from
+  =@answer.by_state ? 'imbalanced back to realms.' : 'realms to imbalances.'
+  Again, if one imbalance is hard, skip it; you will only choose three (the last is your center).
 
--unless @answer.number == 1
-  %p.center
-    If you are stuck you can
-    =link_to_unless_current "start over", answer_path(Answer.first_path)
+-unless @answer.by_state
+  -Realm.each do |realm|
+    -if @answer.free_realm?(realm)
+      =render 'bad', realms: Array.new(4, realm), caption: "#{realm.name} Imbalances"
 
-%table.none
-  %tr
-    -Realm.each do |realm|
-      %th=realm.name
-  -Problem.each do |problem|
-    %tr
-      -Realm.each do |realm|
-        -subtype = realm + problem
-        %td{class: @answer.css(subtype)}
-          .bold=link_to_if  @answer.css(subtype) == "free", subtype.name, answer_path(@answer.next(subtype))
-          %p.left=render problem.adjective, realm: realm
-
-=@answer.subtypes
+-else
+  -Problem.all.each_with_index do |problem, index|
+    -if @answer.free_problem?(problem)
+      %table.wide
+        %caption
+          %h2=problem.name
+        -Realm.each do |realm|
+          %tr
+          %td.none
+            =render 'answer_link', realm: realm, problem: problem
+            %p.left=render 'bad', realm: realm, problem: problem

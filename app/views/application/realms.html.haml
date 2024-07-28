@@ -1,8 +1,9 @@
 - content_for(:title, 'The Four Realms')
 
-%p Bipolar disorder (previously known as Manic Depression) is usually defined as a Mental (cognitive) or Affective (mood) disorder.
-%p BipolarType adds Physical (caloric) and Financial (monetary) disorders.
+%p Bipolar disorder (previously known as Manic Depression) is usually defined as  a Mental (cognitive) or Affective (mood) cyclic imbalances. BipolarType adds Physical (caloric) and Financial (monetary).
 
+%p The below are only examples of the behaviors in the four realms. #{Realm.p.burn_energy.ing.capitalize} is certainly not the <em>only</em> way to burn calories (use physical energy); #{Subtype.bp.symbolic_name} behaviors include walking, swimming, dancing, cycling, etc. Any behavior that is primarily just burning calories without achieving any specific goal (except for the goal of being physically healthy).
 
 -Realm.all.each do |realm|
-  =render 'cycle', realm: realm
+  =render 'euthymic', subtypes: realm.subtypes, caption: "The #{realm.name} Cycle"
+

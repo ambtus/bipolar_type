@@ -1,0 +1,4 @@
+-if @answer
+  =link_to_unless @answer.taken?(subtype), name, answer_path(@answer.next(subtype))
+-else
+  =name

@@ -84,6 +84,7 @@ GEM
     daemons (1.4.1)
     date (3.3.4)
     drb (2.2.1)
+    error_highlight (0.6.0)
     erubi (1.13.0)
     eventmachine (1.2.7)
     globalid (1.2.1)
@@ -200,6 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  error_highlight (>= 0.4.0)
   haml
   haml-rails
   rails
