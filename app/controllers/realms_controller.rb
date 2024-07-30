@@ -1,8 +1,8 @@
 class RealmsController < ApplicationController
   def show
     @realm = Realm.send params[:id]
-    @title = "The #{@realm.name} Cycle"
-    @sixteen =  @realm.subtypes.collect{|s| Array.new(4,s)}.flatten
+    @title = "The #{@realm.name} Realm"
+    @sixteen =  @realm.subtypes
     render 'cycle'
   end
 

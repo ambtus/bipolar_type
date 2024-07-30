@@ -21,15 +21,17 @@ class Type
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def my_path; 'MFPA'; end
+    def my_path; 'FTSN'; end
     def my_type; Type.send(my_path); end
   end
 
-  def first_subtypes; @realms.add(Behavior.first); end
-  def second_subtypes; @realms.values_at(2,0,3,1).add(Behavior.second); end
-  def third_subtypes; @realms.values_at(1,3,0,2).add(Behavior.third); end
-  def fourth_subtypes; @realms.reverse.add(Behavior.fourth); end
+  def inferiors; @realms.add(Behavior.all).map(&:make_inferior); end
+  def dominants; @realms.values_at(1,3,0,2).add(Behavior.all).map(&:make_dominant); end
+  def tertiaries; dominants.map(&:make_tertiary).values_at(1,3,0,2); end
+  def auxiliaries; inferiors.map(&:make_auxiliary).values_at(2,0,3,1); end
 
-  def sixteen; first_subtypes + second_subtypes + third_subtypes + fourth_subtypes; end
+  # TODO there must be a better way to do this.
+  def arrys; [auxiliaries,dominants,tertiaries,inferiors]; end
+  def sixteen; arrys.map(&:first) + arrys.map(&:second) + arrys.map(&:third) + arrys.map(&:fourth); end
 end
 

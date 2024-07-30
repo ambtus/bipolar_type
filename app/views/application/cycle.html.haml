@@ -5,100 +5,95 @@
   =@title
 
 -if @answer
-  %p.center.bold=@sixteen.first.realm.name + ' Subtypes'
-  %p If you cannot find a subtype that <em>perfectly</em> describes you, try refreshing the page to get a different Realm.
+  %p.center.bold=@sixteen.first.realm.name + ' Compulsions'
+  %p If none of the below are <em>unhealthy compulsions</em> for you, try refreshing the page (a few times) to get a different Realm.
   -if @answer.number > 1
     Or you can
     =link_to "start over", answer_path(Answer.first_path)
 
-%table.equal.none
+
+%table.none
 
   %tr
     %td{colspan:2}
     %td
       -subtype = @sixteen[2]
-      =render 'answer_link', subtype: subtype, name: subtype.limited_name
-      %p.left &rArr;I feel guilty for &ldquo;wasting&rdquo; too much #{subtype.adjective} energy
+      =render 'answer_link', subtype: subtype
+    %td
     %td
       -subtype = @sixteen[4]
-      =render 'answer_link', subtype: subtype, name: subtype.responsible_name
-      %p.left &seArr;I feel guilty for not having #{subtype.use_strength.en} yet
+      =render 'answer_link', subtype: subtype
     %td{colspan:2}
 
   %tr
     %td
     %td
       -subtype = @sixteen[1]
-      =render 'answer_link', subtype: subtype,name: subtype.conscious_name
-      %p.left &neArr;#{subtype.burn_energy.ing.capitalize} makes me #{subtype.adverb} healthier
-    %td{colspan:2}
+      =render 'answer_link', subtype: subtype
+    %td{colspan:3}
     %td
       -subtype = @sixteen[5]
-      =render 'answer_link', subtype: subtype,name: subtype.conscious_name
-      %p.left &seArr;#{subtype.use_strength.ing.capitalize} makes me #{subtype.adverb} happier
+      =render 'answer_link', subtype: subtype
     %td
 
   %tr
     %td
       -subtype = @sixteen[0]
-      =render 'answer_link', subtype: subtype, name: subtype.responsible_name
-      %p.left &neArr;I feel guilty for not having #{subtype.burn_energy.en} yet
+      =render 'answer_link', subtype: subtype
     %td
     %td
       -subtype = @sixteen[3]
-      =render 'answer_link', subtype: subtype, name: subtype.compulsive_name
-      %p.left <s> Do not #{subtype.burn_energy}; you won&rsquo;t stop until you are suicidal (would rather be dead)</s>
+      =render 'answer_link', subtype: subtype
+    %td
     %td
       -subtype = @sixteen[7]
-      =render 'answer_link', subtype: subtype, name: subtype.compulsive_name
-      %p.left <s> Do not #{subtype.use_strength}; you won&rsquo;t stop until you are #{subtype.adverb} anorexic</s>
+      =render 'answer_link', subtype: subtype
     %td
     %td
       -subtype = @sixteen[6]
-      =render 'answer_link', subtype: subtype, name: subtype.limited_name
-      %p.left &dArr;I feel guilty for &ldquo;showing off&rdquo; my #{subtype.adjective} strength
+      =render 'answer_link', subtype: subtype
+
+  %tr
+    %td{colspan:2}
+    %td{colspan:3} &orarr;
+    %td{colspan:2}
 
   %tr
     %td
       -subtype = @sixteen[10]
-      =render 'answer_link', subtype: subtype, name: subtype.limited_name
-      %p.left &uArr;I feel guilty for &ldquo;demanding&rdquo; #{subtype.energy.too_much}
-    %td.right
+      =render 'answer_link', subtype: subtype
+    %td
     %td
       -subtype = @sixteen[11]
-      =render 'answer_link', subtype: subtype, name: subtype.compulsive_name
-      %p.left <s> Do not #{subtype.get_energy}; you won&rsquo;t stop until you are #{subtype.adverb} obese</s>
+      =render 'answer_link', subtype: subtype
+    %td
     %td
       -subtype = @sixteen[15]
-      =render 'answer_link', subtype: subtype, name: subtype.compulsive_name
-      %p.left <s> Do not #{subtype.recover_strength}; you won&rsquo;t stop until you are psychotic (from lack of sleep)</s>
+      =render 'answer_link', subtype: subtype
     %td
     %td
       -subtype = @sixteen[12]
-      =render 'answer_link', subtype: subtype, name: subtype.responsible_name
-      %p.left &swArr;I feel guilty for not having #{subtype.recover_strength.en} yet
+      =render 'answer_link', subtype: subtype
 
   %tr
     %td
     %td
       -subtype = @sixteen[9]
-      =render 'answer_link', subtype: subtype,name: subtype.conscious_name
-      %p.left &nwArr;#{subtype.get_energy.ing.capitalize} makes me #{subtype.adverb} happier
-    %td{colspan:2}
+      =render 'answer_link', subtype: subtype
+    %td{colspan:3}
     %td
       -subtype = @sixteen[13]
-      =render 'answer_link', subtype: subtype,name: subtype.conscious_name
-      %p.left &swArr;#{subtype.recover_strength.ing.capitalize} makes me #{subtype.adverb} healthier
+      =render 'answer_link', subtype: subtype
     %td
 
   %tr
     %td{colspan:2}
     %td
       -subtype = @sixteen[8]
-      =render 'answer_link', subtype: subtype, name: subtype.responsible_name
-      %p.left &nwArr;I feel guilty for not having #{subtype.get_energy.en} yet
+      =render 'answer_link', subtype: subtype
+    %td
     %td
       -subtype = @sixteen[14]
-      =render 'answer_link', subtype: subtype, name: subtype.limited_name
-      %p.left &lArr;I feel guilty for &ldquo;wasting&rdquo; #{subtype.adjective} time
+      =render 'answer_link', subtype: subtype
     %td{colspan:2}
+

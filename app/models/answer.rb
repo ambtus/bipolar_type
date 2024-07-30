@@ -9,6 +9,7 @@ class Answer
     @subtype_string = subtype_string || ''
   end
   attr_reader :question, :path, :by_state
+  def subtypes; @subtype_string.scan(/..../).collect{|s| Subtype.find(s)}; end
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
@@ -16,7 +17,6 @@ class Answer
 
   def realm; (Realm.all - realms).sample; end
 
-  def subtypes; @subtype_string.scan(/../).collect{|s| Subtype.find(s)}; end
   def realms; subtypes.map(&:realm); end
   def behaviors; subtypes.map(&:behavior); end
 

@@ -1,62 +1,53 @@
 class Subtype
 
-  def initialize(behavior, realm)
+  def initialize(behavior, realm, position)
     @realm = realm
     @behavior = behavior
+    @position = position
   end
-  attr_reader :realm, :behavior
+  attr_reader :behavior, :realm, :position
 
-  def pair; [@behavior, @realm]; end
-  def symbol; pair.map(&:symbol).join; end
+  def triplet; [@behavior, @realm, @position]; end
+  def symbol; triplet.map(&:symbol).map(&:chars).flatten.values_at(0,2,1,3).join; end
   alias path :symbol
+  alias inspect :symbol
 
-  def names; pair.map(&:name).map(&:to_words).flatten.values_at(0,2,1).map(&:titleize); end
+  def base_mbti; [@behavior, @realm].map(&:mbti).map(&:chars).flatten.values_at(0,2,1).join; end
+  def mbti; [base_mbti, @position.mbti].join.html_safe; end
+
+  def names;[@position.name, *@behavior.names, @realm.name].values_at(0,1,3,2); end
   def name; names.wbr; end
-  def inspect; names.to_phrase; end
   def symbolic_name; [symbol.colon, name].to_safe_phrase; end
 
   ALL = Behavior.all.collect do |behavior|
-          Realm.all.collect do |realm|
-            self.new(behavior,realm)
+          Realm::ALL.collect do |realm|
+            Position.all.collect do |position|
+              self.new(behavior,realm,position)
+            end
           end
         end.flatten
 
   class << self
     def find(string); ALL.find{|s| s.path == string}; end
-    def select(realm, behavior); ALL.find{|s| s.realm == realm && s.behavior == behavior}; end
+    def select( behavior, realm, position); ALL.find{|s| s.realm == realm && s.behavior == behavior && s.position == position}; end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
   end
 
-  def mbti; pair.map(&:mbti).map(&:chars).flatten.values_at(0,2,1).join; end
-
   ALL.each_with_index do |instance, index|
-    %w{symbol mbti}.each do |thing|
+    %w{symbol}.each do |thing|
       define_singleton_method(instance.send(thing)) {ALL[index]}
       define_singleton_method(instance.send(thing).downcase) {ALL[index]}
     end
   end
 
-  def responsible_names; [@behavior.responsible_names.first, @realm.name, @behavior.responsible_names.second]; end
-  def responsible_name; [responsible_names.map(&:first).join.colon, responsible_names.wbr].to_safe_phrase; end
-  def conscious_names; [@behavior.conscious_names.first, @realm.name, @behavior.conscious_names.second]; end
-  def conscious_name; [conscious_names.map(&:first).join.colon, conscious_names.wbr].to_safe_phrase; end
-  def limited_names; [@behavior.limited_names.first, @realm.name, @behavior.limited_names.second]; end
-  def limited_name; [limited_names.map(&:first).join.colon, limited_names.wbr].to_safe_phrase; end
-  def compulsive_names; [@behavior.compulsive_names.first, @realm.name, @behavior.compulsive_names.second]; end
-  def compulsive_name; [compulsive_names.map(&:first).join.colon, compulsive_names.wbr].to_safe_phrase; end
+  def inferior?; @position.inferior?; end
+  def make_inferior; Subtype.find(self.path.chop+'4'); end
+  def make_dominant; Subtype.find(self.path.chop+'1'); end
+  def aux_position; behavior.unhappy? ? Position.second : Position.third; end
+  def make_tertiary; Subtype.select(behavior.previous,realm,aux_position); end
+  def make_auxiliary; Subtype.select(behavior.next,realm,aux_position); end
 
-  def eg; @realm.send(@behavior.behavior); end
-
-  def method_missing(meth, *arguments, &block)
-    if realm.respond_to?(meth)
-      realm.send(meth, *arguments, &block)
-    elsif behavior.respond_to?(meth)
-      behavior.send(meth, *arguments, &block)
-    else
-      super
-    end
-  end
-
+  def sample_behavior; @realm.send(@behavior.send_name); end
 
 end
