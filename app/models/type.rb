@@ -1,16 +1,15 @@
 class Type
 
   def initialize(string)
-    @symbol = string
+    @mbti = string
     @realms = string.chars.collect{|s| Realm.send(s)}
-    @realms.check_constraints(Realm, 4, 4)
+    @realms.check_constraints(Realm, 1, 4)
   end
-  attr_reader :symbol, :realms, :dominant_realm
+  attr_reader :mbti, :realms
+  alias path :mbti
+  alias inspect :mbti
 
-  def inspect; @symbol; end
-  def path; inspect ; end
-
-  ALL = Realm.all.permutation(4).collect{|perm| new(perm.map(&:symbol).join)}.flatten
+  ALL = Realm.all.permutation(4).collect{|perm| new(perm.map(&:mbti).join)}.flatten
   def index; ALL.index self; end
 
   ALL.each_with_index do |type, index|
@@ -21,17 +20,13 @@ class Type
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def my_path; 'FTSN'; end
+    def my_path; 'TNFS'; end
     def my_type; Type.send(my_path); end
+    def generic; Type.new(Realm.generic.mbti * 4); end
   end
 
-  def inferiors; @realms.add(Behavior.all).map(&:make_inferior); end
-  def dominants; @realms.values_at(1,3,0,2).add(Behavior.all).map(&:make_dominant); end
-  def tertiaries; dominants.map(&:make_tertiary).values_at(1,3,0,2); end
-  def auxiliaries; inferiors.map(&:make_auxiliary).values_at(2,0,3,1); end
+  def dominants; @realms.collect.each_with_index {|r, i| Subtype.new(Behavior.sort_order[i], r, Position.dominant)}; end
 
-  # TODO there must be a better way to do this.
-  def arrys; [auxiliaries,dominants,tertiaries,inferiors]; end
-  def sixteen; arrys.map(&:first) + arrys.map(&:second) + arrys.map(&:third) + arrys.map(&:fourth); end
+  def sixteen; dominants.collect {|subtype| subtype.cycle.subtypes}.flatten.sort; end
 end
 

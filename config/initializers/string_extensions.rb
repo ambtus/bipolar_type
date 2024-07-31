@@ -12,8 +12,8 @@ class String
   def third; chars.third; end
   def fourth; chars.fourth; end
   def words; split(/\s+/); end
-  def to_words; self.underscore.humanize.words; end
-  def to_phrase; Phrase.new words; end
+  def to_phrase; self.gsub('_', ' '); end
+  def to_words; self.underscore.to_phrase.words; end
 
   def n; words.size - 1;end
   def first_word; words.first; end
@@ -122,7 +122,7 @@ class String
     end
   end
 
-  def ly; self.blank? ? '' : self + 'ly'; end
+  def ly; self.blank? ? '' : self.gsub(/le$/,'') + 'ly'; end
 
   def able
       return 'comprehensible' if self == 'comprehend'

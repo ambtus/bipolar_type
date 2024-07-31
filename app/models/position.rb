@@ -1,36 +1,45 @@
 class Position
 
-  def initialize(symbol); @symbol = symbol; end
-  attr_reader :symbol
-  alias path :symbol
-  alias inspect :symbol
+  def initialize(mbti); @mbti = mbti; end
+  attr_reader :mbti
+  alias inspect :mbti
 
-  SYMBOLS = %w{1 2 3 4}
-  ALL = SYMBOLS.collect {|symbol| self.new symbol}
-  def self.all; ALL[0,4]; end
+  MBTIS = %w{Dominant Inferior Auxiliary Tertiary} # cycle order not display/sort order
+  def mbti_index; MBTIS.index @mbti; end
+
+  def path;    %w{1 4 2 3 }[mbti_index]; end
+  def display; %w{¹ ⁴ ² ³}[mbti_index]; end
+
+  ALL = MBTIS.collect {|mbti| self.new mbti}
+  def next; ALL[(mbti_index+1)%4]; end
+  def opposite; self.next.next; end
+  def previous; opposite.next; end
+
+  def self.all; ALL; end
   def self.each(&block);ALL.each(&block); end
-  def index; SYMBOLS.index @symbol; end
+  def self.dominant; ALL.first; end
+  def self.inferior; ALL.second; end
+  def dominant?; self.class.dominant == self; end
+  def inferior?; self.class.inferior == self; end
 
-  def inferior?; index == 3 ; end
-  def self.inferior; ALL.last; end
-  def mbti; inferior? ? '' : "&sup#{symbol};".html_safe; end
+  ADJECTIVES = %w{deliberate compulsive reluctant irritable}
+  def adjective; ADJECTIVES[mbti_index]; end
+  def name; adjective.titleize; end
+  def symbolic_name; [@mbti.colon, name].to_safe_phrase; end
 
-  NAMES = %w{Dominant Auxiliary Tertiary Inferior}
-  def name; NAMES[index]; end
-  def symbolic_name; [symbol.colon, name].to_safe_phrase; end
+  def adverb; adjective.ly; end
 
   ALL.each_with_index do |instance, index|
-    %w{name}.each do |thing|
+    %w{mbti adjective}.each do |thing|
       define_singleton_method(instance.send(thing)) {ALL[index]}
       define_singleton_method(instance.send(thing).downcase) {ALL[index]}
     end
   end
-  %w{first second third fourth}.each do |ordinal|
-    define_singleton_method(ordinal) {ALL.send(ordinal)}
-  end
+
+  def sort_order; ALL.values_at(2,0,3,1); end
+  def sort_index; sort_order.index self; end
+  def <=>(other); sort_index <=> other.sort_index; end
 
 
-  def subtypes; Subtype.all.select{|s| s.position == self}; end
-  def +(behavior); subtypes.find{|s| s.behavior == behavior}; end
 
 end

@@ -1,6 +1,5 @@
--if subtype.inferior?
-  %s=link_to subtype.mbti, subtype_path(subtype.path)
-  =link_to_unless @answer.taken?(subtype), subtype.sample_behavior, answer_path(@answer.next(subtype)) if @answer
+-if @answer
+  -unless @answer.taken?(subtype)
+    =link_to_unless @answer.taken?(subtype), subtype.display, answer_path(@answer.next(subtype))
 -else
-  =link_to subtype.mbti, subtype_path(subtype.path) unless @answer
-
+  =link_to subtype.display, subtype_path(subtype.path)

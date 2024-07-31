@@ -1,19 +1,8 @@
 - content_for(:title, @title)
-
--if @realm || @answer
-  |
-  =@title
-
--if @answer
-  %p.center.bold=@sixteen.first.realm.name + ' Compulsions'
-  %p If none of the below are <em>unhealthy compulsions</em> for you, try refreshing the page (a few times) to get a different Realm.
-  -if @answer.number > 1
-    Or you can
-    =link_to "start over", answer_path(Answer.first_path)
-
-
+-if @answer || @realm
+  .center
+    %h2=@title
 %table.none
-
   %tr
     %td{colspan:2}
     %td
@@ -97,3 +86,7 @@
       =render 'answer_link', subtype: subtype
     %td{colspan:2}
 
+-if @answer && @answer.number > 1
+  You can
+  =link_to "start over", answer_path(Answer.first_path)
+  if you get stuck.
