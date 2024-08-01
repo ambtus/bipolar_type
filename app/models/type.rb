@@ -9,6 +9,8 @@ class Type
   alias path :mbti
   alias inspect :mbti
 
+  def name; mbti.chars.values_at(2,0,1,3).join; end
+
   ALL = Realm.all.permutation(4).collect{|perm| new(perm.map(&:mbti).join)}.flatten
   def index; ALL.index self; end
 
@@ -25,7 +27,8 @@ class Type
     def generic; Type.new(Realm.generic.mbti * 4); end
   end
 
-  def dominants; @realms.collect.each_with_index {|r, i| Subtype.new(Behavior.sort_order[i], r, Position.dominant)}; end
+  def dominants; @realms.collect.each_with_index {|r, i| Subtype.dominant(r, i)}; end
+  def auxiliaries; dominants.map(&:opposite); end
 
   def sixteen; dominants.collect {|subtype| subtype.cycle.subtypes}.flatten.sort; end
 end

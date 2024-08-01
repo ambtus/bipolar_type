@@ -1,0 +1,27 @@
+- content_for(:title, 'MBTI Comparison')
+%p Each MBTI&reg; type corresponds to two possible BipolarTypes:
+
+-found = []
+%ul
+  -String::MBTIS.sort.each do |mbti|
+    %li
+      #{mbti}
+      -dom = Subtype.send(mbti.dominant + '1')
+      -aux = Subtype.send(mbti.auxiliary+ '2')
+      %br
+      -Type.all.select{|t| t.dominants.include?(dom) && t.auxiliaries.include?(aux)}.each do |type|
+        -found << type
+        =link_to type.name, type_path(type.path)
+        =type.dominants
+        with
+        =type.auxiliaries
+        %br
+
+%p BipolarTypes without an associated MBTI&reg; type:
+%ul
+  -Type.all.without(found).each do |type|
+    %li
+      =link_to type.name, type_path(type.path)
+      =type.dominants
+      with
+      =type.auxiliaries

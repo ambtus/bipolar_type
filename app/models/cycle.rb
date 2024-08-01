@@ -1,28 +1,25 @@
 class Cycle
 
-  def initialize(behavior, realm, position)
-    @realm = realm
-    @behavior = behavior
-    @position = position
-  end
-  attr_reader :behavior, :realm, :position
-
-  def first_subtype; Subtype.select(@behavior, @realm, @position); end
-  def path; first_subtype.path; end
-  def display; first_subtype.display; end
+  def initialize(subtype); @subtype = subtype; end
+  attr_reader :subtype
+  def path; subtype.path; end
+  def display; subtype.display + ' cycle'; end
   alias inspect :display
 
-  ALL = Behavior.all.collect do |behavior|
-          Realm::ALL.collect do |realm|
-            Position.all.collect do |position|
-              self.new(behavior,realm,position)
-            end
-          end
-        end.flatten
+  def behavior; subtype.behavior; end
+  def realm; subtype.realm; end
+  def position; subtype.position; end
+
+  ALL = Subtype.all.collect {|subtype| Cycle.new(subtype)}
 
   class << self
-    def find(string); ALL.find{|s| s.path == string}; end
-    def select( behavior, realm, position); ALL.find{|s| s.realm == realm && s.behavior == behavior && s.position == position}; end
+    def find(thing)
+      if thing.is_a? String
+        self.send(thing)
+      elsif thing.is_a? Subtype
+        self.send(thing.path)
+      end
+    end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
   end
@@ -34,5 +31,5 @@ class Cycle
     end
   end
 
-  def subtypes; [first_subtype, first_subtype.next, first_subtype.opposite, first_subtype.previous]; end
+  def subtypes; [subtype, subtype.next, subtype.opposite, subtype.previous]; end
 end

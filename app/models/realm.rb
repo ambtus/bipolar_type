@@ -11,6 +11,7 @@ class Realm
 
   ALL = MBTIS.collect {|mbti| self.new mbti}
   def self.all; ALL[0,4]; end
+  def self.with_generic; ALL; end
   def self.each(&block);ALL[0,4].each(&block); end
   def self.generic; ALL.last; end
   def generic?; self.class.generic == self; end

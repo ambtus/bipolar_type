@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root 'start#home'
-  get '/cycle' => 'start#cycle', as: :cycle
+  get '/mbti' => 'start#mbti', as: :mbti
   resources :answers, only: [:show]
-  resources :types, only: [:index, :show]
-  resources :realms, only: [:index, :show]
-  resources :subtypes, only: [:show]
+  resources :types, only: [:show]
   get '/me' => 'types#me', as: :my
+  resources :realms, only: [:show]
+  get '/cycle' => 'realms#cycle', as: :cycle
+  resources :subtypes, only: [:show]
 end

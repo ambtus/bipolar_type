@@ -1,10 +1,14 @@
 class RealmsController < ApplicationController
-  def show
-    @realm = Realm.send params[:id]
-    @title = "The #{@realm.name} Realm"
+  def show; setup(params[:id]); end
+
+  def cycle; setup(Realm.generic.path); end
+
+  def setup(id)
+    @realm = Realm.send id
+    @realms = Realm.with_generic.without(@realm)
+    @title = "The #{@realm.name} Cycle"
     @sixteen =  Type.new(@realm.mbti * 4).sixteen
     render 'cycle'
   end
 
-  def index; render 'realms' and return; end
 end

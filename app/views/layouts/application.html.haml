@@ -5,6 +5,10 @@
     %meta{:content => "text/html; charset=utf-8"}
     %meta{:name => "viewport", :content=>"initial-scale=1"}
     :css
+      .dominant {font-weight: bold;}
+      .auxiliary {font-weight: normal;}
+      .tertiary {font-style: italic;}
+      .inferior {text-decoration: line-through;}
       .chosen {font-weight: bold; color: red; }
       .constrained { color: orange; }
       .free {color: green}
@@ -15,6 +19,8 @@
       td.bordered {border: 1px solid grey; }
       td.left_border{border-left: 1px solid grey;}
       td.right_border{border-right: 1px solid grey;}
+      td.bottom_border{border-bottom: 1px solid grey;}
+      td.top_border{border-top: 1px solid grey;}
       td.top {vertical-align: top;}
       {td th}.bottom {vertical-align: bottom;}
       table.uncollapse {border-collapse: separate;}
@@ -29,9 +35,7 @@
       a.external:link {color: grey; text-decoration: none;}
       a.external:visited {color: grey; text-decoration: none;}
       a.external:hover {text-decoration: underline;}
-      .bold {font-weight: bold;}
       .unbold {font-weight: normal;}
-      .italic {font-style: italic;}
       .normal {font-style: normal;}
       h1 {font-weight: bold; font-size: 1.3em; display: inline-block; padding: 0; margin: 0;}
       h2 {text-align: center; font-weight: bold; font-size: 1.2em;}
@@ -41,7 +45,7 @@
       =render "layouts/favicon"
 
   %body
-    =render "layouts/links"
+    .center=render "layouts/links"
     =yield
     %br
-    =render "layouts/links", footer: true
+    -#.center=render "layouts/links", footer: true

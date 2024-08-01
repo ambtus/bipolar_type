@@ -33,6 +33,22 @@ class String
              ESTJ ESFJ ENTJ ENFJ}
   def is_mbti?; MBTIS.include? self; end
 
+  def dominant
+    return self.chars.values_at(0,2,3).join if (self.match(/I..P/) || self.match(/E..J/))
+    return self.chars.values_at(0,1,3).join if (self.match(/I..J/) || self.match(/E..P/))
+  end
+  def auxiliary
+    if self.match(/I..P/)
+      ['E', chars[1], 'P'].join
+    elsif self.match(/I..J/)
+      ['E', chars[2], 'J'].join
+    elsif self.match(/E..P/)
+      ['I', chars[2], 'P'].join
+    elsif self.match(/E..J/)
+      ['I', chars[1], 'J'].join
+    end
+  end
+
   NOUNS = %w{anorexia depression mania energy strength obesity goals emptiness hyperactivity weakness calories credit information emotions}
   ADJECTIVES = %w{anorexic depressed manic energetic strong obese goal-oriented empty hyperactive weak caloric indebted informative emotional}
   def noun?; NOUNS.include?(self); end

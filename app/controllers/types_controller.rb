@@ -1,7 +1,7 @@
 class TypesController < ApplicationController
   def show
     @type = Type.send params[:id]
-    @title = "The #{@type.path} Cycle"
+    @title = "The #{@type.name} Cycle"
     @sixteen =  @type.sixteen
     render 'cycle'
   end

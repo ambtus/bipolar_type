@@ -1,46 +1,50 @@
 class Subtype
 
-  def initialize(behavior, realm, position)
-    @behavior = behavior
-    @realm = realm
+  def initialize(triplet, position)
+    @triplet = triplet
     @position = position
   end
-  attr_reader :behavior, :realm, :position
+  attr_reader :triplet, :position
 
-  def triplet; [@behavior, @realm, @position]; end
-  def path; triplet.map(&:path).   map(&:chars).flatten.values_at(0,2,1,3).join; end
-  def pair; [@behavior, @position]; end
-  def display
-    if @realm.generic?
-      pair.map(&:display).join
-    else
-      triplet.map(&:display).map(&:chars).flatten.values_at(0,2,1,3).join
-    end
-  end
-  alias inspect :display
+  def behavior; triplet.behavior; end
+  def realm; triplet.realm; end
 
-  def base_mbti; [@behavior, @realm].map(&:mbti).map(&:chars).flatten.values_at(0,2,1).join; end
-  def mbti; [@position.mbti, base_mbti].to_phrase; end
-
+  def pair; [@triplet, @position]; end
   def <=>(other); pair <=> other.pair; end
 
-  def names;[@position.names.first, @behavior.names.first.ing, @realm.name, @behavior.names.second, @position.names.second]; end
+  def path; pair.map(&:path).join; end
+  def mbti; pair.map(&:mbti).join; end
+  def display; pair.map(&:display).join; end
+  alias inspect :display
+
+  def names;[@position.name, @triplet.name]; end
   def name; names.wbr; end
   def symbolic_name; [display.colon, name].to_safe_phrase; end
 
-  ALL = Behavior.all.collect do |behavior|
-          Realm::ALL.collect do |realm|
-            Position.all.collect do |position|
-              self.new(behavior,realm,position)
-            end
+  ALL = Triplet.all.collect do |triplet|
+          Position.all.collect do |position|
+            self.new(triplet,position)
           end
         end.flatten
 
   class << self
-    def find(string); ALL.find{|s| s.path == string}; end
-    def select( behavior, realm, position); ALL.find{|s| s.realm == realm && s.behavior == behavior && s.position == position}; end
+    def find(thing)
+      if thing.is_a? String
+        self.send(thing)
+      elsif thing.is_a? Array
+        if thing.length == 2
+          ALL.find{|s| s.triplet == thing.first && s.position == thing.second}
+        elsif thing.length == 3
+          ALL.find{|s| s.behavior == thing.first && s.realm == thing.second && s.position == thing.third}
+        end
+      end
+    end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
+    def dominant(realm, index)
+      behavior = Behavior.sort_order[index]
+      Subtype.find([behavior, realm, Position.dominant])
+    end
   end
 
   ALL.each_with_index do |instance, index|
@@ -52,11 +56,11 @@ class Subtype
 
   def inferior?; @position.inferior?; end
 
-  def next; Subtype.select(@behavior.next, @realm, @position.next); end
+  def next; Subtype.find([@triplet.next, @position.next]); end
   def opposite; self.next.next; end
   def previous; opposite.next; end
 
-  def cycle; Cycle.new(*triplet); end
-  def sample_behavior;[ @realm.send(@behavior.send_name), @position.adverb].to_phrase; end
+  def cycle; Cycle.find(self); end
+  def sample_behavior;[@triplet.sample_behavior, @position.adverb].to_phrase; end
 
 end
