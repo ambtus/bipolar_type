@@ -13,13 +13,9 @@ class Subtype
   def <=>(other); pair <=> other.pair; end
 
   def path; pair.map(&:path).join; end
-  def mbti; pair.map(&:mbti).join; end
+  def mbti; pair.reverse.map(&:mbti).wbr; end
   def display; pair.map(&:display).join; end
   alias inspect :display
-
-  def names;[@position.name, @triplet.name]; end
-  def name; names.wbr; end
-  def symbolic_name; [display.colon, name].to_safe_phrase; end
 
   ALL = Triplet.all.collect do |triplet|
           Position.all.collect do |position|
@@ -54,13 +50,28 @@ class Subtype
     end
   end
 
-  def inferior?; @position.inferior?; end
-
   def next; Subtype.find([@triplet.next, @position.next]); end
   def opposite; self.next.next; end
   def previous; opposite.next; end
 
   def cycle; Cycle.find(self); end
-  def sample_behavior;[@triplet.sample_behavior, @position.adverb].to_phrase; end
+
+  def names;[@position.name, *@triplet.names]; end
+  def name; names.wbr; end
+  def symbolic_name; [display.colon, name].to_safe_phrase; end
+
+   def method_missing(meth, *arguments, &block)
+    if realm.respond_to?(meth)
+      realm.send(meth, *arguments, &block)
+    elsif behavior.respond_to?(meth)
+      behavior.send(meth, *arguments, &block)
+    elsif position.respond_to?(meth)
+      position.send(meth, *arguments, &block)
+    elsif triplet.respond_to?(meth)
+      triplet.send(meth, *arguments, &block)
+    else
+      super
+    end
+  end
 
 end

@@ -6,6 +6,7 @@ class Position
 
   MBTIS = %w{Dominant Inferior Auxiliary Tertiary} # cycle order not display/sort order
   def mbti_index; MBTIS.index @mbti; end
+  def name; mbti; end
 
   def path;    %w{1 4 2 3 }[mbti_index]; end
   def display; %w{¹ ⁴ ² ³}[mbti_index]; end
@@ -22,15 +23,8 @@ class Position
   def dominant?; self.class.dominant == self; end
   def inferior?; self.class.inferior == self; end
 
-  ADJECTIVES = %w{deliberate compulsive reluctant irritable}
-  def adjective; ADJECTIVES[mbti_index]; end
-  def name; adjective.titleize; end
-  def symbolic_name; [@mbti.colon, name].to_safe_phrase; end
-
-  def adverb; adjective.ly; end
-
   ALL.each_with_index do |instance, index|
-    %w{mbti adjective}.each do |thing|
+    %w{mbti}.each do |thing|
       define_singleton_method(instance.send(thing)) {ALL[index]}
       define_singleton_method(instance.send(thing).downcase) {ALL[index]}
     end

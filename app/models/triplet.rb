@@ -20,10 +20,6 @@ class Triplet
 
   def <=>(other); behavior <=> other.behavior; end
 
-  def names;[@behavior.names.first, @realm.name, @behavior.names.second]; end
-  def name; names.wbr; end
-  def symbolic_name; [display.colon, name].to_safe_phrase; end
-
   ALL = Behavior.all.collect do |behavior|
           Realm::ALL.collect do |realm|
             self.new(behavior,realm)
@@ -53,6 +49,12 @@ class Triplet
   def opposite; self.next.next; end
   def previous; opposite.next; end
 
-  def sample_behavior;@realm.send(@behavior.send_name); end
+  # use adjective.capitalize instead of name to get '' for Generic
+  def names;[@behavior.verb, @realm.adjective.capitalize, @behavior.noun]; end
+  def name; names.wbr; end
+  def symbolic_name; [display.colon, name].to_safe_phrase; end
+  def phrase; names.to_phrase; end
+
+  def eg;@realm.send(@behavior.send_name); end
 
 end

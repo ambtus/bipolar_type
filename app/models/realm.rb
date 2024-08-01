@@ -20,6 +20,8 @@ class Realm
   NAMES = %w{Physical Financial Affective Mental Generic}
   def name; NAMES[index]; end
   def symbolic_name; [@mbti.colon, name].to_phrase; end
+  def adjective; generic? ? '' : name.downcase; end
+  def adverb; adjective.ly; end
 
   ALL.each_with_index do |instance, index|
     %w{mbti name}.each do |thing|
@@ -28,8 +30,6 @@ class Realm
     end
   end
 
-  def adjective; generic? ? '' : name.downcase; end
-  def adverb; adjective.ly; end
 
   def energy;       %w{calories money       emotions   facts}[index]    || __method__.to_s.to_phrase; end
   def strengths;    %w{muscles  credit      language   theories}[index] || __method__.to_s.to_phrase; end

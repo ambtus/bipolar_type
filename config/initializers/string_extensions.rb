@@ -12,7 +12,7 @@ class String
   def third; chars.third; end
   def fourth; chars.fourth; end
   def words; split(/\s+/); end
-  def to_phrase; self.gsub('_', ' '); end
+  def to_phrase; self.gsub('_', ' ').gsub('<wbr>', ''); end
   def to_words; self.underscore.to_phrase.words; end
 
   def n; words.size - 1;end

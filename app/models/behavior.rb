@@ -8,6 +8,7 @@ class Behavior
 
   MBTIS = %w{IP EP EJ IJ} # cycle order (IP first) not display/sort order (EP first)
   def cycle_index; MBTIS.index @mbti; end
+  def rational?; cycle_index.even?; end
 
   ALL = MBTIS.collect {|mbti| self.new mbti}
   def next; ALL[(cycle_index+1)%4]; end
@@ -22,12 +23,13 @@ class Behavior
   def symbolic_name; [@mbti.colon, name].to_safe_phrase; end
 
   def names; name.split('<wbr>'); end
-  def clear_name; names.join; end
-  def send_name; clear_name.underscore; end
+  def send_name; names.join.underscore; end
 
-  def first_name; names.first; end
+  def verb; names.first; end
+  def noun; names.second; end
+
   ALL.each_with_index do |instance, index|
-    %w{mbti first_name}.each do |thing|
+    %w{mbti verb}.each do |thing|
       define_singleton_method(instance.send(thing)) {ALL[index]}
       define_singleton_method(instance.send(thing).downcase) {ALL[index]}
     end

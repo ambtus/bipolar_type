@@ -1,6 +1,53 @@
--if @realm && @realm == Realm.S
-  %p The above are only examples
-  %p #{@realm.burn_energy.ing.capitalize} is certainly not the <em>only</em> way to burn calories (&ldquo;waste&rdquo; physical energy); similar behaviors include walking, swimming, dancing, cycling, etc. Any aerobic exercise that is burning calories without achieving any specific goal (except for the goal of being physically healthy).
-  %p #{@realm.use_strength.ing.capitalize} is certainly not the <em>only</em> way to use calories (use physical energy &ldquo;productively&rdquo;); similar behaviors include all physical labor. Any work towards a specific goal which requires the use of strong muscles.
-  %p Etc.
+- content_for(:title, @name)
+%p.center{class: @attitude}=@name
+-case @attitude
 
+-when 'dominant'
+  %p
+    =@subtype.phrase.ing
+    is almost always a good idea when it is in the dominant position.
+  %p
+    It will make you happy and is not nearly as #{@adjective.ly} unhealthy as you think it is as long as you refrain from allowing it to slide into
+    =succeed '.' do
+      =link_to @subtype.next.display, subtype_path(@subtype.next.path)
+
+-when 'auxiliary'
+  %p
+    =@subtype.phrase.ing
+    is usually a good idea when it is in the auxiliary position.
+  %p
+    It is #{@adjective.ly} healthy
+    =@subtype.rational? ? 'and is' : 'but is rarely'
+    necessary if you didn&rsquo;t
+    =link_to @subtype.previous.display, subtype_path(@subtype.previous.path)
+    (as recommended).
+
+-when 'tertiary'
+  %p
+    =@subtype.phrase.ing
+    will make you unhappy but is #{@adjective.ly} healthy and is necessary if you did
+    ='not' if @subtype.rational?
+    =link_to @subtype.previous.display, subtype_path(@subtype.previous.path)
+    (as recommended) as long as you ensure it slides into
+    =link_to @subtype.next.display, subtype_path(@subtype.next.path)
+    before you become too unhappy.
+
+-when 'inferior'
+  %p
+    =@subtype.phrase.ing
+    is almost always a bad idea when it is in the inferior position.
+  %p It is #{@adjective.ly} unhealthy and not nearly as happy as you think it will.
+  %p
+    If you have the urge but didn't start yet, move back to
+    =succeed '.' do
+      =link_to @subtype.previous.display, subtype_path(@subtype.previous.path)
+  %p
+    If you have started but cannot stop, move on to
+    =succeed '.' do
+      =link_to @subtype.next.display, subtype_path(@subtype.next.path)
+
+%p.center{class: @attitude} The #{@subtype.inspect} Cycle
+%ol
+  -@subtype.cycle.subtypes.each do |subtype|
+    %li{class: subtype.position.mbti.downcase}=link_to subtype.display, subtype_path(subtype.path)
+  %li{class: @attitude}=link_to @subtype.display, subtype_path(@subtype.path)
