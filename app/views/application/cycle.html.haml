@@ -14,15 +14,15 @@
     -if @answer.number > 1
       or
       =link_to "start over", answer_path(Answer.first_path)
--if @type
-  %p
+
 %table.none
-  %caption.dominant=@title
+  %caption
+    %h2=@title
 
   %tr
     %td
     %td
-    %td.tertiary.right_border=render 'answer_link', subtype: @sixteen[2]
+    %td.auxiliary.right_border=render 'answer_link', subtype: @sixteen[2]
     %td &rArr;
     %td.secondary.left_border=render 'answer_link', subtype: @sixteen[4]
     %td
@@ -38,13 +38,13 @@
     %td
 
   %tr
-    %td.auxiliary.bottom_border=render 'answer_link', subtype: @sixteen[0]
+    %td.tertiary.bottom_border=render 'answer_link', subtype: @sixteen[0]
     %td.bottom_border
     %td.inferior.bottom_border.right_border=render 'answer_link', subtype: @sixteen[3]
     %td
     %td.inferior.bottom_border.left_border=render 'answer_link', subtype: @sixteen[7]
     %td.bottom_border
-    %td.tertiary.bottom_border=render 'answer_link', subtype: @sixteen[6]
+    %td.auxiliary.bottom_border=render 'answer_link', subtype: @sixteen[6]
 
   %tr
     %td &uArr;
@@ -56,13 +56,13 @@
     %td &dArr;
 
   %tr
-    %td.tertiary.top_border=render 'answer_link', subtype: @sixteen[10]
+    %td.auxiliary.top_border=render 'answer_link', subtype: @sixteen[10]
     %td.top_border
     %td.inferior.top_border.right_border=render 'answer_link', subtype: @sixteen[11]
     %td
     %td.inferior.top_border.left_border=render 'answer_link', subtype: @sixteen[15]
     %td.top_border
-    %td.auxiliary.top_border=render 'answer_link', subtype: @sixteen[12]
+    %td.tertiary.top_border=render 'answer_link', subtype: @sixteen[12]
 
   %tr
     %td
@@ -76,9 +76,9 @@
   %tr
     %td
     %td
-    %td.auxiliary.right_border=render 'answer_link', subtype: @sixteen[8]
-    %td &lArr;
-    %td.tertiary.left_border=render 'answer_link', subtype: @sixteen[14]
+    %td.tertiary.right_border=render 'answer_link', subtype: @sixteen[8]
+    %td &nvlArr;
+    %td.auxiliary.left_border=render 'answer_link', subtype: @sixteen[14]
     %td
     %td
 

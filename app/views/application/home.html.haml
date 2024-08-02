@@ -1,4 +1,5 @@
 - content_for(:title, 'Introduction')
+%h2 Background
 %p
   I’ve been working on BipolarType since the early 1980s when I was first diagnosed as
   =link_to 'bipolar', 'https://en.wikipedia.org/wiki/Bipolar_disorder', class: 'external'
@@ -15,3 +16,22 @@
   =succeed '.' do
     =link_to 'me', my_path
   I hope that you will find it useful or interesting but I do not guarantee it to be either true or correct.
+%h2 Overview
+%p Pain and stress are signals: if it doesn’t need to be done, then don’t do it!
+%p The question then becomes: does it need to be done?
+
+%table
+  %tr
+    %th
+    %th.left It needs to be done
+    %th.left It doesn’t need to be done
+  %tr
+    %th.right You do it
+    %td.left Eustress (healthy)
+    %td.left Distress (unhealthy)
+  %tr
+    %th.right You don&rsquo;t do it
+    %td.left Unhappy (unhealthy)
+    %td.left Happy (healthy)
+
+%p The goal of BipolarType is to be healthy and happy by embracing eustress and avoiding distress and unhappiness.

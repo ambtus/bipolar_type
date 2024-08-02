@@ -1,5 +1,6 @@
-=link_to_unless_current 'Introduction', root_path
-|
-=link_to_unless controller.controller_name == 'realms', 'The Cycle', cycle_path
-|
-=link_to_unless controller.controller_name == 'answers', 'Your BipolarType', answer_path(Answer.first_path)
+%h1
+  =link_to_unless_current 'Introduction', root_path
+  |
+  =link_to_unless controller.controller_name == 'realms', 'The Cycle', cycle_path
+  |
+  =link_to_unless controller.controller_name == 'answers', 'Your BipolarType', answer_path(Answer.first_path)

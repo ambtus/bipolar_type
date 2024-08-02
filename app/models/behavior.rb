@@ -14,12 +14,13 @@ class Behavior
   def next; ALL[(cycle_index+1)%4]; end
   def opposite; ALL[(cycle_index+2)%4]; end
   def previous; ALL[(cycle_index+3)%4]; end
+  def last?; ALL.last == self; end
 
   def self.all; ALL; end
   def self.each(&block);ALL.each(&block); end
 
   NAMES = %w{Get<wbr>Energy Burn<wbr>Energy Use<wbr>Strength Recover<wbr>Strength Generic<wbr>Behavior}
-  def name; NAMES[cycle_index]; end
+  def name; NAMES[cycle_index].html_safe; end
   def symbolic_name; [@mbti.colon, name].to_safe_phrase; end
 
   def names; name.split('<wbr>'); end

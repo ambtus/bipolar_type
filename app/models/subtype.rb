@@ -60,7 +60,26 @@ class Subtype
   def name; names.wbr; end
   def symbolic_name; [display.colon, name].to_safe_phrase; end
 
-   def method_missing(meth, *arguments, &block)
+  def class; position.mbti.downcase; end
+
+  def adjacents; [self.previous, self, self.next]; end
+  def siblings
+    if realm.generic?
+      ALL.select do |s|
+        s.behavior == behavior &&
+        s.realm == realm &&
+        ![position,Position.inferior].include?(s.position)
+      end
+    else
+      ALL.select do |s|
+        s.behavior == behavior &&
+        ![realm, Realm.generic].include?(s.realm) &&
+        ![position, Position.inferior].include?(s.position)
+      end
+    end.sort
+  end
+
+  def method_missing(meth, *arguments, &block)
     if realm.respond_to?(meth)
       realm.send(meth, *arguments, &block)
     elsif behavior.respond_to?(meth)
