@@ -59,6 +59,7 @@ class Subtype
   def names;[@position.name, *@triplet.names]; end
   def name; names.wbr; end
   def symbolic_name; [display.colon, name].to_safe_phrase; end
+  def clear_name; names.join; end
 
   def class; position.mbti.downcase; end
 
