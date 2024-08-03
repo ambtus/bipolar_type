@@ -22,15 +22,15 @@ class Type
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def my_path; 'TNFS'; end
+    def my_path; 'FTSN'; end
     def my_type; Type.send(my_path); end
     def generic; Type.new(Realm.generic.mbti * 4); end
   end
 
-  def eustresses; @realms.collect.each_with_index {|r, i| Subtype.eustress(r, i)}; end
-  def doms; eustresses.values_at(2,0,1,3); end
-  def <=>(other); doms.map(&:realm) <=> other.doms.map(&:realm); end
+  def distresses; @realms.collect.each_with_index {|r, i| Subtype.distress(r, i)}; end
+  def disses; distresses.values_at(2,0,1,3); end
+  def <=>(other); disses.map(&:realm) <=> other.disses.map(&:realm); end
 
-  def sixteen; eustresses.collect {|subtype| subtype.cycle.subtypes}.flatten.sort; end
+  def sixteen; distresses.collect {|subtype| subtype.cycle.subtypes}.flatten.sort; end
 end
 

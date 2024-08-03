@@ -2,4 +2,4 @@
 %dl
   -Type.all.sort.each do |type|
     %dt=link_to type.name, type_path(type.path)
-    %dd=type.doms.collect{|d| d.eg.split('.').first.downcase}.join('; ')
+    %dd Do not #{type.disses.collect{|d| d.eg.split('.').first.downcase}.or}

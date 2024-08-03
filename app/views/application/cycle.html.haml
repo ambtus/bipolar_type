@@ -84,6 +84,14 @@
 
 
 -if @type
-  %ol
-    -@type.doms.each do |dom|
-      %li=dom.eg.split('.').first
+  %h2 #{@type.name} Sample behaviors
+  %table
+    %tr
+      %th Do not (avoid distress)
+      %th Instead, do (avoid guilt)
+      %th So you can (embrace eustress)
+      %th And not have to (healthy and happy neglect)
+    -@type.disses.each do |distress|
+      %tr
+        -distress.cycle.subtypes.each do |subtype|
+          %td=subtype.eg.split('.').first

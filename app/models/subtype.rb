@@ -37,9 +37,11 @@ class Subtype
     end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def eustress(realm, index)
+
+
+    def distress(realm, index)
       behavior = Behavior.sort_order[index]
-      Subtype.find([behavior, realm, State.eustress])
+      Subtype.find([behavior, realm, State.distress])
     end
   end
 
