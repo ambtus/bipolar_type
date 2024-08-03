@@ -4,12 +4,12 @@ class State
   attr_reader :mbti
   alias inspect :mbti
 
-  MBTIS = %w{Eustress Distress Happiness Guilt } # cycle order not display/sort order
+  MBTIS = %w{Eustress Distress Guilt Happiness} # cycle order not display/sort order
   def mbti_index; MBTIS.index @mbti; end
   def name; mbti; end
 
-  def path;    %w{1 4 3 2}[mbti_index]; end
-  def display; %w{¹ ⁴ ³ ²}[mbti_index]; end
+  def path;    %w{2 4 1 3}[mbti_index]; end
+  def display; %w{² ⁴ ¹ ³}[mbti_index]; end
 
   ALL = MBTIS.collect {|mbti| self.new mbti}
   def next; ALL[(mbti_index+1)%4]; end
