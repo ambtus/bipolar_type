@@ -7,6 +7,7 @@ class Realm
 
   MBTIS = %w{S T F N X}
   def index; MBTIS.index @mbti; end
+  def <=>(other); index <=> other.index; end
 
 
   ALL = MBTIS.collect {|mbti| self.new mbti}
@@ -35,28 +36,28 @@ class Realm
   def burn_energy
     case mbti
     when 'S'
-       'Physical exercises or games. Burning calories for fun, to make yourself happy, or to improve your body.'
+       'Play physical games. Do physical exercises. Burning calories for fun, to make yourself happy, or to improve your body.'
     when 'N'
-       'Mental exercises or games. Solving problems for fun, to make yourself happy, or to improve your mind.'
+       'Play mental games. Do mental exercises. Solving problems for fun, to make yourself happy, or to improve your mind.'
     when 'T'
-       'Paying upfront or paying off debts. Spending cash for fun, to make yourself happy, or to improve your finances.'
+       'Pay cash. Pay upfront or pay off debts. Spending cash for fun, to make yourself happy, or to improve your finances.'
     when 'F'
-       'Singing or talking. Expressing emotions for fun, to make yourself happy, or to improve your mood.'
+       'Sing. Talk to a friend or therapist. Expressing emotions for fun, to make yourself happy, or to improve your mood.'
     else
-       'Playing or exercising. Burning energy for pleasure or because it is healthy.'
+       'Play or exercise. Burning energy for pleasure or because it is healthy.'
     end
   end
 
   def use_strength
     case mbti
     when 'S'
-       'Physical work or labor. Using your body to achieve a goal.'
+       'Do physical labor. Build houses. Farm. Hunt or garden. Use your body to achieve a goal.'
     when 'N'
-       'Mental work or labor. Using logic or analogies to solve a problem.'
+       'Do mental labor. Theorize. Make plans, develop procedures. Work with your mind. Use logic or analogies to solve a problem.'
     when 'T'
-       'Taking out loans or mortgages. Paying with credit to buy a thing.'
+       'Use credit. Take out loans or mortgages. Buy something and then pay for it later.'
     when 'F'
-       'Writing or making speaches. Using language to express an idea.'
+       'Write. Make speaches. Write lyrics or poetry. Using language to express an idea.'
     else
        'Work or Labor. Using strength in goal-directed activities.'
     end
@@ -65,13 +66,13 @@ class Realm
   def get_energy
     case mbti
     when 'S'
-      'Eating candy or dessert. Loading up on potatoes, bread, pasta and rice. Digesting simple carbs.'
+      'Eat carbs. Eat candy or dessert. Loading up on potatoes, bread, pasta and rice. Digesting simple carbs.'
     when 'N'
-      'Researching. Watching current events. Learning specific facts.'
+      'Watch current events. Research. Learning causes and specific and detailed facts.'
     when 'T'
-      'Earning wages. Competing for rewards. Collecting cash prizes.'
+      'Earn wages. Competing for rewards. Collecting cash prizes.'
     when 'F'
-      'Listening to instrumental music. Turning on the radio. Understanding emotional intonation.'
+      'Listen to music. Turn on the radio. Listen to instruments or nature sounds. Understanding emotional intonation.'
     else
       'Going after, taking or accepting, and processing energy sources.'
     end
@@ -80,13 +81,13 @@ class Realm
   def recover_strength
     case mbti
     when 'S'
-      'Eating protein. And then resting your body to give your muscles time to recover.'
+      'Eat protein. Digesting amino acids. And then resting your body to give your muscles time to recover.'
     when 'N'
-      'Watching results. And then resting your mind to give your mental models time to recover.'
+      'Watch results. Learning rules and gerealizations and patterns and  effects. And then resting your mind to give your theories time to recover.'
     when 'T'
-      'Earning a salary or other regular income. And then resting your wallet to give your credit time to recover.'
+      'Earn a salary. Collect a stipend or other regular income. And then rest your wallet to give your credit time to recover.'
     when 'F'
-      'Listening to speaches or audiobooks. And then resting your voice to give your language skills time to recover.'
+      'Listen to stories. Hear speaches or audiobooks or lyrics. Read poetry. Understand lexical meaning. And then rest your voice to give your morals time to recover.'
     else
       'Going after, taking or accepting, and processing resources that can repair, rebuild, and develop your strengths. And then rest to give them time to recover before using them again.'
     end
@@ -99,11 +100,13 @@ class Realm
     when 'N'
       'close your eyes'
     when 'T'
-      'go home'
+      'put down the tools'
     when 'F'
       'turn off the sound'
     else
       'stop pursuing strengtheners'
     end
   end
+
+  def organ; %w{body wallet voice mind strengths}[index]; end
 end

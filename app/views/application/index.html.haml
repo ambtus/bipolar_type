@@ -1,0 +1,5 @@
+- content_for(:title, 'The 24 BipolarTypes')
+%dl
+  -Type.all.sort.each do |type|
+    %dt=link_to type.name, type_path(type.path)
+    %dd=type.doms.collect{|d| d.eg.split('.').first.downcase}.join('; ')

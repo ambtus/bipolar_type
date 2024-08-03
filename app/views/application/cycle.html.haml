@@ -82,3 +82,8 @@
     %td
     %td
 
+
+-if @type
+  %ol
+    -@type.doms.each do |dom|
+      %li=dom.eg.split('.').first

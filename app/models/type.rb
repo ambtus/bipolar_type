@@ -28,7 +28,8 @@ class Type
   end
 
   def dominants; @realms.collect.each_with_index {|r, i| Subtype.dominant(r, i)}; end
-  def auxiliaries; dominants.map(&:opposite); end
+  def doms; dominants.values_at(2,0,1,3); end
+  def <=>(other); doms.map(&:realm) <=> other.doms.map(&:realm); end
 
   def sixteen; dominants.collect {|subtype| subtype.cycle.subtypes}.flatten.sort; end
 end
