@@ -8,7 +8,7 @@ class Cycle
 
   def behavior; subtype.behavior; end
   def realm; subtype.realm; end
-  def position; subtype.position; end
+  def state; subtype.state; end
 
   ALL = Subtype.all.collect {|subtype| Cycle.new(subtype)}
 

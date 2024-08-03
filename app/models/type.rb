@@ -27,10 +27,10 @@ class Type
     def generic; Type.new(Realm.generic.mbti * 4); end
   end
 
-  def dominants; @realms.collect.each_with_index {|r, i| Subtype.dominant(r, i)}; end
-  def doms; dominants.values_at(2,0,1,3); end
+  def eustresses; @realms.collect.each_with_index {|r, i| Subtype.eustress(r, i)}; end
+  def doms; eustresses.values_at(2,0,1,3); end
   def <=>(other); doms.map(&:realm) <=> other.doms.map(&:realm); end
 
-  def sixteen; dominants.collect {|subtype| subtype.cycle.subtypes}.flatten.sort; end
+  def sixteen; eustresses.collect {|subtype| subtype.cycle.subtypes}.flatten.sort; end
 end
 

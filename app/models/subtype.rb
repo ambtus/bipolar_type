@@ -1,15 +1,15 @@
 class Subtype
 
-  def initialize(triplet, position)
+  def initialize(triplet, state)
     @triplet = triplet
-    @position = position
+    @state = state
   end
-  attr_reader :triplet, :position
+  attr_reader :triplet, :state
 
   def behavior; triplet.behavior; end
   def realm; triplet.realm; end
 
-  def pair; [@triplet, @position]; end
+  def pair; [@triplet, @state]; end
   def <=>(other); pair <=> other.pair; end
 
   def path; pair.map(&:path).join; end
@@ -18,8 +18,8 @@ class Subtype
   alias inspect :display
 
   ALL = Triplet.all.collect do |triplet|
-          Position.all.collect do |position|
-            self.new(triplet,position)
+          State.all.collect do |state|
+            self.new(triplet,state)
           end
         end.flatten
 
@@ -29,17 +29,17 @@ class Subtype
         self.send(thing)
       elsif thing.is_a? Array
         if thing.length == 2
-          ALL.find{|s| s.triplet == thing.first && s.position == thing.second}
+          ALL.find{|s| s.triplet == thing.first && s.state == thing.second}
         elsif thing.length == 3
-          ALL.find{|s| s.behavior == thing.first && s.realm == thing.second && s.position == thing.third}
+          ALL.find{|s| s.behavior == thing.first && s.realm == thing.second && s.state == thing.third}
         end
       end
     end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def dominant(realm, index)
+    def eustress(realm, index)
       behavior = Behavior.sort_order[index]
-      Subtype.find([behavior, realm, Position.dominant])
+      Subtype.find([behavior, realm, State.eustress])
     end
   end
 
@@ -50,18 +50,18 @@ class Subtype
     end
   end
 
-  def next; Subtype.find([@triplet.next, @position.next]); end
+  def next; Subtype.find([@triplet.next, @state.next]); end
   def opposite; self.next.next; end
   def previous; opposite.next; end
 
   def cycle; Cycle.find(self); end
 
-  def names;[@position.name, *@triplet.names]; end
+  def names;[*@triplet.names, @state.name, ]; end
   def name; names.wbr; end
   def symbolic_name; [display.colon, name].to_safe_phrase; end
   def clear_name; names.join; end
 
-  def class; position.mbti.downcase; end
+  def class; state.mbti.downcase; end
 
   def adjacents; [self.previous, self, self.next]; end
   def siblings
@@ -69,13 +69,13 @@ class Subtype
       ALL.select do |s|
         s.behavior == behavior &&
         s.realm == realm &&
-        ![position,Position.inferior].include?(s.position)
+        ![state,State.distress].include?(s.state)
       end
     else
       ALL.select do |s|
         s.behavior == behavior &&
         ![realm, Realm.generic].include?(s.realm) &&
-        ![position, Position.inferior].include?(s.position)
+        ![state, State.distress].include?(s.state)
       end
     end.sort
   end
@@ -85,8 +85,8 @@ class Subtype
       realm.send(meth, *arguments, &block)
     elsif behavior.respond_to?(meth)
       behavior.send(meth, *arguments, &block)
-    elsif position.respond_to?(meth)
-      position.send(meth, *arguments, &block)
+    elsif state.respond_to?(meth)
+      state.send(meth, *arguments, &block)
     elsif triplet.respond_to?(meth)
       triplet.send(meth, *arguments, &block)
     else

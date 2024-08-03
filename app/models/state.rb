@@ -1,10 +1,10 @@
-class Position
+class State
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
   alias inspect :mbti
 
-  MBTIS = %w{Dominant Inferior Tertiary Auxiliary } # cycle order not display/sort order
+  MBTIS = %w{Eustress Distress Happiness Guilt } # cycle order not display/sort order
   def mbti_index; MBTIS.index @mbti; end
   def name; mbti; end
 
@@ -18,10 +18,10 @@ class Position
 
   def self.all; ALL; end
   def self.each(&block);ALL.each(&block); end
-  def self.dominant; ALL.first; end
-  def self.inferior; ALL.second; end
-  def dominant?; self.class.dominant == self; end
-  def inferior?; self.class.inferior == self; end
+  def self.eustress; ALL.first; end
+  def self.distress; ALL.second; end
+  def eustress?; self.class.eustress == self; end
+  def distress?; self.class.distress == self; end
 
   ALL.each_with_index do |instance, index|
     %w{mbti}.each do |thing|
@@ -36,13 +36,13 @@ class Position
 
   def considerations
     case mbti
-    when 'Dominant'
+    when 'Eustress'
       'These behaviors are usually healthy and satisfying. They are especially helpful when needing to remain focused on one of the other behaviors in the same quadrant that needs to be done but is more stressful. Just be careful not to allow it to slide into unhealthy behaviors in the next quadrant.'
-    when 'Auxiliary'
+    when 'Guilt'
       'These behaviors are often healthy and satisfying. You should not let a little pain or stress prevent you from doing them when they need to be done. But you should stop (for now) as soon as you perceive significant pain or stress.'
-    when 'Tertiary'
+    when 'Happiness'
       'These behaviors are sometimes healthy or satisfying. You should do them if they can be done without stress or pain, but stop if you perceive even minor discomfort; they rarely need to be done.'
-    when 'Inferior'
+    when 'Distress'
       'These behaviors are rarely healthy or satisfying. Refrain from starting them unless you are <em>already</em> happy and stress-free and <em>pay attention</em>: do not combine them with other behaviors in the same quadrant. And move on to the next behavior in the cycle as soon as you start to experience even minor signs of stress or discomfort.'
     else
     end.html_safe

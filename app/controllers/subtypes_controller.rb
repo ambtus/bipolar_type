@@ -4,6 +4,6 @@ class SubtypesController < ApplicationController
     @name = @subtype.symbolic_name
     @function = @subtype.behavior.mbti.downcase
     @adjective = @subtype.realm.adjective
-    @attitude = @subtype.position.mbti.downcase
+    @attitude = @subtype.state.mbti.downcase
   end
 end
