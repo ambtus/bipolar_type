@@ -1,24 +1,18 @@
 class Cycle
 
-  def initialize(subtype); @subtype = subtype; end
-  attr_reader :subtype
-  def path; subtype.path; end
-  def display; subtype.display + ' cycle'; end
+  def initialize(triplet); @triplet = triplet; end
+  attr_reader :triplet
+  def distress; Subtype.find([@triplet, State.distress]); end
+  def path; distress.path; end
+  def display; distress.display + ' cycle'; end
   alias inspect :display
 
-  def behavior; subtype.behavior; end
-  def realm; subtype.realm; end
-  def state; subtype.state; end
-
-  ALL = Subtype.all.collect {|subtype| Cycle.new(subtype)}
+  ALL = Triplet.all.collect {|triplet| Cycle.new(triplet)}
 
   class << self
-    def find(thing)
-      if thing.is_a? String
-        self.send(thing)
-      elsif thing.is_a? Subtype
-        self.send(thing.path)
-      end
+    def find_with(thing)
+      subtype = thing.is_a?(String) ? Subtype.send(thing) : thing
+      ALL.find{|c| c.subtypes.include?(subtype)}
     end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
@@ -31,5 +25,5 @@ class Cycle
     end
   end
 
-  def subtypes; [subtype, subtype.next, subtype.opposite, subtype.previous]; end
+  def subtypes; [distress, distress.guilt, distress.eustress, distress.happy]; end
 end

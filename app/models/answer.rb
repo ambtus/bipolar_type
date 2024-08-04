@@ -24,7 +24,8 @@ class Answer
 
 
   def taken_subtypes; subtypes.map(&:cycle).map(&:subtypes).flatten; end
-  def taken_eustresses; taken_subtypes.select{|s| s.state.eustress?}.sort; end
+
+  def taken_distresses; taken_subtypes.select{|s| s.state.distress?}.sort; end
 
   def taken_pairs; taken_subtypes.collect{|s| [s.behavior, s.state]}; end
 
@@ -38,10 +39,10 @@ class Answer
   def next(choice); question.next + ':' + @subtype_string + choice.path; end
   def try(realm); question + ':' + @subtype_string + '+with_' + realm.mbti; end
 
-  def last_realm; Realm.all.without(taken_eustresses.map(&:realm)).first; end
-  def last_behavior; Behavior.all.without(taken_eustresses.map(&:behavior)).first; end
-  def last_eustress; Subtype.find([last_behavior,last_realm,State.eustress]); end
-  def all_eustresses; taken_eustresses.push(last_eustress).sort; end
-  def type_path;all_eustresses.map(&:realm).map(&:path).join; end
+  def last_realm; Realm.all.without(taken_distresses.map(&:realm)).first; end
+  def last_behavior; Behavior.all.without(taken_distresses.map(&:behavior)).first; end
+  def last_distress; Subtype.find([last_behavior,last_realm,State.distress]); end
+  def all_distresses; taken_distresses.push(last_distress).sort; end
+  def type_path;all_distresses.map(&:realm).map(&:path).join; end
 
 end

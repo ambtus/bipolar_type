@@ -85,13 +85,20 @@
 
 -if @type
   %h2 #{@type.name} Sample behaviors
-  %table
+  %table.equal
     %tr
-      %th Do not (avoid distress)
-      %th Instead, do (avoid guilt)
-      %th So you can (embrace eustress)
-      %th And not have to (healthy and happy neglect)
+      %td.distress avoid distress
+      %td.guilt avoid guilt
+      %td.eustress embrace eustress
+      %td.happiness happy, healthy neglect
+    %tr
+      %th Do not:
+      %th Do:
+      %th So you can:
+      %th And not have to:
     -@type.disses.each do |distress|
       %tr
         -distress.cycle.subtypes.each do |subtype|
-          %td=subtype.eg.split('.').first
+          %td=link_to subtype.eg, subtype_path(subtype.path)
+
+%p The trick is in the cycle. That is, only half the time do your do instead behaviors come <em>after</em> the behavior you want to avoid. The other half they come before.

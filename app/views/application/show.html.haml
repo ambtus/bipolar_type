@@ -4,7 +4,7 @@
 %h2 Behaviors related to #{@subtype.display}
 %h3 Before and after in the cycle
 .center
-  -@subtype.adjacents.each_with_index do |adjacent, index|
+  -@subtype.cycle.subtypes.each_with_index do |adjacent, index|
     ='&rArr;'.html_safe unless index == 0
     %span{class: adjacent.class, title: adjacent.clear_name}=link_to adjacent.display, subtype_path(adjacent.path)
 
@@ -14,7 +14,7 @@
     %span{class: sibling.class, title: sibling.clear_name}=link_to sibling.display, subtype_path(sibling.path)
 
 %h2 Examples of #{@subtype.triplet.name}
-%p=@subtype.eg
+%p=@subtype.examples
 
 %h2 #{@subtype.state.name} Considerations
 %p=@subtype.considerations

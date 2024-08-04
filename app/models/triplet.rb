@@ -55,6 +55,7 @@ class Triplet
   def symbolic_name; [display.colon, name].to_safe_phrase; end
   def phrase; names.to_phrase; end
 
-  def eg;@realm.send(@behavior.send_name); end
+  def examples;@realm.send(@behavior.send_name); end
+  def eg; examples.split('.').first; end
 
 end

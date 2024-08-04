@@ -52,11 +52,33 @@ class Subtype
     end
   end
 
+  def guilt
+    ALL.find do |s|
+      s.behavior == behavior.guilt &&
+      s.realm == realm &&
+      s.state == State.guilt
+    end
+  end
+  def eustress
+    ALL.find do |s|
+      s.behavior == behavior.eustress &&
+      s.realm == realm &&
+      s.state == State.eustress
+    end
+  end
+  def happy
+    ALL.find do |s|
+      s.behavior == behavior.happiness &&
+      s.realm == realm &&
+      s.state == State.happiness
+    end
+  end
+
   def next; Subtype.find([@triplet.next, @state.next]); end
   def opposite; self.next.next; end
   def previous; opposite.next; end
 
-  def cycle; Cycle.find(self); end
+  def cycle; Cycle.find_with(self); end
 
   def names;[*@triplet.names, @state.name, ]; end
   def name; names.wbr; end
@@ -65,7 +87,6 @@ class Subtype
 
   def class; state.mbti.downcase; end
 
-  def adjacents; [self.previous, self, self.next]; end
   def siblings
     if realm.generic?
       ALL.select do |s|
