@@ -1,5 +1,14 @@
 - content_for(:title, 'The 24 BipolarTypes')
-%dl
+%table.none
+  %tr
+    %th
+    -Type.generic.disses.each do |dis|
+      %th=link_to dis.display, subtype_path(dis.path)
   -Type.all.sort.each do |type|
-    %dt=link_to type.name, type_path(type.path)
-    %dd Do not #{type.disses.collect{|d| d.eg.split('.').first.downcase}.or}
+    %tr
+      %th=link_to type.name, type_path(type.path)
+      -type.disses.each do |dis|
+        %td.bordered
+          =link_to dis.display, subtype_path(dis.path)
+          %br
+          Do not #{dis.triplet.eg.downcase}.

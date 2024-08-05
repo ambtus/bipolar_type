@@ -18,6 +18,7 @@ class Behavior
   def guilt; Behavior.send(%w{ij ej ep ip}[cycle_index]); end
   def eustress; Behavior.send(%w{ej ip ij ep}[cycle_index]); end
   def happiness; Behavior.send(%w{ep ij ip ej}[cycle_index]); end
+  def st; (cycle_index + 1).ordinalize; end
 
   def self.all; ALL; end
   def self.each(&block);ALL.each(&block); end

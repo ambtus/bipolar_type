@@ -37,13 +37,14 @@ class Subtype
     end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-
-
     def distress(realm, index)
       behavior = Behavior.sort_order[index]
       Subtype.find([behavior, realm, State.distress])
     end
   end
+
+  def eg; [triplet.eg, behavior.st].to_phrase; end
+
 
   ALL.each_with_index do |instance, index|
     %w{path}.each do |thing|

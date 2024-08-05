@@ -20,7 +20,7 @@ class Realm
 
   NAMES = %w{Physical Financial Affective Mental Generic}
   def name; NAMES[index]; end
-  def symbolic_name; [@mbti.colon, name].to_phrase; end
+  def symbolic_name; generic? ? name : [@mbti.colon, name].to_phrase; end
   def adjective; generic? ? '' : name.downcase; end
   def adverb; adjective.ly; end
 
@@ -36,9 +36,9 @@ class Realm
   def burn_energy
     case mbti
     when 'S'
-       'Run. Do physical exercises. Play physical games. Burning calories for fun, to make yourself happy, or to improve your body.'
+       'Exercise. Run, jog or take a walk. Play physical games. Burning calories for fun, to make yourself happy, or to improve your body.'
     when 'N'
-       'Know. Make a decision based on the known facts. Play mental games. Do mental exercises. Solving problems for fun, to make yourself happy, or to improve your mind.'
+       'Decide. Make the best decision you can based on the facts you have now. Play mental games. Do mental exercises. Solving problems for fun, to make yourself happy, or to improve your mind.'
     when 'T'
        'Pay cash. Pay upfront or pay off debts. Spending cash for fun, to make yourself happy, or to improve your finances.'
     when 'F'
@@ -53,7 +53,7 @@ class Realm
     when 'S'
        'Clean. Cook. Do physical labor. Build houses. Farm. Hunt or garden. Use your body to achieve a goal.'
     when 'N'
-       'Guess. Make a prediction based on logic, analogy, or extrapolation. Do mental labor. Theorize. Make plans, develop procedures. Work with your mind. Use logic or analogies to solve a problem.'
+       'Theorize. Make the best decision you can based on everything before <em>and after</em>. Use logic, analogy, extrapolation, or an educated guess. Do mental labor. Make plans, develop procedures. Work with your mind.'.html_safe
     when 'T'
        'Use credit. Take out loans or mortgages. Buy something and then pay for it later.'
     when 'F'
@@ -70,7 +70,7 @@ class Realm
     when 'N'
       'Look at details. Watch current events. Research. Learning causes and specific and detailed facts.'
     when 'T'
-      'Earn hourly wages. Compete for rewards. Collect cash prizes. Earn profits from sales.'
+      'Earn wages. Compete for rewards. Collect cash prizes. Earn profits from sales.'
     when 'F'
       'Listen to music. Turn on the radio. Listen to instruments or nature sounds. Understanding emotional intonation.'
     else
@@ -85,7 +85,7 @@ class Realm
     when 'N'
       'Watch results. Learning rules and gerealizations and patterns and  effects. And then resting your mind to give your theories time to recover.'
     when 'T'
-      'Collect a monthly stipend. Collect a salary, allowance, social security, interest, rental income or other regular income. And then rest your wallet to give your credit time to recover.'
+      'Collect a stipend. Collect a salary, allowance, social security, interest, rental income or other regular income. And then rest your wallet to give your credit time to recover.'
     when 'F'
       'Listen to stories. Hear speaches or audiobooks or lyrics. Read poetry. Understand lexical meaning. And then rest your voice to give your morals time to recover.'
     else

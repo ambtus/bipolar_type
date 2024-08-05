@@ -1,9 +1,5 @@
 - content_for(:title, @title)
--if @realms
-  %p Bipolar disorder (previously known as Manic Depression) is usually defined in terms of Mental (cognitive) or Affective (mood) cycling. BipolarType adds Physical (caloric) and Financial (monetary) cycles.
-  %p.center
-    -@realms.each do |realm|
-      =link_to realm.symbolic_name, realm_path(realm.path)
+
 -if @answer
   %p.center
     =@answer.number==1 ? 'Start with' : 'Try'
@@ -20,21 +16,25 @@
     %h2=@title
 
   %tr
-    %td
+    %td.bottom.right 🌔
     %td
     %td.happiness.right_border=render 'answer_link', subtype: @sixteen[2]
-    %td &rArr;
+    %td 🌕<br />&rArr;<br />🥳
     %td.guilt.left_border=render 'answer_link', subtype: @sixteen[4]
     %td
-    %td
+    %td.bottom.left 🌖
 
   %tr
     %td
-    %td.eustress=render 'answer_link', subtype: @sixteen[1]
+    %td.eustress.left
+      =render 'answer_link', subtype: @sixteen[1]
+      2ndQ
     %td.right_border
     %td
     %td.left_border
-    %td.eustress=render 'answer_link', subtype: @sixteen[5]
+    %td.eustress.right
+      =render 'answer_link', subtype: @sixteen[5]
+      3rdQ
     %td
 
   %tr
@@ -47,13 +47,13 @@
     %td.happiness.bottom_border=render 'answer_link', subtype: @sixteen[6]
 
   %tr
-    %td &uArr;
+    %td 🌓&nbsp;&uArr;&nbsp;🫣
     %td
     %td
     %td &orarr;
     %td
     %td
-    %td &dArr;
+    %td 🥱&nbsp;&dArr;&nbsp;🌗
 
   %tr
     %td.happiness.top_border=render 'answer_link', subtype: @sixteen[10]
@@ -66,39 +66,71 @@
 
   %tr
     %td
-    %td.eustress=render 'answer_link', subtype: @sixteen[9]
+    %td.eustress.left
+      1stQ
+      =render 'answer_link', subtype: @sixteen[9]
     %td.right_border
     %td
     %td.left_border
-    %td.eustress=render 'answer_link', subtype: @sixteen[13]
+    %td.eustress.right
+      4thQ
+      =render 'answer_link', subtype: @sixteen[13]
     %td
 
   %tr
-    %td
+    %td.top.right 🌒
     %td
     %td.guilt.right_border=render 'answer_link', subtype: @sixteen[8]
-    %td &nvlArr;
+    %td 😴<br />&nvlArr;<br />🌑
     %td.happiness.left_border=render 'answer_link', subtype: @sixteen[14]
     %td
-    %td
+    %td.top.left 🌘
 
 
 -if @type
-  %h2 #{@type.name} Sample behaviors
+  %h2 Sample behaviors
+
+  %h3 By Happiness
   %table.equal
     %tr
+      %th
       %td.distress avoid distress
       %td.guilt avoid guilt
       %td.eustress embrace eustress
       %td.happiness happy, healthy neglect
     %tr
+      %th
       %th Do not:
       %th Do:
       %th So you can:
-      %th And not have to:
+      %th and not have to:
     -@type.disses.each do |distress|
       %tr
+        %th=distress.realm.name
         -distress.cycle.subtypes.each do |subtype|
           %td=link_to subtype.eg, subtype_path(subtype.path)
+    %tr
+      %td{colspan: 3}
+      %td &hellip; when you need to
+      %td &hellip; unless you want to
 
-%p The trick is in the cycle. That is, only half the time do your do instead behaviors come <em>after</em> the behavior you want to avoid. The other half they come before.
+  %h3 By Quarter
+  %table.equal
+    %tr
+      %th
+      -4.times do |i|
+        %th #{(i+1).ordinalize} Quarter
+    -@type.dos.each do |distress|
+      %tr
+        %th=distress.realm.name
+        -distress.cycle.by_quarter.each do |subtype|
+          %td{class: subtype.class}=link_to subtype.triplet.eg, subtype_path(subtype.path)
+
+-if @realms
+  -if @realm.generic?
+    %p Bipolar disorder (previously known as Manic Depression) is usually defined in terms of Mental (cognitive) or Affective (mood) cycling. BipolarType adds Physical (caloric) and Financial (monetary) cycles.
+  %p.center
+    -@realms.each do |realm|
+      =link_to realm.symbolic_name, realm_path(realm.path)
+  -if @realm.generic?
+    %p Note: the moon emoji are not meant to imply that the cycle is exclusively monthly (lunar). The pattern is also present in yearly (seasonal), weekly, daily (circadian), and ultradian cycles. <em>Any</em> recurring life cycle that can be divided into four quarters with a reset or time-out between the fourth and first quarters qualifies.
