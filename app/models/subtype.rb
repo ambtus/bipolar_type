@@ -44,6 +44,7 @@ class Subtype
   end
 
   def eg; [triplet.eg, behavior.st].to_phrase; end
+  def answer; ['I', state.frequency, 'need to', triplet.eg.downcase.comma, state.answer].to_phrase; end
 
 
   ALL.each_with_index do |instance, index|
@@ -85,24 +86,6 @@ class Subtype
   def name; names.wbr; end
   def symbolic_name; [display.colon, name].to_safe_phrase; end
   def clear_name; names.join; end
-
-  def class; state.mbti.downcase; end
-
-  def siblings
-    if realm.generic?
-      ALL.select do |s|
-        s.behavior == behavior &&
-        s.realm == realm &&
-        ![state,State.distress].include?(s.state)
-      end
-    else
-      ALL.select do |s|
-        s.behavior == behavior &&
-        ![realm, Realm.generic].include?(s.realm) &&
-        ![state, State.distress].include?(s.state)
-      end
-    end.sort
-  end
 
   def method_missing(meth, *arguments, &block)
     if realm.respond_to?(meth)

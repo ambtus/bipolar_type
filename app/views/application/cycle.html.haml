@@ -2,12 +2,14 @@
 
 -if @answer
   %p.center
-    =@answer.number==1 ? 'Start with' : 'Try'
+    If you can&rsquo;t find anything, try
+    ='starting with' if @answer.number==1
     a different realm:
     -@answer.free_realms.without(@realm).each_with_index do |realm, index|
       =index == 0 ? '<br/ >'.html_safe : '|'
       =link_to realm.symbolic_name, answer_path(@answer.try(realm))
     -if @answer.number > 1
+      %br
       or
       =link_to "start over", answer_path(Answer.first_path)
 
@@ -90,41 +92,53 @@
 -if @type
   %h2 Sample behaviors
 
-  %h3 By Happiness
-  %table.equal
-    %tr
-      %th
-      %td.distress avoid distress
-      %td.guilt avoid guilt
-      %td.eustress embrace eustress
-      %td.happiness happy, healthy neglect
-    %tr
-      %th
-      %th Do not:
-      %th Do:
-      %th So you can:
-      %th and not have to:
-    -@type.disses.each do |distress|
-      %tr
-        %th=distress.realm.name
-        -distress.cycle.subtypes.each do |subtype|
-          %td=link_to subtype.eg, subtype_path(subtype.path)
-    %tr
-      %td{colspan: 3}
-      %td &hellip; when you need to
-      %td &hellip; unless you want to
-
   %h3 By Quarter
-  %table.equal
+  %table
     %tr
       %th
       -4.times do |i|
         %th #{(i+1).ordinalize} Quarter
-    -@type.dos.each do |distress|
+    -@type.foci.each do |first|
       %tr
-        %th=distress.realm.name
-        -distress.cycle.by_quarter.each do |subtype|
-          %td{class: subtype.class}=link_to subtype.triplet.eg, subtype_path(subtype.path)
+        %th=first.realm.name
+        -first.cycle.by_quarter.each do |subtype|
+          %td{class: subtype.class_type}=link_to subtype.triplet.eg, subtype_path(subtype.path)
+
+  %h3 Theory
+  %table
+    %tr
+      %th
+      %td.distress avoid distress<br />(Don&rsquo;t)
+      %td.guilt avoid guilt<br />(Do)
+      %td.eustress embrace eustress<br />(Do)
+      %td.happiness happy, healthy neglect<br />(Don&rsquo;t)
+    -@type.disses.each do |first|
+      %tr
+        %th=first.realm.name
+        -first.cycle.subtypes.each do |subtype|
+          %td{class: subtype.class_type}=link_to subtype.triplet.eg, subtype_path(subtype.path)
+
+  %h3 In other words
+  %table
+    %tr
+      %th
+      %td.eustress To be able to
+      %td.guilt You need to
+      %td.happiness And
+      %td.distress But not
+    -@type.foci.each do |first|
+      %tr
+        %th=first.realm.name
+        -first.cycle.by_focus.each do |subtype|
+          %td{class: subtype.class_type}=link_to subtype.eg, subtype_path(subtype.path)
+    %tr
+      %td
+      %td.eustress &hellip; more often
+      %td.guilt &hellip; whenever possible
+      %td.happiness &hellip; only when you want to
+      %td.distress &hellip; unless you have to
+
+
 
 -if @realms
   -if @realm.generic?

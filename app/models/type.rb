@@ -29,7 +29,7 @@ class Type
   end
 
   def distresses; @realms.collect.each_with_index {|r, i| Subtype.distress(r, i)}; end
-  def dos; distresses.values_at(0,3,2,1); end
+  def foci; distresses.values_at(0,3,2,1); end
   def disses; distresses.values_at(2,0,1,3); end
   def <=>(other); disses.map(&:realm) <=> other.disses.map(&:realm); end
 

@@ -6,12 +6,7 @@
 .center
   -@subtype.cycle.subtypes.each_with_index do |adjacent, index|
     ='&rArr;'.html_safe unless index == 0
-    %span{class: adjacent.class, title: adjacent.clear_name}=link_to adjacent.display, subtype_path(adjacent.path)
-
-%h3 Healthy behaviors in the same quadrant
-.center
-  -@subtype.siblings.each do |sibling|
-    %span{class: sibling.class, title: sibling.clear_name}=link_to sibling.display, subtype_path(sibling.path)
+    %span{class: adjacent.class, title: adjacent.clear_name}=link_to adjacent.display, subtype_path(adjacent.path), target: '_blank', class: 'blank'
 
 %h2 Examples of #{@subtype.triplet.name}
 %p=@subtype.examples

@@ -151,6 +151,7 @@ class String
   end
 
   def ing
+    return 'eating' if self == 'eat'
     return 'hardening' if self=='harden'
     return 'lying' if self=='lie'
     return 'listening' if self=='listen'

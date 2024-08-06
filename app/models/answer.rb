@@ -42,7 +42,7 @@ class Answer
   def last_realm; Realm.all.without(taken_distresses.map(&:realm)).first; end
   def last_behavior; Behavior.all.without(taken_distresses.map(&:behavior)).first; end
   def last_distress; Subtype.find([last_behavior,last_realm,State.distress]); end
-  def all_distresses; taken_distresses.push(last_distress).sort; end
+  def all_distresses; taken_distresses.push(last_distress).sort.values_at(2,0,1,3); end
   def type_path;all_distresses.map(&:realm).map(&:path).join; end
 
 end

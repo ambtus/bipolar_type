@@ -1,18 +1,21 @@
 class State
 
-  def initialize(mbti); @mbti = mbti; end
-  attr_reader :mbti
-  alias inspect :mbti
+  def initialize(reaction); @reaction = reaction; end
+  attr_reader :reaction
+  alias inspect :reaction
 
-  MBTIS = %w{Eustress Distress Guilt Happiness} # cycle order not display/sort order
-  def mbti_index; MBTIS.index @mbti; end
-  def name; mbti; end
+  REACTIONS = %w{Eustress Distress Guilt Happiness} # cycle order not display/sort order
+  def index; REACTIONS.index @reaction; end
+  def name; reaction; end
+  def class_type; reaction.downcase; end
 
-  def path;    %w{2 4 1 3}[mbti_index]; end
-  def display; %w{² ⁴ ¹ ³}[mbti_index]; end
+  def path;    %w{2 4 1 3}[index]; end
+  def display; %w{² ⁴ ¹ ³}[index]; end
+  def adjective; %w{eustressed distressed guilty happy}[index]; end
 
-  ALL = MBTIS.collect {|mbti| self.new mbti}
-  def next; ALL[(mbti_index+1)%4]; end
+
+  ALL = REACTIONS.collect {|reaction| self.new reaction}
+  def next; ALL[(index+1)%4]; end
   def opposite; self.next.next; end
   def previous; opposite.next; end
 
@@ -24,7 +27,7 @@ class State
   def distress?; self.class.distress == self; end
 
   ALL.each_with_index do |instance, index|
-    %w{mbti}.each do |thing|
+    %w{reaction}.each do |thing|
       define_singleton_method(instance.send(thing)) {ALL[index]}
       define_singleton_method(instance.send(thing).downcase) {ALL[index]}
     end
@@ -34,8 +37,11 @@ class State
   def sort_index; sort_order.index self; end
   def <=>(other); sort_index <=> other.sort_index; end
 
+
+
+
   def considerations
-    case mbti
+    case reaction
     when 'Eustress'
       'These behaviors are usually healthy and satisfying. They are especially helpful when needing to remain focused on one of the other behaviors in the same quadrant that needs to be done but is more stressful. Just be careful not to allow it to slide into unhealthy behaviors in the next quadrant.'
     when 'Guilt'

@@ -1,5 +1,4 @@
+.span{title: subtype.clear_name}=link_to subtype.display, subtype_path(subtype.path), target: '_blank', class: 'blank'
 -if @answer
   -unless @answer.taken?(subtype)
-    .span{title: subtype.clear_name}=link_to_unless @answer.taken?(subtype), subtype.display, answer_path(@answer.next(subtype))
--else
-  .span{title: subtype.clear_name}=link_to subtype.display, subtype_path(subtype.path)
+    .span{title: subtype.clear_name}=link_to_unless @answer.taken?(subtype), 'Sounds like me', answer_path(@answer.next(subtype))

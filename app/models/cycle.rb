@@ -27,4 +27,5 @@ class Cycle
 
   def subtypes; [distress, distress.guilt, distress.eustress, distress.happy]; end
   def by_quarter; subtypes.sort_by {|s| s.cycle_index}; end
+  def by_focus; subtypes.values_at(2,1,3,0); end
 end

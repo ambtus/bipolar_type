@@ -9,6 +9,6 @@
       %th=link_to type.name, type_path(type.path)
       -type.disses.each do |dis|
         %td.bordered
-          =link_to dis.display, subtype_path(dis.path)
+          =link_to dis.display, subtype_path(dis.path), target: '_blank', class: 'blank'
           %br
           Do not #{dis.triplet.eg.downcase}.
