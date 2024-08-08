@@ -2,15 +2,15 @@ class Cycle
 
   def initialize(triplet); @triplet = triplet; end
   attr_reader :triplet
-  def distress; Subtype.find([@triplet, State.distress]); end
-  def path; distress.path; end
-  def display; distress.display + ' cycle'; end
+  def compulsion; Subtype.find([@triplet, State.compulsion]); end
+  def path; compulsion.path; end
+  def display; compulsion.display + ' cycle'; end
   alias inspect :display
 
   ALL = Triplet.all.collect {|triplet| Cycle.new(triplet)}
 
   class << self
-    def find_with(thing)
+    def find(thing)
       subtype = thing.is_a?(String) ? Subtype.send(thing) : thing
       ALL.find{|c| c.subtypes.include?(subtype)}
     end
@@ -25,7 +25,7 @@ class Cycle
     end
   end
 
-  def subtypes; [distress, distress.guilt, distress.eustress, distress.happy]; end
-  def by_quarter; subtypes.sort_by {|s| s.cycle_index}; end
-  def by_focus; subtypes.values_at(2,1,3,0); end
+  def subtypes; [compulsion, compulsion.flip, compulsion.flop, compulsion.opposite]; end
+  def by_quarter; subtypes.sort_by {|s| s.behavior.index}; end
+  def by_focus; subtypes.sort_by {|s| s.state.index}; end
 end

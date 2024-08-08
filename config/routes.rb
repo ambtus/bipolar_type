@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'start#home'
-  get '/mbti' => 'start#mbti', as: :mbti
+  get '/seasonal' => 'start#seasonal', as: :seasonal
   resources :answers, only: [:show]
   resources :types, only: [:show, :index]
   get '/me' => 'types#me', as: :my

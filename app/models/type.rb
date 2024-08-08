@@ -28,11 +28,11 @@ class Type
     def generic; Type.new(Realm.generic.mbti * 4); end
   end
 
-  def distresses; @realms.collect.each_with_index {|r, i| Subtype.distress(r, i)}; end
-  def foci; distresses.values_at(0,3,2,1); end
-  def disses; distresses.values_at(2,0,1,3); end
-  def <=>(other); disses.map(&:realm) <=> other.disses.map(&:realm); end
+  def compulsions; @realms.add(Behavior.sort_order).add(State.compulsion); end
+  def foci; compulsions.values_at(3,1,0,2); end
+  def <=>(other); foci.map(&:realm) <=> other.foci.map(&:realm); end
 
-  def sixteen; distresses.collect {|subtype| subtype.cycle.subtypes}.flatten.sort; end
+  def cycles; compulsions.map(&:cycle); end
+  def sixteen; cycles.map(&:subtypes).flatten.sort; end
 end
 

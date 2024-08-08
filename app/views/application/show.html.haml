@@ -1,12 +1,11 @@
 - content_for(:title, @name)
 .center
   %h1=@name
-%h2 Behaviors related to #{@subtype.display}
-%h3 Before and after in the cycle
+%h2 The #{@subtype.display} cycle
 .center
   -@subtype.cycle.subtypes.each_with_index do |adjacent, index|
     ='&rArr;'.html_safe unless index == 0
-    %span{class: adjacent.class, title: adjacent.clear_name}=link_to adjacent.display, subtype_path(adjacent.path), target: '_blank', class: 'blank'
+    =render 'answer_link', subtype: adjacent
 
 %h2 Examples of #{@subtype.triplet.name}
 %p=@subtype.examples
@@ -14,9 +13,13 @@
 %h2 #{@subtype.state.name} Considerations
 %p=@subtype.considerations
 
--if @subtype.state.distress? && @subtype.behavior.last?
+-if @subtype.state.last? && @subtype.behavior.last?
   %p
     Unless it is bedtime, in which case
     =@subtype.stop
     and go to sleep!
+
+%p.center
+  -unless @subtype.realm.generic?
+    =link_to 'Sounds like me (e.g. start my BipolarType here)', answer_path(Answer.first.next(@subtype)), title: @subtype.clear_name
 

@@ -37,15 +37,9 @@ class Subtype
     end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def distress(realm, index)
-      behavior = Behavior.sort_order[index]
-      Subtype.find([behavior, realm, State.distress])
-    end
   end
 
   def eg; [triplet.eg, behavior.st].to_phrase; end
-  def answer; ['I', state.frequency, 'need to', triplet.eg.downcase.comma, state.answer].to_phrase; end
-
 
   ALL.each_with_index do |instance, index|
     %w{path}.each do |thing|
@@ -54,33 +48,11 @@ class Subtype
     end
   end
 
-  def guilt
-    ALL.find do |s|
-      s.behavior == behavior.guilt &&
-      s.realm == realm &&
-      s.state == State.guilt
-    end
-  end
-  def eustress
-    ALL.find do |s|
-      s.behavior == behavior.eustress &&
-      s.realm == realm &&
-      s.state == State.eustress
-    end
-  end
-  def happy
-    ALL.find do |s|
-      s.behavior == behavior.happiness &&
-      s.realm == realm &&
-      s.state == State.happiness
-    end
-  end
+  def flip; Subtype.find(pair.map(&:flip)); end
+  def flop; Subtype.find(pair.map(&:flop)); end
+  def opposite; Subtype.find(pair.map(&:opposite)); end
 
-  def next; Subtype.find([@triplet.next, @state.next]); end
-  def opposite; self.next.next; end
-  def previous; opposite.next; end
-
-  def cycle; Cycle.find_with(self); end
+  def cycle; Cycle.find(self); end
 
   def names;[*@triplet.names, @state.name, ]; end
   def name; names.wbr; end

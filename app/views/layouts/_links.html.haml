@@ -3,4 +3,6 @@
   |
   =link_to_unless controller.controller_name == 'realms', 'The Cycle', cycle_path
   |
+  =link_to_unless_current 'Seasonal Variations', seasonal_path
+  |
   =link_to_unless controller.controller_name == 'answers', 'Your BipolarType', answer_path(Answer.first_path)

@@ -45,9 +45,12 @@ class Triplet
     end
   end
 
-  def next; Triplet.find([@behavior.next, @realm]); end
-  def opposite; self.next.next; end
-  def previous; opposite.next; end
+
+  def flip; Triplet.find(pair.map(&:flip)); end
+  def flop; Triplet.find(pair.map(&:flop)); end
+  def opposite; Triplet.find(pair.map(&:opposite)); end
+  def +(state); Subtype.find([self, state]); end
+  def cycle; Cycle.find(self);end
 
   # use adjective.capitalize instead of name to get '' for Generic
   def names;[@behavior.verb, @realm.adjective.capitalize, @behavior.noun]; end

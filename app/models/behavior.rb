@@ -7,24 +7,23 @@ class Behavior
   alias display :mbti
 
   MBTIS = %w{IP EP EJ IJ} # cycle order (IP first) not display/sort order (EP first)
-  def cycle_index; MBTIS.index @mbti; end
-  def rational?; cycle_index.even?; end
+  def index; MBTIS.index @mbti; end
+  def rational?; index.even?; end
 
   ALL = MBTIS.collect {|mbti| self.new mbti}
-  def next; ALL[(cycle_index+1)%4]; end
-  def opposite; ALL[(cycle_index+2)%4]; end
-  def previous; ALL[(cycle_index+3)%4]; end
   def last?; ALL.last == self; end
-  def guilt; Behavior.send(%w{ij ej ep ip}[cycle_index]); end
-  def eustress; Behavior.send(%w{ej ip ij ep}[cycle_index]); end
-  def happiness; Behavior.send(%w{ep ij ip ej}[cycle_index]); end
-  def st; (cycle_index + 1).ordinalize; end
+  def st; (index + 1).ordinalize; end
+
+  def flip; Behavior.send(%w{EP IP IJ EJ}[index]); end
+  def flop; Behavior.send(%w{IJ EJ EP IP}[index]); end
+  def opposite; Behavior.send(%w{EJ IJ IP EP}[index]); end
+
 
   def self.all; ALL; end
   def self.each(&block);ALL.each(&block); end
 
   NAMES = %w{Get<wbr>Energy Burn<wbr>Energy Use<wbr>Strength Recover<wbr>Strength Generic<wbr>Behavior}
-  def name; NAMES[cycle_index].html_safe; end
+  def name; NAMES[index].html_safe; end
   def symbolic_name; [@mbti.colon, name].to_safe_phrase; end
 
   def names; name.split('<wbr>'); end
