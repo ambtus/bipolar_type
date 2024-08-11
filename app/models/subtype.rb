@@ -53,6 +53,7 @@ class Subtype
   def opposite; Subtype.find(pair.map(&:opposite)); end
 
   def cycle; Cycle.find(self); end
+  def cycle_type; cycle.type; end
 
   def names;[*@triplet.names, @state.name, ]; end
   def name; names.wbr; end

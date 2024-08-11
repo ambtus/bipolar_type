@@ -6,6 +6,7 @@ class Cycle
   def path; compulsion.path; end
   def display; compulsion.display + ' cycle'; end
   alias inspect :display
+  def type; compulsion.behavior.mbti.downcase; end
 
   ALL = Triplet.all.collect {|triplet| Cycle.new(triplet)}
 

@@ -29,7 +29,7 @@
     %td.bottom.right 🌔
     %td
     %td.right_border=render 'answer_link', subtype: @sixteen[2]
-    %td 🌕<br />&rArr;<br />🥳
+    %td 🌕<br />&rArr;<br />😀
     %td.left_border=render 'answer_link', subtype: @sixteen[4]
     %td
     %td.bottom.left 🌖
@@ -59,13 +59,13 @@
     %td.bottom_border=render 'answer_link', subtype: @sixteen[6]
 
   %tr
-    %td 🌓&nbsp;&uArr;&nbsp;🫣
+    %td 🌓&nbsp;&uArr;&nbsp;😒
     %td
     %td
     %td &orarr;
     %td
     %td
-    %td 🥱&nbsp;&dArr;&nbsp;🌗
+    %td 😫&nbsp;&dArr;&nbsp;🌗
 
   %tr
     %td.top_border=render 'answer_link', subtype: @sixteen[10]
@@ -116,7 +116,7 @@
       %tr
         %th=first.realm.name
         -first.cycle.subtypes.each do |subtype|
-          %td{class: subtype.class_type}=link_to subtype.triplet.eg, subtype_path(subtype.path)
+          %td{class: subtype.state_type, class: subtype.cycle_type}=link_to subtype.triplet.eg, subtype_path(subtype.path)
 
   %h3 By Realm
   %table
@@ -130,7 +130,7 @@
       %tr
         %th=first.realm.name
         -first.cycle.by_focus.each do |subtype|
-          %td{class: subtype.class_type}=link_to subtype.eg, subtype_path(subtype.path)
+          %td{class: subtype.state_type, class: subtype.cycle_type}=link_to subtype.eg, subtype_path(subtype.path)
 
 
   %h3 By Quarter
@@ -143,5 +143,5 @@
       %tr
         %th=first.realm.name
         -first.cycle.by_quarter.each do |subtype|
-          %td{class: subtype.class_type}=link_to subtype.triplet.eg, subtype_path(subtype.path)
+          %td{class: subtype.state_type, class: subtype.cycle_type}=link_to subtype.triplet.eg, subtype_path(subtype.path)
 

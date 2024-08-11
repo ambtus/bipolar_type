@@ -7,7 +7,7 @@ class State
   REACTIONS = %w{Control Serenity Guilt Compulsion} # cycle order not display/sort order
   def index; REACTIONS.index @reaction; end
   def name; reaction; end
-  def class_type; reaction.downcase; end
+  def state_type; reaction.downcase; end
   def <=>(other); index <=> other.index; end
 
   def path;    %w{1 2 3 4}[index]; end
