@@ -7,13 +7,12 @@ class Triplet
   attr_reader :behavior, :realm
 
   def pair; [@behavior, @realm]; end
-  def path; pair.map(&:path).map(&:chars).flatten.values_at(0,2,1).join; end
-  alias mbti :path
+  def path; pair.map(&:path).join; end
   def display
     if @realm.generic?
       behavior.display
     else
-      pair.map(&:display).map(&:chars).flatten.values_at(0,2,1).join
+      pair.map(&:display).join
     end
   end
   alias inspect :display
@@ -49,7 +48,7 @@ class Triplet
   def flip; Triplet.find(pair.map(&:flip)); end
   def flop; Triplet.find(pair.map(&:flop)); end
   def opposite; Triplet.find(pair.map(&:opposite)); end
-  def +(state); Subtype.find([self, state]); end
+  def +(priority); Subtype.find([self, priority]); end
   def cycle; Cycle.find(self);end
 
   # use adjective.capitalize instead of name to get '' for Generic

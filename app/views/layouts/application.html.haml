@@ -1,18 +1,18 @@
 !!!
 %html{:lang=>"en"}
   %head
-    %title="BipolarType: #{yield(:title).to_phrase}"
+    %title="BipolarType: #{yield(:title).cleaned}"
     %meta{:content => "text/html; charset=utf-8"}
     %meta{:name => "viewport", :content=>"initial-scale=1"}
     :css
-      .ip {background-color: lightblue}
-      .ep {background-color: lightpink}
-      .ej {background-color: khaki}
-      .ij {background-color: lightgreen}
-      .serenity {font-weight: normal; }
-      .control {font-weight: bold;}
-      .guilt {font-style: italic;}
-      .compulsion {text-decoration: line-through;}
+      .cycle1 {background-color: lightblue}
+      .cycle2 {background-color: lightpink}
+      .cycle3 {background-color: khaki}
+      .cycle4 {background-color: lightgreen}
+      .first {font-weight: bold;}
+      .second {font-weight: normal; }
+      .third {font-style: italic;}
+      .fourth {text-decoration: line-through;}
       .chosen {font-weight: bold; color: red; }
       .constrained { color: orange; }
       .free {color: green}
@@ -48,6 +48,7 @@
       h1 {font-weight: bold; font-size: 1.3em; display: inline-block; padding: 0; margin: 0;}
       h2 {text-align: center; font-weight: bold; font-size: 1.2em;}
       h3 {text-align: center; font-style: italic; font-size: 1.1em;}
+      h4 {text-align: center; font-weight: bold; font-size: 1em;}
       dt::after {content: ":";}
       dt { float: left; clear: left; text-align: right; font-weight: bold; width: 6; }
       dd { margin: 0 0 0 7ch; }

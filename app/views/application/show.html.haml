@@ -10,10 +10,10 @@
 %h2 Examples of #{@subtype.triplet.name}
 %p=@subtype.examples
 
-%h2 #{@subtype.state.name} Considerations
+%h2 #{@subtype.priority.name} Considerations
 %p=@subtype.considerations
 
--if @subtype.state.last? && @subtype.behavior.last?
+-if @subtype.priority.last? && @subtype.behavior.last?
   %p
     Unless it is bedtime, in which case
     =@subtype.stop

@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words to_phrase n first_word last_words last_word parenthesize wrap comma period semi colon is_mbti? to_noun s ed en ly ing an some enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words cleaned n first_word last_words last_word parenthesize wrap comma period semi colon is_mbti? to_noun s ed en ly ing an some enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -12,7 +12,7 @@ class String
   def third; chars.third; end
   def fourth; chars.fourth; end
   def words; split(/\s+/); end
-  def to_phrase; self.gsub('_', ' ').gsub('<wbr>', ''); end
+  def cleaned; self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself'); end
   def to_words; self.underscore.to_phrase.words; end
 
   def n; words.size - 1;end

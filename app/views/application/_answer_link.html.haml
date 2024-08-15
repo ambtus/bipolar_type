@@ -1,4 +1,5 @@
-%span{class: subtype.state_type, class: subtype.cycle_type, title: subtype.clear_name}=link_to subtype.display, subtype_path(subtype.path), class: 'subtype'
 -if @answer
   -unless @answer.taken?(subtype)
-    %span{title: subtype.clear_name}=link_to_unless @answer.taken?(subtype), 'Sounds like me', answer_path(@answer.next(subtype))
+    %span{class: subtype.class_names, title: subtype.clear_name}=link_to_unless @answer.taken?(subtype), subtype.display, answer_path(@answer.next(subtype))
+-else
+  %span{class: subtype.class_names, title: subtype.clear_name}=link_to subtype.display, subtype_path(subtype.path), class: 'subtype'

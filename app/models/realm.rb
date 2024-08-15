@@ -1,31 +1,31 @@
 class Realm
 
-  def initialize(mbti); @mbti = mbti; end
-  attr_reader :mbti
-  alias path :mbti
-  alias inspect :mbti
+  NAMES = %w{Physical Financial Affective Mental Generic}
 
-  MBTIS = %w{S T F N X}
-  def index; MBTIS.index @mbti; end
+  def initialize(name); @name = name; end
+  attr_reader :name
+  alias inspect :name
+  def letter; name.first; end
+  alias path :letter
+
+  def index; NAMES.index @name; end
   def <=>(other); index <=> other.index; end
 
 
-  ALL = MBTIS.collect {|mbti| self.new mbti}
+  ALL = NAMES.collect {|name| self.new name}
   def self.all; ALL[0,4]; end
   def self.with_generic; ALL; end
   def self.each(&block);ALL[0,4].each(&block); end
   def self.generic; ALL.last; end
   def generic?; self.class.generic == self; end
-  def display; generic? ? '' : @mbti; end
+  def display; generic? ? '' : letter; end
 
-  NAMES = %w{Physical Financial Affective Mental Generic}
-  def name; NAMES[index]; end
-  def symbolic_name; generic? ? name : [@mbti.colon, name].to_phrase; end
-  def adjective; generic? ? '' : name.downcase; end
+  def symbolic_name; generic? ? name : [letter.colon, name].to_phrase; end
+  def adjective; %w{physical material social mental \ }[index]; end
   def adverb; adjective.ly; end
 
   ALL.each_with_index do |instance, index|
-    %w{mbti name}.each do |thing|
+    %w{ name letter}.each do |thing|
       define_singleton_method(instance.send(thing)) {ALL[index]}
       define_singleton_method(instance.send(thing).downcase) {ALL[index]}
     end
@@ -38,65 +38,60 @@ class Realm
 
   def +(behavior); Triplet.find([behavior, self]); end
 
+  def mbti; %w{S T F N X}[index]; end
+  def verb_phrase; %w{Take Buy Say Make Do}[index] + ' the best ' + %w{actions things things choices \ }[index] + ' you can, given the '; end
 
   # method name must match Behavior send_name
   def burn_energy
-    case mbti
-    when 'S'
-       'Exercise. Run, jog or take a walk. Play physical games. Burning calories for fun, to make yourself happy, or to improve your body.'
-    when 'N'
-       'Decide. Make the best choice you can based on the facts you have now. Play mental games. Do mental exercises. Solve problems for fun, to make yourself happy, to improve your mind, or because you have enough information.'
-    when 'T'
-       'Pay cash. Pay upfront or pay off debts. Spending cash for fun, to make yourself happy, or to improve your finances.'
-    when 'F'
-       'Emote. Sing or play a musical instrument. Talk to a friend or therapist. Expressing emotions for fun, to make yourself happy, or to improve your mood.'
-    else
-       'Play or exercise. Burning energy for pleasure or because it is healthy.'
-    end
+    [%w{Walk Pay\ cash Emote Decide Flee}[index].period,
+     verb_phrase + %w{energy currency feelings information energy}[index] + ' you have.',
+     %w{Burn\ calories Spend\ money Express\ emotions Synthesize\ facts  Burn\ energy}[index] + ' for fun, because you feel ' + adverb + ' restless, or to improve your ' + %w{body finances mood mind self}[index]
+    ].to_phrase.cleaned.period
+  end
+
+  def strength_examples;
+    ['Farm, hunt, garden, build bridges, or dig ditches.',
+    'Buy cars, houses, investments, or other capital goods.',
+    'Write lyrics, poetry, stories, or make speeches.',
+    'Make plans, procedures, rules, predictions, or extrapolations.',
+    ][index]
   end
 
   def use_strength
-    case mbti
-    when 'S'
-       'Labor. Cook, clean, do housework. Build houses or dig ditches. Farm, hunt, or garden. Use your body to achieve a goal.'
-    when 'N'
-       'Theorize. Make the best decision you can based on everything before <em>and after</em>. Use logic, analogy, extrapolation, or an educated guess. Do mental labor. Make plans, develop procedures. Work with your mind.'.html_safe
-    when 'T'
-       'Use credit. Take out loans or mortgages. Buy something and then pay for it later.'
-    when 'F'
-       'Verbalize. Make speaches. Write lyrics or poetry or stories. Using language to express an idea.'
-    else
-       'Work or Labor. Using strength in goal-directed activities.'
-    end
+    [%w{Do\ housework Use\ credit Verbalize Theorize Fight}[index].period,
+     verb_phrase + %w{muscles loans vocabulary analogies strengths}[index] + ' you have.',
+     strength_examples,
+     'Use your ' + %w{body reputation voice mind power}[index] + ' to achieve a goal, because you feel driven, or to do ' + adjective + ' work'
+    ].to_phrase.cleaned.period
   end
 
   def get_energy
     case mbti
     when 'S'
-      'Eat carbs. Eat candy or dessert. Loading up on potatoes, bread, pasta and rice. Digesting simple carbs.'
-    when 'N'
-      'Look at details. Watch current events. Research. Learning causes and specific and detailed facts.'
+      'Eat carbs. Eat candy or dessert. Load up on potatoes, bread, pasta and rice. Digest simple carbs.'
     when 'T'
-      'Earn wages. Collect tips, bonuses, commissions, and profits. Compete for rewards. Collect cash prizes.'
+      'Collect wages. Collect tips, bonuses, commissions, and profits. Compete for rewards. Earn cash prizes.'
     when 'F'
-      'Listen to music. Turn on the radio. Listen to instruments or nature sounds. Understanding emotional intonation.'
+      'Listen to music. Turn on the radio. Listen to instruments or nature sounds. Understand emotional intonation.'
+    when 'N'
+      'Look at details. Watch current events. Research. Learn causes and specifics and detailed facts.'
     else
-      'Going after, taking or accepting, and processing energy sources.'
+      'Feed. Take and process energy sources.'
     end
   end
 
   def recover_strength
     case mbti
     when 'S'
-      'Eat protein. Digesting amino acids. And then resting your body to give your muscles time to recover.'
-    when 'N'
-      'Watch results. Learning rules and gerealizations and patterns and  effects. And then resting your mind to give your theories time to recover.'
+      'Eat protein. Digest amino acids. And then rest your body to give your muscles time to recover.'
     when 'T'
-      'Earn a salary. Collect a nallowance, social security, dividends, interest, rental income or other stipends. And then rest your wallet to give your credit time to recover.'
+      'Collect stipends. Collect a salary, allowance, social security, dividends, interest, rental income or other regular income. And then rest your wallet to give your credit time to recover.'
     when 'F'
-      'Listen to stories. Hear speaches or audiobooks or lyrics. Read poetry. Understand lexical meaning. And then rest your voice to give your morals time to recover.'
+      'Listen to words. Hear speaches or stories or lyrics. Read poetry. Understand lexical meaning. And then rest your voice to give your vocabulary time to recover.'
+    when 'N'
+      'Look at results. Learn rules and generalizations and patterns and effects. And then rest your mind to give your analogies time to recover.'
     else
-      'Going after, taking or accepting, and processing resources that can repair, rebuild, and develop your strengths. And then rest to give them time to recover before using them again.'
+      'Rest. Go after, take or accept, and process resources that can repair, rebuild, and develop your strengths. And then give them time to recover before using them again.'
     end
   end
 

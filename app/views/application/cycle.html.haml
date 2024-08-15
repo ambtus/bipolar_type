@@ -1,147 +1,67 @@
-- content_for(:title, @title)
--if @realms
-  %p.center
-    -@realms.each do |realm|
-      =link_to realm.symbolic_name, realm_path(realm.path)
+- content_for(:title, 'The Cycle')
 
+%table
 
--if @answer
-  %p.center
-    If you can&rsquo;t find anything that sounds like you, try
-    ='starting with' if @answer.number==1
-    a different realm:
-    -@answer.free_realms.without(@realm).each_with_index do |realm, index|
-      =index == 0 ? '<br/ >'.html_safe : '|'
-      =link_to realm.symbolic_name, answer_path(@answer.try(realm))
-    -if @answer.number > 1
+  %tr
+    %td.bottom
+      %h3=Behavior.q2.symbolic_name
+      Flee
+    %td
+      %h2 Summer Day
+      Mania
       %br
-      or
-      =link_to "start over", answer_path(Answer.first_path)
-  -if @answer.number > 1
-    %p.center
-      Chosen: #{@answer.subtypes.map(&:display).and}
-
-%table.none
-  %caption
-    %h2=@title
-
-  %tr
-    %td.bottom.right 🌔
-    %td
-    %td.right_border=render 'answer_link', subtype: @sixteen[2]
-    %td 🌕<br />&rArr;<br />😀
-    %td.left_border=render 'answer_link', subtype: @sixteen[4]
-    %td
-    %td.bottom.left 🌖
+      &rlarr;
+    %td.bottom
+      %h3=Behavior.q3.symbolic_name
+      Fight
 
   %tr
     %td
-    %td.left
-      =render 'answer_link', subtype: @sixteen[1]
-      %br
-      2ndQ
-    %td.right_border
-    %td
-    %td.left_border
-    %td.right
-      =render 'answer_link', subtype: @sixteen[5]
-      %br
-      3rdQ
-    %td
-
-  %tr
-    %td.bottom_border=render 'answer_link', subtype: @sixteen[0]
-    %td.bottom_border
-    %td.bottom_border.right_border=render 'answer_link', subtype: @sixteen[3]
-    %td
-    %td.bottom_border.left_border=render 'answer_link', subtype: @sixteen[7]
-    %td.bottom_border
-    %td.bottom_border=render 'answer_link', subtype: @sixteen[6]
-
-  %tr
-    %td 🌓&nbsp;&uArr;&nbsp;😒
-    %td
-    %td
+      %h2 Spring Dawn
     %td &orarr;
     %td
-    %td
-    %td 😫&nbsp;&dArr;&nbsp;🌗
+      %h2 Autumn Dusk
 
   %tr
-    %td.top_border=render 'answer_link', subtype: @sixteen[10]
-    %td.top_border
-    %td.top_border.right_border=render 'answer_link', subtype: @sixteen[11]
+    %td.top
+      Feed
+      %h3=Behavior.q1.symbolic_name
     %td
-    %td.top_border.left_border=render 'answer_link', subtype: @sixteen[15]
-    %td.top_border
-    %td.top_border=render 'answer_link', subtype: @sixteen[12]
-
-  %tr
-    %td
-    %td.left
-      1stQ
+      &rlarr;
       %br
-      =render 'answer_link', subtype: @sixteen[9]
-    %td.right_border
-    %td
-    %td.left_border
-    %td.right
-      4thQ
-      %br
-      =render 'answer_link', subtype: @sixteen[13]
-    %td
+      Depression
+      %h2 Winter Night
+    %td.top
+      Rest
+      %h3=Behavior.q4.symbolic_name
 
-  %tr
-    %td.top.right 🌒
-    %td
-    %td.right_border=render 'answer_link', subtype: @sixteen[8]
-    %td 😴<br />&nvlArr;<br />🌑
-    %td.left_border=render 'answer_link', subtype: @sixteen[14]
-    %td
-    %td.top.left 🌘
+%p The four corner behaviors are all perfectly normal and natural. But if you get &ldquo;stuck&rdquo; in a corner, that behavior becomes unhealthy and unbalancing.
+%p Recovering from an unbalancing and unhealthy compulsive behavior requires three things
+%ol
 
--if @type
-  %h2 Sample behaviors
+  %li
+    Replace the compulsive behavior with it&rsquo;s alternate <em>now</em>:
+    %ul
+      %li if you <em>are</em> manic and fleeing compulsively, fight instead
+      %li if you <em>are</em> manic and fighting compulsively, flee instead
+      %li if you <em>are</em> depressed and feeding compulsively, rest instead
+      %li if you <em>are</em> depressed and resting compulsively, feed instead
 
+  %li
+    Subvert the compulsive behavior with it&rsquo;s opposite <em>later</em>:
+    %ul
+      %li if you <em>were</em> manic and fleeing compulsively, rest more: it will make replacement fighting easier
+      %li if you <em>were</em> manic and fighting compulsively, feed more: it will make replacement fleeing easier
+      %li if you <em>were</em> depressed and feeding compulsively, fight more: it will make replacement resting easier
+      %li if you <em>were</em> depressed and resting compulsively, flee more: it will make replacement feeding easier
 
-  %h3 Theory
-  %table
-    %tr
-      %th
-      %td.compulsion Minimize compulsion
-      %td.guilt Minimize guilt
-      %td.control Maximize control
-      %td.serenity Maximize serenity
-    -@type.foci.each do |first|
-      %tr
-        %th=first.realm.name
-        -first.cycle.subtypes.each do |subtype|
-          %td{class: subtype.state_type, class: subtype.cycle_type}=link_to subtype.triplet.eg, subtype_path(subtype.path)
+  %li
+    Balance the compulsive behavior with it&rsquo;s complement:
+    %ul
+      %li if you <em>do</em> flee compulsively when manic, you must balance feeding (to replace the energy burned) with <em>not</em> feeding (which enables more fleeing).
+      %li if you <em>do</em> fight compulsively when manic, you must balance resting (to restore the strength used) with <em>not</em> resting (which enables more fighting).
+      %li if you <em>do</em> feed compulsively when depressed, you must balance fleeing (to burn the energy gotten) with <em>not</em> fleeing (which enables more feeding).
+      %li if you <em>do</em> rest compulsively when depressed, you must balance fighting (to use the strength recovered) with <em>not</em> fighting (which enables more resting).
 
-  %h3 By Realm
-  %table
-    %tr
-      %th
-      %td.control Start
-      %td.serenity Stop
-      %td.guilt If unbalanced
-      %td.compulsion Don&rsquo;t start!
-    -@type.foci.each do |first|
-      %tr
-        %th=first.realm.name
-        -first.cycle.by_focus.each do |subtype|
-          %td{class: subtype.state_type, class: subtype.cycle_type}=link_to subtype.eg, subtype_path(subtype.path)
-
-
-  %h3 By Quarter
-  %table
-    %tr
-      %th
-      -4.times do |i|
-        %th #{(i+1).ordinalize} Quarter
-    -@type.foci.each do |first|
-      %tr
-        %th=first.realm.name
-        -first.cycle.by_quarter.each do |subtype|
-          %td{class: subtype.state_type, class: subtype.cycle_type}=link_to subtype.triplet.eg, subtype_path(subtype.path)
-
+%p The first two &mdash; replacement and subversion &mdash; will be necessary indefinitely.
+%p The third &mdash; balance &mdash; will become less <em>necessary</em> as you replace and subvert the unbalancing behavior but will also need to be carefully modulated so as not to <em>induce</em> the unbalancing behavior.

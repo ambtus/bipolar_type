@@ -2,11 +2,11 @@ class Cycle
 
   def initialize(triplet); @triplet = triplet; end
   attr_reader :triplet
-  def compulsion; Subtype.find([@triplet, State.compulsion]); end
-  def path; compulsion.path; end
-  def display; compulsion.display + ' cycle'; end
+  def last; Subtype.find([@triplet, Priority.last]); end
+  def path; last.path; end
+  def display; last.display + ' cycle'; end
   alias inspect :display
-  def type; compulsion.behavior.mbti.downcase; end
+  def type; 'cycle' + last.behavior.path.last; end
 
   ALL = Triplet.all.collect {|triplet| Cycle.new(triplet)}
 
@@ -26,7 +26,7 @@ class Cycle
     end
   end
 
-  def subtypes; [compulsion, compulsion.flip, compulsion.flop, compulsion.opposite]; end
+  def subtypes; [last, last.flip, last.flop, last.opposite]; end
   def by_quarter; subtypes.sort_by {|s| s.behavior.index}; end
-  def by_focus; subtypes.sort_by {|s| s.state.index}; end
+  def by_focus; subtypes.sort_by {|s| s.priority.index}; end
 end
