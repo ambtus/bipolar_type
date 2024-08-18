@@ -1,5 +1,5 @@
 -if @answer
   -unless @answer.taken?(subtype)
-    %span{class: subtype.class_names, title: subtype.clear_name}=link_to_unless @answer.taken?(subtype), subtype.display, answer_path(@answer.next(subtype))
+    %span{class: subtype.class_names, title: subtype.clear_name}=link_to_unless @answer.taken?(subtype), subtype.eg, answer_path(@answer.next(subtype))
 -else
-  %span{class: subtype.class_names, title: subtype.clear_name}=link_to subtype.display, subtype_path(subtype.path), class: 'subtype'
+  %span{class: subtype.class_names, title: subtype.clear_name}=link_to subtype.eg, subtype_path(subtype.path), class: 'subtype'

@@ -4,64 +4,44 @@
 
   %tr
     %td.bottom
-      %h3=Behavior.q2.symbolic_name
-      Flee
+      %h3=Behavior.q2.action
+      =Behavior.q2.symbolic_name
     %td
-      %h2 Summer Day
-      Mania
+      %h2 Mania
+      =link_to 'SNS', 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
       %br
       &rlarr;
     %td.bottom
-      %h3=Behavior.q3.symbolic_name
-      Fight
+      %h3=Behavior.q3.action
+      =Behavior.q3.symbolic_name
 
   %tr
-    %td
-      %h2 Spring Dawn
+    %td &udarr;
     %td &orarr;
-    %td
-      %h2 Autumn Dusk
+    %td &udarr;
 
   %tr
     %td.top
-      Feed
-      %h3=Behavior.q1.symbolic_name
+      =Behavior.q1.symbolic_name
+      %h3=Behavior.q1.action
     %td
       &rlarr;
       %br
-      Depression
-      %h2 Winter Night
+      =link_to 'PSNS', 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'
+      %h2 Depression
     %td.top
-      Rest
-      %h3=Behavior.q4.symbolic_name
+      =Behavior.q4.symbolic_name
+      %h3=Behavior.q4.action
 
 %p The four corner behaviors are all perfectly normal and natural. But if you get &ldquo;stuck&rdquo; in a corner, that behavior becomes unhealthy and unbalancing.
 %p Recovering from an unbalancing and unhealthy compulsive behavior requires three things
 %ol
 
   %li
-    Replace the compulsive behavior with it&rsquo;s alternate <em>now</em>:
-    %ul
-      %li if you <em>are</em> manic and fleeing compulsively, fight instead
-      %li if you <em>are</em> manic and fighting compulsively, flee instead
-      %li if you <em>are</em> depressed and feeding compulsively, rest instead
-      %li if you <em>are</em> depressed and resting compulsively, feed instead
+    Replace the compulsive behavior with it&rsquo;s alternative in the same state. Mania is #{Behavior.q2.action} <em>or</em> #{Behavior.q3.action}. Depression is #{Behavior.q1.action} <em>or</em> #{Behavior.q4.action}. If you are doing too much of one, you should be able to switch to the other. For example, if you are manic and #{Behavior.q2.phrase.ing} compulsively, you probably need sedatives in order to stop and #{Behavior.q1.phrase.enough}, but you only need to change your focus in order to #{Behavior.q3.phrase}.
 
   %li
-    Subvert the compulsive behavior with it&rsquo;s opposite <em>later</em>:
-    %ul
-      %li if you <em>were</em> manic and fleeing compulsively, rest more: it will make replacement fighting easier
-      %li if you <em>were</em> manic and fighting compulsively, feed more: it will make replacement fleeing easier
-      %li if you <em>were</em> depressed and feeding compulsively, fight more: it will make replacement resting easier
-      %li if you <em>were</em> depressed and resting compulsively, flee more: it will make replacement feeding easier
+    Subvert the compulsive behavior with it&rsquo;s opposite. For example, if you want to replace #{Behavior.q2.phrase.ing} with #{Behavior.q3.phrase.ing}, you must spend more time #{Behavior.q4.phrase.ing}. The more you balance the replacing behavior, the easier it is to use it to replace the compulsive behavior.
 
   %li
-    Balance the compulsive behavior with it&rsquo;s complement:
-    %ul
-      %li if you <em>do</em> flee compulsively when manic, you must balance feeding (to replace the energy burned) with <em>not</em> feeding (which enables more fleeing).
-      %li if you <em>do</em> fight compulsively when manic, you must balance resting (to restore the strength used) with <em>not</em> resting (which enables more fighting).
-      %li if you <em>do</em> feed compulsively when depressed, you must balance fleeing (to burn the energy gotten) with <em>not</em> fleeing (which enables more feeding).
-      %li if you <em>do</em> rest compulsively when depressed, you must balance fighting (to use the strength recovered) with <em>not</em> fighting (which enables more resting).
-
-%p The first two &mdash; replacement and subversion &mdash; will be necessary indefinitely.
-%p The third &mdash; balance &mdash; will become less <em>necessary</em> as you replace and subvert the unbalancing behavior but will also need to be carefully modulated so as not to <em>induce</em> the unbalancing behavior.
+    Balance the compulsive behavior with it&rsquo;s complement. For example, if you have been #{Behavior.q2.phrase.ing} while manic, you <em>will</em> need to balance it by #{Behavior.q1.phrase.ing}. But you must not overdo it, because you don&rsquo;t want to trigger #{Behavior.q2.phrase.ing.more}, merely balance what you have already done.

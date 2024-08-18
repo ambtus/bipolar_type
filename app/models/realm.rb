@@ -41,9 +41,10 @@ class Realm
   def mbti; %w{S T F N X}[index]; end
   def verb_phrase; %w{Take Buy Say Make Do}[index] + ' the best ' + %w{actions things things choices \ }[index] + ' you can, given the '; end
 
-  # method name must match Behavior send_name
+  # method name must match Behavior send_name or send_action
+  def flee; %w{Walk Pay\ cash Emote Decide Flee}[index]; end
   def burn_energy
-    [%w{Walk Pay\ cash Emote Decide Flee}[index].period,
+    [flee.period,
      verb_phrase + %w{energy currency feelings information energy}[index] + ' you have.',
      %w{Burn\ calories Spend\ money Express\ emotions Synthesize\ facts  Burn\ energy}[index] + ' for fun, because you feel ' + adverb + ' restless, or to improve your ' + %w{body finances mood mind self}[index]
     ].to_phrase.cleaned.period
@@ -57,8 +58,9 @@ class Realm
     ][index]
   end
 
+  def fight; %w{Do\ housework Use\ credit Verbalize Theorize Fight}[index]; end
   def use_strength
-    [%w{Do\ housework Use\ credit Verbalize Theorize Fight}[index].period,
+    [fight.period,
      verb_phrase + %w{muscles loans vocabulary analogies strengths}[index] + ' you have.',
      strength_examples,
      'Use your ' + %w{body reputation voice mind power}[index] + ' to achieve a goal, because you feel driven, or to do ' + adjective + ' work'

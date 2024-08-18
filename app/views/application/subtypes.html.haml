@@ -1,92 +1,38 @@
 - content_for(:title, @title)
 -if @realms
+  %p Bipolar disorder (previously known as Manic Depression) is usually defined in terms of Mental (cognitive) or Affective (mood) cycling. BipolarType adds Physical (caloric) and Financial (monetary) cycles.
   %p.center
     -@realms.each do |realm|
       =link_to realm.symbolic_name, realm_path(realm.path)
 
-
--if @answer
+-if @answer && @answer.number > 1
   %p.center
-    If you can&rsquo;t find anything that sounds like you, try
-    ='starting with' if @answer.number==1
-    a different realm:
-    -@answer.free_realms.without(@realm).each_with_index do |realm, index|
-      =index == 0 ? '<br/ >'.html_safe : '|'
-      =link_to realm.symbolic_name, answer_path(@answer.try(realm))
-    -if @answer.number > 1
-      %br
-      or
-      =link_to "start over", answer_path(Answer.first_path)
-  -if @answer.number > 1
-    %p.center
-      Chosen: #{@answer.subtypes.map(&:display).and}
+    If you can&rsquo;t find anything that sounds like you, you can
+    =link_to "start over", answer_path(Answer.first_path)
+  %p.center Chosen: #{@answer.subtypes.map(&:display).and}
 
 %table.none
   %caption
     %h2=@title
 
   %tr
-    %td.bottom.right 🌔
     %td
-    %td.right_border=render 'answer_link', subtype: @sixteen[2]
-    %td 🌕<br />&rArr;<br />😀
-    %td.left_border=render 'answer_link', subtype: @sixteen[4]
+      %ol
+        -@sixteen[0,4].each do |subtype|
+          %li=render 'answer_link', subtype: subtype
     %td
-    %td.bottom.left 🌖
-
+      %ol
+        -@sixteen[4,4].each do |subtype|
+          %li=render 'answer_link', subtype: subtype
   %tr
     %td
-    %td=render 'answer_link', subtype: @sixteen[1]
-    %td.right_border
+      %ol
+        -@sixteen[8,4].each do |subtype|
+          %li=render 'answer_link', subtype: subtype
     %td
-    %td.left_border
-    %td=render 'answer_link', subtype: @sixteen[5]
-    %td
-
-  %tr
-    %td.bottom_border=render 'answer_link', subtype: @sixteen[0]
-    %td.bottom_border
-    %td.bottom_border.right_border=render 'answer_link', subtype: @sixteen[3]
-    %td
-    %td.bottom_border.left_border=render 'answer_link', subtype: @sixteen[7]
-    %td.bottom_border
-    %td.bottom_border=render 'answer_link', subtype: @sixteen[6]
-
-  %tr
-    %td 🌓&nbsp;&uArr;&nbsp;😒
-    %td
-    %td
-    %td &orarr;
-    %td
-    %td
-    %td 😫&nbsp;&dArr;&nbsp;🌗
-
-  %tr
-    %td.top_border=render 'answer_link', subtype: @sixteen[10]
-    %td.top_border
-    %td.top_border.right_border=render 'answer_link', subtype: @sixteen[11]
-    %td
-    %td.top_border.left_border=render 'answer_link', subtype: @sixteen[15]
-    %td.top_border
-    %td.top_border=render 'answer_link', subtype: @sixteen[12]
-
-  %tr
-    %td
-    %td=render 'answer_link', subtype: @sixteen[9]
-    %td.right_border
-    %td
-    %td.left_border
-    %td=render 'answer_link', subtype: @sixteen[13]
-    %td
-
-  %tr
-    %td.top.right 🌒
-    %td
-    %td.right_border=render 'answer_link', subtype: @sixteen[8]
-    %td 😴<br />&nvlArr;<br />🌑
-    %td.left_border=render 'answer_link', subtype: @sixteen[14]
-    %td
-    %td.top.left 🌘
+      %ol
+        -@sixteen[12,4].each do |subtype|
+          %li=render 'answer_link', subtype: subtype
 
 -if @type
   %h2 Example behaviors
@@ -110,10 +56,4 @@
       %tr
         -quarter.each do |subtype|
           %td{class: subtype.class_names}=link_to subtype.eg, subtype_path(subtype.path)
-
--if @realms || @answer
-  %ul
-    -@sixteen.each do |subtype|
-      %li{class: subtype.class_names}=link_to subtype.eg, subtype_path(subtype.path)
-
 

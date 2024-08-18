@@ -29,7 +29,7 @@ class Priority
   def flop; ALL[([3,2,1,0][index])]; end
   def opposite; ALL[([2,3,0,1][index])]; end
 
-  def eg; %w{replace subvert balance avoid}[index]; end
+  def eg; %w{replace subvert balance compulsive}[index]; end
 
   def considerations
     case ordinal
@@ -40,7 +40,7 @@ class Priority
     when 'Third'
       'These activites must be done in moderation. They are necessary for balance if you have been compulsive. But they may trigger compulsive behaviors if overdone.'
     when 'Fourth'
-      'These activities should be avoided when possible. Once you start, you will find it difficult to stop. It is almost always easier to avoid starting in the first place and substitute replacement activities instead.'
+      'You will always do these activities if they need to be done. But once you start, you will find it difficult to stop. So avoid them when possible and substitute replacement activities instead.'
     end
   end
 
