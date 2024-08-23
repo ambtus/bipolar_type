@@ -55,7 +55,9 @@ class Subtype
   def cycle; Cycle.find(self); end
   def cycle_type; cycle.type; end
 
-  def eg; [display.colon, priority.eg, ('by' unless priority.last?), triplet.eg.downcase.ing].to_phrase; end
+  def eg; [display.colon, priority.eg, ('with' unless priority.last?), triplet.eg].to_phrase; end
+
+  def answer; [display.colon, triplet.answer].to_phrase; end
 
   def names;[*@triplet.names, @priority.name, ]; end
   def name; names.wbr; end

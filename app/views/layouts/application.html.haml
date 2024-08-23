@@ -1,18 +1,18 @@
 !!!
 %html{:lang=>"en"}
   %head
-    %title="BipolarType: #{yield(:title).cleaned}"
+    %title="BipolarType: #{yield(:title).clean}"
     %meta{:content => "text/html; charset=utf-8"}
     %meta{:name => "viewport", :content=>"initial-scale=1"}
     :css
-      .cycle1 {background-color: lightblue}
-      .cycle2 {background-color: lightpink}
-      .cycle3 {background-color: khaki}
-      .cycle4 {background-color: lightgreen}
+      .cycleG {background-color: lightgreen}
+      .cycleB {background-color: lightblue}
+      .cycleU {background-color: lightpink}
+      .cycleR {background-color: khaki}
       .first {font-weight: bold;}
       .second {font-weight: normal; }
       .third {font-style: italic;}
-      .fourth {text-decoration: line-through;}
+      .compulsively {text-decoration: line-through;}
       .chosen {font-weight: bold; color: red; }
       .constrained { color: orange; }
       .free {color: green}
@@ -52,6 +52,7 @@
       dt::after {content: ":";}
       dt { float: left; clear: left; text-align: right; font-weight: bold; width: 6; }
       dd { margin: 0 0 0 7ch; }
+      ul.none { list-style-type: none; }
 
       =render "layouts/favicon"
 

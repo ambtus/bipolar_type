@@ -1,0 +1,21 @@
+%table.none
+  %tr
+    %td
+      %ul.none
+      -@four_by_four.second.each do |subtype|
+        %li=render 'answer_link', subtype: subtype
+    %td
+      %ul.none
+      -@four_by_four.third.each do |subtype|
+        %li=render 'answer_link', subtype: subtype
+  %tr
+    %td
+      %ul.none
+      -@four_by_four.first.each do |subtype|
+        %li=render 'answer_link', subtype: subtype
+    %td
+      %ul.none
+      -@four_by_four.fourth.each do |subtype|
+        %li=render 'answer_link', subtype: subtype
+
+

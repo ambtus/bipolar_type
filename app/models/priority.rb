@@ -6,11 +6,11 @@ class Priority
   alias name :ordinal
   def type; ordinal.downcase; end
 
-  ATTITUDES = %w{First Second Third Fourth}
+  ATTITUDES = %w{First Second Third Compulsively}
   def index; ATTITUDES.index @ordinal; end
   def <=>(other); index <=> other.index; end
 
-  def display; %w{¹ ² ³ ⁴}[index]; end
+  def display; %w{¹ ² ³ ⁰}[index]; end
   def path; (index+1).to_s; end
   def st; (index+1).ordinalize; end
 
@@ -25,22 +25,24 @@ class Priority
     define_singleton_method(instance.ordinal.downcase) {instance}
   end
 
-  def flip; ALL[([1,0,3,2][index])]; end
-  def flop; ALL[([3,2,1,0][index])]; end
-  def opposite; ALL[([2,3,0,1][index])]; end
+  def eg; %w{replace balance subvert compulsively}[index]; end
+  def symbolic_name; [path.colon, eg.capitalize].to_safe_phrase; end
 
-  def eg; %w{replace subvert balance compulsive}[index]; end
+  def flip; ALL[([2,3,0,1][index])]; end # flip a coin: E to I balance
+  def flop; ALL[([3,2,1,0][index])]; end # flop sideways: P to J replacement
+  def opposite; flip.flop; end
+
 
   def considerations
-    case ordinal
-    when 'First'
+    case eg
+    when 'replace'
       'These activities should be your first priority. They can replace activities which are unbalancing because they do not trigger compulsions. You will stop once you have done enough. But you must get into the habit of starting.'
-    when 'Second'
-      'These activities should be your second priority. They balance and encourage replacement activities. But they are not necessary in and of themselves if you would rather not start.'
-    when 'Third'
-      'These activites must be done in moderation. They are necessary for balance if you have been compulsive. But they may trigger compulsive behaviors if overdone.'
-    when 'Fourth'
-      'You will always do these activities if they need to be done. But once you start, you will find it difficult to stop. So avoid them when possible and substitute replacement activities instead.'
+    when 'balance'
+      'These activities should be your second priority. They balance your compulsive behaviors activities. They need to be enabled to make them easier, but not forced, because they should be replaced by subversion activities once you are balanced.'
+    when 'subvert'
+      'These activites should be your third priority. They balance and support your replacement activities. They should not be started, however, until after you have finished your balancing activities.'
+    when 'compulsive'
+      'You will always do these activities if they need to be done. But once you start, you will find it difficult to stop before you have <em>over</em>done them. So substitute replacement activities as soon as you can.'.html_safe
     end
   end
 

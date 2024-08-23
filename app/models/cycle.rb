@@ -6,7 +6,7 @@ class Cycle
   def path; last.path; end
   def display; last.display + ' cycle'; end
   alias inspect :display
-  def type; 'cycle' + last.behavior.path.last; end
+  def type; 'cycle' + last.behavior.type; end
 
   ALL = Triplet.all.collect {|triplet| Cycle.new(triplet)}
 
@@ -26,7 +26,7 @@ class Cycle
     end
   end
 
-  def subtypes; [last, last.flip, last.flop, last.opposite]; end
+  def subtypes; [last, last.flop, last.flip, last.opposite]; end
   def by_quarter; subtypes.sort_by {|s| s.behavior.index}; end
-  def by_focus; subtypes.sort_by {|s| s.priority.index}; end
+  def by_priority; subtypes.sort_by{|s| s.priority.index}; end
 end

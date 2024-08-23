@@ -1,9 +1,9 @@
 class TypesController < ApplicationController
   def show
     @type = Type.send params[:id]
-    @title = "The #{@type.name} Cycle"
-    @sixteen =  @type.sixteen
-    render 'subtypes'
+    @title = "The #{@type.name} States"
+    @four_by_four = @type.four_by_four
+    render 'type'
   end
 
   def me; redirect_to action: 'show', id: Type.my_path; end

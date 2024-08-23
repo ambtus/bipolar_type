@@ -1,7 +1,7 @@
 - content_for(:title, @name)
 .center
   %h1=@name
-%h2 The #{@subtype.display} cycle
+%h2 The #{@subtype.display} states
 .center
   -@subtype.cycle.subtypes.each_with_index do |adjacent, index|
     ='&rArr;'.html_safe unless index == 0

@@ -7,15 +7,15 @@ class Triplet
   attr_reader :behavior, :realm
 
   def pair; [@behavior, @realm]; end
-  def path; pair.map(&:path).join; end
   def display
     if @realm.generic?
       behavior.display
     else
-      pair.map(&:display).join
+      pair.map(&:display).join.chars.values_at(0,2,1).join
     end
   end
   alias inspect :display
+  alias path :display
 
   def <=>(other); behavior <=> other.behavior; end
 
@@ -58,6 +58,6 @@ class Triplet
   def phrase; names.to_phrase; end
 
   def examples;@realm.send(@behavior.send_name); end
-  def eg; examples.split('.').first; end
+  def eg; @realm.send(@behavior.send_action).downcase; end
 
 end

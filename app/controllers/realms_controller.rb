@@ -7,8 +7,8 @@ class RealmsController < ApplicationController
     @realm = Realm.send id
     @realms = Realm.with_generic.without(@realm)
     @title = "The #{@realm.name} Subtypes"
-    @sixteen =  Type.new(@realm.letter * 4).sixteen
-    render 'subtypes'
+    @four_by_four = Type.new(@realm.letter * 4).four_by_four
+    render 'realms'
   end
 
 end

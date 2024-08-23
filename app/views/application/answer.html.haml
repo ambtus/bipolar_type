@@ -1,0 +1,35 @@
+- content_for(:title, @title)
+%h2=@title
+
+
+%p There are sixteen compulsive behaviors. A BipolarType is made up of four of them: one in each realm and one in each corner. Once you have chosen something, other choices in the same realm or same corner will become unavailable.
+
+-if @answer.number > 1
+  %p.center
+    If you can&rsquo;t find anything that sounds like you, you can
+    =link_to "start over", answer_path(Answer.first_path)
+    and try again.
+  %p.center Chosen: #{@answer.subtypes.map(&:display).and}
+
+
+%table
+  %tr
+    %th{colspan: 2}
+      %h2 When I am manic
+  -Realm.each do |realm|
+    %tr
+      %th{colspan: 2} I keep #{realm.externalize.ing} things I don&rsquo;t want to #{realm.externalize}
+    %tr
+      %td=render 'answer_link', subtype: realm + Behavior.be + Priority.last
+      %td=render 'answer_link', subtype: realm + Behavior.us + Priority.last
+  %tr
+    %th{colspan: 2}
+      %hr
+      %h2 When I am depressed
+
+  -Realm.each do |realm|
+    %tr
+      %th{colspan: 2} I keep #{realm.internalize.ing} things I don&rsquo;t want to #{realm.internalize}
+    %tr
+      %td=render 'answer_link', subtype: realm + Behavior.ge + Priority.last
+      %td=render 'answer_link', subtype: realm + Behavior.rs + Priority.last

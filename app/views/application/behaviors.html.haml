@@ -1,0 +1,17 @@
+- content_for(:title, 'The Behaviors')
+%p Bipolar disorder (previously known as Manic Depression) is usually defined in terms of Mental (cognition) or Affective (mood) behaviors. BipolarType adds Physical (caloric) and Financial (monetary) behaviors.
+
+%table.equal
+  -Behavior.each do |behavior|
+    %tr
+      -Realm.with_generic.each do |realm|
+        %th{class: 'cycle' + behavior.type}=(realm + behavior).symbolic_name
+    %tr
+      -Realm.with_generic.each do |realm|
+        %td=realm.send(behavior.send_action)
+    %tr
+      -Realm.with_generic.each do |realm|
+        %td=realm.send(behavior.send_name)
+    %tr
+      -Realm.with_generic.each do |realm|
+        %td=realm.send(behavior.send_examples)

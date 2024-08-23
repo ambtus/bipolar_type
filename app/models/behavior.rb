@@ -6,19 +6,24 @@ class Behavior
   alias inspect :symbol
   alias display :symbol
 
-  SYMBOLS = %w{Q1 Q2 Q3 Q4}
+  SYMBOLS = %w{GE BE US RS}
   def index; SYMBOLS.index @symbol; end
+  def <=>(other); index <=> other.index; end
+  def manic?; [1,2].include? index; end
+  def type; symbol.first; end
 
   NAMES = %w{Get<wbr>Energy Burn<wbr>Energy Use<wbr>Strength Recover<wbr>Strength Generic<wbr>Behavior}
   def name; NAMES[index].html_safe; end
   def symbolic_name; [@symbol.colon, name].to_safe_phrase; end
   def names; name.split('<wbr>'); end
-  def send_name; names.join.underscore; end
   def phrase; names.to_phrase.downcase; end
+  def send_name; names.join.underscore; end
 
   ACTIONS = %w{Feed Flee Fight Rest Action}
   def action; ACTIONS[index]; end
   def send_action; action.downcase; end
+
+  def send_examples; send_action + '_examples'; end
 
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   def last?; ALL.last == self; end
@@ -42,9 +47,6 @@ class Behavior
     end
   end
 
-  def self.sort_order; ALL.values_at(1,2,0,3); end
-  def sort_order; self.class.sort_order ; end
-  def sort_index; sort_order.index self; end
-  def <=>(other); sort_index <=> other.sort_index; end
+  def compulsions; Subtype.all.select{|s| s.behavior == self && s.priority.last? && !s.realm.generic?}; end
 
 end

@@ -22,16 +22,13 @@ class Type
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def my_path; 'MFAP'; end
+    def my_path; 'PAFM'; end
     def my_type; Type.send(my_path); end
     def generic; Type.new(Realm.generic.letter * 4); end
   end
 
-  def dominants; @realms.add(Behavior.all).add(Priority.first); end
+  def compulsions; @realms.add(Behavior.all).add(Priority.last); end
+  def four_by_four; compulsions.map(&:cycle).map(&:subtypes); end
 
-  def cycles; dominants.map(&:cycle); end
-  def sixteen; cycles.map(&:subtypes).flatten.sort; end
-  def by_quarter; sixteen.sort_by{|s| [s.priority, s.behavior]}; end
-  def by_realm; sixteen.sort_by{|s| [s.priority, s.realm]}; end
 end
 

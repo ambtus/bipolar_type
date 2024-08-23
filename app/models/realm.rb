@@ -10,18 +10,19 @@ class Realm
 
   def index; NAMES.index @name; end
   def <=>(other); index <=> other.index; end
+  def mbti; %w{S T F N X}[index]; end
 
 
   ALL = NAMES.collect {|name| self.new name}
   def self.all; ALL[0,4]; end
-  def self.with_generic; ALL; end
+  def self.with_generic; ALL.values_at(4,3,2,0,1); end
   def self.each(&block);ALL[0,4].each(&block); end
   def self.generic; ALL.last; end
   def generic?; self.class.generic == self; end
   def display; generic? ? '' : letter; end
 
   def symbolic_name; generic? ? name : [letter.colon, name].to_phrase; end
-  def adjective; %w{physical material social mental \ }[index]; end
+  def adjective; generic? ? '' : name.downcase; end
   def adverb; adjective.ly; end
 
   ALL.each_with_index do |instance, index|
@@ -37,64 +38,62 @@ class Realm
   alias opposite :flip
 
   def +(behavior); Triplet.find([behavior, self]); end
+  def triplets; Triplet.all.select{|t| t.realm == self}; end
+  def subtypes; Subtype.all.select{|s| s.realm == self}; end
+  def cycles; Cycle.all.select{|c| c.triplet.realm == self}; end
 
-  def mbti; %w{S T F N X}[index]; end
-  def verb_phrase; %w{Take Buy Say Make Do}[index] + ' the best ' + %w{actions things things choices \ }[index] + ' you can, given the '; end
+  def internalize; %w{eat earn listen\ to look\ at internalize}[index]; end
+  def externalize; %w{do buy express think externalize}[index]; end
 
-  # method name must match Behavior send_name or send_action
-  def flee; %w{Walk Pay\ cash Emote Decide Flee}[index]; end
-  def burn_energy
-    [flee.period,
-     verb_phrase + %w{energy currency feelings information energy}[index] + ' you have.',
-     %w{Burn\ calories Spend\ money Express\ emotions Synthesize\ facts  Burn\ energy}[index] + ' for fun, because you feel ' + adverb + ' restless, or to improve your ' + %w{body finances mood mind self}[index]
-    ].to_phrase.cleaned.period
+  # method names must match Behavior send_action send_name send_examples
+
+  def feed; %w{Sweets Wages Music Pictures Feed}[index]; end
+  def flee; %w{Pace Pay\ Cash Cry Guess Flee}[index]; end
+  def fight; %w{Clean Borrow Complain Theorize Fight}[index]; end
+  def rest; %w{Protein Income Words Results Rest}[index]; end
+
+  def energies; %w{calories cash emotions information energy}[index]; end
+  def burn; %w{burn spend express synthesize expend}[index]; end
+  def organ; %w{body wallet mood mind self}[index]; end
+  def burn_energy; "#{burn} #{energies} to protect or exercise your #{organ}".clean; end
+  def perceive; %w{eat earn listen\ to look\ at perceive}[index]; end
+  def process; %w{digest collect prioritize analyze process}[index]; end
+  def get_energy; "#{perceive}, #{process}, and store #{energies}"; end
+
+
+  def strengths; %w{muscles loans vocabulary logic strengths}[index]; end
+  def goals; %w{environment possessions story procedures situation}[index]; end
+  def use_strength; "use #{strengths} to improve your #{goals}".clean; end
+  def recover; %w{rebuild make\ payments\ on restore repair recover}[index]; end
+  def recover_strength; "#{recover} your #{strengths}".clean.gsub('yourself', ''); end
+
+  def flee_examples; end
+  def feed_examples
+    case mbti
+    when "S"
+      "#{internalize.capitalize} snacks and desserts. Carb-load and store excess as fat."
+    when "T"
+      "#{internalize.capitalize} tips, bonuses, and profits. Compete for cash prizes."
+    when "F"
+      "#{internalize.capitalize} pitch and inflection. Hear and understand intonation."
+    when "N"
+      "#{internalize.capitalize} color and movement. Watch and learn specific details."
+    else
+      ''
+    end
   end
 
-  def strength_examples;
-    ['Farm, hunt, garden, build bridges, or dig ditches.',
-    'Buy cars, houses, investments, or other capital goods.',
-    'Write lyrics, poetry, stories, or make speeches.',
-    'Make plans, procedures, rules, predictions, or extrapolations.',
+  def rest_examples
+    return '' if generic?
+      "#{internalize.capitalize} #{rest.downcase}. And then stop #{fight.downcase.ing} and give your #{organ} time to recover."
+  end
+
+  def fight_examples;
+    ['Produce food — farm, hunt, garden — or other physical labor.',
+    'Build shelters — Buy cars, houses, investments, or other capital goods.',
+    'Explain why — Write lyrics, poetry, stories, or make speeches.',
+    'Decide how — Make plans, procedures, rules, predictions, or extrapolations.',
     ][index]
-  end
-
-  def fight; %w{Do\ housework Use\ credit Verbalize Theorize Fight}[index]; end
-  def use_strength
-    [fight.period,
-     verb_phrase + %w{muscles loans vocabulary analogies strengths}[index] + ' you have.',
-     strength_examples,
-     'Use your ' + %w{body reputation voice mind power}[index] + ' to achieve a goal, because you feel driven, or to do ' + adjective + ' work'
-    ].to_phrase.cleaned.period
-  end
-
-  def get_energy
-    case mbti
-    when 'S'
-      'Eat carbs. Eat candy or dessert. Load up on potatoes, bread, pasta and rice. Digest simple carbs.'
-    when 'T'
-      'Collect wages. Collect tips, bonuses, commissions, and profits. Compete for rewards. Earn cash prizes.'
-    when 'F'
-      'Listen to music. Turn on the radio. Listen to instruments or nature sounds. Understand emotional intonation.'
-    when 'N'
-      'Look at details. Watch current events. Research. Learn causes and specifics and detailed facts.'
-    else
-      'Feed. Take and process energy sources.'
-    end
-  end
-
-  def recover_strength
-    case mbti
-    when 'S'
-      'Eat protein. Digest amino acids. And then rest your body to give your muscles time to recover.'
-    when 'T'
-      'Collect stipends. Collect a salary, allowance, social security, dividends, interest, rental income or other regular income. And then rest your wallet to give your credit time to recover.'
-    when 'F'
-      'Listen to words. Hear speaches or stories or lyrics. Read poetry. Understand lexical meaning. And then rest your voice to give your vocabulary time to recover.'
-    when 'N'
-      'Look at results. Learn rules and generalizations and patterns and effects. And then rest your mind to give your analogies time to recover.'
-    else
-      'Rest. Go after, take or accept, and process resources that can repair, rebuild, and develop your strengths. And then give them time to recover before using them again.'
-    end
   end
 
   def stop
@@ -112,5 +111,4 @@ class Realm
     end
   end
 
-  def organ; %w{body wallet voice mind strengths}[index]; end
 end
