@@ -1,6 +1,6 @@
 class Realm
 
-  NAMES = %w{Physical Financial Affective Mental Generic}
+  NAMES = %w{Physical Financial Affective Mental}
 
   def initialize(name); @name = name; end
   attr_reader :name
@@ -10,19 +10,16 @@ class Realm
 
   def index; NAMES.index @name; end
   def <=>(other); index <=> other.index; end
-  def mbti; %w{S T F N X}[index]; end
+  def mbti; %w{S T F N}[index]; end
+  alias display :mbti
 
 
   ALL = NAMES.collect {|name| self.new name}
-  def self.all; ALL[0,4]; end
-  def self.with_generic; ALL.values_at(4,3,2,0,1); end
-  def self.each(&block);ALL[0,4].each(&block); end
-  def self.generic; ALL.last; end
-  def generic?; self.class.generic == self; end
-  def display; generic? ? '' : letter; end
+  def self.all; ALL; end
+  def self.each(&block);all.each(&block); end
 
-  def symbolic_name; generic? ? name : [letter.colon, name].to_phrase; end
-  def adjective; generic? ? '' : name.downcase; end
+  def symbolic_name; [display.colon, name].to_phrase; end
+  def adjective; name.downcase; end
   def adverb; adjective.ly; end
 
   ALL.each_with_index do |instance, index|
@@ -32,15 +29,13 @@ class Realm
     end
   end
 
-  # no-ops to allow easy mapping
+  # no-ops to allow mapping
   def flip; self; end
   alias flop :flip
   alias opposite :flip
 
-  def +(behavior); Triplet.find([behavior, self]); end
-  def triplets; Triplet.all.select{|t| t.realm == self}; end
-  def subtypes; Subtype.all.select{|s| s.realm == self}; end
-  def cycles; Cycle.all.select{|c| c.triplet.realm == self}; end
+  def +(quadrant); Behavior.find([quadrant, self]); end
+  def behaviors; Behavior.all.select{|b| b.realm == self}; end
 
   def internalize; %w{eat earn listen\ to look\ at internalize}[index]; end
   def externalize; %w{do buy express think externalize}[index]; end

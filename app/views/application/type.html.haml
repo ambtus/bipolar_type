@@ -1,4 +1,27 @@
 - content_for(:title, @title)
 %h2=@title
-=render 'table', second_set: @type.compulsions
+%table
+  %tr
+    %th
+    -Realm.each do |realm|
+      %th=realm.name
+  %tr
+    %th Problem
+    -@type.problems.each do |problem|
+      %td=cookies[problem.display]
+  %tr
+    %th Replacement
+    -@type.problems.each do |problem|
+      %td=cookies[problem.flop.display]
+  %tr
+    %th Balance
+    -@type.problems.each do |problem|
+      %td=cookies[problem.flip.display]
+  %tr
+    %th Trigger
+    -@type.problems.each do |problem|
+      %td=cookies[problem.opposite.display]
 
+
+-@type.problems.each do |problem|
+  =render 'solution', problem: problem

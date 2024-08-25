@@ -1,25 +1,7 @@
 - content_for(:title, @name)
 .center
   %h1=@name
-%h2 The #{@subtype.display} states
-.center
-  -@subtype.cycle.subtypes.each_with_index do |adjacent, index|
-    ='&rArr;'.html_safe unless index == 0
-    =render 'answer_link', subtype: adjacent
-
-%h2 Examples of #{@subtype.triplet.name}
-%p=@subtype.examples
-
-%h2 #{@subtype.priority.name} Considerations
-%p=@subtype.considerations
-
--if @subtype.priority.last? && @subtype.behavior.last?
-  %p
-    Unless it is bedtime, in which case
-    =@subtype.stop
-    and go to sleep!
-
-%p.center
-  -unless @subtype.realm.generic?
-    =link_to 'Sounds like me (e.g. start my BipolarType here)', answer_path(Answer.first.next(@subtype)), title: @subtype.clear_name
-
+= form_with method: :get do |form|
+  =render 'behavior_form', behavior: @behavior, form: form
+  =form.submit "Use Other Words"
+  =form.submit 'Use Default Words'

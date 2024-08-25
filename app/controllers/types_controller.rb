@@ -1,8 +1,7 @@
 class TypesController < ApplicationController
   def show
-    @type = Type.send params[:id]
-    @title = "The #{@type.name} States"
-    @four_by_four = @type.four_by_four
+    @type = Type.new params[:id]
+    @title = "The #{@type.name} BipolarType"
     render 'type'
   end
 

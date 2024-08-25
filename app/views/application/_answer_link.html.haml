@@ -1,5 +1,8 @@
--if @answer
-  -unless @answer.taken?(subtype)
-    %span{title: subtype.clear_name}=link_to_unless @answer.taken?(subtype), subtype.answer, answer_path(@answer.next(subtype))
--else
-  %span{class: subtype.class_names, title: subtype.clear_name}=link_to subtype.eg, subtype_path(subtype.path), class: 'subtype'
+%span{title: behavior.clear_name}
+  =link_to answer_path(@answer.next(behavior)), class: 'black' do
+    I
+    =cookies[behavior.display]
+    compulsively when I am
+    =behavior.episode
+    but have difficulty
+    =cookies[behavior.opposite.display].replace_and_with_or.ing
