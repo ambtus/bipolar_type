@@ -1,54 +1,42 @@
 - content_for(:title, 'The Behaviors')
-%p Bipolar disorder (previously known as Manic Depression) is usually defined in terms of Mental (cognition) or Affective (mood) behaviors. BipolarType adds Physical (caloric) and Financial (monetary) behaviors.
 
 
 = form_with method: :get do |form|
 
   %table
+    %caption
+      %h2=Realm.names.and
     %tr
       %td.bottom{class: 'cycleB'}
         -quadrant = Quadrant.ep
-        %h3=quadrant.short.capitalize
+        %h3=quadrant.both
         -Realm.each do |realm|
           -behavior = realm + quadrant
           =link_to behavior.symbolic_name, behavior_path(behavior.path)
           %div=render 'behavior_form', behavior: behavior, form: form
 
-      %td
-        %h2 Mania
-        Externalize
-        %br
-        &rlarr;
       %td.bottom{class: :cycleU}
         -quadrant = Quadrant.ej
-        %h3=quadrant.short.capitalize
+        %h3=quadrant.both
         -Realm.each do |realm|
           -behavior = realm + quadrant
           =link_to behavior.symbolic_name, behavior_path(behavior.path)
           %div=render 'behavior_form', behavior: behavior, form: form
-
-    %tr
-      %td Energy &udarr;
-      %td &orarr;
-      %td &udarr; Strength
 
 
     %tr
       %td.top{class: :cycleG}
         -quadrant = Quadrant.ip
-        %h3=quadrant.short.capitalize
+        %h3=quadrant.both
         -Realm.each do |realm|
           -behavior = realm + quadrant
           =link_to behavior.symbolic_name, behavior_path(behavior.path)
           %div=render 'behavior_form', behavior: behavior, form: form
-      %td
-        &rlarr;
-        %br
-        Internalize
-        %h2 Depression
+
+
       %td.top{class: :cycleR}
         -quadrant = Quadrant.ij
-        %h3=quadrant.short.capitalize
+        %h3=quadrant.both
         -Realm.each do |realm|
           -behavior = realm + quadrant
           =link_to behavior.symbolic_name, behavior_path(behavior.path)

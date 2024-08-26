@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :types, only: [:show, :index]
   resources :behaviors, only: [:show, :index]
   get '/me' => 'types#me', as: :my
-  get '/states' => 'start#states', as: :state
+  get '/responses' => 'start#responses', as: :response
 end

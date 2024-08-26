@@ -4,42 +4,31 @@
 
 %table
   %tr
+    %th{colspan:2} Mania
+  %tr
     %td.bottom{class: 'cycleB'}
       -behavior = @answer.realm + Quadrant.ep
-      %h3=behavior.result.capitalize
+      %h3=behavior.long.capitalize
       %p.left=render 'answer_link', behavior: behavior
 
-    %td
-      %h2 Mania
-      Externalize
-      %br
-      &rlarr;
     %td.bottom{class: :cycleU}
       -behavior = @answer.realm + Quadrant.ej
-      %h3=behavior.result.capitalize
+      %h3=behavior.long.capitalize
       %p.left=render 'answer_link', behavior: behavior
-
-  %tr
-    %td Energy &udarr;
-    %td &orarr;
-    %td &udarr; Strength
 
 
   %tr
     %td.top{class: :cycleG}
       -behavior = @answer.realm + Quadrant.ip
-      %h3=behavior.result.capitalize
-      %p.left=render 'answer_link', behavior: behavior
-    %td
-      &rlarr;
-      %br
-      Internalize
-      %h2 Depression
-    %td.top{class: :cycleR}
-      -behavior = @answer.realm + Quadrant.ij
-      %h3=behavior.result.capitalize
+      %h3=behavior.long.capitalize
       %p.left=render 'answer_link', behavior: behavior
 
+    %td.top{class: :cycleR}
+      -behavior = @answer.realm + Quadrant.ij
+      %h3=behavior.long.capitalize
+      %p.left=render 'answer_link', behavior: behavior
+  %tr
+    %th{colspan:2} Depression
 
 %p
   If none of these sound correct, it may help to

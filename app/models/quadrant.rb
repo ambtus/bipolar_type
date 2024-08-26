@@ -17,8 +17,10 @@ class Quadrant
           end
         end.flatten
   def index; ALL.index self; end
-  def short; %w{rest fight digest flee}[index]; end
-  def result; %w{fat skinny obese anorexic}[index]; end
+  def short; %w{Rest Fight Feed Flee}[index]; end
+  def verb; short.downcase; end
+  def long; %w{Sloth Wrath Greed Phobia}[index]; end
+  def both; [short, long].slash; end
 
   class << self
     def find(thing)
@@ -30,6 +32,10 @@ class Quadrant
     end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
+    def response_order; all.values_at(1,3,0,2); end
+    def shorts; response_order.map(&:short); end
+    def longs; response_order.map(&:long); end
+
   end
 
   ALL.each_with_index do |instance, index|

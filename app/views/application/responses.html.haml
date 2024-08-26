@@ -1,0 +1,68 @@
+- content_for(:title, 'The Responses')
+
+
+%table
+  %caption
+    %h2 Normal Responses
+  %tr
+    %td.bottom{class: 'cycleB'}
+      %h3=Quadrant.ep.short
+      =Quadrant.ep.symbolic_name
+    %th
+      =link_to 'SNS Response', 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
+      %div Externalize
+      &rlarr;
+    %td.bottom{class: :cycleU}
+      %h3=Quadrant.ej.short
+      =Quadrant.ej.symbolic_name
+
+  %tr
+    %th Energy &udarr;
+    %th
+    %th &udarr; Strength
+
+
+  %tr
+    %td.top{class: :cycleG}
+      =Quadrant.ip.symbolic_name
+      %h3=Quadrant.ip.short
+    %th
+      &rlarr;
+      %div Internalize
+      =link_to 'PSNS Response', 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'
+    %td.top{class: :cycleR}
+      =Quadrant.ij.symbolic_name
+      %h3=Quadrant.ij.short
+
+%table
+  %caption
+    %h2 Bipolar Responses
+  %tr
+    %th{colspan:2}=link_to 'Mania', 'https://en.wikipedia.org/wiki/Mania', class: 'external'
+  %tr
+    %td.bottom{class: 'cycleB'}
+      %h3=Quadrant.ep.long
+      %p.left #{Quadrant.ep.short.ing} is the appropriate response to a danger which is slower than you are.
+      %p.left #{Quadrant.ep.long} is an irrational and ineffective response to a danger which is <em>weaker</em> but faster than you are: you could #{Quadrant.ej.verb} and defeat it but you can never escape it.
+      %p.left You continue to #{Quadrant.ep.verb} because you were taught <em>not</em> to #{Quadrant.ej.verb} as a child. As an adult, you can choose to #{Quadrant.ej.verb} when it is appropriate.
+
+    %td.bottom{class: :cycleU}
+      %h3=Quadrant.ej.long
+      %p.left #{Quadrant.ej.short.ing} is the appropriate response to a danger which is weaker than you are.
+      %p.left #{Quadrant.ej.long} is an irrational and ineffective response to a danger which is <em>slower</em> but stronger than you are: you could #{Quadrant.ep.verb} and escape it but you can never defeat it.
+      %p.left You continue to #{Quadrant.ej.verb} because you were taught <em>not</em> to #{Quadrant.ep.verb} as a child. As an adult, you can choose to #{Quadrant.ep.verb} when it is appropriate.
+
+  %tr
+    %td.top{class: :cycleG}
+      %p.left #{Quadrant.ip.short.ing} is the appropriate response to running out of energy.
+      %p.left #{Quadrant.ip.long} is an irrational and ineffective response to running out of <em>strength</em>: you could #{Quadrant.ij.verb} and recover it but you can never fill it.
+      %p.left You continue to #{Quadrant.ip.verb} because you were taught <em>not</em> to #{Quadrant.ij.verb} as a child. As an adult, you can choose to #{Quadrant.ij.verb} when it is appropriate.
+      %h3=Quadrant.ip.long
+
+    %td.top{class: :cycleR}
+      %p.left #{Quadrant.ij.short.ing} is the appropriate response to running out of strength.
+      %p.left #{Quadrant.ij.long} is an irrational and ineffective response to running out of <em>energy</em>: you could #{Quadrant.ip.verb} and refill it but you can never recover it.
+      %p.left You continue to #{Quadrant.ij.verb} because you were taught <em>not</em> to #{Quadrant.ip.verb} as a child. As an adult, you can choose to #{Quadrant.ip.verb} when it is appropriate.
+      %h3=Quadrant.ij.long
+  %tr
+    %th{colspan:2}=link_to 'Depression', 'https://en.wikipedia.org/wiki/Depression_(mood)', class: 'external'

@@ -56,7 +56,7 @@ class Behavior
   def symbolic_name; [display.colon, phrase].to_phrase; end
 
   def episode; @quadrant.response.episode; end
-  def result; [@realm.adverb, @quadrant.result].to_phrase; end
+  def long; [@realm.adverb, @quadrant.long].to_phrase; end
 
   def examples;@realm.send(@quadrant.send_name); end
   def eg; @realm.send(@quadrant.send_action).downcase; end

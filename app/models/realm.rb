@@ -1,6 +1,7 @@
 class Realm
 
   NAMES = %w{Physical Financial Affective Mental}
+  def self.names; NAMES; end
 
   def initialize(name); @name = name; end
   attr_reader :name
@@ -16,6 +17,7 @@ class Realm
 
   ALL = NAMES.collect {|name| self.new name}
   def self.all; ALL; end
+
   def self.each(&block);all.each(&block); end
 
   def symbolic_name; [display.colon, name].to_phrase; end
