@@ -1,8 +1,10 @@
-%span{title: behavior.clear_name}
-  =link_to answer_path(@answer.next(behavior)), class: 'black' do
-    I
-    =cookies[behavior.display]
-    compulsively when I am
-    =behavior.episode
-    but have difficulty
-    =cookies[behavior.opposite.display].replace_and_with_or.ing
+-if @answer.free?(behavior)
+  %span{title: behavior.clear_name}
+    =link_to behavior.display, answer_path(@answer.next(behavior)), class: 'black'
+  I don&rsquo;t actually want to
+  =cookies[behavior.display]
+  
+  
+
+-else
+  =behavior.display

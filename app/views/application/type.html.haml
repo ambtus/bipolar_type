@@ -3,25 +3,30 @@
 %table
   %tr
     %th
-    -Realm.each do |realm|
-      %th=realm.name
+    -@type.behaviors.each do |behavior|
+      %th=behavior.realm.name
   %tr
-    %th Problem
-    -@type.problems.each do |problem|
-      %td=cookies[problem.display]
+    %th Do
+    -@type.behaviors.each do |behavior|
+      %td{class: behavior.class}=cookies[behavior.display]
   %tr
-    %th Replacement
-    -@type.problems.each do |problem|
-      %td=cookies[problem.flop.display]
+    %th So you can
+    -@type.behaviors.each do |behavior|
+      %td{class: behavior.flip.class}=cookies[behavior.flip.display]
   %tr
-    %th Balance
-    -@type.problems.each do |problem|
-      %td=cookies[problem.flip.display]
+    %th Don&rsquo;t
+    -@type.behaviors.each do |behavior|
+      %td{class: behavior.flop.class}=cookies[behavior.flop.display]
   %tr
-    %th Trigger
-    -@type.problems.each do |problem|
-      %td=cookies[problem.opposite.display]
+    %th You won&rsquo;t
+    -@type.behaviors.each do |behavior|
+      %td{class: behavior.opposite.class}=cookies[behavior.opposite.display]
 
-
--@type.problems.each do |problem|
-  =render 'solution', problem: problem
+%p
+%table
+  %tr
+    %td{class: 'cycleB'}=render 'solution', behavior: @type.behaviors.first
+    %td{class: 'cycleU'}=render 'solution', behavior: @type.behaviors.second
+  %tr
+    %td{class: 'cycleG'}=render 'solution', behavior: @type.behaviors.third
+    %td{class: 'cycleR'}=render 'solution', behavior: @type.behaviors.fourth

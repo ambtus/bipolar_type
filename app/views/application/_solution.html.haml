@@ -1,5 +1,3 @@
-%h2 #{problem.episode.capitalize.colon} #{cookies[problem.display]} compulsively
-%ol
-  %li Replace #{cookies[problem.display]} with #{cookies[problem.flop.display]} when  #{problem.episode}
-  %li Balance #{cookies[problem.display]} with #{cookies[problem.flip.display]} when  #{problem.flip.episode}
-  %li Goal: be able to #{cookies[problem.opposite.display]} without triggering #{problem.episode.to_noun}
+%h2 #{behavior.symbolic_name}
+%p.left Do #{cookies[behavior.display]} when you are #{behavior.bipolar} so you will be #{behavior.flip.ready} to #{cookies[behavior.flip.display]} when you are #{behavior.flip.bipolar}.
+%p.left Don&rsquo;t #{cookies[behavior.flop.display]} when you are #{behavior.bipolar}: you won&rsquo;t ever be #{behavior.ready} to #{cookies[behavior.opposite.display].enough}.

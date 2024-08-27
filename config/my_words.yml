@@ -1,18 +1,19 @@
 ---
-isp: eat desert and go
-esp: get up and walk
-esj: do housework
-isj: sit and eat protein
-inp: look at colors
-enp: make decisions
-enj: theorize
-inj: watch for results
-itp: earn cash
-etp: spend cash
-etj: buy on credit
-itj: earn repayments
+aaa: 12345678901234567890
+isp: carb-load
+inp: do research
 ifp: listen to music
-efp: express emotions
-efj: use words
-ifj: listen for meaning
-
+itp: get cash
+esp: go places
+enp: make decisions
+etp: pay cash upfront
+efp: prioritize
+esj: do housework
+enj: theorize
+etj: buy on credit
+efj: influence people
+isj: eat protein and sit
+inj: wait for results
+ifj: listen to feedback
+itj: earn repayments
+zzz: 12345678901234567890

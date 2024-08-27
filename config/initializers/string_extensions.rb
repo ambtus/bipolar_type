@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean n first_word last_words last_word parenthesize wrap comma period semi colon replace_and_with_or is_mbti? to_noun s ed en ly ing an some enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean n first_word last_words last_word parenthesize wrap comma period semi colon and_to_or is_mbti? to_noun s ed en ly ing an some enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -27,7 +27,7 @@ class String
   def semi; self + ';'; end
   def colon; self + ':'; end
 
-  def replace_and_with_or; self.gsub(' and ', ' or '); end
+  def and_to_or; self.gsub(' and ', ' or '); end
 
   MBTIS = %w{ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ

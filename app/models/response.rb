@@ -1,6 +1,6 @@
 class Response
 
-  NAMES = %w{Internalize Externalize}
+  NAMES = %w{ Use Get}
 
   def initialize(name); @name = name; end
   attr_reader :name
@@ -10,7 +10,7 @@ class Response
 
   def index; NAMES.index @name; end
   def <=>(other); index <=> other.index; end
-  def mbti; %w{I E}[index]; end
+  def mbti; %w{ E I}[index]; end
   alias display :mbti
 
   def symbolic_name; [display.colon, name].to_phrase; end
@@ -23,5 +23,9 @@ class Response
   # no-op to allow mapping
   def flop; self; end
 
-  def episode; %w{depressed manic}[index]; end
+  def episode; %w{ mania depression}[index]; end
+  def bipolar; %w{ manic depressed}[index]; end
+  def ready; %w{ able willing}[index]; end
+  def trigger; %w{ danger exhaustion}[index]; end
+  def drugs; %w{ stimulants sedatives}[index]; end
 end

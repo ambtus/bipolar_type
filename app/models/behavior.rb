@@ -53,10 +53,16 @@ class Behavior
   def name; names.wbr; end
   def clear_name; names.join; end
   def phrase; names.to_phrase.downcase; end
-  def symbolic_name; [display.colon, phrase].to_phrase; end
+  def symbolic_name; [display.colon, name].to_safe_phrase; end
 
   def episode; @quadrant.response.episode; end
-  def long; [@realm.adverb, @quadrant.long].to_phrase; end
+  def bipolar; @quadrant.response.bipolar; end
+  def short; @quadrant.short; end
+  def drugs; @quadrant.response.drugs; end
+  def ready; @quadrant.response.ready; end
+  def class; @quadrant.class; end
+  def long; [@realm.name, @quadrant.long].to_phrase; end
+  def adjective; @quadrant.adjective; end
 
   def examples;@realm.send(@quadrant.send_name); end
   def eg; @realm.send(@quadrant.send_action).downcase; end

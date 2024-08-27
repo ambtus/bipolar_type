@@ -4,6 +4,7 @@
   =link_to_unless_current 'The Responses', response_path
   |
   =link_to_unless_current 'The Behaviors', behaviors_path
-  -#=link_to_unless controller.controller_name == 'realms', 'The Subtypes', subtypes_path
   |
   =link_to_unless controller.controller_name == 'answers', 'Your BipolarType', answer_path(Answer.first_path)
+  |
+  =link_to_unless_current 'The Twenty-Four BipolarTypes', types_path

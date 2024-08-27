@@ -1,6 +1,6 @@
 class Attitude
 
-  NAMES = %w{Strength Energy}
+  NAMES = %w{ Speed Strength}
 
   def initialize(name); @name = name; end
   attr_reader :name
@@ -10,8 +10,9 @@ class Attitude
 
   def index; NAMES.index @name; end
   def <=>(other); index <=> other.index; end
-  def mbti; %w{J P}[index]; end
+  def mbti; %w{ P J}[index]; end
   alias display :mbti
+
 
   def symbolic_name; [display.colon, name].to_phrase; end
 

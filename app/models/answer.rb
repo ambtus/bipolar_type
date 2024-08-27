@@ -12,13 +12,17 @@ class Answer
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
-  def realm; Realm.all[index]; end
   def finished?; number > 4; end
 
   def behaviors; @behavior_string.scan(/.../).collect{|s| Behavior.find(s)}; end
+  def realms; behaviors.map(&:realm); end
+  def quadrants; behaviors.map(&:quadrant); end
+  def chosen; realms + quadrants; end
+
+  def free?(behavior); (chosen & behavior.pair).empty?; end
 
   def next(choice); question.next + ':' + @behavior_string + choice.path; end
 
-  def type_path;behaviors.map(&:quadrant).map(&:display).join('•'); end
+  def type_path;behaviors.map(&:opposite).sort.map(&:display).join('•'); end
 
 end

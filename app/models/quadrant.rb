@@ -11,23 +11,26 @@ class Quadrant
   alias inspect :display
   alias path :display
 
-  ALL = Attitude.all.collect do |attitude|
-          Response::ALL.collect do |response|
+  ALL = Response.all.collect do |response|
+          Attitude.all.collect do |attitude|
             self.new(attitude,response)
           end
         end.flatten
   def index; ALL.index self; end
-  def short; %w{Rest Fight Feed Flee}[index]; end
-  def verb; short.downcase; end
-  def long; %w{Sloth Wrath Greed Phobia}[index]; end
+  def <=>(other); self.index <=> other.index; end
+  def short; %w{Flee Fight Feed Rest}[index]; end
+  def verb; %w{escape win energize strengthen}[index]; end
+  def long; %w{Fear Anger Agitation Lethargy}[index]; end
   def both; [short, long].slash; end
+  def adjective; %w{anxious irritable agitated lethargic}[index]; end
+  def class; %w{cycleB cycleU cycleG cycleR}[index]; end
 
   class << self
     def find(thing)
       if thing.is_a? String
         self.send(thing)
       elsif thing.is_a? Array
-        ALL.find{|s| s.attitude == thing.first &&  s.response == thing.second}
+        ALL.find{|q| q.pair == thing }
       end
     end
     def all; ALL; end
@@ -48,7 +51,7 @@ class Quadrant
 
   def flip; Quadrant.find(pair.map(&:flip)); end
   def flop; Quadrant.find(pair.map(&:flop)); end
-  def opposite; Quadrant.find(pair.map(&:opposite)); end
+  def opposite; flip.flop; end
   def +(realm); Behavior.find([self, realm]); end
   def cycle; Cycle.find(self);end
 
@@ -57,8 +60,7 @@ class Quadrant
   def symbolic_name; [display.colon, name].to_safe_phrase; end
   def phrase; names.to_phrase; end
 
-
-  def examples;@response.send(@attitude.send_name); end
-  def eg; @response.send(@attitude.send_action).downcase; end
+  def episode; [adjective, response.episode].to_phrase; end
+  def trigger; response.trigger; end
 
 end

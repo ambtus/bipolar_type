@@ -3,47 +3,17 @@
 
 = form_with method: :get do |form|
 
-  %table
+  %table.none
     %caption
-      %h2=Realm.names.and
+      %h2 #{Realm.names.and} Behaviors
     %tr
-      %td.bottom{class: 'cycleB'}
-        -quadrant = Quadrant.ep
-        %h3=quadrant.both
-        -Realm.each do |realm|
-          -behavior = realm + quadrant
-          =link_to behavior.symbolic_name, behavior_path(behavior.path)
-          %div=render 'behavior_form', behavior: behavior, form: form
-
-      %td.bottom{class: :cycleU}
-        -quadrant = Quadrant.ej
-        %h3=quadrant.both
-        -Realm.each do |realm|
-          -behavior = realm + quadrant
-          =link_to behavior.symbolic_name, behavior_path(behavior.path)
-          %div=render 'behavior_form', behavior: behavior, form: form
-
+      =render 'behavior_form', quadrant: Quadrant.ep, form: form
+      =render 'behavior_form', quadrant: Quadrant.ej, form: form
 
     %tr
-      %td.top{class: :cycleG}
-        -quadrant = Quadrant.ip
-        %h3=quadrant.both
-        -Realm.each do |realm|
-          -behavior = realm + quadrant
-          =link_to behavior.symbolic_name, behavior_path(behavior.path)
-          %div=render 'behavior_form', behavior: behavior, form: form
+      =render 'behavior_form', quadrant: Quadrant.ip, form: form
+      =render 'behavior_form', quadrant: Quadrant.ij, form: form
+    %tr
+      %td{colspan: 2}=form.submit 'Use Other Words'
 
-
-      %td.top{class: :cycleR}
-        -quadrant = Quadrant.ij
-        %h3=quadrant.both
-        -Realm.each do |realm|
-          -behavior = realm + quadrant
-          =link_to behavior.symbolic_name, behavior_path(behavior.path)
-          %div=render 'behavior_form', behavior: behavior, form: form
-
-  %p
-    The above are my words for the sixteen behaviors. If you prefer, you can change the words used to better reflect <em>your</em> behaviors.
-  =form.submit 'Use Other Words'
-  =form.submit 'Use Default Words'
-  %p If you want to save the words you enter between sessions, bookmark this page immediately after you have clicked on 'Use Other Words' (your words will be in the URL).
+  %div.right=form.submit 'Use Default Words'

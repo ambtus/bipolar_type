@@ -1,2 +1,6 @@
-=form.text_field behavior.display, value: cookies[behavior.display], maxlength: 20, size: 15
-
+%td.top{class: quadrant.class}
+  %h3=quadrant.symbolic_name
+  -Realm.each do |realm|
+    -behavior = realm + quadrant
+    =behavior.symbolic_name
+    %div=form.text_field behavior.display, value: cookies[behavior.display], maxlength: 20, size: 15

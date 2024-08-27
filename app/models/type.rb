@@ -2,17 +2,23 @@ class Type
 
   def initialize(string)
     @path = string
-    @quadrants = string.split('•').collect{|s| Quadrant.send(s)}
+    @behaviors = string.split('•').collect{|s| Behavior.send(s)}.sort
   end
-  attr_reader :path, :quadrants
+  attr_reader :path, :behaviors
 
-  def problems; @quadrants.add(Realm.all); end
-  def inspect; problems.map(&:display).join('•'); end
+  def inspect; behaviors.map(&:display).join('•'); end
   alias name :inspect
 
+  ALL = Realm.all.permutation(4).collect do |realms|
+          Type.new(realms.add(Quadrant.all).map(&:display).join('•'))
+        end
+
   class << self
-    def my_path; 'IP•EJ•EP•IJ'; end
-    def my_type; Type.new(my_path); end
+    def all; ALL; end
+    def each(&block); ALL.each(&block); end
+    def find(path); all.find{|t| t.path == path}; end
+    def my_path; 'ETP•ENJ•IFP•ISJ'; end
+    def my_type; Type.find(my_path); end
   end
 
 end

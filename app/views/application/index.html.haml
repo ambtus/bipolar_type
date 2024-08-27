@@ -1,0 +1,6 @@
+- content_for(:title,'The Twenty-Four BipolarTypes')
+%ol
+  -Type.each do |type|
+    %li
+      =link_to type.name, type_path(type.path)
+      =type.behaviors.collect{|b| cookies[b.display]}.and

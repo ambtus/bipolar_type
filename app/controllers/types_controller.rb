@@ -1,6 +1,6 @@
 class TypesController < ApplicationController
   def show
-    @type = Type.new params[:id]
+    @type = Type.find params[:id]
     @title = "The #{@type.name} BipolarType"
     render 'type'
   end

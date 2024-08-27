@@ -1,7 +1,0 @@
-- content_for(:title, @name)
-.center
-  %h1=@name
-= form_with method: :get do |form|
-  =render 'behavior_form', behavior: @behavior, form: form
-  =form.submit "Use Other Words"
-  =form.submit 'Use Default Words'
