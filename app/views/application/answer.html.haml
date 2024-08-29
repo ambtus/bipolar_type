@@ -1,46 +1,29 @@
 - content_for(:title, @title)
 %h2=@title
 
-%p Your choices will go from 16 to 9 to 4 to 1 as you select a response.
--if @answer.number > 1
-  %p
-    If you do not like
-    =(@answer.number == 4) ? 'the only choice,' : 'any of the choices,'
-    you can
-    =link_to 'start over', answer_path(Answer.first_path)
-    or you may not have a BipolarType.
+-case @answer.number
+  -when 1, 2
+    -realm = @answer.number==1 ? Realm.s : Realm.t
+    %table
+      %tr
+        %td{class: Quadrant.ep.css}
+          =render 'answer_link', behavior: Quadrant.ep + realm
+        %td{class: Quadrant.ej.css}
+          =render 'answer_link', behavior: Quadrant.ej + realm
+      %tr
+        %td{class: Quadrant.ip.css}
+          =render 'answer_link', behavior: Quadrant.ip + realm
+        %td{class: Quadrant.ij.css}
+          =render 'answer_link', behavior: Quadrant.ij + realm
 
-%p.center Chosen: #{@answer.behaviors.map(&:display).and}
-
-%table.equal
-  %tr
-    %th{colspan:2} Mania
-  %tr
-    %td.top{class: 'cycleB'}
-      -quadrant = Quadrant.ep
-      %h3=quadrant.long
-      -Realm.each do |realm|
-        %p.left=render 'answer_link', behavior: realm + quadrant
-
-    %td.top{class: :cycleU}
-      -quadrant = Quadrant.ej
-      %h3=quadrant.long
-      -Realm.each do |realm|
-        %p.left=render 'answer_link', behavior: realm + quadrant
-
-
-  %tr
-    %td.top{class: :cycleG}
-      -quadrant = Quadrant.ip
-      %h3=quadrant.long
-      -Realm.each do |realm|
-        %p.left=render 'answer_link', behavior: realm + quadrant
-
-    %td.top{class: :cycleR}
-      -quadrant = Quadrant.ij
-      %h3=quadrant.long
-      -Realm.each do |realm|
-        %p.left=render 'answer_link', behavior: realm + quadrant
-  %tr
-    %th{colspan:2} Depression
-
+  -when 3
+    %table
+      -@answer.pair.each_with_index do |set, row|
+        %tr
+          -set.each_with_index do |behavior, column|
+            %td.top{class: behavior.css}=render 'answer_link', behavior: behavior
+            -if column == 0
+              %td &
+        -if row == 0
+          %tr
+            %td{colspan: 3} OR

@@ -1,32 +1,38 @@
 - content_for(:title, @title)
-%h2=@title
+.center
+  %h1=@title
+%p
+%table.none
+  -@type.behaviors.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |behavior|
+        %td{class: behavior.css}=cookies[behavior.mbti]
+%h2 And
+%table.none
+  -@type.behaviors.map(&:flip).sort.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |behavior|
+        %td{class: behavior.css}=cookies[behavior.mbti]
+
+
+
 %table
+  %caption
+    %h2 By Realm
   %tr
-    %th
     -@type.behaviors.each do |behavior|
       %th=behavior.realm.name
   %tr
-    %th Do
     -@type.behaviors.each do |behavior|
-      %td{class: behavior.class}=cookies[behavior.display]
+      %td{class: behavior.css}=cookies[behavior.mbti]
   %tr
-    %th So you can
-    -@type.behaviors.each do |behavior|
-      %td{class: behavior.flip.class}=cookies[behavior.flip.display]
-  %tr
-    %th Don&rsquo;t
-    -@type.behaviors.each do |behavior|
-      %td{class: behavior.flop.class}=cookies[behavior.flop.display]
-  %tr
-    %th You won&rsquo;t
-    -@type.behaviors.each do |behavior|
-      %td{class: behavior.opposite.class}=cookies[behavior.opposite.display]
+    -@type.behaviors.map(&:flip).each do |behavior|
+      %td{class: behavior.css}=cookies[behavior.mbti]
 
-%p
-%table
-  %tr
-    %td{class: 'cycleB'}=render 'solution', behavior: @type.behaviors.first
-    %td{class: 'cycleU'}=render 'solution', behavior: @type.behaviors.second
-  %tr
-    %td{class: 'cycleG'}=render 'solution', behavior: @type.behaviors.third
-    %td{class: 'cycleR'}=render 'solution', behavior: @type.behaviors.fourth
+
+
+%h2 Rationale
+%p If you are bipolar you are unbalanced. Since you cannot balance yourself manic-to-depressed, try balancing yourself fast-to-powerful.
+-@type.linear_behaviors.reverse.each do |behavior|
+  =render 'problem', behavior: behavior.flop
+  =render 'solution', behavior: behavior

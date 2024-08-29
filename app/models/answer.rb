@@ -5,24 +5,31 @@ class Answer
 
   def initialize(string)
     @path = string
-    @question,behavior_string = @path.split(':')
-    @behavior_string = behavior_string || ''
+    @question,problem_string = @path.split(':')
+    @problem_string = problem_string || ''
   end
-  attr_reader :question, :path, :behavior_string
+  attr_reader :question, :path, :problem_string
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
-  def finished?; number > 4; end
+  def finished?; number > 3; end
 
-  def behaviors; @behavior_string.scan(/.../).collect{|s| Behavior.find(s)}; end
-  def realms; behaviors.map(&:realm); end
-  def quadrants; behaviors.map(&:quadrant); end
-  def chosen; realms + quadrants; end
+  def problems; @problem_string.scan(/.../).collect{|s| Behavior.send(s)}; end
+  def quadrants; problems.map(&:quadrant); end
+  def free; Quadrant.all - quadrants; end
+  def free?(problem); free.include?(problem.quadrant); end
 
-  def free?(behavior); (chosen & behavior.pair).empty?; end
+  def next(choice); question.next + ':' + @problem_string + choice; end
 
-  def next(choice); question.next + ':' + @behavior_string + choice.path; end
+  def first; free.add([Realm.f, Realm.n]); end
+  def second; free.add([Realm.n, Realm.f]); end
+  def pair; [first, second]; end
 
-  def type_path;behaviors.map(&:opposite).sort.map(&:display).join('•'); end
+  def realms; problems.map(&:realm); end
+  def unused; free.first + Realm.all.without(realms).first; end
+
+  def all; (problems + [unused]).map(&:flop); end
+
+  def type_path;all.sort.map(&:realm).map(&:path).join; end
 
 end

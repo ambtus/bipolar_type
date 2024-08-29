@@ -26,6 +26,7 @@ class String
   def period; self + '.'; end
   def semi; self + ';'; end
   def colon; self + ':'; end
+  def bang; self + '!'; end
 
   def and_to_or; self.gsub(' and ', ' or '); end
 

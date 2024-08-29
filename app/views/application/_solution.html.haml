@@ -1,3 +1,13 @@
-%h2 #{behavior.symbolic_name}
-%p.left Do #{cookies[behavior.display]} when you are #{behavior.bipolar} so you will be #{behavior.flip.ready} to #{cookies[behavior.flip.display]} when you are #{behavior.flip.bipolar}.
-%p.left Don&rsquo;t #{cookies[behavior.flop.display]} when you are #{behavior.bipolar}: you won&rsquo;t ever be #{behavior.ready} to #{cookies[behavior.opposite.display].enough}.
+%p
+  When you feel the urge to
+  %span{class: behavior.flop.css} #{behavior.flop.symbolic_name} #{cookies[behavior.flop.mbti].wrap},
+  %span{class: behavior.css} #{behavior.symbolic_name} #{cookies[behavior.mbti].wrap}
+  instead.
+  You will #{behavior.do_something} less as it is not as easy for you.
+%p
+  When you stop feeling the urge to
+  %span{class: behavior.opposite.css} #{behavior.opposite.symbolic_name} #{cookies[behavior.opposite.mbti].wrap},
+  switch to
+  %span{class: behavior.flip.css} #{behavior.flip.symbolic_name} #{cookies[behavior.flip.mbti].wrap}
+  as well.
+  It will be easier for you to keep #{behavior.flip.do_something.ing} if you expand your focus.

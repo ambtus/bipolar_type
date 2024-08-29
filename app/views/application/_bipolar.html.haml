@@ -1,4 +1,7 @@
-%td.top{class: quadrant.class}
-  %p.left #{quadrant.short.ing} is the appropriate response to #{quadrant.trigger} if you want to #{quadrant.verb} so you can #{quadrant.flip.short}.
-  %h3=quadrant.episode.titleize
-  %p.left #{quadrant.short.ing} is <em>not</em> an appropriate response to #{quadrant.trigger} if you want to #{quadrant.flop.verb} so you can #{quadrant.opposite.short}.
+%td.top{class: quadrant.css}
+  %h3=quadrant.episode
+  %p.left
+    #{quadrant.short} is not an appropriate response to #{quadrant.danger} if you are a #{quadrant.attitude.opposite.adjective} type and will want to #{quadrant.opposite.goal} later; you need to
+    %span{class: quadrant.flop.css} #{quadrant.flop.short} now
+    so you can
+    %span{class:quadrant.opposite.css} #{quadrant.opposite.short} later.

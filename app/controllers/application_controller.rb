@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def set_cookies
     Behavior.each do |b|
-      cookies[b.display] = YAML.load_file('config/my_words.yml')[b.display.downcase] if cookies[b.display].blank?
+      cookies[b.mbti] = YAML.load_file('config/my_words.yml')[b.mbti.downcase] if cookies[b.mbti].blank?
     end
   end
 end

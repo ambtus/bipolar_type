@@ -6,48 +6,79 @@
     %h2 Normal Responses
   %tr
     -quadrant = Quadrant.ep
-    %td.bottom{class: quadrant.class}
+    %td.bottom{class: quadrant.css}
       %h3=quadrant.short
       =quadrant.symbolic_name
     %th
-      =link_to 'SNS Response', 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
-      %div Danger
+      =Response.e.adjective
+      %br
+      =link_to 'SNS<br />Response'.html_safe, 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
+      %br
       &rlarr;
     -quadrant = Quadrant.ej
-    %td.bottom{class: quadrant.class}
+    %td.bottom{class: quadrant.css}
       %h3=quadrant.short
       =quadrant.symbolic_name
 
   %tr
-    %th Fast &udarr;
     %th
-    %th &udarr; Strong
-
+      =Attitude.p.adjective
+      &udarr;
+    %th
+    %th
+      &udarr;
+      =Attitude.j.adjective
 
   %tr
     -quadrant = Quadrant.ip
-    %td.bottom{class: quadrant.class}
+    %td.bottom{class: quadrant.css}
       =quadrant.symbolic_name
       %h3=quadrant.short
     %th
       &rlarr;
-      %div Exhaustion
-      =link_to 'PSNS Response', 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'
+      %br
+      =link_to 'PSNS<br />Response'.html_safe, 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'
+      %br
+      =Response.i.adjective
     -quadrant = Quadrant.ij
-    %td.bottom{class: quadrant.class}
+    %td.bottom{class: quadrant.css}
       =quadrant.symbolic_name
       %h3=quadrant.short
 
+
 %table
   %caption
-    %h2 Bipolar Responses
+    %h2 Personality Types
   %tr
-    %th{colspan:2}=link_to 'Mania', 'https://en.wikipedia.org/wiki/Mania', class: 'external'
+    -Attitude.each do |attitude|
+      %th
+        The #{attitude.adjective} Types
   %tr
-    =render 'bipolar', quadrant: Quadrant.ep
-    =render 'bipolar', quadrant: Quadrant.ej
+    -Attitude.each do |attitude|
+      %td.left
+        -response = Response.e
+        -quadrant = attitude + response
+        %div{class: quadrant.css} #{quadrant.phrase.s.capitalize} to #{quadrant.verb} when danger is #{response.danger}.
+        -response = Response.i
+        -quadrant = attitude + response
+        %div{class: quadrant.css} #{quadrant.verb.s.capitalize} when danger is #{response.danger} to #{quadrant.phrase}.
+
+%table
+  %caption
+    %h2 Bipolar States
   %tr
-    =render 'bipolar', quadrant: Quadrant.ip
-    =render 'bipolar', quadrant: Quadrant.ij
+    %th{colspan:2}=link_to 'The Manic Types', 'https://en.wikipedia.org/wiki/Mania', class: 'external'
+  -Response.all.each_with_index do |response, index|
+    %tr
+      -attitude = Attitude.p
+      -quadrant = attitude + response
+      %td.left{class: quadrant.css} #{quadrant.short.s} more than they #{quadrant.flip.short}
+      -attitude = Attitude.j
+      -quadrant = attitude + response
+      %td.left{class: quadrant.css} #{quadrant.short.s} more than they #{quadrant.flip.short}
+    -if index.even?
+      %tr
+        %th{colspan:2} &nbsp;
   %tr
-    %th{colspan:2}=link_to 'Depression', 'https://en.wikipedia.org/wiki/Depression_(mood)', class: 'external'
+    %th{colspan:2}=link_to 'The Depressed Types', 'https://en.wikipedia.org/wiki/Depression_(mood)', class: 'external'
+

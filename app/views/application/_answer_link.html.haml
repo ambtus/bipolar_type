@@ -1,10 +1,2 @@
--if @answer.free?(behavior)
-  %span{title: behavior.clear_name}
-    =link_to behavior.display, answer_path(@answer.next(behavior)), class: 'black'
-  I don&rsquo;t actually want to
-  =cookies[behavior.display]
-  
-  
-
--else
-  =behavior.display
+=link_to_if @answer.free?(behavior), behavior.problem, answer_path(@answer.next(behavior.path))
+=render 'problem', behavior: behavior

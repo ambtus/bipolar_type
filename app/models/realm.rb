@@ -1,47 +1,45 @@
 class Realm
 
-  NAMES = %w{Physical Financial Affective Mental}
-  def self.names; NAMES; end
+  MBTI = %w{F S T N}
+  NOUNS = %w{People Places Things Ideas}
+  NAMES = %w{Affective Physical Financial Mental}
 
-  def initialize(name); @name = name; end
-  attr_reader :name
-  alias inspect :name
-  def letter; name.first; end
-  alias path :letter
+  def initialize(mbti); @mbti = mbti; end
+  attr_reader :mbti
+  alias path :mbti
 
-  def index; NAMES.index @name; end
-  def <=>(other); index <=> other.index; end
-  def mbti; %w{S T F N}[index]; end
-  alias display :mbti
-
-
-  ALL = NAMES.collect {|name| self.new name}
-  def self.all; ALL; end
-
-  def self.each(&block);all.each(&block); end
-
-  def symbolic_name; [display.colon, name].to_phrase; end
-  def adjective; name.downcase; end
-  def adverb; adjective.ly; end
-
-  ALL.each_with_index do |instance, index|
-    %w{ name letter}.each do |thing|
-      define_singleton_method(instance.send(thing)) {ALL[index]}
-      define_singleton_method(instance.send(thing).downcase) {ALL[index]}
-    end
-  end
-
-  # no-ops to allow mapping
+  def index; MBTI.index @mbti; end
+  def <=>(other); self.index <=> other.index; end
   def flip; self; end
   alias flop :flip
   alias opposite :flip
 
   def +(quadrant); Behavior.find([quadrant, self]); end
-  def behaviors; Behavior.all.select{|b| b.realm == self}; end
 
-  def internalize; %w{eat earn listen\ to look\ at}[index]; end
-  def externalize; %w{move buy communicate ??}[index]; end
+  ALL = MBTI.collect {|mbti| self.new mbti}
+  class << self
+    def nouns; NOUNS; end
+    def names; NAMES; end
+    def all; ALL; end
+    def each(&block);ALL.each(&block); end
+  end
 
-  def energy; %w{carbs cash emotions colors}[index]; end
-  def strength; %w{protein credit words shapes}[index]; end
+  def nouns; NOUNS[index]; end
+  def noun; nouns.singularize; end
+  def name; NAMES[index]; end
+  def adjective; name.downcase; end
+  def adverb; adjective.ly; end
+  def symbolic_name; [mbti.colon, name].to_phrase; end
+  alias inspect :symbolic_name
+
+  ALL.each_with_index do |instance, index|
+    %w{ name noun mbti}.each do |thing|
+      define_singleton_method(instance.send(thing)) {ALL[index]}
+      define_singleton_method(instance.send(thing).downcase) {ALL[index]}
+    end
+  end
+
+  def gather; %w{listen eat earn learn}[index]; end
+  def use; %w{say move spend think}[index]; end
+
 end

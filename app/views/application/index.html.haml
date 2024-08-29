@@ -3,4 +3,4 @@
   -Type.each do |type|
     %li
       =link_to type.name, type_path(type.path)
-      =type.behaviors.collect{|b| cookies[b.display]}.and
+      =type.linear_behaviors.collect{|b| b.name}.and

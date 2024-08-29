@@ -8,9 +8,9 @@ class Behavior
 
   def pair; [@quadrant, @realm]; end
   def triplet; [@quadrant.response, @realm, @quadrant.attitude]; end
-  def display; triplet.map(&:display).join; end
-  alias inspect :display
-  alias path :display
+  def mbti; triplet.map(&:mbti).join; end
+  alias inspect :mbti
+  alias path :mbti
 
   def <=>(other); quadrant <=> other.quadrant; end
 
@@ -26,7 +26,7 @@ class Behavior
         self.send(thing)
       elsif thing.is_a? Array
         if thing.size == 2
-          ALL.find{|s| s.pair == thing}
+          ALL.find{|s| s.pair == thing} || ALL.find{|s| s.pair == thing.reverse}
         elsif thing.size == 3
           ALL.find{|s| s.triplet == thing}
         end
@@ -46,25 +46,29 @@ class Behavior
 
   def flip; Behavior.find(triplet.map(&:flip)); end
   def flop; Behavior.find(triplet.map(&:flop)); end
-  def opposite; Behavior.find(triplet.map(&:opposite)); end
+  def opposite; flip.flop; end
 
-  # use adjective.capitalize instead of name to get '' for Generic
   def names;triplet.map(&:name); end
   def name; names.wbr; end
   def clear_name; names.join; end
   def phrase; names.to_phrase.downcase; end
-  def symbolic_name; [display.colon, name].to_safe_phrase; end
+  def symbolic_name; [mbti.colon, name].to_safe_phrase; end
+  def problems; [realm.name, attitude.noun, response.episode.capitalize]; end
+  def problem; problems.wbr; end
+  def symbolic_problem; [mbti.colon, problem].to_safe_phrase; end
+  def episode; [realm.adjective, response.episode].to_phrase; end
 
-  def episode; @quadrant.response.episode; end
-  def bipolar; @quadrant.response.bipolar; end
-  def short; @quadrant.short; end
-  def drugs; @quadrant.response.drugs; end
-  def ready; @quadrant.response.ready; end
-  def class; @quadrant.class; end
-  def long; [@realm.name, @quadrant.long].to_phrase; end
-  def adjective; @quadrant.adjective; end
+  def do_something; realm.send(quadrant.do_something); end
 
-  def examples;@realm.send(@quadrant.send_name); end
-  def eg; @realm.send(@quadrant.send_action).downcase; end
+  def method_missing(meth, *args, **kwargs, &block)
+    if quadrant.respond_to?(meth)
+      quadrant.send(meth)
+    elsif realm.respond_to?(meth)
+      realm.send(meth)
+    else
+      super(meth)
+    end
+  end
+
 
 end

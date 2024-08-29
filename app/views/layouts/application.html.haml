@@ -5,10 +5,11 @@
     %meta{:content => "text/html; charset=utf-8"}
     %meta{:name => "viewport", :content=>"initial-scale=1"}
     :css
-      .cycleG {background-color: lightblue}
-      .cycleB {background-color: khaki}
-      .cycleU {background-color: lightpink}
-      .cycleR {background-color: lightgreen}
+      /* https://www.schemecolor.com/rainbow-pastel-tones.php */
+      .feed{background-color: #F7FAA1} /*yellow*/
+      .flee {background-color: #B4F6A4} /*green*/
+      .fight {background-color: #F898A4} /*red*/
+      .rest {background-color: #A2ACeB} /*purple*/
       .first {font-weight: bold;}
       .second {font-weight: normal; }
       .third {font-style: italic;}
@@ -58,6 +59,9 @@
 
   %body
     .center=render "layouts/links"
+    %div.right
+      = form_with method: :get do |form|
+        =form.submit 'Use Examples'
     =yield
     %br
     -#.center=render "layouts/links", footer: true

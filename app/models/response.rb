@@ -1,31 +1,47 @@
 class Response
 
-  NAMES = %w{ Use Get}
+  MBTI = %w{E I}
+  VERBS = %w{Use Gather}
+  ADJECTIVES = %w{Manic Depressed}
 
-  def initialize(name); @name = name; end
-  attr_reader :name
-  alias inspect :name
-  def letter; name.first; end
-  alias path :letter
+  def initialize(mbti); @mbti = mbti; end
+  attr_reader :mbti
+  alias path :mbti
 
-  def index; NAMES.index @name; end
-  def <=>(other); index <=> other.index; end
-  def mbti; %w{ E I}[index]; end
-  alias display :mbti
-
-  def symbolic_name; [display.colon, name].to_phrase; end
-
-  ALL = NAMES.collect {|name| self.new name}
-  def self.all; ALL; end
-
+  def index; MBTI.index @mbti; end
+  def <=>(other); self.index <=> other.index; end
   def flip; ALL.without(self).first; end
-  alias opposite :flip
-  # no-op to allow mapping
   def flop; self; end
+  alias opposite :flip
 
+  def +(attitude); Quadrant.find([attitude,self]); end
+
+  ALL = MBTI.collect {|mbti| self.new mbti}
+  class << self
+    def verbs; VERBS; end
+    def names; NAMES; end
+    def all; ALL; end
+    def each(&block);ALL.each(&block); end
+  end
+
+  def verb; VERBS[index]; end
+  alias name :verb
+  def do_something; verb.downcase; end
+  def adjective; ADJECTIVES[index]; end
+  def symbolic_name; [mbti.colon, name].to_phrase; end
+  alias inspect :symbolic_name
+
+  ALL.each_with_index do |instance, index|
+    %w{ name verb mbti}.each do |thing|
+      define_singleton_method(instance.send(thing)) {ALL[index]}
+      define_singleton_method(instance.send(thing).downcase) {ALL[index]}
+    end
+  end
+
+  def danger; %w{high low}[index]; end
   def episode; %w{ mania depression}[index]; end
-  def bipolar; %w{ manic depressed}[index]; end
-  def ready; %w{ able willing}[index]; end
-  def trigger; %w{ danger exhaustion}[index]; end
+  def focus; %w{ external internal}[index]; end
+  def external?; focus == 'external'; end
   def drugs; %w{ stimulants sedatives}[index]; end
+
 end
