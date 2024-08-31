@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :set_cookies
+  helper CookieHelper
 
-  def set_cookies
-    Behavior.each do |b|
-      cookies[b.mbti] = YAML.load_file('config/my_words.yml')[b.mbti.downcase] if cookies[b.mbti].blank?
+  def hide
+    %w{colors MBTI general specific}.each do |setting|
+      cookies[setting] = params[setting]
     end
   end
 end

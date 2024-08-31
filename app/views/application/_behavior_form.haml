@@ -1,6 +1,0 @@
-%td.top{class: quadrant.css}
-  %h3=quadrant.symbolic_name
-  -Realm.each do |realm|
-    -behavior = realm + quadrant
-    =behavior.symbolic_name
-    %div=form.text_field behavior.mbti, value: cookies[behavior.mbti], maxlength: 20, size: 15

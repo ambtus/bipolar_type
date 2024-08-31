@@ -6,10 +6,11 @@
     %meta{:name => "viewport", :content=>"initial-scale=1"}
     :css
       /* https://www.schemecolor.com/rainbow-pastel-tones.php */
-      .feed{background-color: #F7FAA1} /*yellow*/
-      .flee {background-color: #B4F6A4} /*green*/
+      .digest {background-color: #F7FAA1} /*yellow*/
+      .flight {background-color: #B4F6A4} /*green*/
       .fight {background-color: #F898A4} /*red*/
       .rest {background-color: #A2ACeB} /*purple*/
+      .example {background-color: #9Be0F1} /*blue*/
       .first {font-weight: bold;}
       .second {font-weight: normal; }
       .third {font-style: italic;}
@@ -18,10 +19,11 @@
       .constrained { color: orange; }
       .free {color: green}
       table {margin: auto; border: 1px solid grey; border-collapse: collapse;}
-      table.none {border: none}
+      table.none {border: none; padding: none}
       table.equal {table-layout: fixed; width: 100%; overflow-wrap:break-word; }
-      td {border: none; padding: .5em; text-align: center;}
-      td.bordered {border: 1px solid grey; }
+      td.none {border: none; text-align: center;}
+      td.unpadded {padding: none;}
+      td {border: 1px solid grey; text-align: center;}
       td.left_border{border-left: 1px solid grey;}
       td.right_border{border-right: 1px solid grey;}
       td.bottom_border{border-bottom: 1px solid grey;}
@@ -59,9 +61,13 @@
 
   %body
     .center=render "layouts/links"
-    %div.right
-      = form_with method: :get do |form|
-        =form.submit 'Use Examples'
+    -if controller.controller_name.match(/answers|type/)
+      %div.right
+        =form_with method: :get do |f|
+          -%w{colors MBTI general specific}.each do |setting|
+            =f.check_box setting, {checked: cookies[setting] == '1'}
+            =f.label setting, setting.titleize
+
+          =f.submit 'Hide'
     =yield
     %br
-    -#.center=render "layouts/links", footer: true

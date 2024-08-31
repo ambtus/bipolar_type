@@ -34,6 +34,7 @@ class Behavior
     end
     def all; ALL; end
     def each(&block); ALL.each(&block); end
+    def mbtis; all.map(&:mbti); end
   end
 
   ALL.each_with_index do |instance, index|
@@ -53,7 +54,7 @@ class Behavior
   def clear_name; names.join; end
   def phrase; names.to_phrase.downcase; end
   def symbolic_name; [mbti.colon, name].to_safe_phrase; end
-  def problems; [realm.name, attitude.noun, response.episode.capitalize]; end
+  def problems; ['Excess', realm.name, quadrant.short]; end
   def problem; problems.wbr; end
   def symbolic_problem; [mbti.colon, problem].to_safe_phrase; end
   def episode; [realm.adjective, response.episode].to_phrase; end

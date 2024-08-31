@@ -1,7 +1,7 @@
 class Response
 
   MBTI = %w{E I}
-  VERBS = %w{Use Gather}
+  VERBS = %w{Use Build}
   ADJECTIVES = %w{Manic Depressed}
 
   def initialize(mbti); @mbti = mbti; end
@@ -20,6 +20,7 @@ class Response
   class << self
     def verbs; VERBS; end
     def names; NAMES; end
+    def shorts; ADJECTIVES; end
     def all; ALL; end
     def each(&block);ALL.each(&block); end
   end

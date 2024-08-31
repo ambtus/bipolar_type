@@ -1,38 +1,31 @@
 - content_for(:title, @title)
 .center
   %h1=@title
-%p
 %table.none
-  -@type.behaviors.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |behavior|
-        %td{class: behavior.css}=cookies[behavior.mbti]
-%h2 And
-%table.none
-  -@type.behaviors.map(&:flip).sort.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |behavior|
-        %td{class: behavior.css}=cookies[behavior.mbti]
-
-
-
-%table
   %caption
-    %h2 By Realm
-  %tr
-    -@type.behaviors.each do |behavior|
-      %th=behavior.realm.name
-  %tr
-    -@type.behaviors.each do |behavior|
-      %td{class: behavior.css}=cookies[behavior.mbti]
-  %tr
-    -@type.behaviors.map(&:flip).each do |behavior|
-      %td{class: behavior.css}=cookies[behavior.mbti]
+    %h2 Do
+  -@type.solutions.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |behavior|
+        =td behavior
+%table.none
+  %caption
+    %h2 And
+  -@type.solutions.map(&:flip).sort.in_groups_of(2).each do |row|
+    %tr
+      -row.each do |behavior|
+        =td behavior
 
 
-
-%h2 Rationale
-%p If you are bipolar you are unbalanced. Since you cannot balance yourself manic-to-depressed, try balancing yourself fast-to-powerful.
--@type.linear_behaviors.reverse.each do |behavior|
-  =render 'problem', behavior: behavior.flop
-  =render 'solution', behavior: behavior
+%table.none
+  %caption
+    %h2 Rationale
+    %p.left If you are bipolar you are unbalanced. Since you cannot balance yourself #{Response.shorts.join('-to-').downcase}, try balancing yourself #{Attitude.shorts.join('-to-').downcase}.
+  -@type.solutions.in_groups_of(2).each do |row|
+    %tr
+      -row.reverse.each do |behavior|
+        %td.bordered
+          %h3 Problem: Excess #{behavior.quadrant.flop.short}
+          =render 'problem', behavior: behavior.flop
+          %h4 Solution: More #{behavior.short} & #{behavior.flip.short}
+          =render 'solution', behavior: behavior

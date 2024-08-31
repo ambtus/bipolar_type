@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :behaviors, only: [:index]
   get '/me' => 'types#me', as: :my
   get '/responses' => 'start#responses', as: :response
+  get '/specifics' => 'start#specifics', as: :specifics
 end

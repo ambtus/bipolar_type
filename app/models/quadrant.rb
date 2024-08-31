@@ -1,6 +1,6 @@
 class Quadrant
 
-  VERBS = %w{Flee Fight Feed Rest}
+  VERBS = %w{Flight Fight Digest Rest}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -13,6 +13,7 @@ class Quadrant
   def opposite; flip.flop; end
 
   def +(realm); Behavior.find([self, realm]); end
+  def behaviors; Behavior.all.select{|b| b.quadrant == self}; end
 
   ALL = Response::MBTI.collect do |response|
           Attitude::MBTI.collect do |attitude|

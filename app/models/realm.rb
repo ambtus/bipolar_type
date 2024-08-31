@@ -1,8 +1,8 @@
 class Realm
 
-  MBTI = %w{F S T N}
-  NOUNS = %w{People Places Things Ideas}
-  NAMES = %w{Affective Physical Financial Mental}
+  MBTI = %w{S T N F}
+  NOUNS = %w{ Places Things Ideas People}
+  NAMES = %w{ Physical Financial Mental Affective}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -39,7 +39,7 @@ class Realm
     end
   end
 
-  def gather; %w{listen eat earn learn}[index]; end
-  def use; %w{say move spend think}[index]; end
+  def build; %w{ eat earn learn listen}[index]; end
+  def use; %w{ move spend think talk}[index]; end
 
 end

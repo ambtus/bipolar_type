@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean n first_word last_words last_word parenthesize wrap comma period semi colon and_to_or is_mbti? to_noun s ed en ly ing an some enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean n first_word last_words last_word parenthesize wrap unwrap wrapped? comma period semi colon bang unpunctuate and_to_or is_mbti? to_noun s ed en ly ing an some enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -22,11 +22,27 @@ class String
   def last_words; words.last(n).to_phrase; end
   def parenthesize; "(#{self})"; end
   alias wrap :parenthesize
+  def wrapped?; self[0] == '(' && self.last == ')'; end
+  def unwrap
+    if wrapped?
+      self.chip.chop
+    else
+      return self
+    end
+  end
   def comma; self + ','; end
   def period; self + '.'; end
   def semi; self + ';'; end
   def colon; self + ':'; end
   def bang; self + '!'; end
+  def unpunctuate
+    punctuations = %w{, . ; : !}
+    if punctuations.include?(self.last)
+      self.chop.unpunctuate
+    else
+      return self
+    end
+  end
 
   def and_to_or; self.gsub(' and ', ' or '); end
 

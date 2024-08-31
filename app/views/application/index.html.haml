@@ -1,6 +1,12 @@
-- content_for(:title,'The Twenty-Four BipolarTypes')
-%ol
-  -Type.each do |type|
-    %li
-      =link_to type.name, type_path(type.path)
-      =type.linear_behaviors.collect{|b| b.name}.and
+- content_for(:title,'All')
+%h2 There are 24 possible BipolarTypes (4!).
+%table.none
+  %tr
+    %th
+    -Quadrant.linear.each_with_index do |q, index|
+      %th=link_to_unless index == @qi, "sort by #{q.mbti}", types_path(sort: q.mbti)
+  -@types.each_with_index do |type, index|
+    %tr
+      %th=link_to type.index, type_path(type.path)
+      -type.dominants.each do |behavior|
+        =td behavior, 'bottom', 'left'

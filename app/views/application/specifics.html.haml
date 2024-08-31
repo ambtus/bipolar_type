@@ -1,0 +1,29 @@
+- content_for(:title, 'Specifics')
+
+= form_with method: :get do |form|
+
+  %table.none
+    %caption
+      %h2 #{Realm.names.and}
+    -Quadrant.all.in_groups_of(2) do |row|
+      %tr
+        -row.each do |quadrant|
+          %td.top{class: quadrant.css}
+            %h3=quadrant.symbolic_name
+            -Realm.each do |realm|
+              -behavior = realm + quadrant
+              -cookie = cookies[behavior.mbti] || YAML.load_file('config/my_words.yml')[behavior.mbti]
+              .left
+                =behavior.symbolic_name
+                =form.text_field behavior.mbti, value: cookie, maxlength: 80, size: 13
+    %tr
+      %td.none=form.submit 'Save Cookies'
+      %td.none=form.submit 'Clear Cookies'
+%p You can use this page to change the specific examples used to better suit your own behaviors. If you want to remember your changes between browser sessions, you will need to bookmark this page after you save the cookies (your changes will be in the url). You can clear a single cookie with a blank entry.
+
+%p
+  A full description is in the form:
+  =succeed '.' do
+    %span.example MBTI: General (specific)
+  On future pages you will be able to remove the color, MBTI letters, generalization, and/or specific example if you find them irritating or distracting.
+

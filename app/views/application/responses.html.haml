@@ -1,4 +1,4 @@
-- content_for(:title, 'The Responses')
+- content_for(:title, 'Responses')
 
 
 %table
@@ -51,8 +51,7 @@
     %h2 Personality Types
   %tr
     -Attitude.each do |attitude|
-      %th
-        The #{attitude.adjective} Types
+      %th #{attitude.adjective} Types
   %tr
     -Attitude.each do |attitude|
       %td.left
@@ -72,10 +71,10 @@
     %tr
       -attitude = Attitude.p
       -quadrant = attitude + response
-      %td.left{class: quadrant.css} #{quadrant.short.s} more than they #{quadrant.flip.short}
+      %td.left{class: quadrant.css} Excess #{quadrant.short}
       -attitude = Attitude.j
       -quadrant = attitude + response
-      %td.left{class: quadrant.css} #{quadrant.short.s} more than they #{quadrant.flip.short}
+      %td.left{class: quadrant.css} Excess #{quadrant.short}
     -if index.even?
       %tr
         %th{colspan:2} &nbsp;

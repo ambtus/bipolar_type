@@ -2,7 +2,7 @@ class Attitude
 
   MBTI = %w{P J}
   NOUNS = %w{Energy Strength}
-  ADJECTIVES = %w{Fast Powerful}
+  ADJECTIVES = %w{Prey Predator}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -20,6 +20,7 @@ class Attitude
   class << self
     def nouns; NOUNS; end
     def names; NAMES; end
+    def shorts; ADJECTIVES; end
     def all; ALL; end
     def each(&block);ALL.each(&block); end
   end

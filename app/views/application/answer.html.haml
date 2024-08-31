@@ -4,26 +4,19 @@
 -case @answer.number
   -when 1, 2
     -realm = @answer.number==1 ? Realm.s : Realm.t
-    %table
-      %tr
-        %td{class: Quadrant.ep.css}
-          =render 'answer_link', behavior: Quadrant.ep + realm
-        %td{class: Quadrant.ej.css}
-          =render 'answer_link', behavior: Quadrant.ej + realm
-      %tr
-        %td{class: Quadrant.ip.css}
-          =render 'answer_link', behavior: Quadrant.ip + realm
-        %td{class: Quadrant.ij.css}
-          =render 'answer_link', behavior: Quadrant.ij + realm
+    %table.none
+      -Quadrant.all.in_groups_of(2) do |row|
+        %tr
+          -row.each do |quadrant|
+            %td.bordered=render 'answer_link', behavior: quadrant + realm
 
   -when 3
-    %table
+    %table.none
       -@answer.pair.each_with_index do |set, row|
         %tr
-          -set.each_with_index do |behavior, column|
-            %td.top{class: behavior.css}=render 'answer_link', behavior: behavior
-            -if column == 0
-              %td &
+          %td.top.none=render 'answer_link', behavior: set.first
+          %td.none and&nbsp;&nbsp;
+          %td.top.none=render 'answer_link', behavior: set.second
         -if row == 0
           %tr
-            %td{colspan: 3} OR
+            %td{colspan: 3} or

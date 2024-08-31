@@ -28,8 +28,8 @@ class Answer
   def realms; problems.map(&:realm); end
   def unused; free.first + Realm.all.without(realms).first; end
 
-  def all; (problems + [unused]).map(&:flop); end
+  def all; problems + [unused]; end
 
-  def type_path;all.sort.map(&:realm).map(&:path).join; end
+  def type_index;Type.find_by_problems(all).index; end
 
 end

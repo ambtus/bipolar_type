@@ -1,19 +1,17 @@
 ---
-aaa: 12345678901234567890
-isp: carb-load
-inp: look at colors
-ifp: listen to music
-itp: earn wages
-esp: walk
-enp: make plans
-etp: pay cash
-efp: express emotions
-esj: do housework
-enj: theorize
-etj: buy on credit
-efj: verbalize
-isj: eat protein
-inj: look at the results
-itj: earn a salary
-ifj: listen to words
-zzz: 12345678901234567890
+ISP: carb-load
+INP: look at colors
+IFP: listen to music
+ITP: earn wages
+ESP: pace
+ENP: make plans
+ETP: pay cash
+EFP: express emotions
+ESJ: do housework
+ENJ: theorize
+ETJ: buy on credit
+EFJ: verbalize
+ISJ: eat protein
+INJ: look at the results
+ITJ: earn a salary
+IFJ: listen to words
