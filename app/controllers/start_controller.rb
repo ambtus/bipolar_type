@@ -1,14 +1,16 @@
 class StartController < ApplicationController
 
-  def specifics
-    if params[:commit] == 'Clear Cookies'
+  def words
+    get_words
+    if params[:commit] == 'Clear All Cookies'
       cookies.clear
-      redirect_to specifics_path and return
+      redirect_to word_path and return
+    elsif params[:commit] == 'Try Mine'
+      get_mine
     elsif params[:commit] == 'Save Cookies'
-      old = YAML.load_file('config/my_words.yml')
       dups = []
       Behavior.mbtis.each do |key|
-        if old[key] == params[key]
+        if @words[key] == params[key]
           dups << key
         end
         if params[key].blank?
@@ -19,7 +21,7 @@ class StartController < ApplicationController
       Rails.logger.debug "dups: #{dups}"
       new = params.without('commit').without(*dups)
       Rails.logger.debug "new: #{new}"
-      redirect_to specifics_path(new.permit(Behavior.mbtis)) and return
+      redirect_to word_path(new.permit(Behavior.mbtis)) and return
     else
       Behavior.mbtis.each do |key|
         cookies[key] = params[key] unless params[key].blank?

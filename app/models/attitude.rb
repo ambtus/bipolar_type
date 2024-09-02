@@ -38,8 +38,4 @@ class Attitude
     end
   end
 
-  def whose; %w{bad good}[index]; end
-  def whom; %w{you me}[index]; end
-  def which; %w{another this}[index]; end
-
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :types, only: [:show, :index]
   resources :behaviors, only: [:index]
   get '/me' => 'types#me', as: :my
-  get '/responses' => 'start#responses', as: :response
-  get '/specifics' => 'start#specifics', as: :specifics
+  get '/cycle' => 'start#cycle', as: :cycle
+  get '/states' => 'start#states', as: :state
+  get '/words' => 'start#words', as: :word
 end

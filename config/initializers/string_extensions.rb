@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean n first_word last_words last_word parenthesize wrap unwrap wrapped? comma period semi colon bang unpunctuate and_to_or is_mbti? to_noun s ed en ly ing an some enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean n first_word last_words last_word parenthesize wrap unwrap wrapped? comma period semi colon bang unpunctuate and_to_or is_mbti? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -104,6 +104,7 @@ class String
     end
   end
   def ed
+    return 'won' if self=='win'
     return 'got' if self=='get'
     return 'sang' if self=='sing'
     return 'paid' if self=='pay'
@@ -229,9 +230,16 @@ class String
   end
   def a_lot
     if self.match(' ')
-      [first_words, last_word.many, second].join(' ')
+      [first_words, last_word.many, last_word].join(' ')
     else
       "#{self} a lot"
+    end
+  end
+  def a_lot_of
+    if self.match(' ')
+      [first_word, 'a lot of', last_words].join(' ')
+    else
+      "a lot of #{self}"
     end
   end
   def a_few
@@ -249,7 +257,7 @@ class String
       end
     end
     if self.match(' ')
-      [first_words, 'too', last_word.much, last_word].join(' ')
+      [first_word, 'too', last_words.much, last_words].join(' ')
     elsif self.noun?
       "too #{self.many} #{self}"
     else

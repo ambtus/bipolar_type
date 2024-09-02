@@ -1,8 +1,8 @@
 class Response
 
   MBTI = %w{E I}
-  VERBS = %w{Use Build}
-  ADJECTIVES = %w{Manic Depressed}
+  VERBS = %w{Use Gain}
+  ADJECTIVES = %w{Stressed Exhausted}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -27,9 +27,10 @@ class Response
 
   def verb; VERBS[index]; end
   alias name :verb
+  def symbolic_name; [mbti.colon, name].to_phrase; end
   def do_something; verb.downcase; end
   def adjective; ADJECTIVES[index]; end
-  def symbolic_name; [mbti.colon, name].to_phrase; end
+  def stressed; adjective.downcase; end
   alias inspect :symbolic_name
 
   ALL.each_with_index do |instance, index|
@@ -39,7 +40,9 @@ class Response
     end
   end
 
-  def danger; %w{high low}[index]; end
+  def external?; index == 0; end
+  def danger; %w{stress exhaustion}[index]; end
+  def state; %w{ manic depressed}[index]; end
   def episode; %w{ mania depression}[index]; end
   def focus; %w{ external internal}[index]; end
   def external?; focus == 'external'; end

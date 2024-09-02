@@ -1,17 +1,19 @@
 class TypesController < ApplicationController
   def index
+    get_words
     @qi = Quadrant.linear.map(&:mbti).index(params[:sort]) || 3
     @types = Type.sort_by(@qi)
-    if params[:commit] == 'Hide'
+    if params[:commit]
       hide
       redirect_to types_path and return
     end
   end
 
   def show
+    get_words
     @type = Type.find params[:id].to_i
     @title = "The #{@type.name} BipolarType"
-    if params[:commit] == 'Hide'
+    if params[:commit]
       hide
       redirect_to type_path(@type.path) and return
     end

@@ -57,7 +57,9 @@ class Behavior
   def problems; ['Excess', realm.name, quadrant.short]; end
   def problem; problems.wbr; end
   def symbolic_problem; [mbti.colon, problem].to_safe_phrase; end
-  def episode; [realm.adjective, response.episode].to_phrase; end
+  def episode; [response.state.capitalize, realm.name, attitude.noun].wbr; end
+  def danger; quadrant.danger; end
+  def stressed;[realm.adverb, quadrant.stressed].to_phrase; end
 
   def do_something; realm.send(quadrant.do_something); end
 

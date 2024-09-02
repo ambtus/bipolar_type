@@ -1,6 +1,6 @@
 class Quadrant
 
-  VERBS = %w{Flight Fight Digest Rest}
+  VERBS = %w{Flee Fight Digest Rest}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -43,9 +43,9 @@ class Quadrant
   alias css :verb
   def name; pair.map(&:name).wbr; end
   def words; [response.verb, attitude.noun]; end
-  def phrase; words.to_phrase.downcase; end
+  def phrase; [short, words.to_phrase].and.downcase; end
   def title; words.wbr; end
-  def symbolic_name; [mbti.colon, title].to_safe_phrase; end
+  def symbolic_name; [mbti.colon, phrase].to_safe_phrase; end
   def clean_title; words.join; end
   def inspect; [mbti.colon, clean_title].to_phrase; end
 
@@ -60,8 +60,10 @@ class Quadrant
   def attitude; Attitude.send(mbti.second); end
   def pair; [response, attitude]; end
 
-  def episode; [response.adjective, attitude.noun].to_phrase; end
-  def danger; [response.danger, 'danger'].to_phrase; end
+  def episode; [response.state.capitalize, attitude.noun].wbr; end
+
+  def stressed; %w{afraid angry empty worn\ out}[index]; end
+
 
   def method_missing(meth, *args, **kwargs, &block)
     if response.respond_to?(meth)
@@ -73,7 +75,22 @@ class Quadrant
     end
   end
 
+
   def goal; %w{escape win energize recover}[index]; end
   def bipolar; response.adjective; end
+
+
+  def weekly; %w{Wednesday Friday Monday weekend}[index]; end
+  def daily; %w{day afternoon morning evening}[index]; end
+  def yearly; %w{summer fall spring winter}[index]; end
+  def period; [yearly, daily].to_phrase; end
+
+  def position; %w{early late the\ start the\ end}[index]; end
+  def preposition; external? ? 'in' : 'of'; end
+  def cycle_name; [position.capitalize, preposition, 'the cycle'].to_phrase; end
+
+  def relative; index.even? ? 'early' : 'late'; end
+
+
 
 end

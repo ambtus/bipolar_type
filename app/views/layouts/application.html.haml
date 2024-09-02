@@ -3,71 +3,13 @@
   %head
     %title="BipolarType: #{yield(:title).clean}"
     %meta{:content => "text/html; charset=utf-8"}
-    %meta{:name => "viewport", :content=>"initial-scale=1"}
-    :css
-      /* https://www.schemecolor.com/rainbow-pastel-tones.php */
-      .digest {background-color: #F7FAA1} /*yellow*/
-      .flight {background-color: #B4F6A4} /*green*/
-      .fight {background-color: #F898A4} /*red*/
-      .rest {background-color: #A2ACeB} /*purple*/
-      .example {background-color: #9Be0F1} /*blue*/
-      .first {font-weight: bold;}
-      .second {font-weight: normal; }
-      .third {font-style: italic;}
-      .compulsively {text-decoration: line-through;}
-      .chosen {font-weight: bold; color: red; }
-      .constrained { color: orange; }
-      .free {color: green}
-      table {margin: auto; border: 1px solid grey; border-collapse: collapse;}
-      table.none {border: none; padding: none}
-      table.equal {table-layout: fixed; width: 100%; overflow-wrap:break-word; }
-      td.none {border: none; text-align: center;}
-      td.unpadded {padding: none;}
-      td {border: 1px solid grey; text-align: center;}
-      td.left_border{border-left: 1px solid grey;}
-      td.right_border{border-right: 1px solid grey;}
-      td.bottom_border{border-bottom: 1px solid grey;}
-      td.top_border{border-top: 1px solid grey;}
-      td.top {vertical-align: top;}
-      {td th}.bottom {vertical-align: bottom;}
-      table.uncollapse {border-collapse: separate;}
-      td.round {border-radius: 40%; border: 1px solid black; }
-      .center {text-align: center;}
-      .left {text-align: left;}
-      .right {text-align: right;}
-      .half {width: 50%;}
-      .third {width: 33%;}
-      .quarter {width: 25%;}
-      .wide {width: 75%; margin: 0 auto;}
-      hr {width: 80%; border: 1px dotted;}
-      a:link{color: blue}
-      a:visited{color: blue}
-      a.black{color: black}
-      a.external:link {color: grey; text-decoration: none;}
-      a.external:visited {color: grey; text-decoration: none;}
-      a.external:hover {text-decoration: underline;}
-      .unbold {font-weight: normal;}
-      .unem {font-style: normal;}
-      h1 {font-weight: bold; font-size: 1.3em; display: inline-block; padding: 0; margin: 0;}
-      h2 {text-align: center; font-weight: bold; font-size: 1.2em;}
-      h3 {text-align: center; font-style: italic; font-size: 1.1em;}
-      h4 {text-align: center; font-weight: bold; font-size: 1em;}
-      dt::after {content: ":";}
-      dt { float: left; clear: left; text-align: right; font-weight: bold; width: 6; }
-      dd { margin: 0 0 0 7ch; }
-      ul.none { list-style-type: none; }
-
-      =render "layouts/favicon"
+    %meta{:name => "viewport",  :content=>"width=device-width, initial-scale=1.0"}
+    =render "layouts/favicon"
+    =render "layouts/css"
 
   %body
-    .center=render "layouts/links"
+    %p=render "layouts/links"
     -if controller.controller_name.match(/answers|type/)
-      %div.right
-        =form_with method: :get do |f|
-          -%w{colors MBTI general specific}.each do |setting|
-            =f.check_box setting, {checked: cookies[setting] == '1'}
-            =f.label setting, setting.titleize
-
-          =f.submit 'Hide'
+      %div.right=render 'layouts/settings_form'
     =yield
-    %br
+    %p=render "layouts/links"

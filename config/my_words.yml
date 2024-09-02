@@ -1,17 +1,17 @@
 ---
-ISP: carb-load
-INP: look at colors
-IFP: listen to music
-ITP: earn wages
-ESP: pace
-ENP: make plans
-ETP: pay cash
-EFP: express emotions
-ESJ: do housework
-ENJ: theorize
-ETJ: buy on credit
-EFJ: verbalize
+ITP: earn currency
+ITJ: collect credits
+ISP: binge
 ISJ: eat protein
-INJ: look at the results
-ITJ: earn a salary
+INP: look at colors
+INJ: look at results
+IFP: listen to music
 IFJ: listen to words
+ETP: pay cash
+ETJ: use credit
+ESP: pace
+ESJ: do housework
+ENP: visualize
+ENJ: theorize
+EFP: emote
+EFJ: verbalize

@@ -1,12 +1,14 @@
 %h1
   =link_to_unless_current 'Introduction', root_path
   |
-  =link_to_unless_current 'Responses', response_path
+  =link_to_unless_current 'The Cycle', cycle_path
   |
-  =link_to_unless_current 'Specifics', specifics_path
+  =link_to_unless_current 'The States', state_path
   |
-  =link_to_unless_current 'Yours', answer_path(Answer.first_path)
+  =link_to_unless_current 'The Words', word_path
   |
-  =link_to_unless_current 'Mine', type_path(Type.my_path)
+  =link_to_unless_current 'Your Type', answer_path(Answer.first_path)
   |
-  =link_to_unless_current 'All', types_path
+  =link_to_unless_current 'My Type', type_path(Type.my_path)
+  |
+  =link_to_unless_current 'All Types', types_path

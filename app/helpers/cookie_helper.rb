@@ -1,7 +1,7 @@
 module CookieHelper
 
   def span(behavior)
-    if cookies['colors'] == '1'
+    if cookies['colors'].present?
       "<span>#{phrase(behavior)}</span>"
     else
       "<span class=#{behavior.css}>#{phrase(behavior)}</span>"
@@ -9,23 +9,27 @@ module CookieHelper
   end
 
   def td(behavior, border=nil, align='center')
-    border_class = border.blank? ? nil : "#{border}_border"
-    color_class = cookies['colors'] == '1' ? nil : behavior.css
+    color_class = cookies['colors'].present? ? nil : behavior.css
+    if border == 'depends'
+      border_class = color_class ? nil : 'four_border'
+    else
+      border_class = border.blank? ? nil : "#{border}_border"
+    end
     css = '"' + [color_class, border_class, align].to_phrase + '"'
     "<td class=#{css}>#{phrase(behavior)}</td>".html_safe
   end
 
   def phrase(behavior)
-    symbolic = cookies['MBTI'] == '1' ? nil : behavior.mbti.colon
-    general = cookies['general'] == '1' ? nil : behavior.name
-    specific = if cookies['specific'] == '1'
+    symbolic = cookies['MBTI'].present? ? nil : behavior.mbti.colon
+    general = cookies['general'].present? ? nil : behavior.name
+    specific = if cookies['specific'].present?
         nil
       else
         my_word = cookies[behavior.mbti]
         if my_word
           my_word.wrap
         else
-          YAML.load_file('config/my_words.yml')[behavior.mbti].wrap
+          @words[behavior.mbti].wrap
         end
       end
     words = [symbolic, general, specific].compact

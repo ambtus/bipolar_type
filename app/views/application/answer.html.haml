@@ -4,19 +4,25 @@
 -case @answer.number
   -when 1, 2
     -realm = @answer.number==1 ? Realm.s : Realm.t
-    %table.none
+    %table
       -Quadrant.all.in_groups_of(2) do |row|
         %tr
           -row.each do |quadrant|
-            %td.bordered=render 'answer_link', behavior: quadrant + realm
+            %td.four_border
+              -behavior = quadrant + realm
+              %h2=link_to_if @answer.free?(behavior), behavior.episode, answer_path(@answer.next(behavior.path))
+              =render 'problem', behavior: behavior
 
   -when 3
-    %table.none
-      -@answer.pair.each_with_index do |set, row|
+    %table
+      -@answer.pair.each do |pair|
         %tr
-          %td.top.none=render 'answer_link', behavior: set.first
-          %td.none and&nbsp;&nbsp;
-          %td.top.none=render 'answer_link', behavior: set.second
-        -if row == 0
-          %tr
-            %td{colspan: 3} or
+          %td{colspan: 2}
+            %h2
+              =link_to answer_path(@answer.next(pair.map(&:path).join)) do
+                =pair.first.episode
+                %br &
+                =pair.second.episode
+        %tr
+          %td.four_border=render 'problem', behavior: pair.first
+          %td.four_border=render 'problem', behavior: pair.second

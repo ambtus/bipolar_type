@@ -1,0 +1,43 @@
+- content_for(:title, 'The Words')
+
+%p
+  The full description of a behavior is in the form:
+  =succeed '.' do
+    %span.example MBTI: GeneralWords (specific words)
+  On future pages you will be able to remove the colors, MBTI letters, general pattern, and/or specific words if you find them irritating or distracting.
+
+
+= form_with method: :get do |form|
+
+  %table
+    %caption.left You can use the following form to change the specific words to better suit your own #{Realm.names.and} behaviors.
+    -Quadrant.all.in_groups_of(2) do |row|
+      %tr
+        -row.each do |quadrant|
+          %td
+            %h3{class: quadrant.css}=quadrant.symbolic_name
+            -Realm.each do |realm|
+              -behavior = realm + quadrant
+              -cookie = cookies[behavior.mbti] || @words[behavior.mbti]
+              .left
+                =behavior.symbolic_name
+                =form.text_field behavior.mbti, value: cookie, maxlength: 80, size: 24
+    %tr
+      %td{colspan:2}=form.submit 'Save Cookies'
+
+  %p If you want to remember your changes between browser sessions, you will need to bookmark this page immediately after you save the cookies (your changes will be in the URL).
+  %p
+    You can clear a single cookie with a blank entry or you can
+    =form.submit 'Clear All Cookies'
+
+
+  %p
+    Or you can
+    =form.submit 'Try Mine'
+    %br
+    Note: this just populates the above fields so you can view and edit them. You will still have to
+    =form.submit 'Save Cookies'
+    to use them and bookmark the page to save them betweem sessions.
+
+-# %p Current cookies: #{cookies.to_h}
+

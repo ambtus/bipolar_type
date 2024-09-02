@@ -39,7 +39,5 @@ class Realm
     end
   end
 
-  def build; %w{ eat earn learn listen}[index]; end
-  def use; %w{ move spend think talk}[index]; end
 
 end

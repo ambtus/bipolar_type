@@ -1,0 +1,23 @@
+%h3{class: quadrant.css}
+  =quadrant.episode
+  .plain=quadrant.symbolic_name
+%p.left Your internal clock is insisting that it is #{quadrant.cycle_name.downcase}. If you #{quadrant.verb} you will #{quadrant.words.to_phrase.downcase.a_lot_of} whether or not you are #{quadrant.stressed}.
+%p.left
+  You can force yourself to
+  =quadrant.opposite.external? ? 'move' : 'eat'
+  =quadrant.opposite.phrase.wrap
+  if you are
+  =quadrant.opposite.stressed
+  but most of
+  =quadrant.opposite.external? ? 'your movements' : 'the food'
+  will
+  =quadrant.opposite.external? ? 'will be' : 'go to waste instead of'
+  -case quadrant.index
+  -when 0
+    rebuilding and repairing your muscles.
+  -when 1
+    refilling your glycogen and fat stores.
+  -when 2
+    powerless and weak instead of strong and aggressive.
+  -when 3
+    slow and brief instead of energetic and enduring.
