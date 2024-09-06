@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
   def show
     get_words
     @answer = Answer.new params[:id]
-    @title = "Question ##{@answer.number} of 3"
+    @quadrant = @answer.quadrant
     redirect_to type_path(@answer.type_index) and return if @answer.finished?
     if params[:commit]
       hide

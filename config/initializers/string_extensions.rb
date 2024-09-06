@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean n first_word last_words last_word parenthesize wrap unwrap wrapped? comma period semi colon bang unpunctuate and_to_or is_mbti? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr n first_word last_words last_word parenthesize wrap unwrap wrapped? comma period semi colon bang unpunctuate and_to_or is_mbti? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -13,7 +13,7 @@ class String
   def fourth; chars.fourth; end
   def words; split(/\s+/); end
   def clean; self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself'); end
-  def to_words; self.underscore.to_phrase.words; end
+  def to_wbr; self.words.map(&:capitalize).wbr; end
 
   def n; words.size - 1;end
   def first_word; words.first; end
@@ -45,6 +45,7 @@ class String
   end
 
   def and_to_or; self.gsub(' and ', ' or '); end
+  def break_before_wrap; gsub(' (', '<br />(').html_safe; end
 
   MBTIS = %w{ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ
@@ -68,19 +69,23 @@ class String
     end
   end
 
-  NOUNS = %w{anorexia depression mania energy strength obesity goals emptiness hyperactivity weakness calories credit information emotions}
-  ADJECTIVES = %w{anorexic depressed manic energetic strong obese goal-oriented empty hyperactive weak caloric indebted informative emotional}
+  NOUNS = %w{anorexia depression mania energy strength obesity goals emptiness hyperactivity weakness calories credit information emotions childhood adolescence adulthood old\ age}
+  ADJECTIVES = %w{anorexic depressed manic energetic strong obese goal-oriented empty hyperactive weak caloric indebted informative emotional child adolescent adult elder}
   def noun?; NOUNS.include?(self); end
 
 
   def to_noun
-    index = ADJECTIVES.index(self)
-    index ? NOUNS[index] : "#{self.an} #{self} person"
+    is_upper = self.first != self.first.downcase
+    index = ADJECTIVES.index(self.downcase)
+    noun = index ? NOUNS[index] : "#{self.an} #{self} person"
+    is_upper ? noun.capitalize : noun
   end
 
   def to_adjective
+    is_upper = self.first != self.first.downcase
     index = NOUNS.index(self)
-    index ? ADJECTIVES[index] : "#{self}-like"
+    adj = index ? ADJECTIVES[index] : "#{self}-like"
+    is_upper ? adj.capitalize : adj
   end
 
   def s
@@ -104,6 +109,7 @@ class String
     end
   end
   def ed
+    return 'fled' if self=='flee'
     return 'won' if self=='win'
     return 'got' if self=='get'
     return 'sang' if self=='sing'
@@ -132,6 +138,7 @@ class String
     return 'lost' if self=='lose'
     return 'held' if self=='hold'
     return 'built' if self=='build'
+    return 'rebuilt' if self=='rebuild'
     return 'spoke' if self=='speak'
     if self.match(' ')
       [first_word.ed, last_words].join(' ')
@@ -219,7 +226,7 @@ class String
     end
   end
   def an
-    %w{a e i o u}.include?(self.first) ? 'an' : 'a'
+    %w{a e i o u}.include?(self.first.downcase) ? 'an' : 'a'
   end
   def some
     if self.match(' ')

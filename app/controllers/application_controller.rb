@@ -5,22 +5,19 @@ class ApplicationController < ActionController::Base
 
   helper CookieHelper
 
+  #FIXME want to set it once in production but on every request in development.
   def reload_words
     Rails.logger.debug "accessing file system"
     @words = YAML.load_file('config/words.yml')
   end
   def get_words
-    #FIXME want to set it once in production but on every request in development.
+    Rails.logger.debug "getting words"
     @words || reload_words
   end
 
-  def get_mine
-    Rails.logger.debug "accessing file system"
-    @words = YAML.load_file('config/my_words.yml')
-  end
-
+  SETTINGS = %w{colors MBTI trigger reaction my_words}
   def hide
-    %w{colors MBTI general specific}.each do |setting|
+    SETTINGS.each do |setting|
       if params[setting] == '0'
         cookies[setting] = 'hide'
       else

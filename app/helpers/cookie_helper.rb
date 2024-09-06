@@ -20,32 +20,23 @@ module CookieHelper
   end
 
   def phrase(behavior)
-    symbolic = cookies['MBTI'].present? ? nil : behavior.mbti.colon
-    general = cookies['general'].present? ? nil : behavior.name
-    specific = if cookies['specific'].present?
-        nil
-      else
-        my_word = cookies[behavior.mbti]
-        if my_word
-          my_word.wrap
-        else
-          @words[behavior.mbti].wrap
-        end
-      end
-    words = [symbolic, general, specific].compact
+    symbolic = cookies['MBTI'].present? ? nil : behavior.mbti
+    trigger = cookies['trigger'].present? ? nil : behavior.problem
+    reaction = cookies['reaction'].present? ? nil : behavior.drive
+    my_words = cookies['my_words'].present? ? nil : cookies[behavior.mbti] || @words[behavior.mbti]
+
+    words = [symbolic, trigger, reaction, my_words].compact
     case words.length
     when 0
       'respond'
     when 1
-      words.first.unwrap.unpunctuate
+      words.first
     when 2
-      if words.second.wrapped?
-        [words.first.unpunctuate, words.second].to_phrase
-      else
-        [words.first, words.second].to_phrase
-      end
+      [words.first.colon, words.second].to_phrase
     when 3
-      [words.first, words.second, words.third].to_phrase
+      [words.first.colon, words.second, words.third.wrap].to_phrase
+    when 4
+      [words.first.colon, words.second, '=>', words.third, words.fourth.wrap].to_phrase
     end
   end
 

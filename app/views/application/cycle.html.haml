@@ -1,30 +1,39 @@
 - content_for(:title, 'The Cycle')
 
-%table
-  %tr
-    %td{class: Quadrant.ep.css}=Quadrant.ep.cycle_name
-    %td &rArr;
-    %td{class: Quadrant.ej.css}=Quadrant.ej.cycle_name
-  %tr
-    %td &uArr;
-    %td &orarr;
-    %td &dArr;
-  %tr
-    %td{class: Quadrant.ip.css}=Quadrant.ip.cycle_name
-    %td &lArr;
-    %td{class: Quadrant.ij.css}=Quadrant.ij.cycle_name
-
 %p
-  BipolarType asserts that people who are bipolar are very sensitive to
+  BipolarType asserts that people who are bipolar are more sensitive to
   =link_to 'zeitgebers', 'https://en.wikipedia.org/wiki/Zeitgeber', class: 'external'
   such as
   =link_to 'light', 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7615859/', class: 'external'
-  and thus have strong biological cycles. These cycles make it difficult to ignore which phase you are in and do the opposite.
+  and thus are more in sync with their internal clock than they are with the clock on the wall.
+%p The more congruent the five cycles &mdash; your hour, day, week, month, and year &mdash; the more insistent the internal clock. The more out of sync your internal signal is from the external one, the worse the symptoms of mania or depression.
+
+%table
+
+  %tr
+    %td
+    %td
+      %h3=Quadrant.ep.name
+      %div{class: Quadrant.ep.css}=Quadrant.ep.times.break
+    %td=link_to Response.e.name.break_before_wrap, 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
+    %td
+      %h3=Quadrant.ej.name
+      %div{class: Quadrant.ej.css}=Quadrant.ej.times.break
+    %td
 
 
-%p Mania is being unable to sleep at night because the full moon is filtering in through your curtains and the  clock inside you is <em>insisting</em> that it is time to start the next cycle even though the clock sitting on your nightstand insists that it is still the end of the last cycle and you should be asleep along with everyone else.
-%p Similarly, depression is the clock inside you insisting it is still the end of the last cycle because it is an overcast morning in winter and you haven&rsquo;t turned on the lights yet, whereas the clock in your office insists it is time to start the new cycle.
+  %tr
+    %td=link_to Attitude.p.name.break_before_wrap, 'https://en.wikipedia.org/wiki/Herbivore', class: 'external'
+    %td.middle{colspan:3} &orarr;
+    %td=link_to Attitude.j.name.break_before_wrap, 'https://en.wikipedia.org/wiki/Carnivore', class: 'external'
 
-%p The more congruent the cycles, the stronger the insistence. For example, if it is early in the day, early in the week, early in the month, early in the year, <em>and</em> early in your life, the cycles will converge and you will wake up and stay up. No matter what the clock says.
-%p But if it is early in the day, but late in the week and month and you are in the middle of the year and your life, you will find it much easier to look at the external clock and decide whether to get up or go back to sleep based on that rather than your internal clock which doesn&rsquo;t currently have a strong opinion.
-
+  %tr
+    %td
+    %td
+      %div{class: Quadrant.ip.css}=Quadrant.ip.times.break
+      %h3=Quadrant.ip.name
+    %td.bottom=link_to Response.i.name.break_before_wrap, 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'
+    %td
+      %div{class: Quadrant.ij.css}=Quadrant.ij.times.break
+      %h3=Quadrant.ij.name
+    %td

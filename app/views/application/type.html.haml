@@ -3,28 +3,19 @@
   %h1=@title
 %table
   %caption
-    %h2 Do
+    %h2 Advice
   -@type.solutions.in_groups_of(2).each do |row|
     %tr
       -row.each do |behavior|
         =td behavior, 'depends'
-%table
-  %caption
-    %h2 And
-  -@type.solutions.map(&:flip).sort.in_groups_of(2).each do |row|
-    %tr
-      -row.each do |behavior|
-        =td behavior, 'depends'
-
 
 %table
   %caption
     %h2 Longer Advice
-    %p.left If you are bipolar you are unbalanced. Since you cannot balance yourself #{Response.shorts.join('-to-').downcase}, try balancing yourself #{Attitude.shorts.join('-to-').downcase}.
-  -@type.solutions.in_groups_of(2).each do |row|
+    %p.left Since you cannot balance yourself between #{Response::PHRASE.amp.downcase}, try balancing yourself between #{Attitude::NOUN.amp.downcase}.
+
+  -@type.problems.in_groups_of(2).each do |row|
     %tr
-      -row.reverse.each do |behavior|
+      -row.each do |behavior|
         %td.four_border
-          %h3 Excess #{behavior.quadrant.flop.short.ing}
-          =render 'problem', behavior: behavior.flop
-          =render 'solution', behavior: behavior
+          %h3=span behavior

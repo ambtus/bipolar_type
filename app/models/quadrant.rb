@@ -1,34 +1,41 @@
 class Quadrant
 
-  VERBS = %w{Flee Fight Digest Rest}
+  MBTI = %w{EP EJ IP IJ}
+  VERB = %w{flee fight digest rest}
+  CHANGE = %w{lose strain gain heal}
+  CSS = %w{yellow orange green violet}
+  ORDINAL = %w{second third first fourth}
+  GOAL = %w{escape win refuel recover}
+  STRESSED = %w{afraid angry hungry worn\ out}
+  WHICH = %w{frightening irritating appealing rewarding}
+
+  TIME = %w{noon afternoon morning night}
+  DAY = %w{wednesday friday monday weekend}
+  MOON = %w{full waning waxing new}
+  SEASON = %w{summer fall spring winter}
+  AGE = %w{adolescent adult child elder}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
   alias path :mbti
+  alias inspect :mbti
 
-  def index; ALL.index self; end
+  ALL = MBTI.collect {|mbti| self.new mbti}
+  MBTI.each_with_index do |mbti, index|
+    define_singleton_method(mbti) {ALL[index]}
+    define_singleton_method(mbti.downcase) {ALL[index]}
+  end
+  def index; MBTI.index @mbti; end
   def <=>(other); self.index <=> other.index; end
-  def flip; Quadrant.find(pair.map(&:flip)); end
-  def flop; Quadrant.find(pair.map(&:flop)); end
-  def opposite; flip.flop; end
 
-  def +(realm); Behavior.find([self, realm]); end
-  def behaviors; Behavior.all.select{|b| b.quadrant == self}; end
-
-  ALL = Response::MBTI.collect do |response|
-          Attitude::MBTI.collect do |attitude|
-            self.new(response+attitude)
-          end
-        end.flatten
-  MBTI = ALL.map(&:mbti)
+  def response; Response.send(mbti.first); end
+  def attitude; Attitude.send(mbti.second); end
+  def pair; [response, attitude]; end
 
   class << self
-    def verbs; VERBS; end
-    def titles; ALL.map(&:title); end
-    def names; ALL.map(&:name); end
+    def linear; ALL.values_at(2,0,1,3); end
     def all; ALL; end
     def each(&block);ALL.each(&block); end
-    def linear; ALL.values_at(2,0,1,3); end
     def find(thing)
       if thing.is_a? String
         self.send(thing)
@@ -38,32 +45,39 @@ class Quadrant
     end
   end
 
-  def short; VERBS[index]; end
-  def verb; short.downcase; end
-  alias css :verb
-  def name; pair.map(&:name).wbr; end
-  def words; [response.verb, attitude.noun]; end
-  def phrase; [short, words.to_phrase].and.downcase; end
-  def title; words.wbr; end
-  def symbolic_name; [mbti.colon, phrase].to_safe_phrase; end
-  def clean_title; words.join; end
-  def inspect; [mbti.colon, clean_title].to_phrase; end
+  def flip; Quadrant.find(pair.map(&:flip)); end
+  def flop; Quadrant.find(pair.map(&:flop)); end
+  def opposite; flip.flop; end
 
-  ALL.each_with_index do |instance, index|
-    %w{ verb mbti }.each do |thing|
-      define_singleton_method(instance.send(thing)) {ALL[index]}
-      define_singleton_method(instance.send(thing).downcase) {ALL[index]}
+  def +(realm); Behavior.find([self, realm]); end
+  def behaviors; Behavior.all.select{|b| b.quadrant == self}; end
+
+  constants.each do |constant|
+    define_method(constant.downcase) {self.class.const_get(constant)[index]}
+    if constant.downcase.to_s.plural?
+      define_method(constant.downcase.to_s.singularize) {self.class.const_get(constant)[index].singularize}
     end
   end
 
-  def response; Response.send(mbti.first); end
-  def attitude; Attitude.send(mbti.second); end
-  def pair; [response, attitude]; end
+  def linear_index; self.class.linear.index(self); end
+  def next_phase; self.class.linear[linear_index + 1] || self.class.linear.first; end
 
-  def episode; [response.state.capitalize, attitude.noun].wbr; end
 
-  def stressed; %w{afraid angry empty worn\ out}[index]; end
+  def times; [time, day, moon + ' moon', season, age].map(&:titleize); end
 
+  def rebalance; [change, assets].to_phrase; end
+  def targets; index < 2 ? 'nouns' : 'transients' ; end
+
+  def adjective; response.adjective; end
+  alias sick :adjective
+  def noun; attitude.noun; end
+  def phrase; [response.verb, noun].to_phrase; end
+
+  def problem; [adjective, noun].to_phrase; end
+  def drive; [verb, 'to', goal].to_phrase; end
+
+  def name; [problem.to_wbr.colon, drive.to_wbr].to_safe_phrase; end
+  def symbolic_name; [mbti.colon, problem.to_wbr, drive.to_wbr.wrap].to_safe_phrase; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if response.respond_to?(meth)
@@ -74,23 +88,5 @@ class Quadrant
       super(meth)
     end
   end
-
-
-  def goal; %w{escape win energize recover}[index]; end
-  def bipolar; response.adjective; end
-
-
-  def weekly; %w{Wednesday Friday Monday weekend}[index]; end
-  def daily; %w{day afternoon morning evening}[index]; end
-  def yearly; %w{summer fall spring winter}[index]; end
-  def period; [yearly, daily].to_phrase; end
-
-  def position; %w{early late the\ start the\ end}[index]; end
-  def preposition; external? ? 'in' : 'of'; end
-  def cycle_name; [position.capitalize, preposition, 'the cycle'].to_phrase; end
-
-  def relative; index.even? ? 'early' : 'late'; end
-
-
 
 end

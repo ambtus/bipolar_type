@@ -1,0 +1,30 @@
+- content_for(:title, 'The Phases')
+
+-Quadrant.linear.each do |quadrant|
+  %h2{class: quadrant.css}=quadrant.symbolic_name
+  %p
+    The clock on the wall says it is time for
+    =quadrant.response.flip.phrase.colon
+    %em=quadrant.flip.interjection.bang
+    Your internal clock insists it is time to
+    =quadrant.drive
+    and
+    =quadrant.phrase.colon
+    %em=quadrant.interjection.bang
+  %p
+    You could take
+    =quadrant.flip.drugs
+    to override your internal clock and force yourself to
+    =quadrant.flip.interjection.period
+    Or you could just let yourself
+    =quadrant.change
+    the
+    =quadrant.noun.pluralize
+    you need to
+    =quadrant.change.period
+    Which is only possible if you know
+    %em which
+    =quadrant.noun.pluralize
+    you need to
+    =quadrant.change.period
+

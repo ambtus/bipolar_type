@@ -1,28 +1,30 @@
-- content_for(:title, @title)
-%h2=@title
+-title = @quadrant.ordinal.capitalize + ' Imbalance'
+- content_for(:title, title)
+%h2=title
 
--case @answer.number
-  -when 1, 2
-    -realm = @answer.number==1 ? Realm.s : Realm.t
-    %table
-      -Quadrant.all.in_groups_of(2) do |row|
-        %tr
-          -row.each do |quadrant|
-            %td.four_border
-              -behavior = quadrant + realm
-              %h2=link_to_if @answer.free?(behavior), behavior.episode, answer_path(@answer.next(behavior.path))
-              =render 'problem', behavior: behavior
+%p
+  Your #{@quadrant.ordinal} imbalance arose
+  -if @answer.number > 1
+    (will arise)
+  sometime during your #{@quadrant.age.downcase.to_noun} in the realm in which you are the least
+  =@quadrant.flip.stressed.period
+  The imbalance
+  -if @answer.number < 4
+    cleared up
+    -if @answer.number > 1
+      (will clear up)
+    during #{@quadrant.next_phase.age.to_noun}, but
+  reoccurs during #{@quadrant.episode}.
 
-  -when 3
-    %table
-      -@answer.pair.each do |pair|
-        %tr
-          %td{colspan: 2}
-            %h2
-              =link_to answer_path(@answer.next(pair.map(&:path).join)) do
-                =pair.first.episode
-                %br &
-                =pair.second.episode
-        %tr
-          %td.four_border=render 'problem', behavior: pair.first
-          %td.four_border=render 'problem', behavior: pair.second
+-@quadrant.behaviors.each do |behavior|
+  %p
+    =link_to_if @answer.free?(behavior), behavior.mbti, answer_path(@answer.next(behavior))
+    %em=behavior.flip.targets
+    are the least
+    =behavior.flip.which
+
+-if @answer.number > 2
+  %p
+    If you would rather choose something that is not available, you will have to
+    =link_to 'go back', answer_path(Answer.first_path)
+    and try again.

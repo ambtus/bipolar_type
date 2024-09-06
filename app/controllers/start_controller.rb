@@ -3,11 +3,9 @@ class StartController < ApplicationController
   def words
     get_words
     if params[:commit] == 'Clear All Cookies'
-      cookies.clear
+      Behavior.mbtis.each {|key| cookies.delete(key)}
       redirect_to word_path and return
-    elsif params[:commit] == 'Try Mine'
-      get_mine
-    elsif params[:commit] == 'Save Cookies'
+    elsif params[:commit] == 'Change Words'
       dups = []
       Behavior.mbtis.each do |key|
         if @words[key] == params[key]
@@ -15,7 +13,8 @@ class StartController < ApplicationController
         end
         if params[key].blank?
           dups << key
-          cookies.delete(params[key])
+          Rails.logger.debug "removing #{key}"
+          cookies.delete(key)
         end
       end
       Rails.logger.debug "dups: #{dups}"

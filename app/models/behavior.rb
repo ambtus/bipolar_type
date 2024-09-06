@@ -9,8 +9,8 @@ class Behavior
   def pair; [@quadrant, @realm]; end
   def triplet; [@quadrant.response, @realm, @quadrant.attitude]; end
   def mbti; triplet.map(&:mbti).join; end
-  alias inspect :mbti
   alias path :mbti
+  alias inspect :mbti
 
   def <=>(other); quadrant <=> other.quadrant; end
 
@@ -44,24 +44,18 @@ class Behavior
     end
   end
 
-
   def flip; Behavior.find(triplet.map(&:flip)); end
   def flop; Behavior.find(triplet.map(&:flop)); end
   def opposite; flip.flop; end
 
-  def names;triplet.map(&:name); end
-  def name; names.wbr; end
-  def clear_name; names.join; end
-  def phrase; names.to_phrase.downcase; end
-  def symbolic_name; [mbti.colon, name].to_safe_phrase; end
-  def problems; ['Excess', realm.name, quadrant.short]; end
-  def problem; problems.wbr; end
-  def symbolic_problem; [mbti.colon, problem].to_safe_phrase; end
-  def episode; [response.state.capitalize, realm.name, attitude.noun].wbr; end
-  def danger; quadrant.danger; end
-  def stressed;[realm.adverb, quadrant.stressed].to_phrase; end
+  def targets; realm.send(quadrant.targets); end
+  def problem; [which, targets].to_phrase; end
+  def accept; realm.send(response.flip.verb); end
+  def drive; [accept, attitude.adverb].to_phrase; end
+  def rebalance; [change, realm.send(quadrant.assets)].to_phrase; end
 
-  def do_something; realm.send(quadrant.do_something); end
+  def name; [problem.to_wbr.colon, drive.to_wbr].to_safe_phrase; end
+  def symbolic_name; [mbti.colon, problem.to_wbr, drive.to_wbr.wrap].to_safe_phrase; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if quadrant.respond_to?(meth)
