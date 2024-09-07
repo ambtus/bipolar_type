@@ -1,15 +1,18 @@
-class Quadrant
+class Phase
 
   MBTI = %w{EP EJ IP IJ}
-  VERB = %w{flee fight digest rest}
-  CHANGE = %w{lose strain gain heal}
+  REACT = %w{flee fight digest rest}
+  GOAL = %w{escape win fuel heal}
+  CHANGE = %w{lose strain gain build}
+  STRESSED = %w{afraid angry hungry worn\ out}
+  TRIGGERY = %w{frightening irritating safe my}
+  SIGNAL = %w{hunger pain fear anger}
+  PROBLEM = %w{skinny musclebound fat weak}
+
   CSS = %w{yellow orange green violet}
   ORDINAL = %w{second third first fourth}
-  GOAL = %w{escape win refuel recover}
-  STRESSED = %w{afraid angry hungry worn\ out}
-  WHICH = %w{frightening irritating appealing rewarding}
 
-  TIME = %w{noon afternoon morning night}
+  TIME = %w{midday afternoon morning evening}
   DAY = %w{wednesday friday monday weekend}
   MOON = %w{full waning waxing new}
   SEASON = %w{summer fall spring winter}
@@ -35,7 +38,7 @@ class Quadrant
   class << self
     def linear; ALL.values_at(2,0,1,3); end
     def all; ALL; end
-    def each(&block);ALL.each(&block); end
+    def each(&block); ALL.each(&block); end
     def find(thing)
       if thing.is_a? String
         self.send(thing)
@@ -45,12 +48,12 @@ class Quadrant
     end
   end
 
-  def flip; Quadrant.find(pair.map(&:flip)); end
-  def flop; Quadrant.find(pair.map(&:flop)); end
+  def flip; Phase.find(pair.map(&:flip)); end
+  def flop; Phase.find(pair.map(&:flop)); end
   def opposite; flip.flop; end
 
   def +(realm); Behavior.find([self, realm]); end
-  def behaviors; Behavior.all.select{|b| b.quadrant == self}; end
+  def behaviors; Behavior.all.select{|b| b.phase == self}; end
 
   constants.each do |constant|
     define_method(constant.downcase) {self.class.const_get(constant)[index]}
@@ -60,24 +63,18 @@ class Quadrant
   end
 
   def linear_index; self.class.linear.index(self); end
-  def next_phase; self.class.linear[linear_index + 1] || self.class.linear.first; end
-
+  def next; self.class.linear[linear_index + 1] || self.class.linear.first; end
+  def previous; self.class.linear[linear_index - 1]; end
 
   def times; [time, day, moon + ' moon', season, age].map(&:titleize); end
 
-  def rebalance; [change, assets].to_phrase; end
-  def targets; index < 2 ? 'nouns' : 'transients' ; end
-
-  def adjective; response.adjective; end
-  alias sick :adjective
   def noun; attitude.noun; end
-  def phrase; [response.verb, noun].to_phrase; end
+  def name; [sick, noun].map(&:capitalize).wbr; end
+  def cycle_name; [mbti.colon, name, react.wrap].to_safe_phrase; end
+  def verb; response.verb; end
+  def consequence; [change, noun].to_phrase; end
 
-  def problem; [adjective, noun].to_phrase; end
-  def drive; [verb, 'to', goal].to_phrase; end
-
-  def name; [problem.to_wbr.colon, drive.to_wbr].to_safe_phrase; end
-  def symbolic_name; [mbti.colon, problem.to_wbr, drive.to_wbr.wrap].to_safe_phrase; end
+  def symbolic_name; [mbti.colon, react, '=>', goal, consequence.wrap].to_safe_phrase; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if response.respond_to?(meth)

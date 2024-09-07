@@ -3,7 +3,7 @@
 %table
   %tr
     %th
-    -Quadrant.linear.each_with_index do |q, index|
+    -Phase.linear.each_with_index do |q, index|
       %th=link_to_unless index == @qi, "sort by #{q.mbti}", types_path(sort: q.mbti)
   -@types.each_with_index do |type, index|
     %tr

@@ -9,7 +9,7 @@
 
   %body
     %p=render "layouts/links"
-    -if controller.controller_name.match(/type/)
+    -unless controller.controller_name.match(/start/)
       %div.right=render 'layouts/settings_form'
     =yield
     %p=render "layouts/links"

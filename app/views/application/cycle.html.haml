@@ -6,34 +6,37 @@
   such as
   =link_to 'light', 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7615859/', class: 'external'
   and thus are more in sync with their internal clock than they are with the clock on the wall.
-%p The more congruent the five cycles &mdash; your hour, day, week, month, and year &mdash; the more insistent the internal clock. The more out of sync your internal signal is from the external one, the worse the symptoms of mania or depression.
+%p The more congruent the five cycles &mdash; the daily, weekly, monthly, yearly, and life cycles &mdash; the more insistent the internal clock.
+%p The more out of sync your internal clock is from the external clock, the worse the symptoms of mania or depression.
 
 %table
+  %tr
+    %td{colspan:6}=link_to Response.e.cycle_name, 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
 
   %tr
     %td
+    %td.bottom{colspan:2}
+      %h3=Phase.ep.cycle_name
+      %div{class: Phase.ep.css}=Phase.ep.times.break
+    %td.bottom{colspan:2}
+      %h3=Phase.ej.cycle_name
+      %div{class: Phase.ej.css}=Phase.ej.times.break
     %td
-      %h3=Quadrant.ep.name
-      %div{class: Quadrant.ep.css}=Quadrant.ep.times.break
-    %td=link_to Response.e.name.break_before_wrap, 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
-    %td
-      %h3=Quadrant.ej.name
-      %div{class: Quadrant.ej.css}=Quadrant.ej.times.break
-    %td
-
 
   %tr
-    %td=link_to Attitude.p.name.break_before_wrap, 'https://en.wikipedia.org/wiki/Herbivore', class: 'external'
-    %td.middle{colspan:3} &orarr;
-    %td=link_to Attitude.j.name.break_before_wrap, 'https://en.wikipedia.org/wiki/Carnivore', class: 'external'
+    %td=link_to Attitude.p.cycle_name, 'https://en.wikipedia.org/wiki/Herbivore', class: 'external'
+    %td.middle{colspan:4}
+    %td=link_to Attitude.j.cycle_name, 'https://en.wikipedia.org/wiki/Carnivore', class: 'external'
 
   %tr
     %td
+    %td{colspan:2}
+      %div{class: Phase.ip.css}=Phase.ip.times.break
+      %h3=Phase.ip.cycle_name
+    %td{colspan:2}
+      %div{class: Phase.ij.css}=Phase.ij.times.break
+      %h3=Phase.ij.cycle_name
     %td
-      %div{class: Quadrant.ip.css}=Quadrant.ip.times.break
-      %h3=Quadrant.ip.name
-    %td.bottom=link_to Response.i.name.break_before_wrap, 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'
-    %td
-      %div{class: Quadrant.ij.css}=Quadrant.ij.times.break
-      %h3=Quadrant.ij.name
-    %td
+
+  %tr
+    %td{colspan:6}=link_to Response.i.cycle_name, 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'

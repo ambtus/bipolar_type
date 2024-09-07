@@ -1,11 +1,17 @@
 class StartController < ApplicationController
 
-  def words
-    get_words
-    if params[:commit] == 'Clear All Cookies'
+  def behaviors
+    if params[:commit] == 'Reset All Examples'
       Behavior.mbtis.each {|key| cookies.delete(key)}
-      redirect_to word_path and return
-    elsif params[:commit] == 'Change Words'
+      Rails.logger.debug "cookies: #{cookies.to_h}"
+      redirect_to behavior_path and return
+    elsif params[:commit] == 'Load Examples'
+      get_my_words
+      Behavior.mbtis.each {|key| cookies[key] = @words[key]}
+      Rails.logger.debug "cookies: #{cookies.to_h}"
+      redirect_to behavior_path and return
+    elsif params[:commit] == 'Save Examples'
+      get_words
       dups = []
       Behavior.mbtis.each do |key|
         if @words[key] == params[key]
@@ -20,8 +26,9 @@ class StartController < ApplicationController
       Rails.logger.debug "dups: #{dups}"
       new = params.without('commit').without(*dups)
       Rails.logger.debug "new: #{new}"
-      redirect_to word_path(new.permit(Behavior.mbtis)) and return
+      redirect_to behavior_path(new.permit(Behavior.mbtis)) and return
     else
+      get_words
       Behavior.mbtis.each do |key|
         cookies[key] = params[key] unless params[key].blank?
       end

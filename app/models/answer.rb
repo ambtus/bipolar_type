@@ -14,7 +14,7 @@ class Answer
 
   def number; @question.last.to_i ; end
   def index; number - 1; end
-  def quadrant; Quadrant.linear[index]; end
+  def phase; Phase.linear[index]; end
 
   def free; Realm.all - realms; end
   def free?(behavior); free.include?(behavior.realm); end

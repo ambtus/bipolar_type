@@ -1,0 +1,31 @@
+- content_for(:title, 'The Behaviors')
+
+%p The format of a behavior is in the form:
+%div{class: 'blue'} MBTI: trigger => response (consequence) [example]
+%p On later pages you will be able to change the format to hide anything you are not interested in or that you find distracting or irritating.
+%p On this page you can change the examples to be anything that you associate with that behavior.
+
+= form_with method: :get do |form|
+  %table
+    -Phase.all.in_groups_of(2) do |row|
+      %tr
+        -row.each do |phase|
+          %td.four_border
+            %h3{class: phase.css}=phase.symbolic_name
+            -Realm.each do |realm|
+              -behavior = realm + phase
+              -cookie = cookies[behavior.mbti] || @words[behavior.mbti]
+              .left
+                =behavior.symbolic_name
+                =form.text_field behavior.mbti, value: cookie, maxlength: 80, size: 15
+    %tr
+      %td{colspan:2}=form.submit 'Save Examples'
+
+  %p If you want to save your changes between browser sessions, you will need to bookmark this page immediately after you save the examples (your changes will be in the URL).
+  %p
+    You can reset a single example by saving a blank entry or you can
+    =form.submit 'Reset All Examples'
+
+  %p
+    If you want to see my examples, you can
+    =form.submit 'Load Examples'

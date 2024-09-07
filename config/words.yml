@@ -1,17 +1,17 @@
 ---
-IFP: music
-INP: colors
-ISP: carbs
-ITP: wages
-IFJ: stories
-INJ: results
+IFP: intonation
+INP: lights, color, action
+ISP: simple carbs
+ITP: goods & services
+IFJ: meaning
+INJ: shapes & patterns
 ISJ: protein
-ITJ: investments
-EFP: emote
-ENP: guess
-ESP: walk
+ITJ: regular income
+EFP: express emotions
+ENP: synthesize facts
+ESP: run
 ETP: pay cash
-EFJ: write
-ENJ: theorize
-ESJ: clean
-ETJ: borrow
+EFJ: use language
+ENJ: use logic
+ESJ: use muscle
+ETJ: use credit

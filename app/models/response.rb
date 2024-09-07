@@ -1,13 +1,12 @@
 class Response
 
   MBTI = %w{E I}
-  PHRASE = %w{fight-or-flight rest-and-digest}
-  ADJECTIVE = %w{manic depressed}
-  EPISODE = %w{mania depression}
-  NOUN = %w{loss gain}
-  VERB = %w{use get}
+  PHRASE = %w{flee&flight rest&digest}
+  SICK = %w{manic depressed}
+  CHANGE = %w{rev\ up calm\ down}
   DRUGS = %w{stimulants sedatives}
-  INTERJECTION = %w{rev\ up calm\ down}
+  VERB = %w{use get}
+  PREP = %w{with for}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -24,14 +23,14 @@ class Response
 
   class << self
     def all; ALL; end
-    def each(&block);ALL.each(&block); end
+    def each(&block); ALL.each(&block); end
   end
 
   def flip; ALL.without(self).first; end
   def flop; self; end
   def opposite; flip.flop; end
 
-  def +(attitude); Quadrant.find([attitude,self]); end
+  def +(attitude); Phase.find([attitude,self]); end
 
   constants.each do |constant|
     define_method(constant.downcase) {self.class.const_get(constant)[index]}
@@ -40,10 +39,6 @@ class Response
     end
   end
 
-  def external?; index == 0; end
-
-    def name; [adjective.capitalize.colon, phrase].to_phrase; end
-
-  def symbolic_name; [mbti.colon, adjective.capitalize, phrase.wrap].to_phrase; end
+  def cycle_name; [mbti.colon, sick.capitalize, phrase.wrap].to_phrase; end
 
 end

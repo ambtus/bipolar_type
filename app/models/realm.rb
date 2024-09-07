@@ -3,11 +3,8 @@ class Realm
   MBTI = %w{F S T N}
   ADJECTIVE = %w{affective physical financial mental}
   NOUNS = %w{people places things ideas}
-  TRANSIENTS = %w{whys foods shelters hows}
-  RESERVES = %w{attachments fat savings knowledge}
-  POWER = %w{vocabulary muscles credit rules}
-  USE = %w{listen eat collect learn}
-  GET = %w{communicate move spend decide}
+  USE = %w{listen eat sell learn}
+  GET = %w{communicate move buy decide}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -24,14 +21,15 @@ class Realm
 
   class << self
     def all; ALL; end
-    def each(&block);ALL.each(&block); end
+    def each(&block); ALL.each(&block); end
   end
 
   def flip; self; end
   alias flop :flip
   def opposite; flip.flop; end
 
-  def +(quadrant); Behavior.find([quadrant, self]); end
+  def +(phase); Behavior.find([phase,self]); end
+  def behaviors; Behavior.all.select{|b| b.realm == self}; end
 
   constants.each do |constant|
     define_method(constant.downcase) {self.class.const_get(constant)[index]}
@@ -40,10 +38,6 @@ class Realm
     end
   end
 
-  def adverb; adjective.ly; end
-
-  def phrase; [nouns, 'and their', transients].to_phrase; end
-  def assets; [adjective, 'strength & energy'].to_phrase; end
-  def symbolic_name; [mbti.colon, assets.capitalize, phrase.wrap].to_phrase; end
+  def symbolic_name; [mbti.colon, nouns.capitalize, adjective.wrap].to_phrase; end
 
 end

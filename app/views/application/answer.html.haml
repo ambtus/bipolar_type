@@ -1,27 +1,16 @@
--title = @quadrant.ordinal.capitalize + ' Imbalance'
+-title = [@phase.age.to_noun.capitalize.colon, @phase.consequence].to_phrase
 - content_for(:title, title)
 %h2=title
 
 %p
-  Your #{@quadrant.ordinal} imbalance arose
-  -if @answer.number > 1
-    (will arise)
-  sometime during your #{@quadrant.age.downcase.to_noun} in the realm in which you are the least
-  =@quadrant.flip.stressed.period
-  The imbalance
+  Your #{@phase.problem.dquote} imbalance is worst as #{@phase.age.an}. The imbalance
   -if @answer.number < 4
-    cleared up
-    -if @answer.number > 1
-      (will clear up)
-    during #{@quadrant.next_phase.age.to_noun}, but
-  reoccurs during #{@quadrant.episode}.
-
--@quadrant.behaviors.each do |behavior|
+    rebalances during #{@phase.next.age.to_noun} but
+  can reoccur whenever you are #{@phase.sick} in the #{@phase.season}.
+-@phase.behaviors.each do |behavior|
   %p
-    =link_to_if @answer.free?(behavior), behavior.mbti, answer_path(@answer.next(behavior))
-    %em=behavior.flip.targets
-    are the least
-    =behavior.flip.which
+    =link_to_if @answer.free?(behavior), span(behavior), answer_path(@answer.next(behavior))
+
 
 -if @answer.number > 2
   %p

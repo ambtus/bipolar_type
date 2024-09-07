@@ -6,9 +6,9 @@ class Type
   end
   attr_reader :realm_string, :realms
 
-  def dominants; realms.add(Quadrant.linear); end
-  def name; dominants.map(&:mbti).join('•'); end
-  alias inspect :name
+  def dominants; realms.add(Phase.linear); end
+  def symbolic_name; dominants.map(&:mbti).join('•'); end
+  alias inspect :symbolic_name
 
   def problems; dominants.values_at(1,2,0,3); end
   def solutions; problems.map(&:flop).sort; end

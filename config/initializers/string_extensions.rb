@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean to_wbr n first_word last_words last_word parenthesize wrap unwrap wrapped? comma period semi colon bang unpunctuate and_to_or is_mbti? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr n first_word last_words last_word quote dquote sqwrap parenthesize wrap unwrap wrapped? comma period semi colon bang unpunctuate and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -20,6 +20,9 @@ class String
   def last_word; words.last; end
   def first_words; words.first(n).to_phrase; end
   def last_words; words.last(n).to_phrase; end
+  def quote; "‘#{self}’"; end
+  def dquote; "“#{self}”"; end
+  def sqwrap; "[#{self}]"; end
   def parenthesize; "(#{self})"; end
   alias wrap :parenthesize
   def wrapped?; self[0] == '(' && self.last == ')'; end
@@ -69,23 +72,28 @@ class String
     end
   end
 
-  NOUNS = %w{anorexia depression mania energy strength obesity goals emptiness hyperactivity weakness calories credit information emotions childhood adolescence adulthood old\ age}
-  ADJECTIVES = %w{anorexic depressed manic energetic strong obese goal-oriented empty hyperactive weak caloric indebted informative emotional child adolescent adult elder}
+  NOUNS = %w{anorexia depression mania energy strength obesity
+    goals emptiness hyperactivity weakness calories credit
+    information emotions childhood adolescence adulthood old\ age
+    child adolescent adult elder}
+  ADJECTIVES = %w{anorexic depressed manic energetic strong obese
+    goal-oriented empty hyperactive weak caloric indebted
+    informative emotional child adolescent adult elder
+    childish adolescent mature wise}
   def noun?; NOUNS.include?(self); end
 
 
+  def capitalized?; self.first != self.first.downcase; end
   def to_noun
-    is_upper = self.first != self.first.downcase
     index = ADJECTIVES.index(self.downcase)
     noun = index ? NOUNS[index] : "#{self.an} #{self} person"
-    is_upper ? noun.capitalize : noun
+    capitalized? ? noun.capitalize : noun
   end
 
   def to_adjective
-    is_upper = self.first != self.first.downcase
     index = NOUNS.index(self)
     adj = index ? ADJECTIVES[index] : "#{self}-like"
-    is_upper ? adj.capitalize : adj
+    capitalized? ? adj.capitalize : adj
   end
 
   def s
@@ -226,7 +234,8 @@ class String
     end
   end
   def an
-    %w{a e i o u}.include?(self.first.downcase) ? 'an' : 'a'
+    first =  %w{a e i o u}.include?(self.first.downcase) ? 'an' : 'a'
+    capitalized? ? "#{first.capitalized} #{self.downcase}" : "#{first} #{self}"
   end
   def some
     if self.match(' ')

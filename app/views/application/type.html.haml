@@ -1,6 +1,7 @@
-- content_for(:title, @title)
+-title = @type.symbolic_name
+- content_for(:title, title)
 .center
-  %h1=@title
+  %h1=title
 %table
   %caption
     %h2 Advice
@@ -12,7 +13,7 @@
 %table
   %caption
     %h2 Longer Advice
-    %p.left Since you cannot balance yourself between #{Response::PHRASE.amp.downcase}, try balancing yourself between #{Attitude::NOUN.amp.downcase}.
+    %p.left Since you cannot balance yourself between #{Response::SICK.amp.downcase}, try balancing yourself between #{Attitude::NOUN.amp.downcase}.
 
   -@type.problems.in_groups_of(2).each do |row|
     %tr

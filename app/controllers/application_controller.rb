@@ -14,8 +14,12 @@ class ApplicationController < ActionController::Base
     Rails.logger.debug "getting words"
     @words || reload_words
   end
+  def get_my_words
+    Rails.logger.debug "getting my words"
+    @words = YAML.load_file('config/my_words.yml')
+  end
 
-  SETTINGS = %w{colors MBTI trigger reaction my_words}
+  SETTINGS = %w{colors MBTI trigger response consequence example}
   def hide
     SETTINGS.each do |setting|
       if params[setting] == '0'
