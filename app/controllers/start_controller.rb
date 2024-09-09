@@ -4,12 +4,12 @@ class StartController < ApplicationController
     if params[:commit] == 'Reset All Examples'
       Behavior.mbtis.each {|key| cookies.delete(key)}
       Rails.logger.debug "cookies: #{cookies.to_h}"
-      redirect_to behavior_path and return
+      redirect_to behavior_path(anchor: 'form') and return
     elsif params[:commit] == 'Load Examples'
       get_my_words
       Behavior.mbtis.each {|key| cookies[key] = @words[key]}
       Rails.logger.debug "cookies: #{cookies.to_h}"
-      redirect_to behavior_path and return
+      redirect_to behavior_path(anchor: 'form') and return
     elsif params[:commit] == 'Save Examples'
       get_words
       dups = []
@@ -26,7 +26,7 @@ class StartController < ApplicationController
       Rails.logger.debug "dups: #{dups}"
       new = params.without('commit').without(*dups)
       Rails.logger.debug "new: #{new}"
-      redirect_to behavior_path(new.permit(Behavior.mbtis)) and return
+      redirect_to behavior_path(new.permit(Behavior.mbtis))+'#form' and return
     else
       get_words
       Behavior.mbtis.each do |key|

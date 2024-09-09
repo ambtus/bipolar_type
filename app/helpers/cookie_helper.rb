@@ -21,12 +21,12 @@ module CookieHelper
 
   def phrase(behavior)
     symbolic = cookies['MBTI'].present? ? nil : behavior.mbti
-    trigger = cookies['trigger'].present? ? nil : behavior.trigger
-    response = cookies['response'].present? ? nil : behavior.react
-    consequence = cookies['consequence'].present? ? nil : behavior.consequence
-    example = cookies['example'].present? ? nil : cookies[behavior.mbti] || @words[behavior.mbti]
+    trigger = cookies['triggers'].present? ? nil : behavior.trigger
+    response = cookies['responses'].present? ? nil : behavior.respond
+    action = cookies['actions'].present? ? nil : behavior.act
+    example = cookies['examples'].present? ? nil : cookies[behavior.mbti] || @words[behavior.mbti]
 
-    words = [symbolic, trigger, response, consequence, example].compact
+    words = [symbolic, trigger, response, action, example].compact
     case words.length
     when 0
       'respond'

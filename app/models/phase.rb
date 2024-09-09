@@ -1,12 +1,13 @@
 class Phase
 
   MBTI = %w{EP EJ IP IJ}
-  REACT = %w{flee fight digest rest}
-  GOAL = %w{escape win fuel heal}
-  CHANGE = %w{lose strain gain build}
-  STRESSED = %w{afraid angry hungry worn\ out}
+  TRIGGER = %w{fear anger appetite pain }
+  RESPOND= %w{escape win refuel recover}
+  EXAMPLE = %w{flee fight digest rest}
+
   TRIGGERY = %w{frightening irritating safe my}
-  SIGNAL = %w{hunger pain fear anger}
+  TRIGGERED = %w{afraid angry hungry worn\ out}
+  CHANGE = %w{burn use gain build}
   PROBLEM = %w{skinny musclebound fat weak}
 
   CSS = %w{yellow orange green violet}
@@ -31,9 +32,9 @@ class Phase
   def index; MBTI.index @mbti; end
   def <=>(other); self.index <=> other.index; end
 
-  def response; Response.send(mbti.first); end
+  def direction; Direction.send(mbti.first); end
   def attitude; Attitude.send(mbti.second); end
-  def pair; [response, attitude]; end
+  def pair; [direction, attitude]; end
 
   class << self
     def linear; ALL.values_at(2,0,1,3); end
@@ -66,19 +67,21 @@ class Phase
   def next; self.class.linear[linear_index + 1] || self.class.linear.first; end
   def previous; self.class.linear[linear_index - 1]; end
 
-  def times; [time, day, moon + ' moon', season, age].map(&:titleize); end
+  def week; "#{moon} moon".html_safe; end
+  def times; [time, day, week, season, age].map(&:titleize); end
 
+  def sick; direction.sick; end
   def noun; attitude.noun; end
-  def name; [sick, noun].map(&:capitalize).wbr; end
-  def cycle_name; [mbti.colon, name, react.wrap].to_safe_phrase; end
-  def verb; response.verb; end
-  def consequence; [change, noun].to_phrase; end
+  def act; [change, noun].to_phrase; end
 
-  def symbolic_name; [mbti.colon, react, '=>', goal, consequence.wrap].to_safe_phrase; end
+  def name; [sick, noun].map(&:capitalize).wbr; end
+  def cycle_name; [mbti.colon, name, example.wrap].to_safe_phrase; end
+
+  def symbolic_name; [mbti.colon, trigger, '=>', respond, act.wrap, example.sqwrap].to_safe_phrase; end
 
   def method_missing(meth, *args, **kwargs, &block)
-    if response.respond_to?(meth)
-      response.send(meth)
+    if direction.respond_to?(meth)
+      direction.send(meth)
     elsif attitude.respond_to?(meth)
       attitude.send(meth)
     else

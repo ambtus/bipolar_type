@@ -1,7 +1,7 @@
 class Attitude
 
   MBTI = %w{P J}
-  PHRASE = %w{digest&flee fight&rest}
+  PHRASE = %w{digest\ &\ flee fight\ &\ rest}
   NOUN = %w{energy strength}
   ASSETS = %w{reserves power}
 
@@ -27,7 +27,7 @@ class Attitude
   def flop; ALL.without(self).first; end
   def opposite; flip.flop; end
 
-  def +(response); Phase.find([response,self]); end
+  def +(direction); Phase.find([direction,self]); end
 
   constants.each do |constant|
     define_method(constant.downcase) {self.class.const_get(constant)[index]}

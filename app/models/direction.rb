@@ -1,7 +1,7 @@
-class Response
+class Direction
 
   MBTI = %w{E I}
-  PHRASE = %w{flee&flight rest&digest}
+  PHRASE = %w{flee\ &\ fight rest\ &\ digest}
   SICK = %w{manic depressed}
   CHANGE = %w{rev\ up calm\ down}
   DRUGS = %w{stimulants sedatives}

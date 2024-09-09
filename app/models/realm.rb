@@ -3,8 +3,10 @@ class Realm
   MBTI = %w{F S T N}
   ADJECTIVE = %w{affective physical financial mental}
   NOUNS = %w{people places things ideas}
-  USE = %w{listen eat sell learn}
-  GET = %w{communicate move buy decide}
+  GET = %w{listen eat sell learn}
+  GET_PREP = %w{to in \  about}
+  USE = %w{talk walk buy visualize}
+  USE_PREP = %w{to around \  \ }
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -29,7 +31,7 @@ class Realm
   def opposite; flip.flop; end
 
   def +(phase); Behavior.find([phase,self]); end
-  def behaviors; Behavior.all.select{|b| b.realm == self}; end
+  def behaviors; Phase.linear.add(self); end
 
   constants.each do |constant|
     define_method(constant.downcase) {self.class.const_get(constant)[index]}

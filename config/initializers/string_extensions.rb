@@ -38,6 +38,7 @@ class String
   def semi; self + ';'; end
   def colon; self + ':'; end
   def bang; self + '!'; end
+  def question; self + '?'; end
   def unpunctuate
     punctuations = %w{, . ; : !}
     if punctuations.include?(self.last)

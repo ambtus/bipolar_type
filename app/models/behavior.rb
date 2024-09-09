@@ -1,9 +1,9 @@
 class Behavior
 
-  MBTI = Response.all.collect do |response|
+  MBTI = Direction.all.collect do |direction|
           Realm::ALL.collect do |realm|
             Attitude::ALL.collect do |attitude|
-              [response, realm, attitude].map(&:mbti).join
+              [direction, realm, attitude].map(&:mbti).join
             end
           end
         end.flatten
@@ -21,12 +21,12 @@ class Behavior
   def index; MBTI.index @mbti; end
   def <=>(other); phase <=> other.phase; end
 
-  def response; Response.send(mbti.first); end
+  def direction; Direction.send(mbti.first); end
   def realm; Realm.send(mbti.second); end
   def attitude; Attitude.send(mbti.third); end
-  def triplet; [response, realm, attitude]; end
+  def triplet; [direction, realm, attitude]; end
 
-  def phase; response + attitude; end
+  def phase; direction + attitude; end
   def pair; [phase, realm]; end
 
   class << self
@@ -50,12 +50,16 @@ class Behavior
   def flop; Behavior.find(triplet.map(&:flop)); end
   def opposite; flip.flop; end
 
-  def act; realm.send(response.flip.verb); end
-  def react; [act, response.prep, phase.noun].to_phrase; end
-  def trigger; [triggery, nouns].to_phrase; end
-  def consequence; [change, adjective, noun].to_phrase; end
+  def next; Behavior.find([realm, phase.next]); end
+  def previous; Behavior.find([realm, phase.previous]); end
 
-  def symbolic_name; [mbti.colon, trigger.to_wbr, '=>', react.to_wbr, consequence.wrap].to_safe_phrase; end
+  def trigger; [triggery, nouns].to_phrase; end
+  def respond; realm.send(direction.verb) ; end
+  def act; [change, adjective, noun].to_phrase; end
+
+  def symbolic_name; [mbti.colon, trigger.to_wbr, '=>', respond, act.wrap].to_safe_phrase; end
+
+  def actions;[realm.use, realm.get]; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if phase.respond_to?(meth)
