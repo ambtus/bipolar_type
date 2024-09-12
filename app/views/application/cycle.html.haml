@@ -1,42 +1,32 @@
 - content_for(:title, 'The Cycle')
 
+%table
+  %tr
+    %td{colspan:2}=link_to Direction.e.cycle_name, 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
+
+  %tr
+    =render 'cycle', phase: Phase.ep, top: false
+    =render 'cycle', phase: Phase.ej, top: false
+
+  %tr
+    %td=link_to Attitude.p.cycle_name, 'https://en.wikipedia.org/wiki/Herbivore', class: 'external'
+    %td=link_to Attitude.j.cycle_name, 'https://en.wikipedia.org/wiki/Carnivore', class: 'external'
+
+  %tr
+    =render 'cycle', phase: Phase.ip, top: true
+    =render 'cycle', phase: Phase.ij, top: true
+
+  %tr
+    %td{colspan:2}=link_to Direction.i.cycle_name, 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'
+
 %p
   BipolarType asserts that people who are bipolar are more sensitive to
   =link_to 'zeitgebers', 'https://en.wikipedia.org/wiki/Zeitgeber', class: 'external'
   such as
   =link_to 'light', 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7615859/', class: 'external'
   and thus are more in sync with their internal clock than they are with the clock on the wall.
-%p BipolarType defines five cycles &mdash; the daily, weekly, monthly, yearly, and life cycles &mdash; but there are more. For example, the daily cycle is a 24-hour cycle, but there are also three 8-hour cycles within that cycle. Similarly, the yearly cycle is a 12-month cycle, and the monthly cycle is a 1-month cycle, but there is also a 3-month cycle. And there are cycles longer than 1 year, but not as long as a whole life. As there are not generally accepted names for those cycles, they have been left out of the below chart. They do exist, however, and also exert their influence on your internal clock.
 %p The more congruent the cycles the more insistent the internal clock. The more out of sync your internal clock is from the external clock, the worse the symptoms of mania or depression.
+%p The table above defines five cycles &mdash; the daily, weekly, monthly, yearly, and life cycles &mdash; but there are more.
+%p For example, the daily cycle is a 24-hour cycle, but there are also three 8-hour cycles within that cycle. Similarly, the yearly cycle is a 12-month cycle, and the monthly cycle is a 1-month cycle, but there is also a 3-month cycle. And there are cycles longer than 1 year, but not as long as a whole life.
+%p As there are not generally accepted names for those other cycles, let alone the four phases of those cycles, they have been left out of the chart. They do exist, however, and they also exert their influence on your internal clock.
 
-%table
-  %tr
-    %td{colspan:6}=link_to Direction.e.cycle_name, 'https://en.wikipedia.org/wiki/Sympathetic_nervous_system', class: 'external'
-
-  %tr
-    %td
-    %td.bottom{colspan:2}
-      %h3=Phase.ep.cycle_name
-      %div{class: Phase.ep.css}=Phase.ep.times.break
-    %td.bottom{colspan:2}
-      %h3=Phase.ej.cycle_name
-      %div{class: Phase.ej.css}=Phase.ej.times.break
-    %td
-
-  %tr
-    %td=link_to Attitude.p.cycle_name, 'https://en.wikipedia.org/wiki/Herbivore', class: 'external'
-    %td.middle{colspan:4}
-    %td=link_to Attitude.j.cycle_name, 'https://en.wikipedia.org/wiki/Carnivore', class: 'external'
-
-  %tr
-    %td
-    %td{colspan:2}
-      %div{class: Phase.ip.css}=Phase.ip.times.break
-      %h3=Phase.ip.cycle_name
-    %td{colspan:2}
-      %div{class: Phase.ij.css}=Phase.ij.times.break
-      %h3=Phase.ij.cycle_name
-    %td
-
-  %tr
-    %td{colspan:6}=link_to Direction.i.cycle_name, 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external'

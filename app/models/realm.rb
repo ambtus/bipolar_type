@@ -3,10 +3,13 @@ class Realm
   MBTI = %w{F S T N}
   ADJECTIVE = %w{affective physical financial mental}
   NOUNS = %w{people places things ideas}
-  GET = %w{listen eat sell learn}
-  GET_PREP = %w{to in \  about}
-  USE = %w{talk walk buy visualize}
-  USE_PREP = %w{to around \  \ }
+
+  GET = %w{listen eat sell look}
+  GET_PREP = %w{to in \  at}
+  USE = %w{talk walk buy think}
+  USE_PREP = %w{to around \  about}
+
+  CSS = %w{red brown blue violet}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti
@@ -39,6 +42,9 @@ class Realm
       define_method(constant.downcase.to_s.singularize) {self.class.const_get(constant)[index].singularize}
     end
   end
+
+  def intake; [get, get_prep].to_phrase; end
+  def output; [use, use_prep].to_phrase; end
 
   def symbolic_name; [mbti.colon, nouns.capitalize, adjective.wrap].to_phrase; end
 

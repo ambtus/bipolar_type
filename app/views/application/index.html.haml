@@ -3,10 +3,11 @@
 %table
   %tr
     %th
-    -Phase.linear.each_with_index do |q, index|
-      %th=link_to_unless index == @qi, "sort by #{q.mbti}", types_path(sort: q.mbti)
+    -Phase.linear.each_with_index do |phase, index|
+      -link=link_to_unless index == @linear_index, "sort by #{phase.mbti}", types_path(sort: phase.mbti)
+      %th=phase_span(phase, link)
   -@types.each_with_index do |type, index|
     %tr
       %th=link_to type.index, type_path(type.path)
-      -type.dominants.each do |behavior|
+      -type.compulsions.each do |behavior|
         =td behavior, 'bottom', 'left'

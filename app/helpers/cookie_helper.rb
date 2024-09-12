@@ -1,21 +1,36 @@
 module CookieHelper
+  def phase_span(phase, string)
+    phase_colors = cookies['phase_colors'].present? ? nil : phase.css
+    css = "#{phase_colors}"
+    if css.blank?
+      "<span>#{string}</span>"
+    else
+      "<span class=#{css}>#{string}</span>"
+    end.html_safe
+  end
 
   def span(behavior)
-    if cookies['colors'].present?
+    phase_colors = cookies['phase_colors'].present? ? nil : behavior.css
+    realm_colors = cookies['realm_colors'].present? ? nil : behavior.realm.css
+    color = [realm_colors, phase_colors].compact.first
+    css = "#{color}"
+    if css.blank?
       "<span>#{phrase(behavior)}</span>"
     else
-      "<span class=#{behavior.css}>#{phrase(behavior)}</span>"
+      "<span class=#{css}>#{phrase(behavior)}</span>"
     end.html_safe
   end
 
   def td(behavior, border=nil, align='center')
-    color_class = cookies['colors'].present? ? nil : behavior.css
+    phase_colors = cookies['phase_colors'].present? ? nil : behavior.css
+    realm_colors = cookies['realm_colors'].present? ? nil : behavior.realm.css
     if border == 'depends'
-      border_class = color_class ? nil : 'four_border'
+      border_class = phase_colors ? nil : 'four_border'
     else
       border_class = border.blank? ? nil : "#{border}_border"
     end
-    css = '"' + [color_class, border_class, align].to_phrase + '"'
+    color = [realm_colors, phase_colors].compact.first
+    css = '"' + [color, border_class, align].to_phrase + '"'
     "<td class=#{css}>#{phrase(behavior)}</td>".html_safe
   end
 

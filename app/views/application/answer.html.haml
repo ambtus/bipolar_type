@@ -1,64 +1,20 @@
--title = [@phase.ordinal.capitalize.colon, @phase.act.too_much].to_phrase
-- content_for(:title, title)
-%h2=title
+-content_for(:title, "Question ##{@answer.number} of 4")
 %p
-  Your
-  =@phase.ordinal
-  imbalance occurs because you rarely, if ever
-  =@phase.next.example.period
-  You feel no
-  =@phase.next.trigger.comma
-  so you just continue to
-  =@phase.act
-  instead of trying to
-  =@phase.next.respond.comma
-  which
-  =@phase.next.verb.s
-  a
-  %em lot
-  more
-  =@phase.next.noun.period
+  Once you choose something, other choices in the same row or column will become unavailable.
+  If you get stuck you will have to
+  =(link_to_unless_current "start over", answer_path(Answer.first_path)).period
 
--@phase.behaviors.each do |behavior|
-  %p
-    =link_to_if @answer.free?(behavior), span(behavior), answer_path(@answer.next(behavior))
-    -case @phase.ordinal
-    -when 'first'
-      I like to
-      =behavior.next.respond
-      =behavior.use_prep
-      =behavior.nouns.semi
-      I don&rsquo;t want to
-      %em=behavior.next.example
-      from them! Not even to
-      =behavior.respond
-      =behavior.get_prep
-      “better” ones.
-    -when 'second'
-      I will be safe as long as I can keep
-      =behavior.respond.ing
-      and they keep
-      =behavior.flip.respond.ing.period
-    -when 'third'
-      They are
-      %em my
-      =behavior.nouns.bang
-      Why would I
-      %em not
-      try to improve them?
-      I can make them
-      =behavior.appear
-      better!
-    -when 'fourth'
-      I maintain
-      %em my
-      =behavior.nouns.period
-      Why would I waste my energy trying to improve
-      %em other
-      =behavior.nouns.question
+%table.equal
+  %tr
+    -Phase.linear.each do |phase|
+      %th{class: phase.css}=phase.answer_time
+  -Realm.each do |realm|
+    %tr
+      -Phase.linear.each do |phase|
+        -behavior = realm + phase
+        %td.four_border
+          =link_to_if @answer.free?(behavior), behavior.mbti, answer_path(@answer.next(behavior)), class: realm.css
+          .left=behavior.answer_easiest
 
--if @answer.number > 2
-  %p
-    If you would rather choose something that is not available, you will have to
-    =link_to 'go back', answer_path(Answer.first_path)
-    and try again.
+
+

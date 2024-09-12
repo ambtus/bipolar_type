@@ -1,12 +1,15 @@
 class Direction
 
   MBTI = %w{E I}
-  PHRASE = %w{flee\ &\ fight rest\ &\ digest}
+  PHRASE = %w{fight\ &\ flight rest\ &\ digest}
   SICK = %w{manic depressed}
   CHANGE = %w{rev\ up calm\ down}
   DRUGS = %w{stimulants sedatives}
   VERB = %w{use get}
   PREP = %w{with for}
+  EVALUATED = %w{dangerous safe}
+  QUESTION = %w{dislike enjoy}
+  FREQUENCY = %w{usually rarely}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti

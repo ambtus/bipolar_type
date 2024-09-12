@@ -59,7 +59,10 @@ class Behavior
 
   def symbolic_name; [mbti.colon, trigger.to_wbr, '=>', respond, act.wrap].to_safe_phrase; end
 
-  def actions;[realm.use, realm.get]; end
+  def prep; realm.send(direction.verb + '_prep'); end
+  def respond_to; [respond, prep].to_phrase; end
+
+  def answer_easiest; "I don&rsquo;t <em>stop</em> #{respond.ing} after I have #{phase.respond.en}.".html_safe; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if phase.respond_to?(meth)

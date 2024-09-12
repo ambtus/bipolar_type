@@ -1,34 +1,18 @@
-- content_for(:title, 'The Behaviors')
+%table
+  %tr
+    %th
+    %th=Direction.e.cycle_name
+    %th=Direction.i.cycle_name
+  -Realm.each do |realm|
+    %tr{class: realm.css}
+      %th=realm.symbolic_name
+      %td=realm.output
+      %td=realm.intake
 
+%p The problem with most behaviors is that you cannot always figure out where they are coming from.
+%p It is relatively easy to recognize when someone is stressed and #{Realm.all.map(&:use).map(&:ing).or} as opposed to relaxed and #{Realm.all.map(&:get).map(&:ing).or}, but it is much more difficult to determine whether they are angry or afraid, especially if they are only a little stressed.
 %p
-  The general form of a behavior is:
-  %span{class: 'blue'} MBTI: trigger => response (action) [example]
-%p The problem with most behaviors is that you cannot tell what a response is trying to achieve. Is the person walking away from or towards danger? Are they talking in order to avoid a fight or to start one? It is relatively easy to recognize that they are stressed and walking and talking, as opposed to relaxed and eating and listening, but it is much more difficult to determing whether they are afraid or angry, especially if they are only a little stressed. Thus, there are only two words for responses although there are four actions.
-%p The examples below are an attempt to differentiate the two responses, but are neither comprehensive nor universal. On this page you can change the examples to be anything that you associate with that behavior.
-%p On later pages you will be able to change the format to hide anything you are not interested in or that you find distracting or irritating. So if you don&rsquo;t like the examples, but don&rsquo;t want to write your own, you can just hide them.
+  Thus, there is only one word defined for each state. You can enter your own words to define them on the
+  =link_to 'examples', example_path
+  page.
 
-#form
-  =form_with method: :get do |form|
-    %table
-      -Phase.all.in_groups_of(2) do |row|
-        %tr
-        -row.each do |phase|
-          %td.four_border
-            %h3{class: phase.css}=phase.symbolic_name
-            -Realm.each do |realm|
-              -behavior = realm + phase
-              -cookie = cookies[behavior.mbti] || @words[behavior.mbti]
-              .left
-                =behavior.symbolic_name
-                =form.text_field behavior.mbti, value: cookie, maxlength: 80, size: 15
-    %tr
-      %td{colspan:2}=form.submit 'Save Examples'
-
-    %p If you want to save your changes between browser sessions, you will need to bookmark this page immediately after you save the examples (your changes will be in the URL).
-    %p
-      You can reset a single example by saving a blank entry or you can
-      =form.submit 'Reset All Examples'
-
-    %p
-      If you want to see my examples, you can
-      =form.submit 'Load Examples'

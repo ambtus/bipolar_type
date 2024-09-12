@@ -1,17 +1,18 @@
 class Phase
 
   MBTI = %w{EP EJ IP IJ}
-  TRIGGER = %w{fear anger appetite pain }
+  TRIGGER = %w{fear anger hunger pain }
   RESPOND= %w{escape win refuel recover}
-  EXAMPLE = %w{flee fight digest rest}
+  EXAMPLE = %w{flight fight digest rest}
 
-  TRIGGERY = %w{frightening irritating safe my}
-  TRIGGERED = %w{afraid angry hungry worn\ out}
+  TRIGGERY = %w{frightening irritating energizing calming}
+  TRIGGERED = %w{afraid angry hungry sore}
   CHANGE = %w{burn use gain build}
   PROBLEM = %w{skinny musclebound fat weak}
+  GOAL = %w{play work wake\ up fall\ asleep}
 
-  CSS = %w{yellow orange green violet}
-  ORDINAL = %w{second third first fourth}
+  CSS = %w{yellow orange green indigo}
+  ORDINAL = %w{second third first last}
 
   TIME = %w{midday afternoon morning evening}
   DAY = %w{wednesday friday monday weekend}
@@ -69,6 +70,8 @@ class Phase
 
   def week; "#{moon} moon".html_safe; end
   def times; [time, day, week, season, age].map(&:titleize); end
+  def answer_time; [season, time].to_phrase.titleize; end
+  def answer_stress; [direction.change.first_word.s, 'me', direction.change.last_word].to_phrase; end
 
   def sick; direction.sick; end
   def noun; attitude.noun; end

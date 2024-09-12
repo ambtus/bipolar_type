@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :types, only: [:show, :index]
   get '/me' => 'types#me', as: :my
   get '/cycle' => 'start#cycle', as: :cycle
+  get '/examples' => 'start#examples', as: :example
   get '/behaviors' => 'start#behaviors', as: :behavior
-  get '/phases' => 'start#phases', as: :phase
 end

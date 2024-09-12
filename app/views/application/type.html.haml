@@ -3,20 +3,20 @@
 .center
   %h1=title
 %table
-  %caption
-    %h2 Advice
-  -@type.solutions.in_groups_of(2).each do |row|
+  -@type.sixteen.in_groups_of(2).each do |row|
     %tr
-      -row.each do |behavior|
-        =td behavior, 'depends'
-
-%table
-  %caption
-    %h2 Longer Advice
-    %p.left Since you cannot balance yourself between #{Direction::SICK.amp.downcase}, try balancing yourself between #{Attitude::NOUN.amp.downcase}.
-
-  -@type.problems.in_groups_of(2).each do |row|
+      -row.map(&:first).map(&:phase).each do |phase|
+        %th=phase_span(phase, phase.answer_time)
     %tr
-      -row.each do |behavior|
-        %td.four_border
-          %h3=span behavior
+      -row.each do |behaviors|
+        %td
+          %ol.left
+            -behaviors.each do |behavior|
+              %li=span behavior
+
+%p Legend:
+%ol
+  %li your flip behavior: it balances your compulsion, and you won&rsquo;t overdo it.
+  %li your flop behavior: it replaces your compulsion (it is possible to overdo your flop behavior, but that is better for you than overdoing your compulsion).
+  %li your flop-flip behavior: it balances your flop behavior, and you won&rsquo;t over do it.
+  %li your compulsive behavior: if you must do it, don&rsquo;t do it during it&rsquo;s phase, you <em>will</em> overdo it.

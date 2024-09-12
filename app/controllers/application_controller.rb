@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     @words = YAML.load_file('config/my_words.yml')
   end
 
-  SETTINGS = %w{colors MBTI triggers responses actions examples}
+  SETTINGS = %w{phase_colors realm_colors MBTI triggers responses actions examples}
   def hide
     SETTINGS.each do |setting|
       if params[setting] == '0'

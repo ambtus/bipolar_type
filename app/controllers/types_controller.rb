@@ -1,8 +1,8 @@
 class TypesController < ApplicationController
   def index
     get_words
-    @qi = Phase.linear.map(&:mbti).index(params[:sort]) || 3
-    @types = Type.sort_by(@qi)
+    @linear_index = Phase.linear.map(&:mbti).index(params[:sort]) || 0
+    @types = Type.sort_by(@linear_index)
     if params[:commit]
       hide
       redirect_to types_path and return
