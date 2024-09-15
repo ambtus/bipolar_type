@@ -1,20 +1,15 @@
 class Phase
 
   MBTI = %w{EP EJ IP IJ}
-  TRIGGER = %w{fear anger hunger pain }
-  RESPOND= %w{escape win refuel recover}
-  EXAMPLE = %w{flight fight digest rest}
-
-  TRIGGERY = %w{frightening irritating energizing calming}
-  TRIGGERED = %w{afraid angry hungry sore}
-  CHANGE = %w{burn use gain build}
-  PROBLEM = %w{skinny musclebound fat weak}
-  GOAL = %w{play work wake\ up fall\ asleep}
+  TRIGGERED = %w{afraid angry hungry exhausted }
+  RESPOND= %w{escape win wake sleep}
+  RESPONDED= %w{free victorious awake asleep}
+  INDUCED = %w{anxiety irritation appetite boredom}
 
   CSS = %w{yellow orange green indigo}
-  ORDINAL = %w{second third first last}
+  ORDINAL = %w{second third first fourth}
 
-  TIME = %w{midday afternoon morning evening}
+  TIME = %w{noon afternoon morning evening}
   DAY = %w{wednesday friday monday weekend}
   MOON = %w{full waning waxing new}
   SEASON = %w{summer fall spring winter}
@@ -54,7 +49,7 @@ class Phase
   def flop; Phase.find(pair.map(&:flop)); end
   def opposite; flip.flop; end
 
-  def +(realm); Behavior.find([self, realm]); end
+  def +(aspect); Behavior.find([self, aspect]); end
   def behaviors; Behavior.all.select{|b| b.phase == self}; end
 
   constants.each do |constant|
@@ -68,19 +63,26 @@ class Phase
   def next; self.class.linear[linear_index + 1] || self.class.linear.first; end
   def previous; self.class.linear[linear_index - 1]; end
 
-  def week; "#{moon} moon".html_safe; end
+  def numeral; [linear_index + 1, ordinal.last(2)].join; end
+  def quarter; "#{numeral} Quarter"; end
+
+  def week; "#{moon} moon"; end
   def times; [time, day, week, season, age].map(&:titleize); end
+
   def answer_time; [season, time].to_phrase.titleize; end
   def answer_stress; [direction.change.first_word.s, 'me', direction.change.last_word].to_phrase; end
 
+  def feelings; [mild, moderate, severe]; end
+
   def sick; direction.sick; end
   def noun; attitude.noun; end
-  def act; [change, noun].to_phrase; end
+  def act; [verb, noun].to_phrase; end
 
-  def name; [sick, noun].map(&:capitalize).wbr; end
+  def episode; [induced.to_adjective, sick.to_noun].to_phrase; end
+  def name; episode.to_wbr; end
   def cycle_name; [mbti.colon, name, example.wrap].to_safe_phrase; end
 
-  def symbolic_name; [mbti.colon, trigger, '=>', respond, act.wrap, example.sqwrap].to_safe_phrase; end
+  def symbolic_name; [mbti.colon, triggered, '=>', respond, act.wrap, example.sqwrap].to_safe_phrase; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if direction.respond_to?(meth)

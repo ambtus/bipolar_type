@@ -1,12 +1,12 @@
 class Type
 
   def initialize(string)
-    @realm_string = string
-    @realms = string.chars.collect{|s| Realm.send(s)}
+    @aspect_string = string
+    @aspects = string.chars.collect{|s| Aspect.send(s)}
   end
-  attr_reader :realm_string, :realms
+  attr_reader :aspect_string, :aspects
 
-  def compulsions; realms.add(Phase.linear); end
+  def compulsions; aspects.add(Phase.linear); end
   def symbolic_name; compulsions.map(&:respond).join('•'); end
   alias inspect :symbolic_name
 
@@ -19,10 +19,10 @@ class Type
     define_method(ordinal) {sorted.select{|b| b.phase.ordinal == ordinal}}
   end
 
-  def sixteen; [first, second, third, last].values_at(1,2,0,3); end
+  def sixteen; [second, third, first, fourth]; end
 
-  ALL = Realm.all.permutation(4).collect do |realms|
-          Type.new(realms.map(&:path).join)
+  ALL = Aspect.all.permutation(4).collect do |aspects|
+          Type.new(aspects.map(&:path).join)
         end
   def index; ALL.index self; end
   def <=>(other); self.index <=> other.index; end
@@ -32,10 +32,10 @@ class Type
     def all; ALL; end
     def each(&block); ALL.each(&block); end
     def find(index); all.find{|t| t.index == index}; end
-    def find_by_realm_string(string); all.find{|t| t.realm_string == string}; end
+    def find_by_aspect_string(string); all.find{|t| t.aspect_string == string}; end
     def my_path; 6; end
     def my_type; find(my_path); end
-    def sort_by(linear_index); all.sort_by{|t| t.compulsions[linear_index].realm.index}.in_groups_of(6).map(&:sort).flatten; end
+    def sort_by(linear_index); all.sort_by{|t| t.compulsions[linear_index].aspect.index}.in_groups_of(6).map(&:sort).flatten; end
   end
 
 end

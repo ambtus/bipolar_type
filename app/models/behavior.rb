@@ -1,9 +1,9 @@
 class Behavior
 
   MBTI = Direction.all.collect do |direction|
-          Realm::ALL.collect do |realm|
+          Aspect::ALL.collect do |aspect|
             Attitude::ALL.collect do |attitude|
-              [direction, realm, attitude].map(&:mbti).join
+              [direction, aspect, attitude].map(&:mbti).join
             end
           end
         end.flatten
@@ -22,12 +22,12 @@ class Behavior
   def <=>(other); phase <=> other.phase; end
 
   def direction; Direction.send(mbti.first); end
-  def realm; Realm.send(mbti.second); end
+  def aspect; Aspect.send(mbti.second); end
   def attitude; Attitude.send(mbti.third); end
-  def triplet; [direction, realm, attitude]; end
+  def triplet; [direction, aspect, attitude]; end
 
   def phase; direction + attitude; end
-  def pair; [phase, realm]; end
+  def pair; [phase, aspect]; end
 
   class << self
     def mbtis; all.map(&:mbti); end # used in cookies
@@ -50,25 +50,24 @@ class Behavior
   def flop; Behavior.find(triplet.map(&:flop)); end
   def opposite; flip.flop; end
 
-  def next; Behavior.find([realm, phase.next]); end
-  def previous; Behavior.find([realm, phase.previous]); end
+  def next; Behavior.find([aspect, phase.next]); end
+  def previous; Behavior.find([aspect, phase.previous]); end
 
-  def trigger; [triggery, nouns].to_phrase; end
-  def respond; realm.send(direction.verb) ; end
-  def act; [change, adjective, noun].to_phrase; end
+  def respond; aspect.send(direction.verb) ; end
 
-  def symbolic_name; [mbti.colon, trigger.to_wbr, '=>', respond, act.wrap].to_safe_phrase; end
+  def symbolic_name; [mbti.colon, triggered.to_wbr, '=>', respond, act.wrap].to_safe_phrase; end
 
-  def prep; realm.send(direction.verb + '_prep'); end
+  def prep; aspect.send(direction.verb + '_prep'); end
   def respond_to; [respond, prep].to_phrase; end
+  def responden; aspect.send(direction.verb + '_en'); end
 
-  def answer_easiest; "I don&rsquo;t <em>stop</em> #{respond.ing} after I have #{phase.respond.en}.".html_safe; end
+  def answer; "I #{respond} too much, but not because I am #{flop.induced.to_adjective}."; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if phase.respond_to?(meth)
       phase.send(meth)
-    elsif realm.respond_to?(meth)
-      realm.send(meth)
+    elsif aspect.respond_to?(meth)
+      aspect.send(meth)
     else
       super(meth)
     end

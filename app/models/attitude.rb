@@ -1,10 +1,8 @@
 class Attitude
 
   MBTI = %w{P J}
-  PHRASE = %w{digest\ &\ flight fight\ &\ rest}
+  PHRASE = %w{flight/digest fight/rest}
   NOUN = %w{energy strength}
-  ASSETS = %w{reserves power}
-  WHICH = %w{new my\ own}
 
   def initialize(mbti); @mbti = mbti; end
   attr_reader :mbti

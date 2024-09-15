@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   get '/me' => 'types#me', as: :my
   get '/cycle' => 'start#cycle', as: :cycle
   get '/examples' => 'start#examples', as: :example
-  get '/behaviors' => 'start#behaviors', as: :behavior
+  get '/episodes' => 'start#episodes', as: :episode
 end

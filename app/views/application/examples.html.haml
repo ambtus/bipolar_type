@@ -15,8 +15,8 @@
         -row.each do |phase|
           %td.four_border
             %h3{class: phase.css}=phase.symbolic_name
-            -Realm.each do |realm|
-              -behavior = realm + phase
+            -Aspect.each do |aspect|
+              -behavior = aspect + phase
               -cookie = cookies[behavior.mbti] || @words[behavior.mbti]
               .left
                 =behavior.symbolic_name

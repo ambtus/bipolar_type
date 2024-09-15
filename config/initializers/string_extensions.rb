@@ -76,11 +76,11 @@ class String
   NOUNS = %w{anorexia depression mania energy strength obesity
     goals emptiness hyperactivity weakness calories credit
     information emotions childhood adolescence adulthood old\ age
-    child adolescent adult elder}
+    child adolescent adult elder curiosity agitation appetite anxiety irritation boredom}
   ADJECTIVES = %w{anorexic depressed manic energetic strong obese
     goal-oriented empty hyperactive weak caloric indebted
     informative emotional child adolescent adult elder
-    childish adolescent mature wise}
+    childish adolescent mature wise curious agitated appetitive anxious irritable bored}
   def noun?; NOUNS.include?(self); end
 
 

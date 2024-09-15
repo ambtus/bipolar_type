@@ -11,8 +11,8 @@ module CookieHelper
 
   def span(behavior)
     phase_colors = cookies['phase_colors'].present? ? nil : behavior.css
-    realm_colors = cookies['realm_colors'].present? ? nil : behavior.realm.css
-    color = [realm_colors, phase_colors].compact.first
+    aspect_colors = cookies['aspect_colors'].present? ? nil : behavior.aspect.css
+    color = [aspect_colors, phase_colors].compact.first
     css = "#{color}"
     if css.blank?
       "<span>#{phrase(behavior)}</span>"
@@ -23,25 +23,24 @@ module CookieHelper
 
   def td(behavior, border=nil, align='center')
     phase_colors = cookies['phase_colors'].present? ? nil : behavior.css
-    realm_colors = cookies['realm_colors'].present? ? nil : behavior.realm.css
+    aspect_colors = cookies['aspect_colors'].present? ? nil : behavior.aspect.css
     if border == 'depends'
       border_class = phase_colors ? nil : 'four_border'
     else
       border_class = border.blank? ? nil : "#{border}_border"
     end
-    color = [realm_colors, phase_colors].compact.first
+    color = [aspect_colors, phase_colors].compact.first
     css = '"' + [color, border_class, align].to_phrase + '"'
     "<td class=#{css}>#{phrase(behavior)}</td>".html_safe
   end
 
   def phrase(behavior)
     symbolic = cookies['MBTI'].present? ? nil : behavior.mbti
-    trigger = cookies['triggers'].present? ? nil : behavior.trigger
+    trigger = cookies['triggers'].present? ? nil : behavior.triggered
     response = cookies['responses'].present? ? nil : behavior.respond
-    action = cookies['actions'].present? ? nil : behavior.act
     example = cookies['examples'].present? ? nil : cookies[behavior.mbti] || @words[behavior.mbti]
 
-    words = [symbolic, trigger, response, action, example].compact
+    words = [symbolic, trigger, response, example].compact
     case words.length
     when 0
       'respond'

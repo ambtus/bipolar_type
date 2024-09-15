@@ -4,17 +4,19 @@
   If you get stuck you will have to
   =(link_to_unless_current "start over", answer_path(Answer.first_path)).period
 
-%table.equal
+%table
   %tr
+    %th
     -Phase.linear.each do |phase|
       %th{class: phase.css}=phase.answer_time
-  -Realm.each do |realm|
+  -Aspect.each do |aspect|
     %tr
+      %th{class: aspect.css}=aspect.nouns.capitalize
       -Phase.linear.each do |phase|
-        -behavior = realm + phase
+        -behavior = aspect + phase
         %td.four_border
-          =link_to_if @answer.free?(behavior), behavior.mbti, answer_path(@answer.next(behavior)), class: realm.css
-          .left=behavior.answer_easiest
+          =link_to_if @answer.free?(behavior), behavior.mbti, answer_path(@answer.next(behavior))
+          .left=behavior.answer
 
 
 

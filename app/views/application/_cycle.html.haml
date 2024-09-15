@@ -1,7 +1,11 @@
 %td{class: phase.css}
-  -if top
-    =phase.times.reverse.break
-    %h3=phase.cycle_name
-  -else
-    %h3=phase.cycle_name
-    =phase.times.break
+  %h2 #{phase.triggered} => #{phase.respond}
+
+  %em=phase.episode.to_wbr
+
+  %div
+    I
+    =phase.act.more
+    than I need
+    to
+    =phase.verb.period

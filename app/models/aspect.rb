@@ -1,13 +1,16 @@
-class Realm
+class Aspect
 
   MBTI = %w{F S T N}
-  ADJECTIVE = %w{affective physical financial mental}
+  ADJECTIVE = %w{spiritual physical material mental}
+  CENTER = %w{soul body hands mind}
   NOUNS = %w{people places things ideas}
 
-  GET = %w{listen eat sell look}
-  GET_PREP = %w{to in \  at}
+  GET = %w{listen eat sell watch}
+  GET_PREP = %w{to in \  \ }
+  GET_EN = %w{heard eaten earned seen}
   USE = %w{talk walk buy think}
   USE_PREP = %w{to around \  about}
+  USE_EN = %w{said done bought thought}
 
   CSS = %w{red brown blue violet}
 
@@ -43,8 +46,8 @@ class Realm
     end
   end
 
-  def intake; [get, get_prep].to_phrase; end
-  def output; [use, use_prep].to_phrase; end
+  def actions; [use, get]; end
+  def adverb; adjective.ly; end
 
   def symbolic_name; [mbti.colon, nouns.capitalize, adjective.wrap].to_phrase; end
 

@@ -13,19 +13,19 @@ class Answer
   def number; @question.last ; end
 
   def behaviors; @behavior_string.split('-').collect{|s| Behavior.send(s)}; end
-  def realms; behaviors.map(&:realm); end
+  def aspects; behaviors.map(&:aspect); end
   def phases; behaviors.map(&:phase); end
 
-  def free_realms; Realm.all - realms; end
+  def free_aspects; Aspect.all - aspects; end
   def free_phases; Phase.all - phases; end
-  def free; Behavior.all.select{|b| free_realms.include?(b.realm) && free_phases.include?(b.phase)}; end
+  def free; Behavior.all.select{|b| free_aspects.include?(b.aspect) && free_phases.include?(b.phase)}; end
   def free?(behavior); free.include?(behavior); end
   def finished?; free.empty?; end
 
   def next(behavior); question.next + ':' + [@behavior_string, behavior.path].compact_blank.join('-'); end
 
   def sorted_behaviors; behaviors.sort_by(&:linear_index); end
-  def realm_string; sorted_behaviors.map(&:realm).map(&:path).join; end
-  def type_index;Type.find_by_realm_string(realm_string).index; end
+  def aspect_string; sorted_behaviors.map(&:aspect).map(&:path).join; end
+  def type_index;Type.find_by_aspect_string(aspect_string).index; end
 
 end
