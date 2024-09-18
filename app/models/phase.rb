@@ -1,15 +1,12 @@
 class Phase
 
   MBTI = %w{EP EJ IP IJ}
-  TRIGGERED = %w{afraid angry hungry exhausted }
-  RESPOND= %w{escape win wake sleep}
-  RESPONDED= %w{free victorious awake asleep}
-  INDUCED = %w{anxiety irritation appetite boredom}
+  RESPOND= %w{play work refuel recover}
 
   CSS = %w{yellow orange green indigo}
   ORDINAL = %w{second third first fourth}
 
-  TIME = %w{noon afternoon morning evening}
+  TIME = %w{midday afternoon morning evening}
   DAY = %w{wednesday friday monday weekend}
   MOON = %w{full waning waxing new}
   SEASON = %w{summer fall spring winter}
@@ -72,8 +69,6 @@ class Phase
   def answer_time; [season, time].to_phrase.titleize; end
   def answer_stress; [direction.change.first_word.s, 'me', direction.change.last_word].to_phrase; end
 
-  def feelings; [mild, moderate, severe]; end
-
   def sick; direction.sick; end
   def noun; attitude.noun; end
   def act; [verb, noun].to_phrase; end
@@ -82,7 +77,7 @@ class Phase
   def name; episode.to_wbr; end
   def cycle_name; [mbti.colon, name, example.wrap].to_safe_phrase; end
 
-  def symbolic_name; [mbti.colon, triggered, '=>', respond, act.wrap, example.sqwrap].to_safe_phrase; end
+  def symbolic_name; [mbti.colon, respond, act.wrap].to_phrase; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if direction.respond_to?(meth)

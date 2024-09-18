@@ -1,5 +1,7 @@
 class StartController < ApplicationController
 
+  def balance; get_words; end
+
   def examples
     if params[:commit] == 'Reset All Examples'
       Behavior.mbtis.each {|key| cookies.delete(key)}

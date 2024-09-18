@@ -36,6 +36,4 @@ class Direction
     end
   end
 
-  def cycle_name; [sick.capitalize, phrase.wrap].to_phrase; end
-
 end

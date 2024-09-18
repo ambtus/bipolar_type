@@ -1,0 +1,8 @@
+- content_for(:title, 'Balance')
+
+%ul.none
+  -Aspect.each do |aspect|
+    %h2{class: aspect.css} #{aspect.adjective.capitalize} Balance
+    =render 'cycle', phases: Phase.all, balances: aspect.behaviors.collect{|b| b.balanced}
+
+

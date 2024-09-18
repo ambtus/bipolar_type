@@ -1,21 +1,12 @@
-%p BipolarType asserts that you, as an individual, are made up of four aspects.
-%ol
-  -Aspect.each do |aspect|
-    %li #{aspect.adjective.capitalize}: your #{aspect.center} #{aspect.actions.collect{|a| aspect.center.plural? ? a : a.s}.and} #{aspect.nouns.wrap}
+- content_for(:title, 'Episodes')
 
-%table
-  %tr
-    %th
-    %th=Direction.e.sick.to_noun.capitalize
-    %th High
-    %th Low
-    %th=Direction.i.sick.to_noun.capitalize
-  -Aspect.each do |aspect|
-    %tr{class: aspect.css}
-      %th=aspect.adjective.capitalize
-      %td.bordered=aspect.use.too_much
-      %td.bordered=aspect.use.ing
-      %td.bordered=aspect.get.ing
-      %td.bordered=aspect.get.too_much
+%div.center
+  %ul.none
+    -Aspect.each do |aspect|
+      %li
+        %h2{class: aspect.css} #{aspect.nouns.capitalize}
+        #{aspect.adjective.capitalize} #{Direction.e.sick.to_noun.capitalize}: #{aspect.use} more, #{aspect.get} less
+        %br
+        #{aspect.adjective.capitalize} #{Direction.i.sick.to_noun.capitalize}: #{aspect.get} more, #{aspect.use} less
 
-%p You cannot change the fact that you cycle between High and Low. You <em>can</em> change the fact that you cycle between Mania and Depression.
+%p Everyone who is manic #{Aspect.all.map(&:use).map(&:s).and} more. Whether that overbalances or underbalances the #{Aspect.all.map(&:get).map(&:ing).and} they do more when depressed depends on the individual: my great-grandmother, grandfather, mother, and I all presented with different symptoms, although the probability is high that we all had the same genetic predisposition.

@@ -1,22 +1,26 @@
 -content_for(:title, "Question ##{@answer.number} of 4")
 %p
-  Once you choose something, other choices in the same row or column will become unavailable.
+  Once you
+  %span{class: 'grey'}choose something,
+  other choices will become unavailable.
   If you get stuck you will have to
   =(link_to_unless_current "start over", answer_path(Answer.first_path)).period
 
-%table
-  %tr
-    %th
-    -Phase.linear.each do |phase|
-      %th{class: phase.css}=phase.answer_time
-  -Aspect.each do |aspect|
-    %tr
-      %th{class: aspect.css}=aspect.nouns.capitalize
-      -Phase.linear.each do |phase|
-        -behavior = aspect + phase
-        %td.four_border
-          =link_to_if @answer.free?(behavior), behavior.mbti, answer_path(@answer.next(behavior))
-          .left=behavior.answer
+
+-@behaviors.each do |behavior|
+  %div
+    %span{class: behavior.aspect.css}=behavior.aspect.nouns.capitalize
+    %span{class: behavior.phase.css}
+      =behavior.sick.titleize
+    I
+    =behavior.respond
+    when I should be
+    =behavior.opposite.phase.respond.ing.period
+    %span{class: @answer.css(behavior)}
+      =link_to_if @answer.free?(behavior), behavior.phase.respond, answer_path(@answer.next(behavior)) + (@sort.blank? ? '' : '?sort=true')
 
 
-
+-if @sort.blank?
+  =link_to 'sort by episode', answer_path(@answer.path) + '?sort=true'
+-else
+  =link_to 'sort by focus', answer_path(@answer.path)

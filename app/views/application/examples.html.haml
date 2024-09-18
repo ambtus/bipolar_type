@@ -1,11 +1,7 @@
-- content_for(:title, 'The Behaviors')
+- content_for(:title, 'The Examples')
 
-%p
-  The general form of a behavior is:
-  %span{class: 'grey'} MBTI: trigger => response (action) [example]
-
-%p The examples below are an attempt to differentiate the two responses, but are neither comprehensive nor universal. On this page you can change the examples to be anything that you associate with that behavior.
-%p On later pages you will be able to change the format to hide anything you are not interested in or that you find distracting or irritating. So if you don&rsquo;t like the examples, but don&rsquo;t want to write your own, you can just hide them.
+%p On this page you can change the examples to be anything that you associate with that action.
+%p You can hide anything you are not interested in or that you find distracting or irritating. So if you don&rsquo;t like the examples, but don&rsquo;t want to write your own, just hide them.
 
 #form
   =form_with method: :get do |form|
@@ -18,7 +14,7 @@
             -Aspect.each do |aspect|
               -behavior = aspect + phase
               -cookie = cookies[behavior.mbti] || @words[behavior.mbti]
-              .left
+              .left{class: aspect.css}
                 =behavior.symbolic_name
                 =form.text_field behavior.mbti, value: cookie, maxlength: 80, size: 15
     %tr

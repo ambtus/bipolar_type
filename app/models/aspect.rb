@@ -1,16 +1,17 @@
 class Aspect
 
   MBTI = %w{F S T N}
-  ADJECTIVE = %w{spiritual physical material mental}
+  ADJECTIVE = %w{social physical financial mental}
   CENTER = %w{soul body hands mind}
   NOUNS = %w{people places things ideas}
 
-  GET = %w{listen eat sell watch}
-  GET_PREP = %w{to in \  \ }
-  GET_EN = %w{heard eaten earned seen}
-  USE = %w{talk walk buy think}
-  USE_PREP = %w{to around \  about}
+  GET = %w{listen eat earn watch}
+  GET_EN = %w{heard eaten sold seen}
+  USE = %w{talk walk spend think}
   USE_EN = %w{said done bought thought}
+
+  ENERGY = %w{affect calories cash facts}
+  STRENGTH = %w{words muscles credit theories}
 
   CSS = %w{red brown blue violet}
 
@@ -37,7 +38,8 @@ class Aspect
   def opposite; flip.flop; end
 
   def +(phase); Behavior.find([phase,self]); end
-  def behaviors; Phase.linear.add(self); end
+  def behaviors; Phase.all.add(self); end
+  def linear_behaviors; Phase.linear.add(self); end
 
   constants.each do |constant|
     define_method(constant.downcase) {self.class.const_get(constant)[index]}
@@ -46,7 +48,6 @@ class Aspect
     end
   end
 
-  def actions; [use, get]; end
   def adverb; adjective.ly; end
 
   def symbolic_name; [mbti.colon, nouns.capitalize, adjective.wrap].to_phrase; end

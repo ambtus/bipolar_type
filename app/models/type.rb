@@ -19,7 +19,7 @@ class Type
     define_method(ordinal) {sorted.select{|b| b.phase.ordinal == ordinal}}
   end
 
-  def sixteen; [second, third, first, fourth]; end
+  def sixteen;  Phase::ORDINAL.collect{|ordinal| self.send(ordinal)}; end
 
   ALL = Aspect.all.permutation(4).collect do |aspects|
           Type.new(aspects.map(&:path).join)

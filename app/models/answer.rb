@@ -22,6 +22,8 @@ class Answer
   def free?(behavior); free.include?(behavior); end
   def finished?; free.empty?; end
 
+  def css(behavior); behaviors.include?(behavior) ? 'grey' : ''; end
+
   def next(behavior); question.next + ':' + [@behavior_string, behavior.path].compact_blank.join('-'); end
 
   def sorted_behaviors; behaviors.sort_by(&:linear_index); end

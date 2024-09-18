@@ -54,14 +54,23 @@ class Behavior
   def previous; Behavior.find([aspect, phase.previous]); end
 
   def respond; aspect.send(direction.verb) ; end
-
-  def symbolic_name; [mbti.colon, triggered.to_wbr, '=>', respond, act.wrap].to_safe_phrase; end
-
-  def prep; aspect.send(direction.verb + '_prep'); end
-  def respond_to; [respond, prep].to_phrase; end
   def responden; aspect.send(direction.verb + '_en'); end
 
-  def answer; "I #{respond} too much, but not because I am #{flop.induced.to_adjective}."; end
+  def act; [phase.verb, adjective, noun].to_phrase; end
+  def symbolic_name; [mbti.colon, respond, act.wrap].to_phrase; end
+
+  def in_the; time == 'midday' ? 'at' : 'in the'; end
+  def have_or_want; phase.verb == 'use' ? 'have the' : 'want more'; end
+  def energy_or_strength; aspect.send(noun); end
+  def problem
+    "I #{respond} even though I do not #{have_or_want} #{energy_or_strength}."
+  end
+
+  def sick; [phase.season, phase.sick.to_noun].to_phrase; end
+  def too_much; ['too much', adjective, phase.respond.ing].to_phrase; end
+  def balanced
+    "You #{respond} because you #{have_or_want} #{energy_or_strength}."
+  end
 
   def method_missing(meth, *args, **kwargs, &block)
     if phase.respond_to?(meth)

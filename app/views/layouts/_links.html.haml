@@ -1,9 +1,11 @@
 %h1
   =link_to_unless_current 'Introduction', root_path
   |
-  =link_to_unless_current 'The Episodes', episode_path
+  =link_to_unless_current 'Episodes', episode_path
   |
-  =link_to_unless_current 'The Cycle', cycle_path
+  =link_to_unless_current 'Cycles', cycle_path
+  |
+  =link_to_unless_current 'Balance', balance_path
   |
   =link_to_unless_current 'Your Type', answer_path(Answer.first_path)
   |
