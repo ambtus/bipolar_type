@@ -1,23 +1,26 @@
 class TypesController < ApplicationController
   def index
-    get_words
-    @linear_index = Phase.linear.map(&:mbti).index(params[:sort]) || 0
-    @types = Type.sort_by(@linear_index)
-    if params[:commit]
-      hide
-      redirect_to types_path and return
-    end
+    set_verbs
+    @sort_index = params[:sort].to_i || 0
+    @types = Type.sort_by(@sort_index)
   end
 
   def show
-    get_words
-    @type = Type.find params[:id].to_i
-    if params[:commit]
-      hide
-      redirect_to type_path(@type.path) and return
+    @type = Type.find params[:id]
+    case params[:commit]
+      when 'Load My Verbs'
+        get_my_verbs
+      when 'Reset Verbs'
+        Rails.logger.debug 'hello'
+        Function.cookies.each {|key| cookies.delete(key)}
+        cookies.delete('mine')
     end
+    Rails.logger.debug 'goodbye'
     render 'type'
   end
 
-  def me; redirect_to action: 'show', id: Type.my_path; end
+  def me
+    get_my_verbs
+    redirect_to action: 'show', id: Type.my_path
+  end
 end

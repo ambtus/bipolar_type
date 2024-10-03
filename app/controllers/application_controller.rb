@@ -2,24 +2,30 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
+  before_action :set_if_blank
   helper CookieHelper
 
-  #FIXME want to set it once in production but on every request in development.
-  def reload_words
-    Rails.logger.debug "accessing file system"
-    @words = YAML.load_file('config/words.yml')
+  PAGES = %w{bipolar unbalanced realms}
+  SETTINGS = %w{phase_colors phase_times function_colors MBTI changed_verbs}
+
+  def set_if_blank
+    set_verbs if @verbs.blank?
   end
-  def get_words
-    Rails.logger.debug "getting words"
-    @words || reload_words
+  def set_verbs
+    Rails.logger.debug "getting verbs"
+    @verbs = Function.cookies.map{|k| [k, Function.send(k)]}.to_h
   end
-  def get_my_words
-    Rails.logger.debug "getting my words"
-    @words = YAML.load_file('config/my_words.yml')
+  def get_my_verbs
+    Rails.logger.debug "getting my verbs"
+    @verbs = YAML.load_file('config/my_verbs.yml')
+    Function.cookies.each {|key| cookies[key] = @verbs[key]}
+    cookies['mine'] = true
   end
 
-  SETTINGS = %w{phase_colors aspect_colors MBTI responses actions examples}
+  def hide_all
+    SETTINGS.each {|s| cookies[s] = 'hide'}
+  end
+
   def hide
     SETTINGS.each do |setting|
       if params[setting] == '0'

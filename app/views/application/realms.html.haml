@@ -1,0 +1,16 @@
+- content_for(:title, 'Realms')
+
+%p On this page you can change the verbs so that the BipolarType questions and advice are more meaningful or useful to you.
+
+=form_with method: :get do |form|
+  =render 'functions', form: form
+
+  %p If you want to save your verbs between browser sessions, you will need to bookmark this page immediately after you save (your changes will be in the URL).
+  %p
+    You can reset a single word by saving a blank entry or you can
+    =form.submit 'Reset All Verbs'
+
+  %p
+    If you want to see my verbs, you can
+    =form.submit 'Load Verbs'
+    (if you want to use them, you will have to save them)

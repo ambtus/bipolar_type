@@ -1,41 +1,28 @@
 class Type
 
   def initialize(string)
-    @aspect_string = string
-    @aspects = string.chars.collect{|s| Aspect.send(s)}
+    @function_string = string
+    @functions = string.chars.collect{|s| Function.send(s)}
   end
-  attr_reader :aspect_string, :aspects
+  attr_reader :function_string, :functions
 
-  def compulsions; aspects.add(Phase.linear); end
-  def symbolic_name; compulsions.map(&:respond).join('•'); end
-  alias inspect :symbolic_name
+  def symbolic_name; functions.map(&:nouns).join('•'); end
+  alias inspect :function_string
 
-  def flips; compulsions.map(&:flip); end
-  def flops; compulsions.map(&:flop); end
-  def flip_flops; compulsions.map(&:opposite); end
-  def sorted; (flips + flops + flip_flops + compulsions); end
-
-  Phase::ORDINAL.each do |ordinal|
-    define_method(ordinal) {sorted.select{|b| b.phase.ordinal == ordinal}}
-  end
-
-  def sixteen;  Phase::ORDINAL.collect{|ordinal| self.send(ordinal)}; end
-
-  ALL = Aspect.all.permutation(4).collect do |aspects|
-          Type.new(aspects.map(&:path).join)
+  ALL = Function.all.permutation(4).collect do |functions|
+          Type.new(functions.map(&:path).join)
         end
   def index; ALL.index self; end
   def <=>(other); self.index <=> other.index; end
-  alias path :index
+  alias path :function_string
 
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
-    def find(index); all.find{|t| t.index == index}; end
-    def find_by_aspect_string(string); all.find{|t| t.aspect_string == string}; end
-    def my_path; 6; end
+    def find(string); all.find{|t| t.function_string == string}; end
+    def my_path; 'FTNS'; end
     def my_type; find(my_path); end
-    def sort_by(linear_index); all.sort_by{|t| t.compulsions[linear_index].aspect.index}.in_groups_of(6).map(&:sort).flatten; end
+    def sort_by(index); all.sort_by{|t| t.functions[index]}.in_groups_of(6).map(&:sort).flatten; end
   end
 
 end

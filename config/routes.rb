@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :answers, only: [:show]
   resources :types, only: [:show, :index]
   get '/me' => 'types#me', as: :my
-  get '/cycles' => 'start#cycles', as: :cycle
-  get '/balance' => 'start#balance', as: :balance
-  get '/episodes' => 'start#episodes', as: :episode
-  get '/examples' => 'start#examples', as: :example
+  get '/cookies', to: 'start#cookies'
+  ApplicationController::PAGES.each do |path|
+    get path => "start##{path}", as: path
+  end
 end

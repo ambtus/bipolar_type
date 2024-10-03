@@ -9,7 +9,11 @@
 
   %body
     %p=render "layouts/links"
-    -if controller.controller_name.match(/type/)
-      %div.right=render 'layouts/settings_form'
     =yield
     %p=render "layouts/links"
+    -if Rails.env.development?
+      =cookies.to_h
+
+-#
+    -unless controller.action_name == 'home'
+      %div=render 'layouts/form'

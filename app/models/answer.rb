@@ -5,29 +5,20 @@ class Answer
 
   def initialize(string)
     @path = string
-    @question,behavior_string = @path.split(':')
-    @behavior_string = behavior_string || ''
+    @question,answer_string = @path.split(':')
+    @answer_string = answer_string || ''
   end
-  attr_reader :question, :path, :behavior_string
+  attr_reader :question, :path, :answer_string
 
   def number; @question.last ; end
+  def finished?; number.to_i > 3; end
 
-  def behaviors; @behavior_string.split('-').collect{|s| Behavior.send(s)}; end
-  def aspects; behaviors.map(&:aspect); end
-  def phases; behaviors.map(&:phase); end
+  def selected; answer_string.chars.collect{|c| Function.send(c)}; end
+  def functions; Function.all - selected; end
+  def pair; [functions, functions.reverse]; end
 
-  def free_aspects; Aspect.all - aspects; end
-  def free_phases; Phase.all - phases; end
-  def free; Behavior.all.select{|b| free_aspects.include?(b.aspect) && free_phases.include?(b.phase)}; end
-  def free?(behavior); free.include?(behavior); end
-  def finished?; free.empty?; end
 
-  def css(behavior); behaviors.include?(behavior) ? 'grey' : ''; end
+  def next(string); question.next + ':' + answer_string + string; end
 
-  def next(behavior); question.next + ':' + [@behavior_string, behavior.path].compact_blank.join('-'); end
-
-  def sorted_behaviors; behaviors.sort_by(&:linear_index); end
-  def aspect_string; sorted_behaviors.map(&:aspect).map(&:path).join; end
-  def type_index;Type.find_by_aspect_string(aspect_string).index; end
 
 end

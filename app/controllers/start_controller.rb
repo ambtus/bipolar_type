@@ -1,22 +1,20 @@
 class StartController < ApplicationController
 
-  def balance; get_words; end
+  def realms
+    if params[:commit] == 'Reset All Verbs'
+      Function.cookies.each {|key| cookies.delete(key)}
+      cookies.delete('mine')
+      redirect_to realms_path(anchor: 'form') and return
 
-  def examples
-    if params[:commit] == 'Reset All Examples'
-      Behavior.mbtis.each {|key| cookies.delete(key)}
-      Rails.logger.debug "cookies: #{cookies.to_h}"
-      redirect_to example_path(anchor: 'form') and return
-    elsif params[:commit] == 'Load Examples'
-      get_my_words
-      Behavior.mbtis.each {|key| cookies[key] = @words[key]}
-      Rails.logger.debug "cookies: #{cookies.to_h}"
-      redirect_to example_path(anchor: 'form') and return
-    elsif params[:commit] == 'Save Examples'
-      get_words
+    elsif params[:commit] == 'Load Verbs'
+      get_my_verbs
+      redirect_to realms_path(anchor: 'form') and return
+
+    elsif params[:commit] == 'Save Verbs'
+      set_verbs
       dups = []
-      Behavior.mbtis.each do |key|
-        if @words[key] == params[key]
+      Function.cookies.each do |key|
+        if @verbs[key] == params[key]
           dups << key
         end
         if params[key].blank?
@@ -28,10 +26,10 @@ class StartController < ApplicationController
       Rails.logger.debug "dups: #{dups}"
       new = params.without('commit').without(*dups)
       Rails.logger.debug "new: #{new}"
-      redirect_to example_path(new.permit(Behavior.mbtis))+'#form' and return
+      redirect_to realms_path(new.permit(Function.cookies))+'#form' and return
     else
-      get_words
-      Behavior.mbtis.each do |key|
+      set_verbs
+      Function.cookies.each do |key|
         cookies[key] = params[key] unless params[key].blank?
       end
     end

@@ -1,6 +1,0 @@
-=form_with method: :get do |f|
-  -ApplicationController::SETTINGS.each do |setting|
-    =f.check_box setting, {checked: cookies[setting].blank?}
-    =f.label setting, setting.titleize
-  =f.submit
-=link_to 'Change examples', example_path

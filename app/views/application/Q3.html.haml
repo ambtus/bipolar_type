@@ -1,0 +1,8 @@
+-content_for(:title, @title)
+
+%h2=@title
+
+-@answer.pair.each do |pair|
+  %p
+    Depression (or taking sedatives for mania) is problematic because I gain unwanted #{pair.second.reserves} and cannot
+    %em=link_to pair.first.externalize.bang, answer_path(@answer.next(pair.map(&:path).join))

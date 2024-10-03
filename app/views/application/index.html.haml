@@ -3,11 +3,15 @@
 %table
   %tr
     %th
-    -Phase.linear.each_with_index do |phase, index|
-      -link=link_to_unless index == @linear_index, "sort by #{phase.mbti}", types_path(sort: phase.mbti)
-      %th=phase_span(phase, link)
+    -Phase.all.each_with_index do |phase, index|
+      %th{class: cookies['attitude_colors'].present? ? nil : phase.css}
+        =link_to_unless index == @sort_index, phase.name, types_path(sort: index)
   -@types.each_with_index do |type, index|
     %tr
       %th=link_to type.index, type_path(type.path)
-      -type.compulsions.each do |behavior|
-        =td behavior, 'bottom', 'left'
+      -type.functions.each_with_index do |function, index|
+        -case index
+        -when 0, 2
+          =manic function, true
+        -when 1, 3
+          =depressed function, true

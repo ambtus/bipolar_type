@@ -1,60 +1,30 @@
 module CookieHelper
-  def phase_span(phase, string)
-    phase_colors = cookies['phase_colors'].present? ? nil : phase.css
-    css = "#{phase_colors}"
+  def manic(function, td=false)
+    format(function.cookies.first, td)
+  end
+
+  def depressed(function, td=false)
+    format(function.cookies.second, td)
+  end
+
+  def format(key, td=false)
+    function = Function.send(key.first)
+    css = cookies['function_colors'].present? ? nil : function.css
+    mbti = cookies[:MBTI] ?  nil : key.colon
+    my_verbs = cookies[key] || @verbs[key]
+    verbs = cookies['changed_verbs'].present? ? function.send(key.second) : my_verbs
+    phrase = [mbti, verbs].to_phrase
     if css.blank?
-      "<span>#{string}</span>"
+      if td
+        "<td>phrase</td>"
+      else
+        phrase
+      end
+    elsif td
+      "<td class=#{css}>#{phrase}</td>"
     else
-      "<span class=#{css}>#{string}</span>"
+      "<span class=#{css}>#{phrase}</span>"
     end.html_safe
-  end
-
-  def span(behavior)
-    phase_colors = cookies['phase_colors'].present? ? nil : behavior.css
-    aspect_colors = cookies['aspect_colors'].present? ? nil : behavior.aspect.css
-    color = [aspect_colors, phase_colors].compact.first
-    css = "#{color}"
-    if css.blank?
-      "<span>#{phrase(behavior)}</span>"
-    else
-      "<span class=#{css}>#{phrase(behavior)}</span>"
-    end.html_safe
-  end
-
-  def td(behavior, border=nil, align='center')
-    phase_colors = cookies['phase_colors'].present? ? nil : behavior.css
-    aspect_colors = cookies['aspect_colors'].present? ? nil : behavior.aspect.css
-    if border == 'depends'
-      border_class = phase_colors ? nil : 'four_border'
-    else
-      border_class = border.blank? ? nil : "#{border}_border"
-    end
-    color = [aspect_colors, phase_colors].compact.first
-    css = '"' + [color, border_class, align].to_phrase + '"'
-    "<td class=#{css}>#{phrase(behavior)}</td>".html_safe
-  end
-
-  def phrase(behavior)
-    symbolic = cookies['MBTI'].present? ? nil : behavior.mbti
-    act = cookies['actions'].present? ? nil : behavior.act
-    response = cookies['responses'].present? ? nil : behavior.respond
-    example = cookies['examples'].present? ? nil : cookies[behavior.mbti] || @words[behavior.mbti]
-
-    words = [symbolic, response, act, example].compact
-    case words.length
-    when 0
-      'respond'
-    when 1
-      words.first
-    when 2
-      [words.first.colon, words.second].to_phrase
-    when 3
-      [words.first.colon, words.second, words.third.wrap].to_phrase
-    when 4
-      [words.first.colon, words.second, words.third.wrap, words.fourth.sqwrap].to_phrase
-    when 5
-      [words.first.colon, words.second, '=>', words.third, words.fourth.wrap, words.fifth.sqwrap].to_phrase
-    end
   end
 
 end

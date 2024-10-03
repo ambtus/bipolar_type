@@ -11,7 +11,7 @@ class String
   def second; chars.second; end
   def third; chars.third; end
   def fourth; chars.fourth; end
-  def words; split(/\s+/); end
+  def words; self.match(' ') ? split(/\s+/) : split('/'); end
   def clean; self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself'); end
   def to_wbr; self.words.map(&:capitalize).wbr; end
 
@@ -267,7 +267,7 @@ class String
     end
   end
   def too_much
-    [' and ', ' or ', '/', ' & '].each do |connector|
+    [' and ', ' or ', ' / ', ' & '].each do |connector|
       if self.match(connector)
         first, second = self.split(connector, 2)
         return [first.too_much, second.too_much].join(connector)

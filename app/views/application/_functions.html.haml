@@ -1,0 +1,28 @@
+%table
+  %caption
+    %h2 The Four Realms
+  %tr
+    -Function.each do |function|
+      %th{class: function.css}=function.name.capitalize
+  -Function.visible.each do |constant|
+    %tr
+      -Function.each do |function|
+        %td{class: function.css}=function.send(constant.downcase).clean
+  -if defined? form
+    #form
+    -2.times do |i|
+      %tr
+        -Function.each do |function|
+          -key = function.cookies[i]
+          %td{class: function.css}
+            =key.colon
+            =form.text_field key, value: cookies[key] || @verbs[key], maxlength: 80, size: 12
+    %tr
+      %td{colspan:4}=form.submit 'Save Verbs'
+  -else
+    %tr
+      -Function.each do |function|
+        =manic function, true
+    %tr
+      -Function.each do |function|
+        =depressed function, true

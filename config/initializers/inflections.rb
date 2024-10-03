@@ -20,4 +20,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'AKA'
   inflect.acronym 'MBTI'
   inflect.singular(/([^f])oves$/i, '\1ove')
+  inflect.uncountable %w( amnesia anorexia dementia)
 end

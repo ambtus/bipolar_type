@@ -1,0 +1,29 @@
+%table
+  %caption
+    -if defined? second_level
+      %h2
+        =function.name.capitalize
+        .plain The 4 #{function.adjective.capitalize} Imbalances
+    -else
+      %h2 The 4 #{function.adjective.capitalize} Imbalances
+  -Attitude.all.in_groups_of(2) do |row|
+    %tr
+    -row.each do |attitude|
+      %td{class: attitude.css}
+        %h3=attitude.episode(function).titleize
+        %p
+          I
+          =function.send(attitude.bipolar.change).too_much
+          when I am
+          =attitude.sick.period
+        %p.left
+          I
+          =function.send(attitude.bipolar.verb)
+          when I am
+          =attitude.wont? ? attitude.bipolar.opposite.severe : attitude.bipolar.severe
+          (#{attitude.wont? ? 'nurture' : 'nature'})
+          but don’t
+          =function.send(attitude.bipolar.opposite.verb)
+          when I am
+          =attitude.wont? ? attitude.bipolar.severe : attitude.bipolar.opposite.severe
+          (#{attitude.wont? ? 'nature' : 'nurture'}).
