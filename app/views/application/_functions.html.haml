@@ -2,27 +2,27 @@
   %caption
     %h2 The Four Realms
   %tr
-    -Function.each do |function|
-      %th{class: function.css}=function.name.capitalize
+    -Function.each do |f|
+      %th{class: cookies['function_colors'].present? ? nil : f.css}=f.name.capitalize
   -Function.visible.each do |constant|
     %tr
-      -Function.each do |function|
-        %td{class: function.css}=function.send(constant.downcase).clean
+      -Function.each do |f|
+        %td{class: cookies['function_colors'].present? ? 'bordered' : f.css}=f.send(constant.downcase).clean
   -if defined? form
     #form
     -2.times do |i|
       %tr
-        -Function.each do |function|
-          -key = function.cookies[i]
-          %td{class: function.css}
-            =key.colon
-            =form.text_field key, value: cookies[key] || @verbs[key], maxlength: 80, size: 12
+        -Function.each do |f|
+          -key = f.cookies[i]
+          %td{class: cookies['function_colors'].present? ? 'bordered' : f.css}
+            =key.colon unless cookies['MBTI'].present?
+            =form.text_field key, value: cookies[key] || @words[key], maxlength: 80, size: 10
     %tr
-      %td{colspan:4}=form.submit 'Save Verbs'
+      %td{colspan:4}=form.submit 'Save Words'
   -else
     %tr
-      -Function.each do |function|
-        =manic function, true
+      -Function.each do |f|
+        =manic f, true
     %tr
-      -Function.each do |function|
-        =depressed function, true
+      -Function.each do |f|
+        =depressed f, true

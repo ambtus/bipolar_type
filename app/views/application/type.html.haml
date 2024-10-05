@@ -1,23 +1,28 @@
 - content_for(:title, @type.path)
 
 %table
+  %caption
+    %h2=@type.name
   %tr
-    %th Do
-    %th Don’t
-  -@type.functions.in_groups_of(2) do |row|
-    %tr
-    -row.each_with_index do |function, index|
-      %td{class: cookies['function_colors'].present? ? nil : function.css}
-        =manic function
-        %em=index.even? ? 'and' : 'or'
-        =depressed function
+    %th{class: cookies['state_colors'].present? ? nil : State.i.css}
+      Manic
+      .plain (wants sedatives)
+    %th{class: cookies['state_colors'].present? ? nil : State.e.css}
+      Depressed
+      .plain (wants stimulants)
+  %tr
+    =advice @type.functions.first, Attitude.ip
+    =advice @type.functions.third, Attitude.ej
+  %tr
+    =advice @type.functions.second, Attitude.ij
+    =advice @type.functions.fourth, Attitude.ep
 
 
-%h2{class: cookies['phase_colors'].present? ? nil : Phase.ip.css}
+%h2{class: cookies['state_colors'].present? ? nil : State.i.css}
   Mania
   -unless cookies['phase_times']
-    -Bipolar.i.phases.each do |phase|
-      .plain{class: cookies['phase_colors'].present? ? nil : phase.css}=phase.times.join(', ')
+    -State.i.phases.each do |phase|
+      .plain{class: cookies['state_colors'].present? ? nil : phase.css}=phase.times.join(', ')
 %p
   Don’t force yourself to
   =depressed(@type.functions.second)
@@ -25,7 +30,7 @@
   %em not
   =manic(@type.functions.first)
   when you feel
-  =Bipolar.i.feelings.period
+  =State.i.feelings.period
   Doing so is unnatural and difficult, and requires sedatives to achieve with any real success.
 %p
   Do allow yourself to
@@ -34,15 +39,15 @@
   %em not
   =depressed(@type.functions.fourth)
   when you feel
-  =Bipolar.i.feelings.period
+  =State.i.feelings.period
   Doing so is natural and easy (as long as you are not taking sedatives), and only requires
   %em permission.
 
-%h2{class: cookies['phase_colors'].present? ? nil : Phase.ej.css}
+%h2{class: cookies['state_colors'].present? ? nil : State.e.css}
   Depression
   -unless cookies['phase_times']
-    -Bipolar.e.phases.reverse.each do |phase|
-      .plain{class: cookies['phase_colors'].present? ? nil : phase.css}=phase.times.join(', ')
+    -State.e.phases.reverse.each do |phase|
+      .plain{class: cookies['state_colors'].present? ? nil : phase.css}=phase.times.join(', ')
 %p
   Don’t force yourself to
   =manic(@type.functions.fourth)
@@ -50,7 +55,7 @@
   %em not
   =depressed(@type.functions.third)
   when you feel
-  =Bipolar.e.feelings.period
+  =State.e.feelings.period
   Doing so is unnatural and difficult, and requires stimulants to achieve with any real success.
 %p
   Do allow yourself to
@@ -59,13 +64,13 @@
   %em not
   =manic(@type.functions.second)
   when you feel
-  =Bipolar.e.feelings.period
+  =State.e.feelings.period
   Doing so is natural and easy (as long as you are not taking stimulants), and only requires
   %em permission.
 
 -if @type.path == Type.my_path
   =form_with method: :get do |form|
     -if cookies['mine']
-      =form.submit 'Reset Verbs'
+      =form.submit 'Reset Words'
     -else
-      =form.submit 'Load My Verbs'
+      =form.submit 'Load My Words'

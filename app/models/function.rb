@@ -2,29 +2,25 @@ class Function
 
   SYMBOL = %w{F S T N}
   NAME = %w{people places things ideas}
-  CENTER = %w{soul body hands mind}
-  CENTER2 = %w{heart stomach wallet head}
-  ORGAN = %w{ears mouth skin eyes}
 
-  ADJECTIVE = %w{spiritual physical material mental}
-  ADJ2 = %w{affective caloric financial cognitive}
-
-  TRIGGERS = %w{sounds smells touches sights}
+  ADJECTIVE = %w{affective physical financial mental}
+  ADJECTIVE2 = %w{spiritual caloric material cognitive}
 
   HALLUCINATIONS = %w{auditory olfactory tactile visual}
-
-  INTERNALIZE = %w{listen eat sell watch}
+  TRIGGERS = %w{sounds smells touches sights}
+  SENSOR = %w{ears mouth skin eyes}
   GET = %w{hear smell touch see}
-  INTAKE = %w{understand digest collect remember}
+  INTERNALIZE = %w{listen eat earn watch}
+  PROCESS = %w{understand digest collect remember}
+  COMPILER = %w{heart stomach hands head}
+  CENTER = %w{soul body wallet mind}
 
-  EXTERNALIZE = %w{talk move buy think}
-  OUTPUT = %w{communicate exercise spend plan}
-  GIVE = %w{speak walk pay decide}
+  EXTERNALIZE = %w{talk walk spend think}
+  WORK = %w{preach labor invest plan}
+  PLAY = %w{sing exercise splurge imagine}
 
   RESERVES = %w{self\ esteem fat money reality}
   DEATH = %w{suicidal anorexic destitute insane}
-
-  CSS = %w{red cyan green violet}
 
   def initialize(symbol); @symbol = symbol; end
   attr_reader :symbol
@@ -44,10 +40,10 @@ class Function
     def each(&block); ALL.each(&block); end
     def without_physical; ALL.without(self.s); end
     def cookies; ALL.map(&:cookies).flatten; end
-    def visible; %i{ADJECTIVE ADJ2 TRIGGERS HALLUCINATIONS CENTER2 CENTER ORGAN GET INTAKE GIVE OUTPUT RESERVES DEATH}; end
+    def visible; constants.sort - %i{ALL NAME SYMBOL EXTERNALIZE INTERNALIZE}; end
   end
 
-  def cookies; %w{e i}.collect{|key| symbol + key}; end
+  def cookies; %w{J P}.collect{|key| symbol + key}; end
 
   def flip; self; end
   def flop; self; end
@@ -59,18 +55,19 @@ class Function
   cookies.each do |cookie|
     define_singleton_method(cookie) {
       function = self.send(cookie.first)
-      cookie.second == 'i' ? function.internalize : function.externalize
+      cookie.second == 'P' ? function.internalize : function.externalize
     }
   end
+
+  alias nouns :name
+  alias j :externalize
+  alias p :internalize
+  alias css :name
 
   def adverb; adjective.ly; end
 
   def lose_reserves; ['lose', reserves].to_phrase; end
   def gain_reserves; ['gain', reserves].to_phrase; end
   def run_out; ['run out of', reserves].to_phrase; end
-
-  alias nouns :name
-  alias e :externalize
-  alias i :internalize
 
 end

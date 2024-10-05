@@ -8,8 +8,6 @@ class Phase
   EPISODE = %w{mania depression hypomania major\ depression}
   MILDER = %w{hypomania euthymia euthymia depression}
 
-  CSS = %w{yellow blue orange indigo}
-
   def initialize(symbol); @symbol = symbol; end
   attr_reader :symbol
   alias path :symbol
@@ -35,13 +33,13 @@ class Phase
   constants.each do |constant|
     define_method(constant.downcase) {self.class.const_get(constant)[index]}
   end
+  alias name :season
+  alias css :name
 
-  def bipolar; Bipolar.send(symbol.first); end
+  def bipolar; State.send(symbol.first); end
   def attitude; Attitude.send(symbol); end
 
   def moon; [phase, 'moon'].to_phrase; end
   def times; [season, moon, week, time]; end
-  def seasonal; [season, bipolar.episode].to_phrase; end
 
-  def name; episode.titleize; end
 end

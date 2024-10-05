@@ -25,13 +25,16 @@ class Attitude
     define_method(constant.downcase) {self.class.const_get(constant)[index]}
   end
 
-  def bipolar; Bipolar.send(symbol.first); end
+  def bipolar; State.send(symbol.first); end
   def phase; Phase.send(symbol); end
 
   def wont?; %w{EP IJ}.include? symbol; end
 
   def episode(function); phase.episode.words.insert(-2, function.adjective).to_phrase; end
 
+  def output?; %w{EJ IJ}.include?(symbol); end
+  def dominant?; %w{IP EJ}.include?(symbol); end
+  def more_or_less; dominant? ? 'more' : 'less'; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if phase.respond_to?(meth)

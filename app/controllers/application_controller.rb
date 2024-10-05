@@ -6,25 +6,24 @@ class ApplicationController < ActionController::Base
   helper CookieHelper
 
   PAGES = %w{bipolar unbalanced realms}
-  SETTINGS = %w{phase_colors phase_times function_colors MBTI changed_verbs}
+  SETTINGS = %w{state_colors phase_times function_colors MBTI changed_words}
 
   def set_if_blank
-    set_verbs if @verbs.blank?
+    set_words if @words.blank?
   end
-  def set_verbs
-    Rails.logger.debug "getting verbs"
-    @verbs = Function.cookies.map{|k| [k, Function.send(k)]}.to_h
+  def set_words
+    Rails.logger.debug "getting words"
+    @words = Function.cookies.map{|k| [k, Function.send(k)]}.to_h
+    @words['E'] = State.e.name
+    @words['I'] = State.i.name
   end
-  def get_my_verbs
-    Rails.logger.debug "getting my verbs"
-    @verbs = YAML.load_file('config/my_verbs.yml')
-    Function.cookies.each {|key| cookies[key] = @verbs[key]}
+  def get_my_words
+    Rails.logger.debug "getting my words"
+    @words = YAML.load_file('config/my_words.yml')
+    Function.cookies.each {|key| cookies[key] = @words[key]}
     cookies['mine'] = true
   end
 
-  def hide_all
-    SETTINGS.each {|s| cookies[s] = 'hide'}
-  end
 
   def hide
     SETTINGS.each do |setting|

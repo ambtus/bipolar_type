@@ -6,8 +6,10 @@ class Type
   end
   attr_reader :function_string, :functions
 
-  def symbolic_name; functions.map(&:nouns).join('•'); end
   alias inspect :function_string
+  def name
+    "#{functions.first.externalize.s} and #{functions.third.internalize.s} “too much”<br />dosen’t #{functions.second.internalize} or #{functions.fourth.externalize} “enough”".html_safe
+  end
 
   ALL = Function.all.permutation(4).collect do |functions|
           Type.new(functions.map(&:path).join)
