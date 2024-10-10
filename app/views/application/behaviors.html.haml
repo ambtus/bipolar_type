@@ -1,0 +1,14 @@
+- content_for(:title, Behavior.title)
+
+%h2 The Eight Behaviors
+
+%table
+  %tr
+    %th
+    -Should.each do |thing|
+      %th=symbolic thing
+  -Behavior.all.in_groups_of(2).each do |row|
+    %tr
+      %th=symbolic row.first.focus
+      -row.each do |behavior|
+        %td.left.bordered=render 'cookie', thing: behavior

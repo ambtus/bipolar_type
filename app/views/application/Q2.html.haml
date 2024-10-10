@@ -2,9 +2,7 @@
 
 %h2=@title
 
-%p As an adult, I am unlikely to <em>die</em> from it, but still need to consciously avoid becoming…
 %ul
-  -@answer.functions.each do |function|
+  -@answer.foci.each do |focus|
     %li
-      =link_to function.death, answer_path(@answer.next(function.symbol))
-      =function.lose_reserves.too_much.wrap
+      =link_to focus.symbol, answer_path(@answer.next(focus.symbol))

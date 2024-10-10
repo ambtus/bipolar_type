@@ -1,46 +1,60 @@
 module CookieHelper
-  def manic(function, td=false, state='')
-    format(state + function.cookies.first, td)
-  end
 
-  def depressed(function, td=false, state='')
-    format(state + function.cookies.second, td)
-  end
-
-  def format(tla, td=false)
-    if tla.length == 3
-      function = Function.send(tla.second)
-      key = tla.chars[1,2].join
-    else
-      function = Function.send(tla.first)
-      key = tla
-    end
-    css = cookies['function_colors'].present? ? nil : function.css
-    mbti = cookies[:MBTI] ?  nil : tla.colon
-    my_words = cookies[key] || @words[key]
-    words = cookies['changed_words'].present? ? function.send(key.second) : my_words
-    phrase = [mbti, words].to_phrase
-    if css.blank?
-      if td
-        "<td>phrase</td>"
+  def css(thing, td=false)
+    bordered = td ? 'bordered' : nil
+    if thing.is_a?(Phase)
+      cookies['phase_colors'].present? ? bordered : "background-color: #{thing.color}"
+    elsif thing.is_a? Focus
+      cookies['focus_colors'].present? ? bordered : "background-color: #{thing.color}"
+    elsif thing.is_a? Problem
+      if cookies['phase_colors'].present? && cookies['focus_colors'].present?
+        bordered
+      elsif cookies['phase_colors'].present?
+        "background-color: #{thing.phase.color}"
+      elsif cookies['focus_colors'].present?
+        "background-color: #{thing.focus.color}"
       else
-        phrase
+        "background-color: #{thing.phase.color}; color: #{thing.focus.color}"
       end
-    elsif td
-      "<td class=#{css}>#{phrase}</td>"
+    end
+  end
+
+  def formatted(thing, td=false)
+    key = thing.symbol
+    symbol = cookies.has_key?('symbols') ?  nil : key
+    word = cookies.has_key?('words') ?  nil : word(thing)
+    if symbol && word
+      phrase = [symbol.colon, word].to_phrase
+    elsif symbol || word
+      phrase = [symbol, word].to_phrase
     else
-      "<span class=#{css}>#{phrase}</span>"
-    end.html_safe
+      phrase = thing.symbol
+    end
+    if css(thing, td).blank?
+      Rails.logger.debug 'blank'
+      phrase
+    elsif td
+      Rails.logger.debug 'td'
+      '<td style="'.html_safe + css(thing, td) + '">'.html_safe + phrase + '</td>'.html_safe
+    else
+      Rails.logger.debug 'span'
+      "<span style=#{css(thing)}>".html_safe + phrase + "</span>".html_safe
+    end
   end
 
-  def advice(function, attitude)
-
-      css = cookies['state_colors'].present? ? 'bordered' : attitude.css
-      "<td class=#{css}>#{phrase(attitude.symbol.first, function, attitude)}</td>".html_safe
+  def symbolic(thing)
+    key = thing.symbol
+    word = cookies[key] || thing.words.first
+    [key.colon, word].to_phrase
   end
 
-  def phrase(state, function, attitude)
-    [attitude.episode(function).capitalize.break, (attitude.output? ? manic(function, false, state) : depressed(function, false, state)), attitude.more_or_less].to_safe_phrase
+  def word(thing)
+    if thing.is_a? Problem
+      word = cookies[thing.symbol] ||
+          [thing.cannot, word(thing.behavior)].to_phrase
+    else
+      cookies[thing.symbol] || thing.words.first
+    end
   end
 
 end

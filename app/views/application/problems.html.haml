@@ -1,0 +1,14 @@
+- content_for(:title, Problem.title)
+
+%h2 The Sixteen Problems
+
+%table
+  %tr
+    %th
+    -Focus.each do |thing|
+      %th=symbolic thing
+  -Problem.all.sort_by(&:parts).in_groups_of(4).each do |row|
+    %tr
+      %th=symbolic row.first.phase
+      -row.each do |problem|
+        %td.left.bordered=render 'cookie', thing: problem

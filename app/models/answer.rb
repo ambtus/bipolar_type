@@ -13,12 +13,19 @@ class Answer
   def number; @question.last ; end
   def finished?; number.to_i > 3; end
 
-  def selected; answer_string.chars.collect{|c| Function.send(c)}; end
-  def functions; Function.all - selected; end
-  def pair; [functions, functions.reverse]; end
+  def taken; answer_string.scan(/.../).collect{|s| Problem.find_by(s)}; end
 
+  def foci; taken.map(&:focus); end
+  def phases; taken.map(&:phase); end
+
+  def taken?(problem); foci.include?(problem.focus) || phases.include?(problem.phase); end
 
   def next(string); question.next + ':' + answer_string + string; end
 
+  def last; Problem.all.find{|p| !foci.include?(p.focus) && !phases.include?(p.phase) }; end
+
+  def all; (taken << last).sort.values_at(0,2,1,3); end
+
+  def type_path; all.map(&:focus).map(&:symbol).join; end
 
 end

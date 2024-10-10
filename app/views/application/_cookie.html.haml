@@ -1,0 +1,9 @@
+-key = thing.symbol
+=form_with url: cookies_path, method: :get do |f|
+  %b=key.colon
+  =f.text_field key, value: word(thing), maxlength: 80, size: 13
+  =f.submit 'Change'
+  -if cookies[key].present?
+    =f.submit 'Restore'
+  %br
+  =thing.words.sort.join(', ') unless thing.words.blank?

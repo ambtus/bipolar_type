@@ -1,0 +1,8 @@
+- content_for(:title, Mood.title)
+
+%h2 Two Moods
+
+%ol
+  -Mood.all.each do |mood|
+    %li=render 'cookie', thing: mood
+

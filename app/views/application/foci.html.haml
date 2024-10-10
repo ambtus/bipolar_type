@@ -1,0 +1,7 @@
+- content_for(:title, Focus.title)
+
+%h2 Four Foci
+
+%ol
+  -Focus.all.each do |focus|
+    %li=render 'cookie', thing: focus

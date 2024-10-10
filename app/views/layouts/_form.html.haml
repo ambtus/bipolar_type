@@ -1,9 +1,9 @@
 =form_with url: cookies_path, method: :get do |f|
-  -if cookies['count'].to_i > 2
-    =f.submit 'Turn All On'
-  -else
-    =f.submit 'Turn All Off'
-  -ApplicationController::SETTINGS.each do |setting|
+  =f.submit 'Toggle'
+  -settings = CookiesController::SETTINGS
+  -settings.each do |setting|
     =f.check_box setting, {checked: cookies[setting].blank?}
     =f.label setting, setting.titleize
-  =f.submit 'Save'
+  All:
+  =f.submit 'On'
+  =f.submit 'Off'

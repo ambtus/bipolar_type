@@ -1,0 +1,14 @@
+- content_for(:title, Phase.title)
+
+%h2 Four Phases
+
+%table
+  %tr
+    %th are&rarr;<br />should&darr;
+    -Mood.each do |thing|
+      %th=symbolic thing
+  -Phase.all.in_groups_of(2).each do |row|
+    %tr
+      %th=symbolic row.first.should
+      -row.each do |phase|
+        %td.left.bordered=render 'cookie', thing: phase

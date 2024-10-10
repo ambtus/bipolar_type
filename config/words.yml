@@ -1,0 +1,279 @@
+shared:
+  FP:
+    - listen
+    - hear voices
+    - understand
+    - believe
+    - use your ears
+    - gain affect
+  FJ:
+    - talk
+    - tell people
+    - sing
+    - write
+    - laugh
+    - cry
+    - scream
+    - shout
+    - communicate
+    - preach
+    - use your voice
+    - lose affect
+  NP:
+    - watch
+    - look
+    - remember
+    - see
+    - analyze
+    - use your eyes
+    - gain memories
+  NJ:
+    - think
+    - visualize
+    - theorize
+    - plan
+    - predict
+    - imagine
+    - dream
+    - use your imagination
+    - lose memories
+  SP:
+    - eat
+    - drink
+    - smell
+    - chew
+    - swallow
+    - taste
+    - digest
+    - use your tongue
+    - gain weight
+  SJ:
+    - move
+    - go places
+    - walk
+    - run
+    - exercise
+    - pace
+    - lift weights
+    - use your body
+    - lose weight
+  TP:
+    - earn
+    - sell
+    - compete
+    - win
+    - collect
+    - wages
+    - gain money
+  TJ:
+    - spend
+    - buy
+    - pay
+    - invest
+    - use credit
+    - lose money
+  E:
+    - depressed
+    - down
+    - bored
+    - unresponsive
+    - listeless
+    - conservatice
+    - calm
+    - old
+    - phlegmatic
+    - relaxed
+    - tired
+    - "off"
+    - passive
+    - slow
+    - receptive
+    - stable
+    - cold
+    - underactive
+    - lethargic
+    - appreciative
+    - tolerant
+    - low
+    - sedated
+    - rest & digest
+    - feed & breed
+    - parasympathetic nervous system
+  I:
+    - manic
+    - up
+    - stressed
+    - irritable
+    - anxious
+    - hypervigilant
+    - overexcited
+    - liberal
+    - young
+    - wired
+    - alert
+    - "on"
+    - active
+    - fast
+    - productive
+    - chaotic
+    - hot
+    - overactive
+    - restless
+    - powerful
+    - sensitive
+    - high
+    - stimulated
+    - fight & flight
+    - sympathetic nervous system
+  P:
+    - get energy
+    - accept things (serenity)
+    - take
+    - intake
+    - internalize
+    - receive
+    - learn
+    - perceive
+    - sense
+    - collect
+    - consume
+    - appreciate
+    - enjoy
+    - hoard
+  J:
+    - use energy
+    - change things (courage)
+    - give
+    - output
+    - externalize
+    - produce
+    - teach
+    - demonstrate
+    - create
+    - discard
+    - waste
+    - provide
+    - parental
+    - correct
+    - expend
+    - destroy & rebuild
+    - fix
+    - improve
+  IP:
+    - mania
+    - monday
+    - spring
+    - morning
+    - waxing moon
+    - tuesday
+    - beginning
+  EP:
+    - mild depression
+    - summer
+    - noon
+    - midday
+    - full moon
+    - wednesday
+  IJ:
+    - hypomania
+    - autumn
+    - afternoon
+    - waning moon
+    - thursday
+    - friday
+  EJ:
+    - major depression
+    - winter
+    - evening
+    - night
+    - new moon
+    - weekend
+    - end
+  F:
+    - people
+    - soul
+    - morals
+    - affective
+    - spiritual
+    - inerpersonal
+    - social
+    - emotional
+    - auditory
+    - hope
+    - ears
+    - vocal
+    - verbal
+    - suicidal
+    - homicidal
+    - communication
+    - religion
+    - politics
+    - relationships
+    - music
+    - sounds
+  S:
+    - places
+    - body
+    - actions
+    - physical
+    - caloric
+    - spatial
+    - athletic
+    - sensual
+    - olfactory
+    - obese
+    - anorexic
+    - travel
+    - hunting
+    - farms
+    - cooking
+    - cleaning
+    - smells
+    - tastes
+    - gardens
+    - food
+    - drugs
+  T:
+    - things
+    - hands
+    - posessions
+    - financial
+    - material
+    - tangible
+    - commercial
+    - measurable
+    - tactile
+    - savings
+    - utility
+    - destitute
+    - miserly
+    - weapons
+    - shelter
+    - clothes
+    - tools
+    - taxes
+    - crafts
+    - textiles
+    - machines
+    - hardware
+  N:
+    - ideas
+    - mind
+    - knowledge
+    - design
+    - mental
+    - cognitive
+    - abstract
+    - creative
+    - conceivable
+    - visual
+    - ignorant
+    - trivial
+    - science
+    - theories
+    - drawings
+    - art
+    - sights
+    - software
+    - color
+    - movement

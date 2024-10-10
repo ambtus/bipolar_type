@@ -9,10 +9,14 @@
 
   %body
     %p=render "layouts/links"
-    -unless controller.action_name == 'home'
+    -if (%w{problems answers types} & params.values).present?
       %div=render 'layouts/form'
+
     =yield
+
     %p=render "layouts/links"
+
     -if Rails.env.development?
       =cookies.to_h
+      =params.values
 

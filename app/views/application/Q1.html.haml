@@ -2,9 +2,7 @@
 
 %h2=@title
 
-%p As an adolescent / young adult, I was most apt to die because I was…
 %ul
-  -Function.each do |function|
+  -@answer.foci.each do |focus|
     %li
-      =link_to function.death, answer_path(@answer.next(function.symbol))
-      =function.run_out.ed.wrap
+      =link_to formatted(focus+Phase.all.first), answer_path(@answer.next(focus.symbol))

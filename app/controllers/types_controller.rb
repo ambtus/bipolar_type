@@ -1,8 +1,8 @@
 class TypesController < ApplicationController
   def index
-    set_words
     @sort_index = params[:sort].to_i || 0
     @types = Type.sort_by(@sort_index)
+    render 'types'
   end
 
   def show
@@ -20,7 +20,6 @@ class TypesController < ApplicationController
   end
 
   def me
-    get_my_words
     redirect_to action: 'show', id: Type.my_path
   end
 end

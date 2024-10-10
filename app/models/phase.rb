@@ -1,45 +1,19 @@
-class Phase
+class Phase < Concept
 
-  SYMBOL = %w{IP EP IJ EJ}
-  SEASON = %w{spring summer autumn winter}
-  TIME = %w{morning midday afternoon evening}
-  PHASE = %w{waxing full waning new }
-  WEEK = %w{ monday wednesday friday weekend}
-  EPISODE = %w{mania depression hypomania major\ depression}
-  MILDER = %w{hypomania euthymia euthymia depression}
+  SYMBOL = Mood::SYMBOL.collect do |mood|
+            Should::SYMBOL.collect do |should|
+              mood + should
+          end
+        end.flatten
 
-  def initialize(symbol); @symbol = symbol; end
-  attr_reader :symbol
-  alias path :symbol
-  alias inspect :symbol
+  ALL = SYMBOL.collect {|symbol| self.new symbol}.values_at(0,2,1,3)
 
-  ALL = SYMBOL.collect {|symbol| self.new symbol}
-  SYMBOL.each_with_index do |symbol, index|
-    define_singleton_method(symbol) {ALL[index]}
-    define_singleton_method(symbol.downcase) {ALL[index]}
-  end
-  %w{first second third last}.each do |ordinal|
-    define_singleton_method(ordinal) {ALL.send(ordinal)}
-  end
-  def index; SYMBOL.index @symbol; end
-  def <=>(other); self.index <=> other.index; end
+  def index; [0,2,1,3][super]; end
 
-  class << self
-    def all; ALL; end
-    def each(&block); ALL.each(&block); end
-    def twice; ALL + ALL; end
-  end
+  def mood; Mood.find_by(symbol.first); end
+  def should; Should.find_by(symbol.second); end
+  def parts; [mood, should]; end
 
-  constants.each do |constant|
-    define_method(constant.downcase) {self.class.const_get(constant)[index]}
-  end
-  alias name :season
-  alias css :name
-
-  def bipolar; State.send(symbol.first); end
-  def attitude; Attitude.send(symbol); end
-
-  def moon; [phase, 'moon'].to_phrase; end
-  def times; [season, moon, week, time]; end
+  def extreme?; mood.index == should.index; end
 
 end
