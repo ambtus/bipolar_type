@@ -4,6 +4,6 @@ class Focus < Concept
 
   ALL = SYMBOL.collect {|symbol| self.new symbol}
 
-  def +(phase); Problem.all.find{|p| p.phase == phase && p.focus == self}; end
+  def +(state); Problem.all.find{|p| p.state == state && p.focus == self}; end
 
 end

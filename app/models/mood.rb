@@ -4,6 +4,5 @@ class Mood < Concept
 
   ALL = SYMBOL.collect {|symbol| self.new symbol}
 
-  def prep; %w{to after}[index]; end
-
+  def +(action); State.all.find{|p| p.action == action && p.mood == self}; end
 end

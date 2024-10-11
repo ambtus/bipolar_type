@@ -1,9 +1,5 @@
 =form_with url: cookies_path, method: :get do |f|
-  =f.submit 'Toggle'
-  -settings = CookiesController::SETTINGS
-  -settings.each do |setting|
-    =f.check_box setting, {checked: cookies[setting].blank?}
-    =f.label setting, setting.titleize
-  All:
-  =f.submit 'On'
-  =f.submit 'Off'
+  = f.submit 'Symbols'
+  = f.submit 'Words'
+  = f.submit 'Both'
+

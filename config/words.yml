@@ -1,279 +1,149 @@
 shared:
+  I:
+    - manic
+    - up, on, high, hot, fast
+    - young, liberal, stimulated, energetic, labile
+    - stressed, irritable, anxious, hypervigilant, restless
+    - wired, overexcited, chaotic, overactive, oversensitive
+    - productive, alert, active, fast, powerful
+    - fight & flight
+    - sympathetic nervous system
+  IP:
+    - rejecting
+    - not accepting the things you should accept
+    - irritable mania
+  IJ:
+    - splurging
+    - changing the things you should not change
+    - euphoric mania
+
+  E:
+    - depressed
+    - down, off, low, cold, slow
+    - old, conservative, sedated, calm, stable
+    - bored, unresponsive, listless, oblivious, lethargic
+    - tired, fatigued, worn out, underactive, insensitive
+    - receptive, tolerant, passive, slow, appreciative
+    - rest & digest; feed & breed
+    - parasympathetic nervous system
+  EP:
+    - binging
+    - accepting the things you should not accept
+    - agitated depression
+  EJ:
+    - lazing
+    - not changing the things you should change
+    - lethargic depression
+
+  F:
+    - people
+    - spiritual, affective, social, emotional, interpersonal
+    - souls, values, hope
+    - suicidal or homicidal
+    - communication & conversation
+    - religion & politics
+    - stories & morals
+    - meaning & intonation
   FP:
     - listen
-    - hear voices
-    - understand
-    - believe
-    - use your ears
-    - gain affect
+    - hear, understand, and believe
+    - music & lyrics
+    - sounds
+    - auditory
+    - audience
   FJ:
     - talk
     - tell people
-    - sing
-    - write
-    - laugh
-    - cry
-    - scream
-    - shout
-    - communicate
-    - preach
-    - use your voice
-    - lose affect
-  NP:
-    - watch
-    - look
-    - remember
-    - see
-    - analyze
-    - use your eyes
-    - gain memories
-  NJ:
-    - think
-    - visualize
-    - theorize
-    - plan
-    - predict
-    - imagine
-    - dream
-    - use your imagination
-    - lose memories
+    - sing or preach
+    - read & write
+    - laugh & cry, scream & shout
+    - verbal
+
+  S:
+    - places
+    - physical, caloric, spatial, athletic, sensual
+    - body, food, drugs
+    - anorexic or obese
+    - travel & exploration
+    - food & medicine
+    - hunting, farming & gardening
+    - cooking & cleaning
   SP:
     - eat
-    - drink
-    - smell
-    - chew
-    - swallow
-    - taste
-    - digest
-    - use your tongue
-    - gain weight
+    - smells & tastes
+    - olfactory
+    - chew, swallow, and digest
+    - meals
   SJ:
-    - move
+    - do things
     - go places
-    - walk
-    - run
-    - exercise
-    - pace
-    - lift weights
-    - use your body
-    - lose weight
+    - actions & movements
+    - walk, run & exercise
+    - hit & lift weights
+
+  N:
+    - ideas
+    - mental, cognitive, abstract, theoretical, intangible
+    - mind, knowledge, memories
+    - ignorant or trivial
+    - science & philosophy
+    - research & design & software
+    - art & drawing
+    - knowledge
+    - creative
+    - conceivable
+    - visual
+
+
+  NP:
+    - watch
+    - research, analyze, and memorize
+    - color & movement
+    - sights
+    - patterns & exceptions
+  NJ:
+    - think
+    - visualize & predict
+    - plan
+    - imagine, dream & theorize
+
+  T:
+    - things
+    - material, financial, commercial, measurable, tangible
+    - hands, posessions & crafts
+    - destitute or miserly
+    - tools & machines & hardware
+    - weapons & shelter & clothes & textiles
+    - taxes
   TP:
     - earn
     - sell
     - compete
+    - tactile
     - win
     - collect
     - wages
-    - gain money
   TJ:
     - spend
     - buy
     - pay
     - invest
     - use credit
-    - lose money
-  E:
-    - depressed
-    - down
-    - bored
-    - unresponsive
-    - listeless
-    - conservatice
-    - calm
-    - old
-    - phlegmatic
-    - relaxed
-    - tired
-    - "off"
-    - passive
-    - slow
-    - receptive
-    - stable
-    - cold
-    - underactive
-    - lethargic
-    - appreciative
-    - tolerant
-    - low
-    - sedated
-    - rest & digest
-    - feed & breed
-    - parasympathetic nervous system
-  I:
-    - manic
-    - up
-    - stressed
-    - irritable
-    - anxious
-    - hypervigilant
-    - overexcited
-    - liberal
-    - young
-    - wired
-    - alert
-    - "on"
-    - active
-    - fast
-    - productive
-    - chaotic
-    - hot
-    - overactive
-    - restless
-    - powerful
-    - sensitive
-    - high
-    - stimulated
-    - fight & flight
-    - sympathetic nervous system
+
   P:
     - get energy
-    - accept things (serenity)
-    - take
-    - intake
-    - internalize
-    - receive
-    - learn
-    - perceive
-    - sense
-    - collect
-    - consume
-    - appreciate
-    - enjoy
-    - hoard
+    - accept things
+    - take, receive & consume
+    - appreciate, enjoy & internalize
+    - sense, perceive, and take
+    - collect & hoard
+    - dependent
   J:
     - use energy
-    - change things (courage)
-    - give
-    - output
-    - externalize
-    - produce
-    - teach
-    - demonstrate
-    - create
-    - discard
-    - waste
-    - provide
+    - change things
+    - give, output & produce
+    - destroy, rebuild, fix & improve
+    - demonstrate, provide & externalize
+    - discard & waste
     - parental
-    - correct
-    - expend
-    - destroy & rebuild
-    - fix
-    - improve
-  IP:
-    - mania
-    - monday
-    - spring
-    - morning
-    - waxing moon
-    - tuesday
-    - beginning
-  EP:
-    - mild depression
-    - summer
-    - noon
-    - midday
-    - full moon
-    - wednesday
-  IJ:
-    - hypomania
-    - autumn
-    - afternoon
-    - waning moon
-    - thursday
-    - friday
-  EJ:
-    - major depression
-    - winter
-    - evening
-    - night
-    - new moon
-    - weekend
-    - end
-  F:
-    - people
-    - soul
-    - morals
-    - affective
-    - spiritual
-    - inerpersonal
-    - social
-    - emotional
-    - auditory
-    - hope
-    - ears
-    - vocal
-    - verbal
-    - suicidal
-    - homicidal
-    - communication
-    - religion
-    - politics
-    - relationships
-    - music
-    - sounds
-  S:
-    - places
-    - body
-    - actions
-    - physical
-    - caloric
-    - spatial
-    - athletic
-    - sensual
-    - olfactory
-    - obese
-    - anorexic
-    - travel
-    - hunting
-    - farms
-    - cooking
-    - cleaning
-    - smells
-    - tastes
-    - gardens
-    - food
-    - drugs
-  T:
-    - things
-    - hands
-    - posessions
-    - financial
-    - material
-    - tangible
-    - commercial
-    - measurable
-    - tactile
-    - savings
-    - utility
-    - destitute
-    - miserly
-    - weapons
-    - shelter
-    - clothes
-    - tools
-    - taxes
-    - crafts
-    - textiles
-    - machines
-    - hardware
-  N:
-    - ideas
-    - mind
-    - knowledge
-    - design
-    - mental
-    - cognitive
-    - abstract
-    - creative
-    - conceivable
-    - visual
-    - ignorant
-    - trivial
-    - science
-    - theories
-    - drawings
-    - art
-    - sights
-    - software
-    - color
-    - movement
+

@@ -5,5 +5,7 @@
   =f.submit 'Change'
   -if cookies[key].present?
     =f.submit 'Restore'
-  %br
-  =thing.words.sort.join(', ') unless thing.words.blank?
+  -unless thing.words.blank?
+    %ol
+      -thing.words.without(word(thing)).each do |w|
+        %li=w

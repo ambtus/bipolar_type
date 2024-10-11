@@ -9,8 +9,8 @@
 
   %body
     %p=render "layouts/links"
-    -if (%w{problems answers types} & params.values).present?
-      %div=render 'layouts/form'
+    -if (%w{problems answers types states behaviors} & params.values).present?
+      %div.right=render 'layouts/form'
 
     =yield
 

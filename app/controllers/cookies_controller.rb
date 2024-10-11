@@ -1,16 +1,15 @@
 class CookiesController < ApplicationController
 
-  SETTINGS = %w{symbols words focus_colors phase_colors}
+  SETTINGS = %w{symbols words both}
 
   def update
     case params[:commit]
-    when 'Off'
-      SETTINGS.each {|s| cookies[s] = 'hide'}
-    when 'On'
-      SETTINGS.each {|s| cookies.delete(s)}
-    when 'Toggle'
-      SETTINGS.each {|s| cookies.delete(s)}
-      SETTINGS.each {|s| cookies[s] = 'hide' if params[s] == '0'}
+    when 'Symbols'
+      cookies[:setting] = 'symbols'
+    when 'Words'
+      cookies[:setting] = 'words'
+    when 'Both'
+      cookies.delete('setting')
     when 'Restore'
       params.keys.each {|k| cookies.delete(k)}
     when 'Change'
@@ -26,7 +25,11 @@ class CookiesController < ApplicationController
       end
       Problem.symbols.each do |ps|
         if params.has_key? ps
-          cookies[ps] = params[ps]
+          if params[ps].blank?
+            cookies.delete(ps)
+          else
+            cookies[ps] = params[ps]
+          end
         end
       end
     end

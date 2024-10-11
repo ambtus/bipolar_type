@@ -18,18 +18,18 @@ class Type
     def each(&block); ALL.each(&block); end
     def title; all.count.to_s; end
     def find(string); all.find{|t| t.focus_string == string}; end
-    def my_path; 'FSTN'; end
+    def my_path; 'FTSN'; end
     def my_type; find(my_path); end
     def sort_by(index); all.sort_by{|t| t.foci[index]}.in_groups_of(6).map(&:sort).flatten; end
   end
 
-  def problems; foci.add(Phase.all).flatten; end
+  def problems; foci.add(State.all).flatten; end
 
   alias inspect :problems
 
   def symbol; problems.map(&:symbol).join('•'); end
 
-
+  def find_problem(state); problems.find{|p| p.state == state}; end
 
 end
 

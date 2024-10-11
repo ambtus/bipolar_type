@@ -2,7 +2,6 @@
 
 %h2 Two Moods
 
-%ol
-  -Mood.all.each do |mood|
-    %li=render 'cookie', thing: mood
+-Mood.all.each do |mood|
+  =render 'cookie', thing: mood
 

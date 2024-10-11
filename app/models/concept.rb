@@ -23,22 +23,32 @@ class Concept
     def find_by(symbol); self::ALL.find{|x| x.symbol == symbol}; end
   end
 
+  def opposite; self.class::ALL.without(self).first; end
+
   def index; self.class::SYMBOL.index(@symbol); end
-  def <=>(other); self.index <=> other.index; end
+  def <=>(other)
+    if compound?
+      self.parts <=> other.parts
+    else
+      self.index <=> other.index
+    end
+  end
 
   def compound?; symbol.length > 1; end
 
   def words; Rails.application.config_for(:words)[symbol]; end
-  def color; Rails.application.config_for(:colors)[symbol]; end
 
-  if compound?
-    def method_missing(meth, *args, **kwargs, &block)
+  def method_missing(meth, *args, **kwargs, &block)
+    if defined? parts
       parts.each do |part|
         if part.respond_to?(meth)
-          part.send(meth) and return
+          return part.send(meth)
         end
       end
       super(meth)
+    else
+      super(meth)
     end
   end
+
 end

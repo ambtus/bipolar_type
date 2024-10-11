@@ -1,0 +1,33 @@
+%h2.left
+  =time.capitalize.colon
+  =formatted(over)
+  &rArr; time to
+  =formatted under.behavior
+
+
+%ol.none
+  %li
+    =urge ? 'a compulsion' : 'an inability'
+    to
+    =formatted over.behavior
+    means you are
+    =formatted over.mood
+  %li
+    being
+    =formatted over.mood
+    makes it
+    %em much easier
+    to
+    =formatted under.behavior
+  %li
+    so make an effort to
+    =formatted under.behavior
+    whenever you
+    =urge ? 'feel compelled to' : 'cannot'
+    =formatted over.behavior
+  %li
+    this is also a good time to
+    =succeed ';' do
+      =formatted also
+    after or while you
+    =formatted under.behavior

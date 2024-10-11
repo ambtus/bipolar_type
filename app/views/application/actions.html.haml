@@ -1,0 +1,6 @@
+- content_for(:title, Action.title)
+
+%h2 Two Actions
+
+-Action.all.each do |action|
+  =render 'cookie', thing: action

@@ -1,4 +1,4 @@
-class Should < Concept
+class Action < Concept
 
   SYMBOL = %w{P J}
 

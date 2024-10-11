@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root 'application#home'
   get 'moods', to: 'application#moods'
   get 'foci', to: 'application#foci'
-  get 'shoulds', to: 'application#shoulds'
-  get 'phases', to: 'application#phases'
+  get 'actions', to: 'application#actions'
+  get 'states', to: 'application#states'
   get 'behaviors', to: 'application#behaviors'
   get 'problems', to: 'application#problems'
   resources :answers, only: [:show]
