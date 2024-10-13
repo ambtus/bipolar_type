@@ -2,10 +2,12 @@ shared:
   I:
     - mania
     - introversion
+    - stressed
 
   E:
     - depression
     - extroversion
+    - bored
 
   F:
     - affective
