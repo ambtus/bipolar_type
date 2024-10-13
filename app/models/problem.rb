@@ -13,9 +13,13 @@ class Problem < Concept
   def mood; Mood.find_by(symbol.first); end
   def focus; Focus.find_by(symbol.second); end
   def action; Action.find_by(symbol.third); end
-  def parts; [state, focus]; end # sort_by(&:parts)
+  def parts; [focus, mood, action]; end # sort_by(&:parts)
 
   def behavior; Behavior.find_by(symbol.chip); end
   def state; State.find_by(symbol.delete(focus.symbol)); end
+
+  def pair; [state, focus]; end
+
+  def extreme?; state.extreme?; end
 
 end

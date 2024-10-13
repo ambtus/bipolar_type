@@ -3,7 +3,7 @@
 %table
   %tr
     %th
-    -State.all.each_with_index do |state, index|
+    -State.sorted.each_with_index do |state, index|
       %th
         =link_to_unless index == @sort_index, formatted(state), types_path(sort: index)
   -@types.each_with_index do |type, index|

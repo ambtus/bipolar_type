@@ -1,6 +1,17 @@
 - content_for(:title, Action.title)
 
-%h2 Two Actions
+%table
+  %caption
+    %h2 Actions
+  %tr
+    -Action.each do |action|
+      %td=render 'cookie', thing: action
 
--Action.all.each do |action|
-  =render 'cookie', thing: action
+%table
+  %caption
+    %h2 Focused Actions
+  -Focus.each do |focus|
+    %tr
+      -Action.each do |action|
+        %td=render 'cookie', thing: action + focus
+

@@ -1,14 +1,10 @@
 - content_for(:title, Problem.title)
 
-%h2 The Sixteen Problems
 
 %table
-  %tr
-    %th
-    -Focus.each do |thing|
-      %th=formatted thing
-  -Problem.all.sort_by(&:parts).in_groups_of(4).each do |row|
+  %caption
+    %h2 The Sixteen Problems
+  -Problem.all.sort_by(&:pair).in_groups_of(4).each do |row|
     %tr
-      %th=formatted row.first.state
       -row.each do |problem|
         %td.left.bordered=render 'cookie', thing: problem

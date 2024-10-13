@@ -16,12 +16,17 @@ module CookieHelper
   end
 
   def word(thing)
+    return cookies[thing.symbol] unless cookies[thing.symbol].blank?
+    return thing.words.first unless thing.words.blank?
     if thing.is_a? Problem
-      word = cookies[thing.symbol] ||
-          [word(thing.behavior), thing.extreme? ? 'too little' : 'too much'].to_phrase
+      [word(thing.behavior), thing.extreme? ? 'too little' : 'too much'].to_phrase
     else
-      cookies[thing.symbol] || thing.words.first
+      compound(thing)
     end
+  end
+
+  def compound(thing)
+    thing.parts.collect{|p| word(p)}.to_phrase
   end
 
 end

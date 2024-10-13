@@ -1,6 +1,6 @@
 - content_for(:title, Focus.title)
 
-%h2 Four Foci
+%h2 Foci
 
 -Focus.all.each do |focus|
-  =render 'cookie', thing: focus
+  =render 'cookie', thing: focus, static: focus.static

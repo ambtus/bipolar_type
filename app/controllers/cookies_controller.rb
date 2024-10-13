@@ -10,13 +10,11 @@ class CookiesController < ApplicationController
       cookies[:setting] = 'words'
     when 'Both'
       cookies.delete('setting')
-    when 'Restore'
-      params.keys.each {|k| cookies.delete(k)}
     when 'Change'
       words = Rails.application.config_for(:words)
       words.keys.each do |k|
         if params.has_key? k
-          if params[k] == words[k]
+          if params[k].blank? || (params[k] == words[k])
             cookies.delete(k)
           else
             cookies[k] = params[k]

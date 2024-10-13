@@ -1,149 +1,135 @@
 shared:
   I:
-    - manic
-    - up, on, high, hot, fast
-    - young, liberal, stimulated, energetic, labile
-    - stressed, irritable, anxious, hypervigilant, restless
-    - wired, overexcited, chaotic, overactive, oversensitive
-    - productive, alert, active, fast, powerful
-    - fight & flight
-    - sympathetic nervous system
-  IP:
-    - rejecting
-    - not accepting the things you should accept
-    - irritable mania
-  IJ:
-    - splurging
-    - changing the things you should not change
-    - euphoric mania
+    - mania
+    - introversion
 
   E:
-    - depressed
-    - down, off, low, cold, slow
-    - old, conservative, sedated, calm, stable
-    - bored, unresponsive, listless, oblivious, lethargic
-    - tired, fatigued, worn out, underactive, insensitive
-    - receptive, tolerant, passive, slow, appreciative
-    - rest & digest; feed & breed
-    - parasympathetic nervous system
-  EP:
-    - binging
-    - accepting the things you should not accept
-    - agitated depression
-  EJ:
-    - lazing
-    - not changing the things you should change
-    - lethargic depression
+    - depression
+    - extroversion
 
   F:
-    - people
-    - spiritual, affective, social, emotional, interpersonal
-    - souls, values, hope
-    - suicidal or homicidal
-    - communication & conversation
-    - religion & politics
-    - stories & morals
-    - meaning & intonation
+    - affective
+    - spiritual
+    - musical
+    - interpersonal
+    - emotional
+  IF:
+    - suicidal
+    - humble
+    - submissive
+    - modest
+  EF:
+    - homicidal
+    - egotistical
+    - dominant
+    - arrogant
   FP:
     - listen
-    - hear, understand, and believe
-    - music & lyrics
-    - sounds
-    - auditory
-    - audience
+    - hear
+    - understand
+    - believe
   FJ:
     - talk
     - tell people
     - sing or preach
-    - read & write
-    - laugh & cry, scream & shout
-    - verbal
+    - read or write
 
   S:
-    - places
-    - physical, caloric, spatial, athletic, sensual
-    - body, food, drugs
-    - anorexic or obese
-    - travel & exploration
-    - food & medicine
-    - hunting, farming & gardening
-    - cooking & cleaning
+    - physical
+    - caloric
+    - athletic
+    - spatial
+    - sensual
+
+  IS:
+    - anorexic
+    - skinny
+    - thin
+    - boney
+  ES:
+    - obese
+    - fat
+    - curvy
+    - soft
   SP:
     - eat
-    - smells & tastes
-    - olfactory
-    - chew, swallow, and digest
-    - meals
+    - chew
+    - swallow
+    - digest
   SJ:
-    - do things
+    - do
     - go places
-    - actions & movements
-    - walk, run & exercise
-    - hit & lift weights
-
-  N:
-    - ideas
-    - mental, cognitive, abstract, theoretical, intangible
-    - mind, knowledge, memories
-    - ignorant or trivial
-    - science & philosophy
-    - research & design & software
-    - art & drawing
-    - knowledge
-    - creative
-    - conceivable
-    - visual
-
-
-  NP:
-    - watch
-    - research, analyze, and memorize
-    - color & movement
-    - sights
-    - patterns & exceptions
-  NJ:
-    - think
-    - visualize & predict
-    - plan
-    - imagine, dream & theorize
+    - walk or run
+    - hit or lift weights
 
   T:
-    - things
-    - material, financial, commercial, measurable, tangible
-    - hands, posessions & crafts
-    - destitute or miserly
-    - tools & machines & hardware
-    - weapons & shelter & clothes & textiles
-    - taxes
+    - financial
+    - material
+    - commercial
+    - fiscal
+    - taxable
+
+  IT:
+    - destitute
+    - homeless
+    - bankrupt
+    - poor
+  ET:
+    - miserly
+    - wealthy
+    - loaded
+    - filthy rich
   TP:
     - earn
     - sell
     - compete
-    - tactile
-    - win
     - collect
-    - wages
   TJ:
     - spend
-    - buy
-    - pay
-    - invest
-    - use credit
+    - buy things
+    - use cash or credit
+    - pay or invest
+
+  N:
+    - mental
+    - cognitive
+    - artistic
+    - scientific
+    - reasonable
+  IN:
+    - ignorant
+    - forgetful
+    - clueless
+    - unrealistic
+  EN:
+    - stupid
+    - trivial
+    - know-it-all
+    - pedantic
+  NP:
+    - watch
+    - learn
+    - analyze
+    - memorize
+  NJ:
+    - think
+    - visualize ideas
+    - plan or predict
+    - imagine or dream
+
 
   P:
+    - intake
     - get energy
     - accept things
-    - take, receive & consume
-    - appreciate, enjoy & internalize
-    - sense, perceive, and take
-    - collect & hoard
-    - dependent
+    - take
+    - consume
+    - internalize
   J:
+    - output
     - use energy
     - change things
-    - give, output & produce
-    - destroy, rebuild, fix & improve
-    - demonstrate, provide & externalize
-    - discard & waste
-    - parental
+    - give
+    - produce
+    - externalize
 

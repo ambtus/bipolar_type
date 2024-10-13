@@ -24,7 +24,7 @@ class Answer
 
   def last; Problem.all.find{|p| !foci.include?(p.focus) && !states.include?(p.state) }; end
 
-  def all; (taken << last).sort; end
+  def all; (taken << last).sort_by(&:state); end
 
   def type_path; all.map(&:focus).map(&:symbol).join; end
 

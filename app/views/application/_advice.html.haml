@@ -1,19 +1,14 @@
-%h2.left
-  =time.capitalize.colon
-  =formatted(over)
-  &rArr; time to
-  =formatted under.behavior
-
+%h2=quarter
 
 %ol.none
   %li
     =urge ? 'a compulsion' : 'an inability'
     to
     =formatted over.behavior
-    means you are
+    means your mood is
     =formatted over.mood
   %li
-    being
+    your mood being
     =formatted over.mood
     makes it
     %em much easier

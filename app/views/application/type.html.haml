@@ -3,21 +3,28 @@
 %table
   %caption
     %h2 Problems
-  -@type.problems.values_at(2,1,0,3).in_groups_of(2).each do |row|
+  %tr
+    %th
+    -Action.each do |action|
+      %th=formatted action
+  -@type.problems.values_at(1,2,0,3).in_groups_of(2).each_with_index do |row, index|
     %tr
+      %th=index.even? ? 'do less' : 'do more'
       -row.each do |problem|
         %td.bordered=formatted problem
 
-%p 
-  If you want to do less of something, you must have something to 
+%p
+  If you want to do less of something, you must have something to
   %em replace
-  it with. If you want to do more of something, you must do it when you are in the right
+  it with.
+  %br
+  If you want to do more of something, you must do it when you are in the right
   %em mood.
 
-=render 'advice', over: @type.problems.first, under: @type.problems.fourth, urge: false, time: 'morning', also: @type.problems.third.behavior.opposite
+=render 'advice', over: @type.problems.first, under: @type.problems.fourth, urge: false, quarter: 'spring morning', also: @type.problems.second.behavior.opposite
 
-=render 'advice', over: @type.problems.third, under: @type.problems.first, urge: true, time: 'midday', also: @type.problems.second.behavior.opposite
+=render 'advice', over: @type.problems.second, under: @type.problems.first, urge: true, quarter: 'summer midday', also: @type.problems.third.behavior.opposite
 
-=render 'advice', over: @type.problems.second, under: @type.problems.fourth, urge: true, time: 'afternoon', also: @type.problems.third.behavior.opposite
+=render 'advice', over: @type.problems.third, under: @type.problems.fourth, urge: true, quarter: 'autumn afternoon', also: @type.problems.second.behavior.opposite
 
-=render 'advice', over: @type.problems.fourth, under: @type.problems.first, urge: false, time: 'evening', also: @type.problems.second.behavior.opposite
+=render 'advice', over: @type.problems.fourth, under: @type.problems.first, urge: false, quarter: 'winter evening', also: @type.problems.third.behavior.opposite

@@ -1,7 +1,17 @@
 - content_for(:title, Mood.title)
 
-%h2 Two Moods
+%table
+  %caption
+    %h2 Moods
+  %tr
+    -Mood.each do |mood|
+      %td=render 'cookie', thing: mood
 
--Mood.all.each do |mood|
-  =render 'cookie', thing: mood
+%table
+  %caption
+    %h2 Focused Moods
+  -Focus.each do |focus|
+    %tr
+      -Mood.each do |mood|
+        %td=render 'cookie', thing: mood + focus
 

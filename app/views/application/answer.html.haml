@@ -3,13 +3,8 @@
 %h2=@title
 
 %table
-  %tr
-    %th
-    -Focus.each do |thing|
-      %th=formatted thing
-  -Problem.all.sort_by(&:parts).in_groups_of(4).each do |row|
+  -Problem.all.sort_by(&:pair).in_groups_of(4).each do |row|
     %tr
-      %th=formatted row.first.state
       -row.each do |problem|
         %td.left.bordered=link_to_unless @answer.taken?(problem), formatted(problem), answer_path(@answer.next(problem.symbol))
 
