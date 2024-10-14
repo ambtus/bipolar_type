@@ -21,11 +21,11 @@
   If you want to do more of something, you must do it when you are in the right
   %em mood.
 
-=render 'advice', over: @type.problems.first, under: @type.problems.fourth, urge: false, quarter: 'spring morning', also: @type.problems.second.behavior.opposite, other: @type.problems.third.behavior.opposite
+=render 'advice', over: @type.problems.first, under: @type.problems.fourth, urge: false, quarter: 'spring morning', also: @type.problems.third.behavior.opposite, other: @type.problems.second.behavior.opposite
 
-=render 'advice', over: @type.problems.second, under: @type.problems.first, urge: true, quarter: 'summer midday', also: @type.problems.third.behavior.opposite, other: @type.problems.fourth.behavior.opposite
+=render 'advice', over: @type.problems.third, under: @type.problems.first, urge: true, quarter: 'summer midday', also: @type.problems.second.behavior.opposite, other: @type.problems.fourth.behavior.opposite
 
-=render 'advice', over: @type.problems.third, under: @type.problems.fourth, urge: true, quarter: 'autumn afternoon', also: @type.problems.second.behavior.opposite, other: @type.problems.first.behavior.opposite
+=render 'advice', over: @type.problems.second, under: @type.problems.fourth, urge: true, quarter: 'autumn afternoon', also: @type.problems.third.behavior.opposite, other: @type.problems.first.behavior.opposite
 
 
-=render 'advice', over: @type.problems.fourth, under: @type.problems.first, urge: false, quarter: 'winter evening', also: @type.problems.third.behavior.opposite, other: @type.problems.second.behavior.opposite
+=render 'advice', over: @type.problems.fourth, under: @type.problems.first, urge: false, quarter: 'winter evening', also: @type.problems.second.behavior.opposite, other: @type.problems.third.behavior.opposite
