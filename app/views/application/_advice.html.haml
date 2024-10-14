@@ -1,28 +1,16 @@
-%h2=quarter
+%h2=formatted over.balance
 
 %ol.none
   %li
     =urge ? 'a compulsion' : 'an inability'
     to
     =formatted over.behavior
-    means your mood is
-    =formatted over.mood
+    &rArr; time to
+    =formatted under.behavior
   %li
-    your mood being
-    =formatted over.mood
-    makes it
-    %em much easier
+    can also
+    =formatted also
+    but don&rsquo;t bother trying
+    ='not' if urge
     to
-    =formatted under.behavior
-  %li
-    so make an effort to
-    =formatted under.behavior
-    whenever you
-    =urge ? 'feel compelled to' : 'cannot'
-    =formatted over.behavior
-  %li
-    this is also a good time to
-    =succeed ';' do
-      =formatted also
-    after or while you
-    =formatted under.behavior
+    =formatted other

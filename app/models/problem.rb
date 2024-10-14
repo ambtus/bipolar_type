@@ -17,6 +17,7 @@ class Problem < Concept
 
   def behavior; Behavior.find_by(symbol.chip); end
   def state; State.find_by(symbol.delete(focus.symbol)); end
+  def balance; Balance.find_by(symbol.chop);end
 
   def pair; [state, focus]; end
 

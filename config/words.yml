@@ -44,14 +44,14 @@ shared:
     - sensual
 
   IS:
+    - losing weight
     - anorexic
     - skinny
     - thin
-    - boney
   ES:
+    - gaining weight
     - obese
     - fat
-    - curvy
     - soft
   SP:
     - eat
@@ -61,8 +61,8 @@ shared:
   SJ:
     - do
     - go places
-    - walk or run
-    - hit or lift weights
+    - walk or exercise
+    - cook or clean
 
   T:
     - financial
@@ -72,13 +72,13 @@ shared:
     - taxable
 
   IT:
-    - destitute
+    - wasting money
     - homeless
     - bankrupt
     - poor
   ET:
+    - hoarding money
     - miserly
-    - wealthy
     - loaded
     - filthy rich
   TP:
@@ -99,8 +99,8 @@ shared:
     - scientific
     - reasonable
   IN:
-    - ignorant
     - forgetful
+    - ignorant
     - clueless
     - unrealistic
   EN:
@@ -114,8 +114,8 @@ shared:
     - analyze
     - memorize
   NJ:
-    - think
-    - visualize ideas
+    - visualize
+    - think of ideas
     - plan or predict
     - imagine or dream
 
