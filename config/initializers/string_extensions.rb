@@ -330,12 +330,21 @@ class String
   end
   alias so_many :so_much
 
+  def as_few
+    if self.match(' ')
+      [first_words, 'as', last_word.few, last_word].join(' ')
+    else
+      "#{self} as little"
+    end
+  end
+
   def plural?
     return true if self == 'people'
     return true if first_word[-1] == 's'
     return false
   end
 
+  def few; plurals? ? 'few' : 'little'; end
   def fewer; plural? ? 'fewer' : 'less'; end
   def less
     if self.match(' ')

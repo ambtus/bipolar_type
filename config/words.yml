@@ -2,12 +2,12 @@ shared:
   I:
     - mania
     - introversion
-    - stressed
+
 
   E:
     - depression
     - extroversion
-    - bored
+
 
   F:
     - affective
@@ -15,26 +15,23 @@ shared:
     - musical
     - interpersonal
     - emotional
+    - auditory
   IF:
     - suicidal
     - humble
-    - submissive
     - modest
   EF:
     - homicidal
     - egotistical
-    - dominant
     - arrogant
   FP:
-    - listen
-    - hear
-    - understand
-    - believe
+    - listen to music
+    - hear intonation
+    - accept emotions
   FJ:
-    - talk
-    - tell people
-    - sing or preach
-    - read or write
+    - influence people
+    - write stories
+    - give sermons
 
   S:
     - physical
@@ -42,96 +39,81 @@ shared:
     - athletic
     - spatial
     - sensual
+    - olfactory
 
   IS:
-    - losing weight
     - anorexic
+    - underweight
     - skinny
-    - thin
   ES:
-    - gaining weight
     - obese
+    - overweight
     - fat
-    - soft
   SP:
-    - eat
-    - chew
-    - swallow
-    - digest
+    - eat carbs
+    - eat sweets
+    - eat dessert
   SJ:
-    - do
-    - go places
-    - walk or exercise
-    - cook or clean
+    - do housework
+    - hunt or gather
+    - lift weights
 
   T:
     - financial
     - material
     - commercial
     - fiscal
-    - taxable
+    - tangible
+    - tactile
 
   IT:
-    - wasting money
-    - homeless
     - bankrupt
     - poor
+    - homeless
   ET:
-    - hoarding money
-    - miserly
-    - loaded
     - filthy rich
+    - affluent
+    - landed
   TP:
-    - earn
-    - sell
-    - compete
-    - collect
+    - earn wages
+    - collect cash
+    - compete for prizes
   TJ:
-    - spend
-    - buy things
-    - use cash or credit
-    - pay or invest
+    - use credit
+    - buy now & pay later
+    - increase debt
 
   N:
     - mental
     - cognitive
     - artistic
     - scientific
-    - reasonable
+    - abstract
+    - visual
   IN:
-    - forgetful
     - ignorant
+    - forgetful
     - clueless
-    - unrealistic
   EN:
-    - stupid
-    - trivial
-    - know-it-all
+    - overeducated
     - pedantic
+    - trivial
   NP:
-    - watch
-    - learn
-    - analyze
-    - memorize
+    - watch videos
+    - look at colors
+    - see movement
   NJ:
-    - visualize
-    - think of ideas
-    - plan or predict
-    - imagine or dream
+    - theorize
+    - make plans
+    - predict consequences
 
 
   P:
-    - intake
     - get energy
     - accept things
-    - take
-    - consume
-    - internalize
+    - consume resources
   J:
-    - output
-    - use energy
+    - use strength
     - change things
-    - give
-    - produce
-    - externalize
+    - produce resources
 

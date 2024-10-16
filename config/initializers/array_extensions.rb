@@ -88,8 +88,8 @@ class Array
 
   def sixth; self[5]; end
 
-  def and; to_sentence.html_safe; end
-  def or; to_sentence(last_word_connector: ", or ", two_words_connector: " or ").html_safe; end
+  def and; to_sentence; end
+  def or; to_sentence(last_word_connector: ", or ", two_words_connector: " or "); end
   def amp; join(' & '); end
   def lor; join(' | '); end
   def semi; join('; '); end

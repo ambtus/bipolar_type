@@ -3,29 +3,42 @@
 %table
   %caption
     %h2 Problems
+  -@type.solutions.values_at(2,1,0,3).in_groups_of(2).each_with_index do |row, index|
+    %tr
+      -row.each do |solution|
+        %td.bordered=formatted solution.problem
+
+%table
+  %caption
+    %h2 Solutions
   %tr
     %th
-    -Action.each do |action|
-      %th=formatted action
-  -@type.problems.values_at(2,1,0,3).in_groups_of(2).each_with_index do |row, index|
+    -Behavior.each do |behavior|
+      %th=formatted behavior
+  -@type.solutions.values_at(2,1,0,3).in_groups_of(2).each_with_index do |row, index|
     %tr
       %th=index.even? ? 'do less' : 'do more'
-      -row.each do |problem|
-        %td.bordered=formatted problem
+      -row.each do |solution|
+        %td.bordered=formatted solution
 
-%p
-  If you want to do less of something, you must have something to
-  %em replace
-  it with.
-  %br
-  If you want to do more of something, you must do it when you are in the right
-  %em mood.
-
-=render 'advice', over: @type.problems.first, under: @type.problems.fourth, urge: false, quarter: 'spring morning', also: @type.problems.third.behavior.opposite, other: @type.problems.second.behavior.opposite
-
-=render 'advice', over: @type.problems.third, under: @type.problems.first, urge: true, quarter: 'summer midday', also: @type.problems.second.behavior.opposite, other: @type.problems.fourth.behavior.opposite
-
-=render 'advice', over: @type.problems.second, under: @type.problems.fourth, urge: true, quarter: 'autumn afternoon', also: @type.problems.third.behavior.opposite, other: @type.problems.first.behavior.opposite
+%p If you want to do less of something, you need to replace it with something else. 
+%p If you want to do more of something, you need to do it at the right time.
 
 
-=render 'advice', over: @type.problems.fourth, under: @type.problems.first, urge: false, quarter: 'winter evening', also: @type.problems.second.behavior.opposite, other: @type.problems.third.behavior.opposite
+%h2 Morning
+
+%p After you wake up, you will be in the mood to #{formatted Behavior.find_by('J')}. This is the easiest time to replace #{formatted(@type.ep.action)} with #{formatted(@type.ej.action)}. This is also the best time to #{formatted @type.ep.action.opposite}.
+  
+
+%h2 Midday 
+
+%p At some point you will tire and be in the mood to #{formatted Behavior.find_by('P')}. This is the best time to replace #{formatted(@type.ij.action)} with #{formatted(@type.ip.action)}. It is also the best time to #{formatted @type.ij.action.opposite}.
+
+
+%h2 Afternoon
+
+%p After a short break or micronap, you will be in the mood to #{formatted Behavior.find_by('J')} again. You may be too tired to #{formatted @type.ep.action.opposite}, but you should again be able to #{formatted(@type.ej.action)} and not #{formatted(@type.ep.action)} without stimulants. Do not take stimulants to #{formatted(@type.ep.action.opposite).more} or you will #{formatted(@type.ij.action).too_much} and won&rsquo;t be able to #{formatted @type.ip.action}. 
+  
+%h2 Evening
+
+At some point you will tire and again be in the mood to #{formatted Behavior.find_by('P')}. You may be too stressed to #{formatted @type.ij.action.opposite}, but you should be able to  #{formatted(@type.ip.action)} and not #{formatted(@type.ij.action)} without sedatives. Do not take sedatives to #{formatted(@type.ij.action.opposite).more} or you will #{formatted(@type.ep.action).too_much} and be unable to #{formatted @type.ej.action}. 

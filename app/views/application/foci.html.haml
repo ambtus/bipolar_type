@@ -1,6 +1,8 @@
 - content_for(:title, Focus.title)
 
-%h2 Foci
+=render 'instructions', items: 'adjectives which attempt to describe the four foci'
 
--Focus.all.each do |focus|
-  =render 'cookie', thing: focus, static: focus.static
+%table
+  -Focus.all.each do |focus|
+    %tr
+      %td=render 'cookie', thing: focus, static: focus.static

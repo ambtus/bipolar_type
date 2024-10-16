@@ -1,0 +1,20 @@
+- content_for(:title, Imbalance.title)
+
+=render 'instructions', items: 'nouns'
+
+%table
+  %tr
+    -Imbalance.each do |imbalance|
+      %td=render 'cookie', thing: imbalance
+
+%p A focused imbalance creates a problem.
+=render 'instructions', items: 'adjectives which describe severe imbalances'
+
+%table
+  %caption
+    %h2 8 Problems
+  -Focus.each do |focus|
+    %tr
+      -Imbalance.each do |imbalance|
+        %td=render 'cookie', thing: imbalance + focus
+

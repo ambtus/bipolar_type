@@ -1,26 +1,18 @@
 class Problem < Concept
 
-  SYMBOL = Mood::SYMBOL.collect do |mood|
-             Focus::SYMBOL.collect do |focus|
-               Action::SYMBOL.collect do |action|
-                mood + focus + action
-              end
-            end
-          end.flatten
+  SYMBOL = Imbalance::SYMBOL.collect do |imbalance|
+            Focus::SYMBOL.collect do |focus|
+              imbalance + focus
+          end
+        end.flatten
 
-  ALL = SYMBOL.collect{|symbol| self.new symbol}
+  ALL = SYMBOL.collect {|symbol| self.new symbol}
 
-  def mood; Mood.find_by(symbol.first); end
+  def imbalance; Imbalance.find_by(symbol.first); end
   def focus; Focus.find_by(symbol.second); end
-  def action; Action.find_by(symbol.third); end
-  def parts; [focus, mood, action]; end # sort_by(&:parts)
+  def parts; [focus, imbalance]; end
 
-  def behavior; Behavior.find_by(symbol.chip); end
-  def state; State.find_by(symbol.delete(focus.symbol)); end
-  def balance; Balance.find_by(symbol.chop);end
+  def opposite; Imbalance.find_by(imbalance.opposite.symbol + focus.symbol); end
 
-  def pair; [state, focus]; end
-
-  def extreme?; state.extreme?; end
 
 end

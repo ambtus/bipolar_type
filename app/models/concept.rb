@@ -14,11 +14,11 @@ class Concept
     def each(&block); self::ALL.each(&block); end
     def compound?; self::ALL.first.compound?; end
     def title
-      if compound?
-        self::ALL.count
-      else
-        self::SYMBOL.join
-      end
+      #if compound?
+        [self::ALL.count, self.name.pluralize].to_phrase
+      #else
+       # self::SYMBOL.join
+      #end
     end
     def find_by(symbol); self::ALL.find{|x| x.symbol == symbol}; end
   end

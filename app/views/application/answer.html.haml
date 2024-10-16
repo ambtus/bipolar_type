@@ -2,11 +2,21 @@
 
 %h2=@title
 
-%table
-  -Problem.all.sort_by(&:pair).in_groups_of(4).each do |row|
+-@answer.free_foci.each do |focus|
+  %table
+    %caption
+      %h2=formatted focus
     %tr
-      -row.each do |problem|
-        %td.left.bordered=link_to_unless @answer.taken?(problem), formatted(problem), answer_path(@answer.next(problem.symbol))
+      -Imbalance.each do |imbalance|
+        %td=formatted imbalance + focus
+    -Behavior.each do |behavior|
+      %tr
+        -Imbalance.each do |imbalance|
+          -solution = imbalance + (focus + behavior)
+          %td
+            =link_to_unless @answer.taken?(solution), solution.symbol, answer_path(@answer.next(solution.symbol))
+            .left=formatted_problem solution
+
 
 -if Rails.env.development?
   =@answer.taken

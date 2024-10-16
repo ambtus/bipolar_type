@@ -1,16 +1,13 @@
 -key = thing.symbol
+%h3
+  =key.colon
+  -if defined?(static)
+    =static
+  -elsif thing.compound?
+    =compound(thing) unless thing.is_a? Solution
 =form_with url: cookies_path, method: :get do |f|
-  %b
-    =key.colon
-    -if defined?(static)
-      =static
-    -elsif thing.compound?
-      =compound(thing)
-
-
   =f.text_field key, value: word(thing), maxlength: 80, size: 13
-  =f.submit 'Change'
-  -unless thing.words.blank?
-    %ul.left
-      -thing.words.without(word(thing)).each do |w|
-        %li=w
+  =f.submit 'Save'
+-unless thing.words.blank?
+  -thing.words.without(word(thing)).each do |w|
+    %div.left=w

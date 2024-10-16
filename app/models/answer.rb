@@ -13,16 +13,17 @@ class Answer
   def number; @question.last ; end
   def finished?; number.to_i > 3; end
 
-  def taken; answer_string.scan(/.../).collect{|s| Problem.find_by(s)}; end
+  def taken; answer_string.scan(/.../).collect{|s| Solution.find_by(s)}; end
 
   def foci; taken.map(&:focus); end
+  def free_foci; Focus.all - foci; end
   def states; taken.map(&:state); end
 
-  def taken?(problem); foci.include?(problem.focus) || states.include?(problem.state); end
+  def taken?(solution); foci.include?(solution.focus) || states.include?(solution.state); end
 
   def next(string); question.next + ':' + answer_string + string; end
 
-  def last; Problem.all.find{|p| !foci.include?(p.focus) && !states.include?(p.state) }; end
+  def last; Solution.all.find{|p| !foci.include?(p.focus) && !states.include?(p.state) }; end
 
   def all; (taken << last).sort_by(&:state); end
 

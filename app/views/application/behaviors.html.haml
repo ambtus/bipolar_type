@@ -1,14 +1,20 @@
 - content_for(:title, Behavior.title)
 
-%h2 The Eight Behaviors
+=render 'instructions', items: 'verb phrases'
 
 %table
   %tr
-    %th
-    -Action.each do |thing|
-      %th=formatted thing
-  -Behavior.all.in_groups_of(2).each do |row|
+    -Behavior.each do |behavior|
+      %td=render 'cookie', thing: behavior
+
+%p A focused behavior creates an action.
+=render 'instructions', items: 'verb phrases'
+
+%table
+  %caption
+    %h2 8 Actions
+  -Focus.each do |focus|
     %tr
-      %th=formatted row.first.focus
-      -row.each do |behavior|
-        %td.left.bordered=render 'cookie', thing: behavior
+      -Behavior.each do |behavior|
+        %td=render 'cookie', thing: behavior + focus
+

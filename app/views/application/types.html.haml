@@ -3,11 +3,11 @@
 %table
   %tr
     %th
-    -State.sorted.each_with_index do |state, index|
+    -State.all.each_with_index do |state, index|
       %th
-        =link_to_unless index == @sort_index, formatted(state), types_path(sort: index)
+        =link_to_unless index == @sort_index, state.symbol, types_path(sort: index)
   -@types.each_with_index do |type, index|
     %tr
       %th=link_to type.index, type_path(type.path)
-      -type.problems.each do |problem|
-        %td.left=formatted problem
+      -type.solutions.each do |solution|
+        %td.left=formatted solution

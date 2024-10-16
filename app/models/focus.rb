@@ -5,10 +5,12 @@ class Focus < Concept
   ALL = SYMBOL.collect {|symbol| self.new symbol}
 
   def +(thing)
-    if thing.is_a? Action
-      Behavior.all.find{|p| p.action == thing && p.focus == self}
+    if thing.is_a? Behavior
+      Action.all.find{|p| p.behavior == thing && p.focus == self}
+    elsif thing.is_a? Imbalance
+      Imbalance.all.find{|p| p.imbalance == thing && p.focus == self}
     elsif thing.is_a? State
-      Problem.all.find{|p| p.state == thing && p.focus == self}
+      Solution.all.find{|p| p.state == thing && p.focus == self}
     end
   end
 
