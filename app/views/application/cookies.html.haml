@@ -1,0 +1,28 @@
+- content_for(:title, 'Cookies')
+
+%p The default words will be used if your words are blank.
+
+%p
+  The following link can be bookmarked to save your words between sessions:
+  =link_to 'my BipolarType words', @url
+
+=form_with url: cookies_path, method: :get do |f|
+  %table
+    %tr
+      %th Letter
+      %th Your words
+      %th Default words
+
+    -@words.each do |key, value|
+      %tr
+        %td=key
+        %td=f.text_field key, value: cookies[key], maxlength: 80, size: 13
+        %td=value.first
+
+
+
+
+  = f.submit 'Save'
+
+
+

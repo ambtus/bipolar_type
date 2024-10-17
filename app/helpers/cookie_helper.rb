@@ -11,7 +11,7 @@ module CookieHelper
 
   def formatted(thing)
     case cookies['setting']
-    when 'symbols'
+    when 'letters'
       return thing.symbol
     when 'words'
       return word(thing)
@@ -33,7 +33,7 @@ module CookieHelper
 
   def formatted_problem(solution)
     case cookies['setting']
-    when 'symbols'
+    when 'letters'
       return solution.symbol
     else
       return problem(solution)

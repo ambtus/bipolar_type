@@ -1,8 +1,8 @@
 - content_for(:title, Focus.title)
 
-=render 'instructions', items: 'adjectives which attempt to describe the four foci'
+%p Nouns are words that name people, places, things, or ideas. The adjectives below are how my brain describes these nouns; feel free to use your own adjectives.
 
 %table
-  -Focus.all.each do |focus|
-    %tr
+  %tr
+    -Focus.all.each do |focus|
       %td=render 'cookie', thing: focus, static: focus.static

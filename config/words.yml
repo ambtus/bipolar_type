@@ -1,29 +1,60 @@
 shared:
+  F:
+    - affective
+    - emotional
+    - personal
+    - spiritual
+    - moral
+    - musical
+    - auditory
+  S:
+    - physical
+    - spatial
+    - environmental
+    - sensual
+    - active
+    - athletic
+    - olfactory
+  T:
+    - financial
+    - tangible
+    - material
+    - fiscal
+    - transferable
+    - commercial
+    - tactile
+  N:
+    - mental
+    - symbolic
+    - abstract
+    - cognitive
+    - scientific
+    - artistic
+    - visual
+
+  P:
+    - get energy
+    - accept things
+    - consume resources
+    - rest & digest
+  J:
+    - use strength
+    - change things
+    - produce resources
+    - fight & flee
+
   I:
+    - deficit
+    - low reserves
     - mania
     - introversion
-
-
   E:
+    - surplus
+    - high reserves
     - depression
     - extroversion
 
 
-  F:
-    - affective
-    - spiritual
-    - musical
-    - interpersonal
-    - emotional
-    - auditory
-  IF:
-    - suicidal
-    - humble
-    - modest
-  EF:
-    - homicidal
-    - egotistical
-    - arrogant
   FP:
     - listen to music
     - hear intonation
@@ -32,23 +63,6 @@ shared:
     - influence people
     - write stories
     - give sermons
-
-  S:
-    - physical
-    - caloric
-    - athletic
-    - spatial
-    - sensual
-    - olfactory
-
-  IS:
-    - anorexic
-    - underweight
-    - skinny
-  ES:
-    - obese
-    - overweight
-    - fat
   SP:
     - eat carbs
     - eat sweets
@@ -57,23 +71,6 @@ shared:
     - do housework
     - hunt or gather
     - lift weights
-
-  T:
-    - financial
-    - material
-    - commercial
-    - fiscal
-    - tangible
-    - tactile
-
-  IT:
-    - bankrupt
-    - poor
-    - homeless
-  ET:
-    - filthy rich
-    - affluent
-    - landed
   TP:
     - earn wages
     - collect cash
@@ -82,22 +79,6 @@ shared:
     - use credit
     - buy now & pay later
     - increase debt
-
-  N:
-    - mental
-    - cognitive
-    - artistic
-    - scientific
-    - abstract
-    - visual
-  IN:
-    - ignorant
-    - forgetful
-    - clueless
-  EN:
-    - overeducated
-    - pedantic
-    - trivial
   NP:
     - watch videos
     - look at colors
@@ -106,14 +87,41 @@ shared:
     - theorize
     - make plans
     - predict consequences
+    - create procedures
 
 
-  P:
-    - get energy
-    - accept things
-    - consume resources
-  J:
-    - use strength
-    - change things
-    - produce resources
+  IF:
+    - suicidal
+    - humble
+    - modest
+  EF:
+    - homicidal
+    - egotistical
+    - arrogant
+  IS:
+    - anorexic
+    - underweight
+    - skinny
+  ES:
+    - obese
+    - overweight
+    - fat
+  IT:
+    - bankrupt
+    - poor
+    - homeless
+  ET:
+    - filthy rich
+    - affluent
+    - landed
+
+  IN:
+    - ignorant
+    - forgetful
+    - clueless
+  EN:
+    - overeducated
+    - pedantic
+    - trivial
+
 

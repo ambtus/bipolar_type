@@ -1,14 +1,13 @@
 - content_for(:title, Behavior.title)
 
-=render 'instructions', items: 'verb phrases'
-
+%p Verbs are words that, among other things, convey action.
 %table
   %tr
     -Behavior.each do |behavior|
       %td=render 'cookie', thing: behavior
 
-%p A focused behavior creates an action.
-=render 'instructions', items: 'verb phrases'
+%p A focused behavior creates an action. 4 nouns X 2 verbs = 8 actions.
+
 
 %table
   %caption
