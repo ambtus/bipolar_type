@@ -25,10 +25,14 @@ class String
   def sqwrap; "[#{self}]"; end
   def parenthesize; "(#{self})"; end
   alias wrap :parenthesize
-  def wrapped?; self[0] == '(' && self.last == ')'; end
+  def wrapped?; self.last == ')'; end
   def unwrap
     if wrapped?
-      self.chip.chop
+      if self[0] == '('
+        self.chop.chip
+      else
+        self.chop
+      end
     else
       return self
     end
@@ -339,12 +343,13 @@ class String
   end
 
   def plural?
+    return unwrap.plural? if wrapped?
     return true if self == 'people'
     return true if first_word[-1] == 's'
     return false
   end
 
-  def few; plurals? ? 'few' : 'little'; end
+  def few; plural? ? 'few' : 'little'; end
   def fewer; plural? ? 'fewer' : 'less'; end
   def less
     if self.match(' ')

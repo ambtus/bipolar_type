@@ -1,7 +1,7 @@
 shared:
   F:
-    - affective
     - emotional
+    - affective
     - personal
     - spiritual
     - moral
@@ -44,47 +44,54 @@ shared:
     - fight & flee
 
   I:
+    - mania
     - deficit
     - low reserves
-    - mania
-    - introversion
+    - emptiness
   E:
+    - depression
     - surplus
     - high reserves
-    - depression
-    - extroversion
+    - fullness
 
 
   FP:
     - listen to music
     - hear intonation
-    - accept emotions
+    - understand emotions
+    - notice connotation
   FJ:
     - influence people
-    - write stories
+    - tell stories
     - give sermons
+    - write poems
   SP:
     - eat carbs
-    - eat sweets
+    - eat fruits
+    - drink sweet beverages
     - eat dessert
   SJ:
     - do housework
+    - exercise
     - hunt or gather
     - lift weights
   TP:
     - earn wages
-    - collect cash
+    - sell for cash
+    - collect interest
     - compete for prizes
   TJ:
     - use credit
     - buy now & pay later
+    - borrow
     - increase debt
   NP:
     - watch videos
-    - look at colors
+    - look at art
     - see movement
+    - view images
   NJ:
-    - theorize
+    - think
     - make plans
     - predict consequences
     - create procedures
@@ -120,8 +127,8 @@ shared:
     - forgetful
     - clueless
   EN:
-    - overeducated
+    - stupid
     - pedantic
-    - trivial
+    - overeducated
 
 

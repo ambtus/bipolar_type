@@ -10,35 +10,36 @@
 
 %table
   %caption
-    %h2 Solutions
+    %h2 Goals
   %tr
     %th
-    -Behavior.each do |behavior|
-      %th=formatted behavior
+    -Action.each do |action|
+      %th=formatted action
   -@type.solutions.values_at(2,1,0,3).in_groups_of(2).each_with_index do |row, index|
     %tr
       %th=index.even? ? 'do less' : 'do more'
       -row.each do |solution|
         %td.bordered=formatted solution
 
-%p If you want to do less of something, you need to replace it with something else. 
-%p If you want to do more of something, you need to do it at the right time.
+%p Avoid stimulants or you will #{formatted(@type.ij.behavior).too_much} and won&rsquo;t be able to #{formatted @type.ip.behavior}.
+
+%p Avoid sedatives or you will #{formatted(@type.ep.behavior).too_much} and be unable to #{formatted @type.ej.behavior}.
 
 
 %h2 Morning
 
-%p After you wake up, you will be in the mood to #{formatted Behavior.find_by('J')}. This is the easiest time to replace #{formatted(@type.ep.action)} with #{formatted(@type.ej.action)}. This is also the best time to #{formatted @type.ep.action.opposite}.
-  
+%p After you wake up, you will be in the mood to #{formatted Action.find_by('J')}. This is the easiest time to #{formatted(@type.ej.behavior)} and not #{formatted(@type.ep.behavior)}. You will also be able to #{formatted @type.ep.behavior.opposite} if you want to.
 
-%h2 Midday 
 
-%p At some point you will tire and be in the mood to #{formatted Behavior.find_by('P')}. This is the best time to replace #{formatted(@type.ij.action)} with #{formatted(@type.ip.action)}. It is also the best time to #{formatted @type.ij.action.opposite}.
+%h2 Midday
+
+%p At some point you will tire and be in the mood to #{formatted Action.find_by('P')}. This is the best time to #{formatted(@type.ip.behavior)} and not #{formatted(@type.ij.behavior)}. You will also be able to #{formatted @type.ij.behavior.opposite} if you want to.
 
 
 %h2 Afternoon
 
-%p After a short break or micronap, you will be in the mood to #{formatted Behavior.find_by('J')} again. You may be too tired to #{formatted @type.ep.action.opposite}, but you should again be able to #{formatted(@type.ej.action)} and not #{formatted(@type.ep.action)} without stimulants. Do not take stimulants to #{formatted(@type.ep.action.opposite).more} or you will #{formatted(@type.ij.action).too_much} and won&rsquo;t be able to #{formatted @type.ip.action}. 
-  
+%p After a short break or micronap, you will be in the mood to #{formatted Action.find_by('J')} again. You will again be able to #{formatted(@type.ej.behavior)} and not #{formatted(@type.ep.behavior)} but may be too tired to #{formatted @type.ep.behavior.opposite}.
+
 %h2 Evening
 
-At some point you will tire and again be in the mood to #{formatted Behavior.find_by('P')}. You may be too stressed to #{formatted @type.ij.action.opposite}, but you should be able to  #{formatted(@type.ip.action)} and not #{formatted(@type.ij.action)} without sedatives. Do not take sedatives to #{formatted(@type.ij.action.opposite).more} or you will #{formatted(@type.ep.action).too_much} and be unable to #{formatted @type.ej.action}. 
+At some point you will tire and again be in the mood to #{formatted Action.find_by('P')}. You will be able to  #{formatted(@type.ip.behavior)} and not #{formatted(@type.ij.behavior)} but may be too stressed to #{formatted @type.ij.behavior.opposite}.

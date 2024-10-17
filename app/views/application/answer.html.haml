@@ -2,20 +2,26 @@
 
 %h2=@title
 
+-case @answer.number
+  -when '1'
+    %p You do not have to start at the top. Start with the problem that is the most difficult for you to balance.
+  -when '2'
+    %p Continue with your next worst problem.
+  -when '3'
+    %p Finally, even if you have already have solved them, chose the one which is more difficult for you to balance.
+
 -@answer.free_foci.each do |focus|
   %table
-    %caption
-      %h2=formatted focus
     %tr
       -Imbalance.each do |imbalance|
-        %td=formatted imbalance + focus
-    -Behavior.each do |behavior|
+        %th=formatted imbalance + focus
+    -Action.each do |action|
       %tr
         -Imbalance.each do |imbalance|
-          -solution = imbalance + (focus + behavior)
+          -solution = imbalance + (focus + action)
           %td
             =link_to_unless @answer.taken?(solution), solution.symbol, answer_path(@answer.next(solution.symbol))
-            .left=formatted_problem solution
+            .left=formatted_problem(solution) unless @answer.taken?(solution)
 
 
 -if Rails.env.development?

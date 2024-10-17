@@ -7,10 +7,10 @@ class Imbalance < Concept
   def +(thing)
     if thing.is_a?(Focus)
       Problem.all.find{|p| p.focus == thing && p.imbalance == self}
-    elsif thing.is_a?(Behavior)
-      State.all.find{|p| p.behavior == thing && p.imbalance == self}
     elsif thing.is_a?(Action)
-      Solution.all.find{|p| p.action == thing && p.imbalance == self}
+      State.all.find{|p| p.action == thing && p.imbalance == self}
+    elsif thing.is_a?(Behavior)
+      Solution.all.find{|p| p.behavior == thing && p.imbalance == self}
     end
   end
 
