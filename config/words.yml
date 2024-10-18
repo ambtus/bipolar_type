@@ -33,13 +33,13 @@ shared:
     - visual
 
   P:
+    - accept good things
     - get energy
-    - accept things
     - consume resources
     - rest & digest
   J:
+    - change bad things
     - use strength
-    - change things
     - produce resources
     - fight & flee
 
@@ -81,7 +81,7 @@ shared:
     - collect interest
     - compete for prizes
   TJ:
-    - use credit
+    - spend credit
     - buy now & pay later
     - borrow
     - increase debt
@@ -114,8 +114,8 @@ shared:
     - overweight
     - fat
   IT:
+    - destitute
     - bankrupt
-    - poor
     - homeless
   ET:
     - filthy rich

@@ -28,18 +28,18 @@
 
 %h2 Morning
 
-%p After you wake up, you will be in the mood to #{formatted Action.find_by('J')}. This is the easiest time to #{formatted(@type.ej.behavior)} and not #{formatted(@type.ep.behavior)}. You will also be able to #{formatted @type.ep.behavior.opposite} if you want to.
+%p After you wake up, you will be in the mood to #{formatted Action.find_by('J')}. This is the easiest time to #{formatted(@type.ej.behavior)} and not #{formatted(@type.ep.behavior)}. You will also be able to #{formatted @type.ep.behavior.opposite}.
 
 
 %h2 Midday
 
-%p At some point you will tire and be in the mood to #{formatted Action.find_by('P')}. This is the best time to #{formatted(@type.ip.behavior)} and not #{formatted(@type.ij.behavior)}. You will also be able to #{formatted @type.ij.behavior.opposite} if you want to.
+%p At some point you will tire and be in the mood to #{formatted Action.find_by('P')}. This is the best time to #{formatted(@type.ip.behavior)} and not #{formatted(@type.ij.behavior)}. You will also be able to #{formatted @type.ij.behavior.opposite}.
 
 
 %h2 Afternoon
 
-%p After a short break or micronap, you will be in the mood to #{formatted Action.find_by('J')} again. You will again be able to #{formatted(@type.ej.behavior)} and not #{formatted(@type.ep.behavior)} but may be too tired to #{formatted @type.ep.behavior.opposite}.
+%p After a short break or micronap, you will be in the mood to #{formatted Action.find_by('J')} again. You will again be able to #{short_formatted(@type.ej.behavior)} and not #{short_formatted(@type.ep.behavior)} but may be too tired to #{formatted @type.ep.behavior.opposite}.
 
 %h2 Evening
 
-At some point you will tire and again be in the mood to #{formatted Action.find_by('P')}. You will be able to  #{formatted(@type.ip.behavior)} and not #{formatted(@type.ij.behavior)} but may be too stressed to #{formatted @type.ij.behavior.opposite}.
+At some point you will tire and again be in the mood to #{formatted Action.find_by('P')}. You will be able to  #{short_formatted(@type.ip.behavior)} and not #{short_formatted(@type.ij.behavior)} but may be too stressed to #{formatted @type.ij.behavior.opposite}.
