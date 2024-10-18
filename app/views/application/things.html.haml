@@ -1,0 +1,6 @@
+- content_for(:title, Thing.title)
+%table
+  %tr
+    -Thing.all.each do |thing|
+      %td=render 'cookie', thing: thing
+

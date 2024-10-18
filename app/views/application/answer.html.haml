@@ -2,26 +2,27 @@
 
 %h2=@title
 
+Which of the following is
 -case @answer.number
-  -when '1'
-    %p You do not have to start at the top. Start with the problem that is the most difficult for you to balance.
-  -when '2'
-    %p Continue with your next worst problem.
-  -when '3'
-    %p Finally, even if you have already have solved them, chose the one which is more difficult for you to balance.
+-when '1'
+  the most stressful?
+-when '2'
+  the most boring?
+-when '3'
+  more stressful?
 
--@answer.free_foci.each do |focus|
-  %table
-    %tr
-      -Imbalance.each do |imbalance|
-        %th=formatted imbalance + focus
-    -Action.each do |action|
-      %tr
-        -Imbalance.each do |imbalance|
-          -solution = imbalance + (focus + action)
-          %td
-            =link_to_unless @answer.taken?(solution), solution.symbol, answer_path(@answer.next(solution.symbol))
-            .left=formatted_problem(solution) unless @answer.taken?(solution)
+%ul.none
+  -@answer.free_things.each do |thing|
+    %li
+      =link_to thing.static, answer_path(@answer.next(thing.symbol))
+      -case @answer.number
+      -when '1'
+        I worry most about being #{formatted thing.imbalances.first}
+      -when '2'
+        I worry most about being #{formatted thing.imbalances.second}
+      -when '3'
+        I worry more about being #{formatted thing.imbalances.first}
+
 
 
 -if Rails.env.development?

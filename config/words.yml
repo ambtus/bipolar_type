@@ -2,9 +2,9 @@ shared:
   F:
     - emotional
     - affective
-    - personal
     - spiritual
     - moral
+    - personal
     - musical
     - auditory
   S:
@@ -33,12 +33,10 @@ shared:
     - visual
 
   P:
-    - accept good things
     - get energy
     - consume resources
     - rest & digest
   J:
-    - change bad things
     - use strength
     - produce resources
     - fight & flee
@@ -57,24 +55,24 @@ shared:
 
   FP:
     - listen to music
-    - hear intonation
-    - understand emotions
-    - notice connotation
+    - accept emotions
+    - hear love
+    - take advice
   FJ:
     - influence people
     - tell stories
-    - give sermons
-    - write poems
+    - write sermons
+    - give advice
   SP:
     - eat carbs
     - eat fruits
     - drink sweet beverages
-    - eat dessert
+    - take dessert
   SJ:
     - do housework
     - exercise
     - hunt or gather
-    - lift weights
+    - cook dessert
   TP:
     - earn wages
     - sell for cash
@@ -83,13 +81,13 @@ shared:
   TJ:
     - spend credit
     - buy now & pay later
-    - borrow
-    - increase debt
+    - pay interest
+    - offer rewards
   NP:
     - watch videos
     - look at art
-    - see movement
-    - view images
+    - see improvement
+    - follow procedures
   NJ:
     - think
     - make plans

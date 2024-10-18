@@ -1,29 +1,31 @@
 class Solution < Concept
 
-  SYMBOL = Imbalance::SYMBOL.collect do |imbalance|
-             Focus::SYMBOL.collect do |focus|
+  SYMBOL = Problem::SYMBOL.collect do |problem|
+             Thing::SYMBOL.collect do |thing|
                Action::SYMBOL.collect do |action|
-                imbalance + focus + action
+                problem + thing + action
               end
             end
           end.flatten
 
   ALL = SYMBOL.collect{|symbol| self.new symbol}
 
-  def imbalance; Imbalance.find_by(symbol.first); end
-  def focus; Focus.find_by(symbol.second); end
+  def problem; Problem.find_by(symbol.first); end
+  def thing; Thing.find_by(symbol.second); end
   def action; Action.find_by(symbol.third); end
-  def parts; [imbalance, focus, action]; end # sort_by(&:parts)
+  def parts; [problem, thing, action]; end # sort_by(&:parts)
 
   def behavior; Behavior.find_by(symbol.chip); end
-  def state; State.find_by(symbol.delete(focus.symbol)); end
-  def problem; Problem.find_by(symbol.chop);end
+  def state; State.find_by(symbol.delete(thing.symbol)); end
+  def imbalance; Imbalance.find_by(symbol.chop);end
 
-  def pair; [state, focus]; end
+  def pair; [state, thing]; end
 
   def extreme?; state.extreme?; end
-  def drugs; imbalance.drugs; end
+  def drugs; problem.drugs; end
 
-  def more; extreme? ? 'more' : 'less'; end
+  def static
+    [thing.static, 'are', extreme? ? 'very' : 'somewhat', problem.adjective].to_phrase
+  end
 
 end

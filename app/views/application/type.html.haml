@@ -3,10 +3,14 @@
 %table
   %caption
     %h2 Problems
-  -@type.solutions.values_at(2,1,0,3).in_groups_of(2).each_with_index do |row, index|
-    %tr
-      -row.each do |solution|
-        %td.bordered=formatted solution.problem
+  %tr
+  -@type.solutions.each do |solution|
+    %th=solution.static
+  %tr
+  -@type.solutions.each do |solution|
+    %td.bordered=formatted solution.imbalance
+
+You can take stimulants when surrounded by #{@type.solutions.last.thing.static} to make them less boring <em>or</em> sedatives when surrounded by #{@type.solutions.first.thing.static} to make them less stressful. But which are you supposed to take when surrounded by both #{@type.solutions.first.thing.static} <am>and</em> #{@type.solutions.last.thing.static}? How can you balance being #{formatted @type.solutions.first.imbalance} with being #{formatted @type.solutions.last.imbalance}?
 
 %table
   %caption
@@ -21,25 +25,29 @@
       -row.each do |solution|
         %td.bordered=formatted solution
 
-%p Avoid stimulants or you will #{formatted(@type.ij.behavior).too_much} and won&rsquo;t be able to #{formatted @type.ip.behavior}.
-
-%p Avoid sedatives or you will #{formatted(@type.ep.behavior).too_much} and be unable to #{formatted @type.ej.behavior}.
-
-
-%h2 Morning
-
-%p After you wake up, you will be in the mood to #{formatted Action.find_by('J')}. This is the easiest time to #{formatted(@type.ej.behavior)} and not #{formatted(@type.ep.behavior)}. You will also be able to #{formatted @type.ep.behavior.opposite}.
+%p If you want to do less of something, you should try to replace it with something you want to do more of.
+%p
+  If you want to do more of something, you need to do it at the right
+  %em time.
 
 
-%h2 Midday
+%h2 Morning & Afternoon; Spring & Autumn
+%p Stressed enough to change things that should be changed. Not bored enough to accept things that should not be accepted.
 
-%p At some point you will tire and be in the mood to #{formatted Action.find_by('P')}. This is the best time to #{formatted(@type.ip.behavior)} and not #{formatted(@type.ij.behavior)}. You will also be able to #{formatted @type.ij.behavior.opposite}.
+%p This is the easiest time to #{formatted(@type.ej)} and to <em>not</em> #{formatted @type.ep.behavior}.
 
+%p It is, however, the hardest time to #{formatted @type.ip} or <em>not</em> #{formatted @type.ij.behavior}.
 
-%h2 Afternoon
+%h2 Midday & Evening
 
-%p After a short break or micronap, you will be in the mood to #{formatted Action.find_by('J')} again. You will again be able to #{short_formatted(@type.ej.behavior)} and not #{short_formatted(@type.ep.behavior)} but may be too tired to #{formatted @type.ep.behavior.opposite}.
+%p Bored enough to accept things that should be accepted. Not stressed enough to change things that should not be changed.
 
-%h2 Evening
+%p This is the easiest time to #{formatted(@type.ip.behavior)} and  #{formatted @type.ij.behavior.opposite}.
 
-At some point you will tire and again be in the mood to #{formatted Action.find_by('P')}. You will be able to  #{short_formatted(@type.ip.behavior)} and not #{short_formatted(@type.ij.behavior)} but may be too stressed to #{formatted @type.ij.behavior.opposite}.
+%p Don’t bother trying to #{formatted @type.ej.behavior} or #{formatted @type.ep.behavior.opposite}. You would need stimulants, which will make you even more #{formatted @type.solutions.first.imbalance}.
+
+%p
+  This is also the easiest time to
+  %em not
+  #{formatted @type.ij.behavior}
+  without the sedatives which would make you even more #{formatted @type.solutions.last.imbalance}.

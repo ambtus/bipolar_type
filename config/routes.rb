@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'application#home'
-  get 'foci', to: 'application#foci'
+  get 'things', to: 'application#things'
   get 'actions', to: 'application#actions'
-  get 'imbalances', to: 'application#imbalances'
+  get 'problems', to: 'application#problems'
   resources :answers, only: [:show]
   resources :types, only: [:show, :index]
   get 'cookies', to: 'cookies#update'

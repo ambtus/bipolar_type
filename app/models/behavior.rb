@@ -1,18 +1,20 @@
 class Behavior < Concept
 
-  SYMBOL = Focus::SYMBOL.collect do |focus|
+  SYMBOL = Thing::SYMBOL.collect do |thing|
             Action::SYMBOL.collect do |action|
-              focus + action
+              thing + action
           end
         end.flatten
 
   ALL = SYMBOL.collect {|symbol| self.new symbol}
 
-  def focus; Focus.find_by(symbol.first); end
+  def thing; Thing.find_by(symbol.first); end
   def action; Action.find_by(symbol.second); end
-  def parts; [focus, action]; end
+  def parts; [thing, action]; end
 
-  def opposite; Behavior.find_by(focus.symbol + action.opposite.symbol); end
+  def opposite; Behavior.find_by(thing.symbol + action.opposite.symbol); end
+
+  def static; action.static.gsub('things', thing.static); end
 
 
 end

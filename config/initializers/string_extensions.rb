@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean to_wbr n first_word last_words last_word quote dquote sqwrap parenthesize wrap unwrap wrapped? comma period semi colon bang break unpunctuate and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap unwrap wrapped? comma period semi colon bang break unpunctuate and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -15,11 +15,38 @@ class String
   def clean; self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself'); end
   def to_wbr; self.words.map(&:capitalize).wbr; end
 
-  def n; words.size - 1;end
-  def first_word; words.first; end
-  def last_word; words.last; end
-  def first_words; words.first(n).to_phrase; end
-  def last_words; words.last(n).to_phrase; end
+  # these assume the string is three words
+  # 'listen to music' has the preposition to, and gets split as 'listen to' and 'music'
+  # 'eat sweet foods' has the adjective sweet', and gets plits as 'eat' and 'sweet foods'
+  PREPS = %w{after at before from for of off on over to with the a an} # articles aren't prepositions, but are split the same
+  def prep?; PREPS.include?(words[1]); end
+  def first_words
+    case words.count
+    when 1,2
+      words.first
+    when 3
+      prep? ? words.first(2).to_phrase : words.first
+    when 4
+      words.first(2).to_phrase
+    else
+      raise "don't know what to do with #{words.count} words"
+    end
+  end
+  def last_words
+    case words.count
+    when 1
+      ''
+    when 2
+      words.last
+    when 3
+      prep? ? words.last : words.last(2).to_phrase
+    when 4
+      words.last(2).to_phrase
+    else
+      raise "don't know what to do with #{words.count} words" unless words.count == 3
+    end
+  end
+
   def quote; "‘#{self}’"; end
   def dquote; "“#{self}”"; end
   def sqwrap; "[#{self}]"; end
@@ -114,7 +141,7 @@ class String
       first, second = self.split(' or ', 2)
       [first.s, second.s].join(' or ')
     elsif self.match(' ')
-      [first_word.s, last_words].join(' ')
+      [first_words.s, last_words].join(' ')
     elsif self.match('/')
       first, second = self.split('/', 2)
       [first.s, second.s].join('/')
@@ -155,7 +182,7 @@ class String
     return 'rebuilt' if self=='rebuild'
     return 'spoke' if self=='speak'
     if self.match(' ')
-      [first_word.ed, last_words].join(' ')
+      [first_words.ed, last_words].join(' ')
     else
       self.sub(/e$/, '').sub(/y$/, 'i') + 'ed'
     end
@@ -173,7 +200,7 @@ class String
     return 'gone' if self=='go'
     return 'spoken' if self=='speak'
     if self.match(' ')
-      [first_word.en, last_words].join(' ')
+      [first_words.en, last_words].join(' ')
     else
       self.ed
     end
@@ -182,11 +209,11 @@ class String
   def ly
     return '' if self.blank?
     if self.match(': ')
-      return [first_word, last_words.ly].join(' ')
+      return [first_words, last_words.ly].join(' ')
     elsif self.match(' ')
-      return [first_word.ly, last_words].join(' ')
+      return [first_words.ly, last_words].join(' ')
     end
-    self.gsub(/le$/,'') + 'ly'
+    self.gsub(/ic$/, 'ical').gsub(/y$/,'i').gsub(/le$/,'') + 'ly'
   end
 
   def able
@@ -219,7 +246,7 @@ class String
       end
     end
     if self.match(' ')
-      return [first_word.ing, last_words].join(' ')
+      return [first_words.ing, last_words].join(' ')
     end
     self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + 'ing'
   end
@@ -232,7 +259,7 @@ class String
       end
     end
     if self.match(' ')
-      [first_words, 'enough', last_word].join(' ')
+      [first_words, 'enough', last_words].join(' ')
     elsif self.noun?
       "enough #{self}"
     else
@@ -245,28 +272,28 @@ class String
   end
   def some
     if self.match(' ')
-      [first_word, 'some', last_words].join(' ')
+      [first_words, 'some', last_words].join(' ')
     else
       "#{self} some"
     end
   end
   def a_lot
     if self.match(' ')
-      [first_words, last_word.many, last_word].join(' ')
+      [first_words, last_words.many, last_words].join(' ')
     else
       "#{self} a lot"
     end
   end
   def a_lot_of
     if self.match(' ')
-      [first_word, 'a lot of', last_words].join(' ')
+      [first_words, 'a lot of', last_words].join(' ')
     else
       "a lot of #{self}"
     end
   end
   def a_few
     if self.match(' ')
-      [first_words, 'a', last_word.few, last_word].join(' ')
+      [first_words, 'a', last_words.few, last_words].join(' ')
     else
       "#{self} a little"
     end
@@ -279,7 +306,7 @@ class String
       end
     end
     if self.match(' ')
-      [first_word, 'too', last_words.much, last_words].join(' ')
+      [first_words, 'too', last_words.much, last_words].join(' ')
     elsif self.noun?
       "too #{self.many} #{self}"
     else
@@ -289,7 +316,7 @@ class String
   alias too_many :too_much
   def too_little
     if self.match(' ')
-      [first_words, 'too', last_word.little, last_word].join(' ')
+      [first_words, 'too', last_words.little, last_words].join(' ')
     else
       "#{self} too little"
     end
@@ -298,7 +325,11 @@ class String
 
   def more
     if self.match(' ')
-      [first_words, 'more', last_word].join(' ')
+      if last_words.words.first == 'good'
+        [first_words, 'better', last_words.delete_prefix('good')].to_phrase
+      else
+        [first_words, 'more', last_words].to_phrase
+      end
     elsif self.noun?
       "more #{self}"
     else
@@ -309,7 +340,7 @@ class String
     if self.match(' the ')
       self.gsub('the', 'any more')
     elsif self.match(' ')
-      [first_words, 'any more', last_word].join(' ')
+      [first_words, 'any more', last_words].join(' ')
     else
       "#{self} any more"
     end
@@ -317,7 +348,7 @@ class String
 
   def as_much
     if self.match(' ')
-      [first_words, 'as', last_word.much, last_word].join(' ')
+      [first_words, 'as', last_words.much, last_words].join(' ')
     else
       "#{self} as much"
     end
@@ -325,7 +356,7 @@ class String
   alias as_many :as_much
   def so_much
     if self.match(' ')
-      [first_words, 'so', last_word.much, last_word].join(' ')
+      [first_words, 'so', last_words.much, last_words].join(' ')
     elsif self.noun?
       "so #{self.much} #{self}"
     else
@@ -336,7 +367,7 @@ class String
 
   def as_few
     if self.match(' ')
-      [first_words, 'as', last_word.few, last_word].join(' ')
+      [first_words, 'as', last_words.few, last_words].join(' ')
     else
       "#{self} as little"
     end
@@ -345,7 +376,7 @@ class String
   def plural?
     return unwrap.plural? if wrapped?
     return true if self == 'people'
-    return true if first_word[-1] == 's'
+    return true if first_words[-1] == 's'
     return false
   end
 
@@ -353,7 +384,7 @@ class String
   def fewer; plural? ? 'fewer' : 'less'; end
   def less
     if self.match(' ')
-      [first_words, last_word.fewer, last_word].join(' ')
+      [first_words, last_words.fewer, last_words].join(' ')
     else
       "#{self} less"
     end

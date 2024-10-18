@@ -1,8 +1,0 @@
-- content_for(:title, Focus.title)
-
-%p Nouns are words that name people, places, things, or ideas. The adjectives below are how my brain describes these groups of nouns; feel free to use your own adjectives.
-
-%table
-  %tr
-    -Focus.all.each do |focus|
-      %td=render 'cookie', thing: focus, static: focus.static

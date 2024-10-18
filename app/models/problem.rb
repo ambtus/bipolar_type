@@ -1,18 +1,22 @@
 class Problem < Concept
 
-  SYMBOL = Imbalance::SYMBOL.collect do |imbalance|
-            Focus::SYMBOL.collect do |focus|
-              imbalance + focus
-          end
-        end.flatten
+  SYMBOL = %w{I E}
 
   ALL = SYMBOL.collect {|symbol| self.new symbol}
 
-  def imbalance; Imbalance.find_by(symbol.first); end
-  def focus; Focus.find_by(symbol.second); end
-  def parts; [focus, imbalance]; end
+  def +(concept)
+    if concept.is_a?(Thing)
+      Imbalance.all.find{|p| p.thing == concept && p.problem == self}
+    elsif concept.is_a?(Action)
+      State.all.find{|p| p.action == concept && p.problem == self}
+    elsif concept.is_a?(Behavior)
+      Solution.all.find{|p| p.behavior == concept && p.problem == self}
+    end
+  end
 
-  def opposite; Imbalance.find_by(imbalance.opposite.symbol + focus.symbol); end
+  def drugs; %w{sedatives stimulants}[index]; end
 
+  def adjective; %w{stressful boring}[index]; end
+  def static; ['things are', adjective].to_phrase; end
 
 end

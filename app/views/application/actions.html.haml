@@ -1,6 +1,5 @@
 - content_for(:title, Action.title)
 
-%p Verbs are words that, among other things, convey action.
 %table
   %tr
     -Action.each do |action|
@@ -8,11 +7,9 @@
 
 %table
   %caption
-    %h2
-      8 Behaviors
-      .plain A focused action creates a behavior.
-  -Focus.each do |focus|
+    %h2 8 Behaviors
+  -Thing.each do |thing|
     %tr
       -Action.each do |action|
-        %td=render 'cookie', thing: action + focus
+        %td=render 'cookie', thing: action + thing
 

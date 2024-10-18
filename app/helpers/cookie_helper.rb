@@ -1,48 +1,48 @@
 module CookieHelper
 
-  def compound(thing)
-    if thing.is_a? Behavior
-      action_words = word(thing.action)
+  def compound(concept)
+    if concept.is_a? Behavior
+      action_words = word(concept.action)
       if action_words.match?('&') || (action_words.words.count == 1)
-        [word(thing.focus), action_words].to_phrase
+        [word(concept.thing), action_words].to_phrase
       else
-        [action_words.first_words, word(thing.focus), action_words.last_word].to_phrase
+        [action_words.first_words, word(concept.thing), action_words.last_words].to_phrase
       end
     else
-      thing.parts.collect{|p| word(p)}.to_phrase
+      concept.parts.collect{|p| word(p)}.to_phrase
     end
   end
 
-  def formatted(thing)
+  def formatted(concept)
     case cookies['setting']
     when 'letters'
-      return thing.symbol
+      return concept.symbol
     when 'words'
-      return word(thing)
+      return word(concept)
     else
-      return [thing.symbol, word(thing).wrap].to_phrase
+      return [concept.symbol, word(concept).wrap].to_phrase
     end
   end
 
-  def short_formatted(thing)
+  def short_formatted(concept)
     case cookies['setting']
     when 'letters'
-      return thing.symbol
+      return concept.symbol
     when 'words'
-      return word(thing).first_word
+      return word(concept).words.first
     else
-      return [thing.symbol, word(thing).first_word.wrap].to_phrase
+      return [concept.symbol, word(concept).words.first.wrap].to_phrase
     end
   end
 
-  def word(thing)
-    return cookies[thing.symbol] unless cookies[thing.symbol].blank?
-    return thing.words.first unless thing.words.blank?
-    if thing.is_a? Solution
-      behavior_words = word(thing.behavior)
-      amount = thing.extreme? ? behavior_words.more : behavior_words.less
+  def word(concept)
+    return cookies[concept.symbol] unless cookies[concept.symbol].blank?
+    return concept.words.first unless concept.words.blank?
+    if concept.is_a? Solution
+      behavior_words = word(concept.behavior)
+      amount = concept.extreme? ? behavior_words.more : behavior_words.less
     else
-      compound(thing)
+      compound(concept)
     end
   end
 
@@ -51,5 +51,21 @@ module CookieHelper
     amount = solution.extreme? ? 'as little' : 'as much'
     "I already #{formatted(solution.behavior.opposite)} #{amount} as I can. I also try #{'not' unless solution.extreme?} to #{formatted(solution.behavior)}, but not always #{'little' unless solution.extreme?} enough."
   end
+
+  def formatted_stress(solution)
+    case cookies['setting']
+    when 'letters'
+      return solution.symbol
+    when 'words'
+      return stress_word(solution)
+    else
+      return [solution.symbol, stress_word(solution).wrap].to_phrase
+    end
+  end
+
+  def stress_word(solution)
+    [solution.thing.static, 'are', solution.extreme? ? 'very' : 'somewhat', solution.adjective].to_phrase
+  end
+
 
 end

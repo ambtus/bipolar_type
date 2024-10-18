@@ -1,0 +1,15 @@
+- content_for(:title, Problem.title)
+
+%table
+  %tr
+    -Problem.each do |problem|
+      %td=render 'cookie', thing: problem
+
+%table
+  %caption
+    %h2 8 Imbalances
+  -Thing.each do |thing|
+    %tr
+      -Problem.each do |problem|
+        %td=render 'cookie', thing: problem + thing
+
