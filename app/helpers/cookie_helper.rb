@@ -24,6 +24,17 @@ module CookieHelper
     end
   end
 
+  def static(concept)
+    case cookies['setting']
+    when 'letters'
+      return concept.symbol
+    when 'words'
+      return concept.static
+    else
+      return [concept.symbol, concept.static.wrap].to_phrase
+    end
+  end
+
   def short_formatted(concept)
     case cookies['setting']
     when 'letters'
@@ -52,20 +63,6 @@ module CookieHelper
     "I already #{formatted(solution.behavior.opposite)} #{amount} as I can. I also try #{'not' unless solution.extreme?} to #{formatted(solution.behavior)}, but not always #{'little' unless solution.extreme?} enough."
   end
 
-  def formatted_stress(solution)
-    case cookies['setting']
-    when 'letters'
-      return solution.symbol
-    when 'words'
-      return stress_word(solution)
-    else
-      return [solution.symbol, stress_word(solution).wrap].to_phrase
-    end
-  end
-
-  def stress_word(solution)
-    [solution.thing.static, 'are', solution.extreme? ? 'very' : 'somewhat', solution.adjective].to_phrase
-  end
 
 
 end

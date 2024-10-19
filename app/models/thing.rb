@@ -16,6 +16,6 @@ class Thing < Concept
 
   def imbalances; Imbalance.all.select{|i| i.thing == self}; end
 
-  def static; %w{people places tools ideas}[index]; end
+  def static; %w{people foods tools ideas}[index]; end
 
 end

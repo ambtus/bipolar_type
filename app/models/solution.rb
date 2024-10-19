@@ -25,7 +25,7 @@ class Solution < Concept
   def drugs; problem.drugs; end
 
   def static
-    [thing.static, 'are', extreme? ? 'very' : 'somewhat', problem.adjective].to_phrase
+    [extreme? ? 'most' : 'many', thing.static, 'are', extreme? ? 'very' : 'somewhat', problem.adjective].to_phrase
   end
 
 end

@@ -1,53 +1,34 @@
 - content_for(:title, @type.symbol)
 
 %table
-  %caption
-    %h2 Problems
+  %tr
+    %th{colspan:4} Natural Imbalances
   %tr
   -@type.solutions.each do |solution|
-    %th=solution.static
+    %td
+      =formatted solution.imbalance
+      .italic=compound solution.imbalance
+  %tr
+    %th{colspan:4} Goals
   %tr
   -@type.solutions.each do |solution|
-    %td.bordered=formatted solution.imbalance
-
-You can take stimulants when surrounded by #{@type.solutions.last.thing.static} to make them less boring <em>or</em> sedatives when surrounded by #{@type.solutions.first.thing.static} to make them less stressful. But which are you supposed to take when surrounded by both #{@type.solutions.first.thing.static} <am>and</em> #{@type.solutions.last.thing.static}? How can you balance being #{formatted @type.solutions.first.imbalance} with being #{formatted @type.solutions.last.imbalance}?
-
-%table
-  %caption
-    %h2 Goals
-  %tr
-    %th
-    -Action.each do |action|
-      %th=formatted action
-  -@type.solutions.values_at(2,1,0,3).in_groups_of(2).each_with_index do |row, index|
-    %tr
-      %th=index.even? ? 'do less' : 'do more'
-      -row.each do |solution|
-        %td.bordered=formatted solution
+    %td.left=formatted solution
 
 %p If you want to do less of something, you should try to replace it with something you want to do more of.
-%p
-  If you want to do more of something, you need to do it at the right
-  %em time.
+
+%h2=formatted @type.ij
+%p You can <em>always</em> #{formatted(@type.ij.behavior)} because you are sensitive enough to always be able to find <em>some</em> #{static(@type.ij.thing).singularize} you want to change, without being <em>so</em> sensitive that you become so stressed you give up trying to change things and run away as you do with #{static(@type.ip.thing)}.
+
+%h2=formatted @type.ep
 
 
-%h2 Morning & Afternoon; Spring & Autumn
-%p Stressed enough to change things that should be changed. Not bored enough to accept things that should not be accepted.
+%p You can <em>always</em> #{formatted(@type.ep.behavior)} because you are insensitive enough to always be able to find <em>some</em> #{static(@type.ep.thing).singularize} you want to accept, without being <em>so</em> insensitive that you become so bored you give up trying to accept things and fall asleep as you do with #{static(@type.ej.thing)}.
 
-%p This is the easiest time to #{formatted(@type.ej)} and to <em>not</em> #{formatted @type.ep.behavior}.
+%h2 Depression
 
-%p It is, however, the hardest time to #{formatted @type.ip} or <em>not</em> #{formatted @type.ij.behavior}.
+%p If you are depressed, but not depressed enough to accept things that <em>you</em> don’t think need to be accepted — #{formatted @type.ij.behavior.opposite} — but still still depressed enough to accept things that <em>do</em> need to be accepted, then replace #{formatted @type.ep.behavior} with #{formatted @type.ip.behavior}.
 
-%h2 Midday & Evening
+%h2 Mania
 
-%p Bored enough to accept things that should be accepted. Not stressed enough to change things that should not be changed.
+%p If you are manic, but not manic enough to change things that <em>you</em> don’t think need to be changed — #{formatted @type.ep.behavior.opposite} — but still manic enough to change things that <em>do</em> need to be changed, then replace #{formatted @type.ij.behavior} with #{formatted @type.ej.behavior}
 
-%p This is the easiest time to #{formatted(@type.ip.behavior)} and  #{formatted @type.ij.behavior.opposite}.
-
-%p Don’t bother trying to #{formatted @type.ej.behavior} or #{formatted @type.ep.behavior.opposite}. You would need stimulants, which will make you even more #{formatted @type.solutions.first.imbalance}.
-
-%p
-  This is also the easiest time to
-  %em not
-  #{formatted @type.ij.behavior}
-  without the sedatives which would make you even more #{formatted @type.solutions.last.imbalance}.
