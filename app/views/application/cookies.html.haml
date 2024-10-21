@@ -19,7 +19,7 @@
       %tr
         %td=key
         %td=f.text_field key, value: cookies[key], maxlength: 80, size: 13
-        %td=word(key)
+        %td=Rails.application.config_for(:words)[key]
     %tr
       %th{colspan:4}= f.submit 'Save'
 

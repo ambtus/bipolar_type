@@ -21,6 +21,6 @@ class Answer
 
   def next(string); question.next + ':' + answer_string + string; end
 
-
-  def type_path; answer_string.chars.values_at(0,2,3,1).join; end
+  def thing_string; answer_string.chars.values_at(0,2,3,1).join; end
+  def type_path; Type.find_by_thing_string(thing_string).path; end
 end

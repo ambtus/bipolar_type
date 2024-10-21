@@ -7,15 +7,6 @@ class TypesController < ApplicationController
 
   def show
     @type = Type.find params[:id]
-    case params[:commit]
-      when 'Load My Words'
-        get_my_words
-      when 'Reset Words'
-        Rails.logger.debug 'hello'
-        Function.cookies.each {|key| cookies.delete(key)}
-        cookies.delete('mine')
-    end
-    Rails.logger.debug 'goodbye'
     render 'type'
   end
 
