@@ -11,7 +11,7 @@ shared:
   ↑¬: weak
 
   F↑: verbalize
-  F↑¬: remain silent
+  F↑¬: be quiet
   F↓: listen
   F↓¬: tune out
 
@@ -27,6 +27,6 @@ shared:
 
   N↑: think
   N↑¬: stop worrying
-  N↓: watch & learn
+  N↓: watch
   N↓¬: close your eyes
 
