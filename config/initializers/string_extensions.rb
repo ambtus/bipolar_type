@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap unwrap wrapped? comma period semi colon bang break unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap unwrap wrapped? comma period semi colon bang break unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -13,6 +13,7 @@ class String
   def fourth; chars.fourth; end
   def words; self.match(' ') ? split(/\s+/) : split('/'); end
   def clean; self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself'); end
+  def make_mine(be=true); words.replace_with('your', 'my').replace_with('be', 'am', be).to_phrase; end
   def to_wbr; self.words.map(&:capitalize).wbr; end
 
   # these assume the string is three words
@@ -79,8 +80,6 @@ class String
       return self
     end
   end
-
-  def make_mine; self.gsub(' your ', ' my '); end
 
   def and_to_or; self.gsub(' and ', ' or '); end
   def break_before_wrap; gsub(' (', '<br />(').html_safe; end
@@ -407,9 +406,6 @@ class String
       "#{self} less"
     end
   end
-
-
-
 
   def begins_with?(string); self.match(/\A#{string}/); end
 

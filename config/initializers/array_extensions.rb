@@ -1,6 +1,6 @@
 # Restart required even in development mode when you modify this file.
 
-%w{even odd intersect sixth multiply add join_strings duplicates discard purge remove_consecutive_dupes check_constraints and or amp lor wbr slash break semi to_phrase to_safe_phrase}.each do |meth|
+%w{even odd intersect sixth multiply add join_strings duplicates discard replace_with purge remove_consecutive_dupes check_constraints and or amp lor wbr slash break semi to_phrase to_safe_phrase}.each do |meth|
  raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
 
@@ -63,6 +63,10 @@ class Array
 
   def discard(element)
     reject{|x| x == element}
+  end
+
+  def replace_with(old, new, be=false)
+    be ? map{|x| x == old ? new : x} : self
   end
 
 #  def purge
