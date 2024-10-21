@@ -8,12 +8,21 @@
   -@type.subtypes.each do |subtype|
     %td=tendency subtype
   %tr
-    %th{colspan:4} Goals
+    %th{colspan:4} You don’t have to
   %tr
   -@type.subtypes.each do |subtype|
-    %td=solution subtype
+    %td.left
+      =solution(subtype.opposite)
+      more
+  %tr
+    %th{colspan:4} You just have to
+  %tr
+  -@type.subtypes.each do |subtype|
+    %td
+      =solution subtype
+      more
 
-%h2 BipolarType Advice
+%h2 Timing
 %table
   %tr
     %th{colspan:2} Spring Morning &uarr; (Up)
@@ -25,7 +34,7 @@
   %tr
     %td{colspan: 2}
       =solution @type.ep
-      &
+      whenever you
       =solution @type.ep.opposite
   %tr
     %td Every fall<br />even in the morning
@@ -33,7 +42,7 @@
   %tr
     %td{colspan:2}
       =solution @type.ej
-      &
+      whenever you
       =solution @type.ej.opposite
   %tr
     %th{colspan:2} Summer Midday &darr; (Down)
@@ -45,7 +54,7 @@
   %tr
     %td{colspan:2}
       =solution @type.ij
-      &
+      whenever you
       =solution @type.ij.opposite
 
   %tr
@@ -54,7 +63,7 @@
   %tr
     %td{colspan:2}
       =solution @type.ip
-      &
-      =solution @type.ip.opposite
+      whenever you
+      =solution(@type.ip.opposite).make_mine('are')
 
 

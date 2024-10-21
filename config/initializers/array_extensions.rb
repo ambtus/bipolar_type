@@ -65,9 +65,7 @@ class Array
     reject{|x| x == element}
   end
 
-  def replace_with(old, new, be=true)
-    be ? map{|x| x == old ? new : x} : self
-  end
+  def replace_with(old, new); map{|x| x == old ? new : x}; end
 
 #  def purge
 #    reject{|x| x.blank?}

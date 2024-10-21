@@ -13,7 +13,7 @@ class String
   def fourth; chars.fourth; end
   def words; self.match(' ') ? split(/\s+/) : split('/'); end
   def clean; self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself'); end
-  def make_mine(be=true); words.replace_with('your', 'my').replace_with('be', 'am', be).to_phrase; end
+  def make_mine(be='am'); words.replace_with('your', 'my').replace_with('be', be).to_phrase; end
   def to_wbr; self.words.map(&:capitalize).wbr; end
 
   # these assume the string is three words
