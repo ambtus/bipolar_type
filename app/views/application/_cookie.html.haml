@@ -1,21 +1,4 @@
--key = thing.symbol
-%h3
-  =key.colon
-  -if thing.respond_to?(:static)
-    =thing.static
-  -if thing.compound?
-    %br
-    i.e.
-    =compound(thing) unless thing.is_a? Solution
-=form_with url: cookies_path, method: :get do |f|
-  .left.bold
-    are
-    %br
-    =f.text_field key, value: word(thing), maxlength: 80, size: 13
-    %br
-    =thing.class.name.downcase.pluralize
-    %br
-    =f.submit 'Save'
--unless thing.words.blank?
-  -thing.words.without(word(thing)).each do |w|
-    %div.left=w
+=word(key)
+-unless words(key).blank?
+  -words(key).without(word(key)).each do |w|
+    %div=w

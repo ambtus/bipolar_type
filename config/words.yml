@@ -1,132 +1,111 @@
 shared:
   F:
+    - people
+    - stories
+    - morals
+    - music
+  Fl:
     - emotional
-    - affective
     - spiritual
-    - moral
-    - personal
-    - musical
+    - political
     - auditory
+  Fly:
   S:
+    - places
+    - foods
+    - calories
+    - sports
+  Sl:
     - physical
-    - spatial
-    - environmental
     - sensual
-    - active
     - athletic
     - olfactory
+  Sly:
   T:
+    - tools
+    - hardware
+    - shelter
+    - crafts
+  Tl:
     - financial
-    - tangible
     - material
-    - fiscal
-    - transferable
     - commercial
     - tactile
+  Tly:
   N:
+    - ideas
+    - software
+    - information
+    - art
+  Nl:
     - mental
     - symbolic
-    - abstract
     - cognitive
-    - scientific
-    - artistic
     - visual
-
-  P:
-    - get energy
-    - consume resources
-    - rest & digest
-  J:
-    - use strength
-    - produce resources
-    - fight & flee
-
-  I:
-    - mania
-    - deficit
-    - low reserves
-    - emptiness
-  E:
-    - depression
-    - surplus
-    - high reserves
-    - fullness
+  Nly:
 
 
-  FP:
-    - listen to music
-    - accept emotions
-    - hear love
-    - take advice
-  FJ:
+  F↑:
+    - talk
     - influence people
     - tell stories
     - write sermons
     - give advice
-  SP:
-    - eat carbs
-    - eat fruits
-    - drink sweet beverages
-    - take dessert
-  SJ:
+  F¬↓:
+    - remain silent
+  F↓:
+    - listen
+    - listen to music
+    - understand the moral
+    - accept criticism
+    - take advice
+  F¬↑:
+    - plug your ears
+
+  S↑:
+    - walk
     - do housework
     - exercise
     - hunt or gather
     - cook dessert
-  TP:
-    - earn wages
+  S¬↓:
+    - sit
+  S↓:
+    - eat
+    - eat carbs
+    - eat fruits
+    - drink sweet beverages
+    - take dessert
+  S¬↑:
+    - fast
+
+  T↑:
+    - spend
+    - buy on credit
+    - pay interest
+    - offer rewards
+  T¬↓:
+  T↓:
+    - earn
     - sell for cash
     - collect interest
     - compete for prizes
-  TJ:
-    - spend credit
-    - buy now & pay later
-    - pay interest
-    - offer rewards
-  NP:
-    - watch videos
-    - look at art
-    - see improvement
-    - follow procedures
-  NJ:
+  T¬↑:
+    - quit work
+
+  N↑:
     - think
-    - make plans
+    - make diagrams
     - predict consequences
+    - draw pictures
     - create procedures
-
-
-  IF:
-    - suicidal
-    - humble
-    - modest
-  EF:
-    - homicidal
-    - egotistical
-    - arrogant
-  IS:
-    - anorexic
-    - underweight
-    - skinny
-  ES:
-    - obese
-    - overweight
-    - fat
-  IT:
-    - destitute
-    - bankrupt
-    - homeless
-  ET:
-    - filthy rich
-    - affluent
-    - landed
-
-  IN:
-    - ignorant
-    - forgetful
-    - clueless
-  EN:
-    - stupid
-    - pedantic
-    - overeducated
-
-
+  N¬↓:
+    - not worry
+  N↓:
+    - watch
+    - learn
+    - see results
+    - look at art
+    - follow procedures
+  N¬↑:
+    - close your eyes

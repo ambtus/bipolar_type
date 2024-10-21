@@ -1,6 +1,6 @@
 class Concept
 
-  SYMBOL = %w{X Y}
+  SYMBOL = %w{A B X Y}
 
   def initialize(symbol); @symbol = symbol; end
   attr_reader :symbol

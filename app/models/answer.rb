@@ -17,9 +17,10 @@ class Answer
 
   def free_things; Thing.all - taken; end
 
+  def pair; [free_things, free_things.reverse]; end
+
   def next(string); question.next + ':' + answer_string + string; end
 
-  def all; answer_string + free_things.first.symbol; end
 
-  def type_path; all.chars.values_at(0,2,3,1).join; end
+  def type_path; answer_string.chars.values_at(0,2,3,1).join; end
 end

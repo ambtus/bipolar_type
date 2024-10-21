@@ -1,0 +1,17 @@
+- content_for(:title, @title)
+%h2=@title
+%p BipolarType asserts that the next most important of the four wisdoms is to be able to change that which you need to change.
+%p In BipolarType, a tendency to weakness does not mean that you are too weak, or are even weak at all. It means that you cannot always change things in the morning, which is the “normal” time to change things. [For reference, afternoon is the “normal” time to <em>refuse</em> things.]
+-@answer.free_things.each do |thing|
+  -subtype = thing + Tendency.ej
+  %h3=link_to problem(subtype), answer_path(@answer.next(thing.symbol))
+  I cannot always
+  =solution subtype
+  in the morning as I am usually busy
+  =solution(subtype.flop).ing
+  but I
+  %em can
+  =solution subtype
+  in the afternoon when I can
+  %em finally
+  =solution subtype.opposite

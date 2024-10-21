@@ -52,7 +52,7 @@ class String
   def sqwrap; "[#{self}]"; end
   def parenthesize; "(#{self})"; end
   alias wrap :parenthesize
-  def wrapped?; self.last == ')'; end
+  def wrapped?; self.last == ')' && self[0] == '('; end
   def unwrap
     if wrapped?
       if self[0] == '('
@@ -150,6 +150,7 @@ class String
     end
   end
   def ed
+    return 'quit' if self=='quit'
     return 'fled' if self=='flee'
     return 'won' if self=='win'
     return 'got' if self=='get'
@@ -182,7 +183,11 @@ class String
     return 'rebuilt' if self=='rebuild'
     return 'spoke' if self=='speak'
     if self.match(' ')
-      [first_words.ed, last_words].join(' ')
+      if last_words.wrapped?
+        return [first_words.ed, last_words.unwrap.ed.wrap].to_phrase
+      else
+        return [first_words.ed, last_words].to_phrase
+      end
     else
       self.sub(/e$/, '').sub(/y$/, 'i') + 'ed'
     end
@@ -200,8 +205,12 @@ class String
     return 'gone' if self=='go'
     return 'spoken' if self=='speak'
     if self.match(' ')
-      [first_words.en, last_words].join(' ')
-    else
+      if last_words.wrapped?
+        [first_words.en, last_words.unwrap.en.wrap].to_phrase
+      else
+         [first_words.en, last_words].to_phrase
+      end
+   else
       self.ed
     end
   end
@@ -239,6 +248,9 @@ class String
     return 'panicking' if self=='panic'
     return 'reasoning' if self=='reason'
     return 'gardening' if self=='garden'
+    if self.starts_with?('not ')
+      return [first_words, last_words.ing].to_phrase
+    end
     [' and ', ' or ', '/', ' & '].each do |connector|
       if self.match(connector)
         first, second = self.split(connector, 2)
@@ -246,7 +258,11 @@ class String
       end
     end
     if self.match(' ')
-      return [first_words.ing, last_words].join(' ')
+      if last_words.wrapped?
+        return [first_words.ing, last_words.unwrap.ing.wrap].to_phrase
+      else
+        return [first_words.ing, last_words].to_phrase
+      end
     end
     self.sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + 'ing'
   end

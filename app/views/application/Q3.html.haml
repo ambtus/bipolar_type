@@ -1,0 +1,34 @@
+- content_for(:title, @title)
+%h2=@title
+%p The last two of the four wisdoms are to be able to tolerate or refuse that which you should tolerate or refuse.
+%p Remember, a tendency to strength or fat does not mean that you are <em>currently</em> too strong or too fat, merely that you do not tolerate or refuse at the “normal” times.
+-@answer.pair.each do |pair|
+  -s1 = pair.first + Tendency.ij
+  -s2 = pair.second + Tendency.ep
+
+  %h3
+    =link_to answer_path(@answer.next(pair.map(&:symbol).join)) do
+      =problem s1
+      &
+      =problem s2
+  I find it difficult to
+  =solution s1
+  in the evening while I am
+  =solution(s1.flop).ing
+  but I
+  %em can
+  =solution s1
+  in the middle of the day while I am
+  =solution(s1.opposite).ing
+  %br
+  %em and
+  %br
+  I find it difficult to
+  =solution s2
+  in the afternoon when I am
+  =solution(s2.flop).ing
+  but I
+  %em can
+  =solution s2
+  in the morning while I
+  =solution(s2.opposite)

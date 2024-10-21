@@ -4,31 +4,10 @@
   %tr
     %th{colspan:4} Natural Imbalances
   %tr
-  -@type.solutions.each do |solution|
-    %td
-      =formatted solution.imbalance
-      .italic=compound solution.imbalance
+  -@type.subtypes.each do |subtype|
+    %td=problem subtype
   %tr
     %th{colspan:4} Goals
   %tr
-  -@type.solutions.each do |solution|
-    %td.left=formatted solution
-
-%p If you want to do less of something, you should try to replace it with something you want to do more of.
-
-%h2=formatted @type.ij
-%p You can <em>always</em> #{formatted(@type.ij.behavior)} because you are sensitive enough to always be able to find <em>some</em> #{static(@type.ij.thing).singularize} you want to change, without being <em>so</em> sensitive that you become so stressed you give up trying to change things and run away as you do with #{static(@type.ip.thing)}.
-
-%h2=formatted @type.ep
-
-
-%p You can <em>always</em> #{formatted(@type.ep.behavior)} because you are insensitive enough to always be able to find <em>some</em> #{static(@type.ep.thing).singularize} you want to accept, without being <em>so</em> insensitive that you become so bored you give up trying to accept things and fall asleep as you do with #{static(@type.ej.thing)}.
-
-%h2 Depression
-
-%p If you are depressed, but not depressed enough to accept things that <em>you</em> don’t think need to be accepted — #{formatted @type.ij.behavior.opposite} — but still still depressed enough to accept things that <em>do</em> need to be accepted, then replace #{formatted @type.ep.behavior} with #{formatted @type.ip.behavior}.
-
-%h2 Mania
-
-%p If you are manic, but not manic enough to change things that <em>you</em> don’t think need to be changed — #{formatted @type.ep.behavior.opposite} — but still manic enough to change things that <em>do</em> need to be changed, then replace #{formatted @type.ij.behavior} with #{formatted @type.ej.behavior}
-
+  -@type.subtypes.each do |subtype|
+    %td.left=solution subtype

@@ -1,6 +1,45 @@
 - content_for(:title, Thing.title)
+
+
 %table
   %tr
     -Thing.all.each do |thing|
-      %td=render 'cookie', thing: thing
+      %th
+        =thing.symbol
+        things
+  %tr
+    -Thing.all.each do |thing|
+      %td=render 'cookie', key: thing.symbol
 
+  %tr
+    -Thing.all.each do |thing|
+      %td
+        =render 'cookie', key: thing.symbol + 'l'
+
+  %tr
+    %th{colspan:4} Change things (use strength) ↑
+
+  %tr
+    -Thing.all.each do |thing|
+      %td=render 'cookie', key: thing.symbol + '↑'
+
+  %tr
+    %th{colspan:4} Accept things (get energy) ↓
+
+  %tr
+    -Thing.all.each do |thing|
+      %td=render 'cookie', key: thing.symbol + '↓'
+
+  %tr
+    %th{colspan:4} Refuse things (do not get energy) ¬↓
+
+  %tr
+    -Thing.all.each do |thing|
+      %td=render 'cookie', key: thing.symbol + '¬↓'
+
+  %tr
+    %th{colspan:4} Tolerate things (do not use strength) ¬↑
+
+  %tr
+    -Thing.all.each do |thing|
+      %td=render 'cookie', key: thing.symbol + '¬↑'

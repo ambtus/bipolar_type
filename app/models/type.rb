@@ -23,18 +23,18 @@ class Type
     def sort_by(index); all.sort_by{|t| t.things[index]}.in_groups_of(6).map(&:sort).flatten; end
   end
 
-  def solutions; things.add(State.all).flatten; end
+  def subtypes; things.add(Tendency.all).flatten; end
 
-  alias inspect :solutions
+  alias inspect :subtypes
 
-  def symbol; solutions.map(&:symbol).join('•'); end
+  def symbol; subtypes.map(&:symbol).join('•'); end
 
-  def find_solution(state); solutions.find{|p| p.state == state}; end
+  def find_subtype(tendency); subtypes.find{|p| p.tendency == tendency}; end
 
-  def ep; solutions.find{|p| p.state.symbol == 'EP'}; end
-  def ip; solutions.find{|p| p.state.symbol == 'IP'}; end
-  def ej; solutions.find{|p| p.state.symbol == 'EJ'}; end
-  def ij; solutions.find{|p| p.state.symbol == 'IJ'}; end
+  def ep; subtypes.find{|p| p.tendency.symbol == 'EP'}; end
+  def ip; subtypes.find{|p| p.tendency.symbol == 'IP'}; end
+  def ej; subtypes.find{|p| p.tendency.symbol == 'EJ'}; end
+  def ij; subtypes.find{|p| p.tendency.symbol == 'IJ'}; end
 
 end
 

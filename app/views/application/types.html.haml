@@ -3,11 +3,11 @@
 %table
   %tr
     %th
-    -State.all.each_with_index do |state, index|
+    -Tendency.all.each_with_index do |tendency, index|
       %th
-        =link_to_unless index == @sort_index, state.symbol, types_path(sort: index)
+        =link_to_unless index == @sort_index, formatted(tendency.symbol, tendency.adjective), types_path(sort: index)
   -@types.each_with_index do |type, index|
     %tr
       %th=link_to type.index, type_path(type.path)
-      -type.solutions.each do |solution|
-        %td.left=static solution
+      -type.subtypes.each do |subtype|
+        %td.left=problem subtype

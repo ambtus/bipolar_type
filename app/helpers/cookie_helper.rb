@@ -1,68 +1,49 @@
 module CookieHelper
 
-  def compound(concept)
-    if concept.is_a? Behavior
-      action_words = word(concept.action)
-      if action_words.match?('&') || (action_words.words.count == 1)
-        [word(concept.thing), action_words].to_phrase
-      else
-        [action_words.first_words, word(concept.thing), action_words.last_words].to_phrase
-      end
-    else
-      concept.parts.collect{|p| word(p)}.to_phrase
-    end
+  def word(key, recursive=true)
+    return cookies[key] unless cookies[key].blank?
+    return words(key).first unless words(key).blank?
+    return derived(key) if recursive
   end
 
-  def formatted(concept)
+  def words(key)
+    Rails.application.config_for(:words)[key]
+  end
+
+  def derived(key)
+    return word(key.to_s.first(2)).ly if key.ends_with?('ly')
+    return 'not ' + word(key.to_s.chop, false) if key.ends_with?('d')
+  end
+
+  def problem_words(subtype)
+    [word(subtype.thing.symbol + 'ly'), subtype.tendency.adjective].to_phrase
+  end
+
+  def problem(subtype)
+    formatted subtype.symbol, problem_words(subtype)
+  end
+
+  def solution_words(subtype)
+    word(subtype.key)
+  end
+
+  def solution(subtype)
+    formatted subtype.key, solution_words(subtype)
+  end
+
+  def long_key(key)
+    key.to_s.gsub('i', 'in').gsub('o', 'out').gsub('d', '¬')
+  end
+
+  def formatted(key, words)
     case cookies['setting']
     when 'letters'
-      return concept.symbol
+      return long_key(key)
     when 'words'
-      return word(concept)
+      return words
     else
-      return [concept.symbol, word(concept).wrap].to_phrase
+      return [long_key(key), words.wrap].to_phrase
     end
   end
-
-  def static(concept)
-    case cookies['setting']
-    when 'letters'
-      return concept.symbol
-    when 'words'
-      return concept.static
-    else
-      return [concept.symbol, concept.static.wrap].to_phrase
-    end
-  end
-
-  def short_formatted(concept)
-    case cookies['setting']
-    when 'letters'
-      return concept.symbol
-    when 'words'
-      return word(concept).words.first
-    else
-      return [concept.symbol, word(concept).words.first.wrap].to_phrase
-    end
-  end
-
-  def word(concept)
-    return cookies[concept.symbol] unless cookies[concept.symbol].blank?
-    return concept.words.first unless concept.words.blank?
-    if concept.is_a? Solution
-      behavior_words = word(concept.behavior)
-      amount = concept.extreme? ? behavior_words.more : behavior_words.less
-    else
-      compound(concept)
-    end
-  end
-
-
-  def formatted_problem(solution)
-    amount = solution.extreme? ? 'as little' : 'as much'
-    "I already #{formatted(solution.behavior.opposite)} #{amount} as I can. I also try #{'not' unless solution.extreme?} to #{formatted(solution.behavior)}, but not always #{'little' unless solution.extreme?} enough."
-  end
-
-
 
 end

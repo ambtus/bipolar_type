@@ -14,7 +14,7 @@ class CookiesController < ApplicationController
       words = Rails.application.config_for(:words)
       words.keys.each do |k|
         if params.has_key? k
-          if params[k].blank? || (params[k] == words[k].first)
+          if params[k].blank? || (params[k] == words[k]&.first)
             cookies.delete(k)
           else
             cookies[k] = params[k]
