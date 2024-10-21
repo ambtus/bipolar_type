@@ -65,7 +65,7 @@ class Array
     reject{|x| x == element}
   end
 
-  def replace_with(old, new, be=false)
+  def replace_with(old, new, be=true)
     be ? map{|x| x == old ? new : x} : self
   end
 
