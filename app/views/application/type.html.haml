@@ -8,62 +8,40 @@
   -@type.subtypes.each do |subtype|
     %td=tendency subtype
   %tr
-    %th{colspan:4} You don’t have to
+    %th{colspan:4} Goals
   %tr
   -@type.subtypes.each do |subtype|
-    %td
-      =solution(subtype.opposite)
-      more
-  %tr
-    %th{colspan:4} You just have to
-  %tr
-  -@type.subtypes.each do |subtype|
-    %td
-      =solution subtype
-      more
+    %td=solution subtype
 
-%h2 Timing
+%h3 Mornings
 %table
   %tr
-    %th{colspan:2} Spring Morning &uarr; (Up)
+    %th=solution @type.ep
+    %th=solution @type.ej
   %tr
-    %th{colspan:2} Fall Afternoon &not;&darr; (NotDown)
+    %td every day<br />(hardest in the fall)
+    %td when possible<br />(easiest in the fall)
+%h3 Middays
+%table
   %tr
-    %td Every spring<br />even in the afternoon
-    %td Every morning<br />even in the fall
+    %th=solution @type.ij
+    %th=solution @type.ip
   %tr
-    %td{colspan: 2}
-      =solution @type.ep
-      whenever you
-      =solution @type.ep.opposite
+    %td every day<br />(hardest in the winter)
+    %td when possible<br />(easiest in the winter)
+%h3 Afternoons
+%table
   %tr
-    %td Every fall<br />even in the morning
-    %td Every afternoon<br />even in the spring
+    %th=solution @type.ej
+    %th=solution @type.ep
   %tr
-    %td{colspan:2}
-      =solution @type.ej
-      whenever you
-      =solution @type.ej.opposite
+    %td every day<br />(hardest in the spring)
+    %td when possible<br />(easiest in the spring)
+%h3 Evenings
+%table
   %tr
-    %th{colspan:2} Summer Midday &darr; (Down)
+    %th=solution @type.ip
+    %th=solution @type.ij
   %tr
-    %th{colspan:2} Winter Evening &not;&uarr; (NotUp)
-  %tr
-    %td Every summer<br />even in the evening
-    %td Every midday<br />even in the winter
-  %tr
-    %td{colspan:2}
-      =solution @type.ij
-      whenever you
-      =solution @type.ij.opposite
-
-  %tr
-    %td Every evening<br />even in the summer
-    %td Every winter<br />even in the midday
-  %tr
-    %td{colspan:2}
-      =solution @type.ip
-      whenever you
-      =solution(@type.ip.opposite).make_mine('are')
-
-
+    %td every day<br />(hardest in the summer)
+    %td when possible<br />(easiest in the summer)
