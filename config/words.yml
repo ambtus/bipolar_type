@@ -5,28 +5,28 @@ shared:
   T: financially
   N: mentally
 
-  ¬↓: thin
+  ↓¬: thin
   ↓: fat
   ↑: strong
-  ¬↑: weak
+  ↑¬: weak
 
   F↑: verbalize
-  F¬↑: remain silent
+  F↑¬: remain silent
   F↓: listen
-  F¬↓: tune out
+  F↓¬: tune out
 
   S↑: do housework
-  S¬↑: sit down
+  S↑¬: sit down
   S↓: eat
-  S¬↓: fast
+  S↓¬: fast
 
   T↑: buy on credit
-  T¬↑: save
+  T↑¬: save
   T↓: collect income
-  T¬↓: stop working
+  T↓¬: stop working
 
   N↑: think
-  N¬↑: stop worrying
+  N↑¬: stop worrying
   N↓: watch & learn
-  N¬↓: close your eyes
+  N↓¬: close your eyes
 

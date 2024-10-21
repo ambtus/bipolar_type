@@ -11,7 +11,7 @@ class Subtype < Concept
   def thing; Thing.find_by(symbol.second); end
   def tendency; Tendency.find_by(symbol.delete(thing.symbol)); end
 
-  def pair; [tendency, thing]; end
+  def parts; [tendency, thing]; end
 
   def problem_key; thing.symbol + tendency.problem_key; end
   def solution_key; thing.symbol + tendency.solution_key; end

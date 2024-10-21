@@ -1,7 +1,0 @@
-- content_for(:title, @title)
-%h2=@title
-
--Thing.each do |thing|
-  -subtype = thing + Tendency.ip
-  %h3=link_to tendency(subtype), answer_path(@answer.next(thing.symbol))
-  =render 'q', subtype: subtype

@@ -34,7 +34,7 @@ class Concept
     end
   end
 
-  def compound?; symbol.length > 1; end
+  def compound?; respond_to? :parts; end
 
   def words; Rails.application.config_for(:words)[symbol]; end
 

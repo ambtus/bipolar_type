@@ -13,14 +13,19 @@ class Answer
   def number; @question.last ; end
   def finished?; number.to_i > 3; end
 
-  def taken; answer_string.chars.collect{|s| Thing.find_by(s)}; end
+  def taken; answer_string.scan(/.../).collect{|s| Subtype.find_by(s)}; end
 
-  def free_things; Thing.all - taken; end
+  def things; taken.map(&:thing); end
+  def tendencies; taken.map(&:tendency); end
 
-  def pair; [free_things, free_things.reverse]; end
+  def taken?(subtype); things.include?(subtype.thing) || tendencies.include?(subtype.tendency); end
 
   def next(string); question.next + ':' + answer_string + string; end
 
-  def thing_string; answer_string.chars.values_at(0,2,3,1).join; end
+  def last; Subtype.all.find{|s| !things.include?(s.thing) && !tendencies.include?(s.tendency) }; end
+
+  def all; (taken << last).sort_by(&:tendency); end
+
+  def thing_string; all.map(&:thing).map(&:symbol).join; end
   def type_path; Type.find_by_thing_string(thing_string).path; end
 end

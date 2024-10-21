@@ -8,8 +8,8 @@ class Tendency < Concept
     Subtype.all.find{|p| p.tendency == self && p.thing == thing}
   end
 
-  def problem_key; %w{¬↓ ↑ ↓ ¬↑}[index]; end
-  def solution_key; %w{↓ ¬↑ ¬↓ ↑}[index]; end
+  def problem_key; %w{↓¬ ↑ ↓ ↑¬}[index]; end
+  def solution_key; %w{↓ ↑¬ ↓¬ ↑}[index]; end
 
   class << self
     def ep; ALL.find{|p| p.symbol == 'EP'}; end
@@ -29,5 +29,7 @@ class Tendency < Concept
 
   def season; %w{winter summer spring fall}[index]; end
   def worst_season; opposite.season; end
+
+  def verb; %w{accept tolerate reject change}[index]; end
 
 end

@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new params[:id]
     redirect_to type_path(@answer.type_path) and return if @answer.finished?
     @title = "Question ##{@answer.number} of 3"
-    render @answer.question
+    render 'answer'
   end
 
 end

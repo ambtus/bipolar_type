@@ -1,0 +1,25 @@
+-content_for(:title, @title)
+
+%h2=@title
+
+%table
+  %tr
+    %th
+    -Thing.each do |thing|
+      %th
+        =format_from_key thing.symbol
+  %tr
+    -Tendency.each do |tendency|
+      %tr
+        %th
+          =format tendency.symbol, 'help me ' + tendency.verb
+        -Thing.each do |thing|
+
+          -subtype = thing + tendency
+          %td
+            =link_to_unless @answer.taken?(subtype), tendency(subtype), answer_path(@answer.next(subtype.symbol))
+            .left=render 'q', subtype: subtype
+
+
+-if Rails.env.development?
+  =@answer.taken
