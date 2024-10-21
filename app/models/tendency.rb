@@ -8,8 +8,8 @@ class Tendency < Concept
     Subtype.all.find{|p| p.tendency == self && p.thing == thing}
   end
 
-  def problem_key; %w{↓¬ ↑ ↓ ↑¬}[index]; end
-  def solution_key; %w{↓ ↑¬ ↓¬ ↑}[index]; end
+  def problem_key; %w{¬↓ ↑ ↓ ¬↑}[index]; end
+  def solution_key; %w{↓ ¬↑ ¬↓ ↑}[index]; end
 
   class << self
     def ep; ALL.find{|p| p.symbol == 'EP'}; end
