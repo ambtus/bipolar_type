@@ -4,8 +4,8 @@ class CookiesController < ApplicationController
 
   def update
     case params[:commit]
-    when 'Letters'
-      cookies[:setting] = 'letters'
+    when 'Symbols'
+      cookies[:setting] = 'symbols'
     when 'Words'
       cookies[:setting] = 'words'
     when 'Both'

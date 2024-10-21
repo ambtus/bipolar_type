@@ -1,111 +1,32 @@
 shared:
-  F:
-    - people
-    - stories
-    - morals
-    - music
-  Fl:
-    - emotional
-    - spiritual
-    - political
-    - auditory
-  Fly:
-  S:
-    - places
-    - foods
-    - calories
-    - sports
-  Sl:
-    - physical
-    - sensual
-    - athletic
-    - olfactory
-  Sly:
-  T:
-    - tools
-    - hardware
-    - shelter
-    - crafts
-  Tl:
-    - financial
-    - material
-    - commercial
-    - tactile
-  Tly:
-  N:
-    - ideas
-    - software
-    - information
-    - art
-  Nl:
-    - mental
-    - symbolic
-    - cognitive
-    - visual
-  Nly:
 
+  F: emotionally
+  S: physically
+  T: financially
+  N: mentally
 
-  F↑:
-    - talk
-    - influence people
-    - tell stories
-    - write sermons
-    - give advice
-  F¬↓:
-    - remain silent
-  F↓:
-    - listen
-    - listen to music
-    - understand the moral
-    - accept criticism
-    - take advice
-  F¬↑:
-    - plug your ears
+  ¬↓: thin
+  ↓: fat
+  ↑: strong
+  ¬↑: weak
 
-  S↑:
-    - walk
-    - do housework
-    - exercise
-    - hunt or gather
-    - cook dessert
-  S¬↓:
-    - sit
-  S↓:
-    - eat
-    - eat carbs
-    - eat fruits
-    - drink sweet beverages
-    - take dessert
-  S¬↑:
-    - fast
+  F↑: verbalize
+  F¬↑: remain silent
+  F↓: listen
+  F¬↓: tune out
 
-  T↑:
-    - spend
-    - buy on credit
-    - pay interest
-    - offer rewards
-  T¬↓:
-  T↓:
-    - earn
-    - sell for cash
-    - collect interest
-    - compete for prizes
-  T¬↑:
-    - quit work
+  S↑: do housework
+  S¬↑: sit down
+  S↓: eat
+  S¬↓: fast
 
-  N↑:
-    - think
-    - make diagrams
-    - predict consequences
-    - draw pictures
-    - create procedures
-  N¬↓:
-    - not worry
-  N↓:
-    - watch
-    - learn
-    - see results
-    - look at art
-    - follow procedures
-  N¬↑:
-    - close your eyes
+  T↑: buy on credit
+  T¬↑: save
+  T↓: collect income
+  T¬↓: stop working
+
+  N↑: think
+  N¬↑: stop worrying
+  N↓: watch & learn
+  N¬↓: close your eyes
+

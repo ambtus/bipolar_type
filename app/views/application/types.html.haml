@@ -5,9 +5,9 @@
     %th
     -Tendency.all.each_with_index do |tendency, index|
       %th
-        =link_to_unless index == @sort_index, formatted(tendency.symbol, tendency.adjective), types_path(sort: index)
+        =link_to_unless index == @sort_index, problem(tendency), types_path(sort: index)
   -@types.each_with_index do |type, index|
     %tr
-      %th=link_to type.index, type_path(type.path)
+      %th=link_to type.index + 1, type_path(type.path)
       -type.subtypes.each do |subtype|
-        %td.left=problem subtype
+        %td.left=tendency subtype

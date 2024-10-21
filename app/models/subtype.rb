@@ -13,10 +13,19 @@ class Subtype < Concept
 
   def pair; [tendency, thing]; end
 
-  def key; thing.symbol + tendency.key; end
+  def problem_key; thing.symbol + tendency.problem_key; end
+  def solution_key; thing.symbol + tendency.solution_key; end
 
   def opposite; thing + tendency.opposite; end
   def flop; thing + tendency.flop; end
   def flip; thing + tendency.flip; end
+
+  def method_missing(meth, *args, **kwargs, &block)
+    if tendency.respond_to?(meth)
+      tendency.send(meth)
+    else
+      super(meth)
+    end
+  end
 
 end

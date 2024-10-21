@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap unwrap wrapped? comma period semi colon bang break unpunctuate and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap unwrap wrapped? comma period semi colon bang break unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -26,10 +26,10 @@ class String
       words.first
     when 3
       prep? ? words.first(2).to_phrase : words.first
-    when 4
-      words.first(2).to_phrase
     else
-      raise "don't know what to do with #{words.count} words"
+      words.count.even? ?
+      words.first(words.count/2).to_phrase :
+      words.first((words.count+1)/2).to_phrase
     end
   end
   def last_words
@@ -40,10 +40,10 @@ class String
       words.last
     when 3
       prep? ? words.last : words.last(2).to_phrase
-    when 4
-      words.last(2).to_phrase
     else
-      raise "don't know what to do with #{words.count} words" unless words.count == 3
+      words.count.even? ?
+      words.last(2).to_phrase :
+      words.first((words.count-1)/2).to_phrase
     end
   end
 
@@ -79,6 +79,8 @@ class String
       return self
     end
   end
+
+  def make_mine; self.gsub(' your ', ' my '); end
 
   def and_to_or; self.gsub(' and ', ' or '); end
   def break_before_wrap; gsub(' (', '<br />(').html_safe; end
@@ -208,7 +210,7 @@ class String
       if last_words.wrapped?
         [first_words.en, last_words.unwrap.en.wrap].to_phrase
       else
-         [first_words.en, last_words].to_phrase
+        [first_words.en, last_words].to_phrase
       end
    else
       self.ed

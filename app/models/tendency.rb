@@ -8,9 +8,8 @@ class Tendency < Concept
     Subtype.all.find{|p| p.tendency == self && p.thing == thing}
   end
 
-  def adjective; %w{thin strong fat weak}[index]; end
-
-  def key; %w{↓ ¬↑ ¬↓ ↑}[index]; end
+  def problem_key; %w{¬↓ ↑ ↓ ¬↑}[index]; end
+  def solution_key; %w{↓ ¬↑ ¬↓ ↑}[index]; end
 
   class << self
     def ep; ALL.find{|p| p.symbol == 'EP'}; end
@@ -22,5 +21,13 @@ class Tendency < Concept
   def flip; ALL.values_at(2,3,0,1)[index]; end
   def flop; ALL.values_at(3,2,1,0)[index]; end
   def opposite; flip.flop; end
+
+  def extreme?; [0,3].include?(index); end
+
+  def normal; %w{midday evening afternoon morning}[index]; end
+  def alternate; opposite.normal; end
+
+  def season; %w{winter summer spring fall}[index]; end
+  def worst_season; opposite.season; end
 
 end

@@ -1,13 +1,60 @@
 - content_for(:title, @type.symbol)
 
+%h2 BipolarType #{@type.index + 1} of 24
 %table
   %tr
-    %th{colspan:4} Natural Imbalances
+    %th{colspan:4} Tendencies
   %tr
   -@type.subtypes.each do |subtype|
-    %td=problem subtype
+    %td=tendency subtype
   %tr
     %th{colspan:4} Goals
   %tr
   -@type.subtypes.each do |subtype|
     %td.left=solution subtype
+
+%h2 BipolarType Advice
+%table
+  %tr
+    %th{colspan:2} Spring Morning &uarr; (Up)
+  %tr
+    %th{colspan:2} Fall Afternoon &not;&darr; (NotDown)
+  %tr
+    %td Every spring<br />even in the afternoon
+    %td Every morning<br />even in the fall
+  %tr
+    %td{colspan: 2}
+      =solution @type.ep
+      &
+      =solution @type.ep.opposite
+  %tr
+    %td Every fall<br />even in the morning
+    %td Every afternoon<br />even in the spring
+  %tr
+    %td{colspan:2}
+      =solution @type.ej
+      &
+      =solution @type.ej.opposite
+  %tr
+    %th{colspan:2} Summer Midday &darr; (Down)
+  %tr
+    %th{colspan:2} Winter Evening &not;&uarr; (NotUp)
+  %tr
+    %td Every summer<br />even in the evening
+    %td Every midday<br />even in the winter
+  %tr
+    %td{colspan:2}
+      =solution @type.ij
+      &
+      =solution @type.ij.opposite
+
+  %tr
+    %td Every evening<br />even in the summer
+    %td Every winter<br />even in the midday
+  %tr
+    %td{colspan:2}
+      =solution @type.ip
+      &
+      =solution @type.ip.opposite
+
+

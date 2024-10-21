@@ -38,17 +38,4 @@ class Concept
 
   def words; Rails.application.config_for(:words)[symbol]; end
 
-  def method_missing(meth, *args, **kwargs, &block)
-    if defined? parts
-      parts.each do |part|
-        if part.respond_to?(meth)
-          return part.send(meth)
-        end
-      end
-      super(meth)
-    else
-      super(meth)
-    end
-  end
-
 end

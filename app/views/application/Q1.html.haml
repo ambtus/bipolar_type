@@ -1,21 +1,7 @@
 - content_for(:title, @title)
 %h2=@title
 
-%p A tendency to thinness does not necessarily mean that you <em>are</em> too thin. Just that you must accept more things at the end of the cycle. 
-
-
 -Thing.each do |thing|
   -subtype = thing + Tendency.ip
-  %h3=link_to problem(subtype), answer_path(@answer.next(thing.symbol))
-  I cannot always stop to
-  =solution subtype
-  in the middle of the day as I am usually busy
-  =solution(subtype.flop).ing
-  but I
-  %em can
-  =solution subtype
-  in the evening when I can
-  %em finally
-  =solution(subtype.opposite).bang
-
-
+  %h3=link_to tendency(subtype), answer_path(@answer.next(thing.symbol))
+  =render 'q', subtype: subtype

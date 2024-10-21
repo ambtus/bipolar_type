@@ -1,10 +1,9 @@
 - content_for(:title, 'Cookies')
 
-%p BipolarType uses the MBTI&reg; letters but the concepts are not identical. You may wish to use your own words.
-%p My words will be used if your words are blank. The derived words will be used if both your words and my words are blank.
+%p BipolarType uses the MBTI&reg; letters but the concepts are not identical. You may wish to use your own words. My words will only be used if your words are blank.
 
 %p
-  The following link can be bookmarked to save your words between sessions:
+  The following link can be bookmarked after you save your words so you don't need to enter them again if you close your browser:
   =link_to 'my BipolarType words', @url
 
 =form_with url: cookies_path, method: :get do |f|
@@ -12,17 +11,15 @@
     %tr
       %th{colspan:4}= f.submit 'Save'
     %tr
-      %th Letter
+      %th Symbol
       %th Your words
       %th My words
-      %th Derived words
 
     -@words.each do |key, value|
       %tr
-        %td=long_key key
+        %td=key
         %td=f.text_field key, value: cookies[key], maxlength: 80, size: 13
-        %td=words(key)&.first
-        %td=derived(key)
+        %td=word(key)
     %tr
       %th{colspan:4}= f.submit 'Save'
 

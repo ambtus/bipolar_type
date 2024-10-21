@@ -1,49 +1,42 @@
 module CookieHelper
 
-  def word(key, recursive=true)
+  def word(key)
     return cookies[key] unless cookies[key].blank?
-    return words(key).first unless words(key).blank?
-    return derived(key) if recursive
+    return Rails.application.config_for(:words)[key] unless Rails.application.config_for(:words)[key].blank?
+    return 'cannot find word for #{key}'
   end
 
-  def words(key)
-    Rails.application.config_for(:words)[key]
-  end
-
-  def derived(key)
-    return word(key.to_s.first(2)).ly if key.ends_with?('ly')
-    return 'not ' + word(key.to_s.chop, false) if key.ends_with?('d')
-  end
-
-  def problem_words(subtype)
-    [word(subtype.thing.symbol + 'ly'), subtype.tendency.adjective].to_phrase
-  end
-
-  def problem(subtype)
-    formatted subtype.symbol, problem_words(subtype)
-  end
-
-  def solution_words(subtype)
-    word(subtype.key)
-  end
-
-  def solution(subtype)
-    formatted subtype.key, solution_words(subtype)
-  end
-
-  def long_key(key)
-    key.to_s.gsub('i', 'in').gsub('o', 'out').gsub('d', '¬')
-  end
-
-  def formatted(key, words)
+  def format(symbol, words)
     case cookies['setting']
-    when 'letters'
-      return long_key(key)
+    when 'symbols'
+      return symbol
     when 'words'
       return words
     else
-      return [long_key(key), words.wrap].to_phrase
+      return [words, symbol.wrap].to_phrase
     end
   end
+
+  def tendency(subtype)
+    format subtype.symbol, [word(subtype.thing.symbol), word(subtype.tendency.problem_key)].to_phrase
+  end
+
+  def format_from_key(key)
+    format key, word(key)
+  end
+
+  def problem(tendency)
+    format_from_key tendency.problem_key
+  end
+
+  def solution(subtype)
+    format_from_key subtype.solution_key
+  end
+
+  def interference(subtype)
+    format_from_key subtype.opposite.solution_key
+  end
+
+
 
 end
