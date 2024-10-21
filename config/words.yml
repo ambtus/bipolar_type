@@ -1,8 +1,8 @@
 shared:
 
-  F: emotionally
+  F: spiritually
   S: physically
-  T: financially
+  T: materially
   N: mentally
 
   ¬↓: thin
@@ -10,12 +10,12 @@ shared:
   ↑: strong
   ¬↑: weak
 
-  F↑: verbalize
+  F↑: talk
   F¬↑: be quiet
   F↓: listen
   F¬↓: tune out
 
-  S↑: do housework
+  S↑: walk
   S¬↑: sit down
   S↓: eat
   S¬↓: fast
