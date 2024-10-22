@@ -1,7 +1,4 @@
 - content_for(:title, 'Cookies')
-
-%p BipolarType uses the MBTI&reg; letters but the concepts are not identical. You may wish to use your own words. My words will only be used if your words are blank.
-
 %p
   The following link can be bookmarked after you save your words so you don't need to enter them again if you close your browser:
   =link_to 'my BipolarType words', @url
@@ -11,15 +8,15 @@
     %tr
       %th{colspan:4}= f.submit 'Save'
     %tr
-      %th Symbol
+      %th Things
+      %th Default words
       %th Your words
-      %th My words
 
     -@words.each do |key, value|
       %tr
-        %td=key
-        %td=f.text_field key, value: cookies[key], maxlength: 80, size: 13
+        %td=generic_words key
         %td=Rails.application.config_for(:words)[key]
+        %td=f.text_field key, value: cookies[key], maxlength: 80, size: 13
     %tr
       %th{colspan:4}= f.submit 'Save'
 

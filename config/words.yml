@@ -1,32 +1,32 @@
 shared:
 
-  F: spiritually
+  F: emotionally
   S: physically
-  T: materially
+  T: financially
   N: mentally
 
-  ¬↓: thin
-  ↓: fat
-  ↑: strong
-  ¬↑: weak
+  IP: thin
+  EP: fat
+  IJ: strong
+  EJ: weak
 
-  F↑: talk
-  F¬↑: be quiet
-  F↓: listen
-  F¬↓: tune out
+  FC: talk
+  FT: be quiet
+  FA: listen
+  FR: tune out
 
-  S↑: move
-  S¬↑: sit
-  S↓: eat
-  S¬↓: fast
+  SC: move
+  ST: sit still
+  SA: eat
+  SR: fast
 
-  T↑: buy on credit
-  T¬↑: save
-  T↓: work
-  T¬↓: quit
+  TC: buy on credit
+  TT: save your money
+  TA: work
+  TR: quit
 
-  N↑: think
-  N¬↑: stop worrying
-  N↓: watch
-  N¬↓: close your eyes
+  NC: think
+  NT: stop worrying
+  NA: watch
+  NR: close your eyes
 

@@ -1,15 +1,15 @@
 class CookiesController < ApplicationController
 
-  SETTINGS = %w{symbols words both}
+  SETTINGS = %w{symbols things words}
 
   def update
     case params[:commit]
     when 'Symbols'
       cookies[:setting] = 'symbols'
     when 'Words'
-      cookies[:setting] = 'words'
-    when 'Both'
       cookies.delete('setting')
+    when 'Things'
+      cookies[:setting] = 'generics'
     when 'Save', nil
       words = Rails.application.config_for(:words)
       words.keys.each do |k|

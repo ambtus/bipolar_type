@@ -12,7 +12,7 @@
     -Tendency.each do |tendency|
       %tr
         %th
-          =format tendency.symbol, 'help me ' + tendency.verb
+          =format_from_key tendency.symbol
         -Thing.each do |thing|
 
           -subtype = thing + tendency

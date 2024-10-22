@@ -3,37 +3,20 @@
 %table
   %tr
     -Thing.all.each do |thing|
-      %th
-        =thing.symbol
-        things
-  %tr
-    -Thing.all.each do |thing|
-      %td=format_from_key thing.symbol
+      %th #{thing.symbol} things
 
-  %tr
-    %th{colspan:4}=format '↑', 'Change things: use strength'
 
-  %tr
-    -Thing.all.each do |thing|
-      %td=format_from_key thing.symbol + '↑'
+  -Help.each do |help|
+    %tr
+      %th{colspan:4} #{help.state} #{help.key}
+    %tr
+      -Thing.all.each do |thing|
+        %td
+          =thing.symbol + help.key
+          %br
+          =word(thing.symbol + help.symbol)
+          %br
+          =generic_words(thing.symbol + help.symbol)
+          %br
+          #{word thing.symbol} #{word help.tendency_key}
 
-  %tr
-    %th{colspan:4}=format '↓', 'Accept things: get energy'
-
-  %tr
-    -Thing.all.each do |thing|
-      %td=format_from_key thing.symbol + '↓'
-
-  %tr
-    %th{colspan:4}=format '¬↓', 'Refuse things: do not get energy'
-
-  %tr
-    -Thing.all.each do |thing|
-      %td=format_from_key thing.symbol + '¬↓'
-
-  %tr
-    %th{colspan:4}=format '¬↑', 'Tolerate things: do not use strength'
-
-  %tr
-    -Thing.all.each do |thing|
-      %td=format_from_key thing.symbol + '¬↑'

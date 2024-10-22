@@ -36,6 +36,6 @@ class Concept
 
   def compound?; respond_to? :parts; end
 
-  def words; Rails.application.config_for(:words)[symbol]; end
+  def word; Rails.application.config_for(:words)[symbol]; end
 
 end

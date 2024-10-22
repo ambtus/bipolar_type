@@ -8,22 +8,12 @@ class Tendency < Concept
     Subtype.all.find{|p| p.tendency == self && p.thing == thing}
   end
 
-  def problem_key; %w{¬↓ ↑ ↓ ¬↑}[index]; end
-  def solution_key; %w{↓ ¬↑ ¬↓ ↑}[index]; end
+  def problem_key; %w{R C A T}[index]; end
+  def solution_key; %w{A T R C}[index]; end
 
-  class << self
-    def ep; ALL.find{|p| p.symbol == 'EP'}; end
-    def ip; ALL.find{|p| p.symbol == 'IP'}; end
-    def ej; ALL.find{|p| p.symbol == 'EJ'}; end
-    def ij; ALL.find{|p| p.symbol == 'IJ'}; end
-  end
-
-  def flip; ALL.values_at(2,3,0,1)[index]; end
-  def flop; ALL.values_at(3,2,1,0)[index]; end
-  def opposite; flip.flop; end
+  def opposite; ALL.values_at(1,0,3,2)[index]; end
 
   def extreme?; [0,3].include?(index); end
 
-  def verb; %w{accept tolerate reject change}[index]; end
-
+  def verb; Help.all.find{|h| h.tendency_key == symbol}.verb; end
 end
