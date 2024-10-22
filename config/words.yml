@@ -15,15 +15,15 @@ shared:
   F↓: listen
   F¬↓: tune out
 
-  S↑: walk
-  S¬↑: sit down
+  S↑: move
+  S¬↑: sit
   S↓: eat
   S¬↓: fast
 
   T↑: buy on credit
   T¬↑: save
-  T↓: collect income
-  T¬↓: stop working
+  T↓: work
+  T¬↓: quit
 
   N↑: think
   N¬↑: stop worrying

@@ -13,7 +13,7 @@ module CookieHelper
     when 'words'
       return words
     else
-      return [words, symbol.wrap].to_phrase
+      return [symbol, words.wrap].to_phrase
     end
   end
 
@@ -37,6 +37,8 @@ module CookieHelper
     format_from_key subtype.opposite.solution_key
   end
 
-
+  def okay(subtype)
+    format_from_key subtype.opposite.problem_key
+  end
 
 end

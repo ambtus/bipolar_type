@@ -24,12 +24,6 @@ class Tendency < Concept
 
   def extreme?; [0,3].include?(index); end
 
-  def normal; %w{midday evening afternoon morning}[index]; end
-  def alternate; opposite.normal; end
-
-  def season; %w{winter summer spring fall}[index]; end
-  def worst_season; opposite.season; end
-
   def verb; %w{accept tolerate reject change}[index]; end
 
 end

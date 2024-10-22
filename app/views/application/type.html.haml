@@ -13,35 +13,38 @@
   -@type.subtypes.each do |subtype|
     %td=solution subtype
 
-%h3 Mornings
 %table
+  %caption
+    %h2 Best time to achieve goals
+  %tr
+    %th{colspan:4}=format '↑', 'Morning'
   %tr
     %th=solution @type.ep
     %th=solution @type.ej
   %tr
-    %td every day<br />(hardest in the fall)
-    %td when possible<br />(easiest in the fall)
-%h3 Middays
-%table
+    %td=render 'every', subtype: @type.ep
+    %td=render 'if', subtype: @type.ej
+  %tr
+    %th{colspan:2}=format '↓', 'Midday'
   %tr
     %th=solution @type.ij
     %th=solution @type.ip
   %tr
-    %td every day<br />(hardest in the winter)
-    %td when possible<br />(easiest in the winter)
-%h3 Afternoons
-%table
+    %td=render 'every', subtype: @type.ij
+    %td=render 'if', subtype: @type.ip
+  %tr
+    %th{colspan:2}=format '¬↓', 'Afternoon'
   %tr
     %th=solution @type.ej
     %th=solution @type.ep
   %tr
-    %td every day<br />(hardest in the spring)
-    %td when possible<br />(easiest in the spring)
-%h3 Evenings
-%table
+    %td=render 'every', subtype: @type.ej
+    %td=render 'if', subtype: @type.ep
+  %tr
+    %th{colspan:2}=format '¬↑', 'Evening'
   %tr
     %th=solution @type.ip
     %th=solution @type.ij
   %tr
-    %td every day<br />(hardest in the summer)
-    %td when possible<br />(easiest in the summer)
+    %td=render 'every', subtype: @type.ip
+    %td=render 'if', subtype: @type.ij

@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap unwrap wrapped? comma period semi colon bang break unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap end_paren unwrap wrapped? comma period semi colon bang break unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -53,6 +53,7 @@ class String
   def sqwrap; "[#{self}]"; end
   def parenthesize; "(#{self})"; end
   alias wrap :parenthesize
+  def endwrap; "#{self})"; end
   def wrapped?; self.last == ')' && self[0] == '('; end
   def unwrap
     if wrapped?

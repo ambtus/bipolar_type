@@ -17,8 +17,9 @@
 
           -subtype = thing + tendency
           %td
-            =link_to_unless @answer.taken?(subtype), tendency(subtype), answer_path(@answer.next(subtype.symbol))
-            .left=render 'q', subtype: subtype
+            -unless @answer.taken?(subtype)
+              =link_to_unless @answer.taken?(subtype), tendency(subtype), answer_path(@answer.next(subtype.symbol))
+              .left=render 'q', subtype: subtype
 
 
 -if Rails.env.development?
