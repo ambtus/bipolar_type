@@ -13,3 +13,7 @@ group :production do
   gem 'unicorn'
 end
 
+group :test do
+  gem 'cucumber-rails', require: false
+end
+

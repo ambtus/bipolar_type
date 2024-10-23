@@ -17,8 +17,6 @@
     -if (%w{cycle serenity things} & params.values).present?
       %p In general, Up↑ and NotDown¬↓ are associated with mania, whereas Down↓ and NotUp¬↑ are associated with depression.
 
-    %p=render "layouts/links"
-
     -if Rails.env.development?
       =cookies.to_h
       =params.values

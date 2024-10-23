@@ -3,12 +3,12 @@
 %h2 BipolarType #{@type.index + 1} of 24
 %table
   %tr
-    %th{colspan:4} Tendencies
+    %td.bold{colspan:4} Tendencies
   %tr
   -@type.subtypes.each do |subtype|
     %td=tendency subtype
   %tr
-    %th{colspan:4} Goals
+    %td.bold{colspan:4} Goals
   %tr
   -@type.subtypes.each do |subtype|
     %td=solution subtype
@@ -17,34 +17,34 @@
   %caption
     %h2 Best time to achieve goals
   %tr
-    %th{colspan:4} Morning (Up &uarr;)
+    %td.bold{colspan:4} Morning
   %tr
-    %th=solution @type.ep
-    %th=solution @type.ej
+    %td.bold=solution @type.ep
+    %td.bold=solution @type.ej
   %tr
     %td=render 'every', subtype: @type.ep
     %td=render 'if', subtype: @type.ej
   %tr
-    %th{colspan:2} Midday (Down &darr;)
+    %td.bold{colspan:2} Midday
   %tr
-    %th=solution @type.ij
-    %th=solution @type.ip
+    %td.bold=solution @type.ij
+    %td.bold=solution @type.ip
   %tr
     %td=render 'every', subtype: @type.ij
     %td=render 'if', subtype: @type.ip
   %tr
-    %th{colspan:2} Afternoon (NotDown &not;&darr;)
+    %td.bold{colspan:2} Afternoon
   %tr
-    %th=solution @type.ej
-    %th=solution @type.ep
+    %td.bold=solution @type.ej
+    %td.bold=solution @type.ep
   %tr
     %td=render 'every', subtype: @type.ej
     %td=render 'if', subtype: @type.ep
   %tr
-    %th{colspan:2} Evening (NotUp &not;&uarr;)
+    %td.bold{colspan:2} Evening
   %tr
-    %th=solution @type.ip
-    %th=solution @type.ij
+    %td.bold=solution @type.ip
+    %td.bold=solution @type.ij
   %tr
     %td=render 'every', subtype: @type.ip
     %td=render 'if', subtype: @type.ij
