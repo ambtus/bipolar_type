@@ -17,7 +17,7 @@
   %caption
     %h2 Best time to achieve goals
   %tr
-    %th{colspan:4}=format '↑', 'Morning'
+    %th{colspan:4} Morning (Up &uarr;)
   %tr
     %th=solution @type.ep
     %th=solution @type.ej
@@ -25,7 +25,7 @@
     %td=render 'every', subtype: @type.ep
     %td=render 'if', subtype: @type.ej
   %tr
-    %th{colspan:2}=format '↓', 'Midday'
+    %th{colspan:2} Midday (Down &darr;)
   %tr
     %th=solution @type.ij
     %th=solution @type.ip
@@ -33,7 +33,7 @@
     %td=render 'every', subtype: @type.ij
     %td=render 'if', subtype: @type.ip
   %tr
-    %th{colspan:2}=format '¬↓', 'Afternoon'
+    %th{colspan:2} Afternoon (NotDown &not;&darr;)
   %tr
     %th=solution @type.ej
     %th=solution @type.ep
@@ -41,7 +41,7 @@
     %td=render 'every', subtype: @type.ej
     %td=render 'if', subtype: @type.ep
   %tr
-    %th{colspan:2}=format '¬↑', 'Evening'
+    %th{colspan:2} Evening (NotUp &not;&uarr;)
   %tr
     %th=solution @type.ip
     %th=solution @type.ij
