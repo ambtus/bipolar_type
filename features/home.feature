@@ -17,7 +17,7 @@ Then I should see 'natural rhythm'
 Scenario: the home page has a link to the serenity page
 Given I am on the homepage
 When I follow the 'Serenity' link
-Then I should see 'if and only if'
+Then I should see 'false dichotomy'
 
 Scenario: the home page has a link to the things page
 Given I am on the homepage

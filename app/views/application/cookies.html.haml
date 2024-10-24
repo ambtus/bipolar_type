@@ -14,5 +14,5 @@
     -@words.each do |key, value|
       %tr
         %td=generic_words key
-        %td=Rails.application.config_for(:words)[key]
+        %td=value
         %td=f.text_field key, value: cookies[key], maxlength: 80, size: 13

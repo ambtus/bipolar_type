@@ -3,20 +3,15 @@
 %table
   %tr
     -Thing.all.each do |thing|
-      %th #{thing.symbol} things
+      %th=format_from_key thing.symbol
 
 
   -Help.each do |help|
     %tr
-      %th{colspan:4} #{help.state} #{help.key}
+      %th{colspan:4}=format_from_key help.symbol
     %tr
       -Thing.all.each do |thing|
         %td
-          =thing.symbol + help.key
-          %br
           =word(thing.symbol + help.symbol)
           %br
-          =generic_words(thing.symbol + help.symbol)
-          %br
           #{word thing.symbol} #{word help.tendency_key}
-

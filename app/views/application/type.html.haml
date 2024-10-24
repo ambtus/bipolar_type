@@ -6,7 +6,7 @@
     %td.bold{colspan:4} Tendencies
   %tr
   -@type.subtypes.each do |subtype|
-    %td=tendency subtype
+    %td=format_from_key subtype.symbol
   %tr
     %td.bold{colspan:4} Goals
   %tr
@@ -17,10 +17,10 @@
   %caption
     %h2
       BipolarType Advice
-      -if cookies[:hide].present?
-        =button_to 'TL;DR', {}, method: :get
+      -if @hide
+        =button_to 'TL;DR', {}, method: :get, params: {details: 'show'}
       -else
-        =button_to 'TL;DR', {}, method: :get, params: {hide: 'details'}
+        =button_to 'TL;DR', {}, method: :get, params: {details: 'hide'}
   =render 'time', name: 'Morning', subtypes: [@type.ep, @type.ip, @type.ij, @type.ej]
   =render 'time', name: 'Midday', subtypes: [@type.ij, @type.ep, @type.ej, @type.ip]
   =render 'time', name: 'Afternoon', subtypes: [@type.ej, @type.ij, @type.ip, @type.ep]

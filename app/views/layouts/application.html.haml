@@ -9,13 +9,10 @@
 
   %body
     %p=render "layouts/links"
-    -if (%w{answers types} & params.values).present?
+    -if (%w{answers types things} & params.values).present?
       %div.right=render 'layouts/form'
 
     =yield
-
-    -if (%w{cycle serenity things} & params.values).present?
-      %p In general, Up↑ and NotDown¬↓ are associated with mania, whereas Down↓ and NotUp¬↑ are associated with depression.
 
     -if Rails.env.development?
       =cookies.to_h

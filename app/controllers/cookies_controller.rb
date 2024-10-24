@@ -7,9 +7,9 @@ class CookiesController < ApplicationController
     when 'Symbols'
       cookies[:setting] = 'symbols'
     when 'Words'
-      cookies.delete('setting')
+      cookies[:setting] = 'words'
     when 'Things'
-      cookies[:setting] = 'generics'
+      cookies.delete('setting')
     when 'Save', nil
       words = Rails.application.config_for(:words)
       words.keys.each do |k|
