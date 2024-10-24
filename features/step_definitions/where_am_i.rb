@@ -13,3 +13,11 @@ end
 Given('I am on my page') do
   visit('/me')
 end
+
+Given('I am on the types page') do
+  visit('/types')
+end
+
+Then('I should be on my page') do
+  assert page.has_text?('BipolarType 15 of 24')
+end

@@ -2,16 +2,14 @@
 
 %table
   %tr
-    -Thing.all.each do |thing|
-      %th=format_from_key thing.symbol
-
+    %th
+    -Thing::SYMBOL.each do |symbol|
+      %th #{symbol} Things
 
   -Help.each do |help|
     %tr
-      %th{colspan:4}=format_from_key help.symbol
-    %tr
+      %th=help.name
       -Thing.all.each do |thing|
         %td
-          =word(thing.symbol + help.symbol)
-          %br
-          #{word thing.symbol} #{word help.tendency_key}
+          =format_from_key thing.symbol + help.symbol
+          .italic=format_from_key (thing + help.tendency).symbol

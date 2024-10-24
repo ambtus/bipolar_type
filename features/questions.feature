@@ -7,22 +7,19 @@ Then I should see 'save your words'
 
 Scenario: the questions page allows you to choose an option
 Given I am on the questions page
-  And I press 'Words'
 When I follow the 'emotionally thin' link
 Then I should see 'Question #2 of 3'
 
 Scenario: the questions page allows you to get to my page
 Given I am on the questions page
-  And I press 'Words'
 When I follow the 'emotionally thin' link
   And I follow the 'physically fat' link
   And I follow the 'mentally weak' link
-Then I should see 'BipolarType 3 of 24'
+Then I should be on my page
   And the 'Me' link should be disabled
 
 Scenario: the questions page doesnt always get to my page
 Given I am on the questions page
-  And I press 'Words'
 When I follow the 'emotionally thin' link
   And I follow the 'physically fat' link
   And I follow the 'mentally strong' link
@@ -33,11 +30,10 @@ Scenario: the questions page uses your words
 Given I have entered 'spiritually' for 'F'
   And I have entered 'materially' for 'T'
   And I am on the questions page
-  And I press 'Words'
 When I follow the 'spiritually thin' link
   And I follow the 'materially strong' link
   And I follow the 'physically fat' link
-Then I should see 'BipolarType 3 of 24'
+Then I should be on my page
 
 Scenario: the questions page says its easier
 Given I am on the questions page
@@ -49,8 +45,8 @@ Then I should see 'It’s much easier to listen when I don’t have to talk.'
 
 Scenario: answering one question makes it and its siblings disappear
 Given I am on the questions page
-  And I press 'Words'
 When I follow the 'emotionally thin' link
+  And I press 'Words'
 Then I should NOT see 'It’s much easier to listen when I don’t have to talk.'
   And I should NOT see 'It’s much easier to not talk when I can listen.'
   And I should NOT see 'It’s much easier to eat when I don’t have to move.'

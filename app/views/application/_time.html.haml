@@ -1,5 +1,7 @@
 %tr
-  %td.bold{colspan:4}=name
+  %td.bold{colspan:4}
+    =help.name
+    =help.cycle_name
 %tr
 -subtypes.each_with_index do |subtype, index|
   %td
@@ -11,4 +13,4 @@
 -unless @hide
   %tr
   -subtypes.each_with_index do |subtype, index|
-    %td=render %w{a b c d}[index], subtype: subtype
+    %td.left=render %w{a b c d}[index], subtype: subtype

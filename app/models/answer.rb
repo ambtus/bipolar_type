@@ -24,7 +24,7 @@ class Answer
 
   def last; Subtype.all.find{|s| !things.include?(s.thing) && !tendencies.include?(s.tendency) }; end
 
-  def all; (taken << last).sort_by(&:tendency); end
+  def all; (taken << last).sort_by(&:help); end
 
   def thing_string; all.map(&:thing).map(&:symbol).join; end
   def type_path; Type.find_by_thing_string(thing_string).path; end

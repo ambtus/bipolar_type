@@ -1,4 +1,5 @@
 module CookieHelper
+
   def parse(key)
     concepts = {}
     case key.length
@@ -46,8 +47,23 @@ module CookieHelper
   def generic_words(key)
     concepts = parse(key)
     Rails.logger.debug "generic concepts: #{concepts}"
-    verb = concepts.values_at(:subtype, :help, :tendency).compact.map(&:verb).first
-    symbol = concepts[:subtype]&.thing&.symbol || concepts[:thing]&.symbol
+    if concepts[:subtype]
+      verb = concepts[:subtype].verb
+      symbol = 'too many ' + concepts[:subtype].thing.symbol
+    elsif concepts[:help] && concepts[:thing]
+      verb = concepts[:help].verb
+      symbol = concepts[:thing].symbol
+    elsif concepts[:help]
+      verb = nil
+      symbol = concepts[:help].key
+    elsif concepts[:thing]
+      verb = nil
+      symbol = concepts[:thing].symbol
+    elsif concepts[:tendency]
+      verb = concepts[:tendency].verb
+    else
+      return "cannot find word for #{key.inspect}"
+    end
     [verb, symbol, 'things'].to_phrase
   end
 
@@ -57,8 +73,13 @@ module CookieHelper
       symbol(key)
     when 'words'
       word(key)
-    else
+    when 'things'
       generic_words(key)
+    else
+      symbol = symbol(key)
+      generic_words = generic_words(key)
+      words = word(key)
+      [words.colon, symbol].to_phrase
     end
   end
 

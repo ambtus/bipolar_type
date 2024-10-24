@@ -9,13 +9,13 @@
       %th
         =format_from_key thing.symbol
   %tr
-    -Tendency.each do |tendency|
+    -Help.each do |help|
       %tr
         %th
-          =format_from_key tendency.symbol
+          =help.name
         -Thing.each do |thing|
 
-          -subtype = thing + tendency
+          -subtype = thing + help.tendency
           %td
             -unless @answer.taken?(subtype)
               =link_to_unless @answer.taken?(subtype), format_from_key(subtype.symbol), answer_path(@answer.next(subtype.symbol))

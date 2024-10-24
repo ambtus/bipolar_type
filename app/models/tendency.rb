@@ -16,12 +16,6 @@ class Tendency < Concept
   def extreme?; [0,3].include?(index); end
 
   def help; Help.all.find{|h| h.tendency_key == symbol}; end
-
   def verb; help.verb; end
-
-  def time; %w{  evening midday morning afternoon}[index]; end
-
-  def easiest_season; %w{  winter summer spring fall}[index]; end
-  def hardest_season; %w{  summer winter fall spring}[index]; end
 
 end

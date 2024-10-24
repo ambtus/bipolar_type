@@ -1,13 +1,2 @@
 worst (hardest) time to
-=format_solution(subtype)
-%p.left
-  Don&rsquo;t give up; this too shall pass and the
-  =subtype.extreme? ? 'more' : 'less'
-  you
-  =subtype.extreme? ? format_solution(subtype) : format_problem(subtype)
-  now, the
-  =subtype.extreme? ? 'more' : 'less'
-  you will
-  =subtype.extreme? ? 'be able to' : 'have to'
-  =subtype.extreme? ? format_problem(subtype.opposite) : format_solution(subtype.opposite)
-  later.
+=format_solution(subtype).clean
