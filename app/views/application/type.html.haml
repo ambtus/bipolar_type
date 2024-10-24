@@ -17,34 +17,18 @@
   %caption
     %h2 Best time to achieve goals
   %tr
-    %td.bold{colspan:4} Morning
+    %td.bold Every morning; more often in spring
   %tr
-    %td.bold=solution @type.ep
-    %td.bold=solution @type.ej
+    %td=solution @type.ep
   %tr
-    %td=render 'every', subtype: @type.ep
-    %td=render 'if', subtype: @type.ej
+    %td.bold Every midday; more often in summer
   %tr
-    %td.bold{colspan:2} Midday
+    %td=solution @type.ij
   %tr
-    %td.bold=solution @type.ij
-    %td.bold=solution @type.ip
+    %td.bold Every afternoon; more often in fall
   %tr
-    %td=render 'every', subtype: @type.ij
-    %td=render 'if', subtype: @type.ip
+    %td=solution @type.ej
   %tr
-    %td.bold{colspan:2} Afternoon
+    %td.bold Every evening; more often in winter
   %tr
-    %td.bold=solution @type.ej
-    %td.bold=solution @type.ep
-  %tr
-    %td=render 'every', subtype: @type.ej
-    %td=render 'if', subtype: @type.ep
-  %tr
-    %td.bold{colspan:2} Evening
-  %tr
-    %td.bold=solution @type.ip
-    %td.bold=solution @type.ij
-  %tr
-    %td=render 'every', subtype: @type.ip
-    %td=render 'if', subtype: @type.ij
+    %td=solution @type.ip
