@@ -18,3 +18,12 @@ Then('I should see {string} within {string}') do |string, string2|
   assert page.has_field?(string2, with: string)
 end
 
+Then('show me the page') do
+  save_and_open_page
+end
+
+Then('I should see {string} before {string}') do |string, string2|
+  regexp = Regexp.new(string + '.*' + string2)
+  Rails.logger.debug "regexp: #{regexp}"
+  assert page.has_text?(regexp)
+end

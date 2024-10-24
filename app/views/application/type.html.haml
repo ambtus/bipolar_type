@@ -11,24 +11,17 @@
     %td.bold{colspan:4} Goals
   %tr
   -@type.subtypes.each do |subtype|
-    %td=solution subtype
+    %td=format_solution subtype
 
 %table
   %caption
-    %h2 Best time to achieve goals
-  %tr
-    %td.bold Every morning; more often in spring
-  %tr
-    %td=solution @type.ep
-  %tr
-    %td.bold Every midday; more often in summer
-  %tr
-    %td=solution @type.ij
-  %tr
-    %td.bold Every afternoon; more often in fall
-  %tr
-    %td=solution @type.ej
-  %tr
-    %td.bold Every evening; more often in winter
-  %tr
-    %td=solution @type.ip
+    %h2
+      BipolarType Advice
+      -if cookies[:hide].present?
+        =button_to 'TL;DR', {}, method: :get
+      -else
+        =button_to 'TL;DR', {}, method: :get, params: {hide: 'details'}
+  =render 'time', name: 'Morning', subtypes: [@type.ep, @type.ip, @type.ij, @type.ej]
+  =render 'time', name: 'Midday', subtypes: [@type.ij, @type.ep, @type.ej, @type.ip]
+  =render 'time', name: 'Afternoon', subtypes: [@type.ej, @type.ij, @type.ip, @type.ep]
+  =render 'time', name: 'Evening', subtypes: [@type.ip, @type.ej, @type.ep, @type.ij]

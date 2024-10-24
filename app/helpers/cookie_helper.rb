@@ -52,16 +52,11 @@ module CookieHelper
     end
   end
 
-  def solution(subtype)
+  def format_solution(subtype)
     format_from_key subtype.solution_key
   end
 
-  def interference(subtype)
-    format_from_key subtype.opposite.solution_key
+  def format_problem(subtype)
+    format_from_key subtype.problem_key
   end
-
-  def okay(subtype)
-    format_from_key subtype.opposite.problem_key
-  end
-
 end

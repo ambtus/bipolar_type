@@ -1,0 +1,14 @@
+%tr
+  %td.bold{colspan:4}=name
+%tr
+-subtypes.each_with_index do |subtype, index|
+  %td
+    -if cookies[:hide].present?
+      =(index+1).to_s.colon
+      =format_solution subtype
+    -else
+      .bold=format_solution subtype
+-unless cookies[:hide].present?
+  %tr
+  -subtypes.each_with_index do |subtype, index|
+    %td=render %w{a b c d}[index], subtype: subtype

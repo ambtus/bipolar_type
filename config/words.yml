@@ -20,8 +20,8 @@ shared:
   SA: eat
   SR: fast
 
-  TC: buy on credit
-  TT: save your money
+  TC: borrow
+  TT: save
   TA: work
   TR: quit
 

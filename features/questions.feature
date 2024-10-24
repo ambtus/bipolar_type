@@ -34,3 +34,18 @@ When I follow the 'spiritually thin' link
   And I follow the 'materially strong' link
   And I follow the 'physically fat' link
 Then I should see 'BipolarType 3 of 24'
+
+Scenario: the questions page says its easier
+Given I am on the questions page
+Then I should see 'It’s much easier to listen when I don’t have to talk.'
+  And I should see 'It’s much easier to be quiet when I can listen.'
+  And I should see 'It’s much easier to eat when I don’t have to move.'
+  And I should see 'It’s much easier to sit still when I can eat.'
+
+Scenario: answering one question makes it and its siblings disappear
+Given I am on the questions page
+When I follow the 'emotionally thin' link
+Then I should NOT see 'It’s much easier to listen when I don’t have to talk.'
+  And I should NOT see 'It’s much easier to be quiet when I can listen.'
+  And I should NOT see 'It’s much easier to eat when I don’t have to move.'
+  But I should see 'It’s much easier to sit still when I can eat.'

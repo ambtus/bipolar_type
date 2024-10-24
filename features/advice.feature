@@ -20,4 +20,5 @@ Then I should see 'Goals turn on the radio'
 
 Scenario: my type page says the best time to listen is in the evening
 Given I am on my page
-Then I should see 'Evening listen'
+When I press 'TL;DR'
+Then I should see 'Evening' before '1: listen'
