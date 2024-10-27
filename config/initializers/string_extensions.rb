@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap end_paren unwrap wrapped? comma period semi colon bang break unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap end_paren unwrap wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -73,9 +73,11 @@ class String
   def bang; self + '!'; end
   def question; self + '?'; end
   def break; self + '<br />'; end
+
+  PUNCTUATIONS = %w{, . ; : !}
+  def punctuated?; PUNCTUATIONS.include?(self.last); end
   def unpunctuate
-    punctuations = %w{, . ; : !}
-    if punctuations.include?(self.last)
+    if punctuated?
       self.chop.unpunctuate
     else
       return self
@@ -258,6 +260,9 @@ class String
         first, second = self.split(connector, 2)
         return [first.ing, second.ing].join(connector)
       end
+    end
+    if self.punctuated?
+      return self.chop.ing + self.last
     end
     if self.match(' ')
       if last_words.wrapped?

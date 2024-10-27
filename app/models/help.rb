@@ -20,6 +20,18 @@ class Help < Concept
 
   def cycle_name; [season, time].to_phrase.titleize; end
   def episode_name; [season, episode].to_phrase.titleize; end
-  def name; [verb, 'things', key].to_phrase.titleize; end
+  def things_name; [verb, 'things', key].to_phrase.titleize; end
+  def name(setting=nil)
+    case setting
+    when 'words'
+      state
+    when 'symbols'
+      key
+    when 'things'
+      [verb.ing.capitalize, 'Things'].wbr
+    else
+      [state, key].join
+    end
+  end
 
 end

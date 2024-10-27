@@ -21,6 +21,8 @@ class Subtype < Concept
   def method_missing(meth, *args, **kwargs, &block)
     if tendency.respond_to?(meth)
       tendency.send(meth)
+    elsif tendency.help.respond_to?(meth)
+      tendency.help.send(meth)
     else
       super(meth)
     end

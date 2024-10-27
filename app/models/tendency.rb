@@ -16,6 +16,13 @@ class Tendency < Concept
   def extreme?; [0,3].include?(index); end
 
   def help; Help.all.find{|h| h.tendency_key == symbol}; end
-  def verb; help.verb; end
+
+  def method_missing(meth, *args, **kwargs, &block)
+    if help.respond_to?(meth)
+      help.send(meth)
+    else
+      super(meth)
+    end
+  end
 
 end

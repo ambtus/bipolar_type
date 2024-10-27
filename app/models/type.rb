@@ -26,16 +26,28 @@ class Type
 
   def subtypes; things.add(Help.all.map(&:tendency)).flatten; end
 
-  alias inspect :subtypes
-
   def symbol; subtypes.map(&:symbol).join('•'); end
 
-  def find_subtype(tendency); subtypes.find{|p| p.tendency == tendency}; end
+  alias inspect :symbol
 
-  def ep; subtypes.find{|p| p.tendency.symbol == 'EP'}; end
-  def ip; subtypes.find{|p| p.tendency.symbol == 'IP'}; end
-  def ej; subtypes.find{|p| p.tendency.symbol == 'EJ'}; end
-  def ij; subtypes.find{|p| p.tendency.symbol == 'IJ'}; end
+  def find_subtype(symbol); subtypes.find{|p| p.tendency.symbol == symbol}; end
+
+  Tendency::SYMBOL.each do |symbol|
+    define_method(symbol.downcase) {find_subtype(symbol)}
+  end
+
+  def subtypes_by(index)
+    case index
+    when 0
+      [ep, ip, ej, ij]
+    when 1
+      [ij, ej, ip, ep]
+    when 2
+      [ej, ij, ep, ip]
+    when 3
+      [ip, ep, ij, ej]
+    end
+  end
 
 end
 

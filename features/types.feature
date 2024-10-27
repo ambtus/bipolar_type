@@ -28,9 +28,9 @@ Then I should NOT see 'emotionally thin'
 
 Scenario: the types page after sorting
 Given I am on the types page
-And I follow the 'Refuse Things' link
-Then the 'Refuse Things' link should be disabled
-  But the 'Change Things' link should NOT be disabled
+And I follow the 'Down↓' link
+Then the 'Down↓' link should be disabled
+  But the 'Up↑' link should NOT be disabled
   And I should see 'emotionally thin' before 'emotionally strong'
 
 Scenario: the types page footer with different words

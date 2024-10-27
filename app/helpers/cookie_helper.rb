@@ -76,10 +76,7 @@ module CookieHelper
     when 'things'
       generic_words(key)
     else
-      symbol = symbol(key)
-      generic_words = generic_words(key)
-      words = word(key)
-      [words.colon, symbol].to_phrase
+      [word(key), symbol(key).wrap].to_phrase
     end
   end
 
@@ -89,6 +86,10 @@ module CookieHelper
 
   def format_problem(subtype)
     format_from_key subtype.problem_key
+  end
+
+  def question(subtype)
+    'Why is ' + format_solution(subtype).clean.ing + ' so hard for me?'
   end
 
 end

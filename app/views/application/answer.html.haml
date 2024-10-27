@@ -12,7 +12,7 @@
     -Help.each do |help|
       %tr
         %th
-          =help.name
+          =help.name(cookies[:setting])
         -Thing.each do |thing|
 
           -subtype = thing + help.tendency

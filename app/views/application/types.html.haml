@@ -5,7 +5,7 @@
     %th
     -Help.all.each_with_index do |help, index|
       %th
-        =link_to_unless index == @sort_index, help.name, types_path(sort: index)
+        =link_to_unless index == @sort_index, help.name(cookies[:setting]), types_path(sort: index)
   -@types.each_with_index do |type, index|
     %tr
       %th=link_to type.index + 1, type_path(type.path)
