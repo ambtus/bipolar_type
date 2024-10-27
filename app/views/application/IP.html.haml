@@ -1,0 +1,16 @@
+- content_for(:title, @subtype.symbol)
+
+%h2=format_from_key(@subtype.symbol).titleize
+%p.italic.center Why is it so #{hard(@subtype)}?
+
+%p I start to #{format_role(@subtype)} in the #{@subtype.help.before.before.time}, as is natural.
+
+%p I <em>continue</em> to #{format_role(@subtype)} in the #{@subtype.help.before.time}, because it is <b><em>my role</em></b> to #{role(@subtype)}.
+
+%p I <em>should</em> then #{format_solution(@subtype)} in the #{@subtype.time}, as it is natural for people to #{format_solution(@subtype)} after they #{format_role(@subtype)}, but #{@subtype.time} is the natural time to <em>#{format_problem(@subtype)}</em>, and I <em>can’t</em>. Only #{format_from_key(@subtype.flip.symbol).pluralize} can #{format_solution(@subtype)} easily in the #{@subtype.time}.
+
+%p Which means at this point I have #{format_role(@subtype).en} for two periods, and have not #{format_solution(@subtype).en} at all.
+
+%p Even #{format_solution(@subtype).ing} during the #{@subtype.help.after.time}, which is the best and easiest time for me to #{format_solution(@subtype)}, won’t completely balance me.
+
+%p I also need to #{format_solution(@subtype)} during the #{@subtype.help.before.before.time} and #{@subtype.help.before.time} whenever I take a break from #{format_role(@subtype).ing}.

@@ -22,7 +22,8 @@ Then I should see 'false dichotomy'
 Scenario: the home page has a link to the things page
 Given I am on the homepage
 When I follow the 'Things' link
-Then I should see 'F Things'
+  And I press 'Things'
+Then I should see 'F things'
 
 Scenario: the home page has a link to the questions page
 Given I am on the homepage

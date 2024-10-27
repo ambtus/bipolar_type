@@ -18,6 +18,9 @@ class Help < Concept
   def opposite_index; [3, 2, 1, 0][index]; end
   def opposite; ALL[opposite_index]; end
 
+  def before; ALL[index-1]; end
+  def after; ALL[(index+1)%4]; end
+
   def cycle_name; [season, time].to_phrase.titleize; end
   def episode_name; [season, episode].to_phrase.titleize; end
   def things_name; [verb, 'things', key].to_phrase.titleize; end

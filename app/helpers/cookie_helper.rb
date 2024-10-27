@@ -80,16 +80,27 @@ module CookieHelper
     end
   end
 
-  def format_solution(subtype)
-    format_from_key subtype.solution_key
+  %w{problem solution role herring}.each do |string|
+    define_method('format_' + string) do |subtype, clean=true|
+      words = format_from_key(subtype.send(string + '_key'))
+      clean ? words.clean : words
+    end
   end
 
-  def format_problem(subtype)
-    format_from_key subtype.problem_key
+  def hard(subtype)
+    if subtype.extreme?
+      'hard for me to start '.html_safe + format_solution(subtype).ing
+    else
+      'hard for me to stop '.html_safe + format_problem(subtype).ing
+    end
   end
 
-  def question(subtype)
-    'Why is ' + format_solution(subtype).clean.ing + ' so hard for me?'
+  def role(subtype)
+    if subtype.extreme?
+      format_role(subtype) + ' when other people want to ' + format_solution(subtype)
+    else
+      'not ' + format_herring(subtype) + ' when other people don’t want to ' + format_problem(subtype)
+    end.clean
   end
 
 end

@@ -1,0 +1,51 @@
+- content_for(:title, @subtype.symbol)
+
+%h2=format_from_key(@subtype.symbol).titleize
+%p.italic.center Why is it so #{hard(@subtype)}?
+
+%table
+  %tr
+    %th
+    %th Natural Balance
+    %th Nurture
+    %th Nurtured Imbalance
+    %th
+    %th New Balance
+
+  %tr
+    %th=Help.all.first.name(cookies[:setting])
+    %td=format_from_key (@subtype.thing.symbol + 'C')
+    %td
+    %td=format_from_key (@subtype.thing.symbol + 'C')
+    %td.left you are #{Help.all.first.name(cookies[:setting])}, not #{Help.all.second.name(cookies[:setting])}, and have no need to #{format_problem(@subtype)}, so don’t.
+    %td
+      =format_from_key (@subtype.thing.symbol + 'C')
+      &
+      =format_solution(@subtype, false)
+
+  %tr
+    %th=Help.all.second.name(cookies[:setting])
+    %td=format_from_key (@subtype.thing.symbol + 'A')
+    %td
+    %td=format_from_key (@subtype.thing.symbol + 'A')
+    %td.left you are #{Help.all.second.name(cookies[:setting])}, and need to #{format_problem(@subtype)}, so #{format_problem(@subtype, false)}
+    %td=format_from_key (@subtype.thing.symbol + 'A')
+
+  %tr
+    %th=Help.all.third.name(cookies[:setting])
+    %td=format_from_key (@subtype.thing.symbol + 'R')
+    %td.left do #{role(@subtype)}
+    %td=format_problem(@subtype)
+    %td.left you do not have to #{format_problem(@subtype)} just because you are #{format_role(@subtype).ing}, but it is very hard to <em>stop</em> when you don’t have anything to replace it with.
+    %td=format_problem(@subtype, false)
+
+  %tr
+    %th=Help.all.fourth.name(cookies[:setting])
+    %td=format_from_key (@subtype.thing.symbol + 'E')
+    %td
+    %td=format_from_key (@subtype.thing.symbol + 'E')
+    %td.left you are #{Help.all.last.name(cookies[:setting])}, not #{Help.all.second.name(cookies[:setting])}, and have no need to #{format_problem(@subtype)}, so don’t.
+    %td
+      =format_from_key (@subtype.thing.symbol + 'E')
+      &
+      =format_solution(@subtype, false)

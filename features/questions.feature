@@ -40,8 +40,8 @@ Given I am on the questions page
   And I press 'Words'
 Then I should see 'It’s much easier to listen when I don’t have to talk.'
   And I should see 'It’s much easier to not talk when I can listen.'
-  And I should see 'It’s much easier to eat when I don’t have to move.'
-  And I should see 'It’s much easier to not move when I can eat.'
+  And I should see 'It’s much easier to eat when I don’t have to cook.'
+  And I should see 'It’s much easier to not cook when I can eat.'
 
 Scenario: answering one question makes it and its siblings disappear
 Given I am on the questions page
@@ -49,5 +49,5 @@ When I follow the 'emotionally thin' link
   And I press 'Words'
 Then I should NOT see 'It’s much easier to listen when I don’t have to talk.'
   And I should NOT see 'It’s much easier to not talk when I can listen.'
-  And I should NOT see 'It’s much easier to eat when I don’t have to move.'
-  But I should see 'It’s much easier to not move when I can eat.'
+  And I should NOT see 'It’s much easier to eat when I don’t have to cook.'
+  But I should see 'It’s much easier to not cook when I can eat.'

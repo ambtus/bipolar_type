@@ -9,12 +9,12 @@
 
   %body
     %p=render "layouts/links"
-    -if (%w{answers types things} & params.values).present?
+    -if (%w{answers types things subtypes} & params.values).present?
       %div.right=render 'layouts/form'
 
     =yield
 
     -if Rails.env.development?
-      =cookies.to_h
-      =params.values
+      %p=cookies.to_h
+      %p=params.values
 

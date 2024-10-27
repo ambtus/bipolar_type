@@ -13,10 +13,12 @@ class Subtype < Concept
 
   def parts; [tendency, thing]; end
 
-  def problem_key; thing.symbol + tendency.problem_key; end
-  def solution_key; thing.symbol + tendency.solution_key; end
+  %w{problem solution role herring}.each do |string|
+    define_method(string + '_key') {thing.symbol + tendency.send(string + '_key')}
+  end
 
   def opposite; thing + tendency.opposite; end
+  def flip; thing + tendency.flip; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if tendency.respond_to?(meth)

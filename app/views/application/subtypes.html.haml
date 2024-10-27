@@ -1,0 +1,15 @@
+- content_for(:title, Subtype.title)
+%h2 The 16 Subtypes
+
+%table
+  %tr
+    %th
+    -Thing.each do |thing|
+      %th
+        =format_from_key thing.symbol
+  -Help.each do |help|
+    %tr
+      %th=help.name(cookies[:setting])
+      -Thing.all.each do |thing|
+        -subtype = thing + help.tendency
+        %td.left=link_to format_from_key(subtype.symbol), subtype_path(subtype.symbol)

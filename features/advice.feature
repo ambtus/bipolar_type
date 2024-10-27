@@ -15,9 +15,7 @@ Then I should see 'spiritually thin'
 Scenario: my type page says i should listen more and eat less
 Given I am on my page
 Then I should see 'do not eat'
-  But I should NOT see 'move'
   And I should see 'listen'
-  But I should NOT see 'do not talk'
 
 Scenario: my type page reflects cookies
 Given I have entered 'turn on the radio' for 'FA'

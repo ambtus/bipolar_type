@@ -8,10 +8,17 @@ class Tendency < Concept
     Subtype.all.find{|p| p.tendency == self && p.thing == thing}
   end
 
+  def role_key; %w{C R E A}[index]; end
   def problem_key; %w{R C A E}[index]; end
   def solution_key; %w{A E R C}[index]; end
+  def herring_key; %w{E A C R}[index]; end
+
+  %w{problem solution role herring}.each do |string|
+    define_method(string + '_time') {Help.find_by(self.send(string + '_key')).time}
+  end
 
   def opposite; ALL.values_at(1,0,3,2)[index]; end
+  def flip; ALL.values_at(2,3,0,1)[index]; end
 
   def extreme?; [0,3].include?(index); end
 

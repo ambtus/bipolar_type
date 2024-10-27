@@ -6,9 +6,9 @@
   %td
     -if @hide
       =(index+1).to_s.colon
-      =format_solution subtype
+      =format_solution subtype, false
     -else
-      .bold=format_solution subtype
+      .bold=format_solution(subtype, false)
 -unless @hide
   %tr
   -subtypes.each_with_index do |subtype, index|

@@ -3,21 +3,25 @@
 %h2 BipolarType #{@type.index + 1} of 24
 %table
   %tr
-    %td.bold{colspan:4} Tendencies
+  -@type.subtypes.each do |subtype|
+    %th=link_to format_from_key(subtype.symbol), subtype_path(subtype.symbol)
+  %tr
+    -@type.subtypes.each do |subtype|
+      %td.left
+        It is my
+        %em role
+        to
+        =role subtype
   %tr
   -@type.subtypes.each do |subtype|
     %td
       =subtype.help.episode_name
-      %br
-      =format_from_key subtype.symbol
-  %tr
-    %td.bold{colspan:4} Goals
+      .left It is #{hard(subtype)}
   %tr
   -@type.subtypes.each do |subtype|
-    %td=format_solution subtype
-  %tr
-  -@type.subtypes.each do |subtype|
-    %td.left=link_to question(subtype), subtype_path(subtype.symbol)
+    %td.left
+      Help me to
+      =format_solution(subtype)
 
 %table
   %caption

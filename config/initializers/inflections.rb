@@ -19,6 +19,7 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'AKA'
   inflect.acronym 'MBTI'
+  ['IFP', 'IFJ', 'EFP', 'EFJ', 'ISP', 'ISJ', 'ESP', 'ESJ', 'ITP', 'ITJ', 'ETP', 'ETJ', 'INP', 'INJ', 'ENP', 'ENJ'].each {|s| inflect.acronym s}
   inflect.singular(/([^f])oves$/i, '\1ove')
   inflect.uncountable %w( amnesia anorexia dementia)
   inflect.irregular 'focus', 'foci'

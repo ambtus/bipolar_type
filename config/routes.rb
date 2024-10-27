@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'things', to: 'application#things'
   resources :answers, only: [:show]
   resources :types, only: [:show, :index]
-  resources :subtypes, only: [:show]
+  resources :subtypes, only: [:show, :index]
   get 'cookies', to: 'cookies#update'
   get '/me' => 'types#me', as: :my
 end

@@ -1,0 +1,16 @@
+- content_for(:title, @subtype.symbol)
+
+%h2=format_from_key(@subtype.symbol).titleize
+%p.italic.center Why is it so #{hard(@subtype)}?
+
+%p I start to #{format_problem(@subtype)} in the #{@subtype.time}, as is natural.
+
+%p I <em>continue</em> to #{format_problem(@subtype)} in the #{@subtype.help.after.time}, because it is <b><em>my role</em></b> to #{role(@subtype)}. And most of them have stopped #{format_problem(@subtype).ing} to #{format_herring(@subtype)}
+
+%p I <em>should</em> then #{format_herring(@subtype)} in the #{@subtype.help.after.after.time}, as it is natural for people to #{format_herring(@subtype)} after they #{format_problem(@subtype)}, but #{@subtype.help.after.after.time} is the natural time to <em>#{format_role(@subtype)}</em>, and I <em>can’t</em>. 
+
+%p Which means at this point I have #{format_problem(@subtype).en} for two periods, and have not #{format_herring(@subtype).en} at all.
+
+%p And I cannot #{format_herring(@subtype)} during the #{@subtype.help.before.time} <em>either</em> as it is <b><em>my role</em></b> to #{role(@subtype)}. And <em>nobody</em> wants to #{format_problem(@subtype)} in the #{@subtype.help.before.time}.
+
+%p I need to #{format_solution(@subtype)} during the <em>#{@subtype.help.after.time}</em>.
