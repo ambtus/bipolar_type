@@ -7,7 +7,6 @@
   %table
     %tr
       %th Symbol
-      %th Things
       %th Default words
       %th Possible alternatives
       %th Your words
@@ -16,7 +15,6 @@
     -@words.each do |key, value|
       %tr
         %td=key
-        %td=parse(key).generic_words
         %td=value
         %td=@alt_words[key]
         %td=f.text_field key, value: cookies[key], maxlength: 80, size: 13

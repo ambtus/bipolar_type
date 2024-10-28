@@ -15,8 +15,6 @@ class Behavior < Concept
 
   def opposite; thing + help.opposite; end
 
-  def generic_words; [help.verb, thing.symbol, 'things'].to_phrase; end
-
   def method_missing(meth, *args, **kwargs, &block)
     if help.respond_to?(meth)
       help.send(meth, *args)
