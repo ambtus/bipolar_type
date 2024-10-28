@@ -28,9 +28,9 @@ Then I should NOT see 'emotionally thin'
 
 Scenario: the types page after sorting
 Given I am on the types page
-And I follow the 'Accept' link
-Then the 'Accept' link should be disabled
-  But the 'Change' link should NOT be disabled
+And I follow the 'accept' link
+Then the 'accept' link should be disabled
+  But the 'change' link should NOT be disabled
   And I should see 'emotionally thin' before 'emotionally strong'
 
 Scenario: the types page footer with different words
@@ -38,3 +38,8 @@ Given I have entered 'obese' for 'EP'
   And I am on the types page
 Then I should see 'will rarely be physically obese'
   And I should NOT see 'fat'
+
+Scenario: get to my type
+Given I am on the types page
+When I follow the '15' link
+Then I should be on my page

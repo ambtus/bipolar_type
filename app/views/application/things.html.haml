@@ -3,11 +3,13 @@
 %table
   %tr
     %th
-    -Thing::SYMBOL.each do |symbol|
-      %th=format_from_key symbol
+    -Thing.each do |thing|
+      %th=display thing
 
   -Help.each do |help|
     %tr
-      %th=format_from_key help.symbol
+      %th=display help
       -Thing.all.each do |thing|
-        %td=do_format_from_key help.symbol + thing.symbol
+        %td
+          -behavior = help + thing
+          =display(transform((behavior), :prepend, 'do '))

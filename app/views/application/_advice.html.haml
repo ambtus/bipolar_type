@@ -2,24 +2,24 @@
 -if @hide
   %h3
     =help.time.capitalize.colon
-    %span.plain=do_format_solution(subtype)
+    %span.plain=display transform(subtype.solution, :prepend, 'do ')
 -else
   %h3=help.name(cookies[:setting])
   -if subtype.more?
     -if @subtype
-      %p Never, ever, expect yourself to be willing or even <em>able</em> to fall asleep until after you have #{format_solution(subtype).en}.
-    %p You must #{format_solution(subtype)} when you are <em>not #{format_role(subtype).ing}</em>.
-    %p You tend to #{format_herring(subtype)} in the #{help.time} so make sure you  #{format_solution(subtype)} then.
+      %p Never, ever, expect yourself to be willing or even <em>able</em> to fall asleep until after you have #{display(subtype.solution).en}.
+    %p You must #{display(subtype.solution)} when you are <em>not #{display(subtype.role).ing}</em>.
+    %p You tend to #{display(subtype.herring)} in the #{help.time} so make sure you  #{display(subtype.solution)} then.
     -if @subtype
-      %p It is also possible to #{format_herring(subtype)} in the #{help.after.after.time} or at other times, such as the #{help.season}, when you feel like #{help.verb.ing} things.
-      %p Just remember that you must <em>#{format_solution(subtype)}</em> whenever you are not #{format_role(subtype).ing}.
+      %p It is also possible to #{display(subtype.herring)} in the #{help.after.after.time} or at other times, such as the #{help.season}, when you feel like #{help.verb.ing} things.
+      %p Just remember that you must <em>#{display(subtype.solution)}</em> whenever you are not #{display(subtype.role).ing}.
   -else
     -if @subtype
-      %p Never, ever, expect yourself to be willing or even <em>able</em> to #{format_herring(subtype)} right after you have #{format_problem(subtype).en}.
-    %p You must #{format_herring(subtype)} <em>before</em> you #{format_problem(subtype)}.
-    %p You tend to #{format_herring(subtype)} in the #{help.time} so try to postpone #{format_problem(subtype).ing} until #{help.after.time}.
+      %p Never, ever, expect yourself to be willing or even <em>able</em> to #{display(subtype.herring)} right after you have #{display(subtype.problem).en}.
+    %p You must #{display(subtype.herring)} <em>before</em> you #{display(subtype.problem)}.
+    %p You tend to #{display(subtype.herring)} in the #{help.time} so try to postpone #{display(subtype.problem).ing} until #{help.after.time}.
     -if @subtype
-      %p You may also #{format_herring(subtype)} in the #{help.after.after.time} during the #{help.season}, or whenever you feel like #{help.verb.ing} things, in which case you can #{format_problem(subtype)} more.
-      %p Just remember that you must not #{format_problem(subtype)} until <em>after</em> you have #{format_herring(subtype).en}.
+      %p You may also #{display(subtype.herring)} in the #{help.after.after.time} during the #{help.season}, or whenever you feel like #{help.verb.ing} things, in which case you can #{display(subtype.problem)} more.
+      %p Just remember that you must not #{display(subtype.problem)} until <em>after</em> you have #{display(subtype.herring).en}.
   -if @type
     =link_to 'more', subtype_path(subtype.symbol)

@@ -14,11 +14,13 @@ class Subtype < Concept
   def parts; [tendency, thing]; end
 
   %w{problem solution role herring}.each do |string|
-    define_method(string + '_key') {tendency.send(string + '_key') + thing.symbol}
+    define_method(string) {tendency.send(string + '_key') + thing.symbol}
   end
 
   def opposite; thing + tendency.opposite; end
   def flip; thing + tendency.flip; end
+
+  def generic_words; [verb, 'too many', thing.symbol, 'things'].to_phrase; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if tendency.respond_to?(meth)

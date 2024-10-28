@@ -6,10 +6,10 @@
     %th
     -Thing.each do |thing|
       %th
-        =format_from_key thing.symbol
-  -Help.each do |help|
+        =display thing
+  -Tendency.each do |tendency|
     %tr
-      %th=help.verb.capitalize
+      %th=display tendency
       -Thing.all.each do |thing|
-        -subtype = thing + help.tendency
-        %td.left=link_to format_from_key(subtype.symbol), subtype_path(subtype.symbol)
+        -subtype = thing + tendency
+        %td.left=link_to display(subtype), subtype_path(subtype.symbol)

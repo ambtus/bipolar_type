@@ -4,10 +4,6 @@ class Tendency < Concept
 
   ALL = SYMBOL.collect {|symbol| self.new symbol}
 
-  def +(concept)
-    Subtype.all.find{|p| p.tendency == self && p.thing == thing}
-  end
-
   def role_key; %w{C R E A}[index]; end
   def problem_key; %w{R C A E}[index]; end
   def solution_key; %w{A E R C}[index]; end

@@ -3,16 +3,6 @@
 %h2 The Serenity Prayer
 %p.italic.center Help me CARE
 
-%ol
-  -Help.all.reverse.each do |help|
-    %li
-      .left
-        -case help.index
-        -when 0
-          Endure the things that should be endured
-        -when 1
-          Refuse the things that should be refused
-        -when 2
-          Accept the things that should be accepted
-        -when 3
-          Change the things that should be changed
+%ul.none
+  -Help.all.each do |help|
+    %li <b>#{help.verb.first.capitalize}</b>#{help.verb.chip} the things that should be #{help.verb.en}

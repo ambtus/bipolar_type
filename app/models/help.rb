@@ -14,6 +14,8 @@ class Help < Concept
   def tendency_key; %w{IJ EP IP EJ}[index]; end
   def tendency; Tendency.all.find{|t| t.problem_key == symbol}; end
 
+  def active?; index < 2; end
+
   def opposite_index; [3, 2, 1, 0][index]; end
   def opposite; ALL[opposite_index]; end
 
@@ -41,6 +43,10 @@ class Help < Concept
     else
       verb.capitalize
     end
+  end
+
+  def +(concept)
+    Behavior.all.find{|b| b.thing == concept && b.help == self}
   end
 
 end

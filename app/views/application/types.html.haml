@@ -5,9 +5,9 @@
     %th
     -Help.all.each_with_index do |help, index|
       %th
-        =link_to_unless index == @sort_index, help.name(cookies[:setting]), types_path(sort: index)
+        =link_to_unless index == @sort_index, display(help), types_path(sort: index)
   -@types.each_with_index do |type, index|
     %tr
       %th=link_to type.index + 1, type_path(type.path)
       -type.subtypes.each do |subtype|
-        %td.left=format_from_key subtype.symbol
+        %td.left=display subtype

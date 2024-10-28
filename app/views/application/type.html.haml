@@ -10,7 +10,7 @@
     %th{colspan:2} Depression
   %tr
     -@type.subtype_symbols.each do |ss|
-      %td=format_from_key(ss)
+      %td=display(ss)
   %tr
     %th{colspan:4} Goals
   %tr
@@ -18,7 +18,7 @@
     %th{colspan:2} Do More
   %tr
     -@type.subtypes.each do |s|
-      %td=do_format_solution(s)
+      %td=display(transform((s.solution), :prepend, 'do '))
 
 
 %h2
