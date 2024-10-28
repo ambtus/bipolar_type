@@ -1,0 +1,38 @@
+- content_for(:title, @subtype.symbol)
+
+%h2=format_from_key(@subtype.symbol).titleize
+
+%dl
+  %dt Role
+  %dd
+    to
+    =role(@subtype)
+  %dt Tendency
+  %dd=format_from_key @subtype.symbol
+  %dt Bad Solution
+  %dd
+    -if @subtype.more?
+      =format_role(@subtype)
+      less
+    -else
+      =format_herring(@subtype)
+      more
+  %dt Actual Problem
+  %dd
+    -if @subtype.more?
+      don’t
+      =format_solution(@subtype)
+      enough
+    -else
+      =format_problem(@subtype)
+      too much
+  %td Better Solution
+  %dd
+    -if @subtype.more?
+      =format_solution(@subtype)
+      more
+    -else
+      =format_problem(@subtype)
+      less
+
+=render 'advice', subtype: @subtype, help: @subtype.help.flip

@@ -8,6 +8,6 @@
 
   -Help.each do |help|
     %tr
-      %th=help.name(cookies[:setting])
+      %th=format_from_key help.symbol
       -Thing.all.each do |thing|
-        %td=format_from_key thing.symbol + help.symbol
+        %td=format_from_key help.symbol + thing.symbol

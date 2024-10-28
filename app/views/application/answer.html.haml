@@ -19,8 +19,6 @@
           %td
             -unless @answer.taken?(subtype)
               =link_to_unless @answer.taken?(subtype), format_from_key(subtype.symbol), answer_path(@answer.next(subtype.symbol))
-              .left=render 'q', subtype: subtype
-
 
 -if Rails.env.development?
   =@answer.taken

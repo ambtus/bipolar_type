@@ -1,15 +1,25 @@
-%tr
-  %td.bold{colspan:4}
-    =help.cycle_name
-%tr
--subtypes.each_with_index do |subtype, index|
-  %td
-    -if @hide
-      =(index+1).to_s.colon
-      =format_solution subtype, false
-    -else
-      .bold=format_solution(subtype, false)
--unless @hide
-  %tr
-  -subtypes.each_with_index do |subtype, index|
-    %td.left=render %w{easy can hard cant}[index], subtype: subtype, help: help
+
+-if @hide
+  %h3
+    =help.time.capitalize.colon
+    %span.plain=do_format_solution(subtype)
+-else
+  %h3=help.name(cookies[:setting])
+  -if subtype.more?
+    -if @subtype
+      %p Never, ever, expect yourself to be willing or even <em>able</em> to fall asleep until after you have #{format_solution(subtype).en}.
+    %p You must #{format_solution(subtype)} when you are <em>not #{format_role(subtype).ing}</em>.
+    %p You tend to #{format_herring(subtype)} in the #{help.time} so make sure you  #{format_solution(subtype)} then.
+    -if @subtype
+      %p It is also possible to #{format_herring(subtype)} in the #{help.after.after.time} or at other times, such as the #{help.season}, when you feel like #{help.verb.ing} things.
+      %p Just remember that you must <em>#{format_solution(subtype)}</em> whenever you are not #{format_role(subtype).ing}.
+  -else
+    -if @subtype
+      %p Never, ever, expect yourself to be willing or even <em>able</em> to #{format_herring(subtype)} right after you have #{format_problem(subtype).en}.
+    %p You must #{format_herring(subtype)} <em>before</em> you #{format_problem(subtype)}.
+    %p You tend to #{format_herring(subtype)} in the #{help.time} so try to postpone #{format_problem(subtype).ing} until #{help.after.time}.
+    -if @subtype
+      %p You may also #{format_herring(subtype)} in the #{help.after.after.time} during the #{help.season}, or whenever you feel like #{help.verb.ing} things, in which case you can #{format_problem(subtype)} more.
+      %p Just remember that you must not #{format_problem(subtype)} until <em>after</em> you have #{format_herring(subtype).en}.
+  -if @type
+    =link_to 'more', subtype_path(subtype.symbol)

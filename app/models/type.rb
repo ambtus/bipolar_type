@@ -26,7 +26,8 @@ class Type
 
   def subtypes; things.add(Help.all.map(&:tendency)).flatten; end
 
-  def symbol; subtypes.map(&:symbol).join('•'); end
+  def subtype_symbols; subtypes.map(&:symbol).values_at(0,2,1,3); end
+  def symbol; subtype_symbols.join('•'); end
 
   alias inspect :symbol
 
@@ -36,18 +37,7 @@ class Type
     define_method(symbol.downcase) {find_subtype(symbol)}
   end
 
-  def subtypes_by(index)
-    case index
-    when 0
-      [ep, ip, ej, ij]
-    when 1
-      [ij, ej, ip, ep]
-    when 2
-      [ej, ij, ep, ip]
-    when 3
-      [ip, ep, ij, ej]
-    end
-  end
+  def subtype_for(help); subtypes.values_at(1,0,3,2)[help.index]; end
 
 end
 

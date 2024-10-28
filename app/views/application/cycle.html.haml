@@ -1,23 +1,20 @@
 - content_for(:title, 'Cycle')
 
-%h2 The Cycle
+%h2 The Bipolar Cycle
 %p.italic.center The Natural Rhythm of Life
 
-%table
+%ol
   -Help.all.each do |help|
-    %tr
-      %th=help.name
-      %td
-        =help.cycle_name
-        .left
-          -case help.index
-          -when 0
-            Start changing things: use strength to improve your environment
-          -when 1
-            Start accepting things: get energy to refuel your strength
-          -when 2
-            Stop accepting things: refuse things you don&rsquo;t need or are actively hurting you
-          -when 3
-            Stop changing things: endure things you don&rsquo;t like  but are not actually harming you
+    %li
+      =help.cycle_name.colon
+      -case help.index
+      -when 0
+        use strength to improve your environment
+      -when 1
+        get energy to refuel your strength
+      -when 2
+        stop accepting things when you are full of energy
+      -when 3
+        stop changing things when you are out of strength
 
 %p Note: weekly and lunar/monthly cycles follow the same natural rhythm, but which days of the week or month are associated with which phase of the cycle is not universal.

@@ -10,37 +10,35 @@ module CookieHelper
       concepts[:help] = Help.find_by(key.to_s)
     when 2
       concepts[:tendency] = Tendency.find_by(key.to_s)
-      concepts[:thing] = Thing.find_by(key.to_s.first)
-      concepts[:help] = Help.find_by(key.to_s.second)
+      if concepts[:tendency].blank?
+        concepts[:help] = Help.find_by(key.to_s.first)
+        concepts[:thing] = Thing.find_by(key.to_s.second)
+      end
     end
     return concepts
   end
 
-  def symbol(key)
-    concepts = parse(key)
-    Rails.logger.debug "symbol concepts: #{concepts}"
-    if concepts[:help] && concepts[:thing]
-      concepts[:thing].symbol + concepts[:help].key
-    elsif concepts[:help]
-      concepts[:help].key
-    else
-      key
-    end
+  def found(key)
+    cookie = cookies[key] unless cookies[key].blank?
+    default = Rails.application.config_for(:words)[key] unless Rails.application.config_for(:words)[key].blank?
+    cookie || default
   end
 
   def word(key)
-    return cookies[key] unless cookies[key].blank?
-    return Rails.application.config_for(:words)[key] unless Rails.application.config_for(:words)[key].blank?
     concepts = parse(key)
     Rails.logger.debug "word concepts: #{concepts}"
     if concepts[:subtype]
       [word(concepts[:subtype].thing.symbol), word(concepts[:subtype].tendency.symbol)].to_phrase
     elsif concepts[:help] && concepts[:thing]
-      'do not ' + word(concepts[:thing].symbol + concepts[:help].opposite.symbol)
+      if found(key)
+        found(key)
+      else
+        'not ' + found(concepts[:help].opposite.symbol + concepts[:thing].symbol)
+      end
     elsif concepts[:help]
-      word concepts[:help].tendency_key
+      concepts[:help].verb
     else
-      "cannot find word for #{key.inspect}"
+      found(key) || "cannot find word for #{key.inspect}"
     end
   end
 
@@ -54,13 +52,14 @@ module CookieHelper
       verb = concepts[:help].verb
       symbol = concepts[:thing].symbol
     elsif concepts[:help]
-      verb = nil
-      symbol = concepts[:help].key
+      verb = concepts[:help].verb.capitalize
+      symbol = nil
     elsif concepts[:thing]
       verb = nil
       symbol = concepts[:thing].symbol
     elsif concepts[:tendency]
       verb = concepts[:tendency].verb
+      symbol = 'too many'
     else
       return "cannot find word for #{key.inspect}"
     end
@@ -70,13 +69,13 @@ module CookieHelper
   def format_from_key(key)
     case cookies['setting']
     when 'symbols'
-      symbol(key)
+      key
     when 'words'
       word(key)
     when 'things'
       generic_words(key)
     else
-      [word(key), symbol(key).wrap].to_phrase
+      [key.colon, word(key)].to_phrase
     end
   end
 
@@ -85,21 +84,22 @@ module CookieHelper
       words = format_from_key(subtype.send(string + '_key'))
       clean ? words.clean : words
     end
-  end
-
-  def hard(subtype)
-    if subtype.extreme?
-      'hard for me to start '.html_safe + format_solution(subtype).ing
-    else
-      'hard for me to stop '.html_safe + format_problem(subtype).ing
+    define_method('do_format_' + string) do |subtype|
+      words = format_from_key(subtype.send(string + '_key'))
+      case cookies['setting']
+      when 'words', 'things'
+        "do #{words}".clean
+      else
+        [words.first_words, "do #{words.last_words}".clean].to_phrase
+      end
     end
   end
 
   def role(subtype)
-    if subtype.extreme?
+    if subtype.more?
       format_role(subtype) + ' when other people want to ' + format_solution(subtype)
     else
-      'not ' + format_herring(subtype) + ' when other people don’t want to ' + format_problem(subtype)
+      'not ' + format_herring(subtype) + ' when other people don’t want to ' + found(subtype.help.symbol + subtype.thing.symbol)
     end.clean
   end
 

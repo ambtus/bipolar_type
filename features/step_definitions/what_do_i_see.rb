@@ -27,3 +27,10 @@ Then('I should see {string} before {string}') do |string, string2|
   Rails.logger.debug "regexp: #{regexp}"
   assert page.has_text?(regexp)
 end
+
+Then('I should see all subtypes') do
+  Subtype.each do |s|
+    assert page.has_text?(s.symbol)
+  end
+end
+

@@ -10,15 +10,15 @@ shared:
   IJ: strong
   EJ: weak
 
-  FC: talk
-  FA: listen
+  CF: talk
+  AF: listen
 
-  SC: cook
-  SA: eat
+  CS: labor
+  AS: eat
 
-  TC: spend
-  TA: earn
+  CT: spend
+  AT: earn
 
-  NC: decide
-  NA: watch
+  CN: plan
+  AN: watch
 

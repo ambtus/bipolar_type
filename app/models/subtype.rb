@@ -14,7 +14,7 @@ class Subtype < Concept
   def parts; [tendency, thing]; end
 
   %w{problem solution role herring}.each do |string|
-    define_method(string + '_key') {thing.symbol + tendency.send(string + '_key')}
+    define_method(string + '_key') {tendency.send(string + '_key') + thing.symbol}
   end
 
   def opposite; thing + tendency.opposite; end

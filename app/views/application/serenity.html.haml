@@ -1,21 +1,18 @@
 - content_for(:title, 'Serenity')
 
 %h2 The Serenity Prayer
-%p.italic.center Accept or Change is a #{link_to 'false dichotomy', 'https://en.wikipedia.org/wiki/False_dilemma', class: 'external'}.
+%p.italic.center Help me CARE
 
-%table
-  -Help.all.each do |help|
-    %tr
-      %th=help.name
-      %td
-        =help.episode_name
-        .left
-          -case help.index
-          -when 0
-            Help me endure the things that should not be changed
-          -when 1
-            Help me refuse the things that should not be accepted
-          -when 2
-            Help me accept the things that should be accepted
-          -when 3
-            Help me change the things that should be changed
+%ol
+  -Help.all.reverse.each do |help|
+    %li
+      .left
+        -case help.index
+        -when 0
+          Endure the things that should be endured
+        -when 1
+          Refuse the things that should be refused
+        -when 2
+          Accept the things that should be accepted
+        -when 3
+          Change the things that should be changed

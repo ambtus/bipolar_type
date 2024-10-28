@@ -18,6 +18,14 @@ Given('I am on the types page') do
   visit('/types')
 end
 
+Given('I am on the subtypes page') do
+  visit('/subtypes')
+end
+
 Then('I should be on my page') do
   assert page.has_text?('BipolarType 15 of 24')
+end
+
+Then('I should NOT be on my page') do
+  assert page.has_no_text?('BipolarType 15 of 24')
 end

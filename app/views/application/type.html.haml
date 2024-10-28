@@ -1,35 +1,31 @@
 - content_for(:title, @type.symbol)
 
 %h2 BipolarType #{@type.index + 1} of 24
-%table
-  %tr
-  -@type.subtypes.each do |subtype|
-    %th=link_to format_from_key(subtype.symbol), subtype_path(subtype.symbol)
-  %tr
-    -@type.subtypes.each do |subtype|
-      %td.left
-        It is my
-        %em role
-        to
-        =role subtype
-  %tr
-  -@type.subtypes.each do |subtype|
-    %td
-      =subtype.help.episode_name
-      .left It is #{hard(subtype)}
-  %tr
-  -@type.subtypes.each do |subtype|
-    %td.left
-      Help me to
-      =format_solution(subtype)
 
 %table
-  %caption
-    %h2
-      BipolarType Advice
-      -if @hide
-        =button_to 'TL;DR', {}, method: :get, params: {details: 'show'}
-      -else
-        =button_to 'TL;DR', {}, method: :get, params: {details: 'hide'}
+  %tr
+    %th{colspan:4} Problems
+  %tr
+    %th{colspan:2} Mania
+    %th{colspan:2} Depression
+  %tr
+    -@type.subtype_symbols.each do |ss|
+      %td=format_from_key(ss)
+  %tr
+    %th{colspan:4} Goals
+  %tr
+    %th{colspan:2} Do Less
+    %th{colspan:2} Do More
+  %tr
+    -@type.subtypes.each do |s|
+      %td=do_format_solution(s)
+
+
+%h2
+  Strategy
+  -if @hide
+    =button_to 'TL;DR', {}, method: :get, params: {details: 'show'}
+  -else
+    =button_to 'TL;DR', {}, method: :get, params: {details: 'hide'}
   -Help.each do |help|
-    =render 'advice', help: help, subtypes: @type.subtypes_by(help.index)
+    =render 'advice', help: help, subtype: @type.subtype_for(help)

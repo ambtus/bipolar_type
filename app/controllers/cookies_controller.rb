@@ -28,6 +28,7 @@ class CookiesController < ApplicationController
       Rails.logger.debug 'cookies: ' + cookies.map { |cookie| cookie.join(': ') }.join("\n\t")
       if params[:commit].blank?
         @words = words
+        @alt_words = Rails.application.config_for(:alt_words)
         @url = cookies_path(cookies.to_hash)
         render 'cookies' and return
       end

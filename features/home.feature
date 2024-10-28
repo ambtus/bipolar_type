@@ -12,12 +12,12 @@ Then I should be on my page
 Scenario: the home page has a link to the cycle page
 Given I am on the homepage
 When I follow the 'Cycle' link
-Then I should see 'natural rhythm'
+Then I should see 'Natural Rhythm'
 
 Scenario: the home page has a link to the serenity page
 Given I am on the homepage
 When I follow the 'Serenity' link
-Then I should see 'false dichotomy'
+Then I should see 'Help me CARE'
 
 Scenario: the home page has a link to the things page
 Given I am on the homepage

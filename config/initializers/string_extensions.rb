@@ -12,7 +12,7 @@ class String
   def third; chars.third; end
   def fourth; chars.fourth; end
   def words; self.match(' ') ? split(/\s+/) : split('/'); end
-  def clean; self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself').gsub(/^do not/, 'not').gsub('not not', ''); end
+  def clean; self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself').gsub(/^do not/, 'don’t').gsub('not not', '').gsub(' to do ', ' to ').gsub(' to don’t ', ' to not ').gsub('not do ', 'don’t '); end
   def make_mine(be='am'); words.replace_with('your', 'my').replace_with('be', be).to_phrase; end
   def to_wbr; self.words.map(&:capitalize).wbr; end
 

@@ -5,6 +5,6 @@ class SubtypesController < ApplicationController
 
   def show
     @subtype = Subtype.find_by params[:id]
-    render @subtype.tendency.symbol
+    render 'subtype'
   end
 end

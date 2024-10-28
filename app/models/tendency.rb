@@ -20,7 +20,7 @@ class Tendency < Concept
   def opposite; ALL.values_at(1,0,3,2)[index]; end
   def flip; ALL.values_at(2,3,0,1)[index]; end
 
-  def extreme?; [0,3].include?(index); end
+  def more?; [0,3].include?(index); end
 
   def help; Help.all.find{|h| h.tendency_key == symbol}; end
 

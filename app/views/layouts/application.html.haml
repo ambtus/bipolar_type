@@ -9,10 +9,13 @@
 
   %body
     %p=render "layouts/links"
-    -if (%w{answers types things subtypes} & params.values).present?
+    -if (%w{things answers types subtypes} & params.values).present?
       %div.right=render 'layouts/form'
 
     =yield
+
+    -if (%w{answers types subtypes } & params.values).present?
+      =render 'footer' unless (@type || @subtype)
 
     -if Rails.env.development?
       %p=cookies.to_h
