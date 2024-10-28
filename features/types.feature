@@ -26,6 +26,14 @@ Given I have entered 'anorexic' for 'IP'
 Then I should NOT see 'emotionally thin'
   But I should see 'spiritually anorexic'
 
+Scenario: the types page with different words
+Given I have entered 'fix' for 'C'
+  And I have entered 'reject' for 'R'
+  And I am on the types page
+Then the 'fix' link should be disabled
+  But the 'reject' link should NOT be disabled
+  And I should NOT see 'change'
+
 Scenario: the types page after sorting
 Given I am on the types page
 And I follow the 'accept' link

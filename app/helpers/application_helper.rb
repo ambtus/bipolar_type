@@ -48,8 +48,6 @@ module ApplicationHelper
       word(parse(concept))
     elsif concept.is_a?(Subtype)
       [word(concept.thing), word(concept.tendency)].to_phrase
-    elsif concept.is_a?(Help)
-      concept.verb
     elsif concept.is_a?(Behavior)
       if concept.active?
         preference(concept.symbol)
