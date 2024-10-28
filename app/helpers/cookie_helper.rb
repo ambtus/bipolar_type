@@ -79,6 +79,16 @@ module CookieHelper
     end
   end
 
+  def do_format_from_key(key)
+    words = format_from_key(key)
+    case cookies['setting']
+    when 'words', 'things'
+      "do #{words}".clean
+    else
+      [words.first_words, "do #{words.last_words}".clean].to_phrase
+    end
+  end
+
   %w{problem solution role herring}.each do |string|
     define_method('format_' + string) do |subtype, clean=true|
       words = format_from_key(subtype.send(string + '_key'))
