@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'haml'
 gem 'ostruct'
+gem "sprockets-rails"
 
 group :development do
   gem 'haml-rails'
