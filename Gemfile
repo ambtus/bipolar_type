@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'haml'
 gem 'ostruct'
-gem "sprockets-rails"
 
 group :development do
   gem 'haml-rails'
@@ -13,6 +12,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'puma'
 end
 
 group :test do
