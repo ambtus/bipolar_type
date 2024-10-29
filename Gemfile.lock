@@ -176,6 +176,7 @@ GEM
     nokogiri (1.16.7)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    ostruct (0.5.2)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -259,6 +260,7 @@ DEPENDENCIES
   haml
   haml-rails
   launchy
+  ostruct
   rails
   thin
   unicorn
