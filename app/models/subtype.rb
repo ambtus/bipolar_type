@@ -17,6 +17,11 @@ class Subtype < Concept
     define_method(string) {Behavior.find_by(tendency.send(string + '_key') + thing.symbol)}
   end
 
+  %w{accept change}.each do |string|
+    define_method(string) {Behavior.find_by(string.first.capitalize + thing.symbol)}
+  end
+
+
   def opposite; thing + tendency.opposite; end
   def flip; thing + tendency.flip; end
 

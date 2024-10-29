@@ -17,6 +17,8 @@ class Tendency < Concept
   def flip; ALL.values_at(2,3,0,1)[index]; end
 
   def more?; [0,3].include?(index); end
+  def inverted?; symbol.second == 'J'; end
+  def morning?; symbol.first == 'E'; end
 
   def help; Help.all.find{|h| h.tendency_key == symbol}; end
 

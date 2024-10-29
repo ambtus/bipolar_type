@@ -28,4 +28,9 @@
   -else
     =button_to 'TL;DR', {}, method: :get, params: {details: 'hide'}
   -Help.each do |help|
-    =render 'advice', help: help, subtype: @type.subtype_for(help)
+    -if @hide
+      %h3
+        =help.time.capitalize.colon
+        %span.plain=display transform(@type.subtype_for(help).solution, :prepend, 'do ')
+    -else
+      =render 'advice', help: help, subtype: @type.subtype_for(help)

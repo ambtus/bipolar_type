@@ -12,4 +12,4 @@
       %th=display tendency
       -Thing.all.each do |thing|
         -subtype = thing + tendency
-        %td.left=link_to display(subtype), subtype_path(subtype.symbol)
+        %td=link_to display(subtype), subtype_path(subtype.symbol)

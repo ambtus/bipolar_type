@@ -14,14 +14,14 @@ Then I should NOT see 'IFP'
 Scenario: single subtype
 Given I am on the subtypes page
 When I follow the 'emotionally thin' link
-Then I should see 'Role'
-  And I should see 'Actual Problem'
+Then I should see 'Nature'
+  And I should see 'Better Solution'
 
 Scenario: use of generic 'things' words
 Given I am on the subtypes page
   And I press 'Things'
 When I follow the 'refuse too many F things' link
-Then I should see 'don’t accept enough F things'
+Then I should see 'change fewer F things'
   And I should see 'accept more F things'
 
 Scenario: changing generic 'things' words
@@ -41,8 +41,6 @@ Given I have entered 'do housework' for 'CS'
 When I am on the subtypes page
   And I follow the 'physically fat' link
   And I press 'Words'
-Then I should see 'to not do housework'
-  And I should see 'do more housework'
-  And I should see 'eat too many carbs'
+Then I should see 'do more housework'
   And I should see 'eat fewer carbs'
 
