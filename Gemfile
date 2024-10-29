@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'haml'
+gem 'ostruct'
 
 group :development do
   gem 'haml-rails'
