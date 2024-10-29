@@ -10,27 +10,21 @@
   %dt Bad Solution
   %dd
     -if @subtype.more?
-      =display(@subtype.role)
-      less
+      =display(transform(@subtype.role, :less))
     -else
-      =display(@subtype.herring)
-      more
+      =display(transform(@subtype.herring, :more))
   %dt Actual Problem
   %dd
     -if @subtype.more?
       don’t
-      =display(@subtype.solution)
-      enough
+      =display(transform(@subtype.solution, :enough))
     -else
-      =display(@subtype.problem)
-      too much
+      =display(transform(@subtype.problem, :too_many))
   %td Better Solution
   %dd
     -if @subtype.more?
-      =display(@subtype.solution)
-      more
+      =display(transform(@subtype.solution, :more))
     -else
-      =display(@subtype.problem)
-      less
+      =display(transform(@subtype.problem, :less))
 
 =render 'advice', subtype: @subtype, help: @subtype.help.flip

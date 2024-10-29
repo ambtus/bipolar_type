@@ -198,6 +198,7 @@ class String
   end
 
   def en
+    return 'taken' if self=='take'
     return 'gotten' if self=='get'
     return 'shown' if self=='show'
     return 'sung' if self=='sing'
@@ -400,6 +401,7 @@ class String
     return unwrap.plural? if wrapped?
     return true if self == 'people'
     return true if first_words[-1] == 's'
+    return true if self.match(/. things/)
     return false
   end
 

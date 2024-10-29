@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def transform(behavior, method, *args)
     Rails.logger.debug "transform #{behavior.inspect} by #{method.inspect} with #{args.inspect}"
-    triplet(behavior).each_with_index.map{|t,i| i==1 ? t.send(method, *args).clean : t }
+    triplet(behavior).each_with_index.map{|t,i| i==0 ? t : t.dup.send(method, *args).clean }
   end
 
   def display(thing)
@@ -22,7 +22,7 @@ module ApplicationHelper
   def triplet(thing)
     concept = thing.is_a?(Concept) ? thing : parse(thing)
     Rails.logger.debug "triplet for #{concept.inspect}"
-    result = [symbol(concept), word(concept), concept.generic_words]
+    result = [concept.symbol, word(concept), generic_words(concept)]
     Rails.logger.debug "   is #{result}"
     result
   end
@@ -39,9 +39,6 @@ module ApplicationHelper
     end
   end
 
-  def symbol(concept)
-    concept.symbol.dup
-  end
 
   def word(concept)
     if concept.is_a?(String)
@@ -56,6 +53,18 @@ module ApplicationHelper
       end
     else
       preference(concept.symbol) || "cannot find word for #{concept.inspect}"
+    end
+  end
+
+  def generic_words(concept)
+    if concept.is_a?(Help)
+      word(concept)
+    elsif concept.is_a?(Behavior)
+      [generic_words(concept.help), concept.thing.generic_words].to_phrase
+    elsif concept.is_a?(Subtype)
+      [generic_words(concept.help), 'too many', concept.thing.generic_words].to_phrase
+    else
+      concept.generic_words
     end
   end
 

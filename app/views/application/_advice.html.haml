@@ -11,7 +11,7 @@
     %p You must #{display(subtype.solution)} when you are <em>not #{display(subtype.role).ing}</em>.
     %p You tend to #{display(subtype.herring)} in the #{help.time} so make sure you  #{display(subtype.solution)} then.
     -if @subtype
-      %p It is also possible to #{display(subtype.herring)} in the #{help.after.after.time} or at other times, such as the #{help.season}, when you feel like #{help.verb.ing} things.
+      %p It is also possible to #{display(subtype.herring)} in the #{help.after.after.time} or at other times, such as the #{help.season}, when you feel like #{display(transform(help, :ing))} things.
       %p Just remember that you must <em>#{display(subtype.solution)}</em> whenever you are not #{display(subtype.role).ing}.
   -else
     -if @subtype
@@ -19,7 +19,7 @@
     %p You must #{display(subtype.herring)} <em>before</em> you #{display(subtype.problem)}.
     %p You tend to #{display(subtype.herring)} in the #{help.time} so try to postpone #{display(subtype.problem).ing} until #{help.after.time}.
     -if @subtype
-      %p You may also #{display(subtype.herring)} in the #{help.after.after.time} during the #{help.season}, or whenever you feel like #{help.verb.ing} things, in which case you can #{display(subtype.problem)} more.
+      %p You may also #{display(subtype.herring)} in the #{help.after.after.time} during the #{help.season}, or whenever you feel like #{display(transform(help, :ing))} things, in which case you can #{display(subtype.problem)} more.
       %p Just remember that you must not #{display(subtype.problem)} until <em>after</em> you have #{display(subtype.herring).en}.
   -if @type
     =link_to 'more', subtype_path(subtype.symbol)

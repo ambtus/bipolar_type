@@ -18,11 +18,12 @@ Given I am on my page
 Then I should see 'don’t eat'
   And I should see 'do listen'
 
-Scenario: my type page reflects cookies
+Scenario: my type page uses compound words correctly
 Given I have entered 'turn on the radio' for 'AF'
 When I am on my page
   And I press 'Words'
 Then I should see 'do turn on the radio'
+  And I should see 'You must turn on the radio'
   But I should NOT see 'listen'
 
 Scenario: my type page has short versions
