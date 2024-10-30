@@ -13,9 +13,6 @@ class Tendency < Concept
     define_method(string + '_time') {Help.find_by(self.send(string + '_key')).time}
   end
 
-  def opposite; ALL.values_at(1,0,3,2)[index]; end
-  def flip; ALL.values_at(2,3,0,1)[index]; end
-
   def more?; [0,3].include?(index); end
   def inverted?; symbol.second == 'J'; end
   def morning?; symbol.first == 'E'; end
