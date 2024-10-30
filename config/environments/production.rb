@@ -36,7 +36,8 @@ Rails.application.configure do
   # when problems arise. available log levels are:
   # :debug, :info, :warn, :error, :fatal, and :unknown,
   # corresponding to the log level numbers from 0 up to 5 respectively.
-  config.log_level = :warn
+  config.log_level = :info
+  config.hosts << '.bipolartype.com'
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
