@@ -1,7 +1,7 @@
 - content_for(:title, 'Cookies')
 %p
   The following link can be bookmarked after you save your words so you don’t need to enter them again if you close your browser:
-  =link_to 'my BipolarType words', @url
+  =link_to 'bookmark', @url
 
 =form_with url: cookies_path, method: :get do |f|
   %table

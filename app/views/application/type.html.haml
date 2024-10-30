@@ -23,10 +23,8 @@
 
 %h2
   Strategy
-  -if @hide
-    =button_to 'TL;DR', {}, method: :get, params: {details: 'show'}
-  -else
-    =button_to 'TL;DR', {}, method: :get, params: {details: 'hide'}
+  =form_with url: cookies_path, method: :get do |f|
+    = f.submit 'TL;DR', class: "set_#{cookies['details'].present?}"
   -Help.each do |help|
     -if @hide
       %h3

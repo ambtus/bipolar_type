@@ -34,3 +34,7 @@ Then('I should see all subtypes') do
   end
 end
 
+Then('the link {string} should include {string}') do |string, string2|
+  href = page.find_link(string)['href']
+  assert_match string2, href
+end
