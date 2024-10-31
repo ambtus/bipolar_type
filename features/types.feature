@@ -41,11 +41,9 @@ Then the 'accept' link should be disabled
   But the 'change' link should NOT be disabled
   And I should see 'emotionally thin' before 'emotionally strong'
 
-Scenario: the types page footer with different words
-Given I have entered 'obese' for 'EP'
-  And I am on the types page
-Then I should see 'will rarely be physically obese'
-  And I should NOT see 'fat'
+Scenario: the types page footer
+Given I am on the types page
+Then I should see 'dominant and inferior'
 
 Scenario: get to my type
 Given I am on the types page
