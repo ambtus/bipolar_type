@@ -1,6 +1,6 @@
 :css
   table {margin: auto; border: none; border-collapse: collapse;}
-  td {border: 1px solid grey; text-align: center; vertical-align: top;}
+  td {border: 1px solid grey; text-align: center; vertical-align: top; padding: .2em; }
 
   .center {text-align: center;}
   .left {text-align: left;}
@@ -25,3 +25,7 @@
   ol.none { padding: 0; margin: 1.5em}
 
   input[type=text] {font-weight: bold; font-size: 1em;}
+
+  dl { display: grid; grid-template-columns: max-content auto; }
+  dt { grid-column-start: 1; }
+  dd { grid-column-start: 2; }

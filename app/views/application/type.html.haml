@@ -23,8 +23,7 @@
 
 %h2
   Strategy
-  =form_with url: cookies_path, method: :get do |f|
-    = f.submit 'TL;DR', class: "set_#{cookies['details'].blank?}"
+  =render 'layouts/show_form'
   -Help.each do |help|
     -if @show
       =render 'advice', help: help, subtype: @type.subtype_for(help)

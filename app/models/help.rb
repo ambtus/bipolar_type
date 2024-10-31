@@ -7,6 +7,8 @@ class Help < Concept
   def season; %w{spring summer fall winter}[index]; end
   def time; %w{morning midday afternoon evening}[index]; end
   def verb; %w{change accept refuse endure}[index]; end
+  def phase; %w{waxing full waning new}[index]; end
+  def day; %w{Monday Wednesday Friday Weekend}[index]; end
 
   def tendency_key; %w{IJ EP IP EJ}[index]; end
   def tendency; Tendency.all.find{|t| t.problem_key == symbol}; end
@@ -26,21 +28,22 @@ class Help < Concept
   def after; ALL[(index+1)%4]; end
 
   def cycle_name; [season, time].to_phrase.titleize; end
-  def episode_name; [season, episode].to_phrase.titleize; end
-  def both_name; [season, time, episode].to_phrase.titleize; end
-  def things_name; [verb, 'things', key].to_phrase.titleize; end
-  def name(setting=nil)
-    case setting
-    when 'words'
-      verb.capitalize
-    when 'symbols'
-      symbol
-    when 'things'
-      [verb.capitalize, 'Things'].to_phrase
-    else
-      verb.capitalize
+  def full_name; [season, phase, 'moon', day, time].to_phrase.titleize; end
+
+  def long
+    case symbol
+    when 'C'
+      'use strength to improve your environment'
+    when 'A'
+      'get energy to refuel your strength'
+    when 'R'
+      'stop getting energy when you are full'
+    when 'E'
+      'stop using strength when you are tired'
     end
   end
+
+  
 
   def +(concept)
     Behavior.all.find{|b| b.thing == concept && b.help == self}

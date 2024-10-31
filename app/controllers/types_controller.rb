@@ -7,7 +7,6 @@ class TypesController < ApplicationController
 
   def show
     @type = Type.find params[:id]
-    @show = cookies[:details].present?
     render 'type'
   end
 

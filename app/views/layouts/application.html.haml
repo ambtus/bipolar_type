@@ -10,7 +10,7 @@
   %body
     %p=render "layouts/links"
     -if (%w{things answers types subtypes} & params.values).present?
-      %div.right=render 'layouts/form'
+      %div.right=render 'layouts/settings_form'
 
     =yield
 

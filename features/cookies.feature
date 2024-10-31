@@ -22,3 +22,12 @@ Given I am on my page
   And I press 'TL;DR'
 When I am on the cookies page
 Then the link 'bookmark' should include '?details=show'
+
+Scenario: the cycle page hides the TL;DR by default
+Given I am on the cycle page
+Then I should NOT see 'entrained'
+
+Scenario: the cycle page has a longer explanation
+Given I am on the cycle page
+  And I press 'TL;DR'
+Then I should see 'entrained'
