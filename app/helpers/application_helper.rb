@@ -10,12 +10,12 @@ module ApplicationHelper
     case cookies['setting']
     when 'symbols'
       triplet.first
-    when 'words'
-      triplet.second
+    when 'both'
+      [triplet.first, triplet.second.wrap].to_phrase
     when 'things'
       triplet.third
     else
-      [triplet.first, triplet.second.wrap].to_phrase
+      triplet.second
     end
   end
 

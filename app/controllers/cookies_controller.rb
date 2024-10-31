@@ -13,11 +13,11 @@ class CookiesController < ApplicationController
     when 'Symbols'
       cookies[:setting] = 'symbols'
     when 'Words'
-      cookies[:setting] = 'words'
+      cookies.delete('setting')
     when 'Things'
       cookies[:setting] = 'things'
     when 'Both'
-      cookies.delete('setting')
+      cookies[:setting] = 'both'
     when 'Save', nil
       words = Rails.application.config_for(:words)
       words.keys.each do |k|

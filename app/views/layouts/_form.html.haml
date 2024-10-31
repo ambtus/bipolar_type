@@ -3,4 +3,4 @@ If you want to use your own words, please use the
 page.
 =form_with url: cookies_path, method: :get do |f|
   -CookiesController::SETTINGS.each do |setting|
-    = f.submit setting.humanize, class: "set_#{(cookies['setting'] == setting) || (cookies['setting'].blank? && setting == 'both')}"
+    = f.submit setting.humanize, class: "set_#{(cookies['setting'] == setting) || (cookies['setting'].blank? && setting == 'words')}"

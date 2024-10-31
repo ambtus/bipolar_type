@@ -39,10 +39,12 @@ Then I should be on my page
 
 Scenario: the questions page shows all subtypes
 Given I am on the questions page
+  And I press 'Symbols'
 Then I should see all subtypes
 
 Scenario: answering one question makes it and its siblings disappear
 Given I am on the questions page
+  And I press 'Symbols'
 When I follow the 'IFP' link
 Then I should NOT see 'IFP'
   And I should NOT see 'IFJ'
