@@ -24,11 +24,11 @@
 %h2
   Strategy
   =form_with url: cookies_path, method: :get do |f|
-    = f.submit 'TL;DR', class: "set_#{cookies['details'].present?}"
+    = f.submit 'TL;DR', class: "set_#{cookies['details'].blank?}"
   -Help.each do |help|
-    -if @hide
+    -if @show
+      =render 'advice', help: help, subtype: @type.subtype_for(help)
+    -else
       %h3
         =help.time.capitalize.colon
         %span.plain=display transform(@type.subtype_for(help).solution, :prepend, 'do ')
-    -else
-      =render 'advice', help: help, subtype: @type.subtype_for(help)

@@ -22,13 +22,13 @@ Scenario: my type page uses compound words correctly
 Given I have entered 'turn on the radio' for 'AF'
 When I am on my page
   And I press 'Words'
+  And I press 'TL;DR'
 Then I should see 'do turn on the radio'
   And I should see 'You must turn on the radio'
   But I should NOT see 'listen'
 
-Scenario: my type page has short versions
+Scenario: my type page defaults to short versions
 Given I am on my page
-When I press 'TL;DR'
-  And I press 'Words'
+When I press 'Words'
 Then I should see 'Evening: do listen'
 

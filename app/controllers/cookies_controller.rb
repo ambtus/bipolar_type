@@ -8,7 +8,7 @@ class CookiesController < ApplicationController
       if cookies[:details]
         cookies.delete(:details)
       else
-        cookies[:details] = 'hide'
+        cookies[:details] = 'show'
       end
     when 'Symbols'
       cookies[:setting] = 'symbols'
