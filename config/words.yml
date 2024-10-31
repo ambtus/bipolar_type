@@ -18,11 +18,11 @@ shared:
   CF: talk
   AF: listen
 
-  CS: cook
+  CS: walk
   AS: eat
 
   CT: spend
   AT: earn
 
-  CN: lead
-  AN: follow
+  CN: think
+  AN: watch

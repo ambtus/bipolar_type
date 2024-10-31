@@ -15,7 +15,7 @@ module ApplicationHelper
     when 'things'
       triplet.third
     else
-      [triplet.first.colon, triplet.second].to_phrase
+      [triplet.first, triplet.second.wrap].to_phrase
     end
   end
 
@@ -74,11 +74,4 @@ module ApplicationHelper
     "don’t have preference for #{key}"
   end
 
-  def role(subtype)
-    if subtype.more?
-      display(subtype.role) + ' when other people are ' + display(transform(subtype.solution, :ing))
-    else
-      'not ' + display(subtype.herring) + ' when other people are not ' + display(transform(subtype.problem, :ing))
-    end
-  end
 end

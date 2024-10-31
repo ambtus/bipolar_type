@@ -14,7 +14,7 @@ Then I should NOT see 'IFP'
 Scenario: single subtype
 Given I am on the subtypes page
 When I follow the 'emotionally thin' link
-Then I should see 'Nature'
+Then I should see 'Problem'
   And I should see 'Better Solution'
 
 Scenario: use of generic 'things' words
@@ -30,10 +30,10 @@ Given I have entered 'fix' for 'C'
   And I am on the subtypes page
   And I press 'Things'
 When I follow the 'fix too many T things' link
-Then I should see 'fix too many T things'
-  And I should see 'fix fewer T things'
-  And I should see 'have taken T things'
-  And I should see 'feel like taking things'
+Then I should see 'fix fewer T things'
+  And I should see 'take more T things'
+  And I should see 'fixing T things'
+  And I should see 'taken T things'
 
 Scenario: better grammar for compound words
 Given I have entered 'do housework' for 'CS'
@@ -43,4 +43,3 @@ When I am on the subtypes page
   And I press 'Words'
 Then I should see 'do more housework'
   And I should see 'eat fewer carbs'
-

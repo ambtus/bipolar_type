@@ -1,38 +1,12 @@
 - content_for(:title, @subtype.symbol)
 
 %dl
-  %dt Nurture
-  %dd
-    -if @subtype.inverted?
-      get energy &mdash; #{display(@subtype.accept)} &mdash; <em>before</em> using strength &mdash; #{display(transform(@subtype.change, :ing))}
-    -else
-      use strength &mdash; #{display(@subtype.change)} &mdash; <em>before</em> getting energy &mdash; #{display(transform(@subtype.accept, :ing))}
-
-  %dt Nature
-  %dd to #{role(@subtype)}
-
-  %dt Result
-  %dd
-    by the time the cycle is half over, have
-    -if @subtype.more?
-
-      =display(transform(@subtype.role, :en))
-      but have not
-      =display(transform(@subtype.solution, :en))
-
-    -else
-      not
-      =display(transform(@subtype.herring, :en))
-      but have
-      =display(transform(@subtype.problem, :en))
-
-
-  %dt Inevitable Consequence
-  %dd=display @subtype
+  %dt Problem
+  %dd=display(@subtype)
 
   %dt Bad Solution
   %dd
-    try, and fail, to
+    cannot
     -if @subtype.more?
       =display(transform(@subtype.role, :less))
     -else
@@ -41,8 +15,10 @@
   %td Better Solution
   %dd
     -if @subtype.more?
-      =display(transform(@subtype.solution, :more))
+      =display(transform(@subtype.solution, :more)).comma
+      especially in the #{@subtype.help.flip.time}
     -else
-      =display(transform(@subtype.problem, :less))
+      =display(transform(@subtype.problem, :less)).comma
+      especially in the #{@subtype.help.flip.time}
 
 =render 'advice', subtype: @subtype, help: @subtype.help.flip

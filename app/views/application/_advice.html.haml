@@ -1,28 +1,23 @@
-%h3=help.name(cookies[:setting])
-%p
-  You must
-  -if subtype.more?
-    #{display(subtype.solution)} <em>after</em> you have #{display(subtype.role).en}</em>.
-  -else
-    #{display(subtype.herring)} <em>before</em> you #{display(subtype.problem)}.
+%h3=help.time.capitalize
 %p
   -if subtype.more?
-    Make sure you  #{display(subtype.solution)} in the #{help.time}, as it is difficult to #{display(subtype.solution)} in the #{help.flip.time} unless you are #{subtype.sick}.
+    Prioritize #{display(transform(subtype.solution, :ing))} in the #{help.time}.
   -else
-    Try to postpone #{display(subtype.problem).ing} until #{help.after.time}.
+    Postpone #{display(transform(subtype.problem, :ing))} until #{help.after.time}.
 
 -if @subtype
   %p
     -if subtype.more?
-      It is also possible to #{display(subtype.solution)} in the #{help.after.after.time} (a natural time to #{display(subtype.help.opposite)}) or the #{help.season}, when you are in the mood to #{display(help)} things and thus don’t feel the urge to #{display(subtype.role)}.
+      It is also possible to #{display(subtype.solution)} in the #{help.after.after.time} (a natural time to #{display(help.opposite.flip)} things) or during the #{help.season} when you are in the mood to #{display(help)} things.
     -else
-      You may also #{display(subtype.herring)} in the #{help.after.after.time} during the #{help.season}, or whenever you feel like #{display(transform(help, :ing))} things, in which case you can #{display(subtype.problem)} more afterwards.
-  %p
-    Just remember that you must
-    -if subtype.more?
-      <em>#{display(subtype.solution)}</em> whenever you have finished #{display(transform(subtype.role, :ing))}.
-    -else
-      not #{display(subtype.problem)} until <em>after</em> you have #{display(subtype.herring).en}.
+      It is also possible to #{display(transform(subtype.problem, :less))} in the #{help.after.after.time} (a natural time to #{display(help.opposite.flip)} things) or during the #{help.season} when you are in the mood to #{display(help)} things.
+
+%p
+  You must
+  -if subtype.more?
+    <em>#{display(subtype.solution)}</em> whenever you are not #{display(transform(subtype.role, :ing))}.
+  -else
+    not #{display(subtype.problem)} until <em>after</em> you have #{display(subtype.herring).en}.
 
 -if @type
   =link_to 'more', subtype_path(subtype.symbol)
