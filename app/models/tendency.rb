@@ -17,6 +17,9 @@ class Tendency < Concept
   def inverted?; symbol.second == 'J'; end
   def morning?; symbol.first == 'E'; end
 
+  def sick; morning? ? 'manic' : 'depressed'; end
+  def drugs; morning? ? 'stimulants' : 'sedatives'; end
+
   def help; Help.all.find{|h| h.tendency_key == symbol}; end
 
   def method_missing(meth, *args, **kwargs, &block)

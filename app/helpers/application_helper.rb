@@ -76,9 +76,9 @@ module ApplicationHelper
 
   def role(subtype)
     if subtype.more?
-      display(subtype.role) + ' when other people want to ' + display(subtype.solution)
+      display(subtype.role) + ' when other people are ' + display(transform(subtype.solution, :ing))
     else
-      'not ' + display(subtype.herring) + ' when other people don’t want to ' + display(subtype.problem)
+      'not ' + display(subtype.herring) + ' when other people are not ' + display(transform(subtype.problem, :ing))
     end
   end
 end

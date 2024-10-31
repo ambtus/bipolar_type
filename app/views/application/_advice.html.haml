@@ -1,12 +1,4 @@
 %h3=help.name(cookies[:setting])
--if @subtype
-  %p
-    Never, ever, expect yourself to be willing or even <em>able</em> to
-    -if subtype.more?
-      fall asleep until after you have #{display(subtype.solution).en}.
-    -else
-      #{display(subtype.herring)} right after you have #{display(subtype.problem).en}.
-
 %p
   You must
   -if subtype.more?
@@ -15,20 +7,20 @@
     #{display(subtype.herring)} <em>before</em> you #{display(subtype.problem)}.
 %p
   -if subtype.more?
-    Make sure you  #{display(subtype.solution)} in the #{help.time}.
+    Make sure you  #{display(subtype.solution)} in the #{help.time}, as it is difficult to #{display(subtype.solution)} in the #{help.flip.time} unless you are #{subtype.sick}.
   -else
     Try to postpone #{display(subtype.problem).ing} until #{help.after.time}.
 
 -if @subtype
   %p
     -if subtype.more?
-      It is also possible to #{display(subtype.herring)} in the #{help.after.after.time} or at other times, such as the #{help.season}, when you feel like #{display(transform(help, :ing))} things.
+      It is also possible to #{display(subtype.solution)} in the #{help.after.after.time} (a natural time to #{display(subtype.help.opposite)}) or the #{help.season}, when you are in the mood to #{display(help)} things and thus don’t feel the urge to #{display(subtype.role)}.
     -else
       You may also #{display(subtype.herring)} in the #{help.after.after.time} during the #{help.season}, or whenever you feel like #{display(transform(help, :ing))} things, in which case you can #{display(subtype.problem)} more afterwards.
   %p
     Just remember that you must
     -if subtype.more?
-      <em>#{display(subtype.solution)}</em> whenever you are not #{display(subtype.role).ing}.
+      <em>#{display(subtype.solution)}</em> whenever you have finished #{display(transform(subtype.role, :ing))}.
     -else
       not #{display(subtype.problem)} until <em>after</em> you have #{display(subtype.herring).en}.
 

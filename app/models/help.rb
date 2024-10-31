@@ -8,9 +8,6 @@ class Help < Concept
   def time; %w{morning midday afternoon evening}[index]; end
   def verb; %w{change accept refuse endure}[index]; end
 
-  def episode; index.even? ? 'mania' : 'depression'; end
-  def state; %w{Up Down NotDown NotUp}[index]; end
-
   def tendency_key; %w{IJ EP IP EJ}[index]; end
   def tendency; Tendency.all.find{|t| t.problem_key == symbol}; end
 
