@@ -14,6 +14,8 @@ class Help < Concept
   def tendency; Tendency.all.find{|t| t.problem_key == symbol}; end
 
   def active?; index < 2; end
+  def manic?; index.even?; end
+  def episode; manic? ? 'mania' : 'depression'; end
 
   def opposite_index; [3, 2, 1, 0][index]; end
   def opposite; ALL[opposite_index]; end

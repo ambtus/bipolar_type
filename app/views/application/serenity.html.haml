@@ -5,4 +5,45 @@
 
 %ul.none
   -Help.all.each do |help|
-    %li <b>#{help.verb.first.capitalize}</b>#{help.verb.chip} the things that should be #{help.verb.en}
+    %li <b>#{help.verb.first.capitalize}</b>#{help.verb.chip} the things that I should #{display(help)}
+
+.center=render 'layouts/show_form'
+-if @show
+  %h2 When things go wrong
+  %table
+    -Help.all.each do |help|
+      %tr
+        %th
+          =help.season.capitalize
+          =help.episode
+        %td.left
+          You are
+          =display(transform(help, :ing))
+          things that you should
+          %em=display(help.opposite).bang
+        %td.left It is #{help.season}; you <em>will</em> #{display(help)} things. There <em>are</em> things that you can and <em>should</em> #{display(help)}. #{display(transform(help, :capitalize))} <em>them!</em>
+        %td.left
+          =display(transform(help.opposite, :capitalize))
+          the things that
+          %em you
+          should
+          =display(help.opposite).colon
+          the things you have the
+          %em ability
+          to
+          =display(help).comma
+          and that perhaps even
+          %em
+            should be
+            =display(transform(help, :en)).bang
+          But
+          =display(transform(help, :ing))
+          them will harm <em>you</em>. So
+          =display(help.opposite)
+          them! Let
+          %em someone else
+          =display(help)
+          them.
+
+  .center=render 'layouts/settings_form', skip: 'things'
+

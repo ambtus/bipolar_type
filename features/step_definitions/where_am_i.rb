@@ -26,6 +26,10 @@ Given('I am on the cycle page') do
   visit('/cycle')
 end
 
+Given('I am on the serenity page') do
+  visit('/serenity')
+end
+
 Then('I should be on my page') do
   assert page.has_text?('BipolarType 15 of 24')
 end

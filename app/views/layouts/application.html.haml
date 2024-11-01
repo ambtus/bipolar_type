@@ -18,6 +18,7 @@
       =render 'footer' unless (@type || @subtype)
 
     -if Rails.env.development?
+      %hr
       %p=cookies.to_h
       %p=params.values
 
