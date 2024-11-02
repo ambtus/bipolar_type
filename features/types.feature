@@ -8,7 +8,6 @@ Then I should NOT see 'emotionally thin'
 
 Scenario: the types page with words
 Given I am on the types page
-When I press 'Words'
 Then I should NOT see 'IFP'
   But I should see 'emotionally thin'
 

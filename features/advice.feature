@@ -14,21 +14,25 @@ Then I should see 'spiritually thin'
 
 Scenario: my type page says i should listen more and eat less
 Given I am on my page
-  And I press 'Words'
 Then I should see 'don’t eat'
   And I should see 'do listen'
 
 Scenario: my type page uses compound words correctly
 Given I have entered 'turn on the radio' for 'AF'
 When I am on my page
-  And I press 'Words'
   And I press 'TL;DR'
 Then I should see 'do turn on the radio'
-  And I should see 'You must turn on the radio'
+  And I should see 'must turn on the radio'
   But I should NOT see 'listen'
 
 Scenario: my type page defaults to short versions
 Given I am on my page
-When I press 'Words'
 Then I should see 'Evening: do listen'
 
+Scenario: subtypes page uses compound words correctly
+Given I have entered 'turn on the radio' for 'AF'
+When I am on the subtypes page
+  And I follow the 'emotionally thin' link
+Then I should see 'Prioritize turning on the radio in the evening'
+  And I should see 'turn on the radio, especially in the evening'
+  But I should NOT see 'listen'

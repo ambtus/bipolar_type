@@ -10,7 +10,7 @@
     %th{colspan:2} Depression
   %tr
     -@type.subtype_symbols.each do |ss|
-      %td=display(ss)
+      %td=link_to display(ss), subtype_path(ss)
   %tr
     %th{colspan:4} Goals
   %tr
@@ -24,10 +24,11 @@
 %h2
   Strategy
   =render 'layouts/show_form'
-  -Help.each do |help|
-    -if @show
-      =render 'advice', help: help, subtype: @type.subtype_for(help)
-    -else
-      %h3
-        =help.time.capitalize.colon
-        %span.plain=display transform(@type.subtype_for(help).solution, :prepend, 'do ')
+-Help.each do |help|
+  -if @show
+    %h3=help.time.capitalize
+    =render 'advice', help: help, subtype: @type.subtype_for(help)
+  -else
+    %h3
+      =help.time.capitalize.colon
+      %span.plain=display transform(@type.subtype_for(help).solution, :prepend, 'do ')

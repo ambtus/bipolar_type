@@ -5,7 +5,7 @@
 
 %ul.none
   -Help.all.each do |help|
-    %li <b>#{help.verb.first.capitalize}</b>#{help.verb.chip} the things that I should #{display(help)}
+    %li <b>#{help.verb.first.capitalize}</b>#{help.verb.chip} the things I should #{display(help)}
 
 .center=render 'layouts/show_form'
 -if @show

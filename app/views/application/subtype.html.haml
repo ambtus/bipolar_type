@@ -1,24 +1,24 @@
 - content_for(:title, @subtype.symbol)
 
 %dl
-  %dt Problem
-  %dd=display(@subtype)
-
-  %dt Bad Solution
+  %dt Nature
+  %dd=display(transform(@subtype.role, :prepend, 'do '))
+  %dt Natural Balance
+  %dd=display(transform(@subtype.solution, :prepend, 'do '))
+  %dt Nurture
   %dd
-    cannot
-    -if @subtype.more?
-      =display(transform(@subtype.role, :less))
-    -else
-      =display(transform(@subtype.herring, :more))
-
+    =display(transform(@subtype.problem, :prepend, 'do '))
+    (unbalancing)
+  %dt Result
+  %dd=display(@subtype)
+  %dt Drugged solution
+  %dd
+    =display(transform(@subtype.herring, :prepend, 'do '))
+    (requires #{@subtype.drugs})
   %td Better Solution
   %dd
-    -if @subtype.more?
-      =display(transform(@subtype.solution, :more)).comma
-      especially in the #{@subtype.help.flip.time}
-    -else
-      =display(transform(@subtype.problem, :less)).comma
-      especially in the #{@subtype.help.flip.time}
+    =display(transform(@subtype.solution, :prepend, 'do ')).comma
+    especially in the #{@subtype.help.flip.time}
+
 
 =render 'advice', subtype: @subtype, help: @subtype.help.flip
