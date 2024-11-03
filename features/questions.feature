@@ -27,8 +27,8 @@ Then I should NOT be on my page
   And the 'Me' link should NOT be disabled
 
 Scenario: the questions page uses your words
-Given I have entered 'spiritually' for 'F'
-  And I have entered 'materially' for 'T'
+Given I have entered 'spiritual' for 'F'
+  And I have entered 'material' for 'T'
   And I have entered 'dominant' for 'IJ'
   And I have entered 'submissive' for 'EJ'
   And I am on the questions page

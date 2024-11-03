@@ -2,9 +2,9 @@ Feature: cookies page
 
 Scenario: the cookies page allows you to use your own words
 Given I am on the cookies page
-When I enter 'spiritually' for 'F'
+When I enter 'spiritual' for 'F'
   And I press 'Save'
-Then I should see 'spiritually' within 'F'
+Then I should see 'spiritual' within 'F'
 
 Scenario: the cookies page allows you to bookmark your words
 Given I have entered 'fix' for 'C'

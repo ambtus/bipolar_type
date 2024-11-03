@@ -8,7 +8,7 @@ Then I should see 'physically fat'
   And I should see 'mentally weak'
 
 Scenario: my type page reflects cookies
-Given I have entered 'spiritually' for 'F'
+Given I have entered 'spiritual' for 'F'
 When I am on my page
 Then I should see 'spiritually thin'
 

@@ -20,7 +20,7 @@ Then I should NOT see 'IFP'
 
 Scenario: the types page with different words
 Given I have entered 'anorexic' for 'IP'
-  And I have entered 'spiritually' for 'F'
+  And I have entered 'spiritual' for 'F'
   And I am on the types page
 Then I should NOT see 'emotionally thin'
   But I should see 'spiritually anorexic'
