@@ -1,14 +1,16 @@
-%p
-  -if subtype.more?
-    Prioritize #{display(transform(subtype.solution, :ing))} in the #{help.time}:
-  -else
-    Postpone #{display(transform(subtype.problem, :ing))} until #{help.after.time}:
-  you must
-  -if subtype.more?
-    #{display(subtype.solution)} <em>whenever</em> you are not #{display(transform(subtype.role, :ing))}.
-  -else
-    not #{display(subtype.problem)} until <em>after</em> you have #{display(transform(subtype.herring, :en))}.
+-if subtype.more?
+  Start #{display(transform(subtype.solution, :ing))} as soon
+  as possible and give yourself permission to
+  keep
+  =display(transform(subtype.solution, :ing))
+  until
+-else
+  Give yourself permission to postpone
+  =display(transform(subtype.problem, :ing))
+  as long as possible and stop
+  =display(transform(subtype.problem, :ing))
+  when
 
-
--if @subtype
-  -# Table
+you are
+=ly(subtype)
+=subtype.inverted? ? 'tired.' : 'full.'

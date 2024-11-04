@@ -16,6 +16,7 @@ class Help < Concept
   def active?; index < 2; end
   def manic?; index.even?; end
   def episode; manic? ? 'mania' : 'depression'; end
+  def hyper; manic? ? 'depression' : 'mania'; end
 
   def opposite_index; [3, 2, 1, 0][index]; end
   def opposite; ALL[opposite_index]; end

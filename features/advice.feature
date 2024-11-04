@@ -22,7 +22,7 @@ Given I have entered 'turn on the radio' for 'AF'
 When I am on my page
   And I press 'TL;DR'
 Then I should see 'do turn on the radio'
-  And I should see 'must turn on the radio'
+  And I should see 'turning on the radio'
   But I should NOT see 'listen'
 
 Scenario: my type page defaults to short versions
@@ -33,6 +33,5 @@ Scenario: subtypes page uses compound words correctly
 Given I have entered 'turn on the radio' for 'AF'
 When I am on the subtypes page
   And I follow the 'emotionally thin' link
-Then I should see 'Prioritize turning on the radio in the evening'
-  And I should see 'turn on the radio, especially in the evening'
+Then I should see 'turning on the radio'
   But I should NOT see 'listen'

@@ -74,4 +74,10 @@ module ApplicationHelper
     "don’t have preference for #{key}"
   end
 
+  def ly(subtype)
+    display [subtype.thing.symbol,
+             word(subtype.thing).ly,
+             subtype.thing.symbol]
+  end
+
 end

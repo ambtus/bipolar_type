@@ -11,6 +11,9 @@ class Concept
   class << self
     def all; self::ALL; end
     def first; all.first; end
+    def second; all.second; end
+    def third; all.third; end
+    def fourth; all.fourth; end
     def symbols; self::SYMBOL; end
     def each(&block); self::ALL.each(&block); end
     def title; [self::ALL.count, self.name.pluralize].to_phrase; end

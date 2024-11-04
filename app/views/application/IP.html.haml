@@ -1,0 +1,122 @@
+-content_for(:title, @subtype.symbol)
+%h2=display(transform(@subtype, :titleize))
+
+%p=render 'layouts/show_form'
+-if @show
+  %p
+    You are
+    =ly(@subtype)
+    active by nature. As a child, you had few opportunities to use
+    =display(@subtype.thing)
+    strength, and learned to get less
+    =display(@subtype.thing)
+    energy than you wanted (e.g. stop
+    =display(transform(@subtype.solution, :ing))
+    before you felt
+    =ly(@subtype)
+    full) in order to remain balanced.
+  %p
+    At some point, your opportunities to use
+    =display(@subtype.thing)
+    strength increased dramatically, and you started to lose
+    =display(@subtype.thing)
+    reserves.
+  %p
+    Instead of getting more
+    =display(@subtype.thing)
+    energy to balance the increased use of
+    =display(@subtype.thing)
+    strength (which would have required unlearning your previous habit), you tried to fight your nature and return to your previous use of
+    =display(@subtype.thing)
+    strength.
+  %p
+    Unless the new opportunities to use
+    =display(@subtype.thing)
+    strength disappear, you will be in a
+    %em constant
+    fight against your natural instincts and will probably require sedatives in order to stop
+    =display(transform(@subtype.role, :ing)).period
+  %p
+    A better solution is to just get more
+    =display(@subtype.thing)
+    energy.
+%p=render 'advice', subtype: @subtype, help: @subtype.help.flip
+
+%table
+  %tr
+    -help = Help.all.first
+    %th=help.cycle_name
+    %td.left
+      You will start to
+      =display(@subtype.role)
+      when you should
+      =display(help)
+      things.
+    %td.left
+      Using sedatives to force yourself to start
+      =display(transform(@subtype.role, :ing))
+      later won’t actually get fewer things
+      =display(transform(help, :en)).comma
+      as you will also
+      %em stop
+      later.
+
+  %tr
+    -help = Help.all.second
+    %th=help.cycle_name
+    %td.left
+      You will start to
+      =display(@subtype.solution)
+      when you should
+      =display(help)
+      things.
+    %td.left
+      You aren’t
+      =display(@subtype)
+      because you won’t
+      =display(@subtype.solution).semi
+      you are
+      =display(@subtype)
+      because you don’t
+      %em keep
+      =display(transform(@subtype.solution, :ing)).period
+
+  %tr
+    -help = Help.all.third
+    %th=help.cycle_name
+    %td.left.bold
+      You will stop
+      =display(transform(@subtype.solution, :ing))
+      %em before
+      you should
+      =display(help)
+      things.
+    %td.left
+      You will stop
+      =display(transform(@subtype.solution, :ing))
+      long before you
+      %em want
+      to stop
+      =display(transform(@subtype.solution, :ing)).period
+      Unless and until you are given
+      %em permission
+      to continue.
+
+  %tr
+    -help = Help.all.fourth
+    %th=help.cycle_name
+    %td.left
+      You will stop
+      =display(transform(@subtype.role, :ing))
+      when you should
+      =display(help)
+      things.
+    %td.left
+      Using sedatives to force yourself to stop
+      =display(transform(@subtype.role, :ing))
+      sooner will
+      %em work,
+      but so will giving yourself permission to
+      %b
+        keep
+        =display(transform(@subtype.solution, :ing)).bang

@@ -1,0 +1,129 @@
+-content_for(:title, @subtype.symbol)
+%h2=display(transform(@subtype, :titleize))
+
+%p=render 'layouts/show_form'
+-if @show
+  %p
+    You are
+    =ly(@subtype)
+    passive by nature. As a child, you had many requirements to use
+    =display(@subtype.thing)
+    strength, and learned to get more
+    =display(@subtype.thing)
+    energy than you wanted (e.g. start
+    =display(transform(@subtype.problem, :ing))
+    before you felt
+    =ly(@subtype)
+    empty) in order to remain balanced.
+  %p
+    At some point, your requirements to use
+    =display(@subtype.thing)
+    strength decreased dramatically, and you started to gain
+    =display(@subtype.thing)
+    reserves.
+  %p
+    Instead of getting less
+    =display(@subtype.thing)
+    energy to balance the decreased use of
+    =display(@subtype.thing)
+    strength (which would have required unlearning your previous habit), you tried to fight your nature and return to your previous use of
+    =display(@subtype.thing)
+    strength.
+  %p
+    Unless the original requirements to use
+    =display(@subtype.thing)
+    strength reoccur, you will be in a
+    %em constant
+    fight against your natural instincts and will probably require stimulants in order to keep
+    =display(transform(@subtype.herring, :ing)).period
+  %p
+    A better solution is to just get less
+    =display(@subtype.thing)
+    energy.
+%p=render 'advice', subtype: @subtype, help: @subtype.help.flip
+
+
+%table
+  %tr
+    -help = Help.all.first
+    %th=help.cycle_name
+    %td.left
+      You will start to
+      =display(@subtype.herring)
+      when you should
+      =display(help)
+      things.
+    %td.left
+      Using stimulants to force yourself to start
+      =display(transform(@subtype.herring, :ing))
+      sooner will
+      %em work,
+      but so will giving yourself permission to
+      %b
+        not start
+        =display(transform(@subtype.problem, :ing)).bang
+
+
+  %tr
+    -help = Help.all.second
+    %th=help.cycle_name
+    %td.left.bold
+      You will start to
+      =display(@subtype.problem)
+      %em before
+      you should
+      =display(help)
+      things.
+    %td.left
+      You will start to
+      =display(@subtype.problem)
+      long before you
+      %em want
+      to start
+      =display(transform(@subtype.problem, :ing)).period
+      Unless and until you are given
+      %em permission
+      to wait.
+
+  %tr
+    -help = Help.all.third
+    %th=help.cycle_name
+    %td.left
+      You will stop
+      =display(transform(@subtype.problem, :ing))
+      when you should
+      =display(help)
+      things.
+    %td.left
+      You aren’t
+      =display(@subtype)
+      because you
+      =display(@subtype.problem)
+      until you are full, you are
+      =display(@subtype)
+      because you
+      =display(transform(@subtype.problem, :ing))
+      %em before
+      you are
+      =ly(@subtype)
+      empty.
+
+
+  %tr
+    -help = Help.all.fourth
+    %th=help.cycle_name
+    %td.left
+      You will stop
+      =display(transform(@subtype.herring, :ing))
+      when you should
+      =display(help)
+      things.
+    %td.left
+      Using stimulants to force yourself to keep
+      =display(transform(@subtype.herring, :ing))
+      longer won’t actually get more things
+      =display(transform(help.opposite, :en)).comma
+      as you will also
+      %em start
+      later.
+

@@ -10,7 +10,7 @@
     %th{colspan:2} Depression
   %tr
     -@type.subtype_symbols.each do |ss|
-      %td=link_to display(ss), subtype_path(ss)
+      %td=display(ss)
   %tr
     %th{colspan:4} Goals
   %tr
@@ -24,11 +24,95 @@
 %h2
   Strategy
   =render 'layouts/show_form'
--Help.each do |help|
-  -if @show
-    %h3=help.time.capitalize
-    =render 'advice', help: help, subtype: @type.subtype_for(help)
-  -else
+-unless @show
+  -Help.each do |help|
     %h3
-      =help.time.capitalize.colon
+      =help.cycle_name.colon
       %span.plain=display transform(@type.subtype_for(help).solution, :prepend, 'do ')
+
+-if @show
+  %table
+    %tr
+      %th
+      %th Problem
+      %th Solution
+    %tr
+    %th=Help.first.cycle_name
+    %td.left
+      You will start to
+      =display(@type.ij.problem)
+      %em before
+      you should
+      =display(@type.ij.help)
+      things &rArr;
+      =link_to display(@type.ij), subtype_path(@type.ij.symbol)
+    %td.left
+      =link_to display(@type.ep), subtype_path(@type.ep.symbol)
+      &rArr; Using stimulants to force yourself to start
+      =display(transform(@type.ep.herring, :ing))
+      sooner will
+      %em rebalance
+      you, but so will giving yourself permission to
+      %b
+        postpone
+        =display(transform(@type.ep.problem, :ing)).bang
+    %tr
+    %th=Help.second.cycle_name
+    %td.left
+      You will start to
+      =display(@type.ep.problem)
+      %em before
+      you should
+      =display(@type.ep.help)
+      things &rArr;
+      =link_to display(@type.ep), subtype_path(@type.ep.symbol)
+    %td.left
+      =link_to display(@type.ij), subtype_path(@type.ij.symbol)
+      &rArr; Using sedatives to force yourself to start
+      =display(transform(@type.ij.herring, :ing))
+      sooner will
+      %em rebalance
+      you, but so will giving yourself permission to
+      %b
+        postpone
+        =display(transform(@type.ij.problem, :ing)).bang
+    %tr
+    %th=Help.third.cycle_name
+    %td.left
+      You will stop
+      =display(transform(@type.ip.solution, :ing))
+      %em before
+      you should
+      =display(@type.ip.help)
+      things &rArr;
+      =link_to display(@type.ip), subtype_path(@type.ip.symbol)
+    %td.left
+      =link_to display(@type.ej), subtype_path(@type.ej.symbol)
+      &rArr; Using stimulants to force yourself to stop
+      =display(transform(@type.ej.role, :ing))
+      sooner will
+      %em rebalance
+      you, but so will giving yourself permission to
+      %b
+        keep
+        =display(transform(@type.ej.solution, :ing)).bang
+    %tr
+    %th=Help.fourth.cycle_name
+    %td.left
+      You will stop
+      =display(transform(@type.ej.solution, :ing))
+      %em before
+      you should
+      =display(@type.ej.help)
+      things &rArr;
+      =link_to display(@type.ej), subtype_path(@type.ej.symbol)
+    %td.left
+      =link_to display(@type.ip), subtype_path(@type.ip.symbol)
+      &rArr; Using sedatives to force yourself to stop
+      =display(transform(@type.ip.role, :ing))
+      sooner will
+      %em rebalance
+      you, but so will giving yourself permission to
+      %b
+        keep
+        =display(transform(@type.ip.solution, :ing)).bang
