@@ -16,6 +16,19 @@ When I press 'Both'
 Then I should see all subtypes
   And I should see 'IFP (emotionally thin)'
 
+Scenario: the subtypes page with things
+Given I am on the subtypes page
+When I press 'Things'
+Then I should see 'refuse too many things'
+  But I should NOT see 'IP things'
+
+Scenario: changing generic 'things' words
+Given I have entered 'fix' for 'C'
+When I am on the subtypes page
+  And I press 'Things'
+Then I should see 'fix too many things'
+  But I should NOT see 'change'
+
 Scenario: single subtype
 Given I am on the subtypes page
 When I follow the 'emotionally thin' link

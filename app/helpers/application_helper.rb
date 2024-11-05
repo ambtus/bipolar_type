@@ -61,6 +61,8 @@ module ApplicationHelper
       word(concept)
     elsif concept.is_a?(Behavior)
       [generic_words(concept.help), concept.thing.generic_words].to_phrase
+    elsif concept.is_a?(Tendency)
+      [generic_words(concept.help), 'too many things'].to_phrase
     elsif concept.is_a?(Subtype)
       [generic_words(concept.help), 'too many', concept.thing.generic_words].to_phrase
     else
