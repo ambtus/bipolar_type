@@ -1,14 +1,14 @@
 shared:
 
-  F: emotional
-  S: physical
-  T: financial
-  N: mental
-
   C: change
   A: accept
   R: refuse
   E: endure
+
+  F: emotional
+  S: physical
+  T: financial
+  N: mental
 
   IP: thin
   EP: fat

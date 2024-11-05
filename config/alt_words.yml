@@ -1,28 +1,28 @@
 shared:
 
-  F: spiritual
-  S: calorical
-  T: material
-  N: cognitive
+  F: spiritual, affective
+  S: calorical, athletic
+  T: material, commercial
+  N: cognitive, intellectual
 
-  C: fix
-  A: appreciate
-  R: reject
-  E: tolerate
+  C: fix, improve
+  A: appreciate, take
+  R: reject, discard
+  E: tolerate, permit
 
-  IP: anorexic
-  EP: obese
-  IJ: dominant
-  EJ: submissive
+  IP: anorexic, skinny
+  EP: obese, thick
+  IJ: dominant, hyperactive
+  EJ: submissive, passive
 
-  CF: tell why
-  AF: believe
+  CF: tell why, preach, use words
+  AF: hear, understand, believe
 
-  CS: do housework
-  AS: dine
+  CS: go places, cook, use muscles
+  AS: drink, snack, ingest
 
-  CT: give
-  AT: take
+  CT: buy things, splurge, use credit
+  AT: work, take, collect
 
-  CN: show how
-  AN: learn
+  CN: show how, lead, use logic
+  AN: learn, follow, remember

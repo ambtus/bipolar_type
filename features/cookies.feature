@@ -50,10 +50,10 @@ Then I should see 'reject'
 
 Scenario: the serenity page doesn’t show settings form by default
 Given I am on the serenity page
-Then I should NOT see 'use your own words'
+Then the 'cookies' link should be disabled
 
 Scenario: the serenity pages can show setting form
 Given I am on the serenity page
 When I press 'TL;DR'
-Then I should see 'use your own words'
+Then the 'cookies' link should NOT be disabled
 

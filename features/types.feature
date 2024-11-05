@@ -40,9 +40,14 @@ Then the 'accept' link should be disabled
   But the 'change' link should NOT be disabled
   And I should see 'emotionally thin' before 'emotionally strong'
 
-Scenario: the types page footer
+Scenario: the types page footer is not on by default
 Given I am on the types page
-Then I should see 'dominant and inferior'
+Then I should NOT see 'MBTI'
+
+Scenario: the types page footer is on when symbols show
+Given I am on the types page
+When I press 'Symbols'
+Then I should see 'MBTI'
 
 Scenario: get to my type
 Given I am on the types page
