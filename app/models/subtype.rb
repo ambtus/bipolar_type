@@ -12,6 +12,8 @@ class Subtype < Concept
   def tendency; Tendency.find_by(symbol.delete(thing.symbol)); end
 
   def parts; [tendency, thing]; end
+  def peers; tendency.subtypes.without(self); end
+  def siblings; thing.subtypes.without(self);end
 
   %w{problem solution role herring}.each do |string|
     define_method(string) {Behavior.find_by(tendency.send(string + '_key') + thing.symbol)}

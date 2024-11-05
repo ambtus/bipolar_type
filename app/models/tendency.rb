@@ -22,6 +22,8 @@ class Tendency < Concept
 
   def help; Help.all.find{|h| h.tendency_key == symbol}; end
 
+  def subtypes; Subtype.all.select{|s| s.tendency == self}; end
+
   def method_missing(meth, *args, **kwargs, &block)
     if help.respond_to?(meth)
       help.send(meth)

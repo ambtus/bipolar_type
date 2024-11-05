@@ -16,4 +16,6 @@ class Thing < Concept
     end
   end
 
+  def subtypes; Subtype.all.select{|s| s.thing == self}; end
+
 end

@@ -43,6 +43,8 @@
 %p=render 'advice', subtype: @subtype, help: @subtype.help.flip
 
 %table
+  %caption
+    %h2 Strategy
   %tr
     -help = Help.all.first
     %th=help.cycle_name

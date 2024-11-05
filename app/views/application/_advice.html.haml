@@ -14,3 +14,13 @@
 you are
 =ly(subtype)
 =subtype.inverted? ? 'tired.' : 'full.'
+
+%table
+  %caption
+    %h2 Related Subtypes
+  %tr
+  -subtype.peers.each do |st|
+    %td=link_to display(st), subtype_path(st.symbol)
+  %tr
+  -subtype.siblings.each do |st|
+    %td=link_to display(st), subtype_path(st.symbol)
