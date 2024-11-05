@@ -39,12 +39,9 @@
     %tr
     %th=Help.first.cycle_name
     %td.left
-      You will start to
-      =display(@type.ij.problem)
-      %em before
-      you should
-      =display(@type.ij.help)
-      things &rArr;
+      You will
+      =problem(@type.ij)
+      &rArr;
       =link_to display(@type.ij), subtype_path(@type.ij.symbol)
     %td.left
       =link_to display(@type.ep), subtype_path(@type.ep.symbol)
@@ -59,12 +56,9 @@
     %tr
     %th=Help.second.cycle_name
     %td.left
-      You will start to
-      =display(@type.ep.problem)
-      %em before
-      you should
-      =display(@type.ep.help)
-      things &rArr;
+      You will
+      =problem(@type.ep)
+      &rArr;
       =link_to display(@type.ep), subtype_path(@type.ep.symbol)
     %td.left
       =link_to display(@type.ij), subtype_path(@type.ij.symbol)
@@ -79,12 +73,9 @@
     %tr
     %th=Help.third.cycle_name
     %td.left
-      You will stop
-      =display(transform(@type.ip.solution, :ing))
-      %em before
-      you should
-      =display(@type.ip.help)
-      things &rArr;
+      You will
+      =problem(@type.ip)
+      &rArr;
       =link_to display(@type.ip), subtype_path(@type.ip.symbol)
     %td.left
       =link_to display(@type.ej), subtype_path(@type.ej.symbol)
@@ -99,12 +90,9 @@
     %tr
     %th=Help.fourth.cycle_name
     %td.left
-      You will stop
-      =display(transform(@type.ej.solution, :ing))
-      %em before
-      you should
-      =display(@type.ej.help)
-      things &rArr;
+      You will
+      =problem(@type.ej)
+      &rArr;
       =link_to display(@type.ej), subtype_path(@type.ej.symbol)
     %td.left
       =link_to display(@type.ip), subtype_path(@type.ip.symbol)

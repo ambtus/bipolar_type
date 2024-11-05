@@ -82,4 +82,13 @@ module ApplicationHelper
              subtype.thing.symbol]
   end
 
+  def problem(subtype)
+    [subtype.more? ? 'stop' : 'start',
+     display(transform(subtype.action, :ing)),
+     'before you should',
+     display(subtype.help),
+     cookies['setting'] == 'things' ? 'them' : 'things'
+     ].to_phrase
+  end
+
 end

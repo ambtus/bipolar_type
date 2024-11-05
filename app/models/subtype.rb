@@ -23,6 +23,9 @@ class Subtype < Concept
     define_method(string) {Behavior.find_by(string.first.capitalize + thing.symbol)}
   end
 
+  def action; inverted? ? change : accept; end
+  def behavior; thing + tendency.help; end
+
   def method_missing(meth, *args, **kwargs, &block)
     if tendency.respond_to?(meth)
       tendency.send(meth)
