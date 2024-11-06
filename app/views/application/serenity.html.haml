@@ -7,6 +7,8 @@
   -Help.all.each do |help|
     %li <b>#{help.verb.first.capitalize}</b>#{help.verb.chip} the things I should #{display(help)}
 
+%p Stress is forcing yourself to CARE either when you don’t actually need to CARE, or when it would be much easier to CARE at a different time.
+
 .center=render 'layouts/show_form'
 -if @show
   %h2 When things go wrong
@@ -21,28 +23,25 @@
           =display(transform(help, :ing))
           things that you should
           %em=display(help.opposite).bang
-        %td.left It is #{help.season}; you <em>will</em> #{display(help)} things. There <em>are</em> things that you can and <em>should</em> #{display(help)}. #{display(transform(help, :capitalize))} <em>them!</em>
         %td.left
-          =display(transform(help.opposite, :capitalize))
-          the things that
-          %em you
-          should
-          =display(help.opposite).colon
-          the things you have the
+          It is
+          =help.season.semi
+          you
+          %em will
+          =display(help)
+          things. There are things that you can and should
+          =display(help).period
+          =display(transform(help, :capitalize))
+          %em them!
+        %td.left
+          You may have the
           %em ability
           to
-          =display(help).comma
-          and that perhaps even
-          %em
-            should be
-            =display(transform(help, :en)).bang
-          But
-          =display(transform(help, :ing))
-          them will harm <em>you</em>. So
-          =display(help.opposite)
-          them! Let
-          %em someone else
           =display(help)
+          things, but if
+          =display(transform(help, :ing))
+          them will harm you then
+          %em=display(help.opposite)
           them.
 
   .center=render 'layouts/settings_form', skip: 'things'
