@@ -5,10 +5,10 @@ shared:
   T: material, commercial
   N: cognitive, intellectual
 
-  C: fix, improve
-  A: appreciate, take
-  R: reject, discard
-  E: tolerate, permit
+  C: fix, improve, produce
+  A: appreciate, take, consume
+  R: reject, discard, decline
+  E: tolerate, permit, allow
 
   IP: anorexic, skinny
   EP: obese, thick

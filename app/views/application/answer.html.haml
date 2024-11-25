@@ -19,7 +19,7 @@
           %td
             -unless @answer.taken?(subtype)
               =link_to_unless @answer.taken?(subtype), display(subtype), answer_path(@answer.next(subtype.symbol))
-              .left=problem(subtype)
+              .left you #{problem(subtype)}
 
 -if Rails.env.development?
   =@answer.taken

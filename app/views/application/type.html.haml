@@ -12,6 +12,39 @@
     -@type.subtype_symbols.each do |ss|
       %td=display(ss)
   %tr
+    %td.left
+      =display(transform(@type.ij.problem, :ing))
+      %em is
+      easy and enjoyable, but
+      =display(transform(@type.ij.herring, :ing))
+      is painful and difficult and
+      %em rarely
+      worth it.
+    %td.left
+      =display(transform(@type.ip.solution, :ing))
+      %em can
+      be easy and enjoyable, you just need to
+      %em do it
+      so that you can continue to
+      =display(@type.ip.role)
+    %td.left
+      =display(transform(@type.ep.problem, :ing))
+      %em is
+      easy and enjoyable, but
+      =display(transform(@type.ep.herring, :ing))
+      is painful and difficult and
+      %em rarely
+      worth it.
+    %td.left
+      =display(transform(@type.ej.solution, :ing))
+      %em can
+      be easy and enjoyable, you just need to
+      %em do it
+      so that you can continue to
+      =display(@type.ej.role)
+
+
+  %tr
     %th{colspan:4} Goals
   %tr
     %th{colspan:2} Do Less
@@ -19,7 +52,6 @@
   %tr
     -@type.subtypes.each do |s|
       %td=display(transform((s.solution), :prepend, 'do '))
-
 
 %h2
   Strategy
@@ -44,15 +76,7 @@
       &rArr;
       =link_to display(@type.ij), subtype_path(@type.ij.symbol)
     %td.left
-      =link_to display(@type.ep), subtype_path(@type.ep.symbol)
-      &rArr; Using stimulants to force yourself to start
-      =display(transform(@type.ep.herring, :ing))
-      sooner will
-      %em rebalance
-      you, but so will giving yourself permission to
-      %b
-        postpone
-        =display(transform(@type.ep.problem, :ing)).bang
+      =render 'solution', subtype: @type.ep, drugs: 'stimulants', change: 'start', drugged: @type.ep.herring, natural: @type.ep.problem, continue: 'postpone'
     %tr
     %th=Help.second.cycle_name
     %td.left
@@ -61,15 +85,7 @@
       &rArr;
       =link_to display(@type.ep), subtype_path(@type.ep.symbol)
     %td.left
-      =link_to display(@type.ij), subtype_path(@type.ij.symbol)
-      &rArr; Using sedatives to force yourself to start
-      =display(transform(@type.ij.herring, :ing))
-      sooner will
-      %em rebalance
-      you, but so will giving yourself permission to
-      %b
-        postpone
-        =display(transform(@type.ij.problem, :ing)).bang
+      =render 'solution', subtype: @type.ij, drugs: 'sedatives', change: 'start', drugged: @type.ij.herring, natural: @type.ij.problem, continue: 'postpone'
     %tr
     %th=Help.third.cycle_name
     %td.left
@@ -78,15 +94,7 @@
       &rArr;
       =link_to display(@type.ip), subtype_path(@type.ip.symbol)
     %td.left
-      =link_to display(@type.ej), subtype_path(@type.ej.symbol)
-      &rArr; Using stimulants to force yourself to stop
-      =display(transform(@type.ej.role, :ing))
-      sooner will
-      %em rebalance
-      you, but so will giving yourself permission to
-      %b
-        keep
-        =display(transform(@type.ej.solution, :ing)).bang
+      =render 'solution', subtype: @type.ej, drugs: 'stimulants', change: 'stop', drugged: @type.ej.role, natural: @type.ej.solution, continue: 'keep'
     %tr
     %th=Help.fourth.cycle_name
     %td.left
@@ -95,12 +103,4 @@
       &rArr;
       =link_to display(@type.ej), subtype_path(@type.ej.symbol)
     %td.left
-      =link_to display(@type.ip), subtype_path(@type.ip.symbol)
-      &rArr; Using sedatives to force yourself to stop
-      =display(transform(@type.ip.role, :ing))
-      sooner will
-      %em rebalance
-      you, but so will giving yourself permission to
-      %b
-        keep
-        =display(transform(@type.ip.solution, :ing)).bang
+      =render 'solution', subtype: @type.ip, drugs: 'sedatives', change: 'stop', drugged: @type.ip.role, natural: @type.ip.solution, continue: 'keep'
