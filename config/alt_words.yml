@@ -10,9 +10,9 @@ shared:
   R: reject, discard, decline
   E: tolerate, permit, allow
 
-  IP: anorexic, skinny
-  EP: obese, thick
-  IJ: dominant, hyperactive
+  IP: anorexic, hyperactive
+  EP: obese, lazy
+  IJ: dominant, officious
   EJ: submissive, passive
 
   CF: tell why, preach, use words
