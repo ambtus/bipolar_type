@@ -11,37 +11,6 @@
   %tr
     -@type.subtype_symbols.each do |ss|
       %td=display(ss)
-  %tr
-    %td.left
-      =display(transform(@type.ij.problem, :ing))
-      %em is
-      easy and enjoyable, but
-      =display(transform(@type.ij.herring, :ing))
-      is painful and difficult and
-      %em rarely
-      worth it.
-    %td.left
-      =display(transform(@type.ip.solution, :ing))
-      %em can
-      be easy and enjoyable, you just need to
-      %em do it
-      so that you can continue to
-      =display(@type.ip.role)
-    %td.left
-      =display(transform(@type.ep.problem, :ing))
-      %em is
-      easy and enjoyable, but
-      =display(transform(@type.ep.herring, :ing))
-      is painful and difficult and
-      %em rarely
-      worth it.
-    %td.left
-      =display(transform(@type.ej.solution, :ing))
-      %em can
-      be easy and enjoyable, you just need to
-      %em do it
-      so that you can continue to
-      =display(@type.ej.role)
 
 
   %tr
@@ -53,9 +22,32 @@
     -@type.subtypes.each do |s|
       %td=display(transform((s.solution), :prepend, 'do '))
 
-%h2
-  Strategy
-  =render 'layouts/show_form'
+  -if @show
+    %tr
+      %td.left{colspan: 2}
+        =display(transform(@type.ij.problem, :ing))
+        and
+        =display(transform(@type.ep.problem, :ing))
+        %em are
+        easy, but rarely
+        worth having to
+        =display(@type.ij.herring)
+        and/or
+        =display(@type.ep.herring)
+        more.
+      %td.left{colspan: 2}
+        =display(transform(@type.ip.solution, :ing))
+        and
+        =display(transform(@type.ej.solution, :ing))
+        %em can
+        be enjoyable, and allow you to keep
+        =display(transform(@type.ip.role, :ing))
+        and/or
+        =display(transform(@type.ej.role, :ing)).period
+
+%center=render 'layouts/show_form'
+
+%h2 Strategy
 -unless @show
   -Help.each do |help|
     %h3
