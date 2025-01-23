@@ -25,6 +25,9 @@ class Concept
   end
 
   def index; self.class::SYMBOL.index(@symbol); end
+  def name; self.class::NAMES[index]; end
+
+
   def compound?; respond_to? :parts; end
   def <=>(other)
     if compound?

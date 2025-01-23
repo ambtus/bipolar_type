@@ -8,4 +8,5 @@ class ApplicationController < ActionController::Base
   def set_tldr
     @show = cookies[:details].present?
   end
+
 end

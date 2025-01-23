@@ -89,6 +89,10 @@ module ApplicationHelper
      display(subtype.help),
      cookies['setting'] == 'things' ? 'them' : 'things'
      ].to_phrase
+     ['require',
+      subtype.drugs,
+      'in order to',
+     ].to_phrase
   end
 
 end

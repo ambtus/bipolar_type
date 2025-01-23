@@ -1,35 +1,36 @@
 - content_for(:title, 'Cycle')
 
-%h2 The Bipolar Cycle
-%p.italic.center The Natural Rhythm of Life
-
 %table
   %tr
-    %th Season
-    %th Time
-    %th Natural Response
-  -Help.all.each do |help|
-    %tr
-      %td.left=help.season
-      %td.left=help.time
-      %td.left=help.long
+    %td.halfish
+      %em Accelerate
+      %p achieve an external goal (use energy)
 
-.center=render 'layouts/show_form'
--if @show
-  %p Weekly, lunar, and four-year cycles follow the same natural rhythm.
-  %p Any cycle can be entrained to a different schedule: some people must wake and become alert at night instead of in the morning and seasonal athletes must be stronger in seasons other than the spring. However, the above two cycles are more universal than the three below. Thus, season and time are all that will be mentioned going forward although the others are often equally, if not more, impactful.
-  %table
-    %tr
-      %th Day
-      %th Moon
-      %th Year
-      %th Natural Response
-    -Help.all.each do |help|
-      %tr
-        %td.left=help.day
-        %td.left=help.phase
-        %td.left=(help.index + 1).ordinalize
-        %td.left=help.long
-  %p Different people are <em>often</em> entrained to different days of the week: most people work during the week and rest on the weekend but <em>many</em> people  work on the weekend and rest midweek.
-  %p Few people are entrained to the phase of the moon any more, but many people <em>are</em> entrained to the month, where the 1st has different requirements than the 15th or last few days of the month. They aren’t always entrained to the <em>same</em> days of the month, however.
-  %p The people involved in the Olympic Games are entrained to the olympiad, and politicians are almost always entrained to a four-year cycle. But again, <em>which</em> year represents which part of the cycle differs even among people who are entrained to it.
+    %th On
+
+    %td.halfish
+      %em Decelerate
+      .left leave the highway ()
+
+
+  %tr
+    %th
+      Turn Engine On
+      .plain (external orientation)
+    %th
+      &#8635;
+
+    %th
+      Turn Engine Off
+      .plain (internal orientation)
+
+
+  %tr
+    %td
+      %em Unplug
+      %p leave the pump (conserve energy)
+    %th Off
+
+    %td
+      %em Plug in
+      %p feed an internal need (get energy)

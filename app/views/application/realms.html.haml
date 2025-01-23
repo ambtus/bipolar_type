@@ -1,0 +1,68 @@
+- content_for(:title, 'Realms')
+
+-Thing.each do |realm|
+  %h2
+    =realm.name
+    =realm.energy.wrap
+  =render 'cycle', realm: realm
+
+
+%table.equal.bordered
+  %tr
+    %td.none run
+    %th go places & do things
+    %td.none walk
+  %tr
+    %th Stand up
+    %td.none &#8635;
+    %th Sit down
+  %tr
+    %td.none digest foods
+    %th eat things
+    %td.none taste flavors
+
+
+
+%table.equal.bordered
+  %tr
+    %td.none intuit
+    %th make decisions & plan things
+    %td.none conclude
+  %tr
+    %th Stand up
+    %td.none &#8635;
+    %th Sit down
+  %tr
+    %td.none learn procedures (how)
+    %th watch things
+    %td.none see changes
+
+
+%table.equal.bordered
+  %tr
+    %td.none sing
+    %th tell people & say things
+    %td.none talk
+  %tr
+    %th Speak up
+    %td.none &#8635;
+    %th Shut up
+  %tr
+    %td.none understand reasons (why)
+    %th listen to things
+    %td.none hear sounds
+
+
+%table.equal.bordered
+  %tr
+    %td.none pay cash upfront
+    %th buy property & own things
+    %td.none pay off loans
+  %tr
+    %th Speak up
+    %td.none &#8635;
+    %th Shut up
+  %tr
+    %td.none collect rewards
+    %th earn things
+    %td.none use tools
