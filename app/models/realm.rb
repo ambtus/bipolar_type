@@ -10,8 +10,4 @@ class Realm < Concept
 
   def subtypes; Subtype.all.select{|x| x.realm == self}; end
 
-  def method_missing(meth, *args, **kwargs, &block)
-    [meth.to_s.humanize, name.downcase.wrap].to_phrase
-  end
-
 end

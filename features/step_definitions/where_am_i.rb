@@ -23,9 +23,9 @@ Given('I am on the realms page') do
 end
 
 Then('I should be on my page') do
-  assert page.has_text?('BipolarType 14 of 24')
+  assert page.has_no_link?('Me')
 end
 
 Then('I should NOT be on my page') do
-  assert page.has_no_text?('BipolarType 14 of 24')
+  assert page.has_link?('Me')
 end

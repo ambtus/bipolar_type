@@ -1,15 +1,15 @@
 class Subtype < Concept
 
-  SYMBOL = Realm::SYMBOL.collect do |realm|
-             Attitude::SYMBOL.collect do |attitude|
-                realm + attitude
-            end
+  SYMBOL = Realm.all.collect do |realm|
+             Attitude.all.collect do |attitude|
+               attitude.dominant? ? realm.symbol + attitude.symbol : attitude.symbol + realm.symbol
+             end
           end.flatten
 
   ALL = SYMBOL.collect{|symbol| self.new symbol}
 
-  def realm; Realm.find_by(symbol.first); end
-  def attitude; Attitude.find_by(symbol.second); end
+  def realm; Realm.find_by(symbol.first) || Realm.find_by(symbol.second); end
+  def attitude; Attitude.find_by(symbol.second) || Attitude.find_by(symbol.first); end
 
   def parts; [attitude, realm]; end
   def peers; attitude.subtypes.without(self); end

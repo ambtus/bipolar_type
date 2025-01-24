@@ -29,7 +29,7 @@ Then I should NOT be on my page
 Scenario: the questions page uses your words
 Given I have entered 'spiritual' for 'F'
   And I have entered 'material' for 'T'
-  And I have entered 'angry' for 'M'
+  And I have entered 'angry' for 'I'
   And I have entered 'powerful' for 'J'
   And I am on the questions page
 When I follow the 'spiritually receptive' link
@@ -47,6 +47,9 @@ Given I am on the questions page
   And I press 'Symbols'
 When I follow the 'FP' link
 Then I should NOT see 'FP'
-  And I should NOT see 'FJ'
+  And I should NOT see 'IF'
+  And I should NOT see 'EF'
   And I should NOT see 'SP'
   But I should see 'SJ'
+  And I should see 'IS'
+  And I should see 'ES'

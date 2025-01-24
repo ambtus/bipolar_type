@@ -9,10 +9,10 @@ Then I should see 'spiritual' within 'F'
 Scenario: the cookies page allows you to use your own words
 Given I am on the cookies page
 When I enter 'appreciative' for 'P'
-  And I enter 'anxious' for 'D'
+  And I enter 'anxious' for 'E'
   And I press 'Save'
 Then I should see 'appreciative' within 'P'
-  And I should see 'anxious' within 'D'
+  And I should see 'anxious' within 'E'
 
 Scenario: the cookies page allows you to bookmark your word
 Given I have entered 'up' for 'J'
