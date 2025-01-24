@@ -37,3 +37,8 @@ Given I am on my page
 When I am on the cookies page
 Then the link 'bookmark' should include '?details=show'
 
+Scenario: the cookies page doesn't have a link to itself
+Given I am on the cookies page
+Then I should NOT see 'please use the cookies page'
+  And I should NOT see 'Both'
+

@@ -9,7 +9,7 @@
 
   %body
     %p=render "layouts/links"
-    -if (%w{cycle realms answers types subtypes} & params.values).present?
+    -unless (%w{home cookies} & params.values).present?
       %div.right=render 'layouts/settings_form'
 
     =yield

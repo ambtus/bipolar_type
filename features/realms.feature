@@ -21,3 +21,8 @@ Given I am on the realms page
   And I press 'TL;DR'
 Then I should see 'Pending'
 
+Scenario: the realms page allows you to use your own words
+Given I am on the realms page
+When I follow the 'cookies' link
+Then I should see 'save your words'
+
