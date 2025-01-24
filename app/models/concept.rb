@@ -36,12 +36,4 @@ class Concept
     end
   end
 
-  def generic_words
-    if compound?
-      parts.map(&:symbol).to_phrase
-    else
-      symbol
-    end + ' things'
-  end
-
 end

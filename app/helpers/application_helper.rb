@@ -11,9 +11,7 @@ module ApplicationHelper
     when 'symbols'
       triplet.first
     when 'both'
-      [triplet.first, triplet.second.wrap].to_phrase
-    when 'things'
-      triplet.third
+      [triplet.first.colon, triplet.second].to_phrase
     else
       triplet.second
     end
@@ -22,7 +20,7 @@ module ApplicationHelper
   def triplet(thing)
     concept = thing.is_a?(Concept) ? thing : parse(thing)
     Rails.logger.debug "triplet for #{concept.inspect}"
-    result = [concept.symbol, word(concept), generic_words(concept)]
+    result = [concept.symbol, word(concept)]
     Rails.logger.debug "   is #{result}"
     result
   end
@@ -41,10 +39,6 @@ module ApplicationHelper
     cookies[key] ||
     Rails.application.config_for(:words)[key] ||
     "don’t have preference for #{key}"
-  end
-
-  def generic_words(concept)
-    concept.generic_words
   end
 
   def parse(symbol)
