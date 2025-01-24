@@ -27,46 +27,13 @@ module ApplicationHelper
     result
   end
 
-  def parse(symbol)
-    key = symbol.to_s
-    case key.length
-    when 3
-      Subtype.find_by(key)
-    when 2
-      Tendency.find_by(key) || Behavior.find_by(key)
-    when 1
-      Thing.find_by(key) || Help.find_by(key)
-    end
-  end
-
-
   def word(concept)
     if concept.is_a?(String)
       word(parse(concept))
     elsif concept.is_a?(Subtype)
-      [word(concept.thing).ly, word(concept.tendency)].to_phrase
-    elsif concept.is_a?(Behavior)
-      if concept.active?
-        preference(concept.symbol)
-      else
-        'not ' + word(concept.opposite)
-      end
+      [word(concept.realm).ly, word(concept.attitude)].to_phrase
     else
       preference(concept.symbol) || "cannot find word for #{concept.inspect}"
-    end
-  end
-
-  def generic_words(concept)
-    if concept.is_a?(Help)
-      word(concept)
-    elsif concept.is_a?(Behavior)
-      [generic_words(concept.help), concept.thing.generic_words].to_phrase
-    elsif concept.is_a?(Tendency)
-      [generic_words(concept.help), 'too many things'].to_phrase
-    elsif concept.is_a?(Subtype)
-      [generic_words(concept.help), 'too many', concept.thing.generic_words].to_phrase
-    else
-      concept.generic_words
     end
   end
 
@@ -76,23 +43,18 @@ module ApplicationHelper
     "don’t have preference for #{key}"
   end
 
-  def ly(subtype)
-    display [subtype.thing.symbol,
-             word(subtype.thing).ly,
-             subtype.thing.symbol]
+  def generic_words(concept)
+    concept.generic_words
   end
 
-  def problem(subtype)
-    [subtype.more? ? 'stop' : 'start',
-     display(transform(subtype.action, :ing)),
-     'before you should',
-     display(subtype.help),
-     cookies['setting'] == 'things' ? 'them' : 'things'
-     ].to_phrase
-     ['require',
-      subtype.drugs,
-      'in order to',
-     ].to_phrase
+  def parse(symbol)
+    key = symbol.to_s
+    case key.length
+    when 2
+      Subtype.find_by(key)
+    when 1
+      Realm.find_by(key) || Attitude.find_by(key)
+    end
   end
 
 end

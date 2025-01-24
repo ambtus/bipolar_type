@@ -1,0 +1,8 @@
+- content_for(:title, 'Cycle')
+
+-Attitude.each do |attitude|
+  %h2=display(transform(attitude, :capitalize))
+
+%center=render 'layouts/show_form'
+-if @show
+  Pending

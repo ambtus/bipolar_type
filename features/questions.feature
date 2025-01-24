@@ -7,34 +7,34 @@ Then I should see 'save your words'
 
 Scenario: the questions page allows you to choose an option
 Given I am on the questions page
-When I follow the 'emotionally thin' link
+When I follow the 'emotionally receptive' link
 Then I should see 'Question #2 of 3'
 
 Scenario: the questions page allows you to get to my page
 Given I am on the questions page
-When I follow the 'emotionally thin' link
-  And I follow the 'physically fat' link
-  And I follow the 'mentally weak' link
+When I follow the 'emotionally receptive' link
+  And I follow the 'physically depressed' link
+  And I follow the 'mentally productive' link
 Then I should be on my page
   And the 'Me' link should be disabled
 
 Scenario: the questions page doesnt always get to my page
 Given I am on the questions page
-When I follow the 'emotionally thin' link
-  And I follow the 'physically fat' link
-  And I follow the 'mentally strong' link
+When I follow the 'emotionally receptive' link
+  And I follow the 'physically depressed' link
+  And I follow the 'mentally manic' link
 Then I should NOT be on my page
   And the 'Me' link should NOT be disabled
 
 Scenario: the questions page uses your words
 Given I have entered 'spiritual' for 'F'
   And I have entered 'material' for 'T'
-  And I have entered 'dominant' for 'IJ'
-  And I have entered 'submissive' for 'EJ'
+  And I have entered 'angry' for 'M'
+  And I have entered 'powerful' for 'J'
   And I am on the questions page
-When I follow the 'spiritually thin' link
-  And I follow the 'materially dominant' link
-  And I follow the 'mentally submissive' link
+When I follow the 'spiritually receptive' link
+  And I follow the 'materially angry' link
+  And I follow the 'mentally powerful' link
 Then I should be on my page
 
 Scenario: the questions page shows all subtypes
@@ -45,8 +45,8 @@ Then I should see all subtypes
 Scenario: answering one question makes it and its siblings disappear
 Given I am on the questions page
   And I press 'Symbols'
-When I follow the 'IFP' link
-Then I should NOT see 'IFP'
-  And I should NOT see 'IFJ'
-  And I should NOT see 'ISP'
-  But I should see 'ISJ'
+When I follow the 'FP' link
+Then I should NOT see 'FP'
+  And I should NOT see 'FJ'
+  And I should NOT see 'SP'
+  But I should see 'SJ'

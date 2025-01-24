@@ -1,5 +1,5 @@
-Given('I have entered {string} for {string}') do |string, string2|
+Given('I have entered {string} for {string}') do |cookie, id|
   visit('/cookies')
-  fill_in string2, with: string
+  fill_in id, with: cookie
   click_button 'Save'
 end

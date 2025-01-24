@@ -14,26 +14,18 @@ Given('I am on my page') do
   visit('/me')
 end
 
-Given('I am on the types page') do
-  visit('/types')
+Given('I am on the attitudes page') do
+  visit('/attitudes')
 end
 
-Given('I am on the subtypes page') do
-  visit('/subtypes')
-end
-
-Given('I am on the cycle page') do
-  visit('/cycle')
-end
-
-Given('I am on the serenity page') do
-  visit('/serenity')
+Given('I am on the realms page') do
+  visit('/realms')
 end
 
 Then('I should be on my page') do
-  assert page.has_text?('BipolarType 15 of 24')
+  assert page.has_text?('BipolarType 14 of 24')
 end
 
 Then('I should NOT be on my page') do
-  assert page.has_no_text?('BipolarType 15 of 24')
+  assert page.has_no_text?('BipolarType 14 of 24')
 end

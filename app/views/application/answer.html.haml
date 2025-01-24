@@ -5,21 +5,20 @@
 %table
   %tr
     %th
-    -Thing.each do |thing|
+    -Realm.each do |realm|
       %th
-        =display thing
+        =display realm
   %tr
-    -Tendency.each do |tendency|
+    -Attitude.each do |attitude|
       %tr
         %th
-          =display(tendency)
-        -Thing.each do |thing|
+          =display(attitude)
+        -Realm.each do |realm|
 
-          -subtype = thing + tendency
+          -subtype = realm + attitude
           %td
             -unless @answer.taken?(subtype)
               =link_to_unless @answer.taken?(subtype), display(subtype), answer_path(@answer.next(subtype.symbol))
-              .left you #{problem(subtype)}
 
 -if Rails.env.development?
   =@answer.taken

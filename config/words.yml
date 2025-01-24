@@ -1,28 +1,12 @@
 shared:
 
-  C: change
-  A: accept
-  R: refuse
-  E: endure
-
   F: emotional
   S: physical
   T: financial
   N: mental
 
-  IP: thin
-  EP: fat
-  IJ: strong
-  EJ: weak
+  J: productive
+  P: receptive
+  M: manic
+  D: depressed
 
-  CF: talk
-  AF: listen
-
-  CS: walk
-  AS: eat
-
-  CT: spend
-  AT: earn
-
-  CN: think
-  AN: watch

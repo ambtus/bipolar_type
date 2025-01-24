@@ -13,19 +13,19 @@ class Answer
   def number; @question.last ; end
   def finished?; number.to_i > 3; end
 
-  def taken; answer_string.scan(/.../).collect{|s| Subtype.find_by(s)}; end
+  def taken; answer_string.scan(/../).collect{|s| Subtype.find_by(s)}; end
 
-  def things; taken.map(&:thing); end
-  def tendencies; taken.map(&:tendency); end
+  def realms; taken.map(&:realm); end
+  def attitudes; taken.map(&:attitude); end
 
-  def taken?(subtype); things.include?(subtype.thing) || tendencies.include?(subtype.tendency); end
+  def taken?(subtype); realms.include?(subtype.realm) || attitudes.include?(subtype.attitude); end
 
   def next(string); question.next + ':' + answer_string + string; end
 
-  def last; Subtype.all.find{|s| !things.include?(s.thing) && !tendencies.include?(s.tendency) }; end
+  def last; Subtype.all.find{|s| !realms.include?(s.realm) && !attitudes.include?(s.attitude) }; end
 
-  def all; (taken << last).sort_by(&:help); end
+  def all; (taken << last).sort_by(&:attitude); end
 
-  def thing_string; all.map(&:thing).map(&:symbol).join; end
-  def type_path; Type.find_by_thing_string(thing_string).path; end
+  def realm_string; all.map(&:realm).map(&:symbol).join; end
+  def type_path; Type.find_by_realm_string(realm_string).path; end
 end
