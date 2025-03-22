@@ -2,14 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'haml'
+gem 'puma'
 
 group :development do
   gem 'haml-rails'
-  gem 'thin'
-  gem 'error_highlight', '>= 0.4.0'
-end
-
-group :production do
-  gem 'unicorn'
 end
 
