@@ -1,6 +1,12 @@
 - content_for(:title, Focus.title)
 
-%h2 Foci
+%table
+  %caption
+    %h2 Four Foci
+  %tr
+    -Focus.all.each do |focus|
+      %td=render 'cookie', thing: focus
 
+%p BipolarType asserts that everyone cycles between all four foci. Your “type” includes the one that is most problematic.
 -Focus.all.each do |focus|
-  =render 'cookie', thing: focus, static: focus.static
+  %p You self-identify as a dominant #{focus.symbol} if #{focus.static} are most problematic and you often need to resolve #{word(focus)} issues.

@@ -2,16 +2,11 @@
 
 %table
   %caption
-    %h2 Moods
+    %h2 Two Moods
   %tr
     -Mood.each do |mood|
       %td=render 'cookie', thing: mood
 
-%table
-  %caption
-    %h2 Focused Moods
-  -Focus.each do |focus|
-    %tr
-      -Mood.each do |mood|
-        %td=render 'cookie', thing: mood + focus
-
+%p BipolarType asserts that everyone cycles between both moods. Your “type” includes the one that is more problematic.
+%p That is, you self-identify as an #{Mood.first.symbol} if #{word(Mood.first)} is more problematic and you more often want #{Mood.first.static} (e.g. alchohol) in order to calm down and be less active
+%p Conversely, you self-identify as an #{Mood.second.symbol} if #{word(Mood.second)} is more problematic and you more often want #{Mood.second.static} (e.g. caffeine) in order to rev up and be more active.

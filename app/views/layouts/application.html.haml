@@ -9,11 +9,13 @@
 
   %body
     %p=render "layouts/links"
-    -if (%w{answers types states behaviors} & params.values).present?
+    -if (%w{answers types} & params.values).present?
       %div.right=render 'layouts/form'
 
     =yield
 
+    -unless (%w{home answers types} & params.values).present?
+      %div=render 'layouts/explanation'
     %p=render "layouts/links"
 
     -if Rails.env.development?

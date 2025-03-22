@@ -7,15 +7,19 @@ class TypesController < ApplicationController
 
   def show
     @type = Type.find params[:id]
-    case params[:commit]
-      when 'Load My Words'
-        get_my_words
-      when 'Reset Words'
-        Rails.logger.debug 'hello'
-        Function.cookies.each {|key| cookies.delete(key)}
-        cookies.delete('mine')
+    Rails.logger.debug 'start cookies'
+    words = Rails.application.config_for(:words)
+    words.keys.each do |k|
+      if params.has_key? k
+        if params[k].blank? || (params[k] == words[k])
+          cookies.delete(k)
+        else
+          cookies[k] = params[k]
+        end
+      end
     end
-    Rails.logger.debug 'goodbye'
+    Rails.logger.debug 'stop cookies'
+    @url = type_path(@type.path, cookies.to_hash.without('settings'))
     render 'type'
   end
 

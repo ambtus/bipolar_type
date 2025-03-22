@@ -2,134 +2,167 @@ shared:
   I:
     - mania
     - introversion
+    - insomnia
+    - overactivity
+    - restlessness
+    - agitation
 
   E:
     - depression
     - extroversion
+    - hypersomnia
+    - underactivity
+    - laziness
+    - boredom
 
   F:
-    - affective
     - spiritual
-    - musical
-    - interpersonal
-    - emotional
-  IF:
-    - suicidal
-    - humble
-    - submissive
-    - modest
-  EF:
-    - homicidal
-    - egotistical
-    - dominant
-    - arrogant
-  FP:
-    - listen
-    - hear
-    - understand
-    - believe
-  FJ:
-    - talk
-    - tell people
-    - sing or preach
-    - read or write
-
+    - social
+    - political
+    - religious
+    - verbal
   S:
     - physical
-    - caloric
+    - sensual
     - athletic
     - spatial
-    - sensual
-
-  IS:
-    - anorexic
-    - skinny
-    - thin
-    - boney
-  ES:
-    - obese
-    - fat
-    - curvy
-    - soft
-  SP:
-    - eat
-    - chew
-    - swallow
-    - digest
-  SJ:
-    - do
-    - go places
-    - walk or run
-    - hit or lift weights
-
+    - mobile
   T:
-    - financial
     - material
+    - tangible
     - commercial
-    - fiscal
-    - taxable
-
-  IT:
-    - destitute
-    - homeless
-    - bankrupt
-    - poor
-  ET:
-    - miserly
-    - wealthy
-    - loaded
-    - filthy rich
-  TP:
-    - earn
-    - sell
-    - compete
-    - collect
-  TJ:
-    - spend
-    - buy things
-    - use cash or credit
-    - pay or invest
-
+    - financial
+    - transferable
   N:
     - mental
+    - intangible
+    - intellectual
     - cognitive
-    - artistic
-    - scientific
-    - reasonable
-  IN:
-    - ignorant
-    - forgetful
-    - clueless
-    - unrealistic
-  EN:
-    - stupid
-    - trivial
-    - know-it-all
-    - pedantic
-  NP:
-    - watch
-    - learn
-    - analyze
-    - memorize
-  NJ:
-    - think
-    - visualize ideas
-    - plan or predict
-    - imagine or dream
+    - conceptual
 
 
   P:
-    - intake
-    - get energy
-    - accept things
-    - take
-    - consume
-    - internalize
+    - acute
+    - early
+    - current
+    - new
+    - different
+    - original
+    - energetic
   J:
-    - output
-    - use energy
-    - change things
-    - give
-    - produce
-    - externalize
+    - chronic
+    - late
+    - ongoing
+    - old
+    - repetitive
+    - familiar
+    - strong
+
+  EP:
+    - get energy
+    - first quarter
+    - morning
+    - Monday
+    - waxing moon
+    - spring equinox
+
+
+  IP:
+    - burn energy
+    - second quarter
+    - day
+    - midweek
+    - full moon
+    - summer solstice
+
+
+  IJ:
+    - use strength
+    - third quarter
+    - afternoon
+    - Friday
+    - waning moon
+    - autumn equinox
+
+
+  EJ:
+    - recover strength
+    - fourth quarter
+    - night
+    - weekend
+    - new moon
+    - winter solstice
+
+
+
+  IFP:
+    - talk
+    - emote
+    - sing
+  IFJ:
+    - write
+    - use words
+    - preach
+  EFP:
+    - listen to music
+    - understand intonation
+    - hear harmonies
+  EFJ:
+    - listen to words
+    - understand meaning
+    - hear rhythms
+
+  ISP:
+    - walk
+    - do aerobics
+    - play sports
+  ISJ:
+    - do chores
+    - use muscles
+    - lift weights
+
+  ESP:
+    - eat breakfast
+    - digest carbs
+    - taste sweets
+  ESJ:
+    - eat dinner
+    - digest protein
+    - taste savories
+
+  ITP:
+    - pay cash
+    - buy outright
+    - spend money
+  ITJ:
+    - use credit
+    - buy over time
+    - borrow money
+  ETP:
+    - earn wages
+    - collect tips
+    - win lump sums
+  ETJ:
+    - earn investment income
+    - collect retirement income
+    - win annuities
+
+  INP:
+    - guess
+    - imagine
+    - intuit
+  INJ:
+    - use logic
+    - prove
+    - reason
+  ENP:
+    - watch beginnings
+    - learn specific facts
+    - look at causes
+    - see the sun rise
+  ENJ:
+    - watch endings
+    - learn general rules
+    - look at effects
+    - see the sun set
 

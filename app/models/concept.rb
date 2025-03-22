@@ -14,6 +14,7 @@ class Concept
     def each(&block); self::ALL.each(&block); end
     def compound?; self::ALL.first.compound?; end
     def title
+      return name.pluralize
       if compound?
         self::ALL.count
       else
@@ -21,6 +22,9 @@ class Concept
       end
     end
     def find_by(symbol); self::ALL.find{|x| x.symbol == symbol}; end
+    %w{first second third fourth last}.each do |ordinal|
+      define_method(ordinal) {self::ALL.send(ordinal)}
+    end
   end
 
   def opposite; self.class::ALL.without(self).first; end

@@ -1,30 +1,32 @@
 - content_for(:title, @type.symbol)
 
+%div.right
+  You can use
+  =link_to 'this link', @url
+  %br
+  to bookmark your words.
+
+
 %table
   %caption
     %h2 Problems
-  %tr
-    %th
-    -Action.each do |action|
-      %th=formatted action
-  -@type.problems.values_at(1,2,0,3).in_groups_of(2).each_with_index do |row, index|
+  -@type.behaviors.in_groups_of(2).each do |row|
     %tr
-      %th=index.even? ? 'do less' : 'do more'
-      -row.each do |problem|
-        %td.bordered=formatted problem
+      -row.each do |behavior|
+        %td
+          =formatted(behavior)
+          -unless cookies['setting'] == 'symbols'
+            .left=render 'problem', behavior: behavior
 
-%p
-  If you want to do less of something, you must have something to
-  %em replace
-  it with.
-  %br
-  If you want to do more of something, you must do it when you are in the right
-  %em mood.
+%h2 Solutions By Focus
+-Focus.each do |focus|
+  %h3=formatted(focus)
+  .left=render 'by_focus', behavior: @type.find_behavior(focus)
 
-=render 'advice', over: @type.problems.first, under: @type.problems.fourth, urge: false, quarter: 'spring morning', also: @type.problems.second.behavior.opposite
 
-=render 'advice', over: @type.problems.second, under: @type.problems.first, urge: true, quarter: 'summer midday', also: @type.problems.third.behavior.opposite
+%h2 Priorities By State
+-State.sorted.each_with_index do |state, index|
+  %h3=formatted(state)
+  =render 'by_state', behavior: @type.find_behavior(state), flip: @type.flip_behaviors[index].flip, flop: @type.flop_behaviors[index].flop, opposite: @type.opposite_behaviors[index].opposite
 
-=render 'advice', over: @type.problems.third, under: @type.problems.fourth, urge: true, quarter: 'autumn afternoon', also: @type.problems.second.behavior.opposite
 
-=render 'advice', over: @type.problems.fourth, under: @type.problems.first, urge: false, quarter: 'winter evening', also: @type.problems.third.behavior.opposite

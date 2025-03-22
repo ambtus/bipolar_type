@@ -1,0 +1,12 @@
+- content_for(:title, Aspect.title)
+
+%table
+  %caption
+    %h2 Two Aspects
+  %tr
+    -Aspect.each do |aspect|
+      %td=render 'cookie', thing: aspect
+
+%p BipolarType asserts that everyone cycles between both aspects. Your “type” includes the one that is more problematic.
+-Aspect.all.each do |aspect|
+  %p You self-identify as a dominant #{aspect.symbol} if #{aspect.static} is more problematic and you often need to deal with #{word(aspect)} issues.

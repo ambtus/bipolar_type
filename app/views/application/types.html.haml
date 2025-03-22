@@ -1,13 +1,13 @@
 - content_for(:title, Type.title)
-%h2 The 24 BipolarTypes (4!).
+%h2 Twenty-Four BipolarTypes (4!).
 %table
   %tr
     %th
-    -State.sorted.each_with_index do |state, index|
+    -State.all.each_with_index do |state, index|
       %th
         =link_to_unless index == @sort_index, formatted(state), types_path(sort: index)
   -@types.each_with_index do |type, index|
     %tr
       %th=link_to type.index, type_path(type.path)
-      -type.problems.each do |problem|
-        %td.left=formatted problem
+      -type.behaviors.each do |behavior|
+        %td.left=formatted behavior

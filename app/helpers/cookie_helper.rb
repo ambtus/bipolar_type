@@ -1,7 +1,7 @@
 module CookieHelper
 
   def symbolic(thing)
-    [thing.symbol, word(thing).wrap].to_phrase
+    [thing.symbol.colon, word(thing)].to_phrase
   end
 
   def formatted(thing)
@@ -18,14 +18,6 @@ module CookieHelper
   def word(thing)
     return cookies[thing.symbol] unless cookies[thing.symbol].blank?
     return thing.words.first unless thing.words.blank?
-    if thing.is_a? Problem
-      [word(thing.behavior), thing.extreme? ? 'too little' : 'too much'].to_phrase
-    else
-      compound(thing)
-    end
-  end
-
-  def compound(thing)
     thing.parts.collect{|p| word(p)}.to_phrase
   end
 
