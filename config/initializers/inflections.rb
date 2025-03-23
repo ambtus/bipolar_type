@@ -19,6 +19,10 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'AKA'
   inflect.acronym 'MBTI'
+  inflect.acronym 'EP'
+  inflect.acronym 'IP'
+  inflect.acronym 'EJ'
+  inflect.acronym 'IJ'
   inflect.singular(/([^f])oves$/i, '\1ove')
   inflect.uncountable %w( amnesia anorexia dementia)
   inflect.irregular 'focus', 'foci'

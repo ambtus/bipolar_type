@@ -1,19 +1,17 @@
 shared:
   I:
     - mania
-    - introversion
     - insomnia
     - overactivity
-    - restlessness
-    - agitation
+    - stress
+    - over-stimulation
 
   E:
     - depression
-    - extroversion
     - hypersomnia
     - underactivity
-    - laziness
     - boredom
+    - under-stimulation
 
   F:
     - spiritual
@@ -43,56 +41,12 @@ shared:
 
   P:
     - acute
-    - early
-    - current
-    - new
-    - different
-    - original
-    - energetic
+    - intermittent
+    - bursty
   J:
     - chronic
-    - late
-    - ongoing
-    - old
-    - repetitive
-    - familiar
-    - strong
-
-  EP:
-    - get energy
-    - first quarter
-    - morning
-    - Monday
-    - waxing moon
-    - spring equinox
-
-
-  IP:
-    - burn energy
-    - second quarter
-    - day
-    - midweek
-    - full moon
-    - summer solstice
-
-
-  IJ:
-    - use strength
-    - third quarter
-    - afternoon
-    - Friday
-    - waning moon
-    - autumn equinox
-
-
-  EJ:
-    - recover strength
-    - fourth quarter
-    - night
-    - weekend
-    - new moon
-    - winter solstice
-
+    - constant
+    - steady
 
 
   IFP:

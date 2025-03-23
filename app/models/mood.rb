@@ -13,5 +13,6 @@ class Mood < Concept
   end
 
   def static; %w{  sedatives stimulants }[index]; end
+  def verb; %w{ use get}[index]; end
 
 end

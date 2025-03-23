@@ -20,4 +20,8 @@ class State < Concept
   def flip; mood.opposite + aspect ; end
   def flop; mood + aspect.opposite ; end
   def opposite; mood.opposite + aspect.opposite ; end
+
+  def verb; mood.verb; end
+  def noun; aspect.static; end
+  def static; [verb, noun].to_phrase; end
 end

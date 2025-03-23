@@ -1,7 +1,7 @@
 module CookieHelper
 
   def symbolic(thing)
-    [thing.symbol.colon, word(thing)].to_phrase
+    [word(thing), thing.symbol.wrap].to_phrase
   end
 
   def formatted(thing)

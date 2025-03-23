@@ -9,24 +9,26 @@
 
 %table
   %caption
-    %h2 Problems
+    %h2
+      Problems
+      .unbold.italic (compulsions)
   -@type.behaviors.in_groups_of(2).each do |row|
     %tr
       -row.each do |behavior|
-        %td
-          =formatted(behavior)
-          -unless cookies['setting'] == 'symbols'
-            .left=render 'problem', behavior: behavior
-
-%h2 Solutions By Focus
--Focus.each do |focus|
-  %h3=formatted(focus)
-  .left=render 'by_focus', behavior: @type.find_behavior(focus)
+        %td=formatted(behavior)
 
 
-%h2 Priorities By State
+%h2
+  Solutions
+  .unbold.italic (by State)
 -State.sorted.each_with_index do |state, index|
-  %h3=formatted(state)
+  %h3=formatted(state).titleize
   =render 'by_state', behavior: @type.find_behavior(state), flip: @type.flip_behaviors[index].flip, flop: @type.flop_behaviors[index].flop, opposite: @type.opposite_behaviors[index].opposite
 
 
+%h2
+  Solutions
+  .unbold.italic (by Focus)
+-Focus.each do |focus|
+  %h3=formatted(focus).titleize
+  .left=render 'by_focus', behavior: @type.find_behavior(focus)

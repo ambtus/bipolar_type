@@ -1,14 +1,19 @@
 - content_for(:title, State.title)
-
+%div.right You can change the words on the <br /> Moods or Aspects pages.
 %h2 Four States
 
 %table
+  %tr
+    %th
+    -Aspect.each do |aspect|
+      %th=aspect.static
   -Mood.each do |mood|
     %tr
+      %th=mood.verb
       -Aspect.each do |aspect|
-        %td.left.bordered
-          =render 'cookie', thing: mood + aspect
+        %td.bordered
+          =formatted(mood + aspect)
 
 %p BipolarType asserts that everyone cycles between all four states. Your “type” is the one that is most problematic.
 -State.sorted.each do |state|
-  %p You self-identify as an #{state.symbol} if you most often need to resolve #{word(state.aspect)} #{word(state.mood)} issues during the #{word(state)} phase. 
+  %p You self-identify as an #{state.symbol} if you most often need to resolve #{word(state)} issues #{state.static.ing.too_much.wrap}.

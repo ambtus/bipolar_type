@@ -4,15 +4,12 @@
     =key.colon
     -if thing.respond_to?(:static)
       =thing.static
-    -elsif thing.is_a?(State)
-      =word thing.aspect
-      =word thing.mood
     -elsif thing.is_a?(Behavior)
       =word thing.focus
       =word thing.state
   %br
   -unless thing.words.blank?
-    %ul.left.none
+    %ul.none
       -thing.words.without(word(thing)).each do |w|
         %li=w
   =f.text_field key, value: word(thing), maxlength: 80, size: word(thing).length
