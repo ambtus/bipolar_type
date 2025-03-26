@@ -1,10 +1,10 @@
 class Attitude < Concept
 
-  SYMBOL = %w{J I E P} # cannot overlap realm symbols
+  SYMBOL = %w{E P J I} # cannot overlap realm symbols
 
   ALL = SYMBOL.collect {|symbol| self.new symbol}
 
-  def dominant?; [0,3].include?(index); end
+  def dominant?; %w{P J}.include?(symbol); end
 
   def +(realm)
     Subtype.all.find{|x| x.realm == realm && x.attitude == self}

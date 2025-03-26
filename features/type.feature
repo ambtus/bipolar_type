@@ -2,15 +2,15 @@ Feature: type page
 
 Scenario: my type page describes my subtypes
 Given I am on my page
-Then I should see 'physically depressed'
-  And I should see 'emotionally receptive'
-  And I should see 'financially manic'
-  And I should see 'mentally productive'
+Then I should see 'Physically Depressed'
+  And I should see 'Socially Energetic'
+  And I should see 'Financially Manic'
+  And I should see 'Mentally Strong'
 
 Scenario: my type page reflects cookies
 Given I have entered 'spiritual' for 'F'
 When I am on my page
-Then I should see 'spiritually receptive'
+Then I should see 'Spiritually Energetic'
 
 Scenario: my type page defaults to short versions
 Given I am on my page

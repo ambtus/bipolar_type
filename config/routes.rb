@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'application#home'
+  get 'cycle', to: 'application#cycle'
   get 'attitudes', to: 'application#attitudes'
   get 'realms', to: 'application#realms'
   resources :answers, only: [:show]

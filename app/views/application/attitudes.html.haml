@@ -1,7 +1,18 @@
-- content_for(:title, 'Cycle')
+- content_for(:title, 'Attitudes')
 
--Attitude.each do |attitude|
-  %h2=display(transform(attitude, :capitalize))
+%table
+  %tr
+    %td{colspan:2}
+      %h2=display(transform(Attitude.first, :capitalize))
+
+  %tr
+    %td
+      %h2=display(transform(Attitude.second, :capitalize))
+    %td
+      %h2=display(transform(Attitude.third, :capitalize))
+  %tr
+    %td{colspan:2}
+      %h2=display(transform(Attitude.fourth, :capitalize))
 
 %center=render 'layouts/show_form'
 -if @show

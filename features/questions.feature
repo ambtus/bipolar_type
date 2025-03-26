@@ -7,20 +7,20 @@ Then I should see 'save your words'
 
 Scenario: the questions page allows you to choose an option
 Given I am on the questions page
-When I follow the 'emotionally receptive' link
+When I follow the 'socially energetic' link
 Then I should see 'Question #2 of 3'
 
 Scenario: the questions page allows you to get to my page
 Given I am on the questions page
-When I follow the 'emotionally receptive' link
+When I follow the 'socially energetic' link
   And I follow the 'physically depressed' link
-  And I follow the 'mentally productive' link
+  And I follow the 'mentally strong' link
 Then I should be on my page
   And the 'Me' link should be disabled
 
 Scenario: the questions page doesnt always get to my page
 Given I am on the questions page
-When I follow the 'emotionally receptive' link
+When I follow the 'socially energetic' link
   And I follow the 'physically depressed' link
   And I follow the 'mentally manic' link
 Then I should NOT be on my page
@@ -32,7 +32,7 @@ Given I have entered 'spiritual' for 'F'
   And I have entered 'angry' for 'I'
   And I have entered 'powerful' for 'J'
   And I am on the questions page
-When I follow the 'spiritually receptive' link
+When I follow the 'spiritually energetic' link
   And I follow the 'materially angry' link
   And I follow the 'mentally powerful' link
 Then I should be on my page

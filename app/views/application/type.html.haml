@@ -2,8 +2,18 @@
 
 %h2 BipolarType #{@type.index + 1} of 24
 
--@type.subtypes.each do |subtype|
-  %h3=display(subtype)
+%table
+  %tr
+    %td{colspan:2}
+      %h3=display(transform(@type.subtypes.first, :titleize))
+  %tr
+    %td
+      %h3=display(transform(@type.subtypes.second, :titleize))
+    %td
+      %h3=display(transform(@type.subtypes.third, :titleize))
+  %tr
+    %td{colspan:2}
+      %h3=display(transform(@type.subtypes.fourth, :titleize))
 
 %center=render 'layouts/show_form'
 -if @show

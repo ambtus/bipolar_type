@@ -2,7 +2,7 @@ Feature: realms page
 
 Scenario: the realms page lists the attitudes
 Given I am on the realms page
-Then I should see 'Emotional'
+Then I should see 'Social'
   And I should see 'Physical'
   And I should see 'Mental'
   And I should see 'Financial'

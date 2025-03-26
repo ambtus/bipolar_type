@@ -1,0 +1,21 @@
+- content_for(:title, 'Cycle')
+
+%table
+  %caption
+    %h2 The Normal Cycle
+  %tr
+    %th Burn energy
+    %td Up &rArr;
+    %th Use strength
+  %tr
+    %td Energized &uArr;
+    %th &orarr;
+    %td Tired &dArr;
+  %tr
+    %th Get energy
+    %td &lArr; Down
+    %th Recover strength
+
+%center=render 'layouts/show_form'
+-if @show
+  Pending

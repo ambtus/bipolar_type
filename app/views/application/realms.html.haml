@@ -1,7 +1,9 @@
 - content_for(:title, 'Realms')
 
--Realm.each do |realm|
-  %h2=display(transform(realm, :capitalize))
+%table
+  %tr
+    -Realm.each do |realm|
+      %th=display(transform(realm, :capitalize))
 
 %center=render 'layouts/show_form'
 -if @show
