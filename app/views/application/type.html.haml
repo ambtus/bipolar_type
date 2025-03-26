@@ -23,7 +23,7 @@
   .unbold.italic (by State)
 -State.sorted.each_with_index do |state, index|
   %h3=formatted(state).titleize
-  =render 'by_state', behavior: @type.find_behavior(state), flip: @type.flip_behaviors[index].flip, flop: @type.flop_behaviors[index].flop, opposite: @type.opposite_behaviors[index].opposite
+  =render 'by_state', behavior: @type.quad.find_behavior(state), flip: @type.quad.flip_behaviors[index].flip, flop: @type.quad.flop_behaviors[index].flop, opposite: @type.quad.opposite_behaviors[index].opposite
 
 
 %h2
@@ -31,4 +31,4 @@
   .unbold.italic (by Focus)
 -Focus.each do |focus|
   %h3=formatted(focus).titleize
-  .left=render 'by_focus', behavior: @type.find_behavior(focus)
+  .left=render 'by_focus', behavior: @type.quad.find_behavior(focus)

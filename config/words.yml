@@ -76,11 +76,11 @@ shared:
     - lift weights
 
   ESP:
-    - eat breakfast
+    - eat sweet carbs
     - digest carbs
     - taste sweets
   ESJ:
-    - eat dinner
+    - eat savory proteins
     - digest protein
     - taste savories
 

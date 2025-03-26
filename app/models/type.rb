@@ -1,44 +1,30 @@
 class Type
 
-  def initialize(string)
-    @focus_string = string
-    @foci = string.chars.collect{|s| Focus.find_by(s)}
+  def initialize(quad, dominant)
+    @quad = quad
+    @dominant = dominant
   end
-  attr_reader :focus_string, :foci
+  attr_reader :quad, :dominant
 
-  ALL = Focus.all.permutation(4).collect do |foci|
-          Type.new(foci.map(&:symbol).join)
-        end
-  def index; ALL.index self; end
-  def <=>(other); self.index <=> other.index; end
-  alias path :focus_string
+  ALL = Quad::ALL.collect do |quad|
+            quad.behaviors.collect do |dominant|
+              Type.new(quad, dominant)
+          end
+        end.flatten.sort_by(&:dominant)
 
   class << self
-    def all; ALL; end
-    def each(&block); ALL.each(&block); end
-    def title; return name.pluralize; all.count.to_s; end
-    def find(string); all.find{|t| t.focus_string == string}; end
-    def my_path; 'FTSN'; end
-    def my_type; find(my_path); end
-    def sort_by(index); all.sort_by{|t| t.foci[index]}.in_groups_of(6).map(&:sort).flatten; end
+    def my_type; ALL.find{|t| t.quad==Quad.my_quad && t.dominant==Behavior.my_dominant}; end
+    def find(string); ALL.find{|t| t.quad.path == string[0,4] && t.dominant.focus.symbol == string.last}; end
   end
 
-  def behaviors; foci.add(State.all).flatten; end
-  def flip_behaviors; behaviors.values_at(0,2,3,1); end
-  def flop_behaviors; behaviors.values_at(3,1,0,2); end
-  def opposite_behaviors; behaviors.values_at(1,3,2,0); end
+  def behaviors; quad.behaviors; end
+  def index; behaviors.index(dominant); end
+  def wings; behaviors.without(dominant).select{|b| b.aspect == dominant.aspect || b.mood == dominant.mood}; end
+  def euthymic; behaviors.without(dominant).without(wings).first; end
+  def symbol; [wings.first, dominant, wings.second].map(&:symbol).join('•'); end
+  alias inspect :symbol
 
-  alias inspect :behaviors
+  def path; quad.path + dominant.focus.symbol; end
 
-  def symbol; behaviors.map(&:symbol).join('•'); end
-
-  def find_behavior(thing)
-    if thing.is_a?(State)
-      behaviors.find{|p| p.state == thing}
-    elsif thing.is_a?(Focus)
-      behaviors.find{|p| p.focus == thing}
-    end
-  end
 
 end
-

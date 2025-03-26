@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'states', to: 'application#states'
   get 'behaviors', to: 'application#behaviors'
   resources :answers, only: [:show]
+  resources :quads, only: [:show]
   resources :types, only: [:show, :index]
   get 'cookies', to: 'cookies#update'
   get '/me' => 'types#me', as: :my

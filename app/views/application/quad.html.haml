@@ -1,0 +1,18 @@
+- content_for(:title, @quad.symbol)
+
+%table
+  %caption
+    %h2 Question 4 of 4
+  %tr
+    -@quad.types.each do |type|
+      %th=link_to type.symbol, type_path(type.path)
+  %tr
+    -@quad.types.in_groups_of(2) do |pair|
+      -wings = pair.first.wings
+      -check = pair.second.wings
+      -raise 'oops' unless wings == check
+      %td.left{colspan:2} I do not know <em>why</em> I cannot stop #{word(wings.first).ing} or #{word(wings.second).ing}.
+  %tr
+    -@quad.types.each_with_index do |type, index|
+      -unless index == 2
+        %td.left{colspan: index == 1 ? 2 : 1} #{word(type.dominant.mood).capitalize} is worse than #{word(type.dominant.mood.opposite)}: #{type.dominant.mood.static} are often necessary, but #{type.dominant.mood.opposite.static} just aggravate my #{word(type.dominant.mood)}.

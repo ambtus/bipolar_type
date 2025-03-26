@@ -26,6 +26,6 @@ class Answer
 
   def all; (taken << last).sort; end
 
-  def type_path; all.map(&:focus).map(&:symbol).join; end
+  def quad_path; all.map(&:focus).map(&:symbol).join; end
 
 end

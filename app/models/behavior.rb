@@ -10,6 +10,10 @@ class Behavior < Concept
 
   ALL = SYMBOL.collect{|symbol| self.new symbol}
 
+  class << self
+    def my_dominant; find_by('IFP'); end
+  end
+
   def mood; Mood.find_by(symbol.first); end
   def focus; Focus.find_by(symbol.second); end
   def aspect; Aspect.find_by(symbol.third); end
