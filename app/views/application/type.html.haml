@@ -1,20 +1,35 @@
 - content_for(:title, @type.symbol)
 
-%h2 BipolarType #{@type.index + 1} of 24
-
+%h2
+  BipolarType #{@type.index + 1} of 24
+  %br
+  =display(@type)
 %table
   %tr
-    %td{colspan:2}
-      %h3=display(transform(@type.subtypes.first, :titleize))
+    %th=display(@type.burn)
+    %td=display(Attitude.E)
+    %th=display(@type.use)
   %tr
-    %td
-      %h3=display(transform(@type.subtypes.second, :titleize))
-    %td
-      %h3=display(transform(@type.subtypes.third, :titleize))
+    %td=display(Attitude.P)
+    %th &orarr;
+    %td=display(Attitude.J)
   %tr
-    %td{colspan:2}
-      %h3=display(transform(@type.subtypes.fourth, :titleize))
+    %th=display(@type.get)
+    %td=display(Attitude.I)
+    %th=display(@type.recover)
 
-%center=render 'layouts/show_form'
+%center=render 'layouts/tldr_button'
 -if @show
-  Pending
+  %h2 #{display(@type.subtypes.first.realm)} #{display(@type.subtypes.first.attitude)}
+  %p eating carbs isn't energizing and you don't have to be calm to digest protein.
+  %p can only move when revved and moving is tiring.
+  %h2 #{display(@type.subtypes.last.realm)} #{display(@type.subtypes.last.attitude)}
+  %p using credit isn't tiring and don't have to be revved to pay cash.
+  %p can only collect returns when calm and earning cash is revving.
+  %h2 #{display(@type.subtypes.second.attitude)} and #{display(@type.subtypes.third.attitude)}
+  %p #{display(@type.subtypes.first.realm)} and #{display(@type.subtypes.last.realm)} are always going to be unbalanced
+  %p so should spend time in F & N instead
+  %h2 #{display(@type.subtypes.first.attitude)}
+  %p can talk and use logic even when depressed. don't have to eat just because cannot *move*. a) eating carbs won't energize you and b) you're not tired out from physical labor and don't need the protein
+  %h2 #{display(@type.subtypes.fourth.attitude)}
+  %p can listen to music and watch results even when manic. don't have to spend just because cannot *earn*. a) using credit won't tire you and b) you're not revved up from earning cash and don't need to spend it

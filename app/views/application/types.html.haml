@@ -1,0 +1,13 @@
+- content_for(:title, '24 Types')
+%h2 The 24 BipolarTypes (4!)
+%table
+  %tr
+    %th
+    -Attitude.all.each_with_index do |attitude, index|
+      %th
+        =link_to_unless index == @sort_index, display(attitude), types_path(sort: index)
+  -@types.each_with_index do |type, index|
+    %tr
+      %th=link_to type.index + 1, type_path(type.path)
+      -type.realms.each do |realm|
+        %td.left=display realm

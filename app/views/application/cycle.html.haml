@@ -4,18 +4,72 @@
   %caption
     %h2 The Normal Cycle
   %tr
-    %th Burn energy
-    %td Up &rArr;
-    %th Use strength
-  %tr
-    %td Energized &uArr;
-    %th &orarr;
-    %td Tired &dArr;
-  %tr
-    %th Get energy
-    %td &lArr; Down
-    %th Recover strength
+    %td=display(transform(Action.IP, :capitalize))
+    %td
+      %b=display(transform(Attitude.I, :capitalize))
+    %td=display(transform(Action.IJ, :capitalize))
 
-%center=render 'layouts/show_form'
+  %tr
+    %td
+      %b=display(transform(Attitude.P, :capitalize))
+    %th &orarr;
+    %td
+      %b=display(transform(Attitude.J, :capitalize))
+
+  %tr
+    %td=display(transform(Action.EP, :capitalize))
+    %td
+      %b=display(transform(Attitude.E, :capitalize))
+    %td=display(transform(Action.EJ, :capitalize))
+
+%p The goal of BipolarType is to cycle between #{display(Attitude.P)} and #{display(Attitude.J)} instead of #{display(Attitude.I)} and #{display(Attitude.E)}.
+
+%center=render 'layouts/tldr_button'
 -if @show
-  Pending
+
+  %table
+    %tr
+      %td.bottom.none.right
+        %b Midday
+        %br
+        (second quarter)
+        %br
+        %italic=display(transform(Action.IP, :titleize))
+      %td
+        %b=display(transform(Attitude.I, :capitalize))
+        .left All #{display(Action.IP)} and #{display(Action.IJ)} without enough #{display(Action.EJ)} or #{display(Action.EP)} is unbalanced and unhealthy.
+      %td.bottom.none.left
+        %b Afternoon
+        %br
+        (third quarter)
+        %br
+        %italic=display(transform(Action.IJ, :titleize))
+
+    %tr
+      %td
+        %b=display(transform(Attitude.P, :capitalize))
+        .left All #{display(Action.EP)} and #{display(Action.IP)} without much #{display(Action.IJ)} or #{display(Action.EJ)} is somewhat unbalanced but not particularly unhealthy.
+
+      %th &orarr;
+      %td
+        %b=display(transform(Attitude.J, :capitalize))
+        .left All #{display(Action.IJ)} and #{display(Action.EJ)} without much #{display(Action.EP)} or #{display(Action.IP)} is somewhat unbalanced but not particularly unhealthy.
+
+    %tr
+      %td.none.right
+        %b Morning
+        %br
+        (first quarter)
+        %br
+        %italic=display(transform(Action.EP, :titleize))
+
+      %td.bottom
+        %b=display(transform(Attitude.E, :capitalize))
+        .left All #{display(Action.EJ)} and #{display(Action.EP)} without enough #{display(Action.IP)} or #{display(Action.IJ)} is unbalanced and unhealthy.
+
+      %td.none.left
+        %b Evening
+        %br
+        (fourth quarter)
+        %br
+        %italic=display(transform(Action.EJ, :titleize))

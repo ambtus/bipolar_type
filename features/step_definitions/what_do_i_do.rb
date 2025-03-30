@@ -7,5 +7,5 @@ When('I enter {string} for {string}') do |string, string2|
 end
 
 When('I press {string}') do |string|
-  click_button string
+  click_button string, match: :first
 end

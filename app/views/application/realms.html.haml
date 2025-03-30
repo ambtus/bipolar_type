@@ -1,10 +1,23 @@
 - content_for(:title, 'Realms')
 
+%center=render 'layouts/tldr_button'
+
 %table
   %tr
     -Realm.each do |realm|
-      %th=display(transform(realm, :capitalize))
+      %th=display(transform(realm, :titleize))
+  -Action.all.values_at(2,0,1,3).each do |action|
+    %tr
+      -action.behaviors.each do |behavior|
+        %td
+          -if @show
+            #{display(behavior.realm)} #{display(action)}
+            %br
+            %br
+          %b=display(behavior)
+          -if @show
+            %br
+            %br
+            #{display(behavior.pj)} #{display(behavior.ei)}
 
-%center=render 'layouts/show_form'
--if @show
-  Pending
+%center=render 'layouts/tldr_button'

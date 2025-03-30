@@ -2,9 +2,17 @@ Feature: cookies page
 
 Scenario: the cookies page allows you to use your own word
 Given I am on the cookies page
-When I enter 'spiritual' for 'F'
+When I enter 'xyzzy' for 'F'
   And I press 'Save'
-Then I should see 'spiritual' within 'F'
+Then I should see 'xyzzy' within 'F'
+
+Scenario: the cookies page allows you to use any save button
+Given I am on the cookies page
+When I enter 'xyzzy' for 'F'
+  And I enter 'oops' for 'J'
+  And I press 'Save'
+Then I should see 'xyzzy' within 'F'
+  And I should see 'oops' within 'J'
 
 Scenario: the cookies page allows you to use your own words
 Given I am on the cookies page

@@ -22,6 +22,10 @@ Given('I am on the realms page') do
   visit('/realms')
 end
 
+Given('I am on the cycle page') do
+  visit('/cycle')
+end
+
 Then('I should be on my page') do
   assert page.has_no_link?('Me')
 end

@@ -7,6 +7,9 @@ class Concept
   alias inspect :symbol
 
   ALL = SYMBOL.collect {|symbol| self.new symbol}
+  SYMBOL.each do |sym|
+    define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
+  end
 
   class << self
     def all; self::ALL; end

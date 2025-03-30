@@ -14,10 +14,10 @@ Given I am on the homepage
 When I follow the 'Realms' link
 Then I should see 'Physical'
 
-Scenario: the home page has a link to the attitudes page
+Scenario: the home page has a link to the cycle page
 Given I am on the homepage
-When I follow the 'Attitudes' link
-Then I should see 'Manic'
+When I follow the 'Cycle' link
+Then I should see 'Mania'
 
 Scenario: the home page has a link to the questions page
 Given I am on the homepage

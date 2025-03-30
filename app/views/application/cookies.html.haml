@@ -10,7 +10,6 @@
       %th Default word
       %th Alternate words
       %th Your word
-      %th{rowspan: @words.count}= f.submit 'Save'
 
     -@words.each do |key, value|
       %tr
@@ -18,3 +17,6 @@
         %td=value
         %td=@alt_words[key]
         %td=f.text_field key, value: cookies[key], maxlength: 80, size: 10
+      -if @words.keys.index(key)%4 == 3
+        %tr
+          %th{colspan:4}= f.submit 'Save'

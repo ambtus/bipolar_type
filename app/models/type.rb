@@ -19,7 +19,7 @@ class Type
     def title; [all.count, name.pluralize].to_phrase; end
     def find(string); all.find{|t| t.index == string.to_i-1}; end
     def find_by_realm_string(string); all.find{|t| t.realm_string == string}; end
-    def my_path; '7'; end
+    def my_path; '8'; end
     def my_type; find(my_path); end
     def sort_by(index); all.sort_by{|t| t.subtypes[index]}.in_groups_of(6).map(&:sort).flatten; end
   end
@@ -32,6 +32,11 @@ class Type
   alias inspect :symbol
 
   def subtype_for(attitude); subtypes[attitude.index]; end
+
+  def get; subtype_for(Attitude.P).realm + Action.EP ; end
+  def burn; subtype_for(Attitude.P).realm + Action.IP ; end
+  def use; subtype_for(Attitude.J).realm + Action.IJ; end
+  def recover; subtype_for(Attitude.J).realm + Action.EJ; end
 
 end
 

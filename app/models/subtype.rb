@@ -12,6 +12,7 @@ class Subtype < Concept
   def attitude; Attitude.find_by(symbol.second) || Attitude.find_by(symbol.first); end
 
   def parts; [attitude, realm]; end
+  def opposite; realm+ attitude.opposite; end
   def peers; attitude.subtypes.without(self); end
   def siblings; realm.subtypes.without(self);end
 
