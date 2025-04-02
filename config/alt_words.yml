@@ -5,8 +5,14 @@ shared:
   T: financial, tangible, commercial
   N: cognitive, visible, intellectual
 
-  J: strong, laborious, slow
-  P: excited, fun, fast
-  I: productive, hyperactive
-  E: receptive, greedy
+  J: power, effectiveness
+  P: speed, playfulness
+  I: anorexia, hyperactivity
+  E: obesity, greed, lethargy
 
+  EFP: listen to instrumental music
+  FP: musical
+  IFP: play musical instruments
+  IFJ: write lyrics
+  FJ: lyrical
+  EFJ: understand lyrics

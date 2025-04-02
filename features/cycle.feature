@@ -30,6 +30,12 @@ Then I should NOT see 'unbalanced'
 
 Scenario: the cycle page has a long version
 Given I am on the cycle page
-  And I press 'TL;DR'
+  And I press 'More'
 Then I should see 'unbalanced'
+
+Scenario: the cycle page can toggle between
+Given I am on the cycle page
+  And I press 'More'
+  And I press 'Less'
+Then I should NOT see 'unbalanced'
 

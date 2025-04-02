@@ -14,12 +14,12 @@ Then I should see 'Social'
 
 Scenario: the realms page defaults to short versions
 Given I am on the realms page
-Then I should NOT see 'get energy'
+Then I should NOT see 'unbalanced'
 
 Scenario: the realms page has a long version
 Given I am on the realms page
-  And I press 'TL;DR'
-Then I should see 'get energy'
+  And I press 'More'
+Then I should see 'unbalanced'
 
 Scenario: the realms page allows you to use your own words
 Given I am on the realms page

@@ -2,10 +2,10 @@ Feature: type page
 
 Scenario: my type page describes my solution
 Given I am on my page
-Then I should see 'express emotions'
+Then I should see 'emote'
   And I should see 'use logic'
-  And I should see 'listen to music'
-  And I should see 'analyze results'
+  And I should see 'listen to intonation'
+  And I should see 'believe results'
 
 Scenario: my type page reflects cookies
 Given I have entered 'sing' for 'IFP'
@@ -18,5 +18,5 @@ Then I should NOT see 'physical depression'
 
 Scenario: my type page has a long version
 Given I am on my page
-  And I press 'TL;DR'
+  And I press 'More'
 Then I should see 'physical depression'

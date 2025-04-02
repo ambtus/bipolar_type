@@ -1,23 +1,51 @@
 - content_for(:title, 'Realms')
 
-%center=render 'layouts/tldr_button'
 
-%table
-  %tr
-    -Realm.each do |realm|
-      %th=display(transform(realm, :titleize))
-  -Action.all.values_at(2,0,1,3).each do |action|
+-Realm.each do |realm|
+
+  %table
+    %caption
+      %h2 The #{display(transform(realm, :capitalize))} Cycle
     %tr
-      -action.behaviors.each do |behavior|
-        %td
-          -if @show
-            #{display(behavior.realm)} #{display(action)}
-            %br
-            %br
-          %b=display(behavior)
-          -if @show
-            %br
-            %br
-            #{display(behavior.pj)} #{display(behavior.ei)}
+      %th.bottom.right=display(realm+Action.IP)
+      %td
+        -if @more
+          .left
+            %b #{display(transform(realm+Attitude.I, :ing))}
+            without #{display(transform(realm+Attitude.E, :ing))} leads to #{display(Attitude.I)} and sudden #{display(realm)} death.
+        -else
+          =display(realm+Attitude.I)
+      %th.bottom.left=display(realm+Action.IJ)
 
-%center=render 'layouts/tldr_button'
+    %tr
+      %td
+        -if @more
+          .left
+            %b #{display(realm+Attitude.P)}
+            (#{display(realm)} #{display(Attitude.P)})
+            without #{display(realm+Attitude.J)} (#{display(realm)} #{display(Attitude.J)}) is unbalanced but not unhealthy.
+        -else
+          =display(realm+Attitude.P)
+      %th &orarr;
+      %td
+        -if @more
+          .left
+            %b #{display(realm+Attitude.J)}
+            (#{display(realm)} #{display(Attitude.J)})
+            without #{display(realm+Attitude.P)} (#{display(realm)} #{display(Attitude.P)}) is unbalanced but not unhealthy.
+        -else
+          =display(realm+Attitude.J)
+
+
+    %tr
+      %th.right.top=display(realm+Action.EP)
+      %td
+        -if @more
+          .left
+            %b #{display(transform(realm+Attitude.E, :ing))}
+            without #{display(transform(realm+Attitude.I, :ing))} leads to #{display(Attitude.E)} and slow #{display(realm)} death.
+        -else
+          =display(realm+Attitude.E)
+      %th.top.left=display(realm+Action.EJ)
+
+  %center=render 'layouts/tldr_button'

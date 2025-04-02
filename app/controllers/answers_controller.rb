@@ -4,11 +4,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new params[:id]
     redirect_to type_path(@answer.type_path) and return if @answer.finished?
     @title = "Question ##{@answer.number} of 3"
-    if @answer.number.to_i < 3
-      render 'ei'
-    else
-      render 'pj'
-    end
+    render :answer
   end
 
 end

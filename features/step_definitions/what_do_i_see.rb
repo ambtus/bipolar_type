@@ -28,11 +28,9 @@ Then('I should see {string} before {string}') do |string, string2|
   assert page.has_text?(regexp)
 end
 
-Then('I should see ei subtypes') do
+Then('I should see all subtypes') do
   Subtype.each do |s|
-    unless s.dominant?
-      assert page.has_text?(s.symbol)
-    end
+    assert page.has_text?(s.symbol)
   end
 end
 

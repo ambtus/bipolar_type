@@ -15,6 +15,7 @@ class Subtype < Concept
   def opposite; realm+ attitude.opposite; end
   def peers; attitude.subtypes.without(self); end
   def siblings; realm.subtypes.without(self);end
+  def flip; realm + attitude.opposite; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if attitude.respond_to?(meth)

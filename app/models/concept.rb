@@ -20,11 +20,7 @@ class Concept
     def symbols; self::SYMBOL; end
     def each(&block); self::ALL.each(&block); end
     def title; [self::ALL.count, self.name.pluralize].to_phrase; end
-    def find_by(symbol)
-      result = self::ALL.find{|x| x.symbol == symbol}
-      Rails.logger.debug "cannot find #{name} with symbol #{symbol}" unless result
-      return result
-    end
+    def find_by(symbol); self::ALL.find{|x| x.symbol == symbol}; end
   end
 
   def index; self.class::SYMBOL.index(@symbol); end

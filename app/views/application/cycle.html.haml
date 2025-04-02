@@ -2,74 +2,76 @@
 
 %table
   %caption
-    %h2 The Normal Cycle
+    %h2 The Bipolar Cycle
   %tr
-    %td=display(transform(Action.IP, :capitalize))
-    %td
-      %b=display(transform(Attitude.I, :capitalize))
-    %td=display(transform(Action.IJ, :capitalize))
-
-  %tr
-    %td
-      %b=display(transform(Attitude.P, :capitalize))
-    %th &orarr;
-    %td
-      %b=display(transform(Attitude.J, :capitalize))
-
-  %tr
-    %td=display(transform(Action.EP, :capitalize))
-    %td
-      %b=display(transform(Attitude.E, :capitalize))
-    %td=display(transform(Action.EJ, :capitalize))
-
-%p The goal of BipolarType is to cycle between #{display(Attitude.P)} and #{display(Attitude.J)} instead of #{display(Attitude.I)} and #{display(Attitude.E)}.
-
-%center=render 'layouts/tldr_button'
--if @show
-
-  %table
-    %tr
-      %td.bottom.none.right
+    %td.bottom.none.right
+      -if @more
         %b Midday
         %br
         (second quarter)
         %br
-        %italic=display(transform(Action.IP, :titleize))
-      %td
+        =display(transform(Action.IP, :titleize))
+      -else
+        =display(transform(Action.IP, :capitalize))
+    %td
+      -if @more
         %b=display(transform(Attitude.I, :capitalize))
         .left All #{display(Action.IP)} and #{display(Action.IJ)} without enough #{display(Action.EJ)} or #{display(Action.EP)} is unbalanced and unhealthy.
-      %td.bottom.none.left
+      -else
+        .bold=display(transform(Attitude.I, :capitalize))
+    %td.bottom.none.left
+      -if @more
         %b Afternoon
         %br
         (third quarter)
         %br
-        %italic=display(transform(Action.IJ, :titleize))
+        =display(transform(Action.IJ, :titleize))
+      -else
+        =display(transform(Action.IJ, :capitalize))
 
-    %tr
-      %td
+  %tr
+    %td
+      -if @more
         %b=display(transform(Attitude.P, :capitalize))
-        .left All #{display(Action.EP)} and #{display(Action.IP)} without much #{display(Action.IJ)} or #{display(Action.EJ)} is somewhat unbalanced but not particularly unhealthy.
-
-      %th &orarr;
-      %td
+        .left All #{display(Action.EP)} and #{display(Action.IP)} without much #{display(Action.IJ)} or #{display(Action.EJ)} is somewhat unbalanced but not necessarily unhealthy.
+      -else
+        .bold=display(transform(Attitude.P, :capitalize))
+    %th &orarr;
+    %td
+      -if @more
         %b=display(transform(Attitude.J, :capitalize))
-        .left All #{display(Action.IJ)} and #{display(Action.EJ)} without much #{display(Action.EP)} or #{display(Action.IP)} is somewhat unbalanced but not particularly unhealthy.
+        .left All #{display(Action.IJ)} and #{display(Action.EJ)} without much #{display(Action.EP)} or #{display(Action.IP)} is somewhat unbalanced but not necessarily unhealthy.
+      -else
+        .bold=display(transform(Attitude.J, :capitalize))
 
-    %tr
-      %td.none.right
-        %b Morning
+  %tr
+    %td.none.right
+      -if @more
+        =display(transform(Action.EP, :titleize))
         %br
         (first quarter)
         %br
-        %italic=display(transform(Action.EP, :titleize))
-
-      %td.bottom
-        %b=display(transform(Attitude.E, :capitalize))
+        %b Morning
+      -else
+        =display(transform(Action.EP, :capitalize))
+    %td.bottom
+      -if @more
         .left All #{display(Action.EJ)} and #{display(Action.EP)} without enough #{display(Action.IP)} or #{display(Action.IJ)} is unbalanced and unhealthy.
-
-      %td.none.left
-        %b Evening
+        %b=display(transform(Attitude.E, :capitalize))
+      -else
+        .bold=display(transform(Attitude.E, :capitalize))
+    %td.none.left
+      -if @more
+        =display(transform(Action.EJ, :titleize))
         %br
         (fourth quarter)
         %br
-        %italic=display(transform(Action.EJ, :titleize))
+        %b Evening
+      -else
+        =display(transform(Action.EJ, :capitalize))
+  %tr
+    %th
+    %th=render 'layouts/tldr_button'
+    %th
+
+%p The goal of BipolarType is to cycle between #{display(Attitude.P)} and #{display(Attitude.J)} instead of #{display(Attitude.I)} and #{display(Attitude.E)}.

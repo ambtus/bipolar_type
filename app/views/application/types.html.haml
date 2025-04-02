@@ -1,13 +1,16 @@
 - content_for(:title, '24 Types')
-%h2 The 24 BipolarTypes (4!)
 %table
+  %caption
+    %h2 The 24 BipolarTypes (4!)
   %tr
-    %th
-    -Attitude.all.each_with_index do |attitude, index|
-      %th
-        =link_to_unless index == @sort_index, display(attitude), types_path(sort: index)
+    %td.none.left You can change the sort order by clicking one of the four header links:
+  %tr
+    %th.left
+      -Attitude.all.each_with_index do |attitude, index|
+        =link_to_unless index == @sort_index, display(transform(attitude, :capitalize)), types_path(sort: index)
   -@types.each_with_index do |type, index|
     %tr
-      %th=link_to type.index + 1, type_path(type.path)
-      -type.realms.each do |realm|
-        %td.left=display realm
+      %td.left
+        =link_to type_path(type.path) do
+          =type.subtypes.collect {|s| display(s)}.join(' | ')
+

@@ -18,40 +18,19 @@ module ApplicationHelper
   end
 
   def triplet(thing)
+    Rails.logger.debug "triplet for #{thing.inspect}"
     if thing.is_a?(Type)
-      return [thing.symbol, thing.subtypes.collect{|s| word(s)}.join('•')]
+      result = [thing.symbol, thing.subtypes.collect{|s| preference(s.symbol)}.join('•')]
+    else
+      result = [thing.symbol, preference(thing.symbol)]
     end
-    concept = thing.is_a?(Concept) ? thing : parse(thing)
-    Rails.logger.debug "triplet for #{concept.inspect}"
-    result = [concept.symbol, word(concept)]
     Rails.logger.debug "   is #{result}"
     result
   end
 
-  def word(concept)
-    if concept.is_a?(String)
-      word(parse(concept))
-    else
-      preference(concept.symbol) || "cannot find word for #{concept.inspect}"
-    end
-  end
-
   def preference(key)
     cookies[key] ||
-    Rails.application.config_for(:words)[key] ||
-    "don’t have preference for #{key}"
-  end
-
-  def parse(symbol)
-    key = symbol.to_s
-    case key.length
-    when 3
-      Behavior.find_by(key)
-    when 2
-      Subtype.find_by(key) || Action.find_by(key)
-    when 1
-      Realm.find_by(key) || Attitude.find_by(key)
-    end
+    Rails.application.config_for(:words)[key] || "don’t have preference for #{key}"
   end
 
 end

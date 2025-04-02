@@ -1,7 +1,7 @@
 class TypesController < ApplicationController
 
   def index
-    @sort_index = params[:sort].to_i || 0
+    @sort_index = (params[:sort] || 3).to_i
     @types = Type.sort_by(@sort_index)
     render 'types'
   end

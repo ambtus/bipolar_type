@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_tldr
 
   def set_tldr
-    @show = cookies[:details].present?
+    @more = cookies[:details].present?
   end
 
 end

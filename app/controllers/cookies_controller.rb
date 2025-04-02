@@ -4,12 +4,10 @@ class CookiesController < ApplicationController
 
   def update
     case params[:commit]
-    when 'TL;DR'
-      if cookies[:details]
-        cookies.delete(:details)
-      else
-        cookies[:details] = 'show'
-      end
+    when 'Less'
+      cookies.delete(:details)
+    when 'More'
+      cookies[:details] = 'show'
     when 'Symbols'
       cookies[:setting] = 'symbols'
     when 'Words'

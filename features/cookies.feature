@@ -41,7 +41,7 @@ Then the link 'bookmark' should include '?setting=symbols'
 
 Scenario: the cookies page allows you to bookmark your tldr
 Given I am on my page
-  And I press 'TL;DR'
+  And I press 'More'
 When I am on the cookies page
 Then the link 'bookmark' should include '?details=show'
 

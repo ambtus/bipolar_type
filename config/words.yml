@@ -12,43 +12,43 @@ shared:
 
   IF: communicate
   IS: move
-  IT: purchase
-  IN: think
+  IT: buy
+  IN: predict
 
   EF: listen & understand
   ES: eat & digest
   ET: earn & collect
-  EN: learn & analyze
+  EN: see & believe
 
   EP: get energy
   IP: burn energy
   IJ: use strength
   EJ: recover strength
 
-  FP: emotional
-  NP: imaginative
-  SP: fast
+  FP: expressive
+  NP: inductive
+  SP: herbivorous
   TP: labor
 
-  FJ: moral
-  NJ: logical
-  SJ: powerful
+  FJ: lexical
+  NJ: deductive
+  SJ: carnivorous
   TJ: capital
 
-  EFP: listen to music
-  IFP: express emotions
+  EFP: listen to intonation
+  IFP: emote
   IFJ: use words
   EFJ: understand meaning
 
   ESP: eat carbs
-  ISP: walk or run
+  ISP: run
   ISJ: use muscles
   ESJ: digest protein
 
-  ENP: see causes
-  INP: know or guess
+  ENP: see specifics
+  INP: generalize
   INJ: use logic
-  ENJ: analyze results
+  ENJ: believe results
 
   ETP: earn wages
   ITP: pay cash

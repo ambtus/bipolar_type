@@ -1,0 +1,26 @@
+-content_for(:title, @title)
+
+%h2=@title
+
+%table
+  %tr
+    -Realm.each do |realm|
+      %th
+        =display realm
+  %tr
+    -Attitude.each do |attitude|
+      %tr
+        -Realm.each do |realm|
+
+          -subtype = realm + attitude
+          %td
+            -unless @answer.taken?(subtype)
+              =link_to_unless @answer.taken?(subtype), "#{display(subtype.realm)} #{display(subtype.attitude)}", answer_path(@answer.next(subtype.symbol))
+              -if @more
+                %br
+                =display(subtype)
+
+.center=render 'layouts/tldr_button'
+
+-if Rails.env.development?
+  =@answer.taken
