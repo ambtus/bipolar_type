@@ -38,3 +38,9 @@ Then('the link {string} should include {string}') do |string, string2|
   href = page.find_link(string)['href']
   assert_match string2, href
 end
+
+Then('there should be {int} answer links') do |int|
+  links = page.all('a')
+  answer_links = links.select{|l| l[:href].match 'answer'}
+  assert_equal int, answer_links.count
+end

@@ -6,9 +6,7 @@
   %tr
     %td.bottom.none.right
       -if @more
-        %b Midday
-        %br
-        (second quarter)
+        %b #{(Action.IP.index+1).ordinalize} phase
         %br
         =display(transform(Action.IP, :titleize))
       -else
@@ -16,14 +14,12 @@
     %td
       -if @more
         %b=display(transform(Attitude.I, :capitalize))
-        .left All #{display(Action.IP)} and #{display(Action.IJ)} without enough #{display(Action.EJ)} or #{display(Action.EP)} is unbalanced and unhealthy.
+        .left #{display(transform(Action.IP, :ing))} and #{display(transform(Action.IJ, :ing))} without #{display(transform(Action.EJ, :ing))} or #{display(transform(Action.EP, :ing))} is unbalanced and unhealthy.
       -else
         .bold=display(transform(Attitude.I, :capitalize))
     %td.bottom.none.left
       -if @more
-        %b Afternoon
-        %br
-        (third quarter)
+        %b #{(Action.IJ.index+1).ordinalize} phase
         %br
         =display(transform(Action.IJ, :titleize))
       -else
@@ -33,14 +29,14 @@
     %td
       -if @more
         %b=display(transform(Attitude.P, :capitalize))
-        .left All #{display(Action.EP)} and #{display(Action.IP)} without much #{display(Action.IJ)} or #{display(Action.EJ)} is somewhat unbalanced but not necessarily unhealthy.
+        .left #{display(transform(Action.EP, :ing))} and #{display(transform(Action.IP, :ing))} without #{display(transform(Action.IJ, :ing))} or #{display(transform(Action.EJ, :ing))} is unbalanced but not unhealthy.
       -else
         .bold=display(transform(Attitude.P, :capitalize))
     %th &orarr;
     %td
       -if @more
         %b=display(transform(Attitude.J, :capitalize))
-        .left All #{display(Action.IJ)} and #{display(Action.EJ)} without much #{display(Action.EP)} or #{display(Action.IP)} is somewhat unbalanced but not necessarily unhealthy.
+        .left #{display(transform(Action.IJ, :ing))} and #{display(transform(Action.EJ, :ing))} without #{display(transform(Action.EP, :ing))} or #{display(transform(Action.IP, :ing))} is unbalanced but not unhealthy.
       -else
         .bold=display(transform(Attitude.J, :capitalize))
 
@@ -49,14 +45,12 @@
       -if @more
         =display(transform(Action.EP, :titleize))
         %br
-        (first quarter)
-        %br
-        %b Morning
+        %b #{(Action.EP.index+1).ordinalize} phase
       -else
         =display(transform(Action.EP, :capitalize))
     %td.bottom
       -if @more
-        .left All #{display(Action.EJ)} and #{display(Action.EP)} without enough #{display(Action.IP)} or #{display(Action.IJ)} is unbalanced and unhealthy.
+        .left #{display(transform(Action.EJ, :ing))} and #{display(transform(Action.EP, :ing))} without #{display(transform(Action.IP, :ing))} or #{display(transform(Action.IJ, :ing))} is unbalanced and unhealthy.
         %b=display(transform(Attitude.E, :capitalize))
       -else
         .bold=display(transform(Attitude.E, :capitalize))
@@ -64,9 +58,7 @@
       -if @more
         =display(transform(Action.EJ, :titleize))
         %br
-        (fourth quarter)
-        %br
-        %b Evening
+        %b #{(Action.EJ.index+1).ordinalize} phase
       -else
         =display(transform(Action.EJ, :capitalize))
   %tr

@@ -1,0 +1,8 @@
+.bold=display(transform(attitude, :capitalize))
+%ul.none.left
+  -attitude.subtypes.each do |subtype|
+    %li
+      -if @answer.chosen?(subtype)
+        %b=display(subtype)
+      -else
+        =link_to_unless @answer.taken?(subtype), display(subtype), answer_path(@answer.next(subtype.symbol))

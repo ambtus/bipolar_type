@@ -11,6 +11,8 @@ class Behavior < Concept
   def realm; Realm.find_by(symbol.second); end
   def action; Action.find_by(symbol.remove(symbol.second)); end
 
+  def attitudes; [Attitude.find_by(symbol.first), Attitude.find_by(symbol.third)]; end
+
   def ei; Subtype.find_by(symbol.chop); end
   def pj; Subtype.find_by(symbol[1..-1]); end
 

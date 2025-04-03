@@ -18,18 +18,21 @@
     %td=display(Attitude.I)
     %th=display(@type.recover)
 
+%p The goal is to cycle between #{display(@type.subtype_for(Attitude.P))} and #{display(@type.subtype_for(Attitude.J))} instead of between #{display(@type.subtype_for(Attitude.I))} and #{display(@type.subtype_for(Attitude.E))}.
+
 %center=render 'layouts/tldr_button'
 -if @more
-  %h2 #{display(@type.subtypes.first.realm)} #{display(@type.subtypes.first.attitude)}
+  %h2 Depression
   %p eating carbs isn't energizing and you don't have to be calm to digest protein.
   %p can only move when revved and moving is tiring.
-  %h2 #{display(@type.subtypes.last.realm)} #{display(@type.subtypes.last.attitude)}
+  %h2 Mania
   %p using credit isn't tiring and don't have to be revved to pay cash.
   %p can only collect returns when calm and earning cash is revving.
-  %h2 #{display(@type.subtypes.second.attitude)} and #{display(@type.subtypes.third.attitude)}
+  %h2 imbalances
+  %p You cannot stop the cycle.
   %p #{display(@type.subtypes.first.realm)} and #{display(@type.subtypes.last.realm)} are always going to be unbalanced
   %p so should spend time in F & N instead
-  %h2 #{display(@type.subtypes.first.attitude)}
+  %h2 when depressed
   %p can talk and use logic even when depressed. don't have to eat just because cannot *move*. a) eating carbs won't energize you and b) you're not tired out from physical labor and don't need the protein
-  %h2 #{display(@type.subtypes.fourth.attitude)}
+  %h2 when manic
   %p can listen to music and watch results even when manic. don't have to spend just because cannot *earn*. a) using credit won't tire you and b) you're not revved up from earning cash and don't need to spend it

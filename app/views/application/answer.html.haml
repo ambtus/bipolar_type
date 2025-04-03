@@ -1,26 +1,31 @@
 -content_for(:title, @title)
 
-%h2=@title
-
 %table
-  %tr
-    -Realm.each do |realm|
-      %th
-        =display realm
-  %tr
-    -Attitude.each do |attitude|
-      %tr
-        -Realm.each do |realm|
+  %caption
+    %h2=@title
 
-          -subtype = realm + attitude
-          %td
-            -unless @answer.taken?(subtype)
-              =link_to_unless @answer.taken?(subtype), "#{display(subtype.realm)} #{display(subtype.attitude)}", answer_path(@answer.next(subtype.symbol))
-              -if @more
-                %br
-                =display(subtype)
+  %tr
+    %td.bottom.none.right=render 'action', action: Action.IP
 
-.center=render 'layouts/tldr_button'
+    %td=render 'attitude', attitude: Attitude.I
+
+    %td.bottom.none.left=render 'action', action: Action.IJ
+
+  %tr
+
+    %td=render 'attitude', attitude: Attitude.P
+
+    %th &orarr;
+
+    %td=render 'attitude', attitude: Attitude.J
+
+  %tr
+
+    %td.none.right=render 'action', action: Action.EP
+
+    %td.bottom=render 'attitude', attitude: Attitude.E
+
+    %td.none.left=render 'action', action: Action.EJ
 
 -if Rails.env.development?
-  =@answer.taken
+  =@answer.subtypes

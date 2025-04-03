@@ -10,16 +10,6 @@ shared:
   I: mania
   E: depression
 
-  IF: communicate
-  IS: move
-  IT: buy
-  IN: predict
-
-  EF: listen & understand
-  ES: eat & digest
-  ET: earn & collect
-  EN: see & believe
-
   EP: get energy
   IP: burn energy
   IJ: use strength
@@ -50,7 +40,7 @@ shared:
   INJ: use logic
   ENJ: believe results
 
-  ETP: earn wages
+  ETP: collect wages
   ITP: pay cash
   ITJ: use credit
-  ETJ: collect income
+  ETJ: invest income

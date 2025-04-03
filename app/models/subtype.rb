@@ -11,11 +11,13 @@ class Subtype < Concept
   def realm; Realm.find_by(symbol.first) || Realm.find_by(symbol.second); end
   def attitude; Attitude.find_by(symbol.second) || Attitude.find_by(symbol.first); end
 
-  def parts; [attitude, realm]; end
+  def parts; [realm, attitude]; end
   def opposite; realm+ attitude.opposite; end
   def peers; attitude.subtypes.without(self); end
   def siblings; realm.subtypes.without(self);end
   def flip; realm + attitude.opposite; end
+
+  def behaviors; realm.behaviors.select{|b| b.attitudes.include?(attitude)}; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if attitude.respond_to?(meth)

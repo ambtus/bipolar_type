@@ -19,18 +19,21 @@ module ApplicationHelper
 
   def triplet(thing)
     Rails.logger.debug "triplet for #{thing.inspect}"
-    if thing.is_a?(Type)
-      result = [thing.symbol, thing.subtypes.collect{|s| preference(s.symbol)}.join('•')]
-    else
-      result = [thing.symbol, preference(thing.symbol)]
-    end
+    result = [thing.symbol, preference(thing)]
     Rails.logger.debug "   is #{result}"
     result
   end
 
-  def preference(key)
-    cookies[key] ||
-    Rails.application.config_for(:words)[key] || "don’t have preference for #{key}"
+  def preference(thing)
+    if thing.is_a?(Type)
+      thing.subtypes.collect{|s| preference(s)}.join('•')
+    elsif thing.is_a?(Subtype) && !thing.dominant?
+      thing.parts.collect{|p| preference(p)}.to_phrase
+    else
+      cookies[thing.symbol] ||
+      Rails.application.config_for(:words)[thing.symbol] ||
+      "don’t have preference for #{thing}"
+    end
   end
 
 end

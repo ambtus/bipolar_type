@@ -1,6 +1,6 @@
 class Action < Concept
 
-  SYMBOL = %w{IP IJ EP EJ } # attitude symbol pairs
+  SYMBOL = %w{EP IP IJ EJ } # attitude symbol pairs
 
   ALL = SYMBOL.collect {|symbol| self.new symbol}
   SYMBOL.each do |sym|

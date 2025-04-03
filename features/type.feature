@@ -14,9 +14,9 @@ Then I should see 'sing'
 
 Scenario: my type page defaults to short versions
 Given I am on my page
-Then I should NOT see 'physical depression'
+Then I should NOT see 'energizing'
 
 Scenario: my type page has a long version
 Given I am on my page
   And I press 'More'
-Then I should see 'physical depression'
+Then I should see 'energizing'

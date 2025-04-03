@@ -19,14 +19,14 @@ class Type
     def title; [all.count, name.pluralize].to_phrase; end
     def find(string); all.find{|t| t.index == string.to_i-1}; end
     def find_by_realm_string(string); all.find{|t| t.realm_string == string}; end
-    def my_path; '8'; end
+    def my_path; '6'; end
     def my_type; find(my_path); end
     def sort_by(index); all.sort_by{|t| t.subtypes[index]}.in_groups_of(6).map(&:sort).flatten; end
   end
 
-  def subtypes; realms.add(Attitude.all).flatten; end
+  def subtypes; realms.add(Attitude.all); end
 
-  def subtype_symbols; subtypes.map(&:symbol).values_at(0,2,1,3); end
+  def subtype_symbols; subtypes.map(&:symbol); end
   def symbol; subtype_symbols.join('•'); end
 
   alias inspect :symbol
