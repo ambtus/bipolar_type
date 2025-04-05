@@ -2,10 +2,10 @@ Feature: type page
 
 Scenario: my type page describes my solution
 Given I am on my page
-Then I should see 'emote'
+Then I should see 'express emotions'
   And I should see 'use logic'
   And I should see 'listen to intonation'
-  And I should see 'believe results'
+  And I should see 'analyze results'
 
 Scenario: my type page reflects cookies
 Given I have entered 'sing' for 'IFP'

@@ -14,4 +14,7 @@ class Action < Concept
 
   def behaviors; Behavior.all.select{|x| x.action == self}; end
 
+  def flop_symbol; %w{EJ IJ IP EP}[index]; end
+  def flop; Action.find_by(flop_symbol); end
+
 end

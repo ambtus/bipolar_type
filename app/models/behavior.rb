@@ -13,8 +13,7 @@ class Behavior < Concept
 
   def attitudes; [Attitude.find_by(symbol.first), Attitude.find_by(symbol.third)]; end
 
-  def ei; Subtype.find_by(symbol.chop); end
-  def pj; Subtype.find_by(symbol[1..-1]); end
+  def flop; realm + action.flop; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if action.respond_to?(meth)

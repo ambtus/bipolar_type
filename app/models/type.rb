@@ -38,5 +38,10 @@ class Type
   def use; subtype_for(Attitude.J).realm + Action.IJ; end
   def recover; subtype_for(Attitude.J).realm + Action.EJ; end
 
+  def get2; subtype_for(Attitude.J).realm + Action.EP ; end
+  def burn2; subtype_for(Attitude.E).realm + Action.IP ; end
+  def use2; subtype_for(Attitude.P).realm + Action.IJ; end
+  def recover2; subtype_for(Attitude.I).realm + Action.EJ; end
+
 end
 
