@@ -1,25 +1,23 @@
-shared:
+F: social, audible, affective
+S: caloric, sensual, athletic
+T: financial, tangible, commercial
+N: cognitive, visible, intellectual
 
-  F: social, audible, affective
-  S: caloric, sensual, athletic
-  T: financial, tangible, commercial
-  N: cognitive, visible, intellectual
+J: power, effectiveness
+P: speed, playfulness
+I: anorexia
+E: obesity
 
-  J: power, effectiveness
-  P: speed, playfulness
-  I: anorexia
-  E: obesity
+EFP: listen to instrumental music
+FP: musical, emotional
+IFP: sing, play musical instruments
+IFJ: preach, write lyrics
+FJ: lyrical, meaningful
+EFJ: understand lyrics
 
-  EFP: listen to instrumental music
-  FP: musical, emotional
-  IFP: sing, play musical instruments
-  IFJ: preach, write lyrics
-  FJ: lyrical, meaningful
-  EFJ: understand lyrics
-
-  ESP: carb load, eat sweets
-  SP: fast, prey
-  ISP: jog, play sports
-  ISJ: lift weights, do chores
-  SJ: strong, predator
-  ESJ: drink protein shakes, eat protein bars
+ESP: carb load, eat sweets
+SP: fast, prey
+ISP: jog, play sports
+ISJ: lift weights, do chores
+SJ: strong, predator
+ESJ: drink protein shakes, eat protein bars

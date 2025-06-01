@@ -31,7 +31,7 @@ module ApplicationHelper
       thing.parts.collect{|p| preference(p)}.to_phrase
     else
       cookies[thing.symbol] ||
-      Rails.application.config_for(:words)[thing.symbol] ||
+      Words[thing.symbol] ||
       "don’t have preference for #{thing}"
     end
   end

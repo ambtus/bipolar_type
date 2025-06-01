@@ -15,10 +15,9 @@ class CookiesController < ApplicationController
     when 'Both'
       cookies[:setting] = 'both'
     when 'Save', nil
-      words = Rails.application.config_for(:words)
-      words.keys.each do |k|
+      Words.keys.each do |k|
         if params.has_key? k
-          if cookies[k].present? && params[k].blank? || (params[k] == words[k])
+          if cookies[k].present? && params[k].blank? || (params[k] == Words[k])
             Rails.logger.debug "deleting #{k}: #{params[k]}"
             cookies.delete(k)
           elsif params[k].present? && (params[k] != cookies[k])
@@ -29,8 +28,6 @@ class CookiesController < ApplicationController
       end
       Rails.logger.debug 'cookies: ' + cookies.map { |cookie| cookie.join(': ') }.join("\n\t")
       if params[:commit].blank?
-        @words = words
-        @alt_words = Rails.application.config_for(:alt_words)
         @url = cookies_path(cookies.to_hash)
         render 'cookies' and return
       end

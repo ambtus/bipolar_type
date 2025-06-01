@@ -11,12 +11,12 @@
       %th Alternate words
       %th Your word
 
-    -@words.each do |key, value|
+    -Words.each do |key, value|
       %tr
         %td=key
         %td=value
-        %td=@alt_words[key]
+        %td=Words[key.to_s + '-alt']
         %td=f.text_field key, value: cookies[key], maxlength: 80, size: 10
-      -if @words.keys.index(key)%4 == 3
+      -if Words.keys.index(key)%4 == 3
         %tr
           %th{colspan:4}= f.submit 'Save'
