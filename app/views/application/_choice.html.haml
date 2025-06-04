@@ -1,0 +1,6 @@
+=render 'td', thing: attitude
+%ul.none.left
+  -attitude.subtypes.each do |subtype|
+    %li
+      =link_to_unless @answer.taken?(subtype), render('td', thing: subtype), answer_path(@answer.next(subtype.string)) do
+        =display(subtype)

@@ -1,9 +1,0 @@
-%b #{(action.index+1).ordinalize} phase
-
-%ul.none
-  -action.behaviors.each do |behavior|
-    %li
-      -if @answer.implied?(behavior)
-        %b=display(behavior)
-      -else
-        =display(behavior)

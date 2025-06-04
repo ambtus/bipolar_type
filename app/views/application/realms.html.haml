@@ -1,51 +1,22 @@
 - content_for(:title, 'Realms')
 
 
--Realm.each do |realm|
 
-  %table
-    %caption
-      %h2 The #{display(transform(realm, :capitalize))} Cycle
-    %tr
-      %th.bottom.right=display(realm+Action.IP)
-      %td
-        -if @more
-          .left
-            %b #{display(realm+Attitude.I)}
-            without #{display(realm+Attitude.E)} is unbalanced and will cause #{display(realm)} death unless treated.
-        -else
-          =display(realm+Attitude.I)
-      %th.bottom.left=display(realm+Action.IJ)
-
-    %tr
-      %td
-        -if @more
-          .left
-            %b #{display(realm+Attitude.P)}
-            (#{display(realm)} #{display(Attitude.P)})
-            without #{display(realm+Attitude.J)} (#{display(realm)} #{display(Attitude.J)}) is unbalanced but not unhealthy.
-        -else
-          =display(realm+Attitude.P)
-      %th &orarr;
-      %td
-        -if @more
-          .left
-            %b #{display(realm+Attitude.J)}
-            (#{display(realm)} #{display(Attitude.J)})
-            without #{display(realm+Attitude.P)} (#{display(realm)} #{display(Attitude.P)}) is unbalanced but not unhealthy.
-        -else
-          =display(realm+Attitude.J)
+%h2 Attitudes by Realm
+%ul.none
+  -Realm.each do |realm|
+    %li
+      =link_to display(transform(realm, :titleize)), realm_path(realm.string)
+      -if @more
+        =Words[realm.string + '-alt']
 
 
-    %tr
-      %th.right.top=display(realm+Action.EP)
-      %td
-        -if @more
-          .left
-            %b #{display(realm+Attitude.E)}
-            without #{display(realm+Attitude.I)} is unbalanced and will cause #{display(realm)} death eventually.
-        -else
-          =display(realm+Attitude.E)
-      %th.top.left=display(realm+Action.EJ)
+%h2 Realms by Attitude
 
-  %center=render 'layouts/tldr_button'
+%ul.none
+  -Attitude.each do |attitude|
+    %li
+      =link_to display(transform(attitude, :titleize)), attitude_path(attitude.string)
+      -if @more
+        =Words[attitude.string + '-alt']
+.center=render 'layouts/more'

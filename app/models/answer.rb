@@ -14,15 +14,12 @@ class Answer
   def finished?; number.to_i > 3; end
 
   def subtypes; answer_string.scan(/../).collect{|s| Subtype.find_by(s)}; end
-  def behaviors; subtypes.map(&:behaviors).flatten; end
 
   def realms; subtypes.map(&:realm); end
   def attitudes; subtypes.map(&:attitude); end
 
   def taken?(subtype); realms.include?(subtype.realm) || attitudes.include?(subtype.attitude); end
   def chosen?(subtype); subtypes.include?(subtype); end
-
-  def implied?(behavior); behaviors.include?(behavior); end
 
   def next(string); question.next + ':' + answer_string + string; end
 

@@ -4,75 +4,31 @@
   BipolarType #{@type.index + 1} of 24
   %br
   =display(@type)
-%table
-  %tr
-    %td
-      %b=display(@type.burn)
-      -if @more
-        %br
-        (can do even when #{display(transform(Attitude.E, :to_adjective))})
-      %br
-      %em=display(@type.burn2)
-      -if @more
-        %br
-        (not as self-limiting as #{display(@type.burn2.flop)} when #{display(transform(Attitude.I, :to_adjective))})
-    %th
-    %td
-      %b=display(@type.use)
-      -if @more
-        %br
-        (can do even when #{display(transform(Attitude.E, :to_adjective))})
-      %br
-      %em=display(@type.use2)
-      -if @more
-        %br
-        (tiring when #{display(transform(Attitude.I, :to_adjective))})
-  %tr
-    %th
-    %th &orarr;
-    %th
-  %tr
-    %td
-      %b=display(@type.get)
-      -if @more
-        %br
-        (can do even when #{display(transform(Attitude.I, :to_adjective))})
-      %br
-      %em=display(@type.get2)
-      -if @more
-        %br
-        (energizing when #{display(transform(Attitude.E, :to_adjective))})
-    %th
-    %td
-      %b=display(@type.recover)
-      -if @more
-        %br
-        (can do even when #{display(transform(Attitude.I, :to_adjective))})
-      %br
-      %em=display(@type.recover2)
-      -if @more
-        %br
-        (not as self-limiting as #{display(@type.recover2.flop)} when  #{display(transform(Attitude.E, :to_adjective))})
 
-%center=render 'layouts/tldr_button'
+.center=render 'layouts/more'
 -if @more
-  -manic_realm = @type.subtype_for(Attitude.I).realm
-  %h2=display(transform(@type.subtype_for(Attitude.I), :titleize))
-  %p You find #{display(transform((@type.recover2.flop), :ing))} energizing which means you stop early and start #{display(transform(manic_realm + Action.IP, :ing))}. That is, #{display(transform(manic_realm + Action.EP, :ing))} is self-limiting and although it is #{display(transform(@type.recover2.realm, :ly))} healthy, you cannot do it much, even when #{display(transform(Attitude.E, :to_adjective))}, unless you take sedatives.
-  %p You don’t stop #{display(transform(manic_realm + Action.IJ, :ing))} and #{display(@type.recover2)} because you don’t feel #{display(transform(@type.recover2.realm, :ly))} tired. That is, #{display(transform(manic_realm + Action.IJ, :ing))} isn’t self limiting. Better to not start #{display(transform(manic_realm + Action.IJ, :ing))} at all and make an effort to  #{display(@type.recover2)} when you don’t feel energetic (are not #{display(transform(Attitude.I, :to_adjective))}).
-
-  -depressed_realm = @type.subtype_for(Attitude.E).realm
-  %h2=display(transform(@type.subtype_for(Attitude.E), :titleize))
-  %p You find #{display(transform((@type.burn2.flop), :ing))} tiring which means you stop early and start #{display(transform(depressed_realm + Action.EJ, :ing))}. That is, #{display(transform(depressed_realm + Action.IJ, :ing))} is self-limiting and although it is #{display(transform(@type.burn2.realm, :ly))} healthy, you cannot do it much, even when #{display(transform(Attitude.I, :to_adjective))}, unless you take stimulants.
-  %p You don’t stop #{display(transform(depressed_realm + Action.EP, :ing))} and #{display(@type.burn2)} because you don’t feel energetic. That is, #{display(transform(depressed_realm + Action.EP, :ing))} isn’t self limiting. Better to not start #{display(transform(depressed_realm + Action.EP, :ing))} at all and make an effort to  #{display(@type.burn2)} whenever you don’t feel tired (are not #{display(transform(Attitude.E, :to_adjective))}).
-
-  -energetic_realm = @type.subtype_for(Attitude.P).realm
-  %h2=display(transform(@type.subtype_for(Attitude.P), :titleize))
-  %p You find #{display(transform((@type.get), :ing))} energizing which means you start #{display(transform(energetic_realm + Action.IP, :ing))}. That is, #{display(transform(@type.get, :ing))} is #{display(transform(@type.get.realm, :ly))} healthy, and you can do it <em>continuously</em> when #{display(transform(Attitude.E, :to_adjective))}.
-  %p You find #{display(transform((@type.use2), :ing))} tiring which means you stop and start #{display(transform(energetic_realm + Action.EJ, :ing))} when tired. That is, #{display(transform(energetic_realm + Action.IJ, :ing))} is #{display(transform(@type.use2.realm, :ly))} healthy, and you can do it when you feel too #{display(transform(Attitude.I, :to_adjective))} and want to calm down.
-
-
-  -strong_realm = @type.subtype_for(Attitude.J).realm
-  %h2=display(transform(@type.subtype_for(Attitude.J), :titleize))
-  %p You find #{display(transform((@type.use), :ing))} tiring which means you start #{display(transform(strong_realm + Action.EJ, :ing))}. That is, #{display(transform(@type.use, :ing))} is #{display(transform(@type.use.realm, :ly))} healthy, and you can do it <em>continuously</em> when #{display(transform(Attitude.I, :to_adjective))}.
-  %p You find #{display(transform((@type.get2), :ing))} energizing which means you stop and start #{display(transform(strong_realm + Action.IP, :ing))} when energized. That is, #{display(transform(strong_realm + Action.EP, :ing))} is #{display(transform(@type.get2.realm, :ly))} healthy, and you can do it when you feel too #{display(transform(Attitude.E, :to_adjective))} and want to rev up.
+  %ul
+    %li
+      =display @type.subtypes.first
+      so you will be able to react to
+      =display @type.subtypes.first.realm
+      by
+      =display(transform(@type.subtypes.first.next, :ing))
+    %li
+      don’t
+      =display @type.subtypes.second.next
+      so you will be able to react to
+      =display @type.subtypes.second.realm
+      by
+      =display(transform(@type.subtypes.second, :ing))
+    %li
+      =display @type.subtypes.third
+      so you won’t be distracted by
+      =display(transform(@type.subtypes.third.opposite, :ing))
+    %li
+      =display @type.subtypes.fourth
+      so you won’t
+      =display @type.subtypes.fourth.next
+      and waste your time
+      =display(transform(@type.subtypes.fourth.opposite, :ing))
+      in circles

@@ -5,27 +5,18 @@
     %h2=@title
 
   %tr
-    %td.bottom.none.right=render 'action', action: Action.IP
 
-    %td=render 'attitude', attitude: Attitude.I
+    %td=render 'choice', attitude: Attitude.I
 
-    %td.bottom.none.left=render 'action', action: Action.IJ
-
-  %tr
-
-    %td=render 'attitude', attitude: Attitude.P
-
-    %th &orarr;
-
-    %td=render 'attitude', attitude: Attitude.J
+    %td=render 'choice', attitude: Attitude.J
 
   %tr
 
-    %td.none.right=render 'action', action: Action.EP
+    %td=render 'choice', attitude: Attitude.P
 
-    %td.bottom=render 'attitude', attitude: Attitude.E
+    %td=render 'choice', attitude: Attitude.E
 
-    %td.none.left=render 'action', action: Action.EJ
+.center=render 'layouts/more'
 
 -if Rails.env.development?
   =@answer.subtypes

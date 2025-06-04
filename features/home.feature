@@ -12,12 +12,12 @@ Then I should be on my page
 Scenario: the home page has a link to the realms page
 Given I am on the homepage
 When I follow the 'Realms' link
-Then I should see 'Physical'
+Then I should see 'People'
 
 Scenario: the home page has a link to the cycle page
 Given I am on the homepage
 When I follow the 'Cycle' link
-Then I should see 'Mania'
+Then I should see 'Burn'
 
 Scenario: the home page has a link to the questions page
 Given I am on the homepage

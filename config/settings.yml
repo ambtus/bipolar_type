@@ -1,68 +1,60 @@
-F: spiritual
-S: physical
-T: material
-N: mental
+P: get energy
+I: burn energy
+J: use strength
+E: recover strength
 
-J: strength
-P: energy
-I: mania
-E: depression
+P-alt: accept, absorb, appreciate resources
+I-alt: flee, practice, excercise, play games
+J-alt: fight, work, labor, achieve goals
+E-alt: take, consume, process resources
+
+F: people
+S: places
+T: things
+N: ideas
+
+F-alt: spiritual, political, religious, musical, social, audible, affective
+S-alt: physical, agrarian, caloric, sensual, athletic
+T-alt: financial, material, tangible, commercial
+N-alt: mental, cognitive, visible, intellectual
 
 EP: get energy
 IP: burn energy
 IJ: use strength
 EJ: recover strength
 
-FP: expressive
-NP: inductive
-SP: herbivorous
-TP: labor
+FP: listen to music
+FP-alt: listen to intonation
+IF: express emotions
+IF-alt: sing, play musical instruments
+FJ: use words
+FJ-alt: preach, write lyrics
+EF: understand meaning
+EF-alt: understand lyrics
 
-FJ: lexical
-NJ: deductive
-SJ: carnivorous
-TJ: capital
+SP: eat carbs
+SP-alt: carb load, eat sweets
+IS: walk
+IS-alt: run, play sports
+SJ: use muscles
+SJ-alt: lift weights, do chores
+ES: lie down
+ES-alt: drink protein shakes, eat protein bars, eat protein after
 
-EFP: listen to intonation
-IFP: express emotions
-IFJ: use words
-EFJ: understand meaning
+NP: see colorful specifics
+NP-alt: watch the sunrise, learn facts
+IN: generalize
+IN-alt: intuit, guess
+NJ: close your eyes
+NJ-alt: theorize, prove, use logic
+EN: analyze results
+EN-alt: watch endings, learn consequences
 
-ESP: eat carbs
-ISP: walk
-ISJ: use muscles
-ESJ: digest protein
-
-ENP: see colorful specifics
-INP: generalize
-INJ: use logic
-ENJ: analyze results
-
-ETP: collect wages
-ITP: pay cash
-ITJ: use credit
-ETJ: invest income
-
-F-alt: social, audible, affective
-S-alt: caloric, sensual, athletic
-T-alt: financial, tangible, commercial
-N-alt: cognitive, visible, intellectual
-
-J-alt: power, effectiveness
-P-alt: speed, playfulness
-I-alt: anorexia
-E-alt: obesity
-
-EFP-alt: listen to instrumental music
-FP-alt: musical, emotional
-IFP-alt: sing, play musical instruments
-IFJ-alt: preach, write lyrics
-FJ-alt: lyrical, meaningful
-EFJ-alt: understand lyrics
-
-ESP-alt: carb load, eat sweets
-SP-alt: fast, prey
-ISP-alt: jog, play sports
-ISJ-alt: lift weights, do chores
-SJ-alt: strong, predator
-ESJ-alt: drink protein shakes, eat protein bars
+TP: earn wages
+TP-alt: compete for prizes
+IT: pay cash upfront
+IT-alt: buy outright
+TJ: use credit
+TJ-alt: pay over time
+ET: earn repayments
+ET-alt: earn a salary

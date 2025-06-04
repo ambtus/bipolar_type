@@ -1,0 +1,6 @@
+- content_for(:title, @realm.string)
+
+%h2=render 'td', thing: @realm
+
+
+=render 'table', things: [Attitude.I, Attitude.J, Attitude.P, Attitude.E].add(@realm)

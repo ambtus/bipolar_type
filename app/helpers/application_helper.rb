@@ -11,7 +11,11 @@ module ApplicationHelper
     when 'symbols'
       triplet.first
     when 'both'
-      [triplet.first.colon, triplet.second].to_phrase
+      if thing.is_a?(Type)
+        thing.subtypes.collect{|s| display(s)}.break
+      else
+        [triplet.first.to_s.colon, triplet.second].to_phrase
+      end
     else
       triplet.second
     end
@@ -26,9 +30,7 @@ module ApplicationHelper
 
   def preference(thing)
     if thing.is_a?(Type)
-      thing.subtypes.collect{|s| preference(s)}.join('•')
-    elsif thing.is_a?(Subtype) && !thing.dominant?
-      thing.parts.collect{|p| preference(p)}.to_phrase
+      thing.subtypes.collect{|s| preference(s)}.break
     else
       cookies[thing.symbol] ||
       Words[thing.symbol] ||

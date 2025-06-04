@@ -1,0 +1,6 @@
+.bold=display(transform(thing, :capitalize))
+-if @more
+  .plain
+    -if cookies['setting'] == 'symbols'
+      =Words[thing.string].comma
+    =Words[thing.string + '-alt']
