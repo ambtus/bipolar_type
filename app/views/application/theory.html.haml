@@ -1,11 +1,11 @@
-- content_for :title, @realm.name
+- content_for :title, 'Theory'
 
 =render "realm_links"
 
 %table
   %tr
     %th
-    %th{colspan:2} Stressful<br />#{@realm.name}
+    %th{colspan:2} Stressed
     %th
   %tr
     %th
@@ -14,20 +14,17 @@
     %th
   %tr
     %td.right.top.none flight
-    %td.none.italic=@realm.use_energy
-    %td.none.italic=@realm.use_strength
+    %td.none
+    %td.none
     %td.left.none.top fight
   %tr
-    %th The #{@realm.name}
+    %th Energy
     %th{colspan:2}
-      =@realm.use
-      %br
-      =@realm.get
-    %th My #{@realm.name}
+    %th Strength
   %tr
     %td.right.bottom.none digest
-    %td.none.italic=@realm.energy
-    %td.none.italic=@realm.strength
+    %td.none
+    %td.none
     %td.left.none.bottom rest
   %tr
     %th
@@ -36,5 +33,5 @@
     %th
   %tr
     %th
-    %th{colspan:2} Unstressful<br />#{@realm.name}
+    %th{colspan:2} Unstressed
     %th

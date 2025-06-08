@@ -9,13 +9,4 @@
 
   %body
     %p=render "layouts/links"
-    -unless (%w{home cookies} & params.values).present?
-      %div.right=render 'layouts/settings_form'
-
     =yield
-
-    -if Rails.env.development?
-      %hr
-      %p=cookies.to_h
-      %p=params.values
-

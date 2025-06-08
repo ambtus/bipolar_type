@@ -1,19 +1,16 @@
 :css
   table {margin: auto; border: none; border-collapse: collapse;}
   table.equal {table-layout: fixed; width: 100%; }
-  table.bordered {border: 1px solid grey; }
 
-  td {border: 1px solid grey; text-align: center; vertical-align: top; padding: .2em; }
+  td {border: 1px solid grey; text-align: center; vertical-align: middle; padding: .2em; }
   td.none {border: none}
 
-  .half {width: 50%}
-  .halfish {width: 40%}
+  .top {vertical-align: top}
+  .bottom {vertical-align: bottom;}
 
   .center {text-align: center;}
   .left {text-align: left;}
   .right {text-align: right;}
-  .bottom {vertical-align: bottom;}
-  .top {vertical-align: top;}
 
   a.external:link {color: dimgrey; text-decoration: none;}
   a.external:visited {color: dimgrey; text-decoration: none;}
@@ -23,19 +20,12 @@
   h2 {text-align: center; font-weight: bold; font-size: 1.3em;}
   h3 {text-align: center; font-style: italic; font-size: 1.2em;}
 
-  .plain {font-weight: normal; font-style: normal;}
+  .plain {font-weight: normal; font-style: normal; text-decoration: none}
   .italic {font-style: italic;}
   .bold {font-weight: bold;}
-  .small {font-size: .8em;}
+  .strike {text-decoration: line-through}
+   .mark {background-color: yellow;}
 
-  .set_true { opacity: 0.6}
-  .set_false {}
 
-  ul.none { padding: 0; margin: 1em; list-style-type: none; }
-  ol.none { padding: 0; margin: 1.5em}
-
-  input[type=text] {font-weight: bold; font-size: 1em;}
-
-  dl { display: grid; grid-template-columns: max-content auto; }
-  dt { grid-column-start: 1; }
-  dd { grid-column-start: 2; }
+  ul { padding: 0; margin: 0; list-style-type: none; }
+  ol { margin: 0; padding-left: 1.5em;}

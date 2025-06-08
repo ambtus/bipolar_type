@@ -13,31 +13,26 @@ S: places
 T: things
 N: ideas
 
-F-alt: spiritual, political, religious, musical, social, audible, affective
-S-alt: physical, agrarian, caloric, sensual, athletic
-T-alt: financial, material, tangible, commercial
-N-alt: mental, cognitive, visible, intellectual
+F-alt: friends, enemies, family, neighbors, colleagues, employers, employees, 
+S-alt: homes, gardens, farms, parks, rivers, mountains, trails
+T-alt: tools, machines, clothing, toys, computers, furniture, cars
+N-alt: theories, plans, rules, laws, programs, ideologies, concepts
 
-EP: get energy
-IP: burn energy
-IJ: use strength
-EJ: recover strength
-
-FP: listen to music
-FP-alt: listen to intonation
+FP: listen to intonation
+FP-alt: listen to music
 IF: express emotions
-IF-alt: sing, play musical instruments
-FJ: use words
+IF-alt: talk, sing, play musical instruments
+FJ: influence
 FJ-alt: preach, write lyrics
 EF: understand meaning
 EF-alt: understand lyrics
 
 SP: eat carbs
 SP-alt: carb load, eat sweets
-IS: walk
-IS-alt: run, play sports
-SJ: use muscles
-SJ-alt: lift weights, do chores
+IS: run
+IS-alt: run away, leave
+SJ: clean 
+SJ-alt: cultivate
 ES: lie down
 ES-alt: drink protein shakes, eat protein bars, eat protein after
 
@@ -45,16 +40,16 @@ NP: see colorful specifics
 NP-alt: watch the sunrise, learn facts
 IN: generalize
 IN-alt: intuit, guess
-NJ: close your eyes
+NJ: improve
 NJ-alt: theorize, prove, use logic
 EN: analyze results
 EN-alt: watch endings, learn consequences
 
 TP: earn wages
 TP-alt: compete for prizes
-IT: pay cash upfront
-IT-alt: buy outright
-TJ: use credit
+IT: spend cash
+IT-alt: buy outright, pay cash upfront
+TJ: invest in
 TJ-alt: pay over time
 ET: earn repayments
 ET-alt: earn a salary

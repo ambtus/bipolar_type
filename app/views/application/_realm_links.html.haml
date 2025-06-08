@@ -1,0 +1,4 @@
+%h2
+  -Realm.each do |realm|
+    =link_to_unless_current realm.name, realm_path(realm.string)
+    ="|" unless realm==Realm.fourth

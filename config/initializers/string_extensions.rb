@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean to_wbr first_words last_words quote dquote sqwrap parenthesize wrap end_paren unwrap wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr first_words last_words first_word last_word quote dquote sqwrap parenthesize wrap end_wrap start_wrap unwrap wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough enough_of many too_many too_much too_few too_little a_few plural? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -33,6 +33,7 @@ class String
       words.first((words.count+1)/2).to_phrase
     end
   end
+  alias first_word :first_words
   def last_words
     case words.count
     when 1
@@ -47,13 +48,15 @@ class String
       words.first((words.count-1)/2).to_phrase
     end
   end
+  alias last_word :last_words
 
   def quote; "‘#{self}’"; end
   def dquote; "“#{self}”"; end
   def sqwrap; "[#{self}]"; end
   def parenthesize; "(#{self})"; end
   alias wrap :parenthesize
-  def endwrap; "#{self})"; end
+  def end_wrap; "#{self})"; end
+  def start_wrap; "(#{self}"; end
   def wrapped?; self.last == ')' && self[0] == '('; end
   def unwrap
     if wrapped?
@@ -154,6 +157,7 @@ class String
     end
   end
   def ed
+    return 'bought' if self=='buy'
     return 'quit' if self=='quit'
     return 'fled' if self=='flee'
     return 'won' if self=='win'
@@ -280,6 +284,12 @@ class String
       if self.match(connector)
         first, second = self.split(connector, 2)
         return [first.enough, second.enough].join(connector)
+      end
+    end
+    [' a ', ' the ',].each do |connector|
+      if self.match(connector)
+        first, second = self.split(connector, 2)
+        return [first, 'enough of', connector, second].to_phrase
       end
     end
     if self.match(' ')

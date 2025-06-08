@@ -1,34 +1,70 @@
-- content_for(:title, @type.symbol)
+- content_for(:title, @type.path)
 
-%h2
-  BipolarType #{@type.index + 1} of 24
-  %br
-  =display(@type)
+%table
+  %tr
+    %th The<br />#{@tl.name}
+    %th.top{colspan:2} Manic
+    %th My<br />#{@tr.name}
+  %tr
+    %th
+    %td.none.left anxious
+    %td.none.right irritated
+    %th
+  %tr
+    %td.right.top.none flight
+    %td
+      %ul
+        %li.bold=@tl.use_energy
+        %li=@bl.use_energy
+        %li.strike=@tr.use_energy
+        %li.italic=@br.use_energy
+    %td
+      %ul
+        %li.bold=@tr.use_strength
+        %li=@br.use_strength
+        %li.strike=@tl.use_strength
+        %li.italic=@bl.use_strength
+    %td.left.top.none fight
 
-.center=render 'layouts/more'
--if @more
+  %tr
+    %th.left Energy
+    %th{colspan:2}
+    %th.right Strength
+
+  %tr
+    %td.right.bottom.none digest
+    %td
+      %ul
+        %li.bold=@bl.get_energy
+        %li=@tl.get_energy
+        %li.strike=@br.get_energy
+        %li.italic=@tr.get_energy
+    %td
+      %ul
+        %li.bold=@br.get_strength
+        %li=@tr.get_strength
+        %li.strike=@bl.get_strength
+        %li.italic=@tl.get_strength
+    %td.left.none.bottom rest
+  %tr
+    %th
+    %td.none.left hungry
+    %td.none.right tired
+    %th
+  %tr
+    %th The<br />#{@bl.name}
+    %th.bottom{colspan:2} Depressed
+    %th My<br />#{@br.name}
+
+%p
   %ul
     %li
-      =display @type.subtypes.first
-      so you will be able to react to
-      =display @type.subtypes.first.realm
-      by
-      =display(transform(@type.subtypes.first.next, :ing))
-    %li
-      don’t
-      =display @type.subtypes.second.next
-      so you will be able to react to
-      =display @type.subtypes.second.realm
-      by
-      =display(transform(@type.subtypes.second, :ing))
-    %li
-      =display @type.subtypes.third
-      so you won’t be distracted by
-      =display(transform(@type.subtypes.third.opposite, :ing))
-    %li
-      =display @type.subtypes.fourth
-      so you won’t
-      =display @type.subtypes.fourth.next
-      and waste your time
-      =display(transform(@type.subtypes.fourth.opposite, :ing))
-      in circles
+      Legend:
+      .bold do this more
+    %li let yourself do this
+    %li.strike do this less
+    %li.italic let yourself NOT do this
+
+-if Rails.env.development? && @type == Type.my_type
+  %hr
+  =link_to 'your type', type_path('NSTF')

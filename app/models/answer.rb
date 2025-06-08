@@ -5,28 +5,42 @@ class Answer
 
   def initialize(string)
     @path = string
-    @question,answer_string = @path.split(':')
+    @question,answer_string,choice = @path.split(':')
+    @choice = choice && (Attitude.find_by(choice) || Realm.find_by(choice))
     @answer_string = answer_string || ''
   end
-  attr_reader :question, :path, :answer_string
+  attr_reader :question, :path, :answer_string, :choice
 
+  def first?; number.to_i == 1; end
   def number; @question.last ; end
   def finished?; number.to_i > 3; end
 
-  def subtypes; answer_string.scan(/../).collect{|s| Subtype.find_by(s)}; end
-
+  def subtypes; answer_string.scan(/.../).collect{|s| Subtype.find_by(s)}; end
   def realms; subtypes.map(&:realm); end
   def attitudes; subtypes.map(&:attitude); end
 
-  def taken?(subtype); realms.include?(subtype.realm) || attitudes.include?(subtype.attitude); end
-  def chosen?(subtype); subtypes.include?(subtype); end
+  def taken?(thing)
+    if thing.is_a?(Attitude)
+      attitudes.include?(thing)
+    elsif thing.is_a?(Realm)
+      realms.include?(thing)
+    elsif thing.is_a?(Subtype)
+      realms.include?(thing.realm) || attitudes.include?(thing.attitude)
+    end
+  end
 
-  def next(string); question.next + ':' + answer_string + string; end
+  def next(thing)
+    if thing.is_a?(Subtype)
+      "#{@question.next}:#{@answer_string}#{thing.string}:"
+    else
+      "#{@question}:#{@answer_string}:#{thing.string}"
+    end
+  end
 
-  def last; Subtype.all.find{|s| !realms.include?(s.realm) && !attitudes.include?(s.attitude) }; end
-
-  def all; (subtypes << last).sort_by(&:attitude); end
-
-  def realm_string; all.map(&:realm).map(&:symbol).join; end
-  def type_path; Type.find_by_realm_string(realm_string).path; end
+  def last_attitude; (Attitude.all - attitudes).first; end
+  def last_realm; (Realm.all - realms).first; end
+  def last; last_attitude + last_realm ; end
+  def all; subtypes << last; end
+  def sorted; all.map(&:opposite).sort.map(&:realm); end
+  def type_path; sorted.map(&:string).join; end
 end

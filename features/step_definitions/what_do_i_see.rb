@@ -28,10 +28,9 @@ Then('I should see {string} before {string}') do |string, string2|
   assert page.has_text?(regexp)
 end
 
-Then('I should see all subtypes') do
-  Subtype.each do |s|
-    assert page.has_text?(s.symbol)
-  end
+Then('I should NOT see {string} before {string}') do |string, string2|
+  regexp = Regexp.new(string + '.*' + string2)
+  assert page.has_no_text?(regexp)
 end
 
 Then('the link {string} should include {string}') do |string, string2|
@@ -44,3 +43,4 @@ Then('there should be {int} answer links') do |int|
   answer_links = links.select{|l| l[:href].match 'answer'}
   assert_equal int, answer_links.count
 end
+

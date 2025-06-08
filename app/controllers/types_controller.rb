@@ -1,13 +1,11 @@
 class TypesController < ApplicationController
 
-  def index
-    @sort_index = (params[:sort] || 3).to_i
-    @types = Type.sort_by(@sort_index)
-    render 'types'
-  end
-
   def show
-    @type = Type.find params[:id]
+    @type = Type.find_by params[:id]
+    @bl=@type.realms.first
+    @tl=@type.realms.second
+    @tr=@type.realms.third
+    @br=@type.realms.fourth
     render 'type'
   end
 

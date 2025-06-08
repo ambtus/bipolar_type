@@ -1,9 +1,0 @@
-If you prefer other words,
-%br
-please use the
-=link_to 'cookies', cookies_path
-page.
-=form_with url: cookies_path, method: :get do |f|
-  -CookiesController::SETTINGS.each do |setting|
-    -unless defined?(skip) && skip == setting
-      =f.submit setting.humanize, class: "set_#{(cookies['setting'] == setting) || (cookies['setting'].blank? && setting == 'words')}"

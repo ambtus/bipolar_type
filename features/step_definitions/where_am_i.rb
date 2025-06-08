@@ -6,24 +6,16 @@ Given('I am on the questions page') do
   visit('/answers/Q1')
 end
 
-Given('I am on the cookies page') do
-  visit('/cookies')
-end
-
 Given('I am on my page') do
   visit('/me')
 end
 
-Given('I am on the attitudes page') do
-  visit('/attitudes')
+Given('I am on your page') do
+  visit('/types/NSTF')
 end
 
-Given('I am on the realms page') do
-  visit('/realms')
-end
-
-Given('I am on the cycle page') do
-  visit('/cycle')
+Given('I am on the theory page') do
+  visit('/theory')
 end
 
 Then('I should be on my page') do

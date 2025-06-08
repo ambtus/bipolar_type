@@ -1,22 +1,27 @@
 -content_for(:title, @title)
 
-%table
-  %caption
-    %h2=@title
+%h2
+  -Realm.each do |realm|
+    =link_to_unless (@answer.taken?(realm) || @choice==realm), realm.name, answer_path(@answer.next(realm))
+    ='|' unless realm == Realm.fourth
 
-  %tr
+-if @choice.blank?
+  .center Please choose one of the above
+-else
+  %table
+    %caption=@title
+    %tr
+      %td=render 'td', subtype: Attitude.TL + @choice
+      %td=render 'td', subtype: Attitude.TR + @choice
+    %tr
+      %td=render 'td', subtype: Attitude.BL + @choice
+      %td=render 'td', subtype: Attitude.BR + @choice
 
-    %td=render 'choice', attitude: Attitude.I
-
-    %td=render 'choice', attitude: Attitude.J
-
-  %tr
-
-    %td=render 'choice', attitude: Attitude.P
-
-    %td=render 'choice', attitude: Attitude.E
-
-.center=render 'layouts/more'
 
 -if Rails.env.development?
+  %hr
   =@answer.subtypes
+  %br
+  =@answer.realms.map(&:name)
+  %br
+  =@answer.attitudes.map(&:name)
