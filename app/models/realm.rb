@@ -19,12 +19,12 @@ class Realm < Concept
 
   def get; %w{listen\ to eat earn learn}[index]; end
   def energy; %w{music carbs wages facts}[index]; end
-  def strength; %w{opinions protein a\ salary rules}[index]; end
+  def strength; %w{sermons protein a\ salary rules}[index]; end
   def get_energy; [get, energy].to_phrase; end
   def get_strength; [get, strength].to_phrase; end
 
-  def use; %w{tell go buy imagine}[index]; end
-  def use_energy; %w{emote travel pay\ cash guess}[index]; end
-  def use_strength; %w{preach clean use\ credit theorize}[index]; end
+  def use; %w{tell go buy think}[index]; end
+  def use_energy; %w{sing gather pay\ cash choose}[index]; end
+  def use_strength; %w{preach hunt use\ credit decide}[index]; end
 
 end

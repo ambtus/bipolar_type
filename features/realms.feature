@@ -15,7 +15,7 @@ Then I should see 'Stressed'
 Scenario: realms page is customized
 Given I am on the theory page
 When I follow the 'People' link
-Then I should see 'emote'
+Then I should see 'sing'
   But I should NOT see 'Stressed'
 
 Scenario: can get to next realm without going back
