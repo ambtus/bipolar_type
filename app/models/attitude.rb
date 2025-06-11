@@ -7,12 +7,10 @@ class Attitude < Concept
     define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
   end
 
-  def episode; string.starts_with?('B') ? 'depressed' : 'manic'; end
+  def self.rows; [[Attitude.TL, Attitude.TR],
+                  [Attitude.BL, Attitude.BR]]; end
 
-  def drugs; string.starts_with?('B') ? 'stimulants' : 'sedatives'; end
-  def emotion; %w{hungry anxious irritated tired}[index]; end
-  def prep; %w{for about at of}[index]; end
-  def name; emotion.titleize; end
+  def getting?; string.starts_with?('B'); end
 
   def gu; string.starts_with?('T') ? 'use' : 'get'; end
   def es; string.ends_with?('L') ? 'energy' : 'strength'; end
@@ -21,6 +19,8 @@ class Attitude < Concept
   def second_letter; es.first.capitalize; end
 
   def action; [gu, es].join('_'); end
+
+  def name; action.titleize; end
 
   def next; self.class.rotate[index]; end
   def previous; self.class.rotate(-1)[index]; end

@@ -1,21 +1,26 @@
 -content_for(:title, @title)
-
 %h2
   -Realm.each do |realm|
     =link_to_unless (@answer.taken?(realm) || @choice==realm), realm.name, answer_path(@answer.next(realm))
     ='|' unless realm == Realm.fourth
-
--if @choice.blank?
-  .center Please choose one of the above
--else
+  %br
   %table
-    %caption=@title
+    -Attitude.rows.each do |row|
+      %tr
+        -row.each do |attitude|
+          %td.none=link_to_unless (@answer.taken?(attitude) || @choice==attitude), attitude.name, answer_path(@answer.next(attitude))
+
+-unless @answer.first?
+  .center=link_to 'Start Over', answer_path(Answer.first_path)
+
+%table.equal
+  -@answer.free_things.each do |thing|
     %tr
-      %td=render 'problem', subtype: Attitude.TL + @choice
-      %td=render 'problem', subtype: Attitude.TR + @choice
+      -thing.subtypes.each do |subtype|
+        -unless @answer.taken?(subtype)
+          %td.top=render 'problem', subtype: subtype
     %tr
-      %td=render 'problem', subtype: Attitude.BL + @choice
-      %td=render 'problem', subtype: Attitude.BR + @choice
+      %th{colspan:2} &nbsp;
 
 
 -if Rails.env.development?

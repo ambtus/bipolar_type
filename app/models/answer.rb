@@ -6,18 +6,28 @@ class Answer
   def initialize(string)
     @path = string
     @question,answer_string,choice = @path.split(':')
-    @choice = choice && (Attitude.find_by(choice) || Realm.find_by(choice))
+    @choice = choice && (Realm.find_by(choice) || Attitude.find_by(choice))
     @answer_string = answer_string || ''
   end
-  attr_reader :question, :path, :answer_string, :choice
+  attr_reader :path, :question, :answer_string
 
   def first?; number.to_i == 1; end
   def number; @question.last ; end
   def finished?; number.to_i > 3; end
 
   def subtypes; answer_string.scan(/.../).collect{|s| Subtype.find_by(s)}; end
+
   def realms; subtypes.map(&:realm); end
+  def chosen_realm; @choice if @choice.is_a?(Realm); end
+  def free_realms; ([chosen_realm, *Realm.all] - realms).compact.uniq; end
+
   def attitudes; subtypes.map(&:attitude); end
+  def chosen_attitude; @choice if @choice.is_a?(Attitude); end
+  def free_attitudes; ([chosen_attitude, *Attitude.all] - attitudes).compact.uniq; end
+
+  def free_things;( @choice.blank? || @choice.is_a?(Realm) ) ? free_realms : free_attitudes; end
+  def choice; free_things.first; end
+  
 
   def taken?(thing)
     if thing.is_a?(Attitude)
@@ -37,10 +47,8 @@ class Answer
     end
   end
 
-  def last_attitude; (Attitude.all - attitudes).first; end
-  def last_realm; (Realm.all - realms).first; end
-  def last; last_attitude + last_realm ; end
+  def last; free_attitudes.first + free_realms.first ; end
   def all; subtypes << last; end
-  def sorted; all.map(&:opposite).sort.map(&:realm); end
+  def sorted; all.sort.map(&:realm); end
   def type_path; sorted.map(&:string).join; end
 end

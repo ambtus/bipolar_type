@@ -12,7 +12,7 @@ class Subtype < Concept
   def attitude; Attitude.find_by(string.first + string.third); end
 
   def tla; [first_letter, letter, second_letter].join; end
-  def action; [gu, adjective, es].map(&:capitalize).join; end
+  def action; [gu, es].to_phrase; end
 
   def act; realm.send(attitude.action); end
 

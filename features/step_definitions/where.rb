@@ -14,6 +14,7 @@ Given('I am on your page') do
   visit('/types/NSTF')
 end
 
+
 Given('I am on the {word} page') do |url|
   visit("/#{url}")
 end
@@ -24,6 +25,10 @@ end
 
 Then('I should NOT be on my page') do
   assert page.has_link?('Me')
+end
+
+Then('I should be on a theory page') do
+  assert_match "/types/", page.current_path
 end
 
 Then('I should be on the {word} page') do |string|

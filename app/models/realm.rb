@@ -24,7 +24,7 @@ class Realm < Concept
   def get_energy; [get, energy].to_phrase; end
   def get_strength; [get, strength].to_phrase; end
 
-  def use; %w{tell go buy think}[index]; end
+  def use; %w{communicate move buy think}[index]; end
   def use_energy; %w{sing gather pay\ cash choose}[index]; end
   def use_strength; %w{preach hunt use\ credit decide}[index]; end
 
