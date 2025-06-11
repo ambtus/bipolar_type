@@ -16,6 +16,7 @@ class Realm < Concept
 
   def adjective; %w{social physical financial mental}[index]; end
   def adverb; adjective.ly; end
+  def letter; adjective.first.capitalize; end
 
   def get; %w{listen\ to eat earn learn}[index]; end
   def energy; %w{music carbs wages facts}[index]; end

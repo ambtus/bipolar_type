@@ -11,6 +11,9 @@ class Subtype < Concept
   def realm; Realm.find_by(string.second); end
   def attitude; Attitude.find_by(string.first + string.third); end
 
+  def tla; [first_letter, letter, second_letter].join; end
+  def action; [gu, adjective, es].map(&:capitalize).join; end
+
   def act; realm.send(attitude.action); end
 
   def parts; [attitude, realm]; end # sort by attitude

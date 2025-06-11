@@ -10,3 +10,9 @@
   %body
     %p=render "layouts/links"
     =yield
+
+    -if Rails.env.development?
+      %hr
+      params: #{params}
+      %br
+      cookies: #{cookies.to_h}

@@ -5,7 +5,7 @@
 %table
   %tr
     %th
-    %th{colspan:2} Stressful<br />#{@realm.name}
+    %td.none{colspan:2} Bad #{@realm.name}<br />(Stressful/Interesting)
     %th
   %tr
     %th
@@ -14,20 +14,19 @@
     %th
   %tr
     %td.right.top.none flight
-    %td.none.italic=@realm.use_energy
-    %td.none.italic=@realm.use_strength
+    %th=cookies[(@realm+Attitude.TL).tla] || @realm.use_energy
+    %th=cookies[(@realm+Attitude.TR).tla] || @realm.use_strength
     %td.left.none.top fight
   %tr
-    %th The #{@realm.name}
-    %th{colspan:2}
-      =@realm.use
-      %br
-      =@realm.get
-    %th My #{@realm.name}
+    %td.none{rowspan:2} The #{@realm.name}<br />(Avoidable)
+    %td.none.top{colspan:2}=@realm.use
+    %td.none{rowspan:2} My #{@realm.name}<br />(Controllable)
+  %tr
+    %td.none.bottom{colspan:2}=@realm.get
   %tr
     %td.right.bottom.none digest
-    %td.none.italic=@realm.energy
-    %td.none.italic=@realm.strength
+    %th=cookies[(@realm+Attitude.BL).tla] || @realm.energy
+    %th=cookies[(@realm+Attitude.BR).tla] || @realm.strength
     %td.left.none.bottom rest
   %tr
     %th
@@ -36,5 +35,5 @@
     %th
   %tr
     %th
-    %th{colspan:2} Unstressful<br />#{@realm.name}
+    %td.none{colspan:2} Good #{@realm.name}<br />(Safe/Boring)
     %th

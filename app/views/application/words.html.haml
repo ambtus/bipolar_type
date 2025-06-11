@@ -1,0 +1,12 @@
+- content_for :title, 'Words'
+
+=form_with url: words_path, method: :get do |f|
+  %table
+    -Subtype.each do |subtype|
+      %tr
+      %th=subtype.action
+      %td=subtype.act
+      %td=f.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: 10
+      -if subtype.index%4 == 3
+        %tr
+          %th{colspan:3}= f.submit 'Save'

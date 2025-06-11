@@ -17,6 +17,9 @@ class Attitude < Concept
   def gu; string.starts_with?('T') ? 'use' : 'get'; end
   def es; string.ends_with?('L') ? 'energy' : 'strength'; end
 
+  def first_letter; gu.first.capitalize; end
+  def second_letter; es.first.capitalize; end
+
   def action; [gu, es].join('_'); end
 
   def next; self.class.rotate[index]; end

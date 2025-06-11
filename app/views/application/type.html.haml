@@ -1,69 +1,64 @@
 - content_for(:title, @type.path)
+.right=link_to 'bookmark', type_path(@type.path, cookies.to_h)
 
 %table
   %tr
-    %th The<br />#{@tl.name}
-    %th.top{colspan:2} Manic
-    %th My<br />#{@tr.name}
-  %tr
-    %th
-    %td.none.left anxious
-    %td.none.right irritated
-    %th
-  %tr
-    %td.right.top.none flight
-    %td
-      %ul
-        %li.bold=@tl.use_energy
-        %li=@bl.use_energy
-        %li.strike=@tr.use_energy
-        %li.italic=@br.use_energy
-    %td
-      %ul
-        %li.bold=@tr.use_strength
-        %li=@br.use_strength
-        %li.strike=@tl.use_strength
-        %li.italic=@bl.use_strength
-    %td.left.top.none fight
-
-  %tr
-    %th.left Energy
     %th{colspan:2}
-    %th.right Strength
+    %th.top{colspan:3} Manic<br />Stressful<br />Interesting
+    %th{colspan:2}
+  %tr
+    %th
+    %th.top.left=@tl.name
+    %td.none.left.bottom anxious
+    %th
+    %td.none.right.bottom irritated
+    %th.top.right=@tr.name
+    %th
+  %tr
+    %th.bottom Prey
+    %td.right.top.none flight
+    %td=render 'solution', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br]
+    %th
+    %td=render 'solution', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl]
+    %td.left.top.none fight
+    %th.bottom Predator
 
   %tr
+    %th Energy
+    %th{colspan:5}
+    %th Strength
+
+  %tr
+    %th.top Freedom
     %td.right.bottom.none digest
-    %td
-      %ul
-        %li.bold=@bl.get_energy
-        %li=@tl.get_energy
-        %li.strike=@br.get_energy
-        %li.italic=@tr.get_energy
-    %td
-      %ul
-        %li.bold=@br.get_strength
-        %li=@tr.get_strength
-        %li.strike=@bl.get_strength
-        %li.italic=@tl.get_strength
+    %td=render 'solution', attitude: Attitude.BL, realms: [@bl, @tl, @br, @tr]
+    %th
+    %td=render 'solution', attitude: Attitude.BR, realms: [@br, @tr, @bl, @tl]
     %td.left.none.bottom rest
+    %th.top Control
+
   %tr
     %th
-    %td.none.left hungry
-    %td.none.right tired
+    %th.bottom.left=@bl.name
+    %td.none.left.top hungry
     %th
+    %td.none.right.top tired
+    %th.bottom.right=@br.name
+    %th
+
   %tr
-    %th The<br />#{@bl.name}
-    %th.bottom{colspan:2} Depressed
-    %th My<br />#{@br.name}
+    %th{colspan:2}
+    %th.bottom{colspan:3} Safe<br />Boring<br />Depressed
+    %th{colspan:2}
 
 %p
   %ul
     %li
       Legend:
-      .bold do this more
-    %li let yourself do this
-    %li.strike do this less
-    %li.italic let yourself NOT do this
+      .bold do this more, even when it’s hard
+    %li let yourself do this when you can
+    %li.strike do this less, even when it’s easy
+    %li.italic let yourself NOT do this when you cannot
 
 -if Rails.env.development? && @type == Type.my_type
   %hr

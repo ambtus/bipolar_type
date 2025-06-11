@@ -44,3 +44,19 @@ Then('there should be {int} answer links') do |int|
   assert_equal int, answer_links.count
 end
 
+Then('I should see all {word} {word}') do |klass, meth|
+  meth = meth.singularize
+  result = klass.constantize.all.map(&meth.to_sym)
+  Rails.logger.debug result
+  result.each do |text|
+    assert page.has_text?(text)
+  end
+end
+
+Then('{string} should be entered in {string}') do |text, field|
+  assert page.has_field?(field, with: text)
+end
+
+Then('I should have a {word} link including {string}') do |name, snippet|
+  assert page.has_link?(name, href: Regexp.new(snippet))
+end

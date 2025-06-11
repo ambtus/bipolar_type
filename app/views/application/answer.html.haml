@@ -11,11 +11,11 @@
   %table
     %caption=@title
     %tr
-      %td=render 'td', subtype: Attitude.TL + @choice
-      %td=render 'td', subtype: Attitude.TR + @choice
+      %td=render 'problem', subtype: Attitude.TL + @choice
+      %td=render 'problem', subtype: Attitude.TR + @choice
     %tr
-      %td=render 'td', subtype: Attitude.BL + @choice
-      %td=render 'td', subtype: Attitude.BR + @choice
+      %td=render 'problem', subtype: Attitude.BL + @choice
+      %td=render 'problem', subtype: Attitude.BR + @choice
 
 
 -if Rails.env.development?
