@@ -7,11 +7,11 @@ Given('I am on the first question page') do
 end
 
 Given('I am on my page') do
-  visit('/me')
+  visit(my_path)
 end
 
 Given('I am on your page') do
-  visit('/types/NSTF')
+  visit(type_path(Type.your_path))
 end
 
 

@@ -34,6 +34,7 @@ When I follow the last link
   And I follow the last link
   And I follow the last link
 Then I should be on a theory page
+  But I should NOT be on my page
 
 Scenario: allows you to start over
 Given I am on the first question page

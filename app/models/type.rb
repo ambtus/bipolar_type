@@ -17,6 +17,7 @@ class Type
     def title; [all.count, name.pluralize].to_phrase; end
     def find_by(string); all.find{|t| t.realm_string == string}; end
     def my_path; 'FTNS'; end
+    def your_path; 'NSTF'; end
     def my_type; find_by(my_path); end
   end
 

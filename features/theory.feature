@@ -20,4 +20,4 @@ Given I am on the theory page
 When I follow the 'People' link
   And I follow the 'Things' link
 Then I should see 'cash'
-  But I should NOT see 'emote'
+  But I should NOT see 'sing'
