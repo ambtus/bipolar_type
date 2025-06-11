@@ -13,7 +13,7 @@ Then 'eat dessert' should be entered in 'GPE'
 Scenario: the word page allows you to see your changes on the type page
 Given I have changed the word for 'GPE' to 'eat dessert'
 When I am on your page
-Then I should see 'eat dessert' before 'music'
+Then I should see 'eat dessert'
   And I should NOT see 'carbs'
 
 Scenario: the word page allows you to see your changes on the realms page

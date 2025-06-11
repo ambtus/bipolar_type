@@ -5,33 +5,40 @@
   %tr
     %th.bottom.right=@tl.name
     %td.none.left.bottom anxious
+    %th
     %td.none.right.bottom irritated
     %th.bottom.left=@tr.name
   %tr
     %td.right.top.none flight
-    %td=render 'solution', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br]
-    %td=render 'solution', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl]
+    %td=render 'top', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br]
+    %th
+    %td=render 'top', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl]
     %td.left.top.none fight
   %tr
+    %th{colspan:2}
+    %th &orarr;
+  %tr
     %td.right.bottom.none digest
-    %td=render 'solution', attitude: Attitude.BL, realms: [@bl, @tl, @br, @tr]
-    %td=render 'solution', attitude: Attitude.BR, realms: [@br, @tr, @bl, @tl]
+    %td=render 'bottom', attitude: Attitude.BL, realms: [@bl, @tl, @br, @tr].reverse
+    %th
+    %td=render 'bottom', attitude: Attitude.BR, realms: [@br, @tr, @bl, @tl].reverse
     %td.left.none.bottom rest
   %tr
     %th.top.right=@bl.name
     %td.none.left.top hungry
+    %th
     %td.none.right.top tired
     %th.top.left=@br.name
 
 
 %p
-  %ul
+  %ul.center
     %li
       Legend:
-      .bold do this more, now that you can
-    %li let yourself do this, once you are balanced
-    %li.strike do this less, it&rsquo;s not what you want to do
-    %li.italic let yourself NOT do this, as soon as you no longer have to
+      .bold do this more
+    %li let yourself do this
+    %li.strike do this less
+    %li.italic let yourself NOT do this
 
 -if Rails.env.development? && @type == Type.my_type
   %hr
