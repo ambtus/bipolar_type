@@ -3,53 +3,26 @@
 
 %table
   %tr
-    %th{colspan:2}
-    %th.top{colspan:3} Manic<br />Stressful<br />Interesting
-    %th{colspan:2}
-  %tr
-    %th
-    %th.top.left=@tl.name
+    %th.bottom.right=@tl.name
     %td.none.left.bottom anxious
-    %th
     %td.none.right.bottom irritated
-    %th.top.right=@tr.name
-    %th
+    %th.bottom.left=@tr.name
   %tr
-    %th.bottom Prey
     %td.right.top.none flight
     %td=render 'solution', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br]
-    %th
     %td=render 'solution', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl]
     %td.left.top.none fight
-    %th.bottom Predator
-
   %tr
-    %th Energy
-    %th{colspan:5}
-    %th Strength
-
-  %tr
-    %th.top Freedom
     %td.right.bottom.none digest
     %td=render 'solution', attitude: Attitude.BL, realms: [@bl, @tl, @br, @tr]
-    %th
     %td=render 'solution', attitude: Attitude.BR, realms: [@br, @tr, @bl, @tl]
     %td.left.none.bottom rest
-    %th.top Control
-
   %tr
-    %th
-    %th.bottom.left=@bl.name
+    %th.top.right=@bl.name
     %td.none.left.top hungry
-    %th
     %td.none.right.top tired
-    %th.bottom.right=@br.name
-    %th
+    %th.top.left=@br.name
 
-  %tr
-    %th{colspan:2}
-    %th.bottom{colspan:3} Safe<br />Boring<br />Depressed
-    %th{colspan:2}
 
 %p
   %ul
