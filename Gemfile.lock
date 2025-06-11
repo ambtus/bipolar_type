@@ -180,7 +180,6 @@ GEM
     nokogiri (1.18.8)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    ostruct (0.6.1)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -263,7 +262,6 @@ DEPENDENCIES
   haml
   haml-rails
   launchy
-  ostruct
   puma
   rails
 
