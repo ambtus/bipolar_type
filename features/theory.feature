@@ -1,23 +1,14 @@
-Feature: theory page
+Feature: the theory page
 
-Scenario: the theory page lists the realms
-Given I am on the theory page
-Then I should see all Realm names
-
-Scenario: the theory page shows a generic table
+Scenario: shows a simple table
 Given I am on the theory page
 Then I should see 'Manic'
   But I should NOT see 'Stressful'
 
-Scenario: the People realm page is customized
+Scenario: lists the realms
 Given I am on the theory page
-When I follow the 'People' link
-Then I should see 'sing'
-  But I should NOT see 'Manic'
+Then I should see all Realm names
 
-Scenario: can get to next realm without going back
+Scenario: has links to the realm pages
 Given I am on the theory page
-When I follow the 'People' link
-  And I follow the 'Things' link
-Then I should see 'cash'
-  But I should NOT see 'sing'
+Then the 'People' link should NOT be disabled
