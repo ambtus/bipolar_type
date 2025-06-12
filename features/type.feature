@@ -29,11 +29,13 @@ When I follow the 'People' link
 Then I should see 'sing'
   But I should NOT see 'pay cash'
   And the 'People' link should be disabled
+  And the 'All' link should NOT be disabled
 
-Scenario: can get back to all four via bookmark
+Scenario: can get back to all four
 Given I am on my page
 When I follow the 'People' link
-  And I follow the 'bookmark' link
+  And I follow the 'All' link
 Then I should see 'pay cash'
   And the 'People' link should NOT be disabled
+  But the 'All' link should be disabled
 
