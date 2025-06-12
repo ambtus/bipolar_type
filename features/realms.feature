@@ -1,10 +1,15 @@
 Feature: the realms page
 
-Scenario: shows a complex table
+Scenario: shows a square
 Given I am on the theory page
 When I follow the 'People' link
-Then I should NOT see 'Manic'
-  But I should see 'Stressful'
+Then I should see 'The Bad'
+  But I should NOT see 'Manic'
+
+Scenario: shows some exposition
+Given I am on the theory page
+When I follow the 'People' link
+Then I should see 'new people'
 
 Scenario: has links to other realms
 Given I am on the theory page

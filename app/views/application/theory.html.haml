@@ -1,6 +1,9 @@
 - content_for :title, 'Theory'
 
-=render "realm_links"
+%h2
+  -Realm.each do |realm|
+    =link_to realm.name, realm_path(realm.string)
+    ="|" unless realm==Realm.fourth
 
 %table
   %tr
@@ -28,7 +31,7 @@
     %td.left.none.bottom rest
   %tr
     %th
-    %td.none.left hungry
+    %td.none.left empty
     %td.none.right tired
     %th
   %tr

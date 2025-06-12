@@ -1,34 +1,39 @@
 - content_for(:title, @type.path)
 .right=link_to 'bookmark', type_path(@type.path, cookies.to_h)
 
-%table
+%table.equal
   %tr
-    %th.bottom.right=@tl.name
-    %td.none.left.bottom anxious
     %th
+      .plain (avoid them)
+      =@tl.name
+    %td.none.left.bottom anxious
     %td.none.right.bottom irritated
-    %th.bottom.left=@tr.name
+    %th
+      .plain (fix them)
+      =@tr.name
   %tr
     %td.right.top.none flight
-    %td=render 'top', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br]
-    %th
-    %td=render 'top', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl]
+    %td.top.left.none=render 'solution', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br], classes: %w{bold plain strike italic}
+    %td.top.right.none=render 'solution', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl], classes: %w{bold plain strike italic}
     %td.left.top.none fight
   %tr
+    %th &orarr;
     %th{colspan:2}
     %th &orarr;
   %tr
     %td.right.bottom.none digest
-    %td=render 'bottom', attitude: Attitude.BL, realms: [@bl, @tl, @br, @tr].reverse
-    %th
-    %td=render 'bottom', attitude: Attitude.BR, realms: [@br, @tr, @bl, @tl].reverse
+    %td.bottom.left.none=render 'solution', attitude: Attitude.BL, realms: [@bl, @tl, @br, @tr].reverse, classes: %w{bold plain strike italic}.reverse
+    %td.bottom.right.none=render 'solution', attitude: Attitude.BR, realms: [@br, @tr, @bl, @tl].reverse, classes: %w{bold plain strike italic}.reverse
     %td.left.none.bottom rest
   %tr
-    %th.top.right=@bl.name
-    %td.none.left.top hungry
     %th
+      =@bl.name
+      .plain (enjoy them)
+    %td.none.left.top empty
     %td.none.right.top tired
-    %th.top.left=@br.name
+    %th
+      =@br.name
+      .plain (rely on them)
 
 
 %p

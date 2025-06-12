@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
         elsif params[k].present? && (params[k] != cookies[k])
           Rails.logger.debug "adding #{k}: #{params[k]}"
           cookies[k] = params[k]
+          cookie_keys.delete(k)
         end
       end
     end

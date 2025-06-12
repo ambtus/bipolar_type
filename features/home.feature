@@ -14,6 +14,7 @@ Scenario: has a contextual link to my page
 Given I am on the homepage
 When I follow the 'me' link
 Then I should be on my page
+  And the 'Me' link should be disabled
 
 Scenario: has a contextual link to the answers page
 Given I am on the homepage
