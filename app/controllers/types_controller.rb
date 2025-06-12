@@ -6,6 +6,7 @@ class TypesController < ApplicationController
     @tl=@type.realms.second
     @tr=@type.realms.third
     @br=@type.realms.fourth
+    @realm = params[:format] && Realm.find_by(params[:format])
     render 'type'
   end
 

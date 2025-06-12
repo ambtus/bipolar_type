@@ -22,3 +22,18 @@ Then I should NOT see 'salary' before 'protein'
 Scenario: for our types can have similar solutions
 Given I am on your page
 Then I should see 'cash' before 'sing'
+
+Scenario: can show just one realm at a time
+Given I am on my page
+When I follow the 'People' link
+Then I should see 'sing'
+  But I should NOT see 'pay cash'
+  And the 'People' link should be disabled
+
+Scenario: can get back to all four via bookmark
+Given I am on my page
+When I follow the 'People' link
+  And I follow the 'bookmark' link
+Then I should see 'pay cash'
+  And the 'People' link should NOT be disabled
+

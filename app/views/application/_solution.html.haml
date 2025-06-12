@@ -1,3 +1,10 @@
 %ul
   -realms.each_with_index do |realm, i|
-    %li{class: classes[i]}=display(realm+attitude)
+    -if @realm
+      -if @realm == realm
+        %li{class: classes[i]}=display(realm+attitude)
+      -else
+        %li &nbsp;
+    -else
+      %li{class: classes[i]}=display(realm+attitude)
+

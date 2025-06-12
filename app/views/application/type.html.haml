@@ -1,5 +1,13 @@
 - content_for(:title, @type.path)
-.right=link_to 'bookmark', type_path(@type.path, cookies.to_h)
+.right
+  =link_to 'bookmark', type_path(@type.path, cookies.to_h)
+  -if @realm
+    (all four)
+
+%h2
+  -Realm.each do |realm|
+    =link_to_unless @realm == realm, realm.name, type_path(@type.path, realm.string)
+    ="|" unless realm==Realm.fourth
 
 %table.equal
   %tr

@@ -25,3 +25,8 @@ Then I should be on my page
   But I should NOT see 'travel'
   And I should NOT see 'gather'
 
+Scenario: doesn't wipe out unchanged words
+Given I have changed the word for 'UPE' to 'travel'
+When I am on my page
+  And I follow the 'bookmark' link
+Then I should see 'travel'
