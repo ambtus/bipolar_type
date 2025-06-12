@@ -1,5 +1,5 @@
 - content_for :title, 'Words'
-
+.right=link_to 'reset to defaults', words_path + '?GPE'
 =form_with url: words_path, method: :get do |f|
   %table
     -Realm.each do |realm|

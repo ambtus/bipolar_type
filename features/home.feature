@@ -14,7 +14,6 @@ Scenario: has a contextual link to my page
 Given I am on the homepage
 When I follow the 'me' link
 Then I should be on my page
-  And the 'Me' link should be disabled
 
 Scenario: has a contextual link to the answers page
 Given I am on the homepage
@@ -27,3 +26,8 @@ Given I am on the homepage
 When I follow the 'words' link
 Then I should be on the words page
   And the 'Words' link should be disabled
+
+Scenario: has a contextual link to my words
+Given I am on the homepage
+When I follow the 'I use' link
+Then 'close your eyes & think' should be entered in 'UMS'

@@ -21,7 +21,9 @@
   =link_to 'you', answer_path(Answer.first_path)
   will find it useful or interesting but I do not guarantee it to be either true or correct.
 %p
-  I have attempted to use neutral words for the sixteen behaviors. However, I encourage you to use your own
-  =(link_to 'words', words_path).period
-
-
+  I have attempted to use neutral words for the
+  =(link_to 'sixteen behaviors', words_path).period
+  However, the words
+  =link_to 'I use', words_path + '?GFE=collect+cash&GME=memorize+facts&GSS=understand+words&UFE=pay+cash+upfront&UME=guess&UMS=close+your+eyes+%26+think&UPE=go+places&UPS=clean+my+home&USE=care&USS=express+opinions'
+  are more helpful to me than the defaults. I encourage you to use
+  =(link_to 'your own words', words_path + '?GPE').period

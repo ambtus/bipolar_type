@@ -20,11 +20,11 @@ Given('I am on the {word} page') do |url|
 end
 
 Then('I should be on my page') do
-  assert page.has_no_link?('Me')
+    assert_match Type.my_path, page.current_path
 end
 
 Then('I should NOT be on my page') do
-  assert page.has_link?('Me')
+  assert_no_match Type.my_path, page.current_path
 end
 
 Then('I should be on a theory page') do

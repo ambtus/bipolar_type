@@ -22,3 +22,10 @@ When I am on the theory page
   And I follow the 'Places' link
 Then I should see 'eat dessert'
   And I should NOT see 'carbs'
+
+Scenario: can be reset
+Given I have changed the word for 'GPE' to 'eat dessert'
+When I am on the words page
+  And I follow the 'reset to defaults' link
+Then I should be on the words page
+  And I should NOT see 'eat dessert'
