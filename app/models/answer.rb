@@ -25,7 +25,7 @@ class Answer
   def chosen_attitude; @choice if @choice.is_a?(Attitude); end
   def free_attitudes; ([chosen_attitude, *Attitude.all] - attitudes).compact.uniq; end
 
-  def free_things;( @choice.blank? || @choice.is_a?(Realm) ) ? free_realms : free_attitudes; end
+  def free_things;( @choice.blank? || @choice.is_a?(Attitude) ) ? free_attitudes : free_realms; end
   def choice; free_things.first; end
   
 

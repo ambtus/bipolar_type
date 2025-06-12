@@ -8,16 +8,16 @@ Scenario: allows you to choose which realm to start with
 Given I am on the first question page
 When I follow the 'Ideas' link
 Then I should see 'Question #1 of 3'
-  And I should see 'choose' before 'sing'
+  And I should see 'facts' first
   And the 'Ideas' link should be disabled
   But the 'People' link should NOT be disabled
 
 Scenario: allows you to choose which attitude to start with
 Given I am on the first question page
-When I follow the 'Get Energy' link
+When I follow the 'Use Energy' link
 Then I should see 'Question #1 of 3'
-  And I should see 'music' before 'sing'
-  And the 'Get Energy' link should be disabled
+  And I should see 'sing' first
+  And the 'Use Energy' link should be disabled
   But the 'People' link should NOT be disabled
 
 Scenario: restricts future choices after choosing an action 

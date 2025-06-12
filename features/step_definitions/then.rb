@@ -24,6 +24,12 @@ Then('I should see {string} before {string}') do |string, string2|
   assert page.has_text?(regexp)
 end
 
+Then('I should see {string} first') do |string|
+  element = page.find("td", match: :first)
+  Rails.logger.debug "found #{element.text}"
+  assert element.has_text?(string)
+end
+
 Then('I should NOT see {string} before {string}') do |string, string2|
   regexp = Regexp.new(string + '.*' + string2)
   assert page.has_no_text?(regexp)

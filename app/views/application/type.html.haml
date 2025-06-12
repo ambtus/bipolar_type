@@ -13,22 +13,22 @@
 %table.equal
   %tr
     %th
-      .plain (avoid them)
-      =@tl.name
+      .plain (#{Attitude.TL.react})
+      =(@realm.blank? || @tl == @realm) ? @tl.name : nbsp
     %td.none.left.bottom anxious
     %td.none.right.bottom irritated
     %th
-      .plain (fix them)
-      =@tr.name
+      .plain (#{Attitude.TR.react})
+      =(@realm.blank? || @tr == @realm) ? @tr.name : nbsp
   %tr
     %td.right.top.none flight
     %td.top.left.none=render 'solution', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br], classes: %w{bold plain strike italic}
     %td.top.right.none=render 'solution', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl], classes: %w{bold plain strike italic}
     %td.left.top.none fight
   %tr
-    %th &orarr;
-    %th{colspan:2}
-    %th &orarr;
+    %th{colspan:2}='&orarr;'.html_safe unless (@realm && [@tr, @br].include?(@realm))
+    %th{colspan:2}='&orarr;'.html_safe unless (@realm && [@tl, @bl].include?(@realm))
+
   %tr
     %td.right.bottom.none digest
     %td.bottom.left.none=render 'solution', attitude: Attitude.BL, realms: [@bl, @tl, @br, @tr].reverse, classes: %w{bold plain strike italic}.reverse
@@ -36,13 +36,13 @@
     %td.left.none.bottom rest
   %tr
     %th
-      =@bl.name
-      .plain (enjoy them)
+      =(@realm.blank? || @bl == @realm) ? @bl.name : nbsp
+      .plain (#{Attitude.BL.react})
     %td.none.left.top empty
     %td.none.right.top tired
     %th
-      =@br.name
-      .plain (rely on them)
+      =(@realm.blank? || @br == @realm) ? @br.name : nbsp
+      .plain (#{Attitude.BR.react})
 
 
 %p

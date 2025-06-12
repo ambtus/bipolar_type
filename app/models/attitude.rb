@@ -20,6 +20,9 @@ class Attitude < Concept
 
   def action; [gu, es].join('_'); end
 
+  def react; %w{enjoy avoid improve rely\ on}[index]; end
+  def feeling; %w{empty anxious irritated tired}[index]; end
+
   def name; action.titleize; end
 
   def next; self.class.rotate[index]; end

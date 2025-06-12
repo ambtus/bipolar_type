@@ -9,15 +9,15 @@
   %tr
     %th
       The Bad #{@realm.name}
-      .plain (avoid them)
+      .plain (#{Attitude.TL.react} them)
     %th{colspan:2}
     %th
       My Bad #{@realm.name}
-      .plain (fix them)
+      .plain (#{Attitude.TR.react} them)
   %tr
     %th
-    %td.none.left anxious
-    %td.none.right irritated
+    %td.none.left=Attitude.TL.feeling
+    %td.none.right=Attitude.TR.feeling
     %th
   %tr
     %td.right.top.none flight
@@ -31,25 +31,29 @@
     %td.left.none.bottom rest
   %tr
     %th
-    %td.none.left empty
-    %td.none.right tired
+    %td.none.left=Attitude.BL.feeling
+    %td.none.right=Attitude.BR.feeling
     %th
   %tr
     %th
       The Good #{@realm.name}
-      .plain (enjoy them)
+      .plain (#{Attitude.BL.react} them)
     %th{colspan:2}
     %th
       My Good #{@realm.name}
-      .plain (rely on them)
+      .plain (#{Attitude.BR.react} them)
 
 %h3 The energetic subtypes
 %p
-  Energetic subtypes know instinctively when they are empty and need to find new
+  Energetic subtypes know instinctively when they are 
+  =Attitude.BL.feeling
+  and need to find new
   =@realm.foci
   so they can
   =display(@realm + Attitude.BL)
-  and when they are anxious and need to stop
+  and when they are 
+  =Attitude.TL.feeling
+  and need to stop
   =@realm.get.first_word.ing
   and
   =display(@realm + Attitude.TL).period
@@ -64,9 +68,14 @@
 %p
   Strong subtypes know instinctively when their
   =@realm.foci
-  are bad enough to fix, and when they themselves are tired enough to find old ones to
-  =@realm.get
-  and rely on.
+  are bad enough to need
+  =Attitude.TR.react.ing.comma
+  and when they themselves are 
+  =Attitude.BR.feeling
+  enough to find familiar ones to
+  =Attitude.BR.react
+  and 
+  =@realm.get.period
 %p
   They can be taught to
   =display(@realm + Attitude.BL).make_theirs
