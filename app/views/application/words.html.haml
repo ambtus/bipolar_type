@@ -14,6 +14,6 @@
         %tr
           %th.right=subtype.attitude.action
           %td=subtype.action
-          %td=f.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: 10
+          %td=f.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: cookies.to_h.values.map(&:length).max || 15
       %tr
         %th{colspan:3}= f.submit 'Save'
