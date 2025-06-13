@@ -4,11 +4,45 @@
     %title="BipolarType: #{yield(:title).clean}"
     %meta{:content => "text/html; charset=utf-8"}
     %meta{:name => "viewport",  :content=>"width=device-width, initial-scale=1.0"}
-    =render "layouts/favicon"
-    =render "layouts/css"
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    :css
+      table {margin: auto; border: none; border-collapse: collapse;}
+      table.equal {table-layout: fixed; width: 100%; }
+      td {border: 1px solid grey; text-align: center; vertical-align: middle; padding: .2em; }
+      td.none {border: none}
+      .top {vertical-align: top}
+      .bottom {vertical-align: bottom;}
+      .center {text-align: center;}
+      .left {text-align: left;}
+      .right {text-align: right;}
+      a.external:link {color: dimgrey; text-decoration: none;}
+      a.external:visited {color: dimgrey; text-decoration: none;}
+      a.external:hover {text-decoration: underline;}
+      h1 {text-align: center; font-weight: bold; font-size: 1.4em; padding: 0; margin: 0;}
+      h2 {text-align: center; font-weight: bold; font-size: 1.3em;}
+      .plain {font-weight: normal; font-style: normal; text-decoration: none}
+      .italic {font-style: italic;}
+      .bold {font-weight: bold;}
+      .strike {text-decoration: line-through}
+      ul { padding: 0; margin: 0; list-style-type: none; }
+      ol { margin: 0; padding-left: 1.5em;}
 
   %body
-    %h1=render "layouts/links"
+    %h1
+      =link_to_unless_current('Introduction', root_path)
+      |
+      =link_to_unless_current('Theory', theory_path)
+      |
+      =link_to_unless(@answer, 'You', answer_path(Answer.first_path)) {@title}
+      |
+      =link_to_unless_current('Words', words_path)
+
     =yield
 
     -if Rails.env.development?
