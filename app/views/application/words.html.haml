@@ -12,7 +12,7 @@
         %th{colspan:3}=realm.name
       -realm.subtypes.each do |subtype|
         %tr
-          %th.right=subtype.attitude.action
+          %th.right=subtype.attitude.action.titleize
           %td=subtype.action
           %td=f.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: cookies.to_h.values.map(&:length).max || 15
       %tr
