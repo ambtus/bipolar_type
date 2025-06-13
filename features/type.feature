@@ -16,15 +16,15 @@ Then I should see all your do's
 Scenario: can show all subtypes
 Given I am on my page
 When I follow the 'show all' link
-Then I should see all Subtype acts
+Then I should see all Subtype actions
   And the 'do this' link should NOT be disabled
   But the 'show all' link should be disabled
 
 Scenario: can show just one realm at a time
 Given I am on my page
 When I follow the 'People' link
-Then I should see all People acts
-  But I should NOT see Places acts
+Then I should see all People actions
+  But I should NOT see Places actions
   And the 'People' link should be disabled
   And the 'show all' link should NOT be disabled
 

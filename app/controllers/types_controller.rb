@@ -1,7 +1,7 @@
 class TypesController < ApplicationController
 
   def show
-    @type = Type.find_by params[:id]
+    @type = Type.find params[:id]
     @bl=@type.realms.first
     @tl=@type.realms.second
     @tr=@type.realms.third
@@ -21,7 +21,7 @@ class TypesController < ApplicationController
     when 'all'
       @subtypes = Subtype.all
     else
-      @subtypes = Realm.find_by(@show).subtypes
+      @subtypes = Realm.find(@show).subtypes
     end
     Rails.logger.debug "subtypes #{@subtypes}"
     render 'type'

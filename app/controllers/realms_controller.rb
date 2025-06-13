@@ -5,7 +5,7 @@ class RealmsController < ApplicationController
   end
 
   def show
-    @realm = Realm.find_by(params[:id])
+    @realm = Realm.find(params[:id])
     render 'realm'
   end
 end

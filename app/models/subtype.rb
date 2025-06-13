@@ -8,14 +8,14 @@ class Subtype < Concept
 
   ALL = SYMBOLS.collect{|symbol| self.new symbol}
 
-  def realm; Realm.find_by(string.second); end
-  def attitude; Attitude.find_by(string.first + string.third); end
+  def realm; Realm.find(string.second); end
+  def attitude; Attitude.find(string.first + string.third); end
 
   def tla; [first_letter, letter, second_letter].join; end
+  def self.find_by_tla(string); ALL.find{|s| s.tla == string}; end
 
-  def action; [gu, es].to_phrase; end
-
-  def act; realm.send(attitude.action); end
+  def meth; [gu, es].join('_'); end
+  def action; realm.send(meth); end
 
   def parts; [attitude, realm]; end # sort by attitude
   def next; realm + attitude.next; end

@@ -22,7 +22,7 @@ class Concept
     def symbols; self::SYMBOLS; end
     def each(&block); self::ALL.each(&block); end
     def title; [self::ALL.count, self.name.pluralize].to_phrase; end
-    def find_by(s); self::ALL.find{|x| x.symbol == s.to_sym}; end
+    def find(s); self::ALL.find{|x| x.symbol == s.to_sym}; end
   end
 
   def index; self.class::SYMBOLS.index(@symbol); end

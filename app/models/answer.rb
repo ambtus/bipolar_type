@@ -6,7 +6,7 @@ class Answer
   def initialize(string)
     @path = string
     @question,answer_string,choice = @path.split(':')
-    @choice = choice && (Realm.find_by(choice) || Attitude.find_by(choice))
+    @choice = choice && (Realm.find(choice) || Attitude.find(choice))
     @answer_string = answer_string || ''
   end
   attr_reader :path, :question, :answer_string
@@ -15,7 +15,7 @@ class Answer
   def number; @question.last ; end
   def finished?; number.to_i > 3; end
 
-  def subtypes; answer_string.scan(/.../).collect{|s| Subtype.find_by(s)}; end
+  def subtypes; answer_string.scan(/.../).collect{|s| Subtype.find(s)}; end
 
   def realms; subtypes.map(&:realm); end
   def chosen_realm; @choice if @choice.is_a?(Realm); end

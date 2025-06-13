@@ -1,7 +1,7 @@
 class AttitudesController < ApplicationController
 
   def show
-    @attitude = Attitude.find_by(params[:id])
+    @attitude = Attitude.find(params[:id])
     render 'attitude'
   end
 end

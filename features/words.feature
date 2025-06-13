@@ -2,7 +2,7 @@ Feature: the words page
 
 Scenario: lists the defaults
 Given I am on the words page
-Then I should see all Subtype acts
+Then I should see all Attitude actions
   And I should see all Subtype actions
 
 Scenario: reflects changed words
