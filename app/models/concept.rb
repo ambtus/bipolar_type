@@ -1,14 +1,14 @@
 class Concept
 
-  SYMBOL = %i{X Y Z}
+  SYMBOLS = %i{X Y Z}
 
   def initialize(symbol); @symbol = symbol; end
   attr_reader :symbol
   alias inspect :symbol
   def string; symbol.to_s; end
 
-  ALL = SYMBOL.collect {|symbol| self.new symbol}
-  SYMBOL.each do |sym|
+  ALL = SYMBOLS.collect {|symbol| self.new symbol}
+  SYMBOLS.each do |sym|
     define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
   end
 
@@ -19,13 +19,13 @@ class Concept
     def second; all.second; end
     def third; all.third; end
     def fourth; all.fourth; end
-    def symbols; self::SYMBOL; end
+    def symbols; self::SYMBOLS; end
     def each(&block); self::ALL.each(&block); end
     def title; [self::ALL.count, self.name.pluralize].to_phrase; end
     def find_by(s); self::ALL.find{|x| x.symbol == s.to_sym}; end
   end
 
-  def index; self.class::SYMBOL.index(@symbol); end
+  def index; self.class::SYMBOLS.index(@symbol); end
 
   def compound?; respond_to? :parts; end
   def <=>(other)

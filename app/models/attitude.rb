@@ -1,9 +1,9 @@
 class Attitude < Concept
 
-  SYMBOL = %i{BL TL TR BR}
+  SYMBOLS = %i{BL TL TR BR}
 
-  ALL = SYMBOL.collect {|symbol| self.new symbol}
-  SYMBOL.each do |sym|
+  ALL = SYMBOLS.collect {|symbol| self.new symbol}
+  SYMBOLS.each do |sym|
     define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
   end
 

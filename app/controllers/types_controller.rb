@@ -6,20 +6,24 @@ class TypesController < ApplicationController
     @tl=@type.realms.second
     @tr=@type.realms.third
     @br=@type.realms.fourth
-    @realm = params[:format] && Realm.find_by(params[:format])
-    if @realm.blank? && params[:format]
-      case params[:format]
-      when 'bold'
-        @subtypes = @type.subtypes
-      when 'italic'
-        @subtypes = @type.subtypes.map(&:opposite)
-      when 'plain'
-        @subtypes = @type.subtypes.map(&:flip)
-      when 'strike'
-        @subtypes = @type.subtypes.map(&:flop)
-      end
-      Rails.logger.debug "subtypes #{@subtypes}"
+
+    @show = params[:format] || 'bold'
+    Rails.logger.debug "format #{@show}"
+    case @show
+    when 'bold'
+      @subtypes = @type.subtypes
+    when 'italic'
+      @subtypes = @type.subtypes.map(&:opposite)
+    when 'plain'
+      @subtypes = @type.subtypes.map(&:flip)
+    when 'strike'
+      @subtypes = @type.subtypes.map(&:flop)
+    when 'all'
+      @subtypes = Subtype.all
+    else
+      @subtypes = Realm.find_by(@show).subtypes
     end
+    Rails.logger.debug "subtypes #{@subtypes}"
     render 'type'
   end
 

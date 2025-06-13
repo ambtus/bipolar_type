@@ -1,33 +1,29 @@
 - content_for(:title, @type.path)
-.right
-  -if cookies.to_h.present?
-    =link_to 'bookmark', type_path(@type.path, cookies.to_h)
-    for your words
 
-%h2
-  -Realm.each do |realm|
-    =link_to_unless @realm == realm, realm.name, type_path(@type.path, realm.string)
-    |
-  =link_to_if @realm, 'All', type_path(@type.path, cookies.to_h)
+-if cookies.to_h.present?
+  .center
+    =link_to 'bookmark', type_path(@type.path, cookies.to_h)
+    (save your words between sessions)
 
 %table.equal
   %tr
     %th
       .plain (#{Attitude.TL.react})
-      =(@realm.blank? || @tl == @realm) ? @tl.name : nbsp
+      =@tl.name
     %td.none.left.bottom anxious
     %td.none.right.bottom irritated
     %th
       .plain (#{Attitude.TR.react})
-      =(@realm.blank? || @tr == @realm) ? @tr.name : nbsp
+      =@tr.name
   %tr
     %td.right.top.none flight
     %td.top.left.none=render 'solution', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br], classes: %w{bold plain strike italic}
     %td.top.right.none=render 'solution', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl], classes: %w{bold plain strike italic}
     %td.left.top.none fight
   %tr
-    %th{colspan:2}='&orarr;'.html_safe unless (@realm && [@tr, @br].include?(@realm))
-    %th{colspan:2}='&orarr;'.html_safe unless (@realm && [@tl, @bl].include?(@realm))
+    %th='&orarr;'.html_safe unless (@show && [@tr, @br].map(&:string).include?(@show))
+    %td.none{colspan:2}=render 'legend'
+    %th='&orarr;'.html_safe unless (@show && [@tl, @bl].map(&:string).include?(@show))
 
   %tr
     %td.right.bottom.none digest
@@ -36,24 +32,14 @@
     %td.left.none.bottom rest
   %tr
     %th
-      =(@realm.blank? || @bl == @realm) ? @bl.name : nbsp
+      =@bl.name
       .plain (#{Attitude.BL.react})
     %td.none.left.top empty
     %td.none.right.top tired
     %th
-      =(@realm.blank? || @br == @realm) ? @br.name : nbsp
+      =@br.name
       .plain (#{Attitude.BR.react})
-
-
-%p
-  %ul.center
-    %li
-      Legend:
-      .bold=link_to 'do this', type_path(@type.path, 'bold')
-    %li.strike=link_to 'instead of that', type_path(@type.path, 'strike')
-    %li.plain=link_to 'so you can do this', type_path(@type.path, 'plain')
-    %li.italic=link_to 'instead of having to do that', type_path(@type.path, 'italic')
 
 -if Rails.env.development? && @type == Type.my_type
   %hr
-  =link_to 'your type', type_path('NSTF')
+  =link_to 'your type', type_path(Type.your_path)

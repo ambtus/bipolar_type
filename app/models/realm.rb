@@ -1,9 +1,9 @@
 class Realm < Concept
 
-  SYMBOL = %i{F S N T}
+  SYMBOLS = %i{F S N T}
 
-  ALL = SYMBOL.collect {|symbol| self.new symbol}
-  SYMBOL.each do |sym|
+  ALL = SYMBOLS.collect {|symbol| self.new symbol}
+  SYMBOLS.each do |sym|
     define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
   end
 

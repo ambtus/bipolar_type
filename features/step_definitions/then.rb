@@ -11,7 +11,7 @@ Then('I should NOT see {word}') do |string|
 end
 
 Then('the {string} link should be disabled') do |string|
-  assert page.has_no_link?(string)
+  assert page.has_no_selector?("a", :text => /^#{string}$/)
 end
 
 Then('the {string} link should NOT be disabled') do |string|
@@ -46,3 +46,6 @@ Then('I should have a {word} link including {string}') do |name, snippet|
   assert page.has_link?(name, href: Regexp.new(snippet))
 end
 
+Then('my cookies should be empty') do
+  assert cookies.to_hash.blank?
+end

@@ -1,12 +1,12 @@
 class Subtype < Concept
 
-  SYMBOL = Realm.all.collect do |realm|
+  SYMBOLS = Realm.all.collect do |realm|
              Attitude.all.collect do |attitude|
                (attitude.string.first + realm.string + attitude.string.second).to_sym
              end
           end.flatten
 
-  ALL = SYMBOL.collect{|symbol| self.new symbol}
+  ALL = SYMBOLS.collect{|symbol| self.new symbol}
 
   def realm; Realm.find_by(string.second); end
   def attitude; Attitude.find_by(string.first + string.third); end
