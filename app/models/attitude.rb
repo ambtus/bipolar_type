@@ -7,9 +7,6 @@ class Attitude < Concept
     define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
   end
 
-  def self.rows; [[Attitude.TL, Attitude.TR],
-                  [Attitude.BL, Attitude.BR]]; end
-
   def getting?; string.starts_with?('B'); end
 
   def gu; string.starts_with?('T') ? 'use' : 'get'; end
@@ -20,7 +17,7 @@ class Attitude < Concept
 
   def action; [gu, es].join('_'); end
 
-  def react; %w{enjoy avoid improve rely\ on}[index]; end
+  def react; %w{enjoy escape control rely\ on}[index]; end
   def feeling; %w{empty anxious irritated tired}[index]; end
 
   def name; action.titleize; end

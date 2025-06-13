@@ -2,11 +2,11 @@ Then('show me the page') do
   save_and_open_page
 end
 
-Then 'I should see {string}' do |string|
+Then 'I should see {word}' do |string|
   assert page.has_text?(string)
 end
 
-Then('I should NOT see {string}') do |string|
+Then('I should NOT see {word}') do |string|
   assert page.has_no_text?(string)
 end
 
@@ -18,29 +18,23 @@ Then('the {string} link should NOT be disabled') do |string|
   assert page.has_link?(string)
 end
 
-Then('I should see {string} before {string}') do |string, string2|
-  regexp = Regexp.new(string + '.*' + string2)
-  Rails.logger.debug "regexp: #{regexp}"
-  assert page.has_text?(regexp)
-end
-
 Then('I should see {string} first') do |string|
   element = page.find("td", match: :first)
   Rails.logger.debug "found #{element.text}"
   assert element.has_text?(string)
 end
 
-Then('I should NOT see {string} before {string}') do |string, string2|
-  regexp = Regexp.new(string + '.*' + string2)
-  assert page.has_no_text?(regexp)
+Then('I should see all {word} {word}') do |whose, whats|
+  words = whose_whats(whose, whats)
+  words.each do |text|
+    assert page.has_text?(text)
+  end
 end
 
-Then('I should see all {word} {word}') do |klass, meth|
-  meth = meth.singularize
-  result = klass.constantize.all.map(&meth.to_sym)
-  Rails.logger.debug result
-  result.each do |text|
-    assert page.has_text?(text)
+Then('I should NOT see {word} {word}') do |whose, whats|
+  words = whose_whats(whose, whats)
+  words.each do |text|
+    assert page.has_no_text?(text)
   end
 end
 
@@ -51,3 +45,4 @@ end
 Then('I should have a {word} link including {string}') do |name, snippet|
   assert page.has_link?(name, href: Regexp.new(snippet))
 end
+

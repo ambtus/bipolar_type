@@ -49,10 +49,10 @@
   %ul.center
     %li
       Legend:
-      .bold do this
-    %li.strike instead of that
-    %li so you can do this
-    %li.italic instead of having to do that
+      .bold=link_to 'do this', type_path(@type.path, 'bold')
+    %li.strike=link_to 'instead of that', type_path(@type.path, 'strike')
+    %li.plain=link_to 'so you can do this', type_path(@type.path, 'plain')
+    %li.italic=link_to 'instead of having to do that', type_path(@type.path, 'italic')
 
 -if Rails.env.development? && @type == Type.my_type
   %hr

@@ -1,6 +1,6 @@
 %ul
   -realms.each_with_index do |realm, i|
-    -if @realm && @realm != realm
+    -if (@realm && @realm != realm) || (@subtypes && !@subtypes.include?(realm+attitude))
       %li=nbsp * display(realm+attitude).length
     -else
       %li{class: classes[i]}=display(realm+attitude)

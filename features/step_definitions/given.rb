@@ -1,4 +1,4 @@
-Given('I have changed the word for {string} to {string}') do |original, mine|
+Given('I have changed the word for {word} to {word}') do |original, mine|
   visit words_path
   fill_in original, with: mine
   click_button 'Save', match: :first

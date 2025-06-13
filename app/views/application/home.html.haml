@@ -15,15 +15,12 @@
   but it has not been validated by the medical, psychiatric, psychological, or type communities.
 %p
   I am sharing it on the web because it helps
-  =succeed '.' do
-    =link_to 'me', my_path
+  =(link_to 'me', my_path).period
   I hope that
   =link_to 'you', answer_path(Answer.first_path)
-  will find it useful or interesting but I do not guarantee it to be either true or correct.
+  will find it useful or interesting but I do not guarantee it to be either true or helpful.
 %p
   I have attempted to use neutral words for the
   =(link_to 'sixteen behaviors', words_path).period
-  However, the words
-  =link_to 'I use', words_path + '?GFE=collect+cash&GME=memorize+facts&GSS=seek+opinions&UFE=pay+cash+upfront&UME=guess&UMS=close+your+eyes+%26+think&UPE=go+places&UPS=clean+your+rooms&USE=sing&USS=express+opinions'
-  are more helpful to me than the defaults. I encourage you to use
-  =(link_to 'your own words', words_path + '?GPE').period
+  You are free to use
+  =(link_to 'your own words', words_path).period
