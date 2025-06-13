@@ -25,6 +25,6 @@ class Realm < Concept
 
   def use; %w{communicate move think buy}[index]; end
   def use_energy; %w{sing travel choose pay\ cash}[index]; end
-  def use_strength; %w{preach cultivate decide use\ credit}[index]; end
+  def use_strength; %w{preach labor decide use\ credit}[index]; end
 
 end

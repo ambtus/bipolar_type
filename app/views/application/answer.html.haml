@@ -11,12 +11,12 @@
 -unless @answer.first?
   .center=link_to 'Start Over', answer_path(Answer.first_path)
 
-%table
+%table.equal
   -@answer.free_things.each do |thing|
     %tr
       -thing.subtypes.each do |subtype|
-        -unless @answer.taken?(subtype)
-          %td.top=render 'problem', subtype: subtype
+
+        %td.left.bottom=render 'problem', subtype: subtype
     %tr
       %th{colspan:2} &nbsp;
 

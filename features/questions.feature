@@ -26,8 +26,9 @@ Given I am on the first question page
 Then I should see #2
   And the 'People' link should be disabled
   And the 'Get Energy' link should be disabled
-  And I should NOT see the default word for GSE
   And the link for USS should be disabled
+  And the link for GSE should be disabled
+  And the link for USE should be disabled
 
 Scenario: takes you to a type after choosing three actions
 Given I am on the first question page

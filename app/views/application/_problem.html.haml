@@ -1,11 +1,20 @@
-I have learned to
-.div=subtype.flop.react
-.div=subtype.foci
-when necessary;
-%br
-I can’t
-.italic=subtype.opposite.react
-them, only
-.div=subtype.react
-them
-.bold=link_to_unless @answer.taken?(subtype), display(subtype), answer_path(@answer.next(subtype))
+
+%ul
+  %li.bold
+    I find it
+    %em painful
+    to have to
+    =display(subtype.opposite)
+  %li
+    I want to be able to
+    =display(subtype.flip)
+  %li
+    I
+    %em don&rsquo;t
+    want to
+    =display(subtype.flop)
+  %li
+    It would be
+    %em easy
+    to
+    .center=link_to_unless @answer.taken?(subtype), display(subtype), answer_path(@answer.next(subtype))
