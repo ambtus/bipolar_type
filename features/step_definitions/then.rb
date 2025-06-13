@@ -32,7 +32,7 @@ Then('the link for {word} should be first') do |tla|
   assert_match Subtype.find_by_tla(tla).string, link[:href]
 end
 
-Then('I should see all {word} {word}') do |whose, whats|
+Then('I should see {word} {word}') do |whose, whats|
   words = whose_whats(whose, whats)
   words.each do |text|
     assert page.has_text?(text)

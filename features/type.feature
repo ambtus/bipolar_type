@@ -1,37 +1,78 @@
 Feature: the type page
 
-Scenario: for my types shows my do's
-Given I am on my page
-Then I should see all my do's
-  But I should NOT see your do's
-  And I should NOT see my don'ts
-  And the 'do this' link should be disabled
-  And the 'instead of that' link should NOT be disabled
-
-Scenario: for your type describes your do's
+Scenario: shows your do's by default
 Given I am on your page
-Then I should see all your do's
-  But I should NOT see my do's
+Then I should see your dos
+  And I should see your wants
+  But I should NOT see your don'ts
+  And I should NOT see your can'ts
+  And the 'do' link should be disabled
+
+Scenario: can show your do not's
+Given I am on your page
+When I follow the 'do not' link
+Then I should NOT see your dos
+  And I should NOT see your wants
+  But I should see your don'ts
+  And I should see your can'ts
+  And the 'do not' link should be disabled
+  But the 'do' link should NOT be disabled
 
 Scenario: can show all subtypes
 Given I am on my page
-When I follow the 'show all' link
-Then I should see all Subtype actions
-  And the 'do this' link should NOT be disabled
-  But the 'show all' link should be disabled
+When I follow the 'both' link
+Then I should see Subtype actions
+  And the 'both' link should be disabled
+  But the 'do' link should NOT be disabled
 
-Scenario: can show just one realm at a time
+Scenario: can show one realm
 Given I am on my page
 When I follow the 'People' link
-Then I should see all People actions
+Then I should see People actions
   But I should NOT see Places actions
   And the 'People' link should be disabled
-  And the 'show all' link should NOT be disabled
+  But the 'do' link should NOT be disabled
 
-Scenario: for my types can show my dont's
+Scenario: can show another realm
 Given I am on my page
+When I follow the 'Places' link
+Then I should see Places actions
+  But I should NOT see People actions
+  And the 'Places' link should be disabled
+  But the 'do' link should NOT be disabled
+
+Scenario: can show just your dos without your wants
+Given I am on your page
+When I follow the 'do this' link
+Then I should see your dos
+  But I should NOT see your wants
+  And the 'do this' link should be disabled
+  But the 'do' link should NOT be disabled
+
+Scenario: can show your wants
+Given I am on your page
+When I follow the 'so you can do this' link
+Then I should see your wants
+  But I should NOT see your dos
+  And the 'so you can do this' link should be disabled
+  But the 'do' link should NOT be disabled
+
+Scenario: can show your don'ts
+Given I am on your page
 When I follow the 'instead of that' link
-Then I should see all my dont's
-  And I should NOT see my do's
-  And the 'do this' link should NOT be disabled
+Then I should see your don'ts
+  But I should NOT see your can'ts
+  And I should NOT see your dos
+  And I should NOT see your wants
   And the 'instead of that' link should be disabled
+  But the 'do' link should NOT be disabled
+
+Scenario: can show your can'ts
+Given I am on your page
+When I follow the 'instead of having to do that' link
+Then I should see your can'ts
+  But I should NOT see your don'ts
+  And I should NOT see your dos
+  And I should NOT see your wants
+  And the 'instead of having to do that' link should be disabled
+  But the 'do' link should NOT be disabled

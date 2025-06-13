@@ -7,7 +7,7 @@ class TypesController < ApplicationController
     @tr=@type.realms.third
     @br=@type.realms.fourth
 
-    @show = params[:format] || 'bold'
+    @show = params[:format] || 'do'
     Rails.logger.debug "format #{@show}"
     case @show
     when 'bold'
@@ -18,7 +18,11 @@ class TypesController < ApplicationController
       @subtypes = @type.subtypes.map(&:flip)
     when 'strike'
       @subtypes = @type.subtypes.map(&:flop)
-    when 'all'
+    when 'do'
+      @subtypes = @type.subtypes + @type.subtypes.map(&:flip)
+    when 'do not'
+      @subtypes = @type.subtypes.map(&:opposite) + @type.subtypes.map(&:flop)
+    when 'both'
       @subtypes = Subtype.all
     else
       @subtypes = Realm.find(@show).subtypes

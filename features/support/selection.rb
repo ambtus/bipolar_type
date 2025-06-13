@@ -8,7 +8,16 @@ def whose_whats(whose, whats)
   elsif %w{your my}.include?(whose)
     type = whose == 'my' ? Type.my_type : Type.your_type
     Rails.logger.debug type.inspect
-    subtypes = whats == "do's" ? type.subtypes : type.subtypes.map(&:flop)
+    subtypes = case whats
+      when "dos"
+        type.subtypes
+      when "wants"
+        type.subtypes.map(&:flip)
+      when "don'ts"
+        type.subtypes.map(&:flop)
+      when "can'ts"
+        type.subtypes.map(&:opposite)
+    end
     result = subtypes.map(&:action)
   else
     Rails.logger.debug whose.constantize

@@ -7,7 +7,7 @@ Then I should see Manic
 
 Scenario: lists the realms
 Given I am on the theory page
-Then I should see all Realm names
+Then I should see Realm names
 
 Scenario: has links to the realms page
 Given I am on the theory page

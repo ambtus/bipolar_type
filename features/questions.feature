@@ -2,7 +2,7 @@ Feature: the questions page
 
 Scenario: allows you to choose between 16 actions
 Given I am on the first question page
-Then I should see all Subtype actions
+Then I should see Subtype actions
 
 Scenario: allows you to choose which realm to start with
 Given I am on the first question page
@@ -36,6 +36,13 @@ When I follow the last link
   And I follow the last link
 Then I should be on a theory page
   But I should NOT be on my page
+
+Scenario: can take you to your type
+Given I am on the first question page
+When I follow the link for USE
+  And I follow the link for GFE
+  And I follow the link for UPS
+Then I should be on your page
 
 Scenario: can take you to my type
 Given I am on the first question page

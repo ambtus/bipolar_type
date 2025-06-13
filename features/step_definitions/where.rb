@@ -23,6 +23,10 @@ Then('I should be on my page') do
     assert_match Type.my_path, page.current_path
 end
 
+Then('I should be on your page') do
+    assert_match Type.your_path, page.current_path
+end
+
 Then('I should NOT be on my page') do
   assert_no_match Type.my_path, page.current_path
 end

@@ -1,8 +1,8 @@
 %ul
   -[["bold", 'do this'], ["strike", 'instead of that'], ["plain", 'so you can do this'], ["italic", 'instead of having to do that']].each do |format, legend|
     %li{class: format}=link_to_unless @show == format, legend, type_path(@type.path, format)
-%ul
-  -Realm.each do |realm|
-    =link_to_unless @show == realm.string, realm.name, type_path(@type.path, realm.string)
-
-=link_to_unless @show == 'all', 'show all', type_path(@type.path, 'all')
+-Realm.each do |realm|
+  =link_to_unless @show == realm.string, realm.name, type_path(@type.path, realm.string)
+%br
+-%w{do do\ not both}.each do |format|
+  =link_to_unless @show == format, format, type_path(@type.path, format)
