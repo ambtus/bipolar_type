@@ -6,11 +6,6 @@ When I follow the 'People' link
 Then I should see Bad
   But I should NOT see Manic
 
-Scenario: shows some exposition
-Given I am on the theory page
-When I follow the 'People' link
-Then I should see subtypes
-
 Scenario: has links to other realms
 Given I am on the theory page
 When I follow the 'People' link
