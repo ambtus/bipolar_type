@@ -1,19 +1,15 @@
 - content_for :title, @realm.name
 
-%h2
-  -Realm.each do |realm|
-    =link_to_unless_current realm.name, realm_path(realm.string)
-    ="|" unless realm==Realm.fourth
+.center.bold=Realm.all.map{|r| link_to_unless(r == @realm, r.name, realm_path(r.string))}.join(' | ').html_safe
 
-%table
+%table.equal
   %tr
-    %th
-      The Bad #{@realm.name}
-      .plain (#{Attitude.TL.react} them)
+  %th.left{colspan:2}=(@realm+Attitude.TL).episode
+  %th.right{colspan:2}=(@realm+Attitude.TR).episode
+  %tr
+    %td.none #{Attitude.TL.react} good #{@realm.foci}
     %th{colspan:2}
-    %th
-      My Bad #{@realm.name}
-      .plain (#{Attitude.TR.react} them)
+    %td.none #{Attitude.TR.react} good #{@realm.foci}
   %tr
     %th
     %td.none.left=Attitude.TL.feeling
@@ -21,13 +17,25 @@
     %th
   %tr
     %td.right.top.none flight
-    %th=display(@realm+Attitude.TL)
-    %th=display(@realm+Attitude.TR)
+    %td.bold=display(@realm+Attitude.TL)
+    %td.bold=display(@realm+Attitude.TR)
     %td.left.none.top fight
   %tr
+    %th
+    %td.none{colspan:2}=@realm.use
+    %th
+  %tr
+    %th Energy
+    %th{colspan:2} &orarr;
+    %th Strength
+  %tr
+    %th
+    %td.none{colspan:2}=@realm.get
+    %th
+  %tr
     %td.right.bottom.none digest
-    %th=display(@realm+Attitude.BL)
-    %th=display(@realm+Attitude.BR)
+    %td.bold=display(@realm+Attitude.BL)
+    %td.bold=display(@realm+Attitude.BR)
     %td.left.none.bottom rest
   %tr
     %th
@@ -35,11 +43,10 @@
     %td.none.right=Attitude.BR.feeling
     %th
   %tr
-    %th
-      The Good #{@realm.name}
-      .plain (#{Attitude.BL.react} them)
+    %td.none #{Attitude.BL.react} bad #{@realm.foci}
     %th{colspan:2}
-    %th
-      My Good #{@realm.name}
-      .plain (#{Attitude.BR.react} them)
+    %td.none #{Attitude.BR.react} bad #{@realm.foci}
 
+  %tr
+  %th.left{colspan:2}=(@realm+Attitude.BL).episode
+  %th.right{colspan:2}=(@realm+Attitude.BR).episode

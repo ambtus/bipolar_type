@@ -24,8 +24,6 @@
       a.external:link {color: dimgrey; text-decoration: none;}
       a.external:visited {color: dimgrey; text-decoration: none;}
       a.external:hover {text-decoration: underline;}
-      h1 {text-align: center; font-weight: bold; font-size: 1.4em; padding: 0; margin: 0;}
-      h2 {text-align: center; font-weight: bold; font-size: 1.3em;}
       .plain {font-weight: normal; font-style: normal; text-decoration: none}
       .italic {font-style: italic;}
       .bold {font-weight: bold;}
@@ -34,7 +32,7 @@
       ol { margin: 0; padding-left: 1.5em;}
 
   %body
-    %h1
+    .bold.center
       =link_to_unless_current('Introduction', root_path)
       |
       =link_to_unless_current('Theory', theory_path)

@@ -1,36 +1,24 @@
 Feature: the realms page
 
-Scenario: shows a square
-Given I am on the theory page
-When I follow the 'People' link
-Then I should see Bad
-  But I should NOT see Manic
-
 Scenario: has links to other realms
 Given I am on the theory page
 When I follow the 'People' link
 Then the 'Things' link should NOT be disabled
 
-Scenario: for People shows person actions
+Scenario: shows episodes
+Given I am on the theory page
+When I follow the 'People' link
+Then I should see People episodes
+
+Scenario: shows actions
 Given I am on the theory page
 When I follow the 'People' link
 Then I should see People actions
   But I should NOT see Places actions
 
-Scenario: for Places shows place actions
-Given I am on the theory page
-When I follow the 'Places' link
-Then I should see Places actions
-  But I should NOT see Ideas actions
-
-Scenario: for Ideas shows idea actions
-Given I am on the theory page
-When I follow the 'Ideas' link
-Then I should see Ideas actions
-  But I should NOT see Things actions
-
-Scenario: for Things shows thing actions
-Given I am on the theory page
-When I follow the 'Things' link
-Then I should see Things actions
-  But I should NOT see People actions
+Scenario: uses your words
+Given I have changed the word for USE to plugh
+When I am on the theory page
+  And I follow the 'People' link
+Then I should see plugh
+  And I should NOT see the default word for USE

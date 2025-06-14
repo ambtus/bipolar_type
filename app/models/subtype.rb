@@ -14,6 +14,8 @@ class Subtype < Concept
   def tla; [first_letter, letter, second_letter].join; end
   def self.find_by_tla(string); ALL.find{|s| s.tla == string}; end
 
+  def episode; [feeling, adjective, md].to_phrase.titleize; end
+
   def meth; [gu, es].join('_'); end
   def action; realm.send(meth); end
 

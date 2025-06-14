@@ -1,19 +1,22 @@
 - content_for :title, 'Theory'
 
-%h2
-  -Realm.each do |realm|
-    =link_to realm.name, realm_path(realm.string)
-    ="|" unless realm==Realm.fourth
+.center.bold=Realm.all.map{|r| link_to(r.name, realm_path(r.string))}.join(' | ').html_safe
 
-%table
+%table.equal
+  %tr
+  %th.left{colspan:2}=Attitude.TL.episode
+  %th.right{colspan:2}=Attitude.TR.episode
+  %tr
+  %td.none.left.top{colspan:2} You are fleeing problems you are not afraid of but have been taught to #{Attitude.TL.react}. Since it is a learned behavior, you do not <em>stop</em> after you have #{Attitude.TL.react.ed} the worst ones and are fleeing shadows.
+  %td.none.right.top{colspan:2} You are fighting problems you are not angry at but have been taught to #{Attitude.TR.react}. Since it is a learned behavior, you do not <em>stop</em> after you have #{Attitude.TR.react.ed} the  worst ones and are fighting windmills.
   %tr
     %th
-    %th{colspan:2} Manic
+    %th{colspan:2} Mania
     %th
   %tr
     %th
-    %td.none.left anxious
-    %td.none.right irritated
+    %td.none.left=Attitude.TL.feeling
+    %td.none.right=Attitude.TR.feeling
     %th
   %tr
     %td.right.top.none flight
@@ -22,7 +25,7 @@
     %td.left.none.top fight
   %tr
     %th Energy
-    %th{colspan:2}
+    %th{colspan:2} &orarr;
     %th Strength
   %tr
     %td.right.bottom.none digest
@@ -31,10 +34,18 @@
     %td.left.none.bottom rest
   %tr
     %th
-    %td.none.left empty
-    %td.none.right tired
+    %td.none.left=Attitude.BL.feeling
+    %td.none.right=Attitude.BR.feeling
     %th
   %tr
     %th
-    %th{colspan:2} Depressed
+    %th{colspan:2} Depression
     %th
+
+  %tr
+  %td.none.left.bottom{colspan:2} You are consuming energizers you do not need but have been taught to #{Attitude.BL.react}. Since it is a learned behavior, you do not <em>stop</em> after you have #{Attitude.BL.react.ed} the best ones and are consuming dregs.
+  %td.none.right.bottom{colspan:2} You are consuming strengtheners you do not need but have been taught to #{Attitude.BR.react}. Since it is a learned behavior, you do not <em>stop</em> after you have #{Attitude.BR.react.ed} the best ones and are  consuming gristle.
+
+  %tr
+    %th.left{colspan:2}=Attitude.BL.episode
+    %th.right{colspan:2}=Attitude.BR.episode

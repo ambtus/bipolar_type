@@ -76,3 +76,9 @@ Then I should see your can'ts
   And I should NOT see your wants
   And the 'instead of having to do that' link should be disabled
   But the 'do' link should NOT be disabled
+
+Scenario: uses your words
+Given I have changed the word for USE to plugh
+When I am on your page
+Then I should see plugh
+  And I should NOT see the default word for USE

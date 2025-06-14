@@ -17,8 +17,13 @@ class Attitude < Concept
 
   def action; [gu, es].join('_'); end
 
-  def react; %w{enjoy escape control rely\ on}[index]; end
-  def feeling; %w{empty anxious irritated tired}[index]; end
+  def react; %w{enjoy avoid fix rely\ on}[index]; end
+
+  def feeling; %w{ agitated anxious irritable lethargic}[index]; end
+
+  def md; string.starts_with?('T') ? 'mania' : 'depression'; end
+
+  def episode; [feeling, md].to_phrase.titleize; end
 
   def name; action.titleize; end
 

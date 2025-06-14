@@ -1,28 +1,16 @@
 - content_for(:title, 'Introduction')
-
 %p
   I have been working on BipolarType since the early 1980s when I was diagnosed as
   =link_to 'bipolar', 'https://en.wikipedia.org/wiki/Bipolar_disorder', class: 'external'
   at around the same time I learned about
-  =succeed '.' do
-    =link_to 'personality type', 'https://en.wikipedia.org/wiki/Personality_type', class: 'external'
+  =(link_to 'personality type', 'https://en.wikipedia.org/wiki/Personality_type', class: 'external').period
 %p
   The
   =link_to 'theory', theory_path
   is scientific (it is
-  =succeed ')' do
-    =link_to 'falsifiable', 'https://en.wikipedia.org/wiki/Falsifiability', class: 'external'
+  =(link_to 'falsifiable', 'https://en.wikipedia.org/wiki/Falsifiability', class: 'external').endwrap.html_safe
   but it has not been validated by the medical, psychiatric, psychological, or type communities.
 %p
   I am sharing it on the web because it helps
   =(link_to 'me', my_path).period
-  I hope that you will find it useful or interesting but I do not guarantee it to be either true or helpful.
-%p
-  After you identify
-  =link_to 'your', answer_path(Answer.first_path)
-  BipolarType, you can
-  =(link_to 'change the words', words_path)
-  for the sixteen actions: use words with positive connotations for your eight
-  ="do".dquote.pluralize
-  and negative connotations for your eight
-  ="do not".dquote.pluralize
+  I hope that you will find it interesting or useful.

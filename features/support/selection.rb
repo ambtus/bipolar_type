@@ -4,7 +4,8 @@ def whose_whats(whose, whats)
   if Realm.all.map(&:name).include?(whose)
     realm=Realm.all.find { | r| r.name == whose }
     Rails.logger.debug realm.inspect
-    result=realm.subtypes.map(&:action)
+    what = whats.singularize.to_sym
+    result=realm.subtypes.map(&what)
   elsif %w{your my}.include?(whose)
     type = whose == 'my' ? Type.my_type : Type.your_type
     Rails.logger.debug type.inspect
