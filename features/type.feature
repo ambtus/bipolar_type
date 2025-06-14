@@ -20,9 +20,9 @@ Then I should NOT see your dos
 
 Scenario: can show all subtypes
 Given I am on my page
-When I follow the 'both' link
+When I follow the 'all' link
 Then I should see Subtype actions
-  And the 'both' link should be disabled
+  And the 'all' link should be disabled
   But the 'do' link should NOT be disabled
 
 Scenario: can show one realm

@@ -4,5 +4,5 @@
 -Realm.each do |realm|
   =link_to_unless @show == realm.string, realm.name, type_path(@type.path, realm.string)
 %br
--%w{do do\ not both}.each do |format|
+-%w{do do\ not all}.each do |format|
   =link_to_unless @show == format, format, type_path(@type.path, format)

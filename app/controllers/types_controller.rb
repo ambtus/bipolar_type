@@ -22,7 +22,7 @@ class TypesController < ApplicationController
       @subtypes = @type.subtypes + @type.subtypes.map(&:flip)
     when 'do not'
       @subtypes = @type.subtypes.map(&:opposite) + @type.subtypes.map(&:flop)
-    when 'both'
+    when 'all'
       @subtypes = Subtype.all
     else
       @subtypes = Realm.find(@show).subtypes
