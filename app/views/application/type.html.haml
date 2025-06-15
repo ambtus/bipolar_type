@@ -6,39 +6,71 @@
     (save your words between sessions)
 
 %table.equal
-  %tr
-    %th
-      .plain (#{Attitude.TL.react})
-      =@tl.name
-    %td.none.left.bottom anxious
-    %td.none.right.bottom irritated
-    %th
-      .plain (#{Attitude.TR.react})
-      =@tr.name
-  %tr
-    %td.right.top.none flight
-    %td.top.left.none=render 'solution', attitude: Attitude.TL, realms: [@tl, @bl, @tr, @br], classes: %w{bold plain strike italic}
-    %td.top.right.none=render 'solution', attitude: Attitude.TR, realms: [@tr, @br, @tl, @bl], classes: %w{bold plain strike italic}
-    %td.left.top.none fight
-  %tr
-    %th='&orarr;'.html_safe unless (@show && [@tr, @br].map(&:string).include?(@show))
-    %td.none{colspan:2}=render 'legend'
-    %th='&orarr;'.html_safe unless (@show && [@tl, @bl].map(&:string).include?(@show))
 
   %tr
-    %td.right.bottom.none digest
-    %td.bottom.left.none=render 'solution', attitude: Attitude.BL, realms: [@bl, @tl, @br, @tr].reverse, classes: %w{bold plain strike italic}.reverse
-    %td.bottom.right.none=render 'solution', attitude: Attitude.BR, realms: [@br, @tr, @bl, @tl].reverse, classes: %w{bold plain strike italic}.reverse
-    %td.left.none.bottom rest
+    %th.left{colspan:2}
+      .div=Attitude.TL.episode
+      =@br.name
+      &
+      =@tr.name
+    %th.right{colspan:2}
+      .div=Attitude.TR.episode
+      =@bl.name
+      &
+      =@tl.name
+
+
   %tr
     %th
-      =@bl.name
-      .plain (#{Attitude.BL.react})
-    %td.none.left.top empty
-    %td.none.right.top tired
+    %td.left.none=render 'solution', attitude: Attitude.TL, realms: [@bl, @tl, @tr, @br].reverse, classes: %w{ plain bold strike italic}.reverse
+    %td.right.none=render 'solution', attitude: Attitude.TR, realms: [@br, @tr,  @tl, @bl].reverse, classes: %w{plain bold  strike italic}.reverse
     %th
+
+  %tr
+    %th{colspan:2}
+      .div=Attitude.TL.react
+      =@tl.name
+      &
+      =@bl.name
+    %th{colspan:2}
+      .div=Attitude.TR.react
+      =@tr.name
+      &
       =@br.name
-      .plain (#{Attitude.BR.react})
+
+  %tr
+    %td.none{colspan:4}=render 'legend'
+
+  %tr
+    %th{colspan:2}
+      .div=Attitude.BL.react
+      =@bl.name
+      &
+      =@tl.name
+    %th{colspan:2}
+      .div=Attitude.BR.react
+      =@br.name
+      &
+      =@tr.name
+
+  %tr
+    %th 
+    %td.left.none=render 'solution', attitude: Attitude.BL, realms: [@tl, @bl, @br, @tr], classes: %w{ plain bold strike italic}
+    %td.right.none=render 'solution', attitude: Attitude.BR, realms: [@tr, @br, @bl, @tl], classes: %w{ plain bold strike italic}
+    %th
+
+  %tr
+    %th.left{colspan:2}
+      .div=Attitude.BL.episode
+      =@tr.name
+      &
+      =@br.name
+    %th.right{colspan:2}
+      .div=Attitude.BR.episode
+      =@tl.name
+      &
+      =@bl.name
+
 
 -if Rails.env.development? && @type == Type.my_type
   %hr
