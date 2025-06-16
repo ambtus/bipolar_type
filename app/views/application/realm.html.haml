@@ -2,51 +2,52 @@
 
 .center.bold=Realm.all.map{|r| link_to_unless(r == @realm, r.name, realm_path(r.string))}.join(' | ').html_safe
 
-%table.equal
+%table
+  %caption
+    %h2 The Cycle
   %tr
-  %th.left{colspan:2}=(@realm+Attitude.TL).episode
-  %th.right{colspan:2}=(@realm+Attitude.TR).episode
+    %td.none
+    %th{colspan:2}=@realm.use.capitalize
+    %td.none
   %tr
-    %td.none #{Attitude.TL.react} good #{@realm.foci}
+    %td.none=display(@realm+Attitude.TL)
     %th{colspan:2}
-    %td.none #{Attitude.TR.react} good #{@realm.foci}
+    %td.none=display(@realm+Attitude.TR)
   %tr
     %th
-    %td.none.left=Attitude.TL.feeling
-    %td.none.right=Attitude.TR.feeling
+    %th{colspan:2}
     %th
   %tr
-    %td.right.top.none flight
-    %td.bold=display(@realm+Attitude.TL)
-    %td.bold=display(@realm+Attitude.TR)
-    %td.left.none.top fight
-  %tr
-    %th
-    %td.none{colspan:2}=@realm.use
-    %th
-  %tr
-    %th Energy
+    %th #{@realm.aka} Energy
     %th{colspan:2} &orarr;
-    %th Strength
+    %th #{@realm.aka} Strength
   %tr
     %th
-    %td.none{colspan:2}=@realm.get
+    %td.none{colspan:2}
     %th
   %tr
-    %td.right.bottom.none digest
-    %td.bold=display(@realm+Attitude.BL)
-    %td.bold=display(@realm+Attitude.BR)
-    %td.left.none.bottom rest
-  %tr
-    %th
-    %td.none.left=Attitude.BL.feeling
-    %td.none.right=Attitude.BR.feeling
-    %th
-  %tr
-    %td.none #{Attitude.BL.react} bad #{@realm.foci}
+    %td.none=display(@realm+Attitude.BL)
     %th{colspan:2}
-    %td.none #{Attitude.BR.react} bad #{@realm.foci}
-
+    %td.none=display(@realm+Attitude.BR)
   %tr
-  %th.left{colspan:2}=(@realm+Attitude.BL).episode
-  %th.right{colspan:2}=(@realm+Attitude.BR).episode
+    %th
+    %th{colspan:2}=@realm.get.first_word.capitalize
+    %th
+
+%table
+  %caption
+    %h2 The Episodes
+  %tr
+    %td
+      .bold=(@realm+Attitude.TL).episode
+      %p=display(@realm+Attitude.TL).too_much
+    %td
+      .bold=(@realm+Attitude.TR).episode
+      %p=display(@realm+Attitude.TR).too_much
+  %tr
+    %td
+      .bold=(@realm+Attitude.BL).episode
+      %p=display(@realm+Attitude.BL).too_much
+    %td
+      .bold=(@realm+Attitude.BR).episode
+      %p=display(@realm+Attitude.BR).too_much

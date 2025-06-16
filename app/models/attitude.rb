@@ -7,25 +7,27 @@ class Attitude < Concept
     define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
   end
 
-  def getting?; string.starts_with?('B'); end
+  def top?; string.starts_with?('T'); end
+  def left?; string.ends_with?('L'); end
 
-  def gu; string.starts_with?('T') ? 'use' : 'get'; end
-  def es; string.ends_with?('L') ? 'energy' : 'strength'; end
+  def gu; top? ? 'use' : 'get'; end
+  def es; left? ? 'energy' : 'strength'; end
+  def action; [gu, es].join('_'); end
+  def name; action.titleize; end
 
   def first_letter; gu.first.capitalize; end
   def second_letter; es.first.capitalize; end
 
-  def action; [gu, es].join('_'); end
+  def unhappy; %w{ bored anxious irritable agitated }[index]; end
+  def md; top? ? 'mania' : 'depression'; end
+  def episode; [unhappy, md].to_phrase.titleize; end
 
-  def react; %w{enjoy avoid fix rely\ on}[index]; end
+  def happy; %w{ enjoy avoid fix rely\ on }[index]; end
+  def mode; %w{ digest flee fight rest }[index]; end
+  def real; %w{ empty afraid angry tired }[index]; end
 
-  def feeling; %w{ agitated anxious irritable lethargic}[index]; end
+  def pejorative; %w{greed paranoia perfectionism laziness}[index]; end
 
-  def md; string.starts_with?('T') ? 'mania' : 'depression'; end
-
-  def episode; [feeling, md].to_phrase.titleize; end
-
-  def name; action.titleize; end
 
   def next; self.class.rotate[index]; end
   def previous; self.class.rotate(-1)[index]; end

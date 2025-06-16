@@ -5,5 +5,6 @@ rerun_opts = rerun.empty? ? "--format #{ENV['CUCUMBER_FORMAT'] || 'progress'} fe
 std_opts = "--publish-quiet --strict"
 %>
 default: <%= std_opts %> --fail-fast --format summary features
-loud: LOUD=true <%= std_opts %> --fail-fast --format pretty features
-rerun: <%= std_opts %> <%= rerun_opts %> --order random --format rerun --out rerun.txt
+l: LOUD=true <%= std_opts %> --fail-fast --format pretty features
+r: <%= std_opts %> <%= rerun_opts %> --order random --format rerun --out rerun.txt
+p: <%= std_opts %> --fail-fast --format pretty 

@@ -28,12 +28,12 @@
 
   %tr
     %th{colspan:2}
-      .div=Attitude.TL.react
+      .div=Attitude.TL.happy
       =@tl.name
       &
       =@bl.name
     %th{colspan:2}
-      .div=Attitude.TR.react
+      .div=Attitude.TR.happy
       =@tr.name
       &
       =@br.name
@@ -43,18 +43,18 @@
 
   %tr
     %th{colspan:2}
-      .div=Attitude.BL.react
+      .div=Attitude.BL.happy
       =@bl.name
       &
       =@tl.name
     %th{colspan:2}
-      .div=Attitude.BR.react
+      .div=Attitude.BR.happy
       =@br.name
       &
       =@tr.name
 
   %tr
-    %th 
+    %th
     %td.left.none=render 'solution', attitude: Attitude.BL, realms: [@tl, @bl, @br, @tr], classes: %w{ plain bold strike italic}
     %td.right.none=render 'solution', attitude: Attitude.BR, realms: [@tr, @br, @bl, @tl], classes: %w{ plain bold strike italic}
     %th

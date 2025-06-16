@@ -15,6 +15,8 @@ class Realm < Concept
   def name; foci.capitalize; end
 
   def adjective; %w{social physical mental financial}[index]; end
+  def adverb; adjective.ly; end
+  def aka; adjective.capitalize; end
   def letter; adjective.first.capitalize; end
 
   def get; %w{listen\ to eat learn earn}[index]; end

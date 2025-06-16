@@ -1,0 +1,26 @@
+%td.left.top
+  .bold.center=attitude.episode
+  %p
+    Sometimes called
+    -case attitude.string
+    -when 'TL'
+      euphoric mania because of the endorphin rush which occurs
+    -when 'TR'
+      hypomania because of the productivity rush which occurs
+    -when 'BL'
+      major depression because of the excess energy reserves you build
+    -when 'BR'
+      euthymia because of the new strengths you build
+    after the initial #{attitude.real.to_noun} ends and before the
+    =attitude.unhappy.to_noun
+    kicks in.
+  %p
+    Sometimes called
+    =attitude.pejorative
+    because you keep
+    =attitude.happy.ing
+    -if attitude.top?
+      problems that other people cannot perceive.
+    -else
+      resources when other people want you to get up and
+      =attitude.flip.mode.period
