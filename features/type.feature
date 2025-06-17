@@ -51,10 +51,10 @@ Then I should see your dos
 
 Scenario: can show your wants
 Given I am on your page
-When I follow the 'so you can do this' link
+When I follow the 'so you can do more' link
 Then I should see your wants
   But I should NOT see your dos
-  And the 'so you can do this' link should be disabled
+  And the 'so you can do more' link should be disabled
   But the 'do' link should NOT be disabled
 
 Scenario: can show your don'ts
@@ -69,12 +69,12 @@ Then I should see your don'ts
 
 Scenario: can show your can'ts
 Given I am on your page
-When I follow the 'instead of having to do that' link
+When I follow the 'and less of' link
 Then I should see your can'ts
   But I should NOT see your don'ts
   And I should NOT see your dos
   And I should NOT see your wants
-  And the 'instead of having to do that' link should be disabled
+  And the 'and less of' link should be disabled
   But the 'do' link should NOT be disabled
 
 Scenario: uses your words
