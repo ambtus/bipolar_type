@@ -1,6 +1,8 @@
 class TypesController < ApplicationController
 
   def index
+    @unhappy = params[:format] || 'bored'
+    @types = Type.sort_by(@unhappy)
     render 'types'
   end
 

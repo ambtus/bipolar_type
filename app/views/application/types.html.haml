@@ -3,8 +3,9 @@
 %table
   %tr
   %th
-    =Attitude.all.collect{|a| a.unhappy.to_noun}.join(' | ')
-  -Type.sorted.each do |t|
+    -Attitude.each do |a|
+      =link_to_unless @unhappy == a.unhappy, a.unhappy, types_path(a.unhappy)
+      ='|' unless a.index == 3
+  -@types.each do |t|
     %tr
     %td=link_to t.episodes.collect{|s|display(s)}.join(' | '), type_path(t.path)
-      

@@ -20,12 +20,12 @@ class Type
     def your_path; 'TFSN'; end
     def my_type; find(my_path); end
     def your_type; find(your_path); end
-    def sorted; all.sort_by{|t| t.episodes}; end
+    def sort_by(what); all.sort_by{|t| t.sort_by(what)}; end
   end
 
   def name; realms.map(&:name).join('•'); end
 
-  def symbol; realms.map(&:string).join('•'); end
+  def symbol; realms.map(&:string).join; end
   alias inspect :symbol
 
   def dos; realms.add(Attitude.all); end
@@ -37,6 +37,16 @@ class Type
   def tr_realms; realms.values_at(0,1,2,3); end
   def br_realms; realms.values_at(2,3,0,1); end
   def tl_realms; realms.values_at(3,2,1,0); end
+
+  def sort_by(what)
+    strings = Attitude.all.map(&:unhappy)
+    raise "#{what} must be one of #{strings}" unless strings.include?(what)
+    subtypes = episodes
+    until subtypes.first.attitude.unhappy == what
+      subtypes = subtypes.rotate
+    end
+    return subtypes
+  end
 
 end
 
