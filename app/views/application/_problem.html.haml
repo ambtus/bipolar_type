@@ -1,16 +1,8 @@
-
-%ul
-  %li.bold
-    I find it painful to have to
-    =display(subtype.opposite)
-  %li
-    I want to be able to
-    =display(subtype.flip)
-  %li
-    I
-    %em don&rsquo;t
-    want to
-    =display(subtype.flop)
-  %li
-    It would be easy to
-    .center=link_to_unless @answer.taken?(subtype), display(subtype), answer_path(@answer.next(subtype))
+=subtype.realm.name
+do not trigger my
+=subtype.attitude.episode.downcase.period
+%br
+%br
+It is always safe for me to
+.center=link_to_unless @answer.taken?(subtype), display(subtype).make_mine, answer_path(@answer.next(subtype))
+ 

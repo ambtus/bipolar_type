@@ -161,6 +161,8 @@ class String
     end
   end
   def ed
+    return 'sought' if self=='seek'
+    return 'chose' if self=='choose'
     return 'bought' if self=='buy'
     return 'quit' if self=='quit'
     return 'fled' if self=='flee'
@@ -208,6 +210,7 @@ class String
   end
 
   def en
+    return 'chosen' if self=='choose'
     return 'taken' if self=='take'
     return 'gotten' if self=='get'
     return 'shown' if self=='show'

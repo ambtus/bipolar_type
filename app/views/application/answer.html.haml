@@ -15,10 +15,8 @@
   -@answer.free_things.each do |thing|
     %tr
       -thing.subtypes.each do |subtype|
-
-        %td.left.bottom=render 'problem', subtype: subtype
-    %tr
-      %th{colspan:2} &nbsp;
+        -unless @answer.taken?(subtype)
+          %td.left=render 'problem', subtype: subtype
 
 
 -if Rails.env.development?
