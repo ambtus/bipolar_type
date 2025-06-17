@@ -1,5 +1,9 @@
 class TypesController < ApplicationController
 
+  def index
+    render 'types'
+  end
+
   def show
     @type = Type.find params[:id]
     @bl=@type.realms.first

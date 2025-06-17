@@ -20,6 +20,7 @@ class Type
     def your_path; 'TFSN'; end
     def my_type; find(my_path); end
     def your_type; find(your_path); end
+    def sorted; all.sort_by{|t| t.episodes}; end
   end
 
   def name; realms.map(&:name).join('•'); end
@@ -28,6 +29,8 @@ class Type
   alias inspect :symbol
 
   def subtypes; realms.add(Attitude.all); end
+
+  def episodes; subtypes.map(&:opposite).sort; end
 
 
 end

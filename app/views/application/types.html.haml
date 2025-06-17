@@ -1,0 +1,10 @@
+- content_for(:title, '24 BipolarTypes')
+
+%table
+  %tr
+  %th
+    =Attitude.all.collect{|a| a.unhappy.to_noun}.join(' | ')
+  -Type.sorted.each do |t|
+    %tr
+    %td=link_to t.episodes.collect{|s|display(s)}.join(' | '), type_path(t.path)
+      
