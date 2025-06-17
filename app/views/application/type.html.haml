@@ -8,68 +8,17 @@
 %table.equal
 
   %tr
-    %th.left{colspan:2}
-      .div=Attitude.TL.episode
-      =@br.name
-      &
-      =@tr.name
-    %th.right{colspan:2}
-      .div=Attitude.TR.episode
-      =@bl.name
-      &
-      =@tl.name
-
-
-  %tr
-    %th
     %td.left.none=render 'solution', attitude: Attitude.TL, realms: [@bl, @tl, @tr, @br].reverse, classes: %w{ plain bold strike italic}.reverse
     %td.right.none=render 'solution', attitude: Attitude.TR, realms: [@br, @tr,  @tl, @bl].reverse, classes: %w{plain bold  strike italic}.reverse
-    %th
 
   %tr
-    %th{colspan:2}
-      .div=Attitude.TL.happy
-      =@tl.name
-      &
-      =@bl.name
-    %th{colspan:2}
-      .div=Attitude.TR.happy
-      =@tr.name
-      &
-      =@br.name
+    %td.none{colspan:2}=render 'legend'
+
 
   %tr
-    %td.none{colspan:4}=render 'legend'
-
-  %tr
-    %th{colspan:2}
-      .div=Attitude.BL.happy
-      =@bl.name
-      &
-      =@tl.name
-    %th{colspan:2}
-      .div=Attitude.BR.happy
-      =@br.name
-      &
-      =@tr.name
-
-  %tr
-    %th
     %td.left.none=render 'solution', attitude: Attitude.BL, realms: [@tl, @bl, @br, @tr], classes: %w{ plain bold strike italic}
     %td.right.none=render 'solution', attitude: Attitude.BR, realms: [@tr, @br, @bl, @tl], classes: %w{ plain bold strike italic}
-    %th
 
-  %tr
-    %th.left{colspan:2}
-      .div=Attitude.BL.episode
-      =@tr.name
-      &
-      =@br.name
-    %th.right{colspan:2}
-      .div=Attitude.BR.episode
-      =@tl.name
-      &
-      =@bl.name
 
 
 -if Rails.env.development? && @type == Type.my_type
