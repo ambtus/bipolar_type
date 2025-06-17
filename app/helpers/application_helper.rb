@@ -8,4 +8,7 @@ module ApplicationHelper
     '&nbsp;'.html_safe
   end
 
+  def circle
+    '&orarr;'.html_safe
+  end
 end

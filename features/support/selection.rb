@@ -6,19 +6,15 @@ def whose_whats(whose, whats)
     Rails.logger.debug realm.inspect
     what = whats.singularize.to_sym
     result=realm.subtypes.map(&what)
+  elsif Attitude.all.map(&:mode).include?(whose)
+    attitude=Attitude.all.find { | r| r.mode == whose }
+    Rails.logger.debug attitude.inspect
+    what = whats.singularize.to_sym
+    result=attitude.subtypes.map(&what)
   elsif %w{your my}.include?(whose)
     type = whose == 'my' ? Type.my_type : Type.your_type
     Rails.logger.debug type.inspect
-    subtypes = case whats
-      when "dos"
-        type.subtypes
-      when "wants"
-        type.subtypes.map(&:flip)
-      when "don'ts"
-        type.subtypes.map(&:flop)
-      when "can'ts"
-        type.subtypes.map(&:opposite)
-    end
+    subtypes = type.send(whats)
     result = subtypes.map(&:action)
   else
     Rails.logger.debug whose.constantize

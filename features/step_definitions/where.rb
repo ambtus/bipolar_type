@@ -2,10 +2,6 @@ Given 'I am on the homepage' do
   visit('/')
 end
 
-Given('I am on the first question page') do
-  visit('/answers/Q1')
-end
-
 Given('I am on my page') do
   visit(my_path)
 end
@@ -21,18 +17,6 @@ end
 
 Then('I should be on my page') do
     assert_match Type.my_path, page.current_path
-end
-
-Then('I should be on your page') do
-    assert_match Type.your_path, page.current_path
-end
-
-Then('I should NOT be on my page') do
-  assert_no_match Type.my_path, page.current_path
-end
-
-Then('I should be on a theory page') do
-  assert_match "/types/", page.current_path
 end
 
 Then('I should be on the {word} page') do |string|

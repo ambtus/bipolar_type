@@ -20,6 +20,7 @@ class Concept
     def third; all.third; end
     def fourth; all.fourth; end
     def symbols; self::SYMBOLS; end
+    def strings; self::SYMBOLS.map(&:to_s); end
     def each(&block); self::ALL.each(&block); end
     def title; [self::ALL.count, self.name.pluralize].to_phrase; end
     def find(s); self::ALL.find{|x| x.symbol == s.to_sym}; end

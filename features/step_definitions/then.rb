@@ -14,10 +14,6 @@ Then('the {string} link should be disabled') do |string|
   assert page.has_no_selector?("a", text: /^#{string}$/)
 end
 
-Then('the link for {word} should be disabled') do |tla|
-  assert page.has_no_selector?("a", id: tla )
-end
-
 Then('I should NOT see the default word for {word}') do |tla|
   subtype = Subtype.find_by_tla(tla)
   assert page.has_no_text?(subtype.action)
@@ -25,11 +21,6 @@ end
 
 Then('the {string} link should NOT be disabled') do |string|
   assert page.has_link?(string)
-end
-
-Then('the link for {word} should be first') do |tla|
-  link = page.find("td", match: :first).find_link
-  assert_match Subtype.find_by_tla(tla).string, link[:href]
 end
 
 Then('I should see {word} {word}') do |whose, whats|

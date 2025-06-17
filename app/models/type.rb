@@ -28,10 +28,15 @@ class Type
   def symbol; realms.map(&:string).join('•'); end
   alias inspect :symbol
 
-  def subtypes; realms.add(Attitude.all); end
+  def dos; realms.add(Attitude.all); end
+  def donts; dos.map(&:flop); end
+  def mores; dos.map(&:flip); end
+  def episodes; dos.map(&:opposite).sort; end
 
-  def episodes; subtypes.map(&:opposite).sort; end
-
+  def bl_realms; realms.values_at(1,0,3,2); end
+  def tr_realms; realms.values_at(0,1,2,3); end
+  def br_realms; realms.values_at(2,3,0,1); end
+  def tl_realms; realms.values_at(3,2,1,0); end
 
 end
 

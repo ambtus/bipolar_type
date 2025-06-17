@@ -5,20 +5,22 @@
     =link_to 'bookmark', type_path(@type.path, cookies.to_h)
     (save your words between sessions)
 
-%table.equal
+%table
 
   %tr
-    %td.left.none=render 'solution', attitude: Attitude.TL, realms: [@bl, @tl, @tr, @br].reverse, classes: %w{ plain bold strike italic}.reverse
-    %td.right.none=render 'solution', attitude: Attitude.TR, realms: [@br, @tr,  @tl, @bl].reverse, classes: %w{plain bold  strike italic}.reverse
-
+    %td.none.left=render 'solution', attitude: Attitude.TL, realms: @type.tl_realms, classes: @solution.reverse
+    %th
+    %td.none.right=render 'solution', attitude: Attitude.TR, realms: @type.tr_realms, classes: @solution.reverse
   %tr
-    %td.none{colspan:2}=render 'legend'
-
-
+    %th
+    %th=circle
+    %th
   %tr
-    %td.left.none=render 'solution', attitude: Attitude.BL, realms: [@tl, @bl, @br, @tr], classes: %w{ plain bold strike italic}
-    %td.right.none=render 'solution', attitude: Attitude.BR, realms: [@tr, @br, @bl, @tl], classes: %w{ plain bold strike italic}
+    %td.none.left=render 'solution', attitude: Attitude.BL, realms: @type.bl_realms, classes: @solution
+    %th
+    %td.none.right=render 'solution', attitude: Attitude.BR, realms: @type.br_realms, classes: @solution
 
+.center=render 'legend'
 
 
 -if Rails.env.development? && @type == Type.my_type

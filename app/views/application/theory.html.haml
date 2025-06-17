@@ -1,6 +1,6 @@
 - content_for :title, 'Theory'
 
-.center.bold=Realm.all.map{|r| link_to(r.name, realm_path(r.string))}.join(' | ').html_safe
+%b.center=Realm.all.map{|r| link_to(r.name, realm_path(r.string))}.join(' | ').html_safe
 
 %table
   %caption
@@ -20,7 +20,7 @@
     %td.left.none.top=Attitude.TR.mode
   %tr
     %th Energy
-    %th{colspan:2} &orarr;
+    %th{colspan:2}=circle
     %th Strength
   %tr
     %td.right.bottom.none=Attitude.BL.mode

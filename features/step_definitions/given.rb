@@ -8,8 +8,3 @@ Given('I use a bookmark link to {word} page including {string}') do |whose, snip
   url = whose=='my' ? my_path : type_path(Type.your_path)
   visit(url + '?' + snippet)
 end
-
-Given('I follow the link for {word}') do |tla|
-  subtype = Subtype.find_by_tla(tla)
-  click_link (subtype.action)
-end

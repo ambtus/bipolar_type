@@ -6,32 +6,26 @@ class TypesController < ApplicationController
 
   def show
     @type = Type.find params[:id]
-    @bl=@type.realms.first
-    @tl=@type.realms.second
-    @tr=@type.realms.third
-    @br=@type.realms.fourth
+    @legend = {
+      "dos"=>"do this",
+      "donts"=>"instead of that",
+      "mores"=>"so you can do more of this",
+      "episodes"=>"and less of that"
+    }
+    @solution = %w{mores dos donts episodes}
 
-    @show = params[:format] || 'do'
-    Rails.logger.debug "format #{@show}"
-    case @show
-    when 'bold'
-      @subtypes = @type.subtypes
-    when 'italic'
-      @subtypes = @type.subtypes.map(&:opposite)
-    when 'plain'
-      @subtypes = @type.subtypes.map(&:flip)
-    when 'strike'
-      @subtypes = @type.subtypes.map(&:flop)
-    when 'do'
-      @subtypes = @type.subtypes + @type.subtypes.map(&:flip)
-    when 'do not'
-      @subtypes = @type.subtypes.map(&:opposite) + @type.subtypes.map(&:flop)
-    when 'all'
-      @subtypes = Subtype.all
-    else
-      @subtypes = Realm.find(@show).subtypes
+    @show = params[:format] || 'dos'
+    Rails.logger.debug "format #{@show}: included? #{@legend.keys.include?(@show)}"
+    @subtypes = if @legend.keys.include?(@show)
+        @type.send(@show)
+      elsif Realm.strings.include?(@show)
+        Realm.find(@show).subtypes
+      elsif Attitude.strings.include?(@show)
+        Attitude.find(@show).subtypes
+      else
+        Subtype.all
     end
-    Rails.logger.debug "subtypes #{@subtypes}"
+    Rails.logger.debug "subtypes: #{@subtypes}"
     render 'type'
   end
 

@@ -1,6 +1,6 @@
 - content_for :title, @realm.name
 
-.center.bold=Realm.all.map{|r| link_to_unless(r == @realm, r.name, realm_path(r.string))}.join(' | ').html_safe
+%b.center=Realm.all.map{|r| link_to_unless(r == @realm, r.name, realm_path(r.string))}.join(' | ').html_safe
 
 %table
   %caption
@@ -19,7 +19,7 @@
     %th
   %tr
     %th #{@realm.aka} Energy
-    %th{colspan:2} &orarr;
+    %th{colspan:2}=circle
     %th #{@realm.aka} Strength
   %tr
     %th
@@ -39,15 +39,15 @@
     %h2 The Episodes
   %tr
     %td
-      .bold=(@realm+Attitude.TL).episode
+      %b=(@realm+Attitude.TL).episode
       %p=display(@realm+Attitude.TL).too_much
     %td
-      .bold=(@realm+Attitude.TR).episode
+      %b=(@realm+Attitude.TR).episode
       %p=display(@realm+Attitude.TR).too_much
   %tr
     %td
-      .bold=(@realm+Attitude.BL).episode
+      %b=(@realm+Attitude.BL).episode
       %p=display(@realm+Attitude.BL).too_much
     %td
-      .bold=(@realm+Attitude.BR).episode
+      %b=(@realm+Attitude.BR).episode
       %p=display(@realm+Attitude.BR).too_much
