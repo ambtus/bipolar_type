@@ -22,6 +22,9 @@
 
 .center=render 'legend'
 
+-if Attitude.strings.include?(@show) || Realm.strings.include?(@show)
+  -s=@type.find_ss_by(@show)
+  %p When you are #{s.first.unhappy}, when you no longer want to #{display s.first}, when you know you should stop #{(display s.second).ing}, then #{display s.third} if you can, and if you cannot, #{display s.fourth} until you can.
 
 -if Rails.env.development? && @type == Type.my_type
   %hr

@@ -48,5 +48,20 @@ class Type
     return subtypes
   end
 
+  def find_ss_by(string)
+    if Realm.strings.include?(string)
+      s = episodes.find{|s| s.realm.string == string}
+      [s, s.flip, s.flop, s.opposite]
+    elsif Attitude.strings.include?(string)
+      s = episodes.find{|s| s.attitude.string == string}
+      t = donts.find{|s| s.attitude.string == string}
+      u = mores.find{|s| s.attitude.string == string}
+      v = dos.find{|s| s.attitude.string == string}
+      [s, t, u, v]
+    else
+      raise "#{string} neither realm nor attitude"
+    end
+  end
+
 end
 

@@ -67,16 +67,16 @@ Then I should see Places actions
 
 Scenario: can show one attitude
 Given I am on my page
-When I follow the 'Get Strength' link
+When I follow the 'Agitated' link
 Then I should see rest actions
   But I should NOT see fight actions
-  And the 'Get Strength' link should be disabled
+  And the 'Agitated' link should be disabled
   But the 'do this' link should NOT be disabled
 
 Scenario: can show another attitude
 Given I am on my page
-When I follow the 'Use Strength' link
+When I follow the 'Irritable' link
 Then I should see fight actions
   But I should NOT see rest actions
-  And the 'Use Strength' link should be disabled
+  And the 'Irritable' link should be disabled
   But the 'do this' link should NOT be disabled

@@ -1,6 +1,7 @@
 - content_for :title, @realm.name
 
-%b.center=Realm.all.map{|r| link_to_unless(r == @realm, r.name, realm_path(r.string))}.join(' | ').html_safe
+.center 
+  %b=Realm.all.map{|r| link_to_unless(r == @realm, r.name, realm_path(r.string))}.join(' | ').html_safe
 
 %table
   %caption

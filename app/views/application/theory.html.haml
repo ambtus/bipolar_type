@@ -1,6 +1,7 @@
 - content_for :title, 'Theory'
 
-%b.center=Realm.all.map{|r| link_to(r.name, realm_path(r.string))}.join(' | ').html_safe
+.center
+  %b=Realm.all.map{|r| link_to(r.name, realm_path(r.string))}.join(' | ').html_safe
 
 %table
   %caption
