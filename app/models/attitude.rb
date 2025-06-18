@@ -18,16 +18,12 @@ class Attitude < Concept
   def first_letter; gu.first.capitalize; end
   def second_letter; es.first.capitalize; end
 
+  def real; %w{ empty afraid angry tired }[index]; end
+  def mode; %w{ consume flee fight rest }[index]; end
   def unhappy; %w{ bored anxious irritable agitated }[index]; end
+  def pejorative; %w{greed paranoia perfectionism laziness}[index]; end
   def md; top? ? 'mania' : 'depression'; end
   def episode; [unhappy, md].to_phrase.titleize; end
-
-  def happy; %w{ enjoy avoid fix rely\ on }[index]; end
-  def mode; %w{ consume flee fight rest }[index]; end
-  def real; %w{ empty afraid angry tired }[index]; end
-
-  def pejorative; %w{greed paranoia perfectionism laziness}[index]; end
-
 
   def next; self.class.rotate[index]; end
   def previous; self.class.rotate(-1)[index]; end

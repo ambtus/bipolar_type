@@ -1,15 +1,13 @@
 def whose_whats(whose, whats)
-
+  what = whats.singularize.to_sym
   result = []
   if Realm.all.map(&:name).include?(whose)
     realm=Realm.all.find { | r| r.name == whose }
     Rails.logger.debug realm.inspect
-    what = whats.singularize.to_sym
     result=realm.subtypes.map(&what)
   elsif Attitude.all.map(&:mode).include?(whose)
     attitude=Attitude.all.find { | r| r.mode == whose }
     Rails.logger.debug attitude.inspect
-    what = whats.singularize.to_sym
     result=attitude.subtypes.map(&what)
   elsif %w{your my}.include?(whose)
     type = whose == 'my' ? Type.my_type : Type.your_type
@@ -18,8 +16,7 @@ def whose_whats(whose, whats)
     result = subtypes.map(&:action)
   else
     Rails.logger.debug whose.constantize
-    what = whats.singularize
-    result = whose.constantize.all.map(&what.to_sym)
+    result = whose.constantize.all.map(&what)
   end
   Rails.logger.debug result
   return result

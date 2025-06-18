@@ -3,8 +3,9 @@
 %table
   %tr
   %th
+    Sort by:
     -Attitude.each do |a|
-      =link_to_unless @unhappy == a.unhappy, a.unhappy, types_path(a.unhappy)
+      =link_to_unless @unhappy == a.unhappy, a.unhappy.capitalize, types_path(a.unhappy)
       ='|' unless a.index == 3
   -@types.each do |t|
     %tr
