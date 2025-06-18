@@ -24,26 +24,27 @@
   -if Attitude.strings.include?(@show) || Realm.strings.include?(@show)
     -s=@type.find_ss_by(@show)
     %tr
-      %td.left{colspan:3}
-        When
-        =@realm ? s.first.realm.foci : s.first.attitude.mode.ing
-        =@realm ? 'are' : 'is'
-        making you feel
-        =s.first.unhappy.comma
-        %br
-        you no longer want to
-        =(display s.first).comma
-        %br
-        and you know you should stop
-        =(display s.second).ing.comma
-        %br
-        then
-        =(display s.third).period
-        %br
-        If you cannot
-        =(display s.third).comma
-        then
-        =(display s.fourth).period
+      %td.none{colspan:3}
+        %ul
+          %li
+            You are
+            -if @realm
+              surrounded by
+              =s.first.realm.foci.period
+            -else
+              =s.first.unhappy.period
+          %li.episodes
+            You don&rsquo;t want to
+            =(display s.first).period
+          %li.donts
+            You know you shouldn&rsquo;t
+            =(display s.second).period
+          %li.mores=(display s.third).capitalize.bang
+          %li.dos
+            If you cannot
+            =(display s.third).comma
+            then
+            =(display s.fourth).period
 
 
 
