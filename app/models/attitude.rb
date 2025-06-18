@@ -23,7 +23,7 @@ class Attitude < Concept
   def episode; [unhappy, md].to_phrase.titleize; end
 
   def happy; %w{ enjoy avoid fix rely\ on }[index]; end
-  def mode; %w{ digest flee fight rest }[index]; end
+  def mode; %w{ consume flee fight rest }[index]; end
   def real; %w{ empty afraid angry tired }[index]; end
 
   def pejorative; %w{greed paranoia perfectionism laziness}[index]; end

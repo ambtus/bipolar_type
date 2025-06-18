@@ -21,6 +21,7 @@ class TypesController < ApplicationController
     @subtypes = if @legend.keys.include?(@show)
         @type.send(@show)
       elsif Realm.strings.include?(@show)
+        @realm = true
         Realm.find(@show).subtypes
       elsif Attitude.strings.include?(@show)
         Attitude.find(@show).subtypes

@@ -2,13 +2,9 @@
   -@legend.each do |format, legend|
     %li{class: format}=link_to_unless @show == format, legend, type_path(@type.path, format)
   %li=link_to_unless @show == 'all', 'show all', type_path(@type.path, 'all')
-
-%br
-
 -Realm.each do |r|
   %b=link_to_unless @show == r.string, r.name, type_path(@type.path, r.string)
   ="|" unless r.index==3
-
 %br
 -Attitude.each do |a|
   %b=link_to_unless @show == a.string, a.unhappy.capitalize, type_path(@type.path, a.string)

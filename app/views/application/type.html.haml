@@ -19,12 +19,33 @@
     %td.none.left=render 'solution', attitude: Attitude.BL, realms: @type.bl_realms, classes: @solution
     %th
     %td.none.right=render 'solution', attitude: Attitude.BR, realms: @type.br_realms, classes: @solution
+  %tr
+    %td.none{colspan:3}=render 'legend'
+  -if Attitude.strings.include?(@show) || Realm.strings.include?(@show)
+    -s=@type.find_ss_by(@show)
+    %tr
+      %td.left{colspan:3}
+        When
+        =@realm ? s.first.realm.foci : s.first.attitude.mode.ing
+        =@realm ? 'are' : 'is'
+        making you feel
+        =s.first.unhappy.comma
+        %br
+        you no longer want to
+        =(display s.first).comma
+        %br
+        and you know you should stop
+        =(display s.second).ing.comma
+        %br
+        then
+        =(display s.third).period
+        %br
+        If you cannot
+        =(display s.third).comma
+        then
+        =(display s.fourth).period
 
-.center=render 'legend'
 
--if Attitude.strings.include?(@show) || Realm.strings.include?(@show)
-  -s=@type.find_ss_by(@show)
-  %p When you are #{s.first.unhappy}, when you no longer want to #{display s.first}, when you know you should stop #{(display s.second).ing}, then #{display s.third} if you can, and if you cannot, #{display s.fourth} until you can.
 
 -if Rails.env.development? && @type == Type.my_type
   %hr
