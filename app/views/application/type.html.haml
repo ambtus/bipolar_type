@@ -12,12 +12,10 @@
     %th
     %td.none.right=render 'solution', attitude: Attitude.TR, realms: @type.tr_realms, classes: @solution.reverse
   %tr
-    %th
     -if Attitude.strings.include?(@show) || Realm.strings.include?(@show)
-      %td.none=render 'advice', s: @type.find_ss_by(@show)
+      %td.none{colspan:3}=render 'advice', s: @type.find_ss_by(@show)
     -else
-      %th=circle
-    %th
+      %th{colspan:3}=circle
   %tr
     %td.none.left=render 'solution', attitude: Attitude.BL, realms: @type.bl_realms, classes: @solution
     %th
