@@ -4,35 +4,36 @@
     %td.none=display(@type.j2 + Attitude.TL)
     %td.none
       %s=display(@type.p2 + Attitude.TR)
-    %td.none=display(@type.p1 + Attitude.TR)
+    %td.none
+      %em=display(@type.p1 + Attitude.TR)
+
   %tr
-    %th
-    %td.bottom.right
+    %td.bottom.right{colspan:2}
       %ul
         %li=display(@type.p1 + Attitude.TL)
         %li
           %b=display(@type.p2 + Attitude.TL)
-    %td.bottom.left
+    %td.bottom.left{colspan:2}
       %ul
         %li=display(@type.j2 + Attitude.TR)
         %li
           %b.larger=display(@type.j1 + Attitude.TR)
-    %th
+
   %tr
-    %th
-    %td.top.right
+    %td.top.right{colspan:2}
       %ul
         %li
           %b.larger=display(@type.p1 + Attitude.BL)
         %li=display(@type.p2 + Attitude.BL)
-    %td.p
+    %td.p{colspan:2}
       %ul
         %li
           %b=display(@type.j2 + Attitude.BR)
         %li=display(@type.j1 + Attitude.BR)
-    %th
+
   %tr
-    %td.none=display(@type.j1 + Attitude.BL)
+    %td.none
+      %em=display(@type.j1 + Attitude.BL)
     %td.none
       %s=display(@type.j2 + Attitude.BL)
     %td.none=display(@type.p2 + Attitude.BR)
