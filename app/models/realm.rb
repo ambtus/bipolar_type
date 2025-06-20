@@ -14,7 +14,7 @@ class Realm < Concept
   def foci; focus.pluralize; end
   def name; foci.capitalize; end
 
-  def adjective; %w{social physical mental financial}[index]; end
+  def adjective; %w{emotional physical mental financial}[index]; end
   def adverb; adjective.ly; end
   def aka; adjective.capitalize; end
   def letter; adjective.first.capitalize; end

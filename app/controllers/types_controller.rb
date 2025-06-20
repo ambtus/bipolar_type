@@ -1,34 +1,29 @@
 class TypesController < ApplicationController
 
   def index
-    @unhappy = params[:format] || 'bored'
-    @types = Type.sort_by(@unhappy)
-    render 'types'
+    @current = params[:format] || ''
+    if @current.length == 12
+      type = Type.find_by_tlas(@current)
+      redirect_to action: 'show', id: type.path
+    else
+      @free = Subtype.without(@current)
+      render 'types'
+    end
   end
 
   def show
     @type = Type.find params[:id]
-    @legend = {
-      "dos"=>"do this",
-      "donts"=>"instead of that",
-      "mores"=>"so you can do more of this",
-      "episodes"=>"and less of that"
-    }
-    @solution = %w{mores dos donts episodes}
-
-    @show = params[:format] || 'dos'
-    Rails.logger.debug "format #{@show}: included? #{@legend.keys.include?(@show)}"
-    @subtypes = if @legend.keys.include?(@show)
-        @type.send(@show)
-      elsif Realm.strings.include?(@show)
-        @realm = true
-        Realm.find(@show).subtypes
+    @show = params[:format] || 'all'
+    @subtypes = if Realm.strings.include?(@show)
+        @realm =  Realm.find(@show)
+        @realm.subtypes
       elsif Attitude.strings.include?(@show)
-        Attitude.find(@show).subtypes
+        @attitude = Attitude.find(@show)
+        @attitude.subtypes
       else
         Subtype.all
     end
-    Rails.logger.debug "subtypes: #{@subtypes}"
+    Rails.logger.debug {"subtypes: #{@subtypes}"}
     render 'type'
   end
 

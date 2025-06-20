@@ -1,0 +1,39 @@
+%table.equal
+  %tr
+    %td.none=display(@type.j1 + Attitude.TL) if @type.j1 == @realm
+    %td.none=display(@type.j2 + Attitude.TL) if @type.j2 == @realm
+    %td.none
+      %s=display(@type.p2 + Attitude.TR) if @type.p2 == @realm
+    %td.none=display(@type.p1 + Attitude.TR) if @type.p1 == @realm
+  %tr
+    %th
+    %td.bottom.right
+      %ul
+        %li=display(@type.p1 + Attitude.TL) if @type.p1 == @realm
+        %li
+          %b=display(@type.p2 + Attitude.TL) if @type.p2 == @realm
+    %td.bottom.left
+      %ul
+        %li=display(@type.j2 + Attitude.TR) if @type.j2 == @realm
+        %li
+          %b.larger=display(@type.j1 + Attitude.TR) if @type.j1 == @realm
+    %th
+  %tr
+    %th
+    %td.top.right
+      %ul
+        %li
+          %b.larger=display(@type.p1 + Attitude.BL) if @type.p1 == @realm
+        %li=display(@type.p2 + Attitude.BL) if @type.p2 == @realm
+    %td.p
+      %ul
+        %li
+          %b=display(@type.j2 + Attitude.BR) if @type.j2 == @realm
+        %li=display(@type.j1 + Attitude.BR) if @type.j1 == @realm
+    %th
+  %tr
+    %td.none=display(@type.j1 + Attitude.BL) if @type.j1 == @realm
+    %td.none
+      %s=display(@type.j2 + Attitude.BL) if @type.j2 == @realm
+    %td.none=display(@type.p2 + Attitude.BR) if @type.p2 == @realm
+    %td.none=display(@type.p1 + Attitude.BR) if @type.p1 == @realm

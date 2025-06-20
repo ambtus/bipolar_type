@@ -5,8 +5,8 @@ def whose_whats(whose, whats)
     realm=Realm.all.find { | r| r.name == whose }
     Rails.logger.debug realm.inspect
     result=realm.subtypes.map(&what)
-  elsif Attitude.all.map(&:mode).include?(whose)
-    attitude=Attitude.all.find { | r| r.mode == whose }
+  elsif Attitude.all.map(&:name).include?(whose)
+    attitude=Attitude.all.find { | r| r.name == whose }
     Rails.logger.debug attitude.inspect
     result=attitude.subtypes.map(&what)
   elsif %w{your my}.include?(whose)

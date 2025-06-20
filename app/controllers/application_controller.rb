@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
       if params.has_key? k
         had_any = true
         if cookies[k].present? && params[k].blank? || (params[k] == subtype.action)
-          Rails.logger.debug "deleting #{k}: #{params[k]}"
+          Rails.logger.debug {"deleting #{k}: #{params[k]}"}
           cookies.delete(k)
           cookie_keys.delete(k)
         elsif params[k].present? && (params[k] != cookies[k])

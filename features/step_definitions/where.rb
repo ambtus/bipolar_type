@@ -15,8 +15,9 @@ Given('I am on the {word} page') do |url|
   visit("/#{url}")
 end
 
-Then('I should be on my page') do
-    assert_match Type.my_path, page.current_path
+Then('I should be on {word} page') do |whose|
+  path = whose == 'my' ? Type.my_path : Type.your_path
+  assert_match path, page.current_path
 end
 
 Then('I should be on the {word} page') do |string|

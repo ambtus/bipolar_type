@@ -1,7 +1,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w{chip second third fourth words clean to_wbr first_words last_words first_word last_word quote dquote sqwrap parenthesize deunderscore wrap end_wrap endwrap start_wrap unwrap wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine make_yours make_theirs and_to_or is_mbti? capitalized? to_noun s ed en ly ing an some a_lot a_lot_of enough enough_of many too_many too_much too_few too_little a_few plural? uncountable? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
+%w{chip second third fourth words clean to_wbr first_words last_words first_word last_word quote dquote sqwrap parenthesize deunderscore wrap end_wrap endwrap start_wrap unwrap wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine make_yours make_theirs and_to_or is_mbti? capitalized? to_noun to_adjective s ed en ly ing an some a_lot a_lot_of enough enough_of many too_many too_much too_few too_little a_few plural? uncountable? little few more fewer less much as_much many as_many not_always that those is are was were them it they able un begins_with? has have do does}.each do |meth|
  raise "#{meth} is already defined in String class" if String.method_defined?(meth)
 end
 
@@ -119,11 +119,11 @@ class String
   NOUNS = %w{anorexia depression mania energy strength obesity
     goals emptiness hyperactivity weakness calories credit
     information emotions childhood adolescence adulthood old\ age
-    child adolescent adult elder curiosity agitation appetite anxiety irritation boredom anger fear exhaustion lethargy hunger}
+    child adolescent adult elder curiosity agitation appetite lazy anxiety irritation boredom anger fear exhaustion lethargy hunger  }
   ADJECTIVES = %w{anorexic depressed manic energetic strong obese
     goal-oriented empty hyperactive weak caloric indebted
     informative emotional child adolescent adult elder
-    childish adolescent mature wise curious agitated appetitive anxious irritable bored angry afraid tired lethargic hungry}
+    childish adolescent mature wise curious agitated ?? ?? anxious irritable bored angry afraid tired lethargic hungry }
   def noun?; NOUNS.include?(self); end
 
 

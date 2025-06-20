@@ -28,6 +28,10 @@ class Concept
 
   def index; self.class::SYMBOLS.index(@symbol); end
 
+  def next; self.class.rotate[index]; end
+  def previous; self.class.rotate(-1)[index]; end
+  def opposite; self.class.rotate(2)[index]; end
+
   def compound?; respond_to? :parts; end
   def <=>(other)
     if compound?

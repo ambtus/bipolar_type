@@ -1,58 +1,80 @@
 - content_for :title, 'Theory'
 
-.center
-  %b=Realm.all.map{|r| link_to(r.name, realm_path(r.string))}.join(' | ').html_safe
+%p
+  A BipolarType realm is one of four foci:
+  =Realm.all.map{|r| link_to_unless(r == @realm, r.name, realm_path(r.string))}.or.html_safe
 
-%table
-  %caption
-    %h2 The Bipolar Cycle
-  %tr
-    %th
-    %th{colspan:2} Mania
-    %th
-  %tr
-    %th
-    %td.none.left=Attitude.TL.unhappy
-    %td.none.right=Attitude.TR.unhappy
-    %th
-  %tr
-    %td.right.top.none=Attitude.TL.mode
-    %td.none{colspan:2}
-    %td.left.none.top=Attitude.TR.mode
-  %tr
-    %th Energy
-    %th{colspan:2}=circle
-    %th Strength
-  %tr
-    %td.right.bottom.none=Attitude.BL.mode
-    %td.none{colspan:2}
-    %td.left.none.bottom=Attitude.BR.mode
-  %tr
-    %th
-    %td.none.left=Attitude.BL.unhappy
-    %td.none.right=Attitude.BR.unhappy
-    %th
-  %tr
-    %th
-    %th{colspan:2} Depression
-    %th
+%p
+  A BipolarType attitude is one of four behaviors:
+  =Attitude.linear.map{|a| link_to_unless(a == @attitude, a.name, attitude_path(a.string))}.or.html_safe
 
-%table.equal
-  %caption
-    %h2 The Four Bipolar Episodes
-  %tr
-    =render 'description', attitude: Attitude.TL
-    =render 'description', attitude: Attitude.TR
-  %tr
-    =render 'description', attitude: Attitude.BL
-    =render 'description', attitude: Attitude.BR
+%p There are sixteen focused behaviors: four attitudes x four realms.
+-unless (@realm || @attitude)
+  %p
+    =display(Subtype.first).capitalize
+    =Subtype.first.aka.wrap
+    is a single focused
+    =Subtype.first.realm.name.wrap
+    behavior
+    =Subtype.first.attitude.name.wrap.period
+    It can be 100% appropriate for the situation. Or it can be the right focus
+    =Subtype.first.realm.name.wrap.comma
+    but the wrong behavior
+    (should be
+    =Subtype.first.flop.attitude.name.endwrap.period
+    In which case
+    =display(Subtype.first.flop)
+    =Subtype.first.flop.aka.wrap
+    would be more appropriate. Conversely, it can be the right behavior
+    =Subtype.first.attitude.name.wrap.comma
+    but the wrong focus
+    (should be
+    =Subtype.first.next_realm.realm.name.endwrap.period
+    In which case
+    =display(Subtype.first.next_realm)
+    =Subtype.first.next_realm.aka.wrap
+    would be more appropriate.
+  %p
+    Whether you, as an individual, should
+    =display(Subtype.first).comma
+    =display(Subtype.first.flop).comma
+    or
+    =display(Subtype.first.next_realm).comma
+    depends on your personal BipolarType.
+  %p
+    You can change the words used for the focused behaviors. That is, if you want your BipolarType to remind you to eat dessert, rather than
+    =Subtype.find_by_tla('GPE').action.comma
+    you can make that change on the
+    =link_to 'words', words_path
+    page.
 
-%table.equal
-  %caption
-    %h2 Other Names
-  %tr
-    =render 'aka', attitude: Attitude.TL
-    =render 'aka', attitude: Attitude.TR
-  %tr
-    =render 'aka', attitude: Attitude.BL
-    =render 'aka', attitude: Attitude.BR
+-if @attitude
+  %table
+    %tr
+      -Realm.each do |realm|
+        %th=display(@attitude + realm)
+    %tr
+      -Realm.each do |realm|
+        %td.none=(realm + @attitude).aka
+-if @realm
+  %table
+    %tr
+      %th
+      %td.none{colspan:2}=@realm.use
+      %th
+    %tr
+      %th=display(@realm+Attitude.TL)
+      %th{colspan:2}
+      %th=display(@realm+Attitude.TR)
+    %tr
+      %td.none #{@realm.adjective} energy
+      %th{colspan:2}=circle
+      %td.none #{@realm.adjective} strength
+    %tr
+      %th=display(@realm+Attitude.BL)
+      %th{colspan:2}
+      %th=display(@realm+Attitude.BR)
+    %tr
+      %th
+      %td.none{colspan:2}=@realm.get.first_word
+      %th

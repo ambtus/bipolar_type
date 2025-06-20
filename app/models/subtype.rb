@@ -14,10 +14,21 @@ class Subtype < Concept
   def tla; [first_letter, letter, second_letter].join; end
   def self.find_by_tla(string); ALL.find{|s| s.tla == string}; end
 
-  def episode; [unhappy, adjective, md].to_phrase.titleize; end
+  def self.without(string)
+    subtypes = string.scan(/.../).collect{|tla| Subtype.find_by_tla(tla)}
+    Rails.logger.debug {"subtypes: #{subtypes}"}
+    realms = subtypes.map(&:realm)
+    attitudes = subtypes.map(&:attitude)
+    Subtype.all.reject{|s| realms.include?(s.realm) || attitudes.include?(s.attitude)}
+  end
+
+
+  def episode; [ms, adjective, md].to_phrase.titleize; end
 
   def meth; [gu, es].join('_'); end
   def action; realm.send(meth); end
+
+  def aka; [gu, adjective, es].to_phrase; end
 
   def parts; [attitude, realm]; end # sort by attitude
   def next; realm + attitude.next; end
@@ -25,6 +36,8 @@ class Subtype < Concept
   def opposite; realm+ attitude.opposite; end
   def flip; realm+attitude.flip; end
   def flop; realm+attitude.flop; end
+
+  def next_realm; realm.next + attitude; end
 
   def method_missing(meth, *args, **kwargs, &block)
     if attitude.respond_to?(meth)
