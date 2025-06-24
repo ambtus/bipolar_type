@@ -1,19 +1,25 @@
-- content_for(:title, '24 BipolarTypes')
+- content_for(:title, 'Your BipolarType')
 
-%p There are sixteen kinds of misery (bad realm & attitude matchup). Once you choose the first, there are only nine left (three realms & three attitudes). Choose another and there are four left. Choose a third, and you have a link to the associated BipolarType.
+%p
+  A BipolarType is defined by your
+  ="bad habits".dquote.period
+  Those learned focused responses which are often inappropriate and usually unhealthy.
 %table
   %tr
     %th
-    -Realm.each do |realm|
-      %th=realm.name
-  -Attitude.linear.each do |attitude|
+    -Attitude.linear.each do |attitude|
+      %th
+        =attitude.episode
+        .plain=attitude.too
+  -Realm.each do |realm|
     %tr
       %th
-        =attitude.name
-        .plain=attitude.action.deunderscore.wrap
-      -attitude.subtypes.each do |s|
+        =realm.name
+        .plain=realm.adjective.wrap
+
+      -Attitude.linear.add(realm).each do |s|
         %td
-          =link_to_if @free.include?(s), s.episode, types_path(@current+s.tla)
+          =link_to_if @free.include?(s), display(s), types_path(@current+s.tla)
           %br
-          =display(s).wrap
+          =s.aka.wrap
 

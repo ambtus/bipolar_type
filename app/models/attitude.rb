@@ -4,10 +4,10 @@ class Attitude < Concept
 
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each do |sym|
+
+  def self.linear; ALL.values_at(2,0,1); end
     define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
   end
-
-  def self.linear; ALL.values_at(2,1,3,0); end
 
   def top?; string.starts_with?('T'); end
   def left?; string.ends_with?('L'); end
@@ -27,12 +27,23 @@ class Attitude < Concept
   def finish; %w{ refuel escape win recover }[index]; end
 
   def unhappy; %w{ appetite anxiety irritation lethargy }[index]; end
-
-  def ms; diagonal? ? 'mild' : 'severe'; end
-  def md; top? ? 'mania' : 'depression'; end
-  def episode; [ms, md].to_phrase.titleize; end
-
   def bad; %w{greedy paranoid hateful lazy}[index]; end
+
+
+  def episode; %w{ depression anxiety mania sleep }[index].titleize; end
+  def too
+    case symbol
+    when :BL
+      'accept too much'
+    when :TR
+      'change too much'
+    when :TL
+      'worry too much'
+    else
+      raise 'cannot sleep too much'
+    end
+  end
+
 
   def flip; Attitude.all.without(self).find{|a| a.string.second == self.string.second}; end
   def flop; Attitude.all.without(self).find{|a| a.string.first == self.string.first}; end

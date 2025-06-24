@@ -20,3 +20,8 @@ When I follow the 'Fight' link
 Then I should be on the attitudes page
   And the 'Fight' link should be disabled
 
+Scenario: uses your words
+Given I have changed the word for GEE to plugh
+When I am on the theory page
+Then I should see plugh
+  And I should NOT see the default word for GEE

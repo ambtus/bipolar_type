@@ -19,16 +19,18 @@ class Type
     def title; [all.count, name.pluralize].to_phrase; end
     def find(string); all.find{|t| t.realm_string == string}; end
     def find_by_tlas(string);
-      subtypes = string.scan(/.../).collect{|tla| Subtype.find_by_tla(tla)}
+      tlas = string.scan(/.../)
+      subtypes = tlas.collect{|tla| Subtype.find_by_tla(tla)}
       Rails.logger.debug {"subtypes: #{subtypes}"}
-      realm_string = subtypes.sort.map(&:realm).map(&:string).join
-      find(realm_string)
+      ALL.find{|t| t.problems[0,3] == subtypes.sort}
     end
     def my_path; 'SFTN'; end
     def your_path; my_path.reverse; end # for tests, just needs to be different.
     def my_type; find(my_path); end
     def your_type; find(your_path); end
   end
+
+  def problems; realms.add(Attitude.all); end
 
   def p1; realms.second; end
   def p2; realms.third; end

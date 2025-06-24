@@ -2,7 +2,7 @@ class TypesController < ApplicationController
 
   def index
     @current = params[:format] || ''
-    if @current.length == 12
+    if @current.length == 9
       type = Type.find_by_tlas(@current)
       redirect_to action: 'show', id: type.path
     else

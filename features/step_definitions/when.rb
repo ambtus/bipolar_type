@@ -4,5 +4,5 @@ end
 
 When('I follow the link for {word}') do |tla|
   subtype = Subtype.find_by_tla(tla)
-  click_link(subtype.episode)
+  click_link(subtype.action)
 end
