@@ -38,7 +38,7 @@ class Attitude < Concept
     when :TR
       'change too much'
     when :TL
-      'worry too much'
+      'avoid too much'
     else
       raise 'cannot sleep too much'
     end
