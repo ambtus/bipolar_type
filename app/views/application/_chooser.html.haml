@@ -4,6 +4,6 @@
   %b=link_to_unless @show == r.string, r.name, type_path(@type.path, r.string)
   ="|" unless r.index==3
 %br
--Attitude.linear.each do |a|
+-Attitude.each do |a|
   %b=link_to_unless @show == a.string, a.name, type_path(@type.path, a.string)
   ="|" unless a.index==0

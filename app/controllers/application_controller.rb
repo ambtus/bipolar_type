@@ -27,4 +27,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def home; @title = 'Introduction'; end
+  def theory; @title = 'Theory'; end
+
 end

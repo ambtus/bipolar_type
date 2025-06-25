@@ -1,0 +1,27 @@
+=render 'time', attitude: attitude
+%br
+
+%br
+if you still feel
+=attitude.previous.feel
+.before=attitude.previous.do_something.more
+
+%br
+.dont
+  do not
+  =attitude.do_something
+
+unless you feel
+%em=attitude.feel
+%br
+and need to
+=attitude.finish
+%br
+
+%br
+if you are already
+=attitude.next.feeling
+%br
+.after
+  start
+  =attitude.next.do_something.ing

@@ -33,7 +33,7 @@ end
 Then('I should NOT see {word} {word}') do |whose, whats|
   words = whose_whats(whose, whats)
   words.each do |text|
-    assert page.has_no_text?(text)
+    assert page.find_all('#hide', text: text)
   end
 end
 

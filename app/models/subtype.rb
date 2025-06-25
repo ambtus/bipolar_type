@@ -12,7 +12,7 @@ class Subtype < Concept
   def attitude; Attitude.find(string.first + string.third); end
 
   def tla; [first_letter, letter, second_letter].join; end
-  def self.find_by_tla(string); ALL.find{|s| s.tla == string}; end
+  def self.find_by_tla(str_or_sym); ALL.find{|s| s.tla == str_or_sym.to_s}; end
 
   def self.without(string)
     subtypes = string.scan(/.../).collect{|tla| Subtype.find_by_tla(tla)}
@@ -22,13 +22,13 @@ class Subtype < Concept
     Subtype.all.reject{|s| realms.include?(s.realm) || attitudes.include?(s.attitude)}
   end
 
-
-  def episode; [ms, adjective, md].to_phrase.titleize; end
-
   def meth; [gu, es].join('_'); end
   def action; realm.send(meth); end
 
-  def aka; [gu, adjective, es].to_phrase; end
+  def do_something; [gu, realm.adjective, es].to_phrase; end
+  def episode; [description, realm.adjective, md].to_phrase.titleize; end
+  def feeling; attitude.first? ? realm.hungry : attitude.feeling; end
+
 
   def parts; [attitude, realm]; end # sort by attitude
   def next; realm + attitude.next; end

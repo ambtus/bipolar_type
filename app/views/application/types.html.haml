@@ -1,25 +1,18 @@
-- content_for(:title, 'Your BipolarType')
-
-%p
-  A BipolarType is defined by your
-  ="bad habits".dquote.period
-  Those learned focused responses which are often inappropriate and usually unhealthy.
+%br
 %table
-  %tr
-    %th
-    -Attitude.linear.each do |attitude|
-      %th
-        =attitude.episode
-        .plain=attitude.too
-  -Realm.each do |realm|
+  -Attitude.each do |a|
     %tr
-      %th
-        =realm.name
-        .plain=realm.adjective.wrap
-
-      -Attitude.linear.add(realm).each do |s|
+      -a.subtypes.each do |s|
         %td
-          =link_to_if @free.include?(s), display(s), types_path(@current+s.tla)
-          %br
-          =s.aka.wrap
-
+          -if @free.include?(s)
+            %b=link_to s.episode, types_path(@current+s.tla)
+            .left
+              I
+              =display(s)
+              whenever I feel
+              =s.previous.feeling
+              or
+              =s.next.feeling
+              and so rarely feel
+              =s.adverb
+              =s.feeling.period

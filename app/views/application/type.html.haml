@@ -1,19 +1,17 @@
-- content_for(:title, @type.path)
-
 -if cookies.to_h.present?
   .center
     =link_to 'bookmark', type_path(@type.path, cookies.to_h)
     (save your words between sessions)
 
--if Attitude.strings.include?(@show)
-  =render 'attitude'
--elsif Realm.strings.include?(@show)
-  =render 'realm'
--else
-  =render 'all'
+%br
+=render 'cycle', caption: render('chooser'), render: 'advice', klass: :equal
 
-.center=render 'legend'
-
+.center
+  Legend:
+  .before continue as long as possible
+  .dont not unless you need to
+  .after start as soon as possible
+  .plain only if you want to
 
 
 -if Rails.env.development? && @type == Type.my_type

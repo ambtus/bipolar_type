@@ -2,9 +2,13 @@ class TypesController < ApplicationController
 
   def index
     @current = params[:format] || ''
+    suffix = @current.blank? ? '' : ' with ' + params[:format].scan(/.../).sort.and
+    @title = "BipolarTypes" + suffix
     if @current.length == 9
-      type = Type.find_by_tlas(@current)
-      redirect_to action: 'show', id: type.path
+      @type = Type.find_by_tlas(@current)
+      @title = @type.title
+      @show = 'all'
+      render 'type'
     else
       @free = Subtype.without(@current)
       render 'types'
@@ -13,6 +17,7 @@ class TypesController < ApplicationController
 
   def show
     @type = Type.find params[:id]
+    @title = @type.title
     @show = params[:format] || 'all'
     @subtypes = if Realm.strings.include?(@show)
         @realm =  Realm.find(@show)

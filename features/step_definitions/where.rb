@@ -16,8 +16,8 @@ Given('I am on the {word} page') do |url|
 end
 
 Then('I should be on {word} page') do |whose|
-  path = whose == 'my' ? Type.my_path : Type.your_path
-  assert_match path, page.current_path
+  type = whose == 'my' ? Type.my_type : Type.your_type
+  assert_equal page.title, "BipolarType: #{type.title}"
 end
 
 Then('I should be on the {word} page') do |string|

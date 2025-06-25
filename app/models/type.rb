@@ -20,9 +20,10 @@ class Type
     def find(string); all.find{|t| t.realm_string == string}; end
     def find_by_tlas(string);
       tlas = string.scan(/.../)
+      raise 'need three or four' unless tlas.size.between?(3,4)
       subtypes = tlas.collect{|tla| Subtype.find_by_tla(tla)}
       Rails.logger.debug {"subtypes: #{subtypes}"}
-      ALL.find{|t| t.problems[0,3] == subtypes.sort}
+      ALL.find{|t| (subtypes - t.problems).empty?}
     end
     def my_path; 'SFTN'; end
     def your_path; my_path.reverse; end # for tests, just needs to be different.
@@ -31,11 +32,13 @@ class Type
   end
 
   def problems; realms.add(Attitude.all); end
+  def title; problems.map(&:tla).and; end
 
-  def p1; realms.second; end
-  def p2; realms.third; end
-  def j1; realms.fourth; end
-  def j2; realms.first; end
+  def klass(subtype)
+    return :dont if problems.include?(subtype)
+    return :before if problems.include?(subtype.next)
+    return :after if problems.include?(subtype.previous)
+  end
 
 end
 

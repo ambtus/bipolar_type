@@ -6,10 +6,10 @@ Then I should see Subtype actions
   And the 'All' link should be disabled
 
 Scenario: uses your words
-Given I have changed the word for UEE to plugh
+Given I have changed the word for BSE to plugh
 When I am on your page
 Then I should see plugh
-  And I should NOT see the default word for UEE
+  And I should NOT see the default word for BSE
 
 Scenario: can show one realm
 Given I am on my page

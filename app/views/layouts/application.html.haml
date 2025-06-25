@@ -1,7 +1,8 @@
 !!!
 %html{:lang=>"en"}
   %head
-    %title="BipolarType: #{yield(:title).clean}"
+    -raise 'no @title set' unless @title
+    %title="BipolarType: #{@title}"
     %meta{:content => "text/html; charset=utf-8"}
     %meta{:name => "viewport",  :content=>"width=device-width, initial-scale=1.0"}
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -12,36 +13,34 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
     :css
-      table {margin: auto; border: none; border-collapse: collapse;}
-      table.equal {table-layout: fixed; width: 100%; }
-      td {border: 1px solid grey; text-align: center; vertical-align: middle; padding: .2em; }
-      td.none {border: none}
-      td.p { text-align: left; vertical-align: top;}
-      .top {vertical-align: top}
-      .bottom {vertical-align: bottom;}
-      .center {text-align: center;}
-      .left {text-align: left;}
-      .right {text-align: right;}
-      .larger { font-size: 1.2em }
-      .plain {font-weight: normal; font-style: normal; text-decoration: none; font-size: 1em}
       a.external:link {color: dimgrey; text-decoration: none;}
       a.external:visited {color: dimgrey; text-decoration: none;}
       a.external:hover {text-decoration: underline;}
       ul { padding: 0; margin: 0; list-style-type: none; }
       ol { margin: 0; padding-left: 1.5em;}
+      table {margin: auto; border: none; border-collapse: collapse;}
+      table.equal {table-layout: fixed; width: 100%; }
+      td {border: none; text-align: center; vertical-align: top; padding: .2em; }
+      .bordered {border: 1px solid grey}
+      .p { text-align: left; vertical-align: top;}
+      .bottom {vertical-align: bottom;}
+      .center {text-align: center;}
+      .left {text-align: left;}
+      .right {text-align: right;}
+      .larger { font-size: 1.2em }
+      .smaller { font-size: 0.8em}
+      .before { font-weight: bold }
+      .dont { text-decoration:  line-through}
+      .after { font-style: italic}
+      .hide { visibility: hidden}
+      .plain {font-weight: normal; font-style: normal; text-decoration: none; font-size: 1em}
 
   %body
-    .center
-      %b
-        =link_to_unless_current('Introduction', root_path)
-        |
-        =link_to_unless_current('Theory', theory_path)
-        |
-        =link_to_unless_current('Your BipolarType', types_path)
-        |
-        =link_to_unless_current('Words', words_path)
+    .center.larger.bold=render 'links'
 
     =yield
+
+    .center.larger.bold=render 'links'
 
     -if Rails.env.development?
       %hr

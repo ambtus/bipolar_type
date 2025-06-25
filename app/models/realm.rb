@@ -1,7 +1,6 @@
 class Realm < Concept
 
   SYMBOLS = %i{F S N T}
-
   ALL = SYMBOLS.collect {|symbol| self.new symbol}
   SYMBOLS.each do |sym|
     define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
@@ -14,19 +13,18 @@ class Realm < Concept
   def foci; focus.pluralize; end
   def name; foci.capitalize; end
 
-  def adjective; %w{emotional physical mental financial}[index]; end
+  def hungry; %w{lonely hungry curious envious}[index]; end
+
+  def adjective; %w{social physical mental financial}[index]; end
   def adverb; adjective.ly; end
-  def aka; adjective.capitalize; end
   def letter; adjective.first.capitalize; end
 
-  def get; %w{listen\ to eat learn earn}[index]; end
-  def energy; %w{music carbs facts wages}[index]; end
-  def strength; %w{sermons protein rules a\ salary}[index]; end
+  def get; %w{listen\ to eat watch collect}[index]; end
+  def energy; %w{music carbs the\ sunrise wages}[index]; end
+  def strength; %w{audiobooks protein the\ results a\ regular\ income}[index]; end
   def get_energy; [get, energy].to_phrase; end
-  def get_strength; [get, strength].to_phrase; end
-
-  def use; %w{communicate move think buy}[index]; end
-  def use_energy; %w{sing travel choose pay\ cash}[index]; end
-  def use_strength; %w{preach labor decide use\ credit}[index]; end
+  def recover_strength; [get, strength].to_phrase; end
+  def burn_energy; %w{talk pace use\ intuition pay\ cash}[index]; end
+  def use_strength; %w{write do\ housework use\ logic use\ credit}[index]; end
 
 end
