@@ -24,7 +24,7 @@ class Attitude < Concept
   def time; [season, daytime].to_phrase.titleize; end
 
   def feel; %w{ hunger fear anger tired }[index]; end
-  def feeling; %w{ hungry afraid angry tired }[index]; end
+  def feeling; %w{ hungry afraid angry sore }[index]; end
   def react; %w{ digest flee fight rest }[index]; end
   def name; react.capitalize; end
   def finish; %w{ refuel escape win relax }[index]; end

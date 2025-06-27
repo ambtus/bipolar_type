@@ -1,8 +1,8 @@
 %br
 %table
-  -Attitude.each do |a|
+  -Attitude.rotate.each do |a|
     %tr
-      -a.subtypes.each do |s|
+      -a.subtypes.rotate.each do |s|
         %td
           -if @free.include?(s)
             %b=link_to s.episode, types_path(@current+s.tla)
