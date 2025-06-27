@@ -21,7 +21,7 @@ class Realm < Concept
 
   def get; %w{listen\ to eat watch collect}[index]; end
   def energy; %w{music carbs the\ sunrise wages}[index]; end
-  def strength; %w{audiobooks protein the\ results a\ regular\ income}[index]; end
+  def strength; %w{stories protein the\ results a\ regular\ income}[index]; end
   def get_energy; [get, energy].to_phrase; end
   def recover_strength; [get, strength].to_phrase; end
   def burn_energy; %w{talk walk use\ intuition pay\ cash}[index]; end
