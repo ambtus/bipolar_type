@@ -27,7 +27,7 @@ class Subtype < Concept
 
   def do_something; [gu, realm.adjective, es].to_phrase; end
   def episode; [description, realm.adjective, md].to_phrase.titleize; end
-  def feeling; attitude.first? ? realm.hungry : attitude.feeling; end
+  def feeling; attitude.feeling; end
 
 
   def parts; [attitude, realm]; end # sort by attitude

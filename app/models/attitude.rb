@@ -23,8 +23,8 @@ class Attitude < Concept
   def season; %w{ spring summer fall winter}[index]; end
   def time; [season, daytime].to_phrase.titleize; end
 
-  def feel; %w{ hunger fear anger tired }[index]; end
-  def feeling; %w{ hungry afraid angry sore }[index]; end
+  def feel; %w{ emptiness fear anger tired }[index]; end
+  def feeling; %w{ empty afraid angry sore }[index]; end
   def react; %w{ digest flee fight rest }[index]; end
   def name; react.capitalize; end
   def finish; %w{ refuel escape win relax }[index]; end

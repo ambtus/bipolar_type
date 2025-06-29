@@ -13,7 +13,7 @@ class Realm < Concept
   def foci; focus.pluralize; end
   def name; foci.capitalize; end
 
-  def hungry; %w{lonely hungry curious envious}[index]; end
+  def empty; %w{lonely hungry curious envious}[index]; end
 
   def adjective; %w{social physical mental financial}[index]; end
   def adverb; adjective.ly; end
