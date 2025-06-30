@@ -26,6 +26,7 @@ class TypesController < ApplicationController
         @attitude = Attitude.find(@show)
         @attitude.subtypes
       else
+        @all = true
         Subtype.all
     end
     Rails.logger.debug {"subtypes: #{@subtypes}"}

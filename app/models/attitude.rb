@@ -26,10 +26,14 @@ class Attitude < Concept
   def feel; %w{ emptiness fear anger tired }[index]; end
   def feeling; %w{ empty afraid angry sore }[index]; end
   def react; %w{ digest flee fight rest }[index]; end
-  def name; react.capitalize; end
-  def finish; %w{ refuel escape win relax }[index]; end
+  def finish; %w{ energize escape win sleep }[index]; end
+  def word; %w{ fuel exercise work rest }[index]; end
   def bad; %w{greedy paranoid hateful lazy}[index]; end
-  def bipolar_result; %w{ explode die collapse stagnate}[index]; end
+  def bipolar_result; %w{ explode die collapse panic}[index]; end
+  def name; word.capitalize; end
+
+  def what; %w{ room energy strength time}[index]; end
+  def problem; "run out of #{what}"; end
 
   def md; top? ? 'mania' : 'depression'; end
   def description; %w{ major euphoric irritable agitated }[index]; end

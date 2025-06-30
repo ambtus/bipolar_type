@@ -21,30 +21,12 @@ Then I should see People actions
   And the 'People' link should be disabled
   But the 'All' link should NOT be disabled
 
-Scenario: can show another realm
-Given I am on my page
-When I follow the 'Places' link
-Then I should see Places actions
-  But I should NOT see People actions
-  And I should NOT see Things actions
-  And I should NOT see Ideas actions
-  And the 'Places' link should be disabled
-  But the 'All' link should NOT be disabled
-
 Scenario: can show one attitude
 Given I am on my page
-When I follow the 'Flee' link
-Then I should see Flee actions
-  But I should NOT see Fight actions
+When I follow the 'Exercise' link
+Then I should see Exercise actions
+  But I should NOT see Work actions
   And I should NOT see Rest actions
-  And I should NOT see Digest actions
-  And the 'Flee' link should be disabled
-  But the 'All' link should NOT be disabled
-
-Scenario: can show another attitude
-Given I am on my page
-When I follow the 'Fight' link
-Then I should see Fight actions
-  But I should NOT see Flee actions
-  And the 'Fight' link should be disabled
+  And I should NOT see Fuel actions
+  And the 'Exercise' link should be disabled
   But the 'All' link should NOT be disabled

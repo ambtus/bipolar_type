@@ -3,17 +3,31 @@
     =link_to 'bookmark', type_path(@type.path, cookies.to_h)
     (save your words between sessions)
 
-%br
+-if @show == 'all'
+  %p=render 'paragraph'
+-elsif @realm
+  -@type.realms.rotate(-1).each_with_index do |r,i|
+    -if @show == r.string
+      %p=render 'paragraph', r: r, a: Attitude[i]
+-elsif @attitude
+  -Attitude.each_with_index do |a,i|
+    -if @show == a.string
+      %p=render 'paragraph', a: a, r: @type.realms[i]
+
+
 =render 'cycle', caption: render('chooser'), render: 'advice'
 
 .center
   Legend:
-  .after start as soon as possible
+  .sooner start as soon as possible
   .dont not unless you need to
-  .plain whenever you feel like it
-  .before continue as long as possible
+  .longer continue as long as possible
+  .mood when you are in the right mood
 
 
--if Rails.env.development? && @type == Type.my_type
+
+-if Rails.env.development?
   %hr
-  =link_to 'your type', type_path(Type.your_path)
+  =link_to_unless_current 'my type', type_path(Type.my_path)
+
+  =link_to_unless_current 'your type', type_path(Type.your_path)

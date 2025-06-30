@@ -13,17 +13,21 @@ class Concept
   end
 
   class << self
+    def symbols; self::SYMBOLS; end
+    def strings; self::SYMBOLS.map(&:to_s); end
+
     def all; self::ALL; end
     def rotate(i=1); all.rotate(i); end
+    def [](i); (all*2)[i]; end
     def first; all.first; end
     def second; all.second; end
     def third; all.third; end
     def fourth; all.fourth; end
-    def symbols; self::SYMBOLS; end
-    def strings; self::SYMBOLS.map(&:to_s); end
-    def each(&block); self::ALL.each(&block); end
-    def title; [self::ALL.count, self.name.pluralize].to_phrase; end
-    def find(s); self::ALL.find{|x| x.symbol == s.to_sym}; end
+    def last; all.last; end
+    def each(&block); all.each(&block); end
+    def each_with_index(&block);all.each_with_index(&block); end
+    def find(s); all.find{|x| x.symbol == s.to_sym}; end
+    def title; [all.count, self.name.pluralize].to_phrase; end
   end
 
   def index; self.class::SYMBOLS.index(@symbol); end

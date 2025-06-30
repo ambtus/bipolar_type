@@ -33,11 +33,18 @@ class Type
 
   def problems; realms.add(Attitude.all); end
   def title; problems.map(&:tla).and; end
+  %w{next opposite previous}.each_with_index do |word, i|
+    define_method("#{word}_realm") do |r|
+     (problems*2)[realms.index(r)+(i+1)].realm
+    end
+  end
+
 
   def klass(subtype)
     return :dont if problems.include?(subtype)
-    return :before if problems.include?(subtype.next)
-    return :after if problems.include?(subtype.previous)
+    return :longer if problems.include?(subtype.next)
+    return :sooner if problems.include?(subtype.previous)
+    return :mood if problems.include?(subtype.opposite)
   end
 
 end
