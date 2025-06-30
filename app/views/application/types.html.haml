@@ -9,10 +9,13 @@
             .left
               I
               =display(s)
-              when I feel
-              =s.previous.feeling
-              or
-              =s.next.feeling
-              but rarely feel
-              =s.adverb
-              =s.feeling.period
+              because I am good at it and enjoy it. Not because
+              -if s.attitude.string == 'BL'
+                I have
+              -else
+                my
+                =s.organ
+                has
+              run out of
+              =s.previous.what.period
+

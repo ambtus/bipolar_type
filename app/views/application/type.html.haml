@@ -4,7 +4,7 @@
     (save your words between sessions)
 
 -if @show == 'all'
-  %p=render 'paragraph'
+  %p.center=render 'paragraph'
 -elsif @realm
   -@type.realms.rotate(-1).each_with_index do |r,i|
     -if @show == r.string

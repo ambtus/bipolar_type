@@ -8,6 +8,7 @@ class TypesController < ApplicationController
       @type = Type.find_by_tlas(@current)
       @title = @type.title
       @show = 'all'
+      @all = true
       render 'type'
     else
       @free = Subtype.without(@current)

@@ -14,7 +14,7 @@ class Realm < Concept
   def name; foci.capitalize; end
 
   def empty; %w{lonely hungry curious envious}[index]; end
-  def organ; %w{voice body mind wallet}[index]; end
+  def organ; %w{soul body mind wallet}[index]; end
 
   def adjective; %w{social physical mental financial}[index]; end
   def adverb; adjective.ly; end
@@ -22,7 +22,7 @@ class Realm < Concept
 
   def get; %w{listen\ to eat watch collect}[index]; end
   def energy; %w{music carbs the\ sunrise wages}[index]; end
-  def strength; %w{stories protein the\ results a\ regular\ income}[index]; end
+  def strength; %w{stories protein the\ results dividends}[index]; end
   def get_energy; [get, energy].to_phrase; end
   def recover_strength; [get, strength].to_phrase; end
   def burn_energy; %w{talk walk use\ intuition pay\ cash}[index]; end
