@@ -25,8 +25,8 @@ class Attitude < Concept
 
   def feel; %w{ emptiness fear anger tired }[index]; end
   def feeling; %w{ empty afraid angry sore }[index]; end
-  def react; %w{ digest flee fight freeze }[index]; end
-  def finish; %w{ fill\ up escape win play\ dead }[index]; end
+  def react; %w{ digest flee fight rest }[index]; end
+  def finish; %w{ fill\ up escape win sleep }[index]; end
   def word; %w{ fuel exercise work rest }[index]; end # your organ
   def bad; %w{greedy paranoid hateful lazy}[index]; end
   def bipolar_result; %w{ explode die collapse panic}[index]; end
