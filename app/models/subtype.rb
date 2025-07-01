@@ -11,10 +11,10 @@ class Subtype < Concept
   def attitude; Attitude.find(string.first + string.third); end
 
   def tla; [first_letter, letter, second_letter].join; end
-  def self.find_by_tla(str_or_sym); ALL.find { |s| s.tla == str_or_sym.to_s }; end
+  def self.find_by(h={}); ALL.find { |s| s.tla == h[:tla].to_s }; end
 
   def self.without(string)
-    subtypes = string.scan(/.../).collect { |tla| Subtype.find_by_tla(tla) }
+    subtypes = string.scan(/.../).collect { |tla| Subtype.find_by(tla: tla) }
     Rails.logger.debug { "subtypes: #{subtypes}" }
     realms = subtypes.map(&:realm)
     attitudes = subtypes.map(&:attitude)

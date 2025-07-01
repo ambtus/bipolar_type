@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def whose_whats(whose, whats)
   what = whats.singularize.to_sym
   result = []

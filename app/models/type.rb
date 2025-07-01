@@ -18,11 +18,11 @@ class Type
     def title; [all.count, name.pluralize].to_phrase; end
     def find(string); all.find { |t| t.realm_string == string }; end
 
-    def find_by_tlas(string);
-      tlas = string.scan(/.../)
+    def find_by(h={});
+      tlas = h[:tlas].scan(/.../)
       raise 'need three or four' unless tlas.size.between?(3, 4)
 
-      subtypes = tlas.collect { |tla| Subtype.find_by_tla(tla) }
+      subtypes = tlas.collect { |tla| Subtype.find_by(tla: tla) }
       Rails.logger.debug { "subtypes: #{subtypes}" }
       ALL.find { |t| (subtypes - t.problems).empty? }
     end

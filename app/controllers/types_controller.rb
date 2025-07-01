@@ -4,7 +4,7 @@ class TypesController < ApplicationController
     suffix = @current.blank? ? '' : ' with ' + params[:format].scan(/.../).sort.and
     @title = 'BipolarTypes' + suffix
     if @current.length == 9
-      @type = Type.find_by_tlas(@current)
+      @type = Type.find_by(tlas: @current)
       @title = @type.title
       @show = 'all'
       @all = true

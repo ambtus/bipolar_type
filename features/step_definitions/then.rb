@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Then 'I should see {word}' do |string|
   assert page.has_text?(string)
 end
@@ -11,7 +13,7 @@ Then('the {string} link should be disabled') do |string|
 end
 
 Then('I should NOT see the default word for {word}') do |tla|
-  subtype = Subtype.find_by_tla(tla)
+  subtype = Subtype.find_by(tla: tla)
   assert page.has_no_text?(subtype.action)
 end
 

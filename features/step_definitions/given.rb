@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given('I have changed the word for {word} to {word}') do |original, mine|
   visit words_path
   fill_in original, with: mine
@@ -13,5 +15,5 @@ Given('I use a bookmark link to {word} page including {string}') do |word, cooki
         when 'your'
           type_path(Type.your_path)
         end
-  visit(url + '?' + cookies)
+  visit("#{url}?#{cookies}")
 end
