@@ -58,7 +58,7 @@ class Array
     each_with_index do |val, idx|
       (duplicates[val] ||= []) << idx
     end
-    duplicates.delete_if {|k,v| v.size == 1}.keys
+    duplicates.delete_if {|_,v| v.size == 1}.keys
   end
 
   def discard(element)

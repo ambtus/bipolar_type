@@ -39,7 +39,7 @@ class Subtype < Concept
 
   def next_realm; realm.next + attitude; end
 
-  def method_missing(meth, *args, **kwargs, &block)
+  def method_missing(meth)
     if attitude.respond_to?(meth)
       attitude.send(meth)
     elsif realm.respond_to?(meth)

@@ -3,7 +3,7 @@ class Type
   def initialize(string)
     @realm_string = string
     @realms = string.chars.collect{|s| Realm.find(s)}
-    @realms.uniq.check_constraints(Realm,min=4,max=4)
+    @realms.uniq.check_constraints(Realm,4,4)
   end
   attr_reader :realm_string, :realms
   alias path :realm_string

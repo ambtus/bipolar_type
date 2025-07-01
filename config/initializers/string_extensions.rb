@@ -444,7 +444,8 @@ class String
     return false
   end
 
-  def few; plural? ? 'few' : 'little'; end
+  def little; plural? ? 'few' : 'little'; end
+  alias few :little
   def fewer; plural? ? 'fewer' : 'less'; end
   def less
     if self.match(' ')
@@ -456,8 +457,7 @@ class String
 
   def begins_with?(string); self.match(/\A#{string}/); end
 
-  def little; plural? ? 'few' : 'little'; end
-  alias few :little
+  
   def much; plural? ? 'many' : 'much'; end
   alias many :much
   def that; plural? ? 'those' : 'that'; end

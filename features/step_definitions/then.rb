@@ -1,7 +1,3 @@
-Then('show me the page') do
-  save_and_open_page
-end
-
 Then 'I should see {word}' do |string|
   assert page.has_text?(string)
 end
