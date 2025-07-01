@@ -1,9 +1,8 @@
 class TypesController < ApplicationController
-
   def index
     @current = params[:format] || ''
     suffix = @current.blank? ? '' : ' with ' + params[:format].scan(/.../).sort.and
-    @title = "BipolarTypes" + suffix
+    @title = 'BipolarTypes' + suffix
     if @current.length == 9
       @type = Type.find_by_tlas(@current)
       @title = @type.title
@@ -21,16 +20,16 @@ class TypesController < ApplicationController
     @title = @type.title
     @show = params[:format] || 'all'
     @subtypes = if Realm.strings.include?(@show)
-        @realm =  Realm.find(@show)
-        @realm.subtypes
-      elsif Attitude.strings.include?(@show)
-        @attitude = Attitude.find(@show)
-        @attitude.subtypes
-      else
-        @all = true
-        Subtype.all
-    end
-    Rails.logger.debug {"subtypes: #{@subtypes}"}
+                  @realm = Realm.find(@show)
+                  @realm.subtypes
+                elsif Attitude.strings.include?(@show)
+                  @attitude = Attitude.find(@show)
+                  @attitude.subtypes
+                else
+                  @all = true
+                  Subtype.all
+                end
+    Rails.logger.debug { "subtypes: #{@subtypes}" }
     render 'type'
   end
 

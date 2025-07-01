@@ -1,30 +1,32 @@
 class Type
-
   def initialize(string)
     @realm_string = string
-    @realms = string.chars.collect{|s| Realm.find(s)}
-    @realms.uniq.check_constraints(Realm,4,4)
+    @realms = string.chars.collect { |s| Realm.find(s) }
+    @realms.uniq.check_constraints(Realm, 4, 4)
   end
   attr_reader :realm_string, :realms
   alias path :realm_string
   alias inspect :realm_string
 
   ALL = Realm.all.permutation(4).collect do |realms|
-          Type.new(realms.map(&:symbol).join)
-        end
+    Type.new(realms.map(&:symbol).join)
+  end
 
   class << self
     def all; ALL; end
     def each(&block); ALL.each(&block); end
     def title; [all.count, name.pluralize].to_phrase; end
-    def find(string); all.find{|t| t.realm_string == string}; end
+    def find(string); all.find { |t| t.realm_string == string }; end
+
     def find_by_tlas(string);
       tlas = string.scan(/.../)
-      raise 'need three or four' unless tlas.size.between?(3,4)
-      subtypes = tlas.collect{|tla| Subtype.find_by_tla(tla)}
-      Rails.logger.debug {"subtypes: #{subtypes}"}
-      ALL.find{|t| (subtypes - t.problems).empty?}
+      raise 'need three or four' unless tlas.size.between?(3, 4)
+
+      subtypes = tlas.collect { |tla| Subtype.find_by_tla(tla) }
+      Rails.logger.debug { "subtypes: #{subtypes}" }
+      ALL.find { |t| (subtypes - t.problems).empty? }
     end
+
     def my_path; 'SFTN'; end
     def your_path; my_path.reverse; end # for tests, just needs to be different.
     def my_type; find(my_path); end
@@ -35,10 +37,9 @@ class Type
   def title; problems.map(&:tla).and; end
   %w{next opposite previous}.each_with_index do |word, i|
     define_method("#{word}_realm") do |r|
-     (problems*2)[realms.index(r)+(i+1)].realm
+      (problems * 2)[realms.index(r) + (i + 1)].realm
     end
   end
-
 
   def klass(subtype)
     return :dont if problems.include?(subtype)
@@ -46,6 +47,4 @@ class Type
     return :sooner if problems.include?(subtype.previous)
     return :mood if problems.include?(subtype.opposite)
   end
-
 end
-

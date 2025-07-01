@@ -1,13 +1,12 @@
 class Realm < Concept
-
   SYMBOLS = %i{F S N T}
-  ALL = SYMBOLS.collect {|symbol| self.new symbol}
+  ALL = SYMBOLS.collect { |symbol| self.new symbol }
   SYMBOLS.each do |sym|
-    define_singleton_method(sym) {ALL.find{|s| s.symbol == sym}}
+    define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def subtypes; Subtype.all.select{|x| x.realm == self}; end
-  def +(attitude); subtypes.find{|x| x.attitude == attitude}; end
+  def subtypes; Subtype.all.select { |x| x.realm == self }; end
+  def +(attitude); subtypes.find { |x| x.attitude == attitude }; end
 
   def focus; %w{person place idea thing}[index]; end
   def foci; focus.pluralize; end
@@ -27,5 +26,4 @@ class Realm < Concept
   def recover_strength; [get, strength].to_phrase; end
   def burn_energy; %w{talk walk use\ intuition pay\ cash}[index]; end
   def use_strength; %w{write do\ housework use\ logic use\ credit}[index]; end
-
 end

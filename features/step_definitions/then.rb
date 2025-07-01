@@ -7,7 +7,7 @@ Then('I should NOT see {word}') do |string|
 end
 
 Then('the {string} link should be disabled') do |string|
-  assert page.has_no_selector?("a", text: /^#{string}$/)
+  assert page.has_no_selector?('a', text: /^#{string}$/)
 end
 
 Then('I should NOT see the default word for {word}') do |tla|

@@ -8,5 +8,5 @@ default: <%= common %> --fail-fast --format progress features
 d: <%= common %> --fail-fast --format summary features
 l: LOUD=true <%= common %> --fail-fast --format pretty features
 r: <%= common %> <%= rerun_opts %> --order random --format rerun --out rerun.txt
-p: <%= common %> --fail-fast --format pretty 
+p: <%= common %> --fail-fast --format pretty
 steps: <%= common %> --dry-run --format stepdefs

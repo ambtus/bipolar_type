@@ -1,14 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails'
 gem 'haml'
 gem 'puma'
+gem 'rails'
 
 group :development, :test do
-  gem "rspec-rails"
-  gem "cucumber-rails", require: false
-  gem "launchy"    # So you can do save_and_open_page
-  gem "haml-rails"
-  gem "error_highlight"
+  gem 'cucumber-rails', require: false
+  gem 'error_highlight'
+  gem 'haml-rails'
+  gem 'launchy' # So you can do save_and_open_page
+  gem 'rspec-rails'
 end
-

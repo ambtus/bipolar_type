@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Type, type: :model do
-
   it 'can be found by tlas in any order' do
     my_tlas = Type.my_type.problems.map(&:tla)
     4.times do |i|
@@ -18,8 +17,7 @@ RSpec.describe Type, type: :model do
   end
 
   it 'raises on two tlas' do
-    string = Type.my_type.problems.map(&:tla)[0,2].join
-    expect {Type.find_by_tlas(string)}.to raise_error RuntimeError
+    string = Type.my_type.problems.map(&:tla)[0, 2].join
+    expect { Type.find_by_tlas(string) }.to raise_error RuntimeError
   end
-
 end

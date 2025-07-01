@@ -1,5 +1,4 @@
 class WordsController < ApplicationController
-
   def index
     @title = 'Words'
     max_cookie_length = cookies.to_h.values.map(&:length).max || 0
@@ -8,5 +7,4 @@ class WordsController < ApplicationController
     @size = [min_size, max_size].max
     render 'words'
   end
-
 end

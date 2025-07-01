@@ -10,7 +10,6 @@ Given('I am on your page') do
   visit(type_path(Type.your_path))
 end
 
-
 Given('I am on the {word} page') do |url|
   visit("/#{url}")
 end
