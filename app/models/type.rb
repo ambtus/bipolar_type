@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Type
   def initialize(string)
     @realm_string = string
@@ -13,12 +15,12 @@ class Type
   end
 
   class << self
-    def all; ALL; end
-    def each(&block); ALL.each(&block); end
-    def title; [all.count, name.pluralize].to_phrase; end
-    def find(string); all.find { |t| t.realm_string == string }; end
+    def all = ALL
+    def each(&) = ALL.each(&)
+    def title = [all.count, name.pluralize].to_phrase
+    def find(string) = all.find { |t| t.realm_string == string }
 
-    def find_by(h={});
+    def find_by(h = {})
       tlas = h[:tlas].scan(/.../)
       raise 'need three or four' unless tlas.size.between?(3, 4)
 
@@ -27,15 +29,16 @@ class Type
       ALL.find { |t| (subtypes - t.problems).empty? }
     end
 
-    def my_path; 'SFTN'; end
-    def your_path; my_path.reverse; end # for tests, just needs to be different.
-    def my_type; find(my_path); end
-    def your_type; find(your_path); end
+    def my_path = 'SFTN'
+    # for tests, just needs to be different.
+    def your_path = my_path.reverse
+    def my_type = find(my_path)
+    def your_type = find(your_path)
   end
 
-  def problems; realms.add(Attitude.all); end
-  def title; problems.map(&:tla).and; end
-  %w{next opposite previous}.each_with_index do |word, i|
+  def problems = realms.add(Attitude.all)
+  def title = problems.map(&:tla).and
+  %w[next opposite previous].each_with_index do |word, i|
     define_method("#{word}_realm") do |r|
       (problems * 2)[realms.index(r) + (i + 1)].realm
     end
@@ -45,6 +48,7 @@ class Type
     return :dont if problems.include?(subtype)
     return :longer if problems.include?(subtype.next)
     return :sooner if problems.include?(subtype.previous)
-    return :mood if problems.include?(subtype.opposite)
+
+    :mood if problems.include?(subtype.opposite)
   end
 end

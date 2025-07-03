@@ -1,24 +1,24 @@
 -if cookies.to_h.present?
   .center
     =link_to 'bookmark', type_path(@type.path, cookies.to_h)
-    (save your words between sessions)
+    | (save your words between sessions)
 
 -if @show == 'all'
-  %p.center=render 'paragraph'
+  p.center=render 'paragraph'
 -elsif @realm
   -@type.realms.rotate(-1).each_with_index do |r,i|
     -if @show == r.string
-      %p=render 'paragraph', r: r, a: Attitude[i]
+      p=render 'paragraph', r: r, a: Attitude[i]
 -elsif @attitude
   -Attitude.each_with_index do |a,i|
     -if @show == a.string
-      %p=render 'paragraph', a: a, r: @type.realms[i]
+      p=render 'paragraph', a: a, r: @type.realms[i]
 
 
 =render 'cycle', caption: render('chooser'), render: 'advice'
 
 .center
-  Legend:
+  | Legend:
   .sooner start as soon as possible
   .dont not unless you need to
   .longer continue as long as possible
@@ -27,7 +27,7 @@
 
 
 -if Rails.env.development?
-  %hr
+  hr
   =link_to_unless_current 'my type', type_path(Type.my_path)
 
   =link_to_unless_current 'your type', type_path(Type.your_path)

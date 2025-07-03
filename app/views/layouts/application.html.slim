@@ -1,0 +1,38 @@
+doctype html
+html lang="en"
+  head
+    -raise 'no @title set' unless @title
+    title="#{Rails.application.class.module_parent_name}: #{@title}"
+    meta content="width=device-width,initial-scale=1" name="viewport"
+    = yield :head
+    css:
+      .center  { text-align: center;}
+      .left { text-align: left;}
+      .right {text-align: right;}
+      .larger  { font-size: 1.2em;}
+      .longer  { font-weight: bold }
+      .dont  { text-decoration:  line-through; text-decoration-color: red }
+      .sooner {  font-style: italic }
+      .hide  { visibility: hidden }
+      .mood  { text-decoration: line-through; text-decoration-style: wavy; text-decoration-color: green }
+      a.external:link {color: dimgrey; text-decoration: none;}
+      a.external:visited {color: dimgrey; text-decoration: none;}
+      a.external:hover {text-decoration: underline;}
+      ul { padding: 0; margin: 0; list-style-type: none; }
+      ol { margin: 0; padding-left: 1.5em;}
+      table {margin: auto; border: none; border-collapse: collapse;}
+      table.equal {table-layout: fixed; width: 100%; }
+      td {border: none; text-align: center; vertical-align: top; padding: .2em; }
+      .bordered {border: 1px solid grey}
+  body
+    .center.larger=display_links %w[introduction theory words bipolar_types]
+
+    =yield
+
+    .center.larger=display_links %w[introduction theory words bipolar_types]
+
+    -if Rails.env.development?
+      hr
+      | params: #{params}
+      br
+      | cookies: #{cookies.to_h}

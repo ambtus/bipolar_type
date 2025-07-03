@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :set_cookies
 
@@ -6,7 +8,7 @@ class ApplicationController < ActionController::Base
     cookie_keys = cookies.to_h.keys
     Subtype.each do |subtype|
       k = subtype.tla
-      next unless params.has_key? k
+      next unless params.key? k
 
       had_any = true
       if cookies[k].present? && (params[k].blank? || params[k] == subtype.action)

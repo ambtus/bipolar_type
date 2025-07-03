@@ -1,46 +1,49 @@
+# frozen_string_literal: true
+
 class Attitude < Concept
-  SYMBOLS = %i{BL TL TR BR}
-  ALL = SYMBOLS.collect { |symbol| self.new symbol }
+  SYMBOLS = %i[BL TL TR BR].freeze
+  ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def first?; symbol == :BL; end
-  def top?; string.starts_with?('T'); end
-  def left?; string.ends_with?('L'); end
-  def diagonal?; %i{BL TR}.include?(symbol); end
+  def first? = symbol == :BL
+  def top? = string.starts_with?('T')
+  def left? = string.ends_with?('L')
+  def diagonal? = %i[BL TR].include?(symbol)
 
-  def gu; %w{get burn use recover}[index]; end
-  def es; left? ? 'energy' : 'strength'; end
-  def action; [gu, es].join('_'); end
-  def do_something; [gu, es].to_phrase; end
+  def gu = %w[get burn use recover][index]
+  def es = left? ? 'energy' : 'strength'
+  def action = [gu, es].join('_')
+  def do_something = [gu, es].to_phrase
 
-  def first_letter; gu.first.capitalize; end
-  def second_letter; es.first.capitalize; end
+  def first_letter = gu.first.capitalize
+  def second_letter = es.first.capitalize
 
-  def daytime; %w{morning noon afternoon evening}[index]; end
-  def season; %w{spring summer fall winter}[index]; end
-  def time; [season, daytime].to_phrase.titleize; end
+  def daytime = %w[morning noon afternoon evening][index]
+  def season = %w[spring summer fall winter][index]
+  def time = [season, daytime].to_phrase.titleize
 
-  def feel; %w{emptiness fear anger tired}[index]; end
-  def feeling; %w{empty afraid angry sore}[index]; end
-  def react; %w{digest flee fight rest}[index]; end
-  def finish; %w{fill\ up escape win sleep}[index]; end
-  def word; %w{fuel exercise work rest}[index]; end # your organ
-  def bad; %w{greedy paranoid hateful lazy}[index]; end
-  def bipolar_result; %w{explode die collapse panic}[index]; end
-  def name; word.capitalize; end
+  def feel = %w[emptiness fear anger tired][index]
+  def feeling = %w[empty afraid angry sore][index]
+  def react = %w[digest flee fight rest][index]
+  def finish = ['fill up', 'escape', 'win', 'sleep'][index]
+  # your organ
+  def word = %w[fuel exercise work rest][index]
+  def bad = %w[greedy paranoid hateful lazy][index]
+  def bipolar_result = %w[explode die collapse panic][index]
+  def name = word.capitalize
 
-  def what; %w{room energy strength time}[index]; end
-  def problem; "run out of #{what}"; end
+  def what = %w[room energy strength time][index]
+  def problem = "run out of #{what}"
 
-  def md; top? ? 'mania' : 'depression'; end
-  def description; %w{major euphoric irritable agitated}[index]; end
-  def episode; [description, md].to_phrase.titleize; end
+  def md = top? ? 'mania' : 'depression'
+  def description = %w[major euphoric irritable agitated][index]
+  def episode = [description, md].to_phrase.titleize
 
-  def flip; Attitude.all.without(self).find { |a| a.string.second == self.string.second }; end
-  def flop; Attitude.all.without(self).find { |a| a.string.first == self.string.first }; end
+  def flip = Attitude.without(self).find { |a| a.string.second == string.second }
+  def flop = Attitude.without(self).find { |a| a.string.first == string.first }
 
-  def subtypes; Subtype.all.select { |x| x.attitude == self }; end
-  def +(realm); subtypes.find { |x| x.realm == realm }; end
+  def subtypes = Subtype.all.select { |x| x.attitude == self }
+  def +(other) = subtypes.find { |x| x.realm == other }
 end

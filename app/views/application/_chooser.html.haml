@@ -1,9 +1,0 @@
-%b=link_to_unless @show == 'all', 'All', type_path(@type.path)
-%br
--Realm.each do |r|
-  %b=link_to_unless @show == r.string, r.name, type_path(@type.path, r.string)
-  ="|" unless r.index==3
-%br
--Attitude.each do |a|
-  %b=link_to_unless @show == a.string, a.name, type_path(@type.path, a.string)
-  ="|" unless a.index==3

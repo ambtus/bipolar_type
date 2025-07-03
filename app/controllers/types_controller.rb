@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class TypesController < ApplicationController
   def index
     @current = params[:format] || ''
-    suffix = @current.blank? ? '' : ' with ' + params[:format].scan(/.../).sort.and
-    @title = 'BipolarTypes' + suffix
+    suffix = @current.blank? ? '' : " with #{params[:format].scan(/.../).sort.and}"
+    @title = "BipolarTypes#{suffix}"
     if @current.length == 9
       @type = Type.find_by(tlas: @current)
       @title = @type.title

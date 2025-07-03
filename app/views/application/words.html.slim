@@ -1,0 +1,43 @@
+p The words on the right are examples of the sixteen behaviors listed on the left.
+p
+  |> Use positive words for behaviors you should start
+  span.sooner sooner
+  |<> or continue
+  span.longer longer
+  |<> and negative words for behaviors you should
+  span.dont not do
+  |> . For example, you could replace
+  =Subtype.find_by(tla: :GPE).action.dquote
+  |<> with
+  span.sooner eat breakfast
+  |<> or
+  span.longer eat dessert
+  |<> or
+  span.dont eat sweets
+  | .
+
+-if cookies.to_h.present?
+  .right
+    =link_to 'bookmark', words_path(cookies.to_h)
+    br
+    | (saves your words between sessions)
+    br
+    =link_to 'reset to defaults', "#{words_path}?GPE"
+    br
+    | (clears cookies for the current session)
+-else
+  br
+
+=form_with url: words_path, method: :get do |f|
+  -Realm.each do |realm|
+    table
+      caption
+        b.larger=realm.name
+      -realm.subtypes.each do |subtype|
+        tr
+          td.right=subtype.do_something
+          td=f.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: @size
+          td.left=subtype.action
+      tr
+        th colspan = 3 = f.submit 'Save'
+
