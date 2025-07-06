@@ -23,10 +23,10 @@ Then I should see People actions
 
 Scenario: can show one attitude
 Given I am on my page
-When I follow the 'Exercise' link
-Then I should see Exercise actions
+When I follow the 'Move' link
+Then I should see Move actions
   But I should NOT see Work actions
   And I should NOT see Rest actions
   And I should NOT see Fuel actions
-  And the 'Exercise' link should be disabled
+  And the 'Move' link should be disabled
   But the 'All' link should NOT be disabled
