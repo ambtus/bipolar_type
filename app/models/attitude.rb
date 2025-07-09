@@ -29,7 +29,7 @@ class Attitude < Concept
   def react = %w[digest flee fight rest][index]
   def finish = ['fill up', 'escape', 'win', 'sleep'][index]
   # your organ
-  def word = %w[feed move work rest][index]
+  def word = %w[fuel move work rest][index]
   def bad = %w[greedy paranoid hateful lazy][index]
   def bipolar_result = %w[explode die collapse panic][index]
   def name = word.capitalize
