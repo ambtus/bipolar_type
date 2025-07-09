@@ -13,20 +13,22 @@ Then I should see plugh
 
 Scenario: can show one realm
 Given I am on my page
-When I follow the 'People' link
-Then I should see People actions
-  But I should NOT see Places actions
-  And I should NOT see Things actions
-  And I should NOT see Ideas actions
-  And the 'People' link should be disabled
+When I follow the link for F
+Then I should see F actions
+  But I should NOT see S actions
+  And I should NOT see T actions
+  And I should NOT see N actions
+  And the link for F should be disabled
   But the 'All' link should NOT be disabled
+  And the link for S should NOT be disabled
 
 Scenario: can show one attitude
 Given I am on my page
-When I follow the 'Move' link
-Then I should see Move actions
-  But I should NOT see Work actions
-  And I should NOT see Rest actions
-  And I should NOT see Feed actions
-  And the 'Move' link should be disabled
+When I follow the link for TL
+Then I should see TL actions
+  But I should NOT see TR actions
+  And I should NOT see BL actions
+  And I should NOT see BR actions
+  And the link for TL should be disabled
   But the 'All' link should NOT be disabled
+  And the link for TR should NOT be disabled

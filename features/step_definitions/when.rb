@@ -11,3 +11,8 @@ When('I follow {word} links') do |word|
     click_link(s.episode)
   end
 end
+
+When('I follow the link for {word}') do | word |
+  thing = Attitude.find(word) || Realm.find(word)
+  click_link(thing.name)
+end

@@ -12,6 +12,11 @@ Then('the {string} link should be disabled') do |string|
   assert page.has_no_selector?('a', text: /^#{string}$/)
 end
 
+Then('the link for {word} should be disabled') do |word|
+  thing = Attitude.find(word) || Realm.find(word)
+  assert page.has_no_selector?('a', text: /^#{thing.name}$/)
+end
+
 Then('I should NOT see the default word for {word}') do |tla|
   subtype = Subtype.find_by(tla: tla)
   assert page.has_no_text?(subtype.action)
@@ -19,6 +24,11 @@ end
 
 Then('the {string} link should NOT be disabled') do |string|
   assert page.has_link?(string)
+end
+
+Then('the link for {word} should NOT be disabled') do |word|
+  thing = Attitude.find(word) || Realm.find(word)
+  assert page.has_link? thing.name
 end
 
 Then('I should see {word} {word}') do |whose, whats|
