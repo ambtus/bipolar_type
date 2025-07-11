@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :answers, only: [:show]
   resources :realms, only: [:show]
   resources :attitudes, only: [:show]
-  resources :types, only: [:show, :index]
+  resources :types, only: %i[show index]
   get 'types', to: 'types#index', as: :bipolar_types
   resources :words, only: [:index]
   get '/me' => 'types#me', as: :my

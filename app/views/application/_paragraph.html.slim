@@ -1,21 +1,35 @@
 -if @realm
   |> If you cannot
+  span.mood=a.next.word
+  |<> your #{r.organ},
+  |<> then either continue to
   span.sooner=a.word
-  |<> your #{r.organ}, it&rsquo;s because you did not
+  |<> it or start to
   span.longer=a.opposite.word
-  |<> it enough. <em>Not</em> because you need to
+  |<> it. Don’t
   span.dont=a.previous.word
-  |< it more.
+  |<> it just because it’s easy.
+  =a.previous.word.ing.capitalize
+  |<> it more now will <em>not</em> make it any easier to
+  =a.next.word
+  |< it later.
+
+
 
 -if @attitude
-  |> If you shouldn&rsquo;t #{a.word} your
-  span.dont=r.organ
-  |> , but cannot #{a.word} your
-  span.sooner=@type.previous_realm(r).organ
+  |> If you cannot #{a.word} your
+  span.mood=r.opposite.organ
+  |<> then #{a.word} either your
+  span.sooner=r.next.organ
   |<> or your
-  span.longer=@type.next_realm(r).organ
-  |<> then you are in the right mood to #{a.word} your
-  span.mood=@type.opposite_realm(r).organ
+  span.longer=r.previous.organ
+  |> . Don’t #{a.word} your
+  span.dont=r.organ
+  |<> just because it is easy.
+  =a.word.ing.capitalize
+  |<> it more now will <em>not</em> make it any easier to
+  =a.opposite.word
+  |< it later.
 
 -if @all
   =@type.problems.collect { |p| "#{p.previous.word} your #{p.organ}" }.and.capitalize

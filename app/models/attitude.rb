@@ -17,6 +17,8 @@ class Attitude < Concept
   def action = [gu, es].join('_')
   def do_something = [gu, es].to_phrase
 
+  def hn = top? ? 'have' : 'need'
+
   def first_letter = gu.first.capitalize
   def second_letter = es.first.capitalize
 
@@ -24,12 +26,14 @@ class Attitude < Concept
   def season = %w[spring summer fall winter][index]
   def time = [season, daytime].to_phrase.titleize
 
+  def sick = %w[apathetic restless irritable lethargic][index]
+
   def feel = %w[emptiness fear anger tired][index]
   def feeling = %w[empty afraid angry sore][index]
   def react = %w[digest flee fight rest][index]
-  def finish = ['fill up', 'escape', 'win', 'sleep'][index]
+  def finish = ['build reserves', 'escape', 'win', 'sleep'][index]
   # your organ
-  def word = %w[fuel move work rest][index]
+  def word = %w[fuel move work relax][index]
   def bad = %w[greedy paranoid hateful lazy][index]
   def bipolar_result = %w[explode die collapse panic][index]
   def name = word.capitalize
@@ -39,7 +43,8 @@ class Attitude < Concept
 
   def md = top? ? 'mania' : 'depression'
   def description = %w[major euphoric irritable agitated][index]
-  def episode = [description, md].to_phrase.titleize
+  def el = diagonal? ? 'late' : 'early'
+  def episode = [el, md].to_phrase.titleize
 
   def flip = Attitude.without(self).find { |a| a.string.second == string.second }
   def flop = Attitude.without(self).find { |a| a.string.first == string.first }

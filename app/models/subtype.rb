@@ -27,7 +27,7 @@ class Subtype < Concept
   def action = realm.send(meth)
 
   def do_something = [gu, realm.adjective, es].to_phrase
-  def episode = [description, realm.adjective, md].to_phrase.titleize
+  def episode = [sick, realm.adjective, md].to_phrase.titleize
   delegate :feeling, to: :attitude
 
   # sort by attitude

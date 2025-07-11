@@ -13,30 +13,30 @@
 end
 
 class String
-  def chip; self[1..-1]; end
-  def second; chars.second; end
-  def third; chars.third; end
-  def fourth; chars.fourth; end
-  def words; self.match(' ') ? split(/\s+/) : split('/'); end
+  def chip = self.[](1..-1)
+  delegate :second, to: :chars
+  delegate :third, to: :chars
+  delegate :fourth, to: :chars
+  def words = match?(' ') ? split(/\s+/) : split('/')
 
   def clean
-    self.gsub('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself')
-        .gsub(/^do not/, 'don’t').gsub('not not', '').gsub(' to do ', ' to ')
-        .gsub(' to don’t ', ' to not ')
-        .gsub('not do ', 'don’t ')
+    tr('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself')
+                .gsub(/^do not/, 'don’t').gsub('not not', '').gsub(' to do ', ' to ')
+                .gsub(' to don’t ', ' to not ')
+                .gsub('not do ', 'don’t ')
   end
 
-  def make_mine(be = 'am'); words.replace_with('your', 'my').replace_with('be', be).to_phrase; end
-  def make_yours(are = 'are'); words.replace_with('my', 'your').replace_with('are', are).to_phrase; end
-  def make_theirs; words.replace_with('your', 'their').to_phrase; end
-  def to_wbr; self.words.map(&:capitalize).wbr; end
+  def make_mine(be = 'am') = words.replace_with('your', 'my').replace_with('be', be).to_phrase
+  def make_yours(are = 'are') = words.replace_with('my', 'your').replace_with('are', are).to_phrase
+  def make_theirs = words.replace_with('your', 'their').to_phrase
+  def to_wbr = words.map(&:capitalize).wbr
 
   # these assume the string is three words
   # 'listen to music' has the preposition to, and gets split as 'listen to' and 'music'
   # 'eat sweet foods' has the adjective sweet', and gets plits as 'eat' and 'sweet foods'
   # articles aren't prepositions, but are split the same
   PREPS = %w[after at before from for of off on over to with the a an]
-  def prep?; PREPS.include?(words[1]); end
+  def prep? = PREPS.include?(words[1])
 
   def first_words
     case words.count
@@ -71,15 +71,15 @@ class String
   end
   alias last_word :last_words
 
-  def quote; "‘#{self}’"; end
-  def dquote; "“#{self}”"; end
-  def sqwrap; "[#{self}]"; end
-  def parenthesize; "(#{self})"; end
+  def quote = "‘#{self}’"
+  def dquote = "“#{self}”"
+  def sqwrap = "[#{self}]"
+  def parenthesize = "(#{self})"
   alias wrap :parenthesize
-  def end_wrap; "#{self})"; end
+  def end_wrap = "#{self})"
   alias :endwrap end_wrap
-  def start_wrap; "(#{self}"; end
-  def wrapped?; self.last == ')' && self[0] == '('; end
+  def start_wrap = "(#{self}"
+  def wrapped? = last == ')' && self[0] == '('
 
   def unwrap
     return self unless wrapped?
@@ -91,17 +91,17 @@ class String
     end
   end
 
-  def deunderscore; self.gsub('_', ' '); end
-  def comma; self + ','; end
-  def period; self + '.'; end
-  def semi; self + ';'; end
-  def colon; self + ':'; end
-  def bang; self + '!'; end
-  def question; self + '?'; end
-  def break; self + '<br />'; end
+  def deunderscore = tr('_', ' ')
+  def comma = self + ','
+  def period = self + '.'
+  def semi = self + ';'
+  def colon = self + ':'
+  def bang = self + '!'
+  def question = self + '?'
+  def break = self + '<br />'
 
-  PUNCTUATIONS = %w{, . ; : !}
-  def punctuated?; PUNCTUATIONS.include?(self.last); end
+  PUNCTUATIONS = %w[, . ; : !]
+  def punctuated? = PUNCTUATIONS.include?(last)
 
   def unpunctuate
     return self unless punctuated?
@@ -109,14 +109,14 @@ class String
     chop.unpunctuate
   end
 
-  def and_to_or; self.gsub(' and ', ' or '); end
-  def break_before_wrap; gsub(' (', '<br />(').html_safe; end
+  def and_to_or = gsub(' and ', ' or ')
+  def break_before_wrap = gsub(' (', '<br />(').html_safe
 
   MBTIS = %w[ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ
              ESTP ESFP ENTP ENFP
              ESTJ ESFJ ENTJ ENFJ]
-  def is_mbti?; MBTIS.include? self; end
+  def is_mbti? = MBTIS.include?(self)
 
   def dominant
     return chars.values_at(0, 2, 3).join if match(/I..P/) || match(/E..J/)
@@ -149,8 +149,8 @@ class String
                   anxious irritable bored angry afraid tired lethargic
                   hungry ]
 
-  def noun?; NOUNS.include?(self); end
-  def capitalized?; first != first.downcase; end
+  def noun? = NOUNS.include?(self)
+  def capitalized? = first != first.downcase
 
   def to_noun
     index = ADJECTIVES.index(downcase)
@@ -381,11 +381,13 @@ class String
 
   def too_much
     if match('(.*) a (.*)')
-      if $2.uncountable?
-        return [$1, 'too much', $2].to_phrase
-      else
-        return [$1, 'too many', $2.pluralize].to_phrase
+      if ::Regexp.last_match(2).uncountable?
+        return [::Regexp.last_match(1), 'too much',
+                ::Regexp.last_match(2)].to_phrase
       end
+
+      return [::Regexp.last_match(1), 'too many', ::Regexp.last_match(2).pluralize].to_phrase
+
     end
     [' and ', ' or ', ' / ', ' & '].each do |connector|
       if match(connector)
@@ -413,8 +415,8 @@ class String
 
   def more
     if match('(.*) a (.*)')
-      [$1, 'more of a', $2].to_phrase
-    elsif match(' ')
+      [::Regexp.last_match(1), 'more of a', ::Regexp.last_match(2)].to_phrase
+    elsif match?(' ')
       if last_words.words.first == 'good'
         [first_words, 'better', last_words.delete_prefix('good')].to_phrase
       else
@@ -480,9 +482,9 @@ class String
     false
   end
 
-  def little; plural? ? 'few' : 'little'; end
+  def little = plural? ? 'few' : 'little'
   alias few :little
-  def fewer; plural? ? 'fewer' : 'less'; end
+  def fewer = plural? ? 'fewer' : 'less'
 
   def less
     if match?(' ')
@@ -492,22 +494,22 @@ class String
     end
   end
 
-  def begins_with?(string); self.match(/\A#{string}/); end
+  def begins_with?(string) = match(/\A#{string}/)
 
-  def much; plural? ? 'many' : 'much'; end
+  def much = plural? ? 'many' : 'much'
   alias many :much
-  def that; plural? ? 'those' : 'that'; end
+  def that = plural? ? 'those' : 'that'
   alias those :that
-  def is; plural? ? "#{self} are" : "#{self} is"; end
+  def is = plural? ? "#{self} are" : "#{self} is"
   alias are :is
-  def them; plural? ? 'them' : 'it'; end
+  def them = plural? ? 'them' : 'it'
   alias it :them
-  def they; plural? ? 'they' : 'it'; end
+  def they = plural? ? 'they' : 'it'
 
-  def has; plural? ? 'have' : 'has'; end
+  def has = plural? ? 'have' : 'has'
   alias have :has
-  def was; plural? ? 'were' : 'was'; end
+  def was = plural? ? 'were' : 'was'
   alias were :was
-  def does; plural? ? 'do' : 'does'; end
+  def does = plural? ? 'do' : 'does'
   alias do :does
 end

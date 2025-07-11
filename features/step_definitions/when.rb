@@ -12,7 +12,7 @@ When('I follow {word} links') do |word|
   end
 end
 
-When('I follow the link for {word}') do | word |
+When('I follow the link for {word}') do |word|
   thing = Attitude.find(word) || Realm.find(word)
   click_link(thing.name)
 end

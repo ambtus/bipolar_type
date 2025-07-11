@@ -45,10 +45,18 @@ class Type
   end
 
   def klass(subtype)
-    return :dont if problems.include?(subtype)
+    return :mood if problems.include?(subtype.opposite)
     return :longer if problems.include?(subtype.next)
     return :sooner if problems.include?(subtype.previous)
 
-    :mood if problems.include?(subtype.opposite)
+    :dont if problems.include?(subtype)
+  end
+
+  def order(subtype)
+    return 0 if problems.include?(subtype.previous)
+    return 1 if problems.include?(subtype.opposite)
+    return 2 if problems.include?(subtype.next)
+
+    3 if problems.include?(subtype)
   end
 end

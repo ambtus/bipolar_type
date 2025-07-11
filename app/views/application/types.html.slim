@@ -6,8 +6,4 @@ table
         td
           -if @free.include?(s)
             b=link_to s.episode, types_path(@current + s.tla)
-            .left
-              |> I
-              =display(s)
-              |<> because I am good at it. Far too good at it.
-
+            .left=render 'problem', s: s

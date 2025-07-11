@@ -92,16 +92,16 @@ class Array
     each { |x| raise "#{x} is not a kind of #{klass}" unless x.is_a? klass }
   end
 
-  def sixth; self[5]; end
+  def sixth = self.[](5)
 
-  def and; to_sentence; end
-  def or; to_sentence(last_word_connector: ", or ", two_words_connector: " or "); end
-  def amp; join(' & '); end
-  def lor; join(' | '); end
-  def semi; join('; '); end
-  def wbr; join('<wbr>').html_safe; end
-  def break; join('<br />').html_safe; end
-  def slash; join('/<wbr>').html_safe; end
-  def to_phrase; join(" ").squish; end
-  def to_safe_phrase; join(" ").squish.html_safe; end
+  def and = to_sentence
+  def or = to_sentence(last_word_connector: ', or ', two_words_connector: ' or ')
+  def amp = join(' & ')
+  def lor = join(' | ')
+  def semi = join('; ')
+  def wbr = join('<wbr>').html_safe
+  def break = join('<br />').html_safe
+  def slash = join('/<wbr>').html_safe
+  def to_phrase = join(' ').squish
+  def to_safe_phrase = join(' ').squish.html_safe
 end
