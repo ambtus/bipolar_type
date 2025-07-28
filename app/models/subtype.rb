@@ -12,23 +12,11 @@ class Subtype < Concept
   def realm = Realm.find(string.second)
   def attitude = Attitude.find(string.first + string.third)
 
-  def tla = [first_letter, letter, second_letter].join
+  def tla = [first_letter, realm.letter, second_letter].join
   def self.find_by(h = {}) = ALL.find { |s| s.tla == h[:tla].to_s }
-
-  def self.without(string)
-    subtypes = string.scan(/.../).collect { |tla| Subtype.find_by(tla: tla) }
-    Rails.logger.debug { "subtypes: #{subtypes}" }
-    realms = subtypes.map(&:realm)
-    attitudes = subtypes.map(&:attitude)
-    Subtype.all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
-  end
 
   def meth = [gu, es].join('_')
   def action = realm.send(meth)
-
-  def do_something = [gu, realm.adjective, es].to_phrase
-  def episode = [sick, realm.adjective, md].to_phrase.titleize
-  delegate :feeling, to: :attitude
 
   # sort by attitude
   def parts = [attitude, realm]

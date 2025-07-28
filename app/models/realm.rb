@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Realm < Concept
-  SYMBOLS = %i[F S N T].freeze
+  SYMBOLS = %i[F S T N].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
@@ -10,22 +10,30 @@ class Realm < Concept
   def subtypes = Subtype.all.select { |x| x.realm == self }
   def +(other) = subtypes.find { |x| x.attitude == other }
 
-  def focus = %w[person place idea thing][index]
+  def tops = subtypes[1, 2]
+  def bottoms = subtypes.values_at(0, 3)
+
+  def focus = %w[person place thing idea][index]
   def foci = focus.pluralize
-  def name = foci.capitalize
 
-  def empty = %w[lonely hungry curious envious][index]
-  def organ = %w[soul body mind wallet][index]
+  def basic = %w[why food shelter how][index]
+  def name = basic.capitalize
 
-  def adjective = %w[social physical mental financial][index]
-  def adverb = adjective.ly
-  def letter = adjective.first.capitalize
+  def organ = %w[voice body hands mind][index]
+  def sense = %w[hearing smell/taste touch sight][index]
+  def resources = %w[priorities calories tools data][index]
+  def target = %w[family land hardware software][index]
+  def adj1 = %w[spiritual physical material mental][index]
+  def adj2 = %w[emotional spatial financial temporal][index]
+  def adverb = adj1.ly
 
-  def get = ['listen to', 'eat', 'watch', 'collect'][index]
-  def energy = ['music', 'carbs', 'the sunrise', 'wages'][index]
-  def strength = ['stories', 'protein', 'the results', 'dividends'][index]
+  def letter = %w[E P F M][index]
+
+  def get = %w[hear eat collect see][index]
+  def energy = %w[intonation carbs wages actions][index]
+  def strength = %w[meaning protein rent results][index]
   def get_energy = [get, energy].to_phrase
-  def recover_strength = [get, strength].to_phrase
-  def burn_energy = ['talk', 'walk', 'use intuition', 'pay cash'][index]
-  def use_strength = ['write', 'do housework', 'use logic', 'use credit'][index]
+  def get_strength = [get, strength].to_phrase
+  def use_energy = ['emote', 'gather', 'pay cash', 'intuit'][index]
+  def use_strength = ['use words', 'hunt', 'use credit', 'use logic'][index]
 end

@@ -1,25 +1,28 @@
 # frozen_string_literal: true
 
-# See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # defaults for RSpec 4
   config.expect_with :rspec do |expectations|
-    # This option will default to `true` in RSpec 4.
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
-
   config.mock_with :rspec do |mocks|
-    # will default to `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
-
-  # This option will default to `:apply_to_host_groups` in RSpec 4
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-  config.example_status_persistence_file_path = 'spec/rerun.txt'
-
+  # Limits the available syntax to the non-monkey patched syntax that is
+  # recommended. For more details, see:
   # https://rspec.info/features/3-12/rspec-core/configuration/zero-monkey-patching-mode/
   config.disable_monkey_patching!
 
+  # Allows RSpec to persist some state between runs in order to support
+  # the `--only-failures` and `--next-failure` CLI options. We recommend
+  # you configure your source control system to ignore this file.
+  config.example_status_persistence_file_path = 'spec/rerun.txt'
+
+  # Many RSpec users commonly either run the entire suite or an individual
+  # file, and it's useful to allow more verbose output when running an
+  # individual spec file.
   if config.files_to_run.one?
     # Use the documentation formatter for detailed output,
     # unless a formatter has already been configured
@@ -27,6 +30,13 @@ RSpec.configure do |config|
     config.default_formatter = 'doc'
   end
 
+  # maybe someday
+  #   # This allows you to limit a spec run to individual examples or groups
+  #   # by tagging them with `:focus` metadata.
+  #   # When nothing is tagged with `:focus`, all examples get run.
+  #   # RSpec also provides the alias `fit` (similar to xit)
+  #   config.filter_run_when_matching :focus
+  #
   #   # Print the 10 slowest examples and example groups at the
   #   # end of the spec run, to help surface which specs are running
   #   # particularly slow.

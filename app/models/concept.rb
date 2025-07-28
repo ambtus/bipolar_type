@@ -29,6 +29,7 @@ class Concept
     def each_with_index(&) = all.each_with_index(&)
     def find(s) = all.find { |x| x.symbol == s.to_sym }
     def title = [all.count, name.pluralize].to_phrase
+    delegate :without, to: :all
   end
 
   def index = self.class::SYMBOLS.index(@symbol)
@@ -36,14 +37,4 @@ class Concept
   def next = self.class.rotate[index]
   def previous = self.class.rotate(-1)[index]
   def opposite = self.class.rotate(2)[index]
-
-  def compound? = respond_to?(:parts)
-
-  def <=>(other)
-    if compound?
-      parts <=> other.parts
-    else
-      index <=> other.index
-    end
-  end
 end

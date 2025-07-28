@@ -1,0 +1,16 @@
+table.bordered
+  caption
+    b=realm.basic
+  tr
+    -realm.tops.each do |subtype|
+      td
+        =subtype.action
+        br
+        =form.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: @size
+
+  tr
+    -realm.bottoms.each do |subtype|
+      td
+        =subtype.action
+        br
+        =form.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: @size

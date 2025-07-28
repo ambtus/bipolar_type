@@ -1,9 +1,8 @@
 br
 table
-  -Attitude.rotate.each do |a|
+  -Type.each do |t|
     tr
-      -a.subtypes.rotate.each do |s|
-        td
-          -if @free.include?(s)
-            b=link_to s.episode, types_path(@current + s.tla)
-            .left=render 'problem', s: s
+      td.left
+        =link_to t.title, type_path(t.path)
+        |> :
+        =render 'type', type: t

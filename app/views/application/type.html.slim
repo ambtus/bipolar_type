@@ -1,30 +1,49 @@
 -if cookies.to_h.present?
   .center
     =link_to 'bookmark', type_path(@type.path, cookies.to_h)
-    | (save your words between sessions)
+    |< (save your words between sessions)
 
--if @show == 'all'
-  p.center=render 'paragraph'
--elsif @realm
-  -@type.realms.rotate(-1).each_with_index do |r,i|
-    -if @show == r.string
-      p=render 'paragraph', r: r, a: Attitude[i]
--elsif @attitude
-  -Attitude.each_with_index do |a,i|
-    -if @show == a.string
-      p=render 'paragraph', a: a, r: @type.realms[i]
+=@type.title
+|> :
+=render 'type', type: @type
 
+p
+  |> I
+  =display(@type.problems.first)
+  |<> when I am
+  =@type.problems.first.sick
+  |<> because I am <em>anticipating</em> fear: I feel anxious because I <em>may</em> have to flee the
+  =@type.problems.first.focus
+  |<> if I cannot flee the
+  =@type.problems.second.focus
+  |> . I am
+  em=@type.problems.second.sick
+  |<> if I flee
+  =@type.problems.first.foci
+  |<> I
+  em
+    |<> don’t want to flee
+  |<> because I have
+  em=display(@type.problems.first).too_much.en.bang
 
-=render 'cycle', caption: render('chooser'), render: 'advice'
-
-.center
-  | Legend:
-  .sooner start as soon as possible
-  .mood when you can
-  .longer continue as long as possible
-  .dont not unless you have to
-
-
+p
+  |> I
+  =display(@type.problems.fourth)
+  |<> when I am
+  =@type.problems.fourth.sick
+  |<> because I am <em>anticipating</em> anger: I feel irritable because I <em>may</em> have to fight the
+  =@type.problems.fourth.focus
+  |<> if I cannot fight the
+  =@type.problems.third.focus
+  |> . I am
+  em=@type.problems.third.sick
+  |<> if I fight
+  =@type.problems.fourth.foci
+  |<> I
+  em
+    |<> don’t want to fight
+  |<> because I have
+  em=display(@type.problems.fourth).too_much.en.bang
 
 -if Rails.env.development?
   hr

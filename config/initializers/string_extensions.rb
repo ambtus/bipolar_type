@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
@@ -13,7 +15,7 @@
 end
 
 class String
-  def chip = self.[](1..-1)
+  def chip = self.[](1..)
   delegate :second, to: :chars
   delegate :third, to: :chars
   delegate :fourth, to: :chars
@@ -35,7 +37,7 @@ class String
   # 'listen to music' has the preposition to, and gets split as 'listen to' and 'music'
   # 'eat sweet foods' has the adjective sweet', and gets plits as 'eat' and 'sweet foods'
   # articles aren't prepositions, but are split the same
-  PREPS = %w[after at before from for of off on over to with the a an]
+  PREPS = %w[after at before from for of off on over to with the a an].freeze
   def prep? = PREPS.include?(words[1])
 
   def first_words
@@ -92,15 +94,15 @@ class String
   end
 
   def deunderscore = tr('_', ' ')
-  def comma = self + ','
-  def period = self + '.'
-  def semi = self + ';'
-  def colon = self + ':'
-  def bang = self + '!'
-  def question = self + '?'
-  def break = self + '<br />'
+  def comma = "#{self},"
+  def period = "#{self}."
+  def semi = "#{self};"
+  def colon = "#{self}:"
+  def bang = "#{self}!"
+  def question = "#{self}?"
+  def break = "#{self}<br />"
 
-  PUNCTUATIONS = %w[, . ; : !]
+  PUNCTUATIONS = %w[, . ; : !].freeze
   def punctuated? = PUNCTUATIONS.include?(last)
 
   def unpunctuate
@@ -115,7 +117,7 @@ class String
   MBTIS = %w[ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ
              ESTP ESFP ENTP ENFP
-             ESTJ ESFJ ENTJ ENFJ]
+             ESTJ ESFJ ENTJ ENFJ].freeze
   def is_mbti? = MBTIS.include?(self)
 
   def dominant
@@ -125,13 +127,14 @@ class String
   end
 
   def auxiliary
-    if /I..P/.match?(self)
+    case self
+    when /I..P/
       ['E', chars[1], 'P'].join
-    elsif /I..J/.match?(self)
+    when /I..J/
       ['E', chars[2], 'J'].join
-    elsif /E..P/.match?(self)
+    when /E..P/
       ['I', chars[2], 'P'].join
-    elsif /E..J/.match?(self)
+    when /E..J/
       ['I', chars[1], 'J'].join
     end
   end
@@ -141,13 +144,13 @@ class String
              emotions childhood adolescence adulthood old age child
              adolescent adult elder curiosity agitation appetite lazy
              anxiety irritation boredom anger fear exhaustion lethargy
-             hunger]
+             hunger].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative
                   emotional child adolescent adult elder childish
                   adolescent mature wise curious agitated ?? ??
                   anxious irritable bored angry afraid tired lethargic
-                  hungry ]
+                  hungry ].freeze
 
   def noun? = NOUNS.include?(self)
   def capitalized? = first != first.downcase
@@ -182,7 +185,7 @@ class String
       first, second = split('/', 2)
       [first.s, second.s].join('/')
     else
-      sub(/ss$/, 'sse').sub(/e?y$/, 'ie') + 's'
+      "#{sub(/ss$/, 'sse').sub(/e?y$/, 'ie')}s"
     end
   end
 
@@ -231,7 +234,7 @@ class String
       [first_words.ed, last_words].to_phrase
 
     else
-      sub(/e$/, '').sub(/y$/, 'i') + 'ed'
+      "#{sub(/e$/, '').sub(/y$/, 'i')}ed"
     end
   end
 
@@ -268,18 +271,18 @@ class String
       return [first_words.ly, last_words].join(' ')
     end
 
-    gsub(/ic$/, 'ical').gsub(/y$/, 'i').gsub(/le$/, '') + 'ly'
+    "#{gsub(/ic$/, 'ical').gsub(/y$/, 'i').gsub(/le$/, '')}ly"
   end
 
   def er
-    gsub(/y$/, 'i').gsub(/ad$/, 'add') + 'er'
+    "#{gsub(/y$/, 'i').gsub(/ad$/, 'add')}er"
   end
 
   def able
     return 'reliable' if self == 'rely on'
     return 'comprehensible' if self == 'comprehend'
 
-    sub(/e$/, '') + 'able'
+    "#{sub(/e$/, '')}able"
   end
 
   def un
@@ -317,7 +320,7 @@ class String
       return [first_words.ing, last_words].to_phrase
 
     end
-    sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1') + 'ing'
+    "#{sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1')}ing"
   end
 
   def enough

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-Then 'I should see {word}' do |string|
+Then 'I should see {}' do |string|
   assert page.has_text?(string)
 end
 
-Then('I should NOT see {word}') do |string|
+Then('I should NOT see {}') do |string|
   assert page.has_no_text?(string)
 end
 
@@ -17,11 +17,6 @@ Then('the link for {word} should be disabled') do |word|
   assert page.has_no_selector?('a', text: /^#{thing.name}$/)
 end
 
-Then('I should NOT see the default word for {word}') do |tla|
-  subtype = Subtype.find_by(tla: tla)
-  assert page.has_no_text?(subtype.action)
-end
-
 Then('the {string} link should NOT be disabled') do |string|
   assert page.has_link?(string)
 end
@@ -29,20 +24,6 @@ end
 Then('the link for {word} should NOT be disabled') do |word|
   thing = Attitude.find(word) || Realm.find(word)
   assert page.has_link? thing.name
-end
-
-Then('I should see {word} {word}') do |whose, whats|
-  words = whose_whats(whose, whats)
-  words.each do |text|
-    assert page.has_text?(text)
-  end
-end
-
-Then('I should NOT see {word} {word}') do |whose, whats|
-  words = whose_whats(whose, whats)
-  words.each do |text|
-    assert page.find_all('#hide', text: text)
-  end
 end
 
 Then('{string} should be entered in {string}') do |text, field|
@@ -55,4 +36,10 @@ end
 
 Then('my cookies should be empty') do
   assert cookies.to_hash.blank?
+end
+
+Then('all types should be linked') do
+  Type.each do |t|
+    assert page.has_link?(t.title, href: Regexp.new(t.path))
+  end
 end

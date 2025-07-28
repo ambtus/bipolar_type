@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Restart required even in development mode when you modify this file.
 
 %w[even odd intersect sixth multiply add join_strings duplicates discard replace_with

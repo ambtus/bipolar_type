@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'puma'
@@ -9,5 +11,6 @@ group :development, :test do
   gem 'error_highlight'
   gem 'launchy' # So you can do save_and_open_page
   gem 'rspec-rails'
+  gem 'simplecov', require: false
   gem 'slim-rails'
 end

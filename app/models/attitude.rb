@@ -7,47 +7,25 @@ class Attitude < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def first? = symbol == :BL
   def top? = string.starts_with?('T')
   def left? = string.ends_with?('L')
   def diagonal? = %i[BL TR].include?(symbol)
 
-  def gu = %w[get burn use recover][index]
+  def gu = top? ? 'use' : 'get'
   def es = left? ? 'energy' : 'strength'
   def action = [gu, es].join('_')
   def do_something = [gu, es].to_phrase
 
-  def hn = top? ? 'have' : 'need'
-
   def first_letter = gu.first.capitalize
   def second_letter = es.first.capitalize
+  def letters = [first_letter, second_letter].join
 
-  def daytime = %w[morning noon afternoon evening][index]
-  def season = %w[spring summer fall winter][index]
-  def time = [season, daytime].to_phrase.titleize
-
-  def sick = %w[apathetic restless irritable lethargic][index]
-
-  def feel = %w[emptiness fear anger tired][index]
   def feeling = %w[empty afraid angry sore][index]
   def react = %w[digest flee fight rest][index]
-  def finish = ['build reserves', 'escape', 'win', 'sleep'][index]
-  # your organ
-  def word = %w[fuel move work relax][index]
-  def bad = %w[greedy paranoid hateful lazy][index]
-  def bipolar_result = %w[explode die collapse panic][index]
-  def name = word.capitalize
+  def act = %w[ingest move work sleep][index]
+  def goal = %w[refuel escape control rebuild][index]
 
-  def what = %w[room energy strength time][index]
-  def problem = "run out of #{what}"
-
-  def md = top? ? 'mania' : 'depression'
-  def description = %w[major euphoric irritable agitated][index]
-  def el = diagonal? ? 'late' : 'early'
-  def episode = [el, md].to_phrase.titleize
-
-  def flip = Attitude.without(self).find { |a| a.string.second == string.second }
-  def flop = Attitude.without(self).find { |a| a.string.first == string.first }
+  def sick = top? ? 'manic' : 'depressed'
 
   def subtypes = Subtype.all.select { |x| x.attitude == self }
   def +(other) = subtypes.find { |x| x.realm == other }

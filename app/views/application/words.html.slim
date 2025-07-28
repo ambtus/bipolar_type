@@ -1,20 +1,4 @@
-p The words on the right are examples of the sixteen behaviors listed on the left.
-p
-  |> Use positive words for behaviors you should start
-  span.sooner sooner
-  |<> or continue
-  span.longer longer
-  |<> and negative words for behaviors you should
-  span.dont not do
-  |> . For example, you could replace
-  =Subtype.find_by(tla: :GPE).action.dquote
-  |<> with
-  span.sooner eat breakfast
-  |<> or
-  span.longer eat dessert
-  |<> or
-  span.dont eat sweets
-  | .
+p The words below are examples of the sixteen subtypes (four attitudes by four realms). If you don&rsquo;t like the examples, you can use your own words.
 
 -if cookies.to_h.present?
   .right
@@ -29,15 +13,15 @@ p
   br
 
 =form_with url: words_path, method: :get do |f|
-  -Realm.each do |realm|
-    table
-      caption
-        b.larger=realm.name
-      -realm.subtypes.each do |subtype|
-        tr
-          td.right=subtype.do_something
-          td=f.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: @size
-          td.left=subtype.action
-      tr
-        th colspan = 3 = f.submit 'Save'
 
+  table
+    tr
+      -Realm.rotate[0, 2].each do |realm|
+        td=render 'word', realm: realm, form: f
+
+    tr
+      th colspan = 2 = f.submit 'Save'
+
+    tr
+      -Realm.rotate[2, 2].each do |realm|
+        td=render 'word', realm: realm, form: f

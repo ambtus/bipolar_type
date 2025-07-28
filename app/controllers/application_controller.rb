@@ -29,11 +29,9 @@ class ApplicationController < ActionController::Base
     cookie_keys.each { |k| cookies.delete(k) }
   end
 
-  def home
-    @title = 'Introduction'
-  end
+  def home = (@title = 'Introduction')
 
-  def theory
-    @title = 'Theory'
-  end
+  def attitudes = (@title = '4 Attitudes')
+
+  def realms = (@title = '4 Realms')
 end

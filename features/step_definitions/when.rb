@@ -16,3 +16,8 @@ When('I follow the link for {word}') do |word|
   thing = Attitude.find(word) || Realm.find(word)
   click_link(thing.name)
 end
+
+When('I save blank for {word}') do |word|
+  fill_in word, with: ''
+  click_button 'Save'
+end

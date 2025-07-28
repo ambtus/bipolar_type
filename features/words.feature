@@ -1,24 +1,28 @@
 Feature: the words page
 
-Scenario: lists the defaults
-Given I am on the words page
-Then I should see Subtype actions
-
 Scenario: shows your words
-Given I have changed the word for BSE to plugh
+Given I have changed the word for UPE to plugh
 When I am on the words page
-Then 'plugh' should be entered in 'BSE'
+Then 'plugh' should be entered in 'UPE'
 
-Scenario: can be reset
-Given I have changed the word for BSE to plugh
+Scenario: can be reset with link
+Given I have changed the word for UPE to plugh
 When I am on the words page
   And I follow the 'reset to defaults' link
 Then I should be on the words page
   And I should NOT see plugh
   And my cookies should be empty
 
-Scenario: sets the cookies
-Given I use a bookmark link to words page including 'BFE=xyzzy&BSE=plugh'
+Scenario: can be reset with blank
+Given I have changed the word for UPE to plugh
+When I am on the words page
+  And I save blank for UPE
 Then I should be on the words page
-  And 'xyzzy' should be entered in 'BFE'
-  And 'plugh' should be entered in 'BSE'
+  And I should NOT see plugh
+  And my cookies should be empty
+
+Scenario: sets the cookies
+Given I use a bookmark link to words page including 'GPE=xyzzy&UPE=plugh'
+Then I should be on the words page
+  And 'xyzzy' should be entered in 'GPE'
+  And 'plugh' should be entered in 'UPE'

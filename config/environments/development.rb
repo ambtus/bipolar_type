@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Configure 'rails notes' to inspect Cucumber files
   config.annotations.register_directories('features')
@@ -48,6 +50,6 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << `hostname`.chomp.downcase
-  config.hosts << (`hostname`.chomp.downcase + '.local')
-  config.hosts << (`hostname`.chomp.downcase + '.ambt.us')
+  config.hosts << "#{`hostname`.chomp.downcase}.local"
+  config.hosts << "#{`hostname`.chomp.downcase}.ambt.us"
 end

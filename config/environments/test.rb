@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
@@ -49,7 +51,7 @@ Rails.application.configure do
 
   # Log to STDOUT if asked
   if ENV['LOUD'].present?
-    config.logger = ActiveSupport::Logger.new(STDOUT)
+    config.logger = ActiveSupport::Logger.new($stdout)
                                          .tap  { |l| l.formatter = Logger::Formatter.new }
                                          .then { |l| ActiveSupport::TaggedLogging.new(l) }
   end
