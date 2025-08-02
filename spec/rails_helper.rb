@@ -9,31 +9,9 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-require Rails.root.join('features/support/defaults').to_s
-
-# Ensures that the test database schema matches the current schema file.
-# If there are pending migrations it will invoke `db:test:prepare` to
-# recreate the test database by loading the schema.
-begin
-  ActiveRecord::Migration.maintain_test_schema!
-rescue ActiveRecord::PendingMigrationError => e
-  abort e.to_s.strip
-end
+# require Rails.root.join('features/support/defaults').to_s
 
 RSpec.configure do |config|
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before do
-    DatabaseCleaner.strategy = :transaction
-  end
-  config.before do
-    DatabaseCleaner.start
-  end
-  config.after do
-    DatabaseCleaner.clean
-  end
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
