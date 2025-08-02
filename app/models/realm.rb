@@ -29,9 +29,9 @@ class Realm < Concept
 
   def letter = %w[E P F M][index]
 
-  def get = %w[hear eat collect see][index]
-  def energy = %w[intonation carbs wages actions][index]
-  def strength = %w[meaning protein rent results][index]
+  def get = %w[hear eat earn see][index]
+  def energy = %w[intonation carbs cash actions][index]
+  def strength = %w[meaning protein credit results][index]
   def get_energy = [get, energy].to_phrase
   def get_strength = [get, strength].to_phrase
   def use_energy = ['emote', 'gather', 'pay cash', 'intuit'][index]

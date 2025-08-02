@@ -20,13 +20,13 @@ class Type
     def title = [all.count, name.pluralize].to_phrase
     def find(string) = all.find { |t| t.realm_string == string }
 
-    def my_path = 'SFNT'
+    def my_path = 'FSTN'
     # for tests, just needs to be different.
     def your_path = my_path.reverse
     def my_type = find(my_path)
     def your_type = find(your_path)
   end
 
-  def problems = realms.add(Attitude.all)
-  def title = "#{path[0, 2]}P/#{path[2, 2]}J"
+  def subtypes = realms.add(Attitude.ordered)
+  def title = "P#{path}J".insert(3, '/')
 end

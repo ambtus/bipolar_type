@@ -9,41 +9,41 @@
 
 p
   |> I
-  =display(@type.problems.first)
+  =display(@type.subtypes.second)
   |<> when I am
-  =@type.problems.first.sick
+  =@type.subtypes.second.sick
   |<> because I am <em>anticipating</em> fear: I feel anxious because I <em>may</em> have to flee the
-  =@type.problems.first.focus
+  =@type.subtypes.second.focus
   |<> if I cannot flee the
-  =@type.problems.second.focus
+  =@type.subtypes.first.focus
   |> . I am
-  em=@type.problems.second.sick
+  em=@type.subtypes.first.sick
   |<> if I flee
-  =@type.problems.first.foci
+  =@type.subtypes.second.foci
   |<> I
   em
     |<> don’t want to flee
   |<> because I have
-  em=display(@type.problems.first).too_much.en.bang
+  em=display(@type.subtypes.second).too_much.en.bang
 
 p
   |> I
-  =display(@type.problems.fourth)
+  =display(@type.subtypes.third)
   |<> when I am
-  =@type.problems.fourth.sick
+  =@type.subtypes.third.sick
   |<> because I am <em>anticipating</em> anger: I feel irritable because I <em>may</em> have to fight the
-  =@type.problems.fourth.focus
+  =@type.subtypes.third.focus
   |<> if I cannot fight the
-  =@type.problems.third.focus
+  =@type.subtypes.fourth.focus
   |> . I am
-  em=@type.problems.third.sick
+  em=@type.subtypes.fourth.sick
   |<> if I fight
-  =@type.problems.fourth.foci
+  =@type.subtypes.third.foci
   |<> I
   em
     |<> don’t want to fight
   |<> because I have
-  em=display(@type.problems.fourth).too_much.en.bang
+  em=display(@type.subtypes.third).too_much.en.bang
 
 -if Rails.env.development?
   hr
