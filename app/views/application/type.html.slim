@@ -8,8 +8,6 @@ table
   tr
     -@type.subtypes.each do |s|
       td.bordered
-        =s.short.colon
-        br
         =display(s)
 
 -if Rails.env.development?
