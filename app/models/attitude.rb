@@ -23,7 +23,10 @@ class Attitude < Concept
   def feeling = %w[empty afraid angry sore][index]
   def react = %w[digest flee fight rest][index]
   def act = %w[ingest move work sleep][index]
-  def goal = %w[refuel escape control rebuild][index]
+  def goal = %w[refuel escape win rebuild][index]
+
+  def short = %w[lability freedom control stability][index]
+  def avatar = %w[water air fire earth][index]
 
   def sick = top? ? 'manic' : 'depressed'
 

@@ -3,15 +3,21 @@
     =link_to 'bookmark', type_path(@type.path, cookies.to_h)
     |< (save your words between sessions)
 
-=@type.title
-|> :
-=render 'type', type: @type
+p.center=@type.title
 
 table
   tr
-    -@type.subtypes.each do |s|
-      td.bordered=display(s)
-    
+    -@type.subtypes.values_at(0, 3).each do |s|
+      td.bordered
+        =s.short
+        |> :
+        =display(s)
+  tr
+    -@type.subtypes.values_at(1, 2).each do |s|
+      td.bordered
+        =s.short
+        |> :
+        =display(s)
 
 -if Rails.env.development?
   hr

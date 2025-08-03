@@ -26,6 +26,8 @@ class Subtype < Concept
   def flip = realm + attitude.flip
   def flop = realm + attitude.flop
 
+  def short = [realm.adjective, attitude.short].to_phrase
+
   def next_realm = realm.next + attitude
 
   def method_missing(meth)
