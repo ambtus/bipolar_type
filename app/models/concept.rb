@@ -18,6 +18,7 @@ class Concept
     def strings = self::SYMBOLS.map(&:to_s)
 
     def all = self::ALL
+    def values_at(*args) = all.values_at(*args)
     def rotate(i = 1) = all.rotate(i)
     def [](i) = (all * 2).[](i)
     delegate :first, to: :all

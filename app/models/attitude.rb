@@ -7,8 +7,6 @@ class Attitude < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.ordered = ALL.values_at(1,0,3,2)
-
   def top? = string.starts_with?('T')
   def left? = string.ends_with?('L')
   def diagonal? = %i[BL TR].include?(symbol)

@@ -25,15 +25,16 @@ class Realm < Concept
   def target = %w[family land hardware software][index]
   def adj1 = %w[spiritual physical material mental][index]
   def adj2 = %w[emotional spatial financial temporal][index]
-  def adverb = adj1.ly
+  def adjective =%w[emotional physical financial mental][index]
+  def adverb = adjective.ly
 
   def letter = %w[E P F M][index]
 
-  def get = %w[hear eat earn see][index]
-  def energy = %w[intonation carbs cash actions][index]
-  def strength = %w[meaning protein credit results][index]
+  def get = ['listen to', 'eat', 'earn', 'see'][index]
+  def energy = %w[music carbs cash actions][index]
+  def strength = %w[words protein credit results][index]
   def get_energy = [get, energy].to_phrase
   def get_strength = [get, strength].to_phrase
-  def use_energy = ['emote', 'gather', 'pay cash', 'intuit'][index]
+  def use_energy = ['sing', 'gather', 'pay cash', 'intuit'][index]
   def use_strength = ['use words', 'hunt', 'use credit', 'use logic'][index]
 end

@@ -7,43 +7,11 @@
 |> :
 =render 'type', type: @type
 
-p
-  |> I
-  =display(@type.subtypes.second)
-  |<> when I am
-  =@type.subtypes.second.sick
-  |<> because I am <em>anticipating</em> fear: I feel anxious because I <em>may</em> have to flee the
-  =@type.subtypes.second.focus
-  |<> if I cannot flee the
-  =@type.subtypes.first.focus
-  |> . I am
-  em=@type.subtypes.first.sick
-  |<> if I flee
-  =@type.subtypes.second.foci
-  |<> I
-  em
-    |<> don’t want to flee
-  |<> because I have
-  em=display(@type.subtypes.second).too_much.en.bang
-
-p
-  |> I
-  =display(@type.subtypes.third)
-  |<> when I am
-  =@type.subtypes.third.sick
-  |<> because I am <em>anticipating</em> anger: I feel irritable because I <em>may</em> have to fight the
-  =@type.subtypes.third.focus
-  |<> if I cannot fight the
-  =@type.subtypes.fourth.focus
-  |> . I am
-  em=@type.subtypes.fourth.sick
-  |<> if I fight
-  =@type.subtypes.third.foci
-  |<> I
-  em
-    |<> don’t want to fight
-  |<> because I have
-  em=display(@type.subtypes.third).too_much.en.bang
+table
+  tr
+    -@type.subtypes.each do |s|
+      td.bordered=display(s)
+    
 
 -if Rails.env.development?
   hr
