@@ -6,15 +6,9 @@ end
 
 When('I follow {word} links') do |word|
   who = word == 'my' ? Type.my_type : Type.your_type
-  subtypes = who.problems
-  subtypes.sample(3).each do |s|
-    click_link(s.episode)
+  who.subtypes.sample(3).each do |s|
+    click_link(s.short)
   end
-end
-
-When('I follow the link for {word}') do |word|
-  thing = Attitude.find(word) || Realm.find(word)
-  click_link(thing.name)
 end
 
 When('I save blank for {word}') do |word|

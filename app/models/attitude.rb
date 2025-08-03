@@ -7,6 +7,8 @@ class Attitude < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
+  def self.linear = values_at(1, 0, 3, 2)
+
   def top? = string.starts_with?('T')
   def left? = string.ends_with?('L')
   def diagonal? = %i[BL TR].include?(symbol)
@@ -27,8 +29,6 @@ class Attitude < Concept
 
   def short = %w[lability freedom control stability][index]
   def avatar = %w[water air fire earth][index]
-
-  def sick = top? ? 'manic' : 'depressed'
 
   def subtypes = Subtype.all.select { |x| x.attitude == self }
   def +(other) = subtypes.find { |x| x.realm == other }

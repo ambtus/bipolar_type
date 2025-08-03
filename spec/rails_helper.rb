@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'simplecov'
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -12,7 +14,6 @@ require 'rspec/rails'
 # require Rails.root.join('features/support/defaults').to_s
 
 RSpec.configure do |config|
-
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:

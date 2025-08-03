@@ -2,8 +2,16 @@
 
 class TypesController < ApplicationController
   def index
-    @title = '24 BipolarTypes'
-    render 'types'
+    @current = params[:format] || ''
+    suffix = @current.blank? ? '' : " with #{params[:format].scan(/.../).sort.and}"
+    @title = "BipolarTypes#{suffix}"
+    if @current.length == 9
+      @type = Type.find_by(tlas: @current)
+      redirect_to action: 'show', id: @type.path
+    else
+      @free = Subtype.without(@current)
+      render 'types'
+    end
   end
 
   def show

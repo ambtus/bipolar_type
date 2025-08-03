@@ -2,4 +2,3 @@
 
 require 'cucumber/rails'
 require 'simplecov'
-SimpleCov.start

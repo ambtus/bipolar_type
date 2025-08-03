@@ -1,8 +1,12 @@
 br
 table
-  -Type.each do |t|
+  -Realm.each do |r|
     tr
-      td.left
-        =link_to t.title, type_path(t.path)
-        |> :
-        =render 'type', type: t
+      -Attitude.linear.each do |a|
+        -if @free.include?(a + r)
+          td.bordered=link_to (a + r).short, types_path(@current + (a + r).tla)
+
+-if Rails.env.development?
+  hr
+  =@free
+  | (#{@free.count})

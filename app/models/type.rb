@@ -20,13 +20,22 @@ class Type
     def title = [all.count, name.pluralize].to_phrase
     def find(string) = all.find { |t| t.realm_string == string }
 
+    def find_by(h)
+      tlas = h[:tlas].scan(/.../)
+      raise 'need three or four' unless tlas.size.between?(3, 4)
+
+      subtypes = tlas.collect { |tla| Subtype.find_by(tla: tla) }
+      Rails.logger.debug { "subtypes: #{subtypes}" }
+      ALL.find { |t| (subtypes - t.subtypes).empty? }
+    end
+
     def my_path = 'TFSN'
+    def my_type = find(my_path)
     # for tests, just needs to be different.
     def your_path = my_path.reverse
-    def my_type = find(my_path)
     def your_type = find(your_path)
   end
 
-  def subtypes = realms.add(Attitude.values_at(1, 0, 3, 2))
+  def subtypes = realms.add(Attitude.linear)
   def title = "#{path}J".insert(2, 'P/')
 end
