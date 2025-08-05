@@ -1,16 +1,24 @@
 table.bordered
   caption
-    b=realm.basic
+    b
+      =realm.foci
+      | /
+      =realm.basic
   tr
     -realm.tops.each do |subtype|
       td
+        b=subtype.goal
+        |> :
         =subtype.action
+
         br
         =form.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: @size
 
   tr
     -realm.bottoms.each do |subtype|
       td
+        b=subtype.goal
+        |> :
         =subtype.action
         br
         =form.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: @size

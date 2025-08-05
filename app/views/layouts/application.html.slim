@@ -26,12 +26,21 @@ html lang="en"
       .bordered {border: 1px solid grey}
       .middle {vertical-align: middle}
   body
-    .center.larger=display_links %w[introduction attitudes realms types words]
+    .center.larger=display_links %w[introduction attitudes realms words types]
 
     =yield
 
     -if Rails.env.development?
       hr
+      -%w[my your next other].each do |which|
+        =link_to_unless_current "#{which} type", type_path(Type.send("#{which}_path"))
+        |<>
+      hr
       | params: #{params}
       br
       | cookies: #{cookies.to_h}
+
+      -if @free
+        hr
+        =@free
+        | (#{@free.count})

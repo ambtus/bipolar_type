@@ -20,6 +20,6 @@ RSpec.describe Subtype, type: :model do
   end
 
   it 'delegates to attitude' do
-    expect(described_class.first.avatar).to eq Attitude.first.avatar
+    expect(described_class.first.top?).to eq Attitude.first.top?
   end
 end

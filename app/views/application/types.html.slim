@@ -3,10 +3,13 @@ table
   -Realm.each do |r|
     tr
       -Attitude.linear.each do |a|
-        -if @free.include?(a + r)
-          td.bordered=link_to (a + r).short, types_path(@current + (a + r).tla)
+        -s = a + r
+        -if @free.include?(s)
+          td.bordered
+            =link_to s.short, types_path(@current + s.tla)
+            .left
+              em> cannot
+              =display(s.opposite)
+              |> ; <em>does</em>
+              =display(s.flip)
 
--if Rails.env.development?
-  hr
-  =@free
-  | (#{@free.count})

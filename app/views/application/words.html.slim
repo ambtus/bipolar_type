@@ -1,4 +1,5 @@
 p The words below are examples of the sixteen behaviors.
+
 p If you don&rsquo;t like them, you can use your own words.
 
 -if cookies.to_h.present?
@@ -21,8 +22,8 @@ p If you don&rsquo;t like them, you can use your own words.
         td=render 'word', realm: realm, form: f
 
     tr
-      th colspan = 2 = f.submit 'Save'
-
-    tr
       -Realm.rotate[2, 2].each do |realm|
         td=render 'word', realm: realm, form: f
+
+    tr
+      td colspan = 2 = f.submit 'Save'

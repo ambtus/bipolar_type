@@ -6,12 +6,24 @@
 br
 table
   tr
-    -@type.subtypes.each do |s|
-      td.bordered
-        =display(s)
-
--if Rails.env.development?
-  hr
-  =link_to_unless_current 'my type', type_path(Type.my_path)
-  |<>
-  =link_to_unless_current 'your type', type_path(Type.your_path)
+    -@type.tops.each do |s|
+      td.bordered=display(s)
+  tr
+    -@type.bottoms.each do |s|
+      td.bordered=display(s)
+br
+table
+  tr
+    -@type.tops.each do |s|
+      td.bordered.left=render 'first', s: s
+  tr
+    -@type.bottoms.each do |s|
+      td.bordered.left=render 'first', s: s
+br
+table.equal
+  tr
+    -@type.tops.each do |s|
+      td.bordered.left=render 'second', s: s, t: @type.other(s)
+  tr
+    -@type.bottoms.each do |s|
+      td.bordered.left=render 'second', s: s, t: @type.other(s)

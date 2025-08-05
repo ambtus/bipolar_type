@@ -29,13 +29,21 @@ class Type
       ALL.find { |t| (subtypes - t.subtypes).empty? }
     end
 
-    def my_path = 'TFSN'
+    def my_path = 'FTNS'
     def my_type = find(my_path)
-    # for tests, just needs to be different.
-    def your_path = my_path.reverse
+    # for cucumber tests, just needs to be different.
+    def your_path = 'NSFT'
     def your_type = find(your_path)
+    # for visual tests, want to hit all sixteen subtypes
+    def next_path = 'SNTF'
+    def other_path = 'TFSN'
   end
 
   def subtypes = realms.add(Attitude.linear)
   def title = "#{path}J".insert(2, 'P/')
+
+  def tops = subtypes.select(&:top?)
+  def bottoms = subtypes - tops
+
+  def other(s) = s.top? ? tops.without(s).first : bottoms.without(s).first
 end
