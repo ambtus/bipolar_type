@@ -1,17 +1,12 @@
 br
 table
-  tr
-    th
-    -Attitude.each do |a|
-      th=a.do_something
   -Realm.linear.each do |r|
     tr
-      th=r.adjective
-      -Attitude.each do |a|
+      -Attitude.linear.each do |a|
         -s = a + r
         td.bordered
           -if @free.include?(s)
-            em> will not
+            em> cannot
             =display(s.opposite)
             br
             =link_to s.episode, types_path(@current + s.tla)

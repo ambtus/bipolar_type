@@ -25,7 +25,7 @@ class Attitude < Concept
   def letters = [first_letter, second_letter].join
 
   def feeling = %w[empty afraid angry sore][index]
-  def mild = %w[restless anxious irritable aggressive][index]
+  def mild = %w[restless anxious irritable sick][index]
   def sick = %w[fat skinny anorexic obese][index]
   def react = %w[digest flee fight rest][index]
   def act = %w[ingest move work sleep][index]
