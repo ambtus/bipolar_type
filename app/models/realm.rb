@@ -7,6 +7,8 @@ class Realm < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
+  def self.linear = ALL.values_at(1, 3, 0, 2)
+
   def subtypes = Subtype.all.select { |x| x.realm == self }
   def +(other) = subtypes.find { |x| x.attitude == other }
 
@@ -32,11 +34,11 @@ class Realm < Concept
 
   def letter = %w[E P F M][index]
 
-  def get = ['listen to', 'eat', 'earn', 'learn'][index]
-  def energy = %w[music carbs cash specifics][index]
-  def strength = %w[sermons protein credit rules][index]
+  def get = ['listen to', 'eat', 'earn', 'memorize'][index]
+  def energy = %w[music carbs wages specifics][index]
+  def strength = %w[sermons protein a\ salary rules][index]
   def get_energy = [get, energy].to_phrase
   def get_strength = [get, strength].to_phrase
-  def use_energy = ['sing', 'travel', 'pay cash', 'guess'][index]
-  def use_strength = ['preach', 'do physical labor', 'use credit', 'use logic'][index]
+  def use_energy = ['sing', 'run', 'pay cash', 'guess'][index]
+  def use_strength = ['preach', 'do housework', 'use credit', 'use logic'][index]
 end

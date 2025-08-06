@@ -15,15 +15,6 @@ p If you don&rsquo;t like them, you can use your own words.
   br
 
 =form_with url: words_path, method: :get do |f|
-
-  table
-    tr
-      -Realm.rotate[0, 2].each do |realm|
-        td=render 'word', realm: realm, form: f
-
-    tr
-      -Realm.rotate[2, 2].each do |realm|
-        td=render 'word', realm: realm, form: f
-
-    tr
-      td colspan = 2 = f.submit 'Save'
+  -Realm.linear.each do |realm|
+    =render 'word', realm: realm, form: f
+  .center= f.submit 'Save'

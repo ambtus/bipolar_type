@@ -1,9 +1,6 @@
 br
 table
   tr
-    -Realm.rotate.each do |r|
-      td=r.basic
-  tr
-    -Realm.rotate.each do |r|
+    -Realm.each do |r|
       td.bordered=render 'realm', realm: r
 

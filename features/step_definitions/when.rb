@@ -7,7 +7,7 @@ end
 When('I follow {word} links') do |word|
   who = word == 'my' ? Type.my_type : Type.your_type
   who.subtypes.sample(3).each do |s|
-    click_link(s.short)
+    click_link(s.episode)
   end
 end
 

@@ -7,13 +7,15 @@ class Attitude < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.linear = ALL
+  def self.linear = ALL.values_at(2, 1, 0, 3)
 
   def top? = string.starts_with?('T')
   def left? = string.ends_with?('L')
   def diagonal? = %i[BL TR].include?(symbol)
 
   def gu = top? ? 'use' : 'get'
+  def ud = top? ? 'up' : 'down'
+  def md = top? ? 'manic' : 'depressed'
   def es = left? ? 'energy' : 'strength'
   def action = [gu, es].join('_')
   def do_something = [gu, es].to_phrase
@@ -28,8 +30,8 @@ class Attitude < Concept
   def react = %w[digest flee fight rest][index]
   def act = %w[ingest move work sleep][index]
   def goal = %w[refuel escape win rebuild][index]
+  def short = [flop.mild, 'and', sick].to_phrase
 
-  def short = %w[lability freedom control stability][index]
   def element = %w[water air fire earth][index]
 
   def subtypes = Subtype.all.select { |x| x.attitude == self }

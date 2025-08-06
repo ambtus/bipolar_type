@@ -1,24 +1,14 @@
-table.bordered
-  caption
-    b
-      =realm.foci
-      | /
-      =realm.basic
+table
   tr
     -realm.tops.each do |subtype|
       td
-        b=subtype.goal
-        |> :
-        =subtype.action
-
+        =subtype.do_something
         br
-        =form.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: @size
+        =form.text_field subtype.tla, value: cookies[subtype.tla] || subtype.action, maxlength: 80, size: @size
 
   tr
     -realm.bottoms.each do |subtype|
       td
-        b=subtype.goal
-        |> :
-        =subtype.action
+        =subtype.do_something
         br
-        =form.text_field subtype.tla, value: cookies[subtype.tla], maxlength: 80, size: @size
+        =form.text_field subtype.tla, value: cookies[subtype.tla] || subtype.action, maxlength: 80, size: @size

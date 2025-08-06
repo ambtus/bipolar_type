@@ -39,7 +39,7 @@ class Type
     def other_path = 'TFSN'
   end
 
-  def subtypes = realms.add(Attitude.linear)
+  def subtypes = realms.add(Attitude.all)
   def title = "#{path}J".insert(2, 'P/')
 
   def tops = subtypes.select(&:top?)
