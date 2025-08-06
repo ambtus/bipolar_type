@@ -45,5 +45,4 @@ class Type
   def tops = subtypes.select(&:top?)
   def bottoms = subtypes - tops
 
-  def other(s) = s.top? ? tops.without(s).first : bottoms.without(s).first
 end

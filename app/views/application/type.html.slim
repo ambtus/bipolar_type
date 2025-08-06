@@ -7,23 +7,23 @@ br
 table
   tr
     -@type.tops.each do |s|
-      td.bordered=s.episode
+      td.bordered=render 'zeroth', s: s
   tr
     -@type.bottoms.each do |s|
-      td.bordered=s.episode
+      td.bordered=render 'zeroth', s: s
 br
 table
   tr
     -@type.tops.each do |s|
-      td.bordered.left=render 'first', s: s
+      td.bordered=render 'first', s: s
   tr
     -@type.bottoms.each do |s|
-      td.bordered.left=render 'first', s: s
+      td.bordered=render 'first', s: s
 br
-table.equal
+table
   tr
     -@type.tops.each do |s|
-      td.bordered.left=render 'second', s: s, t: @type.other(s)
+      td.bordered.left=render 'second', s: s
   tr
     -@type.bottoms.each do |s|
-      td.bordered.left=render 'second', s: s, t: @type.other(s)
+      td.bordered.left=render 'second', s: s

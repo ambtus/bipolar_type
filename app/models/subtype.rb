@@ -26,7 +26,7 @@ class Subtype < Concept
   def do_something = [gu, adjective, es].to_phrase
   def meth = [gu, es].join('_')
   def action = realm.send(meth)
-  def episode = [flop.mild, adjective, md.to_noun].to_phrase
+  def episode = [attitude.episode.colon, adjective].to_phrase
 
   # sort by attitude
   def parts = [attitude, realm]
@@ -36,8 +36,8 @@ class Subtype < Concept
   def flip = realm + attitude.flip
   def flop = realm + attitude.flop
 
-  def sick = [adverb, attitude.sick].to_phrase
-  def feeling = [adverb, attitude.feeling].to_phrase
+  def feeling = [adj1.ly, attitude.feeling].to_phrase
+  def size = [adverb, attitude.size].to_phrase
 
   def next_realm = realm.next + attitude
 

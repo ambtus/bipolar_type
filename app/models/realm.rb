@@ -29,7 +29,8 @@ class Realm < Concept
   def target = %w[family land hardware software][index]
   def adj1 = %w[spiritual physical material mental][index]
   def adj2 = %w[emotional spatial financial temporal][index]
-  def adjective =%w[emotional physical financial mental][index]
+  # def adjective =%w[emotional physical financial mental][index]
+  alias adjective :adj1
   def adverb = adjective.ly
 
   def letter = %w[E P F M][index]
@@ -39,6 +40,6 @@ class Realm < Concept
   def strength = %w[sermons protein a\ salary rules][index]
   def get_energy = [get, energy].to_phrase
   def get_strength = [get, strength].to_phrase
-  def use_energy = ['sing', 'run', 'pay cash', 'guess'][index]
-  def use_strength = ['preach', 'do housework', 'use credit', 'use logic'][index]
+  def use_energy = ['sing', 'travel', 'pay cash', 'guess'][index]
+  def use_strength = ['preach', 'do chores', 'use credit', 'use logic'][index]
 end
