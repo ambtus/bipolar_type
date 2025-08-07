@@ -20,8 +20,8 @@ class Type
     def title = [all.count, name.pluralize].to_phrase
     def find(string) = all.find { |t| t.realm_string == string }
 
-    def find_by(h)
-      tlas = h[:tlas].scan(/.../)
+    def find_by(hash)
+      tlas = hash[:tlas].scan(/.../)
       raise 'need three or four' unless tlas.size.between?(3, 4)
 
       subtypes = tlas.collect { |tla| Subtype.find_by(tla: tla) }
@@ -49,7 +49,6 @@ class Type
   def lefts = subtypes.select(&:left?)
   def rights = subtypes - lefts
 
-  def dont(s) = s.top? ? tops.without(s).first : bottoms.without(s).first
-  def okay(s) = s.left? ? lefts.without(s).first : rights.without(s).first
-
+  def dont(subtype) = subtype.top? ? tops.without(subtype).first : bottoms.without(subtype).first
+  def okay(subtype) = subtype.left? ? lefts.without(subtype).first : rights.without(subtype).first
 end

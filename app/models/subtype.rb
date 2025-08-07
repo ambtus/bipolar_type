@@ -12,8 +12,8 @@ class Subtype < Concept
   def realm = Realm.find(string.second)
   def attitude = Attitude.find(string.first + string.third)
 
-  def tla = [first_letter, realm.letter, second_letter].join
-  def self.find_by(h) = ALL.find { |s| s.tla == h[:tla].to_s }
+  def tla = [attitude.first_letter, realm.letter, attitude.second_letter].join
+  def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
 
   def self.without(string)
     subtypes = string.scan(/.../).collect { |tla| Subtype.find_by(tla: tla) }
@@ -23,31 +23,19 @@ class Subtype < Concept
     Subtype.all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  def do_something = [gu, adjective, es].to_phrase
-  def meth = [gu, es].join('_')
+  def do_something = [attitude.gu, realm.adjective, attitude.es].to_phrase
+  def meth = [attitude.gu, attitude.es].join('_')
   def action = realm.send(meth)
-  def episode = [adjective, attitude.episode ].to_phrase
+  def episode = [realm.adjective, attitude.episode].to_phrase
 
-  # sort by attitude
-  def parts = [attitude, realm]
-  def next = realm + attitude.next
-  def previous = realm + attitude.previous
   def opposite = realm + attitude.opposite
   def flip = realm + attitude.flip
   def flop = realm + attitude.flop
 
-  def feeling = [adj1.ly, attitude.feeling].to_phrase
-  def size = [adverb, attitude.size].to_phrase
+  def feeling = [realm.adj1.ly, attitude.feeling].to_phrase
+  def size = [realm.adverb, attitude.size].to_phrase
 
-  def next_realm = realm.next + attitude
-
-  def method_missing(meth)
-    if attitude.respond_to?(meth)
-      attitude.send(meth)
-    elsif realm.respond_to?(meth)
-      realm.send(meth)
-    else
-      super
-    end
-  end
+  delegate :time, to: :attitude
+  delegate :top?, to: :attitude
+  delegate :left?, to: :attitude
 end

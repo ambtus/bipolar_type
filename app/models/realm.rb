@@ -37,9 +37,9 @@ class Realm < Concept
 
   def get = ['listen to', 'eat', 'earn', 'memorize'][index]
   def energy = %w[music carbs wages specifics][index]
-  def strength = %w[sermons protein a\ salary rules][index]
-  def get_energy = [get, energy].to_phrase
-  def get_strength = [get, strength].to_phrase
+  def strength = ['sermons', 'protein', 'a salary', 'rules'][index]
+  def recover_energy = [get, energy].to_phrase
+  def recover_strength = [get, strength].to_phrase
   def use_energy = ['sing', 'travel', 'pay cash', 'guess'][index]
   def use_strength = ['preach', 'do chores', 'use credit', 'use logic'][index]
 end

@@ -10,7 +10,7 @@ class Concept
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
-    define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
+    define_singleton_method(sym) { ALL.find { |thing| thing.symbol == sym } }
   end
 
   class << self
@@ -19,8 +19,8 @@ class Concept
 
     def all = self::ALL
     def values_at(*args) = all.values_at(*args)
-    def rotate(i = 1) = all.rotate(i)
-    def [](i) = (all * 2).[](i)
+    def rotate(index = 1) = all.rotate(index)
+    def [](index) = (all * 2).[](index)
     delegate :first, to: :all
     delegate :second, to: :all
     delegate :third, to: :all
@@ -28,7 +28,7 @@ class Concept
     delegate :last, to: :all
     def each(&) = all.each(&)
     def each_with_index(&) = all.each_with_index(&)
-    def find(s) = all.find { |x| x.symbol == s.to_sym }
+    def find(thing) = all.find { |x| x.symbol == thing.to_sym }
     def title = [all.count, name.pluralize].to_phrase
     delegate :without, to: :all
   end

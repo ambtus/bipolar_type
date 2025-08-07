@@ -7,7 +7,7 @@ class Attitude < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  LINEAR = [2, 1, 0, 3]
+  LINEAR = [2, 1, 0, 3].freeze
 
   def self.linear = ALL.values_at(*LINEAR)
 
@@ -15,17 +15,17 @@ class Attitude < Concept
   def left? = string.ends_with?('L')
   def diagonal? = %i[BL TR].include?(symbol)
 
-  def gu = top? ? 'use' : 'get'
+  def gu = top? ? 'use' : 'recover'
   def es = left? ? 'energy' : 'strength'
   def action = [gu, es].join('_')
   def do_something = [gu, es].to_phrase
 
-  def first_letter = gu.first.capitalize
-  def second_letter = es.first.capitalize
+  def first_letter = top? ? 'U' : 'G'
+  def second_letter = left? ? 'E' : 'S'
   def letters = [first_letter, second_letter].join
 
-  def episode = %w[depression hypomania mania major\ depression][index]
-  def size = %w[ fat skinny anorexic  obese][index]
+  def episode = ['depression', 'hypomania', 'mania', 'major depression'][index]
+  def size = %w[fat skinny anorexic obese][index]
   def mild = %w[restless anxious irritable sick][index]
   def wrong = [size, mild].and
   def feeling = %w[empty afraid angry sore][index]
