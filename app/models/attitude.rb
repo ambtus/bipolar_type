@@ -7,7 +7,9 @@ class Attitude < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.linear = ALL.values_at(2, 0, 1, 3)
+  LINEAR = [2, 1, 0, 3]
+
+  def self.linear = ALL.values_at(*LINEAR)
 
   def top? = string.starts_with?('T')
   def left? = string.ends_with?('L')
@@ -31,6 +33,7 @@ class Attitude < Concept
   def goal = %w[refuel escape win rebuild][index]
 
   def element = %w[water air fire earth][index]
+  def time = %w[morning midday afternoon evening][index]
 
   def subtypes = Subtype.all.select { |x| x.attitude == self }
   def +(other) = subtypes.find { |x| x.realm == other }

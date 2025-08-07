@@ -7,7 +7,7 @@ class Realm < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.linear = ALL.values_at(1, 3, 0, 2)
+  def self.linear = ALL.values_at(1, 2, 3, 0)
 
   def subtypes = Subtype.all.select { |x| x.realm == self }
   def +(other) = subtypes.find { |x| x.attitude == other }

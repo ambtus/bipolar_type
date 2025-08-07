@@ -40,9 +40,16 @@ class Type
   end
 
   def subtypes = realms.add(Attitude.all)
+  def linear_subtypes = subtypes.values_at(*Attitude::LINEAR)
   def title = "#{path}J".insert(2, 'P/')
 
   def tops = subtypes.select(&:top?)
   def bottoms = subtypes - tops
+
+  def lefts = subtypes.select(&:left?)
+  def rights = subtypes - lefts
+
+  def dont(s) = s.top? ? tops.without(s).first : bottoms.without(s).first
+  def okay(s) = s.left? ? lefts.without(s).first : rights.without(s).first
 
 end

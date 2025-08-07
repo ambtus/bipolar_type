@@ -1,7 +1,6 @@
-p.center You can use your own words.
 
 -if cookies.to_h.present?
-  .right
+  p.right
     =link_to 'bookmark', words_path(cookies.to_h)
     br
     | (saves your words between sessions)
@@ -10,7 +9,7 @@ p.center You can use your own words.
     br
     | (clears cookies for the current session)
 -else
-  br
+  p.center You can use your own words.
 
 =form_with url: words_path, method: :get do |f|
   -Realm.linear.each do |realm|

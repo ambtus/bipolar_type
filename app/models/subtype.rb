@@ -26,7 +26,7 @@ class Subtype < Concept
   def do_something = [gu, adjective, es].to_phrase
   def meth = [gu, es].join('_')
   def action = realm.send(meth)
-  def episode = [attitude.episode.colon, adjective].to_phrase
+  def episode = [adjective, attitude.episode ].to_phrase
 
   # sort by attitude
   def parts = [attitude, realm]

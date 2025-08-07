@@ -1,10 +1,5 @@
 br
 
--if @free.count == 4
-  p.center This last choice is more difficult.<br />Take your time and focus on which is the hardest to do (easiest to fail).
-- else
-  p.center Go from left to right (mania & depression) or right to left (major depression & hypomania)
-
 table
   -Realm.linear.each do |r|
     tr
@@ -13,11 +8,10 @@ table
         td.bordered
           -if @free.include?(s)
             =link_to s.episode, types_path(@current + s.tla)
-            div
-              |> try (and fail) to
+            p
+              |> cannot
               =display(s.opposite)
-              br
-              |> can (and do)
+            p
+              |> can
               =display(s.flop)
-              br
-              =s.size
+            p=s.size

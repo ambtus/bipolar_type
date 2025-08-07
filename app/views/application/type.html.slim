@@ -3,27 +3,20 @@
     =link_to 'bookmark', type_path(@type.path, cookies.to_h)
     |< (save your words between sessions)
 
+
 br
 table
   tr
     -@type.tops.each do |s|
-      td.bordered=render 'zeroth', s: s
+      td.bordered=render 'first', s: s, t: @type.dont(s), u: @type.okay(s)
   tr
     -@type.bottoms.each do |s|
-      td.bordered=render 'zeroth', s: s
+      td.bordered=render 'first', s: s, t: @type.dont(s), u: @type.okay(s)
+
 br
 table
-  tr
-    -@type.tops.each do |s|
-      td.bordered=render 'first', s: s
-  tr
-    -@type.bottoms.each do |s|
-      td.bordered=render 'first', s: s
-br
-table
-  tr
-    -@type.tops.each do |s|
-      td.bordered.left=render 'second', s: s
-  tr
-    -@type.bottoms.each do |s|
-      td.bordered.left=render 'second', s: s
+  -@type.linear_subtypes.each do |s|
+    tr
+      td.bordered
+        b=s.episode
+        .left=render 'second', s: s
