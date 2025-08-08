@@ -5,10 +5,10 @@ Given I have changed the word for UPE to plugh
 When I am on the words page
 Then 'plugh' should be entered in 'UPE'
 
-Scenario: can be reset with link
+Scenario: can be reset with button
 Given I have changed the word for UPE to plugh
 When I am on the words page
-  And I follow the 'reset to defaults' link
+  And I press the 'reset to defaults' button
 Then I should be on the words page
   And I should NOT see plugh
   And my cookies should be empty

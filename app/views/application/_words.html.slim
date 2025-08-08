@@ -1,0 +1,6 @@
+=form_with url: words_path do |form|
+  =form.text_field subtype.tla, value: cookies[subtype.tla] || subtype.do_something, maxlength: 80, size: @size
+  =form.submit 'Save', id: subtype.tla
+ul
+  -subtype.lines.each do |line|
+    li=button_to line, words_path, params: { subtype.tla => line.chomp }

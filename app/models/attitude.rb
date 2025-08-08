@@ -15,21 +15,18 @@ class Attitude < Concept
   def left? = string.ends_with?('L')
   def diagonal? = %i[BL TR].include?(symbol)
 
-  def gu = top? ? 'use' : 'recover'
+  def gu = top? ? 'use' : 'get'
   def es = left? ? 'energy' : 'strength'
-  def action = [gu, es].join('_')
   def do_something = [gu, es].to_phrase
 
   def first_letter = top? ? 'U' : 'G'
   def second_letter = left? ? 'E' : 'S'
-  def letters = [first_letter, second_letter].join
 
-  def episode = ['depression', 'hypomania', 'mania', 'major depression'][index]
   def size = %w[fat skinny anorexic obese][index]
-  def mild = %w[restless anxious irritable sick][index]
-  def wrong = [size, mild].and
+
   def feeling = %w[empty afraid angry sore][index]
   def react = %w[digest flee fight rest][index]
+  def reaction = %w[digestion flight fight rest][index]
   def goal = %w[refuel escape win rebuild][index]
 
   def element = %w[water air fire earth][index]

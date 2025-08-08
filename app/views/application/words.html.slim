@@ -1,17 +1,20 @@
 
 -if cookies.to_h.present?
+  =button_to 'reset to defaults', words_path, params: { reset: true }
+  | (clears all cookies for the current session)
   p.right
     =link_to 'bookmark', words_path(cookies.to_h)
     br
     | (saves your words between sessions)
-    br
-    =link_to 'reset to defaults', "#{words_path}?GPE"
-    br
-    | (clears cookies for the current session)
 -else
-  p.center You can use your own words.
+  p.center You can choose from the buttons or enter and save your own words. 
 
-=form_with url: words_path, method: :get do |f|
-  -Realm.linear.each do |realm|
-    =render 'word', realm: realm, form: f
-  .center= f.submit 'Save'
+-Realm.linear.each do |realm|
+  table
+    caption=realm.name
+    tr
+      td.bordered=render 'words', subtype: realm + Attitude.TL
+      td.bordered=render 'words', subtype: realm + Attitude.TR
+    tr
+      td.bordered=render 'words', subtype: realm + Attitude.BL
+      td.bordered=render 'words', subtype: realm + Attitude.BR

@@ -24,9 +24,7 @@ class Subtype < Concept
   end
 
   def do_something = [attitude.gu, realm.adjective, attitude.es].to_phrase
-  def meth = [attitude.gu, attitude.es].join('_')
-  def action = realm.send(meth)
-  def episode = [realm.adjective, attitude.episode].to_phrase
+  def episode = [realm.adverb, attitude.feeling].to_phrase
 
   def opposite = realm + attitude.opposite
   def flip = realm + attitude.flip
@@ -34,6 +32,8 @@ class Subtype < Concept
 
   def feeling = [realm.adj1.ly, attitude.feeling].to_phrase
   def size = [realm.adverb, attitude.size].to_phrase
+
+  def lines = File.foreach("app/views/words/_#{string}", chomp: true)
 
   delegate :time, to: :attitude
   delegate :top?, to: :attitude

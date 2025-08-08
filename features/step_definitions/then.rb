@@ -26,6 +26,6 @@ end
 
 Then('all subtypes should be linked') do
   Subtype.each do |s|
-    assert page.has_link?(s.episode)
+    assert page.has_link?(s.size)
   end
 end

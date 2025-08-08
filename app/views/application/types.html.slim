@@ -7,11 +7,11 @@ table
         -s = a + r
         td.bordered
           -if @free.include?(s)
-            =link_to s.episode, types_path(@current + s.tla)
+            =link_to s.size, types_path(@current + s.tla)
             p
               |> cannot
               =display(s.opposite)
             p
               |> can
               =display(s.flop)
-            p=s.size
+

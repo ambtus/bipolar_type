@@ -17,29 +17,18 @@ class Realm < Concept
 
   def focus = %w[person place thing idea][index]
   def foci = focus.pluralize
-
   def basic = %w[why food shelter how][index]
-  def name = basic.capitalize
-
-  def organ = %w[voice body wallet mind][index]
-  def organly = %w[vocally bodily financially mentally][index]
-  def sense = %w[hearing smell/taste touch sight][index]
+  def organ = %w[soul body hands mind][index]
+  def sense = %w[hear smell/taste touch see][index]
   def resources = %w[priorities calories money information][index]
-  def products = %w[values foods uses implications][index]
+  def products = %w[values farms uses implications][index]
   def target = %w[family land hardware software][index]
   def adj1 = %w[spiritual physical material mental][index]
   def adj2 = %w[emotional spatial financial temporal][index]
-  # def adjective =%w[emotional physical financial mental][index]
   alias adjective :adj1
   def adverb = adjective.ly
+  def name = adjective.capitalize
 
+  # def adjective =%w[emotional physical financial mental][index]
   def letter = %w[E P F M][index]
-
-  def get = ['listen to', 'eat', 'earn', 'memorize'][index]
-  def energy = %w[music carbs wages specifics][index]
-  def strength = ['sermons', 'protein', 'a salary', 'rules'][index]
-  def recover_energy = [get, energy].to_phrase
-  def recover_strength = [get, strength].to_phrase
-  def use_energy = ['sing', 'travel', 'pay cash', 'guess'][index]
-  def use_strength = ['preach', 'do chores', 'use credit', 'use logic'][index]
 end

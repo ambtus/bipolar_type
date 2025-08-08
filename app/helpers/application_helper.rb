@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def display(subtype)
-    cookies[subtype.tla] || subtype.action
+    cookies[subtype.tla] || subtype.do_something
   end
 
   def display_links(ary)

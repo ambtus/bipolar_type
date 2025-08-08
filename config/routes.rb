@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get '/realms' => 'application#realms'
   get '/attitudes' => 'application#attitudes'
   resources :types, only: %i[show index]
-  resources :words, only: [:index]
+  resources :words, only: %i[create index]
   get '/me' => 'types#me', as: :my
 end
