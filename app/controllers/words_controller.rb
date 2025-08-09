@@ -15,7 +15,10 @@ class WordsController < ApplicationController
     if params[:reset]
       Rails.logger.debug { 'clearing cookies' }
       cookies.clear
+      redirect_to words_path
+    else
+      Rails.logger.debug { "anchor: #{@added}" }
+      redirect_to words_path + "##{@added}"
     end
-    redirect_to words_path
   end
 end

@@ -37,6 +37,7 @@ class ApplicationController < ActionController::Base
     return unless params[@tla] != cookies[@tla]
 
     Rails.logger.debug { "#{@tla} cookie added: #{params[@tla]}" }
+    @added = @tla
     cookies[@tla] = params[@tla]
   end
 end
