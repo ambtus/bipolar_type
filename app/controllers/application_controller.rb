@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_cookies
 
   def set_cookies
+    cookies.delete(Rails.application.config.session_options[:key])
     @cookie_keys = cookies.to_h.keys
     Subtype.each do |subtype|
       @tla = subtype.tla

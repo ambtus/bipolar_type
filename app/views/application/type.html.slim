@@ -3,9 +3,31 @@
     =link_to 'bookmark', type_path(@type.path, cookies.to_h)
     |< (save your words between sessions)
 
+/
+  br
+  table
+    caption.bold Your Bipolar Cycle
+    tr
+      -@type.tops.reverse.each do |s|
+        td.bordered.left=render 'fourth', s: s, t: @type.okay(s)
+    tr
+      -@type.bottoms.reverse.each do |s|
+        td.bordered.left=render 'fourth', s: s, t: @type.okay(s)
+
+/
+  br
+  table
+  tr
+    -@type.tops.reverse.each do |s|
+      td.bordered.left=render 'third', s: s
+  tr
+    -@type.bottoms.reverse.each do |s|
+      td.bordered.left=render 'third', s: s
+
 
 br
 table
+  / caption.bold Your Bipolar Solution
   tr
     -@type.tops.each do |s|
       td.bordered=render 'first', s: s, t: @type.dont(s), u: @type.okay(s)
@@ -13,10 +35,16 @@ table
     -@type.bottoms.each do |s|
       td.bordered=render 'first', s: s, t: @type.dont(s), u: @type.okay(s)
 
-br
-table
-  -@type.linear_subtypes.each do |s|
+/
+  br
+  table
     tr
-      td.bordered
-        b=s.size
-        .left=render 'second', s: s
+      -@type.tops.each do |s|
+        td.bordered.left=render 'second', s: s
+    tr
+      -@type.bottoms.each do |s|
+        td.bordered.left=render 'second', s: s
+
+br
+-@type.subtypes.each do |s|
+  =render 'advice', %i[s t u v].zip(@type.advice(s)).to_h

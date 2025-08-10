@@ -1,14 +1,16 @@
 -if attitude.top?
-  b=attitude.react
   ul
-    li=attitude.feeling
-    li=attitude.goal
     li=attitude.element
-    li=attitude.time
+    li=attitude.goal
+    li.bold=attitude.react
+    li=attitude.worse
+    li=attitude.bad
+    li.italic=attitude.time
 -else
   ul
-    li=attitude.time
-    li=attitude.element
+    li.italic=attitude.time
+    li=attitude.bad
+    li=attitude.worse
+    li.bold=attitude.react
     li=attitude.goal
-    li=attitude.feeling
-  b=attitude.react
+    li=attitude.element

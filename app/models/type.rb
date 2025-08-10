@@ -51,4 +51,7 @@ class Type
 
   def dont(subtype) = subtype.top? ? tops.without(subtype).first : bottoms.without(subtype).first
   def okay(subtype) = subtype.left? ? lefts.without(subtype).first : rights.without(subtype).first
+
+  def linear_advice(subtype) = subtypes.rotate(subtype.attitude.index)
+  def advice(subtype) = subtype.diagonal? ? linear_advice(subtype) : linear_advice(subtype).values_at(0, 3, 2, 1)
 end

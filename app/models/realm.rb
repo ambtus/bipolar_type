@@ -18,7 +18,7 @@ class Realm < Concept
   def focus = %w[person place thing idea][index]
   def foci = focus.pluralize
   def basic = %w[why food shelter how][index]
-  def organ = %w[soul body hands mind][index]
+  def organ = %w[soul body wallet mind][index]
   def sense = %w[hear smell/taste touch see][index]
   def resources = %w[priorities calories money information][index]
   def products = %w[values farms uses implications][index]

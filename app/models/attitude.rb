@@ -13,24 +13,22 @@ class Attitude < Concept
 
   def top? = string.starts_with?('T')
   def left? = string.ends_with?('L')
-  def diagonal? = %i[BL TR].include?(symbol)
+  def diagonal? = [1, 3].include?(index)
+  def first? = index.zero?
+  def second? = (index == 1)
+  def last? = (index == 3)
 
-  def gu = top? ? 'use' : 'get'
-  def es = left? ? 'energy' : 'strength'
-  def do_something = [gu, es].to_phrase
-
-  def first_letter = top? ? 'U' : 'G'
-  def second_letter = left? ? 'E' : 'S'
-
-  def size = %w[fat skinny anorexic obese][index]
-
-  def feeling = %w[empty afraid angry sore][index]
   def react = %w[digest flee fight rest][index]
   def reaction = %w[digestion flight fight rest][index]
-  def goal = %w[refuel escape win rebuild][index]
+  def goal = %w[refuel escape dominate rebuild][index]
+
+  def bad = ['low on energy', 'anxious', 'irritated', 'tired'][index]
+  def badness = %w[depression anxiety irritation tiredness][index]
+  def worse = %w[empty afraid angry exhausted][index]
 
   def element = %w[water air fire earth][index]
   def time = %w[morning midday afternoon evening][index]
+  def season = %w[spring summer autumn winter][index]
 
   def subtypes = Subtype.all.select { |x| x.attitude == self }
   def +(other) = subtypes.find { |x| x.realm == other }
