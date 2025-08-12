@@ -2,7 +2,7 @@ Feature: the types pages
 
 Example: has 16 subtypes
 Given I am on the types page
-Then all subtypes should be linked
+Then all behaviors should be linked
 
 Scenario: can select my type
 Given I am on the types page

@@ -10,14 +10,11 @@ html lang="en"
       .left { text-align: left;}
       .right {text-align: right;}
       .larger  { font-size: 1.2em;}
-      .bold  { font-weight: bold }
-      .less  { color: red }
-      .italic {  font-style: italic }
-      .hide  { visibility: hidden }
-      .more  { color: green }
+
       a.external:link {color: dimgrey; text-decoration: none;}
       a.external:visited {color: dimgrey; text-decoration: none;}
       a.external:hover {text-decoration: underline;}
+
       ul { padding: 0; margin: 0; list-style-type: none; }
       ol { margin: 0; padding-left: 1.5em;}
       table {margin: auto; border: none; border-collapse: collapse;}
@@ -25,8 +22,9 @@ html lang="en"
       td {border: none; text-align: center; vertical-align: top; padding: .2em; }
       .bordered {border: 1px solid grey}
       .middle {vertical-align: middle}
+      td.p {text-align: left; border: 1px solid grey;}
   body
-    .center.larger=display_links %w[introduction attitudes realms words types]
+    .center.larger=display_links %w[introduction attitudes realms behaviors types]
 
     =yield
 

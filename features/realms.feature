@@ -7,7 +7,6 @@ Then I should see people
   And I should see things
   And I should see ideas
 
-
 Scenario: describes four whats
 Given I am on the realms page
 Then I should see food

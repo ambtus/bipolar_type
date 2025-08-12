@@ -7,31 +7,32 @@ class Attitude < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  LINEAR = [2, 1, 0, 3].freeze
+  LINEAR = [3, 0, 1, 2].freeze
 
   def self.linear = ALL.values_at(*LINEAR)
 
   def top? = string.starts_with?('T')
+  def bipolar = top? ? 'depression' : 'mania'
+
   def left? = string.ends_with?('L')
   def diagonal? = [1, 3].include?(index)
   def first? = index.zero?
   def second? = (index == 1)
+  def third? = (index == 2)
   def last? = (index == 3)
 
   def react = %w[digest flee fight rest][index]
-  def reaction = %w[digestion flight fight rest][index]
-  def goal = %w[refuel escape dominate rebuild][index]
+  def goal = %w[refuel escape control rebuild][index]
 
-  def bad = ['low on energy', 'anxious', 'irritated', 'tired'][index]
-  def badness = %w[depression anxiety irritation tiredness][index]
+  def bad = %w[drained anxious irritated tired][index]
   def worse = %w[empty afraid angry exhausted][index]
 
   def element = %w[water air fire earth][index]
   def time = %w[morning midday afternoon evening][index]
-  def season = %w[spring summer autumn winter][index]
+  def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
 
-  def subtypes = Subtype.all.select { |x| x.attitude == self }
-  def +(other) = subtypes.find { |x| x.realm == other }
+  def behaviors = Behavior.all.select { |x| x.attitude == self }
+  def +(other) = behaviors.find { |x| x.realm == other }
 
   def flop = ALL.reverse[index]
   def flip = ALL.values_at(1, 0, 3, 2)[index]

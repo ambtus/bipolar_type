@@ -1,17 +1,11 @@
 br
-
 table
   -Realm.linear.each do |r|
     tr
-      -Attitude.each do |a|
+      -Attitude.linear.each do |a|
         -s = a + r
         td.bordered
           -if @free.include?(s)
             =link_to s.link, types_path(@current + s.tla)
-            p.left
-              |> it is easy for me to
-              =display(s.flop)
-            p.left
-              |> it is hard for me to
-              =display(s.opposite)
+            p.left=s.opposite.episode(@severity)
 

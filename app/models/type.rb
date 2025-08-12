@@ -24,34 +24,27 @@ class Type
       tlas = hash[:tlas].scan(/.../)
       raise 'need three or four' unless tlas.size.between?(3, 4)
 
-      subtypes = tlas.collect { |tla| Subtype.find_by(tla: tla) }
+      subtypes = tlas.collect { |tla| Behavior.find_by(tla: tla) }
       Rails.logger.debug { "subtypes: #{subtypes}" }
       ALL.find { |t| (subtypes - t.subtypes).empty? }
     end
 
-    def my_path = 'FTNS'
+    def my_path = 'TFSN'
     def my_type = find(my_path)
     # for cucumber tests, just needs to be different.
     def your_path = 'NSFT'
     def your_type = find(your_path)
     # for visual tests, want to hit all sixteen subtypes
     def next_path = 'SNTF'
-    def other_path = 'TFSN'
+    def other_path = 'FTNS'
   end
 
   def subtypes = realms.add(Attitude.all)
-  def linear_subtypes = subtypes.values_at(*Attitude::LINEAR)
+  def linear_subtypes = subtypes.values_at(*Attitude::LINEAR).rotate(2)
   def title = "#{path}J".insert(2, 'P/')
 
   def tops = subtypes.select(&:top?)
   def bottoms = subtypes - tops
 
-  def lefts = subtypes.select(&:left?)
-  def rights = subtypes - lefts
-
-  def dont(subtype) = subtype.top? ? tops.without(subtype).first : bottoms.without(subtype).first
-  def okay(subtype) = subtype.left? ? lefts.without(subtype).first : rights.without(subtype).first
-
-  def linear_advice(subtype) = subtypes.rotate(subtype.attitude.index)
-  def advice(subtype) = subtype.diagonal? ? linear_advice(subtype) : linear_advice(subtype).values_at(0, 3, 2, 1)
+  def linear_subtypes = subtypes.rotate(-1)
 end
