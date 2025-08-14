@@ -1,19 +1,14 @@
 br
 table
   tr
-    -@type.bottoms.each do |s|
-      td.p=render 'nature', s: s
+    -@type.tops.each do |b|
+      td=b.timed_action
   tr
-    -@type.tops.each do |s|
-      td.p=render 'nature', s: s
-br
-table
+    th colspan = 2 &orarr;
   tr
-    -@type.tops.reverse_each do |s|
-      td.p=render 'nurture', s: s.flop
-  tr
-    -@type.bottoms.reverse_each do |s|
-      td.p=render 'nurture', s: s.flop
--@type.linear_subtypes.each do |s|
+    -@type.bottoms.each do |b|
+      td=b.timed_action
+
+-@type.behaviors.each do |s|
   br
   =render 'episode', s: s

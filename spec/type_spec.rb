@@ -3,23 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe Type, type: :model do
-  it 'can be found by tlas in any order' do
-    my_tlas = described_class.my_type.subtypes.map(&:tla)
+  it 'has the same behaviors as other similar types' do
+    my_behaviors = described_class.my_type.behaviors
     4.times do |i|
-      expect(described_class.find_by(tlas: my_tlas.rotate(i).join)).to be described_class.my_type
-    end
-  end
-
-  it 'can be found by three out of four tlas' do
-    4.times do |i|
-      my_tlas = described_class.my_type.subtypes.map(&:tla)
-      my_tlas.delete_at(i)
-      expect(described_class.find_by(tlas: my_tlas.join)).to be described_class.my_type
+      found = described_class.new(my_behaviors.map(&:tla).rotate(i).join('•'))
+      expect(found.behaviors - my_behaviors).to be_empty
     end
   end
 
   it 'raises on two tlas' do
-    string = described_class.my_type.subtypes.map(&:tla)[0, 2].join
-    expect { described_class.find_by(tlas: string) }.to raise_error RuntimeError
+    string = described_class.my_type.tlas.sample(2).join('•')
+    expect { described_class.new(string) }.to raise_error RuntimeError
   end
 end

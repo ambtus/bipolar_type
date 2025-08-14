@@ -2,37 +2,37 @@
   b=s.episode
   br
   |> compulsively
-  =s.opposite.do_something.ing
-  =s.flop.second? ? ' at ' : ' in the '
-  em=s.flop.time
+  =s.flop.do_something.ing
+  =s.opposite.second? ? ' at ' : ' in the '
+  em=s.opposite.time
 br
 |> You have learned that you
 em> cannot
-=s.flop.do_something
+=s.opposite.do_something
 |<> if you did not
-=s.opposite.execute
+=s.flop.execute
 |<> enough. You are not
-=s.flop.do_something.ing
+=s.opposite.do_something.ing
 |<> so you
-=s.opposite.execute
+=s.flop.execute
 |<> more.
 br
 br
 | But you are no longer being
 em<> forced
 |> to
-=s.flop.do_something
+=s.opposite.do_something
 |> . Not wanting to is a
 em good enough reason
 |<> to not
-=s.flop.do_something
-|> . Which means you don’t have to
 =s.opposite.do_something
+|> . Which means you don’t have to
+=s.flop.do_something
 |<> either.
-=s.flop.second? ? 'At ' : 'In the '
-=s.flop.time
-em<> or
-=s.opposite.second? ? ' at ' : ' in the '
+=s.opposite.second? ? 'At ' : 'In the '
 =s.opposite.time
+em<> or
+=s.flop.second? ? ' at ' : ' in the '
+=s.flop.time
 | .
 br

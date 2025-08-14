@@ -12,11 +12,11 @@ class Behavior < Concept
   def realm = Realm.find(string.second)
   def attitude = Attitude.find(string.first + string.third)
 
-  def self.without(string)
-    subtypes = string.scan(/.../).collect { |tla| find_by(tla: tla) }.map(&:opposite)
-    Rails.logger.debug { "subtypes: #{subtypes}" }
-    realms = subtypes.map(&:realm)
-    attitudes = subtypes.map(&:attitude)
+  def self.without(array)
+    behaviors = array.collect { |tla| find_by(tla: tla) }
+    Rails.logger.debug { "behaviors: #{behaviors}" }
+    realms = behaviors.map(&:realm)
+    attitudes = behaviors.map(&:attitude)
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
@@ -33,10 +33,13 @@ class Behavior < Concept
   def do_something = [execute, adjective, something].to_phrase
   def anything = [adjective, something].to_phrase
 
+  def best_time = second? ? ' at ' : ' in the '
+  def timed_action = [do_something, best_time, time].to_phrase
+
   def bipolar = [adjective, attitude.bipolar].to_phrase
   def bad = [adverb, attitude.bad].to_phrase
   def worse = [adverb, attitude.worse].to_phrase
-  def episode = [opposite.season, opposite.bipolar].to_phrase.titleize
+  def episode = [opposite.season, bipolar].to_phrase.titleize
 
   def tla = [top? ? 'U' : 'G', letter, left? ? 'E' : 'S'].join
   def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
@@ -45,7 +48,7 @@ class Behavior < Concept
   def flip = realm + attitude.flip
   def flop = realm + attitude.flop
 
-  def link = tla
+  def link = do_something
 
   def what = top? ? "the stressful #{foci}" : "my #{organ}"
   def goal = [attitude.goal, what].to_phrase

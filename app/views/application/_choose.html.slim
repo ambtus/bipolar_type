@@ -1,5 +1,12 @@
--if @free.include?(s)
-  div
-    =link_to s.link, types_path(@current + s.opposite.tla)
-    .left I continue to #{s.do_something} after I have #{s.goal.en}.
+div
+  -if @free.include?(b)
+    =link_to b.link, types_path((@current + [b.tla]).join('•'))
 
+  -elsif @current.include?(b.tla)
+    b=b.link
+  -else
+    =b.link
+  -unless @current.map(&:second).include?(b.tla.second)
+    ul
+      -b.lines.each do |line|
+        li=line.chomp

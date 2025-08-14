@@ -33,12 +33,18 @@ html lang="en"
       -%w[my your next other].each do |which|
         =link_to_unless_current "#{which} type", type_path(Type.send("#{which}_path"))
         |<>
+
+      -if @free
+        hr
+        |> free:
+        =@free
+        =@free.count.to_s.wrap
+        br
+        |> current:
+        =@current
+        =@current.count.to_s.wrap
+
       hr
       | params: #{params}
       br
       | cookies: #{cookies.to_h}
-
-      -if @free
-        hr
-        =@free
-        | (#{@free.count})

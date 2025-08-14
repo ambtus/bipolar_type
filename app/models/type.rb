@@ -2,48 +2,29 @@
 
 class Type
   def initialize(string)
-    @realm_string = string
-    @realms = string.chars.collect { |s| Realm.find(s) }
-    @realms.uniq.check_constraints(Realm, 4, 4)
+    @behaviors = string.split('•').collect { |s| Behavior.find_by(tla: s) }
+    @behaviors.map(&:realm).uniq.check_constraints(Realm, 4, 4)
+    @behaviors.map(&:attitude).uniq.check_constraints(Attitude, 4, 4)
   end
-  attr_reader :realm_string, :realms
-  alias path :realm_string
-  alias inspect :realm_string
+  attr_reader :behaviors
 
-  ALL = Realm.all.permutation(4).collect do |realms|
-    Type.new(realms.map(&:symbol).join)
-  end
+  def tlas = behaviors.map(&:tla)
+  def title = tlas.join('•')
+  alias inspect :title
 
   class << self
-    def all = ALL
-    def each(&) = ALL.each(&)
-    def title = [all.count, name.pluralize].to_phrase
-    def find(string) = all.find { |t| t.realm_string == string }
-
-    def find_by(hash)
-      tlas = hash[:tlas].scan(/.../)
-      raise 'need three or four' unless tlas.size.between?(3, 4)
-
-      subtypes = tlas.collect { |tla| Behavior.find_by(tla: tla) }
-      Rails.logger.debug { "subtypes: #{subtypes}" }
-      ALL.find { |t| (subtypes - t.subtypes).empty? }
-    end
-
-    def my_path = 'TFSN'
-    def my_type = find(my_path)
+    def my_path = 'GEE•UMS•UFE•GPS'
+    def my_type = Type.new(my_path)
     # for cucumber tests, just needs to be different.
-    def your_path = 'NSFT'
-    def your_type = find(your_path)
+    def your_path = my_type.behaviors.map { |x| x.opposite.tla }.join('•')
+    def your_type = Type.new(your_path)
     # for visual tests, want to hit all sixteen subtypes
-    def next_path = 'SNTF'
-    def other_path = 'FTNS'
+    def next_path = my_type.behaviors.map { |x| x.flip.tla }.join('•')
+    def other_path = my_type.behaviors.map { |x| x.flop.tla }.join('•')
   end
 
-  def subtypes = realms.add(Attitude.all)
-  def title = "#{path}J".insert(2, 'P/')
+  def subtypes = behaviors.sort
 
   def tops = subtypes.select(&:top?)
   def bottoms = subtypes - tops
-
-  def linear_subtypes = subtypes.rotate(-1)
 end

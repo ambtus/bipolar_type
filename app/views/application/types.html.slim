@@ -1,14 +1,11 @@
-=render "Q#{@severity + 1}"
-table
-  tr
-    -Attitude.tops.each do |a|
-      td.bordered
-        b=a.episode
-        -Realm.each do |r|
-          =render 'choose', s: (a + r)
-  tr
-    -Attitude.bottoms.each do |a|
-      td.bordered
-        b=a.episode
-        -Realm.each do |r|
-          =render 'choose', s: (a + r)
+=render "Q#{@current.count + 1}"
+-Realm.each do |r|
+  table
+    caption
+      b=r.foci
+    tr
+      -Attitude.tops.each do |a|
+        td.bordered=render 'choose', b: (a + r)
+    tr
+      -Attitude.bottoms.each do |a|
+        td.bordered=render 'choose', b: (a + r)
