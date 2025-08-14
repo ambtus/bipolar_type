@@ -9,10 +9,10 @@ table
 br
 table
   tr
-    -@type.bottoms.reverse.each do |s|
+    -@type.tops.reverse_each do |s|
       td.p=render 'nurture', s: s.flop
   tr
-    -@type.tops.reverse.each do |s|
+    -@type.bottoms.reverse_each do |s|
       td.p=render 'nurture', s: s.flop
 -@type.linear_subtypes.each do |s|
   br

@@ -29,6 +29,7 @@ class TypesController < ApplicationController
   def severity
     return 0 if @free.count == 16
     return 1 if @free.count == 9
+
     2
   end
 

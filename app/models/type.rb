@@ -40,7 +40,6 @@ class Type
   end
 
   def subtypes = realms.add(Attitude.all)
-  def linear_subtypes = subtypes.values_at(*Attitude::LINEAR).rotate(2)
   def title = "#{path}J".insert(2, 'P/')
 
   def tops = subtypes.select(&:top?)

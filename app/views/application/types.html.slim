@@ -1,11 +1,14 @@
-br
+=render "Q#{@severity + 1}"
 table
-  -Realm.linear.each do |r|
-    tr
-      -Attitude.linear.each do |a|
-        -s = a + r
-        td.bordered
-          -if @free.include?(s)
-            =link_to s.link, types_path(@current + s.tla)
-            p.left=s.opposite.episode(@severity)
-
+  tr
+    -Attitude.tops.each do |a|
+      td.bordered
+        b=a.episode
+        -Realm.each do |r|
+          =render 'choose', s: (a + r)
+  tr
+    -Attitude.bottoms.each do |a|
+      td.bordered
+        b=a.episode
+        -Realm.each do |r|
+          =render 'choose', s: (a + r)

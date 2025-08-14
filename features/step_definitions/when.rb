@@ -10,4 +10,3 @@ When('I follow {word} links') do |word|
     click_link(s.link)
   end
 end
-

@@ -8,11 +8,11 @@ class Attitude < Concept
   end
 
   LINEAR = [3, 0, 1, 2].freeze
-
   def self.linear = ALL.values_at(*LINEAR)
 
   def top? = string.starts_with?('T')
-  def bipolar = top? ? 'depression' : 'mania'
+  def self.tops = ALL.select(&:top?)
+  def self.bottoms = ALL - tops
 
   def left? = string.ends_with?('L')
   def diagonal? = [1, 3].include?(index)
@@ -27,9 +27,10 @@ class Attitude < Concept
   def bad = %w[drained anxious irritated tired][index]
   def worse = %w[empty afraid angry exhausted][index]
 
-  def element = %w[water air fire earth][index]
   def time = %w[morning midday afternoon evening][index]
   def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
+  def bipolar = top? ? 'mania' : 'depression'
+  def episode = [season, bipolar].to_phrase.titleize
 
   def behaviors = Behavior.all.select { |x| x.attitude == self }
   def +(other) = behaviors.find { |x| x.realm == other }
