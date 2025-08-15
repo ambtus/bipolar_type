@@ -44,33 +44,12 @@ class String
     case words.count
     when 1, 2
       words.first
-    when 3
-      prep? ? words.first(2).to_phrase : words.first
     else
-      if words.count.even?
-        words.first(words.count / 2).to_phrase
-      else
-        words.first((words.count + 1) / 2).to_phrase
-      end
+      prep? ? words.first(2).to_phrase : words.first
     end
   end
   alias first_word :first_words
-  def last_words
-    case words.count
-    when 1
-      ''
-    when 2
-      words.last
-    when 3
-      prep? ? words.last : words.last(2).to_phrase
-    else
-      if words.count.even?
-        words.last(2).to_phrase
-      else
-        words.first((words.count - 1) / 2).to_phrase
-      end
-    end
-  end
+  def last_words = sub(first_words, '').squish
   alias last_word :last_words
 
   def quote = "‘#{self}’"

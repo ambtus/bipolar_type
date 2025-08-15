@@ -12,7 +12,8 @@ class Attitude < Concept
 
   def top? = string.starts_with?('T')
   def self.tops = ALL.select(&:top?)
-  def self.bottoms = ALL - tops
+  def bottom? = string.starts_with?('B')
+  def self.bottoms = ALL.select(&:bottom?)
 
   def left? = string.ends_with?('L')
   def diagonal? = [1, 3].include?(index)

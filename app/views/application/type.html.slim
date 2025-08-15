@@ -1,14 +1,13 @@
-br
-table
-  tr
-    -@type.tops.each do |b|
-      td=b.timed_action
-  tr
-    th colspan = 2 &orarr;
-  tr
-    -@type.bottoms.each do |b|
-      td=b.timed_action
+h2
+  table
+    tr
+      -@type.tops.each do |b|
+        td=b.advice
+    tr
+      th colspan = 2 &orarr;
+    tr
+      -@type.bottoms.each do |b|
+        td=b.advice
 
--@type.behaviors.each do |s|
-  br
+-@type.subtypes.each do |s|
   =render 'episode', s: s

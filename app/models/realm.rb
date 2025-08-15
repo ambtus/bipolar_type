@@ -12,17 +12,16 @@ class Realm < Concept
   def behaviors = Behavior.all.select { |x| x.realm == self }
   def +(other) = behaviors.find { |x| x.attitude == other }
 
+  def adjective = %w[spiritual physical material mental][index]
+  def adverb = adjective.ly
+
   def focus = %w[person place thing idea][index]
   def foci = focus.pluralize
-  def basic = %w[why food shelter how][index]
-  def organ = %w[soul body wallet mind][index]
+  def externals = %w[why land shelter how][index]
+  def familiar = %w[family farms hardware software][index]
   def sense = %w[hear smell/taste touch see][index]
-  def resources = %w[priorities calories money information][index]
-  def products = %w[values land tools implications][index]
-  def target = %w[family farms hardware software][index]
-  def adj1 = %w[spiritual physical material mental][index]
-  def adj2 = %w[emotional spatial financial temporal][index]
-  def adjective = %w[emotional physical financial mental][index]
-  def letter = %w[E P F M][index]
-  def adverb = adjective.ly
+  def basic = %w[values food tools implications][index]
+  def internals = %w[priorities calories currencies information][index]
+  def organ = %w[soul body wallet mind][index]
+
 end

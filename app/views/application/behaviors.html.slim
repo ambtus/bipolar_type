@@ -1,11 +1,13 @@
 -Realm.each do |realm|
   br
   table
-    caption
-      b=realm.foci.capitalize
+    tr
+      th colspan=2 =realm.foci
     tr
       td.bordered=render 'behavior', behavior: realm + Attitude.TL
       td.bordered=render 'behavior', behavior: realm + Attitude.TR
     tr
       td.bordered=render 'behavior', behavior: realm + Attitude.BL
       td.bordered=render 'behavior', behavior: realm + Attitude.BR
+    tr
+      th colspan=2 =realm.organ

@@ -19,3 +19,10 @@ Then('all behaviors should be listed') do
     assert page.has_text?(x.do_something)
   end
 end
+
+Then('{word} {word} should be visible') do |whose, what|
+  who = whose == 'my' ? Type.my_type : Type.your_type
+  who.behaviors.each do |x|
+    assert page.has_text?(x.send(what.singularize))
+  end
+end

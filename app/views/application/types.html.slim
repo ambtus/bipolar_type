@@ -1,11 +1,13 @@
 =render "Q#{@current.count + 1}"
 -Realm.each do |r|
   table
-    caption
-      b=r.foci
+    tr
+      th colspan=2 =r.foci
     tr
       -Attitude.tops.each do |a|
         td.bordered=render 'choose', b: (a + r)
     tr
       -Attitude.bottoms.each do |a|
         td.bordered=render 'choose', b: (a + r)
+    tr
+      th colspan=2 =r.organ

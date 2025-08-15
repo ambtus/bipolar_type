@@ -2,5 +2,8 @@ br
 table
   tr
     -Realm.each do |r|
+      th=r.adjective
+  tr
+    -Realm.each do |r|
       td.bordered=render 'realm', realm: r
 

@@ -1,38 +1,91 @@
-.center{id =s.tla}
-  b=s.episode
-  br
-  |> compulsively
+h2=s.goal
+p
+  |> Your nature is to
+  =s.do_something
+  |> . You learned to balance that by
+  =s.flip.timed_action.ing
+  | .
+h3=s.flip.goal
+p
+  |> As you were learning to
+  =s.flip.do_something
+  |> , you enhanced it by
+  =s.opposite.do_something.ing
+  |> . You have little to no interest in
+  =s.opposite.goal.ing
+  |> ; but you will
+  =s.opposite.execute
+  em<> some
+  =s.adjective
+  |<>
+  =s.opposite.something
+  |<> while
+  =s.flip.attitude.goal.ing
+  |<>
+  =s.flip.what.last_word.them
+  |> . You learned to balance that by
+  =s.flop.timed_action.ing
+  | .
+h3=s.episode
+p
+  |> Since
+  =s.flip.goal.ing
+  |<> is your
+  =s.ordinal
+  |<> priority, it is
+  =['very difficult', 'difficult', 'easy', 'very easy'][s.index]
+  |<> for authority figures, peer pressure, or social norms to convince you to
+  =s.opposite.attitude.goal
+  |<>
+  =s.opposite.what.last_word.them
+  |<> instead.
+p
+  b The vicious cycle:
+  |<> if you <em>are</em> forced to
+  =s.opposite.timed_action
+  |<> for a long time, you may forget that you never wanted to
+  =s.opposite.goal
+  |<> in the first place. Then, when the circumstances forcing you to do so are removed, you notice that you are
+  em<> not
+  =s.opposite.timed_action.ing
+  |<> and you assume that it is because you haven't
+  em=s.flop.execute.en
+  |<> enough
+  =s.flop.something
+  |> . So you start
   =s.flop.do_something.ing
-  =s.opposite.second? ? ' at ' : ' in the '
-  em=s.opposite.time
-br
-|> You have learned that you
-em> cannot
-=s.opposite.do_something
-|<> if you did not
-=s.flop.execute
-|<> enough. You are not
-=s.opposite.do_something.ing
-|<> so you
-=s.flop.execute
-|<> more.
-br
-br
-| But you are no longer being
-em<> forced
-|> to
-=s.opposite.do_something
-|> . Not wanting to is a
-em good enough reason
-|<> to not
-=s.opposite.do_something
-|> . Which means you don’t have to
-=s.flop.do_something
-|<> either.
-=s.opposite.second? ? 'At ' : 'In the '
-=s.opposite.time
-em<> or
-=s.flop.second? ? ' at ' : ' in the '
-=s.flop.time
-| .
-br
+  em<=s.opposite.best_time
+  |> , and cannot stop.
+  =s.flop.do_something.ing.capitalize
+  em<> balances
+  =s.opposite.do_something.ing
+  |> , it doesn’t <em>cause</em> it. And
+  =s.flop.do_something.too_much.ing
+  |<> may displace your natural instinct to
+  =s.timed_action
+  |<> making it harder to
+  =s.flip.timed_action
+  |<> and
+  =s.flip.goal
+  |<> which makes it even easier for authority figures, peer pressure, or social norms to convince you to
+  =s.opposite.attitude.goal
+  |<>
+  =s.opposite.what.last_word.them
+  | .
+p
+  b The virtuous cycle:
+  |<> don&rsquo;t
+  =s.opposite.timed_action
+  |<> unless you <em>must</em>
+  =s.opposite.goal
+  |> . Then you will be able to
+  =s.timed_action
+  |<> instead of
+  =s.flop.timed_action.ing
+  |<> (and compulsively
+  =s.opposite.best_time
+  |> ). Which will make it easier to
+  =s.flip.timed_action
+  |<> and
+  =s.behavior.goal
+  | .

@@ -13,18 +13,18 @@ class Type
   alias inspect :title
 
   class << self
-    def my_path = 'GEE•UMS•UFE•GPS'
+    def my_path = 'ifp•enj•etp•isj'
     def my_type = Type.new(my_path)
     # for cucumber tests, just needs to be different.
-    def your_path = my_type.behaviors.map { |x| x.opposite.tla }.join('•')
+    def your_path = my_type.behaviors.reverse.map { |x| x.opposite.tla }.join('•')
     def your_type = Type.new(your_path)
     # for visual tests, want to hit all sixteen subtypes
-    def next_path = my_type.behaviors.map { |x| x.flip.tla }.join('•')
-    def other_path = my_type.behaviors.map { |x| x.flop.tla }.join('•')
+    def next_path = my_type.behaviors.rotate.map { |x| x.flip.tla }.join('•')
+    def other_path = my_type.behaviors.reverse.rotate.map { |x| x.flop.tla }.join('•')
   end
 
-  def subtypes = behaviors.sort
+  def subtypes = behaviors.each_with_index.collect{|b, i| Subtype.new(b.tla+i.to_s)}
 
-  def tops = subtypes.select(&:top?)
-  def bottoms = subtypes - tops
+  def tops = subtypes.sort.select(&:top?)
+  def bottoms = subtypes.sort.select(&:bottom?)
 end
