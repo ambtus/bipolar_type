@@ -9,7 +9,7 @@ RSpec.describe Behavior, type: :model do
     end
 
     it 'returns 9 on single tla' do
-      expect(described_class.without([Behavior.first.tla]).count).to be 9
+      expect(described_class.without([described_class.first.tla]).count).to be 9
     end
 
     it 'returns 4 on two tlas' do

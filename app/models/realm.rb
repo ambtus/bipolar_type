@@ -23,5 +23,4 @@ class Realm < Concept
   def basic = %w[values food tools implications][index]
   def internals = %w[priorities calories currencies information][index]
   def organ = %w[soul body wallet mind][index]
-
 end

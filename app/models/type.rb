@@ -23,7 +23,7 @@ class Type
     def other_path = my_type.behaviors.reverse.rotate.map { |x| x.flop.tla }.join('•')
   end
 
-  def subtypes = behaviors.each_with_index.collect{|b, i| Subtype.new(b.tla+i.to_s)}
+  def subtypes = behaviors.each_with_index.collect { |b, i| Subtype.new(b.tla + i.to_s) }
 
   def tops = subtypes.sort.select(&:top?)
   def bottoms = subtypes.sort.select(&:bottom?)

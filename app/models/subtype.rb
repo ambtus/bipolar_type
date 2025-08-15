@@ -11,12 +11,12 @@ class Subtype
 
   def inspect = behavior.tla + ordinal
 
-  %i[top? bottom? advice something do_something timed_action best_time <=> tla episode flip flop opposite adjective].each do |meth|
+  %i[top? bottom? advice something do_something timed_action best_time <=> tla episode flip flop opposite
+     adjective].each do |meth|
     delegate meth, to: :behavior
   end
 
   def age = %w[child adolescent adult elder][index]
 
   def goal = "#{ordinal}: #{behavior.goal}"
-
 end

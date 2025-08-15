@@ -55,5 +55,4 @@ class Behavior < Concept
   def best_time = [second? ? ' at ' : ' in the ', time].to_phrase
   def timed_action = [do_something, best_time].to_phrase
   def advice = lines.first
-
 end
