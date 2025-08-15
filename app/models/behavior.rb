@@ -33,8 +33,7 @@ class Behavior < Concept
   def do_something = [execute, adjective, something].to_phrase
   def anything = [adjective, something].to_phrase
 
-  def best_time = second? ? ' at ' : ' in the '
-  def timed_action = [do_something, best_time, time].to_phrase
+
 
   def bipolar = [adjective, attitude.bipolar].to_phrase
   def bad = [adverb, attitude.bad].to_phrase
@@ -54,4 +53,8 @@ class Behavior < Concept
   def goal = [attitude.goal, what].to_phrase
 
   def lines = File.foreach("app/views/words/#{tla}", chomp: true)
+
+  def best_time = second? ? ' at ' : ' in the '
+  def timed_action = [lines.first, best_time, time].to_phrase
+
 end
