@@ -3,12 +3,12 @@ Feature: the type pages
 Example: type page gives me advice
 Given I am on the types page
 When I follow my links
-Then my advices should be visible
+Then my advice should be visible
 
 Example: type page gives you advice
 Given I am on the types page
 When I follow your links
-Then your advices should be visible
+Then your advice should be visible
 
 Example: type page lists my episodes
 Given I am on the types page

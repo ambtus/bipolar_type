@@ -15,4 +15,20 @@ RSpec.describe Type, type: :model do
     string = described_class.my_type.tlas.sample(2).join('•')
     expect { described_class.new(string) }.to raise_error RuntimeError
   end
+
+  it 'has my tops' do
+    expect(described_class.my_type.tops.first.tla).to eq 'etp'
+  end
+
+  it 'has your tops' do
+    expect(described_class.your_type.tops.first.tla).to eq 'esp'
+  end
+
+  it 'has my bottoms' do
+    expect(described_class.my_type.bottoms.first.tla).to eq 'ifp'
+  end
+
+  it 'has your bottoms' do
+    expect(described_class.your_type.bottoms.first.tla).to eq 'inp'
+  end
 end

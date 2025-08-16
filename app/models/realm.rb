@@ -17,10 +17,14 @@ class Realm < Concept
 
   def focus = %w[person place thing idea][index]
   def foci = focus.pluralize
+  alias top :foci
   def externals = %w[why land shelter how][index]
   def familiar = %w[family farms hardware software][index]
   def sense = %w[hear smell/taste touch see][index]
   def basic = %w[values food tools implications][index]
   def internals = %w[priorities calories currencies information][index]
   def organ = %w[soul body wallet mind][index]
+  alias bottom :organ
+  def left = %w[expressive gatherer labor tactics][index]
+  def right = %w[lexical hunter  capital logistics][index]
 end

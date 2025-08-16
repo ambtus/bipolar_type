@@ -25,6 +25,6 @@ class Type
 
   def subtypes = behaviors.each_with_index.collect { |b, i| Subtype.new(b.tla + i.to_s) }
 
-  def tops = subtypes.sort.select(&:top?)
-  def bottoms = subtypes.sort.select(&:bottom?)
+  def tops = [subtypes.find(&:second?), subtypes.find(&:third?)]
+  def bottoms = [subtypes.find(&:first?), subtypes.find(&:fourth?)]
 end

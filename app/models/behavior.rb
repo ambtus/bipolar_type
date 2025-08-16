@@ -20,7 +20,7 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? last? time season previous react].each do |meth|
+  %i[top? bottom? left? first? second? third? fourth? time season previous react].each do |meth|
     delegate meth, to: :attitude
   end
 

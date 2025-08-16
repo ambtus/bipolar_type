@@ -8,5 +8,4 @@ div
   -unless @current.map(&:second).include?(b.tla.second)
     ul
       li=b.do_something
-      -b.lines.each do |line|
-        li=line.chomp
+      li=b.advice
