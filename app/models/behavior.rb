@@ -20,7 +20,7 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? fourth? time season previous react].each do |meth|
+  %i[top? bottom? left? first? second? third? fourth? season previous react time].each do |meth|
     delegate meth, to: :attitude
   end
 
@@ -52,7 +52,6 @@ class Behavior < Concept
 
   def lines = File.foreach("app/words/#{tla}", chomp: true)
 
-  def best_time = [second? ? ' at ' : ' in the ', time].to_phrase
-  def timed_action = [do_something, best_time].to_phrase
+  def timed_action = [do_something, time].to_phrase
   def advice = lines.first
 end

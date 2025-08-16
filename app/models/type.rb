@@ -11,6 +11,7 @@ class Type
   def tlas = behaviors.map(&:tla)
   def title = tlas.join('•')
   alias inspect :title
+  alias path :title
 
   class << self
     def my_path = 'ifp•enj•etp•isj'

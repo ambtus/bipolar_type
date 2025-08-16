@@ -1,4 +1,8 @@
-=render "Q#{@current.count + 1}"
+p Select the behavior that you most <em>enjoy</em>: it feels natural, it feels right, it makes you <em>happy</em>.
+p.center
+  |> Your
+  em=function(@current.count)
+  |< function:
 -Realm.each do |r|
   table
     tr

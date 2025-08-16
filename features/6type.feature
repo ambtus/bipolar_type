@@ -1,31 +1,31 @@
 Feature: the type pages
 
-Example: type page gives me advice
+Example: type page lists my advice
 Given I am on the types page
 When I follow my links
 Then my advice should be visible
-
-Example: type page gives you advice
-Given I am on the types page
-When I follow your links
-Then your advice should be visible
-
-Example: type page lists my episodes
-Given I am on the types page
-When I follow my links
-Then my episodes should be visible
-
-Example: type page lists your episodes
-Given I am on the types page
-When I follow your links
-Then your episode should be visible
-
-Example: type page lists my goals
-Given I am on the types page
-When I follow my links
-Then my goals should be visible
 
 Example: type page lists your goals
 Given I am on the types page
 When I follow your links
 Then your goals should be visible
+
+Example: type page describes my subgoals
+Given I am on the types page
+When I follow my links
+Then my subgoals should be clickable
+
+Example: type page describes your episodes
+Given I am on the types page
+When I follow your links
+Then your episodes should be clickable
+
+Example: type page describes my problems
+Given I am on the types page
+When I follow my links
+Then my problems should be clickable
+
+Example: type page describes your solutions
+Given I am on the types page
+When I follow your links
+Then your solutions should be clickable

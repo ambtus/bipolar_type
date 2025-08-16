@@ -26,3 +26,18 @@ Then('{word} {word} should be visible') do |whose, what|
     assert page.has_text?(x.send(what.singularize))
   end
 end
+
+Then('{word} {word} should be clickable') do |whose, what|
+  who = whose == 'my' ? Type.my_type : Type.your_type
+  who.subtypes.each do |x|
+    click_link(clickable(x, what), match: :first)
+    click_link('Hide')
+  end
+end
+
+def clickable(who, what)
+  return who.flip.goal if what == 'subgoals'
+  return who.episode if what == 'episodes'
+
+  what.singularize
+end

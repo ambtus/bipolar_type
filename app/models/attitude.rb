@@ -28,7 +28,8 @@ class Attitude < Concept
   def bad = %w[drained anxious irritated tired][index]
   def worse = %w[empty afraid angry exhausted][index]
 
-  def time = %w[morning midday afternoon evening][index]
+  def time_of_day = %w[morning midday afternoon evening][index]
+  def time = second? ? "at #{time_of_day}" : "in the #{time_of_day}"
   def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
   def bipolar = top? ? 'mania' : 'depression'
   def episode = [season, bipolar].to_phrase.titleize

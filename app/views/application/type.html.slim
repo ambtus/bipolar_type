@@ -10,4 +10,19 @@ h2
         td=b.advice
 
 -@type.subtypes.each do |s|
-  =render 'episode', s: s
+  h2=s.goal
+  -if @show.include?("a#{s.index}")
+    =render 'subgoal', s: s
+  =show "a#{s.index}", s.flip.goal, @type.path, @show
+  |<>
+  -if @show.include?("b#{s.index}")
+    =render 'episode', s: s
+  =show "b#{s.index}", s.episode, @type.path, @show
+  |<>
+  -if @show.include?("c#{s.index}")
+    =render 'vicious', s: s
+  =show "c#{s.index}", 'problem', @type.path, @show
+  |<>
+  -if @show.include?("d#{s.index}")
+    =render 'virtuous', s: s
+  =show "d#{s.index}", 'solution', @type.path, @show

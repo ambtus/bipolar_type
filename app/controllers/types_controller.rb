@@ -15,6 +15,8 @@ class TypesController < ApplicationController
   end
 
   def show
+    string = params[:format] || ''
+    @show = string.blank? ? [] : string.scan(/../)
     @type = Type.new params[:id]
     @title = @type.title
     render 'type'

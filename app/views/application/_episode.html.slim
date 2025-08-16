@@ -1,93 +1,17 @@
-h2=s.goal
-p
-  |> Your nature is to
-  =s.do_something
-  |> . You learned to balance that by
-  =s.flip.timed_action.ing
-  | .
-h3=s.flip.goal
-p
-  |> As you were learning to
-  =s.flip.do_something
-  |> , you enhanced it by
-  =s.opposite.do_something.ing
-  |> . You have little to no interest in
-  =s.opposite.goal.ing
-  |> ; but you will
-  =s.opposite.execute
-  em<> some
-  =s.adjective
-  |<>
-  =s.opposite.something
-  |<> while
-  =s.flip.attitude.goal.ing
-  |<>
-  =s.flip.what.last_word.them
-  |> . You learned to balance that by
-  =s.flop.timed_action.ing
-  | .
 h3=s.episode
 p
   |> Since
   =s.flip.goal.ing
   |<> is your
   =s.ordinal
-  |<> priority, it is
+  |<> balance, it is
   =['very difficult', 'difficult', 'easy', 'very easy'][s.index]
   |<> for authority figures, peer pressure, or social norms to convince you to
   =s.opposite.attitude.goal
   |<>
   =s.opposite.what.last_word.them
-  |<> instead.
-h4 The vicious cycle
-p
-  |> If you <em>are</em> forced to
-  =s.opposite.timed_action
-  |<> for a long time, you may forget that you never wanted to
-  =s.opposite.goal
-  |<> in the first place. Then, when the circumstances forcing you to do so are removed, you notice that you are
-  em<> not
-  =s.opposite.timed_action.ing
-  |<> and you assume that it is because you haven't
-  em=s.flop.execute.en
-  |<> enough
-  =s.flop.something
-  |> . So you start
-  =s.flop.do_something.ing
-  em<=s.opposite.best_time
-  |> , and cannot stop.
-  =s.flop.do_something.ing.capitalize
-  em<> balances
-  =s.opposite.do_something.ing
-  |> , it doesn’t <em>cause</em> it. And
-  =s.flop.do_something.too_much.ing
-  |<> may displace your natural instinct to
-  =s.timed_action
-  |> , making it harder to
-  =s.flip.timed_action
-  |<> and
-  =s.flip.goal
-  |<> which makes it even easier for authority figures, peer pressure, or social norms to convince you to
-  =s.opposite.attitude.goal
-  |<>
-  =s.opposite.what.last_word.them
-  | .
-h4 The virtuous cycle
-p
-  |> Try not to
-  =s.opposite.timed_action
-  |<> unless <em>you</em> want to
-  =s.opposite.goal
-  |> . Then you will be able to
-  =s.timed_action
-  |<> instead of
-  =s.flop.timed_action.ing
-  |<> (and compulsively
-  =s.opposite.best_time
-  |> ). Which will make it easier to
-  =s.flip.timed_action
-  |> . Making it even easier to
-  =s.timed_action
-  |<> to
-  =s.behavior.goal
+  |<> instead. Which means that you are
+  =['most un', 'un', '', 'most '][s.index]
+  |> likely to suffer from
+  =s.bipolar
   | .
