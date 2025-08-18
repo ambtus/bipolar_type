@@ -1,0 +1,17 @@
+-if @valid
+  p
+    |> Your answers lead to the BipolarType
+    =link_to @type_path, type_path(@type_path)
+  p If that BipolarType does not seem to fit, there are 575 others.
+-else
+  p The questionaire was not able to determine your BipolarType.
+-unless @behaviors.blank?
+  p You can try starting with #{@behaviors.size == 1 ? 'the' : 'one of the'} following
+  ul
+    -@behaviors.each do |b|
+      li=link_to b.tla, types_path(b.tla)
+p You can try one of the either-or question sets
+ul
+  -6.times do |i|
+    -query = i.zero? ? '' : "?n=#{i}"
+    li=link_to (i.zero? ? 'original' : "#{i.ordinalize} alternate"), questions_path + query

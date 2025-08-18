@@ -299,7 +299,7 @@ class String
       return [first_words.ing, last_words].to_phrase
 
     end
-    "#{sub(/([^aeiou])([aeiou])([bpntg])$/, '\1\2\3\3').sub(/([^e])e$/, '\1')}ing"
+    "#{sub(/([^aeiou])([aeiou])([bpntgl])$/, '\1\2\3\3').sub(/([^e])e$/, '\1')}ing"
   end
 
   def enough

@@ -4,12 +4,11 @@ class TypesController < ApplicationController
   def index
     string = params[:format] || ''
     @current = string.split('•')
-    @title = "BipolarTypes#{" with #{@current.and}" if @current.present?}"
     @free = Behavior.without(@current)
-    if @free.length == 1
-      path = [string, @free.first.tla].join('•')
-      redirect_to action: 'show', id: path
+    if @free.empty?
+      redirect_to answer_path string
     else
+      @title = "BipolarTypes#{" with #{@current.and}" if @current.present?}"
       render 'types'
     end
   end

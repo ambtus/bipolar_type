@@ -21,7 +21,7 @@ class Realm < Concept
   def externals = %w[why land shelter how][index]
   def familiar = %w[family farms hardware software][index]
   def sense = %w[hear smell/taste touch see][index]
-  def basic = %w[values food tools implications][index]
+  def basic = %w[stories food tools implications][index]
   def internals = %w[priorities calories currencies information][index]
   def organ = %w[soul body wallet mind][index]
   alias bottom :organ

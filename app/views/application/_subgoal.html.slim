@@ -1,27 +1,19 @@
 h3=s.flip.goal
 p
   |> Your nature is to
-  =s.do_something
-  |> . You learned to balance that by
+  =s.behavior.goal
+  |> . You balance that by
   =s.flip.timed_action.ing
-  | .
+  |<> in order to
+  =s.flip.goal.period
 p
-  |> As you were learning to
-  =s.flip.do_something
-  |> , you enhanced it by
-  =s.opposite.do_something.ing
-  |> . You have little to no interest in
+  |> You have little to no interest in
   =s.opposite.goal.ing
-  |> ; but you will
-  =s.opposite.execute
-  em<> some
-  =s.adjective
-  |<>
-  =s.opposite.something
+  |<> but you will often
+  =s.opposite.do_something
   |<> while
-  =s.flip.attitude.goal.ing
+  =s.flip.goal.words.first.ing
   |<>
-  =s.flip.what.last_word.them
-  |> . You learned to balance that by
-  =s.flop.timed_action.ing
-  | .
+  =s.flip.goal.words.last.them
+  |> . You balance that by
+  =s.flop.timed_action.ing.period

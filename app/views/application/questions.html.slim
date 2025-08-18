@@ -1,0 +1,13 @@
+=form_with do |f|
+  ol
+    -@pairs.shuffle.each_with_index do |x,i|
+      -x.shuffle!
+      li
+        span class=x.first.tla
+          =f.radio_button "q[#{i}]", x.first.tla
+          =f.label "q[#{i}]_#{x.first.tla}", x.first.advice(@line_number)
+        |<> or
+        span class=x.second.tla
+          =f.label "q[#{i}]_#{x.second.tla}", x.second.advice(@line_number)
+          =f.radio_button "q[#{i}]", x.second.tla
+  =f.submit 'Analyze'

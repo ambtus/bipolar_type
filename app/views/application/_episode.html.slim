@@ -10,8 +10,11 @@ p
   =s.opposite.attitude.goal
   |<>
   =s.opposite.what.last_word.them
-  |<> instead. Which means that you are
-  =['most un', 'un', '', 'most '][s.index]
+  |<>
+  =s.opposite.time
+  |> , especially in the
+  =s.opposite.season
+  |> . Which means that of the four bipolar episodes, you are
+  =['the most un', 'un', '', 'the most '][s.index]
   |> likely to suffer from
-  =s.bipolar
-  | .
+  =s.episode.words.values_at(0, 2).to_phrase.period

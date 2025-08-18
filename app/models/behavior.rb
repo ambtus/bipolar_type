@@ -20,7 +20,7 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? fourth? season previous react time].each do |meth|
+  %i[top? bottom? left? first? second? third? fourth? season seasonal previous react time].each do |meth|
     delegate meth, to: :attitude
   end
 
@@ -36,22 +36,27 @@ class Behavior < Concept
   def bipolar = [adjective, attitude.bipolar].to_phrase
   def bad = [adverb, attitude.bad].to_phrase
   def worse = [adverb, attitude.worse].to_phrase
-  def episode = [opposite.season, bipolar].to_phrase.titleize
+  def episode = [seasonal, bipolar].to_phrase.titleize
 
   def tla = [top? ? 'e' : 'i', realm.string.downcase, left? ? 'p' : 'j'].join
   def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
+  def self.tlas = ALL.map(&:tla)
 
   def opposite = realm + attitude.opposite
   def flip = realm + attitude.flip
   def flop = realm + attitude.flop
 
-  def link = tla.upcase
+  def self.pairs = ALL.flat_map { |b| b.siblings.collect { |s| [b, s] } }.map(&:sort).uniq
+  def siblings = [flip, flop, *realm_siblings]
+  def realm_siblings = ALL.select { |b| b.attitude == attitude && b != self }
+
+  def link = tla
 
   def what = top? ? "stressful #{foci}" : "your #{organ}"
   def goal = [attitude.goal, what].to_phrase
 
-  def lines = File.foreach("app/words/#{tla}", chomp: true)
+  def lines = File.foreach("app/words/#{tla}", chomp: true).to_a
 
   def timed_action = [do_something, time].to_phrase
-  def advice = lines.first
+  def advice(line_number = 0) = lines[line_number]
 end
