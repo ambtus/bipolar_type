@@ -18,9 +18,9 @@ module ApplicationHelper
 
   def show(id, name, path, current)
     if current.include?(id)
-      link_to 'Hide', type_path(path, format: current.without(id).join)
+      link_to 'Hide', type_path(path, format: current.without(id).join, anchor: id)
     else
-      link_to name, type_path(path, format: [*current, id].join)
+      link_to name, type_path(path, format: [*current, id].join, anchor: id)
     end
   end
 end

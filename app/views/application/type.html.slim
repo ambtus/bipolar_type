@@ -10,23 +10,38 @@ b.larger
         td=b.advice
 div class='button-wrapper'
   -unless @show.size == 16
-    =button_to 'Show All', {format: 'all'}, :method => :get
+    =button_to 'Expand All', {format: 'all'}, :method => :get
   -unless @show.blank?
     =button_to 'Collapse All', {format: 'none'}, :method => :get
+
 -@type.subtypes.each do |s|
   h2=s.goal
-  -if @show.include?("a#{s.index}")
-    =render 'subgoal', s: s
-  =show "a#{s.index}", s.flip.goal, @type.path, @show
-  |<>
-  -if @show.include?("b#{s.index}")
-    =render 'episode', s: s
-  =show "b#{s.index}", s.episode, @type.path, @show
-  |<>
-  -if @show.include?("c#{s.index}")
-    =render 'vicious', s: s
-  =show "c#{s.index}", 'problem', @type.path, @show
-  |<>
-  -if @show.include?("d#{s.index}")
-    =render 'virtuous', s: s
-  =show "d#{s.index}", 'solution', @type.path, @show
+
+  -anchor = "a#{s.index}"
+  -if @show.include? anchor
+    =render 'subgoal', s: s, a: anchor
+    |<
+    =show anchor, s.flip.goal, @type.path, @show
+  -else
+    h3 id=anchor =show "a#{s.index}", s.flip.goal, @type.path, @show
+
+  -anchor = "b#{s.index}"
+  -if @show.include? anchor
+    =render 'episode', s: s, a: anchor
+    =show "b#{s.index}", s.episode, @type.path, @show
+  -else
+    h3 id=anchor =show anchor, s.episode, @type.path, @show
+
+  -anchor = "c#{s.index}"
+  -if @show.include? anchor
+    =render 'vicious', s: s, a: anchor
+    =show anchor, "#{s.bipolar} problem", @type.path, @show
+  -else
+    h4 id=anchor =show anchor, "#{s.bipolar} problem", @type.path, @show
+
+  -anchor = "d#{s.index}"
+  -if @show.include? anchor
+    =render 'virtuous', s: s, a: anchor
+    =show anchor, "#{s.bipolar} solution", @type.path, @show
+  -else
+    h4 id=anchor =show anchor, "#{s.bipolar} solution", @type.path, @show

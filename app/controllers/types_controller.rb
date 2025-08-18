@@ -27,7 +27,7 @@ class TypesController < ApplicationController
   private
     def show_array(string)
       return [] if string.blank? || string == 'none'
-      return %w[a b c d].multiply(%w[0 1 2 3]).flatten if string == 'all'
+      return %w[a b c d].multiply(%w[1 2 3 4]).flatten if string == 'all'
 
       string.scan(/../)
     end
