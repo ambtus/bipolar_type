@@ -31,3 +31,9 @@ Example: type page describes your solutions
 Given I am on the types page
 When I follow your links
 Then your solutions should be clickable
+
+Example: type page allows you to open all links
+Given I am on the types page
+When I follow my links
+  And I click the button
+Then my problems should NOT be clickable

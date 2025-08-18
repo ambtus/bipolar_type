@@ -25,6 +25,6 @@ class Realm < Concept
   def internals = %w[priorities calories currencies information][index]
   def organ = %w[soul body wallet mind][index]
   alias bottom :organ
-  def left = %w[expressive gatherer labor tactics][index]
-  def right = %w[lexical hunter capital logistics][index]
+  def left = %w[emotion gathering labor tactics][index]
+  def right = %w[language hunting capital logistics][index]
 end

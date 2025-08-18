@@ -1,16 +1,18 @@
 h3=s.episode
 p
-  |> Since
-  =s.flip.goal.ing
-  |<> is your
-  =s.ordinal
-  |<> balance, it is
-  =['very difficult', 'difficult', 'easy', 'very easy'][s.index]
-  |<> for authority figures, peer pressure, or social norms to convince you to be more
+  |> If authority figures, peer pressure, or social norms try to influence you to focus more on
   =s.opposite.side
-  |> , especially in the
-  =s.opposite.season
-  |> . Which means that of the four bipolar episodes, you are
-  =['the most un', 'un', '', 'the most '][s.index]
+  |<> than
+  =s.side
+  |> , you
+  -if s.conscious?
+    =s.opposite.do_something.words.insert(1, 'the extra').to_phrase
+    |<> to improve your ability to
+    =s.flip.goal
+  -else
+    |<> let them convince you to
+    =s.opposite.goal
+  |> . You are
+  =['most un', 'un', '', 'most '][s.index]
   |> likely to suffer from
   =s.episode.words.values_at(0, 2).to_phrase.period

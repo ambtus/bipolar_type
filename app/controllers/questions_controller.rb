@@ -25,11 +25,11 @@ class QuestionsController < ApplicationController
 
     auxiliary = free.pop
     now_free = free & Behavior.without([auxiliary]).map(&:tla)
-    redirect_to answer_path([dominant, auxiliary].join('•')) and return if now_free.blank?
+    redirect_to answer_path([dominant, auxiliary].join('-')) and return if now_free.blank?
 
     tertiary = now_free.pop
     inferior = Behavior.without([dominant, auxiliary, tertiary]).map(&:tla).first
 
-    redirect_to answer_path [dominant, auxiliary, tertiary, inferior].compact.join('•')
+    redirect_to answer_path [dominant, auxiliary, tertiary, inferior].compact.join('-')
   end
 end

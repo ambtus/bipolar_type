@@ -11,6 +11,10 @@ class Subtype
 
   def inspect = behavior.tla + ordinal
 
+  def ordinal_word = %w[first second third last][@index]
+
+  def conscious? = index < 2
+
   %i[top? bottom? advice something do_something timed_action best_time <=> first? second? third? fourth? tla episode
      flip flop opposite adjective side].each do |meth|
     delegate meth, to: :behavior

@@ -1,6 +1,6 @@
 div
   -if @free.include?(b)
-    =link_to b.link, types_path((@current + [b.tla]).join('•'))
+    =link_to b.link, types_path((@current + [b.tla]).join('-'))
   -elsif @current.include?(b.tla)
     b=b.link
   -else

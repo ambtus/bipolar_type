@@ -41,8 +41,15 @@ end
 Then('{word} {word} should be clickable') do |whose, what|
   who = whose == 'my' ? Type.my_type : Type.your_type
   who.subtypes.each do |x|
-    click_link(clickable(x, what), match: :first)
-    click_link('Hide')
+    click_link clickable(x, what), match: :first
+    click_link 'Hide'
+  end
+end
+
+Then('{word} {word} should NOT be clickable') do |whose, what|
+  who = whose == 'my' ? Type.my_type : Type.your_type
+  who.subtypes.each do |x|
+    assert page.has_no_link? clickable(x, what)
   end
 end
 

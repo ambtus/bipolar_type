@@ -3,7 +3,7 @@
 class TypesController < ApplicationController
   def index
     string = params[:format] || ''
-    @current = string.split('•')
+    @current = string.split('-')
     @free = Behavior.without(@current)
     if @free.empty?
       redirect_to answer_path string
@@ -14,8 +14,7 @@ class TypesController < ApplicationController
   end
 
   def show
-    string = params[:format] || ''
-    @show = string.blank? ? [] : string.scan(/../)
+    @show = show_array params[:format]
     @type = Type.new params[:id]
     @title = @type.title
     render 'type'
@@ -24,4 +23,12 @@ class TypesController < ApplicationController
   def me
     redirect_to action: 'show', id: Type.my_path
   end
+
+  private
+    def show_array(string)
+      return [] if string.blank? || string == 'none'
+      return %w[a b c d].multiply(%w[0 1 2 3]).flatten if string == 'all'
+
+      string.scan(/../)
+    end
 end

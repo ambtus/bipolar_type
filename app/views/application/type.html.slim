@@ -8,7 +8,11 @@ b.larger
     tr
       -@type.bottoms.each do |b|
         td=b.advice
-
+div class='button-wrapper'
+  -unless @show.size == 16
+    =button_to 'Show All', {format: 'all'}, :method => :get
+  -unless @show.blank?
+    =button_to 'Collapse All', {format: 'none'}, :method => :get
 -@type.subtypes.each do |s|
   h2=s.goal
   -if @show.include?("a#{s.index}")
