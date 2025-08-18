@@ -55,8 +55,10 @@ class Behavior < Concept
   def what = top? ? "stressful #{foci}" : "your #{organ}"
   def goal = [attitude.goal, what].to_phrase
 
-  def lines = File.foreach("app/words/#{tla}", chomp: true).to_a
+  def lines = File.foreach("words/#{tla}", chomp: true).to_a
 
   def timed_action = [do_something, time].to_phrase
   def advice(line_number = 0) = lines[line_number]
+
+  def side = left? ? realm.left : realm.right
 end
