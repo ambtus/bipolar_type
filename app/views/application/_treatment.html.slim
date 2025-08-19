@@ -4,14 +4,14 @@ ol
     li
       -case i
       -when 0
+        |> just
         =s.timed_action
       -when 1
-        |> do not
+        |> don’t force yourself to
         =s.opposite.do_something
       -when 2
-        | do not
-        em<>=s.flop.execute
-        =s.flop.something
+        |> don’t
+        =s.flop.do_something
       -when 3
         =s.flip.do_something
         |< to
