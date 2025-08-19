@@ -9,27 +9,39 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    redirect_to answer_path('nil') and return if params[:q].blank?
+    @preferences = sort(params[:q].try(&:values))
+    Rails.logger.debug { "preferences: #{@preferences}" }
+    redirect_to answer_path('nil') and return if @preferences.blank?
 
-    choices = params[:q].values
-    Rails.logger.debug { choices }
+    @functions = []
+    4.times { update_p_and_f }
+    derive_missing if @functions.size == 3
+    redirect_to answer_path @functions.join('-')
+  end
+
+  private
+
+  def derive_missing
+    leftovers = Behavior.without(@functions)
+    return unless leftovers.size == 1
+
+    @functions << leftovers.first.tla
+  end
+
+  def update_p_and_f
+    @functions << @preferences.pop
+    @functions.compact!
+    dups = Behavior.without(@functions) & @preferences
+    @preferences.delete(dups)
+    Rails.logger.debug { "functions: #{@functions}" }
+  end
+
+  def sort(values)
+    return [] if values.blank?
+
     counts = Hash.new(0)
-    choices.each { |v| counts[v] += 1 }
-    Rails.logger.debug { counts }
+    values.each { |v| counts[v] += 1 }
     sorted = counts.sort_by { |_, value| value }
-    Rails.logger.debug { sorted }
-    preferences = sorted.map(&:first)
-    dominant = preferences.pop
-    free = Behavior.without([dominant]).map(&:tla) & preferences
-    redirect_to answer_path(dominant) and return if free.blank?
-
-    auxiliary = free.pop
-    now_free = free & Behavior.without([auxiliary]).map(&:tla)
-    redirect_to answer_path([dominant, auxiliary].join('-')) and return if now_free.blank?
-
-    tertiary = now_free.pop
-    inferior = Behavior.without([dominant, auxiliary, tertiary]).map(&:tla).first
-
-    redirect_to answer_path [dominant, auxiliary, tertiary, inferior].compact.join('-')
+    sorted.map(&:first)
   end
 end

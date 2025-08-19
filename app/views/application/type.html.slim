@@ -10,9 +10,9 @@ b.larger
         td=b.advice
 div class='button-wrapper'
   -unless @show.size == 16
-    =button_to 'Expand All', {format: 'all'}, :method => :get
+    =button_to 'Expand All', { format: 'all' }, method: :get
   -unless @show.blank?
-    =button_to 'Collapse All', {format: 'none'}, :method => :get
+    =button_to 'Collapse All', { format: 'none' }, method: :get
 
 -@type.subtypes.each do |s|
   h2=s.goal

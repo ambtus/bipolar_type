@@ -20,8 +20,10 @@ class Subtype
   def opposite_ordinal = %w[4th 3rd 2nd 1st][index]
   def episode = "#{opposite_ordinal}: #{attitude.episode.downcase}"
 
-  %i[top? bottom? advice something do_something timed_action best_time <=> first? second? third? last? tla flip flop opposite adjective attitude bipolar season time execute what].each do |meth|
+  %i[top? bottom? first? second? third? last? <=>
+     flip flop opposite tla adjective adverb
+     advice something do_something timed_action time best_time
+     attitude bipolar season execute what].each do |meth|
     delegate meth, to: :behavior
   end
-
 end
