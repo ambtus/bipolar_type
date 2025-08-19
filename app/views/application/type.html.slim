@@ -17,31 +17,31 @@ div class='button-wrapper'
 -@type.subtypes.each do |s|
   h2=s.goal
 
-  -anchor = "a#{s.index}"
+  -anchor = "a#{s.number}"
   -if @show.include? anchor
     =render 'subgoal', s: s, a: anchor
     |<
     =show anchor, s.flip.goal, @type.path, @show
   -else
-    h3 id=anchor =show "a#{s.index}", s.flip.goal, @type.path, @show
+    h3 id=anchor =show "a#{s.number}", s.flip.goal, @type.path, @show
 
-  -anchor = "b#{s.index}"
+  -anchor = "b#{s.number}"
   -if @show.include? anchor
     =render 'episode', s: s, a: anchor
-    =show "b#{s.index}", s.episode, @type.path, @show
+    =show "b#{s.number}", s.episode, @type.path, @show
   -else
     h3 id=anchor =show anchor, s.episode, @type.path, @show
 
-  -anchor = "c#{s.index}"
+  -anchor = "c#{s.number}"
   -if @show.include? anchor
-    =render 'vicious', s: s, a: anchor
-    =show anchor, "#{s.bipolar} problem", @type.path, @show
+    =render 'symptoms', s: s, a: anchor
+    =show anchor, 'symptoms', @type.path, @show
   -else
-    h4 id=anchor =show anchor, "#{s.bipolar} problem", @type.path, @show
+    h4 id=anchor =show anchor, 'symptoms', @type.path, @show
 
-  -anchor = "d#{s.index}"
+  -anchor = "d#{s.number}"
   -if @show.include? anchor
-    =render 'virtuous', s: s, a: anchor
-    =show anchor, "#{s.bipolar} solution", @type.path, @show
+    =render 'treatment', s: s, a: anchor
+    =show anchor, 'treatment', @type.path, @show
   -else
-    h4 id=anchor =show anchor, "#{s.bipolar} solution", @type.path, @show
+    h4 id=anchor =show anchor, 'treatment', @type.path, @show

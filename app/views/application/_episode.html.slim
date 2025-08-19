@@ -1,18 +1,2 @@
 h3 id=a =s.episode
-p
-  |> If authority figures, peer pressure, or social norms try to influence you to focus more on
-  =s.opposite.side
-  |<> than
-  =s.side
-  |> , you
-  -if s.conscious?
-    =s.opposite.do_something.words.insert(1, 'the extra').to_phrase
-    |<> to improve your ability to
-    =s.flip.goal
-  -else
-    |<> let them convince you to
-    =s.opposite.goal
-  |> . You are
-  =['most un', 'un', '', 'most '][s.index]
-  |> likely to suffer from
-  =s.episode.words.values_at(0, 2).to_phrase.period
+p The #{s.opposite_ordinal_word} bipolar episode you are likely to develop is #{s.bipolar} in the #{s.opposite.season}.

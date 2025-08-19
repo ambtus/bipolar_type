@@ -25,12 +25,12 @@ Then your episodes should be clickable
 Example: type page describes my problems
 Given I am on the types page
 When I follow my links
-Then my problems should be clickable
+Then my symptoms should be clickable
 
 Example: type page describes your solutions
 Given I am on the types page
 When I follow your links
-Then your solutions should be clickable
+Then your treatments should be clickable
 
 Example: type page allows you to open all links
 Given I am on the types page

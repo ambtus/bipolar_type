@@ -20,7 +20,7 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? fourth? season seasonal previous react time].each do |meth|
+  %i[top? bottom? left? first? second? third? last? season seasonal previous react time].each do |meth|
     delegate meth, to: :attitude
   end
 
@@ -28,10 +28,10 @@ class Behavior < Concept
     delegate meth, to: :realm
   end
 
-  def something = left? ? 'energy' : 'strength'
   def execute = top? ? 'use' : 'get'
-  def do_something = [execute, adjective, something].to_phrase
-  def anything = [adjective, something].to_phrase
+  def which = left? ? 'energy' : 'strength'
+  def something = [adjective, which].to_phrase
+  def do_something = [execute, adjective, which].to_phrase
 
   def bipolar = [adjective, attitude.bipolar].to_phrase
   def bad = [adverb, attitude.bad].to_phrase
@@ -52,13 +52,11 @@ class Behavior < Concept
 
   def link = tla
 
-  def what = top? ? "stressful #{foci}" : "your #{organ}"
+  def what = top? ? foci : "your #{organ}"
   def goal = [attitude.goal, what].to_phrase
 
   def lines = File.foreach("words/#{tla}", chomp: true).to_a
 
   def timed_action = [do_something, time].to_phrase
   def advice(line_number = 0) = lines[line_number]
-
-  def side = left? ? realm.left : realm.right
 end

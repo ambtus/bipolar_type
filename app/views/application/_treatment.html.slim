@@ -1,0 +1,20 @@
+h4 id=a treatment
+ol
+  -s.number.times do |i|
+    li
+      -case i
+      -when 0
+        =s.timed_action
+      -when 1
+        |> do not
+        =s.opposite.do_something
+      -when 2
+        | do not
+        em<>=s.flop.execute
+        =s.flop.something
+      -when 3
+        =s.flip.do_something
+        |< to
+        em<>=s.flip.attitude.goal
+        =s.flip.what
+br

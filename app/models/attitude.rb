@@ -20,7 +20,7 @@ class Attitude < Concept
   def first? = index.zero?
   def second? = (index == 1)
   def third? = (index == 2)
-  def fourth? = (index == 3)
+  def last? = (index == 3)
 
   def react = %w[digest flee fight rest][index]
   def goal = %w[refuel escape control rebuild][index]

@@ -4,20 +4,24 @@ class Subtype
   def initialize(string)
     @string = string
     @behavior = Behavior.find_by(tla: string.chop)
-    @index = string.last.to_i + 1
-    @ordinal = @index.ordinalize
+    @index = string.last.to_i
   end
-  attr_reader :behavior, :ordinal, :index
+  attr_reader :behavior, :index
+
+  def number = index + 1
+  def ordinal = number.ordinalize
+  def ordinal_word = %w[first second third fourth][index]
+  def jungian = %w[dominant auxiliary tertiary inferior][index]
 
   def inspect = behavior.tla + ordinal
+  def goal = "#{ordinal}: #{behavior.goal}"
 
-  def ordinal_word = %w[first second third last][@index -1]
-  def conscious? = index < 3
+  def opposite_ordinal_word = %w[last third second first][index]
+  def opposite_ordinal = %w[4th 3rd 2nd 1st][index]
+  def episode = "#{opposite_ordinal}: #{attitude.episode.downcase}"
 
-  %i[top? bottom? advice something do_something timed_action best_time <=> first? second? third? fourth? tla episode
-     flip flop opposite adjective side bipolar].each do |meth|
+  %i[top? bottom? advice something do_something timed_action best_time <=> first? second? third? last? tla flip flop opposite adjective attitude bipolar season time execute what].each do |meth|
     delegate meth, to: :behavior
   end
 
-  def goal = "#{ordinal}: #{behavior.goal}"
 end
