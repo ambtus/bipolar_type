@@ -4,19 +4,26 @@ class QuestionsController < ApplicationController
   def index
     @title = '40 Questions'
     @pairs = Behavior.pairs
-    @line_number = params[:n].blank? ? 0 : params[:n].to_i
+    @line_number = if params[:n].blank?
+                     0
+                   else
+                     params[:n].to_i
+                   end
     render 'questions'
   end
 
   def create
     @preferences = sort(params[:q].try(&:values))
     Rails.logger.debug { "preferences: #{@preferences}" }
-    redirect_to answer_path('nil') and return if @preferences.blank?
+    if @preferences.blank?
+      redirect_to answer_path('nil')
+    else
 
-    @functions = []
-    4.times { update_p_and_f }
-    derive_missing if @functions.size == 3
-    redirect_to answer_path @functions.join('-')
+      @functions = []
+      4.times { update_p_and_f }
+      derive_missing if @functions.size == 3
+      redirect_to answer_path @functions.join('-')
+    end
   end
 
   private

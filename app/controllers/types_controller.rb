@@ -5,8 +5,8 @@ class TypesController < ApplicationController
     string = params[:format] || ''
     @current = string.split('-')
     @free = Behavior.without(@current)
-    if @free.empty?
-      redirect_to answer_path string
+    if @free.size == 1
+      redirect_to answer_path [string, Behavior.without(@current).map(&:tla).first].join('-')
     else
       @title = "BipolarTypes#{" with #{@current.and}" if @current.present?}"
       render 'types'
@@ -15,7 +15,10 @@ class TypesController < ApplicationController
 
   def show
     @show = show_array params[:format]
-    @type = Type.new params[:id]
+    path, set = params[:id].split('_')
+    @type = Type.new path
+    @suffix = suffix(set)
+    @number = set.to_i
     @title = @type.title
     render 'type'
   end
@@ -31,5 +34,12 @@ class TypesController < ApplicationController
     return %w[a b c d].multiply(%w[1 2 3 4]).flatten if string == 'all'
 
     string.scan(/../)
+  end
+
+  def suffix(set)
+    return '_1' if set.blank?
+    return '' if set == '5'
+
+    "_#{set.next}"
   end
 end

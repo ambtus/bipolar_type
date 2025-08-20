@@ -6,7 +6,7 @@ end
 
 When('I follow {word} links') do |word|
   who = word == 'my' ? Type.my_type : Type.your_type
-  who.behaviors.each do |b|
+  who.behaviors[0,3].each do |b|
     click_link(b.link)
   end
   click_link(who.title)
@@ -14,4 +14,12 @@ end
 
 When('I click the button') do
   click_button
+end
+
+When('I click the {string} button') do |string|
+  click_button string
+end
+
+When('I click the {string} button {int} times') do |string, int|
+  int.times { click_button string }
 end

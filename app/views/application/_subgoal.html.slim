@@ -1,2 +1,5 @@
 h3 id=a =s.flip.goal
-p Your #{s.jungian} function is #{s.behavior.goal} — #{s.timed_action} — balanced by #{s.flip.goal}: #{s.flip.timed_action}.
+ul
+  li #{s.jungian.capitalize}: #{s.behavior.goal}; #{s.timed_action}; #{s.advice(@number)}
+  li Balance: #{s.flip.goal}; #{s.flip.timed_action}; #{s.flip.advice(@number)}
+

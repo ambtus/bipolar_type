@@ -1,11 +1,11 @@
-div
-  -if @free.include?(b)
-    =link_to b.link, types_path((@current + [b.tla]).join('-'))
-  -elsif @current.include?(b.tla)
-    b=b.link
-  -else
-    =b.link
-  -unless @current.map(&:second).include?(b.tla.second)
-    ul
-      li=b.do_something
-      li=b.advice
+-if @free.include?(b)
+  =link_to b.link, types_path((@current + [b.tla]).join('-'))
+-elsif @current.include?(b.tla)
+  b=b.link
+-else
+  =b.link
+
+-unless @current.map(&:second).include?(b.tla.second)
+  |> :
+  =b.do_something
+

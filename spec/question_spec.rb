@@ -24,13 +24,13 @@ RSpec.describe 'questions', type: :request do
   it 'lets you try with a found behavior' do
     post '/questions', params: { q: { '1' => 'enj' } }
     follow_redirect!
-    expect(response.body).to match('with the following')
+    expect(response.body).to match('with the function:')
   end
 
   it 'lets you try with found behaviors' do
     post '/questions', params: { q: { '1' => 'enj', '2' => 'ifp' } }
     follow_redirect!
-    expect(response.body).to match('with one of the following')
+    expect(response.body).to match('with one of the functions:')
   end
 
   it 'lets you try with other questions even if it finds something' do

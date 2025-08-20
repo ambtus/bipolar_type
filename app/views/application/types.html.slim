@@ -1,10 +1,10 @@
--if @path
-  p
-    |> Of 576 possible types, yours is:
-  =link_to type_path @path
--else
-  p Select the behavior that is most natural; it makes you feel happy and healthy; it makes you feel <em>centered</em>.
-  p.center Your #{function(@current.count)} function:
+p
+  |> If you would rather, you can use either-or
+  =link_to 'questions', questions_path
+  |< to help you determine your BipolarType.
+
+
+p Select the behavior that always makes you feel <em>better</em>; your #{function(@current.count)} function.
 -Realm.each do |r|
   table
     tr
@@ -17,8 +17,3 @@
         td.bordered=render 'choose', b: (a + r)
     tr
       th colspan=2 =r.organ
-
-p
-  |> If you would rather, you can use either-or
-  =link_to 'questions', questions_path
-  |< to help you determine your BipolarType.

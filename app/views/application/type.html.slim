@@ -2,12 +2,16 @@ b.larger
   table
     tr
       -@type.tops.each do |b|
-        td=b.advice
+        td=b.advice(@number)
     tr
       th colspan = 2 &orarr;
     tr
       -@type.bottoms.each do |b|
-        td=b.advice
+        td=b.advice(@number)
+
+div class='button-wrapper'
+  =button_to 'Change Words', { id: @type.path + @suffix }, method: :get
+
 div class='button-wrapper'
   -unless @show.size == 16
     =button_to 'Expand All', { format: 'all' }, method: :get

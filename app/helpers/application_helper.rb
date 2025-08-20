@@ -11,9 +11,8 @@ module ApplicationHelper
   def function(index)
     return 'dominant' if index.zero?
     return 'auxiliary' if index == 1
-    return 'tertiary' if index == 2
 
-    'inferior'
+    'tertiary'
   end
 
   def show(id, name, path, current)
