@@ -17,7 +17,7 @@ class TypesController < ApplicationController
     @show = show_array params[:format]
     path, set = params[:id].split('_')
     @type = Type.new path
-    @suffix = suffix(set)
+    @current_id = @type.path + suffix(set)
     @number = set.to_i
     @title = @type.title
     render 'type'

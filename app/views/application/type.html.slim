@@ -10,7 +10,7 @@ b.larger
         td=b.advice(@number)
 
 div class='button-wrapper'
-  =button_to 'Change Words', { id: @type.path + @suffix }, method: :get
+  =button_to 'Change Words', { id: @current_id, format: @show.join }, method: :get
 
 div class='button-wrapper'
   -unless @show.size == 16
@@ -18,34 +18,38 @@ div class='button-wrapper'
   -unless @show.blank?
     =button_to 'Collapse All', { format: 'none' }, method: :get
 
+h2 Type
 -@type.subtypes.each do |s|
-  h2=s.goal
+  h3=s.goal
 
   -anchor = "a#{s.number}"
   -if @show.include? anchor
-    =render 'subgoal', s: s, a: anchor
+    =render 'subgoal', s: s, a: anchor, number: @number
     |<
-    =show anchor, s.flip.goal, @type.path, @show
+    =show anchor, s.flip.goal, @current_id, @show
   -else
-    h3 id=anchor =show "a#{s.number}", s.flip.goal, @type.path, @show
+    h4 id=anchor =show "a#{s.number}", s.flip.goal, @current_id, @show
+
+h2 Bipolar
+-@type.subtypes.reverse_each do |s|
 
   -anchor = "b#{s.number}"
   -if @show.include? anchor
     =render 'episode', s: s, a: anchor
-    =show "b#{s.number}", s.episode, @type.path, @show
+    =show "b#{s.number}", s.episode, @current_id, @show
   -else
-    h3 id=anchor =show anchor, s.episode, @type.path, @show
+    h3 id=anchor =show anchor, s.episode, @current_id, @show
 
   -anchor = "c#{s.number}"
   -if @show.include? anchor
     =render 'symptoms', s: s, a: anchor
-    =show anchor, 'symptoms', @type.path, @show
+    =show anchor, 'symptoms', @current_id, @show
   -else
-    h4 id=anchor =show anchor, 'symptoms', @type.path, @show
+    h4 id=anchor =show anchor, 'symptoms', @current_id, @show
 
   -anchor = "d#{s.number}"
   -if @show.include? anchor
     =render 'treatment', s: s, a: anchor
-    =show anchor, 'treatment', @type.path, @show
+    =show anchor, 'treatment', @current_id, @show
   -else
-    h4 id=anchor =show anchor, 'treatment', @type.path, @show
+    h4 id=anchor =show anchor, 'treatment', @current_id, @show

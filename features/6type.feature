@@ -50,3 +50,16 @@ When I follow my links
   And I click the 'Expand All' button
 Then my problems should NOT be clickable
 
+Example: changing words does not close links
+Given I am on the types page
+When I follow my links
+  And I click the 'Expand All' button
+  And I click the 'Change Words' button
+Then I should see Dominant
+
+Example: opening links does not change words
+Given I am on the types page
+When I follow my links
+  And I click the 'Change Words' button
+  And I follow the 'escape people' link
+Then my advice should NOT be visible

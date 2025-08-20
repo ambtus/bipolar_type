@@ -59,4 +59,6 @@ class Behavior < Concept
 
   def timed_action = [do_something, time].to_phrase
   def advice(line_number = 0) = lines[line_number]
+
+  def timed_goal = [goal, time].to_phrase
 end
