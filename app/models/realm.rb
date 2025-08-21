@@ -19,10 +19,12 @@ class Realm < Concept
   def foci = focus.pluralize
   alias top :foci
   def externals = %w[why land shelter how][index]
+  def unfamiliar = %w[strangers wilderness metals procedures][index]
   def familiar = %w[family farms hardware software][index]
   def sense = %w[hear smell/taste touch see][index]
   def basic = %w[stories food tools implications][index]
   def internals = %w[priorities calories currencies information][index]
+  def neuro = %w[oxytocin serotonin dopamine glutamate][index]
   def organ = %w[soul body wallet mind][index]
   alias bottom :organ
   def left = %w[expressive gather labor tactics][index]

@@ -20,36 +20,20 @@ div class='button-wrapper'
 
 h2 Type
 -@type.subtypes.each do |s|
-  h3=s.goal
-
   -anchor = "a#{s.number}"
   -if @show.include? anchor
-    =render 'subgoal', s: s, a: anchor, number: @number
+    =render 'subtype', s: s, a: anchor, number: @number
     |<
-    =show anchor, s.flip.goal, @current_id, @show
+    =show anchor, [s.goal, s.flip.goal].and, @current_id, @show
   -else
-    h4 id=anchor =show "a#{s.number}", s.flip.goal, @current_id, @show
+    h3 id=anchor =show "a#{s.number}", [s.goal, s.flip.goal].and, @current_id, @show
 
 h2 Bipolar
 -@type.subtypes.reverse_each do |s|
 
   -anchor = "b#{s.number}"
   -if @show.include? anchor
-    =render 'episode', s: s, a: anchor
+    =render 'episode', s: s, a: anchor, number: @number, current_id: @current_id, show: @show
     =show "b#{s.number}", s.episode, @current_id, @show
   -else
     h3 id=anchor =show anchor, s.episode, @current_id, @show
-
-  -anchor = "c#{s.number}"
-  -if @show.include? anchor
-    =render 'symptoms', s: s, a: anchor
-    =show anchor, 'symptoms', @current_id, @show
-  -else
-    h4 id=anchor =show anchor, 'symptoms', @current_id, @show
-
-  -anchor = "d#{s.number}"
-  -if @show.include? anchor
-    =render 'treatment', s: s, a: anchor
-    =show anchor, 'treatment', @current_id, @show
-  -else
-    h4 id=anchor =show anchor, 'treatment', @current_id, @show

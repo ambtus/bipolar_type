@@ -4,16 +4,20 @@ ol
     li
       -case i
       -when 0
-        |> just
         =s.timed_action
+        |> : do
+        =s.advice(number)
       -when 1
-        |> don’t force yourself to
-        =s.opposite.do_something
+        |> don’t
+        =s.opposite.timed_action
+        |> : don’t
+        =s.opposite.advice(number)
       -when 2
         |> don’t
-        =s.flop.do_something
+        =s.flop.timed_action
+        |> : don’t
+        =s.flop.advice(number)
       -when 3
-        =s.flip.do_something
-        |< to
-        em<>=s.flip.attitude.goal
-        =s.flip.what
+        =s.flip.timed_action
+        |> : do
+        =s.flip.advice(number)

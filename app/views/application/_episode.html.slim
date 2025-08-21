@@ -1,3 +1,17 @@
 h3 id=a =s.episode
-|> The #{s.opposite_ordinal_word} bipolar episode you are likely to develop is #{s.bipolar} in the #{s.opposite.season}.
+|> The #{s.opposite_ordinal_word} bipolar episode you are likely to develop is #{s.bipolar} in the #{s.opposite.season}. It is #{s.episode_difficulty} to treat.
+
+-anchor = "c#{s.number}"
+-if @show.include? anchor
+  =render 'symptoms', s: s, a: anchor
+  =show anchor, 'symptoms', current_id, show
+-else
+  h4 id=anchor =show anchor, 'symptoms', current_id, show
+
+-anchor = "d#{s.number}"
+-if @show.include? anchor
+  =render 'treatment', s: s, a: anchor, number: number
+  =show anchor, 'treatment', current_id, show
+-else
+  h4 id=anchor =show anchor, 'treatment', current_id, show
 br

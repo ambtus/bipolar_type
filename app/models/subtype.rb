@@ -18,7 +18,9 @@ class Subtype
 
   def opposite_ordinal_word = %w[last third second first][index]
   def opposite_ordinal = %w[4th 3rd 2nd 1st][index]
-  def episode = "#{opposite_ordinal}: #{attitude.episode.downcase}"
+  def episode = "#{opposite_ordinal}: #{behavior.episode.downcase}"
+
+  def episode_difficulty = ['easy', 'relatively easy', 'relatively hard', 'hard'][index]
 
   %i[top? bottom? first? second? third? last? <=>
      flip flop opposite tla adjective adverb
