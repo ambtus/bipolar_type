@@ -32,7 +32,7 @@ class Attitude < Concept
   def time = second? ? "at #{time_of_day}" : "in the #{time_of_day}"
   def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
   def bipolar = top? ? 'mania' : 'depression'
-  def seasonal = opposite.season
+  def seasonal = flop.season
   def episode = [seasonal, bipolar].to_phrase.titleize
 
   def behaviors = Behavior.all.select { |x| x.attitude == self }
