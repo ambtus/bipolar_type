@@ -19,5 +19,13 @@ RSpec.describe Behavior, type: :model do
     it 'returns 1 on three tlas' do
       expect(described_class.without(Type.my_type.tlas.sample(3)).count).to be 1
     end
+
+    it 'does not return siblings' do
+      expect(described_class.without(["etp", "ifj", "enj"])).not_to include('ifp')
+    end
+
+    it 'does not have bugs' do
+      expect(described_class.without(["enj", "ifj", "isp"]).first.tla).to eq 'etp'
+    end
   end
 end

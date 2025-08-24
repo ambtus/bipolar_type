@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
     else
 
       @functions = []
-      4.times { update_p_and_f }
+      3.times { update_p_and_f }
       derive_missing if @functions.size == 3
       redirect_to answer_path @functions.join('-')
     end
@@ -38,8 +38,7 @@ class QuestionsController < ApplicationController
   def update_p_and_f
     @functions << @preferences.pop
     @functions.compact!
-    dups = Behavior.without(@functions) & @preferences
-    @preferences.delete(dups)
+    @preferences =  @preferences & Behavior.without(@functions).map(&:tla)
     Rails.logger.debug { "functions: #{@functions}" }
   end
 
