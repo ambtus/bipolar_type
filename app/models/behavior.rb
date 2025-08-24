@@ -28,7 +28,7 @@ class Behavior < Concept
     delegate meth, to: :realm
   end
 
-  def execute = top? ? 'use' : 'get'
+  def execute = top? ? 'externalize' : 'internalize'
   def which = left? ? 'energy' : 'strength'
   def something = [adjective, which].to_phrase
   def do_something = [execute, adjective, which].to_phrase
@@ -61,4 +61,6 @@ class Behavior < Concept
   def advice(line_number = 0) = lines[line_number]
 
   def timed_goal = [goal, time].to_phrase
+
+  def long = "#{tla}: #{do_something} (#{advice})"
 end

@@ -9,7 +9,7 @@ Then I should see flee
 
 Scenario: describes four behaviors
 Given I am on the attitudes page
-Then I should see use energy
-  And I should see get energy
-  And I should see use strength
-  And I should see get strength
+Then I should see externalize energy
+  And I should see internalize energy
+  And I should see externalize strength
+  And I should see internalize strength

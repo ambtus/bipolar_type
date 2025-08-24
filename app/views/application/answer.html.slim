@@ -6,12 +6,57 @@
 -else
   p The questionaire was not able to determine your BipolarType.
 -unless @behaviors.blank?
-  p You can try starting with#{' one of' if @behaviors.size > 1} the function#{'s' if @behaviors.size > 1}:
+  p Possible dominant function#{'s' if @behaviors.size > 1}:
   ul
     -@behaviors.each do |b|
       li=link_to b.tla, types_path(b.tla)
-p You can try one of the pairwise question sets:
+p Pairwise question sets:
 ul
   -6.times do |i|
     -query = i.zero? ? '' : "?n=#{i}"
-    li=link_to (i.zero? ? 'original' : "#{i.ordinalize} alternate"), questions_path + query
+    li
+      =link_to "#{(i + 1).ordinalize} alternate", questions_path + query
+      |> : eg
+      =Behavior.pairs.first.collect { |b| b.advice(i) }.or
+p Six energy/strength starting points:
+table
+  tr
+    td
+      =link_to 'NTP/SFJ', question_path('NTP/SFJ')
+      br
+      | mental & material energy
+      br
+      | physical & spiritual strength
+    td
+      =link_to 'SFP/NTJ', question_path('SFP/NTJ')
+      br
+      | physical & spiritual energy
+      br
+      | mental & material strength
+
+  tr
+    td
+      =link_to 'NFP/STJ', question_path('NFP/STJ')
+      br
+      | mental & spiritual energy
+      br
+      | physical & material strength
+    td
+      =link_to 'STP/NFJ', question_path('STP/NFJ')
+      br
+      | physical & material energy
+      br
+      | mental & spiritual strength
+  tr
+    td
+      =link_to 'NSP/TFJ', question_path('NSP/TFJ')
+      br
+      | mental & physical energy
+      br
+      | material & spiritual strength
+    td
+      =link_to 'TFP/NSJ', question_path('TFP/NSJ')
+      br
+      | material & spiritual energy
+      br
+      | mental & physical strength

@@ -12,6 +12,11 @@ When('I follow {word} links') do |word|
   click_link(who.title)
 end
 
+When('I follow {word} path') do |word|
+  who = word == 'my' ? Type.my_type : Type.your_type
+  click_link(who.path)
+end
+
 When('I click the button') do
   click_button
 end

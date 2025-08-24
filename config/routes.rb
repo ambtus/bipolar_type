@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/attitudes' => 'application#attitudes'
   get '/behaviors' => 'application#behaviors'
   get '/answer/:id', to: 'application#answer', as: 'answer'
-  resources :questions, only: %i[create index]
+  resources :questions, only: %i[create index show]
   resources :types, only: %i[show index]
   get '/me' => 'types#me', as: :my
 end

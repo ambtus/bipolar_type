@@ -1,0 +1,9 @@
+p There are twenty-four BipolarTypes with this set of four behaviors.
+
+ol
+  -@set.permutation.each do |perm|
+    li
+      =link_to perm.map(&:tla).join('-'), type_path(perm.map(&:tla).join('-'))
+      ol
+        -perm.each do |s|
+          li=s.long

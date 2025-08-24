@@ -21,11 +21,11 @@ RSpec.describe Behavior, type: :model do
     end
 
     it 'does not return siblings' do
-      expect(described_class.without(["etp", "ifj", "enj"])).not_to include('ifp')
+      expect(described_class.without(%w[etp ifj enj])).not_to include('ifp')
     end
 
     it 'does not have bugs' do
-      expect(described_class.without(["enj", "ifj", "isp"]).first.tla).to eq 'etp'
+      expect(described_class.without(%w[enj ifj isp]).first.tla).to eq 'etp'
     end
   end
 end

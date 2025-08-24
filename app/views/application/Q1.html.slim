@@ -1,0 +1,9 @@
+p Choose the set of behaviors that you believe would make you happiest overall.
+
+-@sets.each_with_index do |subtypes, i|
+  ul
+    li
+      =link_to subtypes.map(&:tla).join('-'), format: i
+      ul
+        -subtypes.each do |s|
+          li=s.long

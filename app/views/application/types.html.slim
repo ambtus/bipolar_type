@@ -1,19 +1,8 @@
-p
-  |> If you would rather, you can use pairwise
-  =link_to 'questions', questions_path
-  |< to help you determine your BipolarType.
+p A BipolarType has one of the sixteen behaviors (four realms x four attitudes) as its dominant function, one of the nine remaining behaviors (three realms x three attitudes) as its auxiliary function, one of the four remaining behaviors (two realms x two attitudes) as its tertiary function, and the remaining behavior (one realm x one attitude) as its inferior function: 16x9x4x1=576 BipolarTypes.
 
-
-p Select the behavior that always makes you feel better; your #{function(@current.count)} function.
--Realm.each do |r|
-  table
+table
+  caption #{function(@current.count)} function
+  -Realm.each do |r|
     tr
-      th colspan=2 =r.foci
-    tr
-      -Attitude.tops.each do |a|
+      -Attitude.each do |a|
         td.bordered=render 'choose', b: (a + r)
-    tr
-      -Attitude.bottoms.each do |a|
-        td.bordered=render 'choose', b: (a + r)
-    tr
-      th colspan=2 =r.organ
