@@ -1,7 +1,7 @@
 b=s.episode
 ol.left
   li=s.long(@number)
-  -if s.index > 0
+  -if s.index.positive?
     li
       |> do <em>not</em>
       =s.flop.long(number)

@@ -49,10 +49,10 @@ class Behavior < Concept
   def siblings = [flip, flop, *realm_siblings]
   def realm_siblings = ALL.select { |b| b.attitude == attitude && b != self }
 
-  def link = tla
+  def link = tla.upcase
 
-#   def what = top? ? foci : "your #{organ}"
-#   def goal = [attitude.goal, what].to_phrase
+  #   def what = top? ? foci : "your #{organ}"
+  #   def goal = [attitude.goal, what].to_phrase
 
   def lines = File.foreach("words/#{tla}", chomp: true).to_a
 
@@ -60,8 +60,6 @@ class Behavior < Concept
   def advice(line_number = 0) = lines[line_number]
 
   def timed_goal = [goal, time].to_phrase
-
-#  def long = "#{tla}: #{do_something} (#{advice})"
 
   def long(number = 0) = "#{advice(number)} #{time}"
 end
