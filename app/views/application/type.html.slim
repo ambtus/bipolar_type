@@ -2,26 +2,26 @@ table
   caption Daily
   tr
     -@type.tops.each do |s|
-      td=render 'advice', s: s, number: @number
+      td=render 'short', s: s, number: @number
   tr
     th colspan = 2 &orarr;
   tr
     -@type.bottoms.each do |s|
-      td=render 'advice', s: s, number: @number
+      td=render 'short', s: s, number: @number
   tr
     th colspan = 2 =button_to 'Change Words', { id: @current_id }, method: :get
 
 table
   caption Seasonal
   tr
-    td.bordered=render 'episode', s: @type.subtypes.find(&:third?), number: @number
+    td.bordered=render 'long', s: @type.subtypes.find(&:third?), number: @number
     th
-    td.bordered=render 'episode', s: @type.subtypes.find(&:second?), number: @number
+    td.bordered=render 'long', s: @type.subtypes.find(&:second?), number: @number
   tr
     th
     th &orarr;
     th
   tr
-    td.bordered=render 'episode', s: @type.subtypes.find(&:last?), number: @number
+    td.bordered=render 'long', s: @type.subtypes.find(&:last?), number: @number
     th
-    td.bordered=render 'episode', s: @type.subtypes.find(&:first?), number: @number
+    td.bordered=render 'long', s: @type.subtypes.find(&:first?), number: @number

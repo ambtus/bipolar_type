@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   def behaviors = (@title = '16 Behaviors')
 
+  def episodes = (@title = '4 Episodes')
+
   def answer
     @type_path = params[:id]
     @title = "Answer: #{@type_path}"

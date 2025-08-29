@@ -38,25 +38,14 @@ Then('{word} {word} should NOT be visible') do |whose, what|
   end
 end
 
-Then('{word} {word} should be clickable') do |whose, what|
-  who = whose == 'my' ? Type.my_type : Type.your_type
-  who.subtypes.each do |x|
-    click_link clickable(x, what), match: :first
-    click_link 'hide', match: :first
+Then('all episodes should be listed') do
+  Attitude.each do |x|
+    assert page.has_text?(x.episode)
   end
 end
 
-Then('{word} {word} should NOT be clickable') do |whose, what|
-  who = whose == 'my' ? Type.my_type : Type.your_type
-  who.subtypes.each do |x|
-    assert page.has_no_link? clickable(x, what)
+Then('all reactions should be listed') do
+  Attitude.each do |x|
+    assert page.has_text?(x.react)
   end
-end
-
-def clickable(who, what)
-  return who.flip.goal if what == 'subgoals'
-  return who.episode if what == 'episodes'
-
-  click_link who.episode
-  what.singularize
 end

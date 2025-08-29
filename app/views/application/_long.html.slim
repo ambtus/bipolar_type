@@ -1,0 +1,13 @@
+b=s.episode
+ol.left
+  li=s.long(@number)
+  -if s.index.positive?
+    li
+      |> do <em>not</em>
+      =s.flop.long(number)
+  -if s.index > 1
+    li
+      |> do <em>not</em>
+      =s.opposite.long(number)
+  -if s.index > 2
+    li=s.flip.long(number)

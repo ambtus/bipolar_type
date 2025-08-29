@@ -2,9 +2,9 @@
 
 Rails.application.routes.draw do
   root 'application#home', as: :introduction
-  get '/realms' => 'application#realms'
-  get '/attitudes' => 'application#attitudes'
-  get '/behaviors' => 'application#behaviors'
+  %w[realms attitudes behaviors episodes].each do |thing|
+    get "/#{thing}" => "application##{thing}"
+  end
   get '/answer/:id', to: 'application#answer', as: 'answer'
   resources :questions, only: %i[create index show]
   resources :types, only: %i[show index]

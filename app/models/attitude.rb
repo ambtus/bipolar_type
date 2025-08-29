@@ -23,7 +23,7 @@ class Attitude < Concept
   def last? = (index == 3)
 
   def react = %w[digest flee fight rest][index]
-  def goal = %w[refuel escape control rebuild][index]
+  def goal = %w[refuel escape win rebuild][index]
 
   def bad = %w[drained anxious irritated tired][index]
   def worse = %w[empty afraid angry exhausted][index]

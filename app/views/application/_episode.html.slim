@@ -1,13 +1,30 @@
-b=s.episode
-ol.left
-  li=s.long(@number)
-  -if s.index.positive?
-    li
-      |> do <em>not</em>
-      =s.flop.long(number)
-  -if s.index > 1
-    li
-      |> do <em>not</em>
-      =s.opposite.long(number)
-  -if s.index > 2
-    li=s.flip.long(number)
+b=a.flop.episode
+br
+=a.react.too_much
+
+p.left
+  |> If it is in your nature to want to
+  =a.goal.comma
+  |<> then you know when you have
+  =a.goal.en
+  |<> and will stop
+  =a.react.ing.period
+p.left
+  |> If you were nurtured to
+  =a.react
+  |<> (when your nature is to
+  =a.flop.react
+  |> ) then you are not
+  =a.react.ing
+  |<> because you are feeling
+  =a.bad.comma
+  |<> you are feeling
+  =a.bad
+  |<> because you are
+  =a.react.ing
+  |> . You will continue to
+  =a.react
+  |<> until you cannot
+  =a.react
+  |<> any more.
+

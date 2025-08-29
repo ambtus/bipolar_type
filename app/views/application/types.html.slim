@@ -5,7 +5,7 @@ p
   =link_to 'questions', questions_path
   | .
 
--if @current.count.zero?
+-if @current.none?
   p Or, if you know your MBTI&trade; true type, you can try starting with one the following links.
 
 
@@ -21,4 +21,3 @@ table
 -if @current.none?
   br
   =render 'pairwise'
-
