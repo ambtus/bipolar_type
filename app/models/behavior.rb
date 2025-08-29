@@ -20,7 +20,7 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? last? season seasonal previous react time].each do |meth|
+  %i[top? bottom? left? first? second? third? last? season seasonal previous react time bad].each do |meth|
     delegate meth, to: :attitude
   end
 
@@ -34,9 +34,8 @@ class Behavior < Concept
   def do_something = [execute, adjective, which].to_phrase
 
   def bipolar = [adjective, attitude.bipolar].to_phrase
-  def bad = [adverb, attitude.bad].to_phrase
   def worse = [adverb, attitude.worse].to_phrase
-  def episode = [seasonal, flop.bipolar].to_phrase.titleize
+  def episode = [seasonal, flop.attitude.bipolar, flop.react.too_much.wrap].to_phrase.titleize
 
   def tla = [top? ? 'e' : 'i', realm.string.downcase, left? ? 'p' : 'j'].join
   def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
@@ -52,8 +51,8 @@ class Behavior < Concept
 
   def link = tla
 
-  def what = top? ? foci : "your #{organ}"
-  def goal = [attitude.goal, what].to_phrase
+#   def what = top? ? foci : "your #{organ}"
+#   def goal = [attitude.goal, what].to_phrase
 
   def lines = File.foreach("words/#{tla}", chomp: true).to_a
 
@@ -62,5 +61,7 @@ class Behavior < Concept
 
   def timed_goal = [goal, time].to_phrase
 
-  def long = "#{tla}: #{do_something} (#{advice})"
+#  def long = "#{tla}: #{do_something} (#{advice})"
+
+  def long(number = 0) = "#{do_something} (#{advice(number)}) #{time}"
 end

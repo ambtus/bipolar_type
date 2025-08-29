@@ -10,30 +10,43 @@ b.larger
         td=b.advice(@number)
 
 div class='button-wrapper'
-  =button_to 'Change Words', { id: @current_id, format: @show.join }, method: :get
+  /=button_to 'Change Words', { id: @current_id, format: @show.join }, method: :get
+  =button_to 'Change Words', { id: @current_id }, method: :get
 
-div class='button-wrapper'
-  -unless @show.size == 16
-    =button_to 'Expand All', { format: 'all' }, method: :get
-  -unless @show.blank?
-    =button_to 'Collapse All', { format: 'none' }, method: :get
-
-h2 Type
--@type.subtypes.each do |s|
-  -anchor = "a#{s.number}"
-  -if @show.include? anchor
-    =render 'subtype', s: s, a: anchor, number: @number
-    |<
-    =show anchor, [s.goal, s.flip.goal].and, @current_id, @show
-  -else
-    h3 id=anchor =show "a#{s.number}", [s.goal, s.flip.goal].and, @current_id, @show
-
-h2 Bipolar
--@type.subtypes.reverse_each do |s|
-
-  -anchor = "b#{s.number}"
-  -if @show.include? anchor
-    =render 'episode', s: s, a: anchor, number: @number, current_id: @current_id, show: @show
-    =show "b#{s.number}", s.episode, @current_id, @show
-  -else
-    h3 id=anchor =show anchor, s.episode, @current_id, @show
+ol
+  -s = @type.subtypes.first
+  li
+    =s.episode
+    ol
+      li=s.long(@number)
+  -s = @type.subtypes.second
+  li
+    =s.episode
+    ol
+      li=s.long(@number)
+      li
+        |> do <em>not</em>
+        =s.flop.long(@number)
+  -s = @type.subtypes.third
+  li
+    =s.episode
+    ol
+      li=s.long(@number)
+      li
+        |> do <em>not</em>
+        =s.flop.long(@number)
+      li
+        |> do <em>not</em>
+        =s.opposite.long(@number)
+  -s = @type.subtypes.fourth
+  li
+    =s.episode
+    ol
+      li=s.long(@number)
+      li
+        |> do <em>not</em>
+        =s.flop.long(@number)
+      li
+        |> do <em>not</em>
+        =s.opposite.long(@number)
+      li=s.flip.long(@number)

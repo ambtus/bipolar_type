@@ -17,10 +17,12 @@ class Subtype
   def goal = "#{ordinal}: #{behavior.goal}"
 
   def opposite_ordinal_word = %w[last third second first][index]
-  def opposite_ordinal = %w[4th 3rd 2nd 1st][index]
-  def episode = "#{opposite_ordinal}: #{behavior.episode.downcase}"
+#  def opposite_ordinal = %w[4th 3rd 2nd 1st][index]
+#  def episode = "#{opposite_ordinal}: #{behavior.episode.downcase}"
 
   def episode_difficulty = ['easy', 'relatively easy', 'relatively hard', 'hard'][index]
+  def severity = ['mild', 'relatively mild', 'relatively severe', 'severe'][index]
+  def episode = "#{severity} #{behavior.episode.downcase}"
 
   %i[top? bottom? first? second? third? last? <=>
      flip flop opposite tla adjective adverb

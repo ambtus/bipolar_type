@@ -14,7 +14,7 @@ class TypesController < ApplicationController
   end
 
   def show
-    @show = show_array params[:format]
+#    @show = show_array params[:format]
     path, set = params[:id].split('_')
     @type = Type.new path
     @current_id = @type.path + suffix(set)
@@ -29,12 +29,12 @@ class TypesController < ApplicationController
 
   private
 
-  def show_array(string)
-    return [] if string.blank? || string == 'none'
-    return %w[a b c d].multiply(%w[1 2 3 4]).flatten if string == 'all'
-
-    string.scan(/../)
-  end
+#   def show_array(string)
+#     return [] if string.blank? || string == 'none'
+#     return %w[a b c d].multiply(%w[1 2 3 4]).flatten if string == 'all'
+#
+#     string.scan(/../)
+#   end
 
   def suffix(set)
     return '_1' if set.blank?
