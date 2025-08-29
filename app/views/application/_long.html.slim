@@ -1,4 +1,6 @@
 b=s.episode
+br
+=s.flop.react.too_much
 ol.left
   li=s.long(@number)
   -if s.index.positive?
@@ -8,6 +10,11 @@ ol.left
   -if s.index > 1
     li
       |> do <em>not</em>
-      =s.opposite.long(number)
+      =s.opposite.advice(number)
+      |<>
+      =s.flip.time
   -if s.index > 2
-    li=s.flip.long(number)
+    li
+      =s.flip.advice(number)
+      |<>
+      =s.flop.time

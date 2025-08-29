@@ -35,7 +35,7 @@ class Behavior < Concept
 
   def bipolar = [adjective, attitude.bipolar].to_phrase
   def worse = [adverb, attitude.worse].to_phrase
-  def episode = [seasonal, flop.attitude.bipolar, flop.react.too_much.wrap].to_phrase.titleize
+  def episode = [seasonal, flop.attitude.bipolar].to_phrase.titleize
 
   def tla = [top? ? 'e' : 'i', realm.string.downcase, left? ? 'p' : 'j'].join
   def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
