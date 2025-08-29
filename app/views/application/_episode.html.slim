@@ -1,17 +1,13 @@
-h3 id=a =s.episode
-|> The #{s.opposite_ordinal_word} bipolar episode you are likely to develop is #{s.bipolar} in the #{s.opposite.season}. It is #{s.episode_difficulty} to treat.
-
--anchor = "c#{s.number}"
--if @show.include? anchor
-  =render 'symptoms', s: s, a: anchor
-  =show anchor, 'symptoms', current_id, show
--else
-  h4 id=anchor =show anchor, 'symptoms', current_id, show
-
--anchor = "d#{s.number}"
--if @show.include? anchor
-  =render 'treatment', s: s, a: anchor, number: number
-  =show anchor, 'treatment', current_id, show
--else
-  h4 id=anchor =show anchor, 'treatment', current_id, show
-br
+b=s.episode
+ol.left
+  li=s.long(@number)
+  -if s.index > 0
+    li
+      |> do <em>not</em>
+      =s.flop.long(number)
+  -if s.index > 1
+    li
+      |> do <em>not</em>
+      =s.opposite.long(number)
+  -if s.index > 2
+    li=s.flip.long(number)

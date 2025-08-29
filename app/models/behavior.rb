@@ -20,7 +20,7 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? last? season seasonal previous react time bad].each do |meth|
+  %i[top? bottom? left? first? second? third? last? season seasonal time_of_day previous react time bad].each do |meth|
     delegate meth, to: :attitude
   end
 
@@ -63,5 +63,5 @@ class Behavior < Concept
 
 #  def long = "#{tla}: #{do_something} (#{advice})"
 
-  def long(number = 0) = "#{do_something} (#{advice(number)}) #{time}"
+  def long(number = 0) = "#{advice(number)} #{time}"
 end

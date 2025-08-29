@@ -1,52 +1,27 @@
-b.larger
-  table
-    tr
-      -@type.tops.each do |b|
-        td=b.advice(@number)
-    tr
-      th colspan = 2 &orarr;
-    tr
-      -@type.bottoms.each do |b|
-        td=b.advice(@number)
+table
+  caption Diurnal
+  tr
+    -@type.tops.each do |s|
+      td=render 'advice', s: s, number: @number
+  tr
+    th colspan = 2 &orarr;
+  tr
+    -@type.bottoms.each do |s|
+      td=render 'advice', s: s, number: @number
+  tr
+    th colspan = 2 =button_to 'Change Words', { id: @current_id }, method: :get
 
-div class='button-wrapper'
-  /=button_to 'Change Words', { id: @current_id, format: @show.join }, method: :get
-  =button_to 'Change Words', { id: @current_id }, method: :get
-
-ol
-  -s = @type.subtypes.first
-  li
-    =s.episode
-    ol
-      li=s.long(@number)
-  -s = @type.subtypes.second
-  li
-    =s.episode
-    ol
-      li=s.long(@number)
-      li
-        |> do <em>not</em>
-        =s.flop.long(@number)
-  -s = @type.subtypes.third
-  li
-    =s.episode
-    ol
-      li=s.long(@number)
-      li
-        |> do <em>not</em>
-        =s.flop.long(@number)
-      li
-        |> do <em>not</em>
-        =s.opposite.long(@number)
-  -s = @type.subtypes.fourth
-  li
-    =s.episode
-    ol
-      li=s.long(@number)
-      li
-        |> do <em>not</em>
-        =s.flop.long(@number)
-      li
-        |> do <em>not</em>
-        =s.opposite.long(@number)
-      li=s.flip.long(@number)
+table
+  caption Seasonal
+  tr
+    td.bordered=render 'episode', s: @type.subtypes.find(&:third?), number: @number
+    th
+    td.bordered=render 'episode', s: @type.subtypes.find(&:second?), number: @number
+  tr
+    th
+    th &orarr;
+    th
+  tr
+    td.bordered=render 'episode', s: @type.subtypes.find(&:last?), number: @number
+    th
+    td.bordered=render 'episode', s: @type.subtypes.find(&:first?), number: @number
