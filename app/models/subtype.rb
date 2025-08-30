@@ -22,7 +22,7 @@ class Subtype
 
   def episode_difficulty = ['easy', 'relatively easy', 'relatively hard', 'hard'][index]
   def severity = ['mild', 'relatively mild', 'relatively severe', 'severe'][index]
-  def episode = "#{severity} #{adjective} #{behavior.episode.downcase}"
+  def episode = "#{severity} #{behavior.episode.downcase}"
 
   %i[top? bottom? first? second? third? last? <=>
      flip flop opposite tla adjective adverb

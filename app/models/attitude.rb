@@ -23,7 +23,7 @@ class Attitude < Concept
   def last? = (index == 3)
 
   def react = %w[digest flee fight rest][index]
-  def goal = %w[refuel escape win relax][index]
+  def goal = %w[refuel escape win recover][index]
 
   def bad = %w[drained anxious irritated tired][index]
   def worse = %w[empty afraid angry exhausted][index]
@@ -34,6 +34,7 @@ class Attitude < Concept
   def bipolar = top? ? 'mania' : 'depression'
   def seasonal = flop.season
   def episode = [seasonal, bipolar].to_phrase.titleize
+  def stop = [react, goal].and
 
   def behaviors = Behavior.all.select { |x| x.attitude == self }
   def +(other) = behaviors.find { |x| x.realm == other }

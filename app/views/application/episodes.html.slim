@@ -1,14 +1,3 @@
-br
-table
-  tr
-    td.bordered=render 'episode', a: Attitude.TL
-    th
-    td.bordered=render 'episode', a: Attitude.TR
-  tr
-    th
-    th &orarr;
-    th
-  tr
-    td.bordered=render 'episode', a: Attitude.BL
-    th
-    td.bordered=render 'episode', a: Attitude.BR
+-%w[episode].each do |x|
+  br
+  =render 'table', x: x

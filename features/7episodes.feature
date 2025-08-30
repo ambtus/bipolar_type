@@ -10,4 +10,4 @@ Then all reactions should be listed
 
 Scenario: describes excess
 Given I am on the episodes page
-Then I should see too much
+Then I should see compulsive

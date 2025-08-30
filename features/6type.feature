@@ -1,66 +1,39 @@
 Feature: the type pages
 
 Example: type page lists my advice
-Given I am on the types page
-When I follow my links
+When I am on my type page
 Then my advice should be visible
-#  But your advice should NOT be visible
 
 Example: type page allows you to change words
-Given I am on the types page
-When I follow my links
-  And I click the 'Change Words' button 2 times
+Given I am on my type page
+When I click the 'Change Words' button 2 times
 Then my advice should NOT be visible
 
 Example: type page allows you to change words multiple times
-Given I am on the types page
-When I follow your links
-  And I click the 'Change Words' button 6 times
+Given I am on your type page
+When I click the 'Change Words' button 6 times
 Then your advice should be visible
 
-# Example: type page lists your goals
-# Given I am on the types page
-# When I follow your links
-# Then your goals should be visible
-#   But my goals should NOT be visible
-#
-# Example: type page describes my subgoals
-# Given I am on the types page
-# When I follow my links
-# Then my subgoals should be clickable
-
 Example: type page describes your episodes
-Given I am on the types page
-When I follow your links
-# Then your episodes should be clickable
+When I am on your type page
 Then your episodes should be visible
 
-# Example: type page describes my problems
-# Given I am on the types page
-# When I follow my links
-# Then my symptoms should be clickable
-#
-# Example: type page describes your solutions
-# Given I am on the types page
-# When I follow your links
-# Then your treatments should be clickable
-#
-# Example: type page allows you to open all links
-# Given I am on the types page
-# When I follow my links
-#   And I click the 'Expand All' button
-# Then my problems should NOT be clickable
-#
-# Example: changing words does not close links
-# Given I am on the types page
-# When I follow my links
-#   And I click the 'Expand All' button
-#   And I click the 'Change Words' button
-# Then I should see Dominant
-#
-# Example: opening links does not change words
-# Given I am on the types page
-# When I follow my links
-#   And I click the 'Change Words' button
-#   And I follow the 'escape people' link
-# Then my advice should NOT be visible
+Example: type page only shows important advice by default
+Given I am on my type page
+Then there should be 5 'feel's
+
+Example: type page allows you to show all advice
+Given I am on my type page
+When I click the 'Show All' button
+Then there should be 8 'feel's
+
+Example: showing all does not change words
+Given I am on my type page
+When I click the 'Show All' button
+Then my advices should be visible
+
+Example: type page allows you to hide all advice
+Given I am on my type page
+When I click the 'Show All' button
+  And I click the 'Show Important' button
+Then there should be 5 'feel's

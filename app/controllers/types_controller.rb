@@ -16,8 +16,10 @@ class TypesController < ApplicationController
   def show
     path, set = params[:id].split('_')
     @type = Type.new path
-    @current_id = @type.path + suffix(set)
+    @current_words = params[:id]
+    @next_words = @type.path + suffix(set)
     @number = set.to_i
+    @all = params[:format]
     @title = @type.title
     render 'type'
   end

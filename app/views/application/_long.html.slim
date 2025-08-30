@@ -2,15 +2,24 @@ b=s.episode
 br
 =s.flop.react.too_much
 ol.left
-  li=s.advice(@number)
-  -if s.index.positive?
+  li
+    =s.advice(@number)
+
+  -if @all || s.index.positive?
     li
       |> do <em>not</em>
       =s.flop.advice(number)
-  -if s.index > 1
+      br
+      | (it will only make you feel #{s.flop.bad})
+
+  -if @all || s.index > 1
     li
       |> do <em>not</em>
       =s.opposite.advice(number)
-  -if s.index > 2
+      br
+      | (it will only make you feel #{s.opposite.bad} <em>also</em>)
+
+  -if @all || s.index > 2
     li
       =s.flip.advice(number)
+

@@ -9,7 +9,7 @@ table
     -@type.bottoms.each do |s|
       td=render 'short', s: s, number: @number
   tr
-    th colspan = 2 =button_to 'Change Words', { id: @current_id }, method: :get
+    th colspan = 2 =button_to 'Change Words', { id: @next_words }, method: :get
 
 table
   caption Seasonal
@@ -25,3 +25,9 @@ table
     td.bordered=render 'long', s: @type.subtypes.find(&:last?), number: @number
     th
     td.bordered=render 'long', s: @type.subtypes.find(&:first?), number: @number
+  tr
+    th colspan = 3
+      -if @all
+        =button_to 'Show Important', { id: @current_words, format: '' }, method: :get
+      -else
+        =button_to 'Show All', { id: @current_words, format: 'all' }, method: :get

@@ -49,3 +49,7 @@ Then('all reactions should be listed') do
     assert page.has_text?(x.react)
   end
 end
+
+Then('there should be {int} {string}(s)') do |int, string|
+  expect(page).to have_content(string, count: int)
+end
