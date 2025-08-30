@@ -50,6 +50,6 @@ Then('all reactions should be listed') do
   end
 end
 
-Then('there should be {int} {string}(s)') do |int, string|
-  expect(page).to have_content(string, count: int)
+Then 'I should have {int} li elements' do |int|
+  expect(find_all('li').count).to be int
 end

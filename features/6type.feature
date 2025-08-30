@@ -20,12 +20,12 @@ Then your episodes should be visible
 
 Example: type page only shows important advice by default
 Given I am on my type page
-Then there should be 2 'more's
+Then I should have 10 li elements
 
 Example: type page allows you to show all advice
 Given I am on my type page
 When I click the 'Show All' button
-Then there should be 4 'more's
+Then I should have 15 li elements
 
 Example: showing all does not change words
 Given I am on my type page
@@ -36,4 +36,4 @@ Example: type page allows you to hide all advice
 Given I am on my type page
 When I click the 'Show All' button
   And I click the 'Show Important' button
-Then there should be 2 'more's
+Then I should have 10 li elements

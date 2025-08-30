@@ -3,7 +3,7 @@ br
 =s.flop.react.too_much
 ol.left
   li
-    =s.advice(@number)
+    =s.advice(number)
 
   -if @all || s.index.positive?
     li
@@ -17,10 +17,15 @@ ol.left
       |> do <em>not</em>
       =s.opposite.advice(number)
       br
-      | (it will only make you  #{s.flop.advice(number).first_word} <em>more</em> #{s.flop.advice(number).last_words}
+      | (it will only encourage you to #{s.flop.advice(number).first_word} <em>more</em> #{s.flop.advice(number).last_words}
       | )
 
-  -if @all || s.index > 2
+  -if (@all && s.index.positive?) || s.index > 2
     li
-      =s.flip.advice(number)
+      =s.replace_realm(@type.subtypes.first.realm).advice(number)
+      br
+      |> (it will make you feel #{s.bad}
+      br
+      |> which will make it easier to
+      =s.stop.endwrap
 

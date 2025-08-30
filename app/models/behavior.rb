@@ -20,7 +20,8 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? last? season seasonal time_of_day previous react time bad].each do |meth|
+  %i[top? bottom? left? first? second? third? last?
+     season seasonal time_of_day previous react time bad stop].each do |meth|
     delegate meth, to: :attitude
   end
 
@@ -48,6 +49,8 @@ class Behavior < Concept
   def self.pairs = ALL.flat_map { |b| b.siblings.collect { |s| [b, s] } }.map(&:sort).uniq
   def siblings = [flip, flop, *realm_siblings]
   def realm_siblings = ALL.select { |b| b.attitude == attitude && b != self }
+
+  def replace_realm(r) = ALL.find { |b| b.attitude == attitude && b.realm == r }
 
   def link = tla.upcase
 

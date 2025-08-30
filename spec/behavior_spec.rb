@@ -28,4 +28,8 @@ RSpec.describe Behavior, type: :model do
       expect(described_class.without(%w[enj ifj isp]).first.tla).to eq 'etp'
     end
   end
+
+  it 'can find a realm sibling' do
+    expect(described_class.find(:BSL).replace_realm(Realm.find(:F)).tla).to eq 'ifp'
+  end
 end

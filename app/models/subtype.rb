@@ -27,7 +27,8 @@ class Subtype
   %i[top? bottom? first? second? third? last? <=>
      flip flop opposite tla adjective adverb
      advice something do_something timed_action time time_of_day best_time
-     attitude bipolar season execute what long].each do |meth|
+     attitude bipolar season execute what long
+     react realm replace_realm bad stop].each do |meth|
     delegate meth, to: :behavior
   end
 end
