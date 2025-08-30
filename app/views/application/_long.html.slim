@@ -2,19 +2,15 @@ b=s.episode
 br
 =s.flop.react.too_much
 ol.left
-  li=s.long(@number)
+  li=s.advice(@number)
   -if s.index.positive?
     li
       |> do <em>not</em>
-      =s.flop.long(number)
+      =s.flop.advice(number)
   -if s.index > 1
     li
       |> do <em>not</em>
       =s.opposite.advice(number)
-      |<>
-      =s.flip.time
   -if s.index > 2
     li
       =s.flip.advice(number)
-      |<>
-      =s.flop.time
