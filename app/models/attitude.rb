@@ -15,6 +15,11 @@ class Attitude < Concept
   def bottom? = string.starts_with?('B')
   def self.bottoms = ALL.select(&:bottom?)
 
+  def execute = top? ? 'externalize' : 'internalize'
+  def which = left? ? 'energy' : 'strength'
+  def do_something = [execute, which].to_phrase
+
+
   def left? = string.ends_with?('L')
   def diagonal? = [1, 3].include?(index)
   def first? = index.zero?

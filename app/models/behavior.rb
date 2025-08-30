@@ -21,7 +21,8 @@ class Behavior < Concept
   end
 
   %i[top? bottom? left? first? second? third? last?
-     season seasonal time_of_day previous react time bad stop].each do |meth|
+     season seasonal time_of_day previous react time bad stop
+     execute which].each do |meth|
     delegate meth, to: :attitude
   end
 
@@ -29,8 +30,6 @@ class Behavior < Concept
     delegate meth, to: :realm
   end
 
-  def execute = top? ? 'externalize' : 'internalize'
-  def which = left? ? 'energy' : 'strength'
   def something = [adjective, which].to_phrase
   def do_something = [execute, adjective, which].to_phrase
 

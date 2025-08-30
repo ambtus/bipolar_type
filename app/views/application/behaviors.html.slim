@@ -2,14 +2,14 @@
   br
   table
     tr
-      th rowspan=4 =realm.left.chars.break
-      th colspan=2 =realm.foci
-      th rowspan=4 =realm.right.chars.break
-    tr
       td.bordered=render 'behavior', behavior: realm + Attitude.TL
+      th=realm.top
       td.bordered=render 'behavior', behavior: realm + Attitude.TR
     tr
-      td.bordered=render 'behavior', behavior: realm + Attitude.BL
-      td.bordered=render 'behavior', behavior: realm + Attitude.BR
+      th=realm.left
+      th=realm.adjective.capitalize
+      th=realm.right
     tr
-      th colspan=2 =realm.organ
+      td.bordered=render 'behavior', behavior: realm + Attitude.BL
+      th=realm.bottom
+      td.bordered=render 'behavior', behavior: realm + Attitude.BR
