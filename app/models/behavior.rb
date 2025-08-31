@@ -7,6 +7,9 @@ class Behavior < Concept
     end
   end.flatten
 
+  def tla = symbol.to_s
+  def link = tla.upcase
+
   ALL = SYMBOLS.collect { |symbol| new symbol }
 
   def realm = Realm.find(string.second)
@@ -37,7 +40,6 @@ class Behavior < Concept
   def worse = [adverb, attitude.worse].to_phrase
   def episode = [seasonal, flop.attitude.bipolar].to_phrase.titleize
 
-  def tla = [top? ? 'e' : 'i', realm.string.downcase, left? ? 'p' : 'j'].join
   def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
   def self.tlas = ALL.map(&:tla)
 
@@ -51,10 +53,6 @@ class Behavior < Concept
 
   def replace_realm(r) = ALL.find { |b| b.attitude == attitude && b.realm == r }
 
-  def link = tla.upcase
-
-  #   def what = top? ? foci : "your #{organ}"
-  #   def goal = [attitude.goal, what].to_phrase
 
   def lines = File.foreach("words/#{tla}", chomp: true).to_a
 

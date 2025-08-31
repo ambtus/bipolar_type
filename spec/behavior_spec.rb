@@ -30,6 +30,6 @@ RSpec.describe Behavior, type: :model do
   end
 
   it 'can find a realm sibling' do
-    expect(described_class.find(:BSL).replace_realm(Realm.find(:F)).tla).to eq 'ifp'
+    expect(described_class.find(:isp).replace_realm(Realm.find(:f)).tla).to eq 'ifp'
   end
 end

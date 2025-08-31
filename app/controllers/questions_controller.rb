@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
 
   def show
     @title = params[:id]
-    @sets = sets(@title.chars.values_at(0, 1, 4, 5).collect { |c| Realm.find(c) })
+    @sets = sets(@title.chars.values_at(0, 1, 4, 5).collect { |c| Realm.find(c.downcase) })
     if params[:format]
       @set = @sets[params[:format].to_i]
       render 'Q2' and return

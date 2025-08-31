@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Attitude < Concept
-  SYMBOLS = %i[BL TL TR BR].freeze
+  SYMBOLS = %i[ip ep ej ij].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
@@ -10,18 +10,17 @@ class Attitude < Concept
   LINEAR = [3, 0, 1, 2].freeze
   def self.linear = ALL.values_at(*LINEAR)
 
-  def top? = string.starts_with?('T')
-  def self.tops = ALL.select(&:top?)
-  def bottom? = string.starts_with?('B')
-  def self.bottoms = ALL.select(&:bottom?)
+  def top? = string.starts_with?('e')
+  def left? = string.ends_with?('p')
 
   def execute = top? ? 'externalize' : 'internalize'
   def which = left? ? 'energy' : 'strength'
   def do_something = [execute, which].to_phrase
 
+  def self.tops = ALL.select(&:top?)
+  def bottom? = string.starts_with?('i')
+  def self.bottoms = ALL.select(&:bottom?)
 
-  def left? = string.ends_with?('L')
-  def diagonal? = [1, 3].include?(index)
   def first? = index.zero?
   def second? = (index == 1)
   def third? = (index == 2)

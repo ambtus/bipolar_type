@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Realm < Concept
-  SYMBOLS = %i[F S T N].freeze
+  SYMBOLS = %i[f s t n].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }

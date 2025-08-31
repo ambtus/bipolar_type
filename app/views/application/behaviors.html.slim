@@ -2,14 +2,14 @@
   br
   table
     tr
-      td.bordered=render 'behavior', behavior: realm + Attitude.TL
+      td.bordered=render 'behavior', behavior: realm + Attitude.second
       th=realm.top
-      td.bordered=render 'behavior', behavior: realm + Attitude.TR
+      td.bordered=render 'behavior', behavior: realm + Attitude.third
     tr
       th=realm.left
       th=realm.adjective.capitalize
       th=realm.right
     tr
-      td.bordered=render 'behavior', behavior: realm + Attitude.BL
+      td.bordered=render 'behavior', behavior: realm + Attitude.first
       th=realm.bottom
-      td.bordered=render 'behavior', behavior: realm + Attitude.BR
+      td.bordered=render 'behavior', behavior: realm + Attitude.fourth

@@ -2,14 +2,14 @@ table
   caption
     b.larger=defined?(caption) ? caption : ''
   tr
-    td.bordered=render x, a: Attitude.TL
+    td.bordered=render x, a: Attitude.second
     th
-    td.bordered=render x, a: Attitude.TR
+    td.bordered=render x, a: Attitude.third
   tr
     th
     th &orarr;
     th
   tr
-    td.bordered=render x, a: Attitude.BL
+    td.bordered=render x, a: Attitude.first
     th
-    td.bordered=render x, a: Attitude.BR
+    td.bordered=render x, a: Attitude.fourth
