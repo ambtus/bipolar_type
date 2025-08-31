@@ -20,9 +20,7 @@ end
 
 Then('all behaviors should be listed') do
   Behavior.each do |x|
-    6.times do |i|
-      assert page.has_text?(x.advice(i))
-    end
+    assert page.has_text?(x.advice)
   end
 end
 

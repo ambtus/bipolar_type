@@ -4,11 +4,6 @@ class QuestionsController < ApplicationController
   def index
     @title = '40 Questions'
     @pairs = Behavior.pairs
-    @line_number = if params[:n].blank?
-                     0
-                   else
-                     params[:n].to_i
-                   end
     render 'questions'
   end
 

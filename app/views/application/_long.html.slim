@@ -3,21 +3,21 @@ br
 =s.flop.react.too_much
 ol.left
   li
-    =s.advice(number)
+    =s.advice
 
   -if @all || s.index.positive?
     li
       |> do <em>not</em>
-      =s.flop.advice(number)
+      =s.flop.advice
       br
       | (it will only make you feel #{s.flop.bad})
 
   -if @all || s.index > 1
     li
       |> do <em>not</em>
-      =s.opposite.advice(number)
+      =s.opposite.advice
       br
-      | (it will only encourage you to #{s.flop.advice(number).first_word} <em>more</em> #{s.flop.advice(number).last_words}
+      | (it will only encourage you to #{s.flop.advice.first_word} <em>more</em> #{s.flop.advice.last_words}
       | )
 
   -if (@all && s.index.positive?) || s.index > 2

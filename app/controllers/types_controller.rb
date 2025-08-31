@@ -14,11 +14,8 @@ class TypesController < ApplicationController
   end
 
   def show
-    path, set = params[:id].split('_')
+    path = params[:id]
     @type = Type.new path
-    @current_words = params[:id]
-    @next_words = @type.path + suffix(set)
-    @number = set.to_i
     @all = params[:format]
     @title = @type.title
     render 'type'
@@ -28,12 +25,4 @@ class TypesController < ApplicationController
     redirect_to action: 'show', id: Type.my_path
   end
 
-  private
-
-  def suffix(set)
-    return '_1' if set.blank?
-    return '' if set == '5'
-
-    "_#{set.next}"
-  end
 end

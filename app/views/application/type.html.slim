@@ -2,32 +2,30 @@ table
   caption Daily
   tr
     -@type.tops.each do |s|
-      td=render 'short', s: s, number: @number
+      td=render 'short', s: s
   tr
     th colspan = 2 &orarr;
   tr
     -@type.bottoms.each do |s|
-      td=render 'short', s: s, number: @number
-  tr
-    th colspan = 2 =button_to 'Change Words', { id: @next_words }, method: :get
+      td=render 'short', s: s
 
 table
   caption Seasonal
   tr
-    td.bordered=render 'long', s: @type.subtypes.find(&:third?), number: @number
+    td.bordered=render 'long', s: @type.subtypes.find(&:third?)
     th
-    td.bordered=render 'long', s: @type.subtypes.find(&:second?), number: @number
+    td.bordered=render 'long', s: @type.subtypes.find(&:second?)
   tr
     th
     th &orarr;
     th
   tr
-    td.bordered=render 'long', s: @type.subtypes.find(&:last?), number: @number
+    td.bordered=render 'long', s: @type.subtypes.find(&:last?)
     th
-    td.bordered=render 'long', s: @type.subtypes.find(&:first?), number: @number
+    td.bordered=render 'long', s: @type.subtypes.find(&:first?)
   tr
     th colspan = 3
       -if @all
-        =button_to 'Show Important', { id: @current_words, format: '' }, method: :get
+        =button_to 'Show Important', { format: '' }, method: :get
       -else
-        =button_to 'Show All', { id: @current_words, format: 'all' }, method: :get
+        =button_to 'Show All', { format: 'all' }, method: :get

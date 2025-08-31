@@ -53,13 +53,9 @@ class Behavior < Concept
 
   def replace_realm(r) = ALL.find { |b| b.attitude == attitude && b.realm == r }
 
-
-  def lines = File.foreach("words/#{tla}", chomp: true).to_a
-
   def timed_action = [do_something, time].to_phrase
-  def advice(line_number = 0) = lines[line_number]
-
   def timed_goal = [goal, time].to_phrase
 
-  def long(number = 0) = "#{advice(number)} #{time}"
+  def advice = File.readlines("app/phrase/#{tla}", chomp: true).first
+  def long = "#{advice} #{time}"
 end

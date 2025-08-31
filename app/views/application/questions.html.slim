@@ -7,9 +7,9 @@ p If you could only do one of the two, which would you do?
       li
         span class=x.first.tla
           =f.radio_button "q[#{i}]", x.first.tla
-          =f.label "q[#{i}]_#{x.first.tla}", x.first.advice(@line_number)
+          =f.label "q[#{i}]_#{x.first.tla}", x.first.advice
         |<> or
         span class=x.second.tla
-          =f.label "q[#{i}]_#{x.second.tla}", x.second.advice(@line_number)
+          =f.label "q[#{i}]_#{x.second.tla}", x.second.advice
           =f.radio_button "q[#{i}]", x.second.tla
   =f.submit 'Analyze'

@@ -33,12 +33,6 @@ RSpec.describe 'questions', type: :request do
     expect(response.body).to match('functions:')
   end
 
-  it 'lets you try with other questions even if it finds something' do
-    post '/questions', params: { q: { '1' => 'enj', '2' => 'ifp', '3' => 'isj' } }
-    follow_redirect!
-    expect(response.body).to match('alternate')
-  end
-
   it 'puts found subtypes in title' do
     post '/questions', params: { q: { '1' => 'enj', '2' => 'ifp', '3' => 'ifp', '4' => 'inp' } }
     follow_redirect!

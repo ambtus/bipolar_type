@@ -1,21 +1,18 @@
 -if @valid
-  p
+  p.center
     |> Your answers lead to the BipolarType
     =link_to @type_path, type_path(@type_path)
-  p If that BipolarType does not seem to fit, there are 575 others.
+  p.center If that BipolarType does not seem to fit, there are 575 others.
 -else
-  p The questionaire was not able to determine your BipolarType.
+  p.center The questionaire was not able to determine your BipolarType.
 -unless @behaviors.blank?
-  p Possible dominant function#{'s' if @behaviors.size > 1}:
-  ul
+  p.center Possible dominant function#{'s' if @behaviors.size > 1}:
+  ul.center
     -@behaviors.each do |b|
       li=link_to b.tla, types_path(b.tla)
-p Pairwise question sets:
-ul
-  -6.times do |i|
-    -query = i.zero? ? '' : "?n=#{i}"
-    li
-      =link_to "#{(i + 1).ordinalize} alternate", questions_path + query
-      |> : eg
-      =Behavior.pairs.first.collect { |b| b.advice(i) }.or
+p.center
+  |> Pairwise questions:
+  =link_to "questions", questions_path
+  |> : eg
+  =Behavior.pairs.first.collect { |b| b.advice }.or
 =render 'pairwise'
