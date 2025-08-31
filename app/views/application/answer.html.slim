@@ -12,7 +12,7 @@
       li=link_to b.tla, types_path(b.tla)
 p.center
   |> Pairwise questions:
-  =link_to "questions", questions_path
+  =link_to 'questions', questions_path
   |> : eg
-  =Behavior.pairs.first.collect { |b| b.advice }.or
+  =Behavior.pairs.first.collect(&:advice).or
 =render 'pairwise'

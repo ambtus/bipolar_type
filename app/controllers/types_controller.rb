@@ -24,5 +24,4 @@ class TypesController < ApplicationController
   def me
     redirect_to action: 'show', id: Type.my_path
   end
-
 end
