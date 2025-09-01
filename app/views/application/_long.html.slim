@@ -9,16 +9,13 @@ ol.left
     li
       |> do <em>not</em>
       =s.flop.long
-      br
-      | (it will only make you feel #{s.flop.bad})
+      |< (it will <em>not</em> make you feel less #{s.flop.bad})
 
   -if @all || s.index > 1
     li
       |> do <em>not</em>
-      =s.opposite.advice
-      |<> if you don&rsquo;t need to
-      br
-      | (it will only encourage you to #{s.flop.advice.first_word} <em>more</em> #{s.flop.advice.last_words}
+      =s.opposite.long
+      |<> unless you have to (it will only encourage you to #{s.flop.advice.first_word} <em>more</em> #{s.flop.advice.last_words}
       | )
 
   -if @all || s.index > 2
@@ -27,11 +24,14 @@ ol.left
       =s.worse
       |<> even after you have
       =s.advice.en.enough
-      |<> give yourself
+      |<>
+      =s.time
+      |> , give yourself
       em time
-      |> : switching to
+      |> ; switching to
       =s.flop.advice.ing
-      |<> makes it 
-      em harder 
+      |<> makes it
+      em harder
       |<> to
-      =s.stop.period
+      =s.stop.comma
+      |<> not easier.

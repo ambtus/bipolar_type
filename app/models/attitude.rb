@@ -29,15 +29,15 @@ class Attitude < Concept
   def react = %w[digest flee fight rest][index]
   def goal = %w[refuel escape win recover][index]
 
-  def bad = %w[hollow anxious irritated tired][index]
-  def worse = %w[empty afraid angry exhausted][index]
+  def bad = %w[hungry anxious irritable tired][index]
+  def worse = %w[starving afraid angry exhausted][index]
 
   def time_of_day = %w[morning midday afternoon evening][index]
   def time = second? ? "at #{time_of_day}" : "in the #{time_of_day}"
   def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
   def bipolar = top? ? 'mania' : 'depression'
   def seasonal = flop.season
-  def episode = [seasonal, bipolar].to_phrase.titleize
+  def episode = [flop.bad, bipolar].to_phrase.titleize
   def stop = [react, goal].and
 
   def behaviors = Behavior.all.select { |x| x.attitude == self }
