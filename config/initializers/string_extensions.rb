@@ -169,6 +169,7 @@ class String
   end
 
   def ed
+    return 'wrote' if self == 'write'
     return 'sought' if self == 'seek'
     return 'chose' if self == 'choose'
     return 'bought' if self == 'buy'
@@ -218,6 +219,7 @@ class String
   end
 
   def en
+    return 'written' if self == 'write'
     return 'chosen' if self == 'choose'
     return 'taken' if self == 'take'
     return 'gotten' if self == 'get'
@@ -362,13 +364,13 @@ class String
   end
 
   def too_much
-    if match('(.*) a (.*)')
-      if ::Regexp.last_match(2).uncountable?
+    if match('(.*) (a|the) (.*)')
+      if ::Regexp.last_match(3).uncountable?
         return [::Regexp.last_match(1), 'too much',
-                ::Regexp.last_match(2)].to_phrase
+                ::Regexp.last_match(3)].to_phrase
       end
 
-      return [::Regexp.last_match(1), 'too many', ::Regexp.last_match(2).pluralize].to_phrase
+      return [::Regexp.last_match(1), 'too many', ::Regexp.last_match(3).pluralize].to_phrase
 
     end
     [' and ', ' or ', ' / ', ' & '].each do |connector|
@@ -378,7 +380,7 @@ class String
       end
     end
     if match?(' ')
-      [first_words, 'too', last_words.much, last_words].join(' ')
+      [first_words, 'too', last_words.last.much, last_words].join(' ')
     elsif noun?
       "too #{many} #{self}"
     else
@@ -387,8 +389,17 @@ class String
   end
   alias too_many :too_much
   def too_little
+    if match('(.*) (a|the) (.*)')
+      if ::Regexp.last_match(3).uncountable?
+        return [::Regexp.last_match(1), 'too little',
+                ::Regexp.last_match(3)].to_phrase
+      end
+
+      return [::Regexp.last_match(1), 'too few', ::Regexp.last_match(3).pluralize].to_phrase
+
+    end
     if match?(' ')
-      [first_words, 'too', last_words.little, last_words].join(' ')
+      [first_words, 'too', last_words.last.little, last_words].join(' ')
     else
       "#{self} too little"
     end
