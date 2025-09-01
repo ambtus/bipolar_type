@@ -15,7 +15,7 @@ Then I should have 10 li elements
 Example: type page allows you to show all advice
 Given I am on my type page
 When I click the 'Show All' button
-Then I should have 15 li elements
+Then I should have 16 li elements
 
 Example: showing all does not change words
 Given I am on my type page

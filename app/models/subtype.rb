@@ -14,7 +14,6 @@ class Subtype
   def jungian = %w[dominant auxiliary tertiary inferior][index]
 
   def inspect = behavior.tla + ordinal
-  def goal = "#{ordinal}: #{behavior.goal}"
 
   def opposite_ordinal_word = %w[last third second first][index]
   #  def opposite_ordinal = %w[4th 3rd 2nd 1st][index]
@@ -26,9 +25,11 @@ class Subtype
 
   %i[top? bottom? first? second? third? last? <=>
      flip flop opposite tla adjective adverb
-     advice something do_something timed_action time time_of_day best_time
-     attitude bipolar season execute what long
-     react realm replace_realm bad stop].each do |meth|
+     advice something do_something timed_action
+     time time_of_day best_time season
+     attitude bipolar execute what long
+     react realm replace_realm bad worse stop
+     goal organ].each do |meth|
     delegate meth, to: :behavior
   end
 end

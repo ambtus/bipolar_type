@@ -1,5 +1,6 @@
 table
-  caption Daily
+  caption 
+    b.larger Daily
   tr
     -@type.tops.each do |s|
       td=render 'short', s: s
@@ -10,19 +11,20 @@ table
       td=render 'short', s: s
 
 table
-  caption Seasonal
+  caption 
+    b.larger Seasonal
   tr
-    td.bordered=render 'long', s: @type.subtypes.find(&:third?)
+    td.halfish=render 'long', s: @type.subtypes.find(&:third?)
     th
-    td.bordered=render 'long', s: @type.subtypes.find(&:second?)
+    td.halfish=render 'long', s: @type.subtypes.find(&:second?)
   tr
     th
     th &orarr;
     th
   tr
-    td.bordered=render 'long', s: @type.subtypes.find(&:last?)
+    td=render 'long', s: @type.subtypes.find(&:last?)
     th
-    td.bordered=render 'long', s: @type.subtypes.find(&:first?)
+    td=render 'long', s: @type.subtypes.find(&:first?)
   tr
     th colspan = 3
       -if @all

@@ -1,14 +1,14 @@
 b=s.episode
 br
-=s.flop.react.too_much
+em=s.flop.advice.too_much
 ol.left
   li
-    =s.advice
+    =s.long
 
   -if @all || s.index.positive?
     li
       |> do <em>not</em>
-      =s.flop.advice
+      =s.flop.long
       br
       | (it will only make you feel #{s.flop.bad})
 
@@ -16,11 +16,22 @@ ol.left
     li
       |> do <em>not</em>
       =s.opposite.advice
+      |<> if you don&rsquo;t need to
       br
       | (it will only encourage you to #{s.flop.advice.first_word} <em>more</em> #{s.flop.advice.last_words}
       | )
 
-  -if (@all && s.index.positive?) || s.index > 2
+  -if @all || s.index > 2
     li
-      | TBD&hellip;
-
+      |> if you still feel
+      =s.worse
+      |<> even after you have
+      =s.advice.en.enough
+      |<> give yourself
+      em time
+      |> : switching to
+      =s.flop.advice.ing
+      |<> makes it 
+      em harder 
+      |<> to
+      =s.stop.period

@@ -24,8 +24,8 @@ class Behavior < Concept
   end
 
   %i[top? bottom? left? first? second? third? last?
-     season seasonal time_of_day previous react time bad stop
-     execute which].each do |meth|
+     season seasonal time_of_day previous react time bad worse stop
+     execute which goal].each do |meth|
     delegate meth, to: :attitude
   end
 
@@ -37,7 +37,6 @@ class Behavior < Concept
   def do_something = [execute, adjective, which].to_phrase
 
   def bipolar = [adjective, attitude.bipolar].to_phrase
-  def worse = [adverb, attitude.worse].to_phrase
   def episode = [seasonal, flop.attitude.bipolar].to_phrase.titleize
 
   def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
@@ -52,9 +51,6 @@ class Behavior < Concept
   def realm_siblings = ALL.select { |b| b.attitude == attitude && b != self }
 
   def replace_realm(r) = ALL.find { |b| b.attitude == attitude && b.realm == r }
-
-  def timed_action = [do_something, time].to_phrase
-  def timed_goal = [goal, time].to_phrase
 
   def advice = File.readlines("app/phrase/#{tla}", chomp: true).first
   def long = "#{advice} #{time}"

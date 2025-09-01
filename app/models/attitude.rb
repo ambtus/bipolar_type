@@ -29,7 +29,7 @@ class Attitude < Concept
   def react = %w[digest flee fight rest][index]
   def goal = %w[refuel escape win recover][index]
 
-  def bad = %w[drained anxious irritated tired][index]
+  def bad = %w[hollow anxious irritated tired][index]
   def worse = %w[empty afraid angry exhausted][index]
 
   def time_of_day = %w[morning midday afternoon evening][index]
