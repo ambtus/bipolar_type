@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   %w[realms attitudes behaviors episodes].each do |thing|
     get "/#{thing}" => "application##{thing}"
   end
+  Realm.adjectives.each do |thing|
+    get "/#{thing}" => "realms##{thing}"
+  end
   get '/answer/:id', to: 'application#answer', as: 'answer'
   resources :questions, only: %i[create index show]
   resources :types, only: %i[show index]

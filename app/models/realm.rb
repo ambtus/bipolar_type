@@ -9,6 +9,8 @@ class Realm < Concept
 
   def self.linear = ALL.values_at(1, 2, 3, 0)
 
+  def self.adjectives = ALL.map(&:adjective)
+
   def behaviors = Behavior.all.select { |x| x.realm == self }
   def +(other) = behaviors.find { |x| x.attitude == other }
 
