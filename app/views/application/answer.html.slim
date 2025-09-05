@@ -11,8 +11,9 @@
     -@behaviors.each do |b|
       li=link_to b.tla, types_path(b.tla)
 p.center
-  |> Pairwise questions:
+  |> Pairwise
   =link_to 'questions', questions_path
-  |> : eg
-  =Behavior.pairs.first.collect(&:advice).or
+  br
+  |> eg
+  =Behavior.pairs.first.collect(&:my_goal).or
 

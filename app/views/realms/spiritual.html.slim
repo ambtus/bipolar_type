@@ -1,38 +1,33 @@
 br
 table.equal
+  caption The Four Behaviors
 
   tr
 
     td.bordered
-      | EFP
-      ol.left
-        li Loves to talk and sing and meet new people.
-        li Likes writing as long as it includes expressing emotions.
-        li Dislikes listening to stories. Even if it includes background music.
-        li Always listens to music. Even if it includes lyrics. 
+      =Behavior.efp.goal
+      p sing, emote, laugh and cry, harmonize, care, empathize, make new friends, scream and shout and let it all out, whine, express emotions, emotional lability
 
     td.bordered
-      | EFJ
-      ol.left
-        li Loves to write and rhyme and improve their network.
-        li Likes talking as long as it includes morals.
-        li Dislikes listening to music. Even if it includes lyrics.
-        li Always listens to stories. Even if it is set to music. 
+      =Behavior.efj.goal
+      p preach, moralize, nag, write lyrics, write stories, use your words, express meaning, manage people, influence people, sympathize
 
   tr
 
     td.bordered
-      | IFP
-      ol.left
-        li Loves to listen to music and hear harmonies and refuel their soul.
-        li Likes stories as long as they include emotions with the morals.
-        li Doesn't enjoy writing. Even if it includes expressing emotion.
-        li Always expresses emotion. Even if it requires using words. 
+      =Behavior.ifp.goal
+      p hear voices, appreciate harmonies, understand emotions and motives, listen to intonation, understand connotation, learn melodies
 
     td.bordered
-      | IFJ
-      ol.left
-        li Loves to listen to stories and hear opinions and rest their soul.
-        li Likes music as long as it includes lyrics with the harmony.
-        li Doesn't enjoy talking. Even if they include morals.
-        li Always writes. Even if it requires expressing emotion.
+      =Behavior.ifj.goal
+      p hear words, appreciate puns, understand morals and ethics, listen to opinions, understand meaning, learn languages
+
+br
+table.equal
+  caption The Four Subtypes
+  tr
+    td.p=render 'subtype', b: Behavior.efp
+    td.p=render 'subtype', b: Behavior.efj
+  tr
+    td.p=render 'subtype', b: Behavior.ifp
+    td.p=render 'subtype', b: Behavior.ifj

@@ -1,37 +1,34 @@
 br
 table.equal
+  caption The Four Behaviors
+
+  tr
+
+    td.p
+      .center=Behavior.enp.goal
+      p improvise, create tactics, draw pictures, synthesize facts
+
+    td.p
+      .centsr=Behavior.enj.goal
+      p make plans, create strategies, prove conclusions, predict consequences
 
   tr
 
     td.bordered
-      | ENP
-      ol.left
-        li Loves to play mental games and use intuition and create new ideas.
-        li Likes mental work as long as it involves using intuition.
-        li Dislikes watching the results. Even if they include new facts.
-        li Always notices the details. Even if they are imbedded in the results.
+      =Behavior.inp.goal.make_mine
+      p.left learn facts, see the trees, memorize details, remember specifics
 
     td.bordered
-      | ENJ
-      ol.left
-        li Loves to do mental work and use logic and improve their plans.
-        li Likes mental games as long as they involve using logic.
-        li Dislikes learning facts. Even if they follow the rules.
-        li Always notices the patterns. Even if they are layered over the facts.
+      =Behavior.inj.goal.make_mine
+      p.left learn rules, see the forest, memorize paterns, remember generalities
 
+br
+table.equal
+  caption The Four Subtypes
   tr
+    td.p=render 'subtype', b: Behavior.enp
+    td.p=render 'subtype', b: Behavior.enj
+  tr
+    td.p=render 'subtype', b: Behavior.inp
+    td.p=render 'subtype', b: Behavior.inj
 
-    td.bordered
-      | INP
-      ol.left
-        li Loves to learn facts and research data and refuel their memories.
-        li Likes rules as long as they include exceptions.
-        li Doesn't enjoy mental work. Even if it involves using intuition.
-        li Always improvises. Even if it requires using logic.
-    td.bordered
-      | INJ
-      ol.left
-        li Loves to watch the results and close their eyes and rest their mind.
-        li Likes exceptions as long as they prove the rules.
-        li Doesn't enjoy mental games. Even if they involve using credit.
-        li Always makes plans. Even if it requires using intuition.

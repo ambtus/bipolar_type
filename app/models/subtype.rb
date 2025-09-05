@@ -29,7 +29,7 @@ class Subtype
      time time_of_day best_time season
      attitude bipolar execute what long
      react realm replace_realm bad worse stop
-     goal organ].each do |meth|
+     goal my_goal organ].each do |meth|
     delegate meth, to: :behavior
   end
 end

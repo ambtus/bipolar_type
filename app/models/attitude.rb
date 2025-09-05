@@ -26,11 +26,11 @@ class Attitude < Concept
   def third? = (index == 2)
   def last? = (index == 3)
 
-  def react = %w[digest flee fight rest][index]
-  def goal = %w[refuel escape win recover][index]
+  def react = %w[feed flee fight rest][index]
+  def goal = %w[fuel escape control rebuild][index]
 
-  def bad = %w[hungry anxious irritable tired][index]
-  def worse = %w[starving afraid angry exhausted][index]
+  def bad = %w[drained anxious irritated tired][index]
+  def worse = %w[empty afraid angry exhausted][index]
 
   def time_of_day = %w[morning midday afternoon evening][index]
   def time = second? ? "at #{time_of_day}" : "in the #{time_of_day}"

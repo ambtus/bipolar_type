@@ -1,18 +1,18 @@
 b=s.episode
 br
-em=s.flop.advice.too_much
+em=s.flop.goal.too_much
 -if @all || s.index > 1
   br
-  em=s.flip.advice.too_little
+  em=s.flip.goal.too_little
 ol.left
   li
-    =s.long
+    =s.goal
     |<> and whenever you have
-    =s.flip.advice.en.too_much
+    =s.flip.goal.en.too_much
 
   -if @all || s.index.positive?
     li
-      =s.advice
+      =s.goal
       |<>
       =s.flop.time
       |<> even if you feel
@@ -20,14 +20,14 @@ ol.left
       |<>
       =s.flop.bad
       |<> and want to
-      =s.flop.advice
+      =s.flop.goal
       |<> because you have
-      =s.opposite.advice.too_much.en
+      =s.opposite.goal.too_much.en
 
 
   -if @all || s.index > 1
     li
-      =s.flip.advice
+      =s.flip.goal
       |<>
       =s.opposite.time
       |<> even if you feel
@@ -35,14 +35,14 @@ ol.left
       |<>
       =s.opposite.bad
       |<> and want to
-      =s.opposite.advice
+      =s.opposite.goal
       |<> because you have
-      =s.flop.advice.too_much.en
+      =s.flop.goal.too_much.en
 
 
   -if @all || s.index > 2
     li
-      =s.flip.advice
+      =s.flip.goal
       |<>
       =s.flip.time
       |<> and whenever you feel

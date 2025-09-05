@@ -11,6 +11,9 @@ class Behavior < Concept
   def link = tla.upcase
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
+  SYMBOLS.each do |sym|
+    define_singleton_method(sym) { ALL.find { |thing| thing.symbol == sym } }
+  end
 
   def realm = Realm.find(string.second)
   def attitude = Attitude.find(string.first + string.third)
@@ -39,19 +42,22 @@ class Behavior < Concept
   def bipolar = [adjective, attitude.bipolar].to_phrase
   def episode = [seasonal, flop.attitude.bipolar].to_phrase.titleize
 
+  def what = top? ? "the #{realm.top}" : "their #{realm.bottom}"
+  def goal = [attitude.goal, what].to_phrase
+  def my_goal = goal.make_mine
+
   def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
   def self.tlas = ALL.map(&:tla)
 
   def opposite = realm + attitude.opposite
   def flip = realm + attitude.flip
   def flop = realm + attitude.flop
-
-  def self.pairs = ALL.flat_map { |b| b.siblings.collect { |s| [b, s] } }.map(&:sort).uniq
-  def siblings = [flip, flop, *realm_siblings]
+  def siblings = [flip, flop]
+  def all_siblings = siblings + realm_siblings
   def realm_siblings = ALL.select { |b| b.attitude == attitude && b != self }
+
+  def self.pairs = ALL.flat_map { |b| b.all_siblings.collect { |s| [b, s] } }.map(&:sort).uniq
 
   def replace_realm(r) = ALL.find { |b| b.attitude == attitude && b.realm == r }
 
-  def advice = File.readlines("app/phrase/#{tla}", chomp: true).first
-  def long = "#{advice} #{time}"
 end

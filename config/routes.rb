@@ -2,9 +2,6 @@
 
 Rails.application.routes.draw do
   root 'application#home', as: :introduction
-  %w[realms attitudes behaviors episodes].each do |thing|
-    get "/#{thing}" => "application##{thing}"
-  end
   Realm.adjectives.each do |thing|
     get "/#{thing}" => "realms##{thing}"
   end

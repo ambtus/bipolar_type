@@ -5,6 +5,7 @@ class TypesController < ApplicationController
     string = params[:format] || ''
     @current = string.split('-')
     @free = Behavior.without(@current)
+    @chosen = Behavior.all.select{|b| @current.include?(b.tla)}
     if @free.size == 1
       redirect_to answer_path [string, Behavior.without(@current).map(&:tla).first].join('-')
     else

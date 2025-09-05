@@ -1,38 +1,34 @@
 br
 table.equal
+  caption The Four Behaviors
+
+  tr
+
+    td.p
+      .center=Behavior.esp.goal
+      p leave home, explore strange new worlds, go out for a breath of fresh air, play outdoors, travel to new territories, visit their home
+
+    td.p
+      .centsr=Behavior.esj.goal
+      p stay home, maintain familiar old worlds, go home to warmth and safety, work indoors, defend the territory, own your own home
 
   tr
 
     td.bordered
-      | ESP
-      ol.left
-        li Loves to play physical games and run marathons and visit new places.
-        li Likes physical work as long as it includes running around.
-        li Dislikes dinner. Even if it includes potatoes with the meat.
-        li Always eats breakfast. Even if it is only eggs and bacon.
+      =Behavior.isp.goal.make_mine
+      p.left carb loading; eat cereals, fruits, vegetables, pasta, potates; snack on sweets; drink fruit juice
 
     td.bordered
-      | ESJ
-      ol.left
-        li Loves to do physical work and lift weights and improve their home.
-        li Likes physical games as long as they include lifting weights.
-        li Dislikes breakfast. Even if it includes milk with the cereal.
-        li Always eats dinner. Even if it is only fruits and vegetables.
+      =Behavior.isj.goal.make_mine
+      p.left protein supplementation; eat meats, poultry, fish, eggs, nuts; snack on savories; drink protein shakes
 
+br
+table.equal
+  caption The Four Subtypes
   tr
+    td.p=render 'subtype', b: Behavior.esp
+    td.p=render 'subtype', b: Behavior.esj
+  tr
+    td.p=render 'subtype', b: Behavior.isp
+    td.p=render 'subtype', b: Behavior.isj
 
-    td.bordered
-      | ISP
-      ol.left
-        li Loves to eat carbs and taste sweet fruits and refuel their body.
-        li Likes dinner as long as it includes potatoes with the meat.
-        li Doesn't enjoy physical work. Even if it includes running around.
-        li Always leaves home. Even if it requires lifting weights outside.
-
-    td.bordered
-      | ISJ
-      ol.left
-        li Loves to eat proteins and taste savory meats and rest their muscles.
-        li Likes breakfast as long as it includes milk with the cereal.
-        li Doesn't enjoy physical games. Even if they include lifting weights.
-        li Always stays home. Even if it requires running around inside.

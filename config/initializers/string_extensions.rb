@@ -28,7 +28,7 @@ class String
                 .gsub('not do ', 'don’t ')
   end
 
-  def make_mine(be = 'am') = words.replace_with('your', 'my').replace_with('be', be).to_phrase
+  def make_mine(be = 'am') = words.replace_with('your', 'my').replace_with('their', 'my').replace_with('be', be).to_phrase
   def make_yours(are = 'are') = words.replace_with('my', 'your').replace_with('are', are).to_phrase
   def make_theirs = words.replace_with('your', 'their').to_phrase
   def to_wbr = words.map(&:capitalize).wbr
@@ -207,6 +207,7 @@ class String
     return 'spoke' if self == 'speak'
     return 'enjoyed' if self == 'enjoy'
     return 'prayed' if self == 'pray'
+    return 'controlled' if self == 'control'
 
     if match?(' ')
       return [first_words.ed, last_words.unwrap.ed.wrap].to_phrase if last_words.wrapped?
