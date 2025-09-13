@@ -14,7 +14,7 @@ class Type
   alias path :title
 
   class << self
-    def my_path = 'efp-inj-itp-esj'
+    def my_path = 'dfp-dnj-atp-asj'
     def my_type = Type.new(my_path)
     # for cucumber tests, just needs to be different.
     def your_path = my_type.behaviors.reverse.map { |x| x.opposite.tla }.join('-')

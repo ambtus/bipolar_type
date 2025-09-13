@@ -2,9 +2,11 @@
 
 class RealmsController < ApplicationController
 
-  Realm.adjectives.each do |thing|
-    define_method thing do
-      @title = thing.capitalize
+  Realm.each do |realm|
+    define_method realm.adjective do
+      @realm = realm
+      @title = @realm.adjective.capitalize
+      render 'realm'
     end
   end
 

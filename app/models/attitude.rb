@@ -1,24 +1,17 @@
 # frozen_string_literal: true
 
 class Attitude < Concept
-  SYMBOLS = %i[ip ep ej ij].freeze
+  SYMBOLS = %i[dp ap dj aj].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  LINEAR = [3, 0, 1, 2].freeze
-  def self.linear = ALL.values_at(*LINEAR)
-
-  def top? = string.starts_with?('e')
+  def top? = %i[ap dj].include?(symbol)
+  def bottom? = %i[dp aj].include?(symbol)
   def left? = string.ends_with?('p')
 
-  def execute = top? ? 'externalize' : 'internalize'
-  def which = left? ? 'energy' : 'strength'
-  def do_something = [execute, which].to_phrase
-
   def self.tops = ALL.select(&:top?)
-  def bottom? = string.starts_with?('i')
   def self.bottoms = ALL.select(&:bottom?)
 
   def first? = index.zero?
@@ -27,7 +20,7 @@ class Attitude < Concept
   def last? = (index == 3)
 
   def react = %w[feed flee fight rest][index]
-  def goal = %w[fuel escape control rebuild][index]
+  def goal = %w[fuel escape attack rebuild][index]
 
   def bad = %w[drained anxious irritated tired][index]
   def worse = %w[empty afraid angry exhausted][index]

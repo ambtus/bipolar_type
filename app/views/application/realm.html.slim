@@ -1,0 +1,22 @@
+br
+table.equal
+  caption The Four Behaviors
+
+  tr
+    td.left=@realm.behaviors.second.description
+    td.left=@realm.behaviors.third.description
+
+  tr
+    td.left=@realm.behaviors.first.description
+    td.left=@realm.behaviors.fourth.description
+br
+table.equal
+  caption The Four Subtypes
+
+  tr
+    td=render 'subtype', b: @realm.behaviors.fourth
+    td=render 'subtype', b: @realm.behaviors.first
+
+  tr
+    td=render 'subtype', b: @realm.behaviors.third
+    td=render 'subtype', b: @realm.behaviors.second

@@ -26,7 +26,7 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? last?
+  %i[top? bottom? left? first? second? third? last? external?
      season seasonal time_of_day previous react time bad worse stop
      execute which goal].each do |meth|
     delegate meth, to: :attitude
@@ -40,10 +40,10 @@ class Behavior < Concept
   def do_something = [execute, adjective, which].to_phrase
 
   def bipolar = [adjective, attitude.bipolar].to_phrase
-  def episode = [seasonal, flop.attitude.bipolar].to_phrase.titleize
+  def episode = [flip.seasonal, realm.adjective, opposite.attitude.bipolar].to_phrase.titleize
 
-  def what = top? ? "the #{realm.top}" : "their #{realm.bottom}"
-  def goal = [attitude.goal, what].to_phrase
+  def what = top? ? realm.top : realm.bottom
+  def goal = [react, 'and', attitude.goal, 'their', what].to_phrase
   def my_goal = goal.make_mine
 
   def self.find_by(hash) = ALL.find { |s| s.tla == hash[:tla].to_s }
@@ -59,5 +59,15 @@ class Behavior < Concept
   def self.pairs = ALL.flat_map { |b| b.all_siblings.collect { |s| [b, s] } }.map(&:sort).uniq
 
   def replace_realm(r) = ALL.find { |b| b.attitude == attitude && b.realm == r }
+
+  def description
+    lines = File.readlines("app/descriptions/#{tla}", chomp: true)
+    if lines.join.match(', ')
+      lines.join('; ')
+    else
+      lines.join(', ')
+    end
+  end
+
 
 end
