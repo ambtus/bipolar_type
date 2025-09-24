@@ -7,7 +7,7 @@ class Behavior < Concept
     end
   end.flatten
 
-  def tla = symbol.to_s
+  def tla = symbol.to_s.downcase
   def link = tla.upcase
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
@@ -23,15 +23,17 @@ class Behavior < Concept
     all.reject { |s| realms.include?(s.realm) || attitudes.include?(s.attitude) }
   end
 
-  %i[top? bottom? left? first? second? third? last?
+  %i[top? bottom? left? right? first? second? third? last?
      season seasonal time_of_day previous react time bad worse stop
      execute which goal].each do |meth|
     delegate meth, to: :attitude
   end
 
-  %i[adjective adverb foci organ].each do |meth|
+  %i[adjective adverb foci internals externals output].each do |meth|
     delegate meth, to: :realm
   end
+
+  def intake = top? ? flip.words.words.first : words.words.first
 
   def something = [adjective, which].to_phrase
   def do_something = [execute, adjective, which].to_phrase
@@ -52,6 +54,9 @@ class Behavior < Concept
 
   def replace_realm(r) = ALL.find { |b| b.attitude == attitude && b.realm == r }
 
-  def advice = File.readlines("app/phrase/#{tla}", chomp: true).first
-  def long = "#{advice} #{time}"
+  def words = File.readlines("app/words/#{tla}", chomp: true).first
+  def long = "#{words} #{time}"
+
+  def goal = top? ? realm.output : realm.intake
+
 end

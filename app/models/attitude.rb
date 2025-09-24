@@ -11,14 +11,15 @@ class Attitude < Concept
   def self.linear = ALL.values_at(*LINEAR)
 
   def top? = string.starts_with?('e')
+  def bottom? = string.starts_with?('i')
   def left? = string.ends_with?('p')
+  def right? = string.ends_with?('j')
 
-  def execute = top? ? 'externalize' : 'internalize'
+  def execute = top? ? 'use' : 'recover'
   def which = left? ? 'energy' : 'strength'
   def do_something = [execute, which].to_phrase
 
   def self.tops = ALL.select(&:top?)
-  def bottom? = string.starts_with?('i')
   def self.bottoms = ALL.select(&:bottom?)
 
   def first? = index.zero?

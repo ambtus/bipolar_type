@@ -7,6 +7,9 @@ class Concept
   attr_reader :symbol
   alias inspect :symbol
   def string = symbol.to_s
+  alias to_s :string
+  alias path :string
+  alias title :string
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|

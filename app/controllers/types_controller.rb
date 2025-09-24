@@ -3,12 +3,14 @@
 class TypesController < ApplicationController
   def index
     string = params[:format] || ''
-    @current = string.split('-')
-    @free = Behavior.without(@current)
-    if @free.size == 1
-      redirect_to answer_path [string, Behavior.without(@current).map(&:tla).first].join('-')
+    @current = string
+    @taken = @current.chars
+    @subtypes = @current.scan(/../).collect{|s| Subtype.find(s)}
+    if @current.length == 6
+      type = Type.find_by(subtypes: @subtypes)
+      redirect_to type_path(type.path)
     else
-      @title = "BipolarTypes#{" with #{@current.and}" if @current.present?}"
+      @title = "BipolarTypes#{" with #{@current.scan(/../).and}" if @current.present?}"
       render 'types'
     end
   end

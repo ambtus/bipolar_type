@@ -1,0 +1,11 @@
+-if ([r.string, 'i'] & @taken).blank?
+  =link_to "#{r.adjective} depression", types_path("#{@current}#{r.string}i")
+  |> : I would <em>much</em> rather
+  =r.internalize.and
+  |<> than
+  =r.externalize.or
+-elsif @current.match "#{r.string}i"
+  b #{r.adjective} depression
+-else
+  | #{r.adjective} depression
+

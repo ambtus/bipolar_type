@@ -16,7 +16,7 @@ html lang="en"
       a.external:hover {text-decoration: underline;}
 
       ul { padding: 0; margin: 0; list-style-type: none; }
-      ol { margin: 0; padding-left: 1.5em;}
+      ol { margin: 0; padding-left: 1.5em}
       table {margin: auto; border: none; border-collapse: collapse;}
       table.equal {table-layout: fixed; width: 100%; }
       td {border: none; text-align: center; vertical-align: top; padding: .2em; }
@@ -27,7 +27,7 @@ html lang="en"
 
       .button-wrapper {display: flex; gap: 10px; justify-content: center;}
   body
-    .center.larger=display_links %w[introduction attitudes episodes realms behaviors types]
+    .center.larger=display_links %w[introduction cycle behaviors theory types]
 
     =yield
 
@@ -37,15 +37,15 @@ html lang="en"
         =link_to_unless_current "#{which} type", type_path(Type.send("#{which}_path"))
         |<>
 
-      -if @free
+      -if @taken
         hr
-        |> free:
-        =@free
-        =@free.count.to_s.wrap
+        |> taken:
+        =@taken
+        =@taken.count.to_s.wrap
         br
         |> current:
         =@current
-        =@current.count.to_s.wrap
+        =@current.scan(/../).count.to_s.wrap
 
       hr
       | params: #{params}

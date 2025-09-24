@@ -3,13 +3,13 @@
 class ApplicationController < ActionController::Base
   def home = (@title = 'Introduction')
 
-  def attitudes = (@title = '4 Attitudes')
+  def realms = (@title = 'The Realms')
 
-  def realms = (@title = '4 Realms')
+  def cycle = (@title = 'The Cycle')
 
-  def behaviors = (@title = '16 Behaviors')
+  def theory = (@title = 'The Theory')
 
-  def episodes = (@title = '4 Episodes')
+  def behaviors = (@title = 'The Behaviors')
 
   def answer
     @type_path = params[:id]

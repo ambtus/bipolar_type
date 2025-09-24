@@ -1,35 +1,37 @@
 # frozen_string_literal: true
 
 class Realm < Concept
-  SYMBOLS = %i[f s t n].freeze
+  SYMBOLS = %i[F S T N].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.linear = ALL.values_at(1, 2, 3, 0)
+  def self.linear = ALL.values_at(1, 3, 2, 0)
+  def self.names = linear.map(&:name)
 
   def behaviors = Behavior.all.select { |x| x.realm == self }
-  def +(other) = behaviors.find { |x| x.attitude == other }
+  def subtypes = Subtype.all.select { |x| x.realm == self }
+  def +(other)
+    if other.is_a? Attitude
+      behaviors.find { |x| x.attitude == other }
+    elsif other.is_a? Mood
+      subtypes.find { |x| x.mood == other }
+    end
+  end
+
+  def externalize = behaviors.select(&:top?).map(&:words)
+  def internalize = behaviors.select(&:bottom?).map(&:words)
+  def be_energetic = behaviors.select(&:left?).map(&:words)
+  def be_strong = behaviors.select(&:right?).map(&:words)
 
   def adjective = %w[spiritual physical material mental][index]
   def adverb = adjective.ly
+  alias name :adjective
 
-  def focus = %w[person place thing idea][index]
-  def foci = focus.pluralize
-  alias top :foci
-
-  def unfamiliar = %w[friends land machines procedures][index]
-  def familiar = %w[family farms hardware software][index]
-  def give = %w[tell feed build show][index]
-  def externals = %w[why food shelter how][index]
-  def sense = %w[hear smell/taste touch see][index]
-  def take =%w[ears nose/mouth wallet eyes][index]
-  def basic = %w[stories meals tools signs][index]
-  def internals = %w[morals calories value information][index]
-  def neuro = %w[oxytocin serotonin dopamine glutamate][index]
-  def organ = %w[soul body hands mind][index]
-  alias bottom :organ
-  def left = %w[expressive gather labor tactics][index]
-  def right = %w[lexical hunt capital logistics][index]
+  # def reserves = "#{adjective} reserves"
+  def reserves = %w[self-esteem weight net-worth memories][index]
+  def internals = %w[soul body wallet mind][index]
+  def externals = %w[people places tools ideas][index]
+  def output = %w[communicate move spend think][index]
 end

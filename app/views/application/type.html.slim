@@ -1,33 +1,192 @@
+br
 table
-  caption 
-    b.larger Daily
   tr
-    -@type.tops.each do |s|
-      td=render 'short', s: s
-  tr
-    th colspan = 2 &orarr;
-  tr
-    -@type.bottoms.each do |s|
-      td=render 'short', s: s
+    th
+    td=render 'subtype', subtype: @type.manic
+    th
 
-table
-  caption 
-    b.larger Seasonal
   tr
-    td.halfish=render 'long', s: @type.subtypes.find(&:third?)
-    th
-    td.halfish=render 'long', s: @type.subtypes.find(&:second?)
-  tr
-    th
+    td=render 'subtype', subtype: @type.left
     th &orarr;
-    th
+    td=render 'subtype', subtype: @type.right
+
   tr
-    td=render 'long', s: @type.subtypes.find(&:last?)
     th
-    td=render 'long', s: @type.subtypes.find(&:first?)
-  tr
-    th colspan = 3
-      -if @all
-        =button_to 'Show Important', { format: '' }, method: :get
-      -else
-        =button_to 'Show All', { format: 'all' }, method: :get
+    td=render 'subtype', subtype: @type.depressed
+    th
+
+-attitude = Attitude.ip
+p.center
+  b.larger=attitude.do_something
+  br
+  =attitude.time
+  dl
+    -behavior = (attitude + @type.realms.first)
+    dt
+      |> do
+      =behavior.words
+    dd
+      |> you will need the
+      =behavior.adjective
+      |<> energy when you
+      =@type.left.how
+    -behavior = (attitude + @type.realms.rotate(2).first)
+    dt
+      |> do
+      =behavior.words
+    dd
+      |> you will need the
+      =behavior.adjective
+      |<> energy when you
+      =@type.right.how
+    -behavior = (attitude + @type.realms.rotate(-1).first)
+    dt
+      |> don&rsquo;t
+      =behavior.words
+    dd
+      |> you will waste the
+      =behavior.adjective
+      |<> energy; if you want to
+      =behavior.intake
+      |> ,
+      =behavior.flop.words
+    -behavior = (attitude + @type.realms.rotate.first)
+    dt
+      |> don&rsquo;t
+      =behavior.words
+    dd
+      |> you will hoard the
+      =behavior.adjective
+      |<> energy; if you must
+      =behavior.intake
+      |> ,
+      =behavior.flop.words
+
+-attitude = Attitude.ep
+p.center
+  b.larger=attitude.do_something
+  br
+  =attitude.time
+  dl
+    -behavior = (attitude + @type.realms.second)
+    dt
+      |> do
+      =behavior.words
+    dd
+      |> you will continue
+      =behavior.output.ing
+      |<> longer than if you
+      =behavior.flop.words
+    -behavior = (attitude + @type.realms.rotate(2).second)
+    dt
+      |> do
+      =behavior.words
+    dd
+      |> you will stop
+      =behavior.output.ing
+      |<> sooner than if you
+      =behavior.flop.words
+    -behavior = (attitude + @type.realms.rotate(-1).second)
+    dt
+      |> don&rsquo;t
+      =behavior.words
+    dd
+      |> you should conserve the
+      =behavior.adjective
+      |<> energy for when you need to
+      =@type.left.how
+    -behavior = (attitude + @type.realms.rotate.second)
+    dt
+      |> don&rsquo;t
+      =behavior.words
+    dd
+      |> you should conserve the
+      =behavior.adjective
+      |<> energy for when you need to
+      =@type.right.how
+
+-attitude = Attitude.ej
+p.center
+  b.larger=attitude.do_something
+  br
+  =attitude.time
+  dl
+    -behavior = (attitude + @type.realms.third)
+    dt
+      |> do
+      =behavior.words
+    dd
+      |> you will need the
+      =behavior.adjective
+      |<> strength for when you need to
+      =@type.right.how
+    -behavior = (attitude + @type.realms.rotate(2).third)
+    dt
+      |> do
+      =behavior.words
+    dd
+      |> you will need the
+      =behavior.adjective
+      |<> strength for when you need to
+      =@type.left.how
+    -behavior = (attitude + @type.realms.rotate(-1).third)
+    dt
+      |> don&rsquo;t
+      =behavior.words
+    dd
+      |> you will stop
+      =behavior.output.ing
+      |<> sooner than if you
+      =behavior.flop.words
+    -behavior = (attitude + @type.realms.rotate.third)
+    dt
+      |> don&rsquo;t
+      =behavior.words
+    dd
+      |> you will continue
+      =behavior.output.ing
+      |<> longer than if you
+      =behavior.flop.words
+
+-attitude = Attitude.ij
+p.center
+  b.larger=attitude.do_something
+  br
+  =attitude.time
+  dl
+    -behavior = (attitude + @type.realms.second)
+    dt
+      |> do
+      =behavior.words
+    dd
+      |> you will stop
+      =behavior.intake.ing
+      |<> sooner than if you
+      =behavior.flop.words
+    -behavior = (attitude + @type.realms.rotate(2).second)
+    dt
+      |> do
+      =behavior.words
+    dd
+      |> you will continue
+      =behavior.intake.ing
+      |<> longer than if you
+      =behavior.flop.words
+    -behavior = (attitude + @type.realms.rotate(-1).second)
+    dt
+      |> don&rsquo;t
+      =behavior.words
+    dd
+      |> you should conserve the
+      =behavior.adjective
+      |<> energy for when you need to
+      =@type.left.how
+    -behavior = (attitude + @type.realms.rotate.second)
+    dt
+      |> don&rsquo;t
+      =behavior.words
+    dd
+      |> you should conserve the
+      =behavior.adjective
+      |<> energy for when you need to
+      =@type.right.how

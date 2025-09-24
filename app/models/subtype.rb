@@ -1,35 +1,58 @@
 # frozen_string_literal: true
 
-class Subtype
-  def initialize(string)
-    @string = string
-    @behavior = Behavior.find_by(tla: string.chop)
-    @index = string.last.to_i
+class Subtype < Concept
+  SYMBOLS = Realm.all.collect do |realm|
+    Mood.all.collect do |mood|
+      (realm.string + mood.string).to_sym
+    end
+  end.flatten
+
+  ALL = SYMBOLS.collect { |symbol| new symbol }
+
+  def realm = Realm.find(string.first)
+  def mood = Mood.find(string.second)
+
+  def behaviors = mood.attitudes.add(realm)
+  def episode = [adjective, mood.episode].to_phrase
+
+  %i[adjective adverb reserves output intake internals externals].each do |meth|
+    delegate meth, to: :realm
   end
-  attr_reader :behavior, :index
-
-  def number = index + 1
-  def ordinal = number.ordinalize
-  def ordinal_word = %w[first second third fourth][index]
-  def jungian = %w[dominant auxiliary tertiary inferior][index]
-
-  def inspect = behavior.tla + ordinal
-
-  def opposite_ordinal_word = %w[last third second first][index]
-  #  def opposite_ordinal = %w[4th 3rd 2nd 1st][index]
-  #  def episode = "#{opposite_ordinal}: #{behavior.episode.downcase}"
-
-  def episode_difficulty = ['easy', 'relatively easy', 'relatively hard', 'hard'][index]
-  def severity = ['mild', 'relatively mild', 'relatively severe', 'severe'][index]
-  def episode = "#{severity} #{attitude.episode.downcase}"
-
-  %i[top? bottom? first? second? third? last? <=>
-     flip flop opposite tla adjective adverb
-     advice something do_something timed_action
-     time time_of_day best_time season
-     attitude bipolar execute what long
-     react realm replace_realm bad worse stop
-     goal organ].each do |meth|
-    delegate meth, to: :behavior
+  %i[season location left? top? right? bottom?].each do |meth|
+    delegate meth, to: :mood
   end
+
+  def words = File.readlines("app/words/#{string}", chomp: true)
+
+  def opposite = realm + mood.opposite
+
+  def better = realm + mood.better
+  def worse = realm + mood.worse
+
+  def goal
+    case mood.symbol
+    when :e
+      "fatter #{realm.internals}"
+    when :i
+      "thinner #{realm.internals}"
+    when :p
+      "#{realm.adjective} freedom"
+    when :j
+      "#{realm.adjective} productivity"
+    end
+  end
+
+  def how
+    case mood.symbol
+    when :e
+      "gain necessary #{realm.reserves}"
+    when :i
+      "lose excess #{realm.reserves}"
+    when :p
+      "flee from #{realm.externals}"
+    when :j
+      "fight for your #{realm.externals}"
+    end
+  end
+
 end

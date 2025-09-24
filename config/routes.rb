@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root 'application#home', as: :introduction
-  %w[realms attitudes behaviors episodes].each do |thing|
+  %w[realms cycle theory behaviors].each do |thing|
     get "/#{thing}" => "application##{thing}"
   end
   get '/answer/:id', to: 'application#answer', as: 'answer'

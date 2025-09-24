@@ -96,8 +96,8 @@ class Array
 
   def sixth = self.[](5)
 
-  def and = to_sentence
-  def or = to_sentence(last_word_connector: ', or ', two_words_connector: ' or ')
+  def and = compact_blank.to_sentence
+  def or = compact_blank.to_sentence(last_word_connector: ', or ', two_words_connector: ' or ')
   def amp = join(' & ')
   def lor = join(' | ')
   def semi = join('; ')

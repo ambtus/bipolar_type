@@ -48,9 +48,9 @@ class String
       prep? ? words.first(2).to_phrase : words.first
     end
   end
-  alias first_word :first_words
+  def first_word = words.first
   def last_words = sub(first_words, '').squish
-  alias last_word :last_words
+  def last_word = words.last
 
   def quote = "‘#{self}’"
   def dquote = "“#{self}”"
@@ -118,18 +118,18 @@ class String
     end
   end
 
-  NOUNS = %w[anorexia depression mania energy strength obesity goals
-             emptiness hyperactivity weakness calories credit information
-             emotions childhood adolescence adulthood old age child
-             adolescent adult elder curiosity agitation appetite lazy
-             anxiety irritation boredom anger fear exhaustion lethargy
-             hunger].freeze
+  NOUNS =     %w[anorexia depression mania energy strength obesity goals
+                 emptiness hyperactivity weakness calories credit information
+                 emotions childhood adolescence adulthood old\ age child
+                 adolescent adult elder curiosity agitation appetite laziness
+                 anxiety irritation boredom anger fear exhaustion lethargy
+                 hunger freedom control].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative
                   emotional child adolescent adult elder childish
-                  adolescent mature wise curious agitated ?? ??
+                  adolescent mature wise curious agitated greedy lazy
                   anxious irritable bored angry afraid tired lethargic
-                  hungry ].freeze
+                  hungry free controlled].freeze
 
   def noun? = NOUNS.include?(self)
   def capitalized? = first != first.downcase

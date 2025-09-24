@@ -1,15 +1,18 @@
--Realm.each do |realm|
+p
+  |> The four activities (#{Attitude.all.map(&:do_something).and})  combine with four different realms (#{Realm.linear.map(&:adjective).and}) to create sixteen pure behaviors. Most actual behaviors are a combination of the pure behaviors. There are both intra-realm combinations (eating carbs and eating protein at the same time) and inter-realm combinations (running and improvising at the same time).
+-Realm.linear.each do |r|
   br
-  table
+  table.equal
     tr
-      td.bordered=render 'behavior', behavior: realm + Attitude.second
-      th=realm.top
-      td.bordered=render 'behavior', behavior: realm + Attitude.third
+      td.bordered=render 'behavior', behavior: r + Attitude.second
+      td.bordered=(r+Mood.e).words.and
+      td.bordered=render 'behavior', behavior: r + Attitude.third
     tr
-      th=realm.left
-      th=realm.adjective.capitalize
-      th=realm.right
+      td.bordered==(r+Mood.p).words.and
+      td.middle.larger=r.adjective.capitalize
+      td.bordered==(r+Mood.j).words.and
+
     tr
-      td.bordered=render 'behavior', behavior: realm + Attitude.first
-      th=realm.bottom
-      td.bordered=render 'behavior', behavior: realm + Attitude.fourth
+      td.bordered=render 'behavior', behavior: r + Attitude.first
+      td.bordered=(r+Mood.i).words.and
+      td.bordered=render 'behavior', behavior: r + Attitude.fourth

@@ -1,0 +1,11 @@
+-if ([r.string, 'j'] & @taken).blank?
+  =link_to "#{r.adjective} strength", types_path("#{@current}#{r.string}j")
+  |> : I would <em>much</em> rather
+  =r.be_strong.and
+  |<> than
+  =r.be_energetic.or
+-elsif @current.match "#{r.string}j"
+  b #{r.adjective} strength
+-else
+  | #{r.adjective} strength
+

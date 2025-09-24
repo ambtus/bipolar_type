@@ -1,0 +1,22 @@
+p
+  |> There is a natural cycle which is repeated every day (circadian), every
+  =link_to 'week', 'https://en.wikipedia.org/wiki/Week', class: 'external'
+  |<> (cultural), every month (lunar), and every year (seasonal). The number of hours during every day is fixed, but the number of hours naturally allocated to each activity changes over the longer cycles. For example, during the summer the days are longer and the nights shorter so you spend more hours fleeing and fighting and fewer resting and digesting.
+
+table
+  tr
+    td.middle=Attitude.ep.do_something
+    td colspan = 2 up<br />active<br /><b>summer</b><br />mania<br />output
+    td.middle=Attitude.ej.do_something
+  tr
+    td.middle rowspan = 2 agile<br />young<br />prey<br /><b>spring</b><br />energy<br />reactive<br />eager
+    td.bordered=render 'attitude', attitude: Attitude.second
+    td.bordered=render 'attitude', attitude: Attitude.third
+    td.middle rowspan = 2 powerful<br />old<br />predator<br /><b>autumn</b><br />strength<br />productive<br />patient
+  tr
+    td.bordered=render 'attitude', attitude: Attitude.first
+    td.bordered=render 'attitude', attitude: Attitude.fourth
+  tr
+    td.middle=Attitude.ip.do_something
+    td colspan = 2 down<br />receptive<br /><b>winter</b><br />depression<br />intake
+    td.middle=Attitude.ij.do_something
