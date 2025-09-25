@@ -1,0 +1,11 @@
+-if ![r.string, 'i'].intersect?(@taken)
+  =link_to "#{r.adjective} intake", types_path("#{@current}#{r.string}i")
+  |> : I would rather feed and rest my
+  =r.internals
+  |<> than have to do something about problematic
+  =r.externals
+-elsif @current.match "#{r.string}i"
+  b #{r.adjective} depression
+-else
+  | #{r.adjective} depression
+

@@ -34,7 +34,7 @@ html lang="en"
     -if Rails.env.development?
       hr
       -%w[my your next other].each do |which|
-        =link_to_unless_current "#{which} type", type_path(Type.send("#{which}_path"))
+        =link_to_unless_current Type.send("#{which}_path"), type_path(Type.send("#{which}_path"))
         |<>
 
       -if @taken

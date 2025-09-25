@@ -1,11 +1,10 @@
--if ([r.string, 'p'] & @taken).blank?
-  =link_to "#{r.adjective} energy", types_path("#{@current}#{r.string}p")
-  |> : I would <em>much</em> rather
+-if ![r.string, 'p'].intersect?(@taken)
+  =link_to "#{r.adjective} freedom", types_path("#{@current}#{r.string}p")
+  |> : I would rather
   =r.be_energetic.and
-  |<> than
+  |<> than have to
   =r.be_strong.or
 -elsif @current.match "#{r.string}p"
   b #{r.adjective} energy
 -else
   | #{r.adjective} energy
-

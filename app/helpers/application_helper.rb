@@ -7,11 +7,4 @@ module ApplicationHelper
     end
     safe_join(links, ' | ')
   end
-
-  def function(index)
-    return 'dominant' if index.zero?
-    return 'auxiliary' if index == 1
-
-    'tertiary'
-  end
 end

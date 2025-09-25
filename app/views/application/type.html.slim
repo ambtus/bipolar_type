@@ -2,7 +2,7 @@ br
 table
   tr
     th
-    td=render 'subtype', subtype: @type.manic
+    td=render 'subtype', subtype: @type.top
     th
 
   tr
@@ -12,181 +12,27 @@ table
 
   tr
     th
-    td=render 'subtype', subtype: @type.depressed
+    td=render 'subtype', subtype: @type.bottom
     th
+br
+table
+  tr
+    th early
+    th late
+  tr
+    th colspan=2 in the day, week, month, or year
+  tr
+    td.p you can #{@type.left.ip} & #{@type.left.ep} without becoming #{@type.left.adverb} unbalanced (gaining or losing #{@type.left.reserves}), and can continue for a long time as doing so is congruent with your goal of #{@type.left.goal}.
+    td.p you can #{@type.right.ej} & #{@type.right.ij} without becoming #{@type.right.adverb} unbalanced (gaining or losing #{@type.right.reserves}), and can continue for a long time as doing so is congruent with your goal of #{@type.right.goal}.
 
--attitude = Attitude.ip
-p.center
-  b.larger=attitude.do_something
-  br
-  =attitude.time
-  dl
-    -behavior = (attitude + @type.realms.first)
-    dt
-      |> do
-      =behavior.words
-    dd
-      |> you will need the
-      =behavior.adjective
-      |<> energy when you
-      =@type.left.how
-    -behavior = (attitude + @type.realms.rotate(2).first)
-    dt
-      |> do
-      =behavior.words
-    dd
-      |> you will need the
-      =behavior.adjective
-      |<> energy when you
-      =@type.right.how
-    -behavior = (attitude + @type.realms.rotate(-1).first)
-    dt
-      |> don&rsquo;t
-      =behavior.words
-    dd
-      |> you will waste the
-      =behavior.adjective
-      |<> energy; if you want to
-      =behavior.intake
-      |> ,
-      =behavior.flop.words
-    -behavior = (attitude + @type.realms.rotate.first)
-    dt
-      |> don&rsquo;t
-      =behavior.words
-    dd
-      |> you will hoard the
-      =behavior.adjective
-      |<> energy; if you must
-      =behavior.intake
-      |> ,
-      =behavior.flop.words
+  tr
+    td.p you can #{@type.right.ip} & #{@type.right.ep} without becoming #{@type.right.adverb} unbalanced, but doing so is not congruent with #{@type.right.goal} and too much will make you feel anxious or afraid.
+    td.p you can #{@type.left.ej} & #{@type.left.ij} without becoming #{@type.left.adverb} unbalanced, but doing so is not congruent with #{@type.left.goal} and too much will make you feel irritable or angry.
 
--attitude = Attitude.ep
-p.center
-  b.larger=attitude.do_something
-  br
-  =attitude.time
-  dl
-    -behavior = (attitude + @type.realms.second)
-    dt
-      |> do
-      =behavior.words
-    dd
-      |> you will continue
-      =behavior.output.ing
-      |<> longer than if you
-      =behavior.flop.words
-    -behavior = (attitude + @type.realms.rotate(2).second)
-    dt
-      |> do
-      =behavior.words
-    dd
-      |> you will stop
-      =behavior.output.ing
-      |<> sooner than if you
-      =behavior.flop.words
-    -behavior = (attitude + @type.realms.rotate(-1).second)
-    dt
-      |> don&rsquo;t
-      =behavior.words
-    dd
-      |> you should conserve the
-      =behavior.adjective
-      |<> energy for when you need to
-      =@type.left.how
-    -behavior = (attitude + @type.realms.rotate.second)
-    dt
-      |> don&rsquo;t
-      =behavior.words
-    dd
-      |> you should conserve the
-      =behavior.adjective
-      |<> energy for when you need to
-      =@type.right.how
+  tr
+    td.p you should avoid #{@type.top.ip.too_much.ing} as it can trigger a manic #{@type.top.output.ing} spree causing you to lose wanted #{@type.top.reserves}; if you want to #{@type.top.intake} more, #{@type.top.ij}: it’s not as stimulating.
+    td.p you should avoid #{@type.bottom.ej.too_much.ing} as it can trigger a depressed #{@type.bottom.intake.ing} spree causing you to gain unwanted #{@type.bottom.reserves}; if you want to #{@type.bottom.output} more, #{@type.bottom.ep}: it’s not as sedating.
 
--attitude = Attitude.ej
-p.center
-  b.larger=attitude.do_something
-  br
-  =attitude.time
-  dl
-    -behavior = (attitude + @type.realms.third)
-    dt
-      |> do
-      =behavior.words
-    dd
-      |> you will need the
-      =behavior.adjective
-      |<> strength for when you need to
-      =@type.right.how
-    -behavior = (attitude + @type.realms.rotate(2).third)
-    dt
-      |> do
-      =behavior.words
-    dd
-      |> you will need the
-      =behavior.adjective
-      |<> strength for when you need to
-      =@type.left.how
-    -behavior = (attitude + @type.realms.rotate(-1).third)
-    dt
-      |> don&rsquo;t
-      =behavior.words
-    dd
-      |> you will stop
-      =behavior.output.ing
-      |<> sooner than if you
-      =behavior.flop.words
-    -behavior = (attitude + @type.realms.rotate.third)
-    dt
-      |> don&rsquo;t
-      =behavior.words
-    dd
-      |> you will continue
-      =behavior.output.ing
-      |<> longer than if you
-      =behavior.flop.words
-
--attitude = Attitude.ij
-p.center
-  b.larger=attitude.do_something
-  br
-  =attitude.time
-  dl
-    -behavior = (attitude + @type.realms.second)
-    dt
-      |> do
-      =behavior.words
-    dd
-      |> you will stop
-      =behavior.intake.ing
-      |<> sooner than if you
-      =behavior.flop.words
-    -behavior = (attitude + @type.realms.rotate(2).second)
-    dt
-      |> do
-      =behavior.words
-    dd
-      |> you will continue
-      =behavior.intake.ing
-      |<> longer than if you
-      =behavior.flop.words
-    -behavior = (attitude + @type.realms.rotate(-1).second)
-    dt
-      |> don&rsquo;t
-      =behavior.words
-    dd
-      |> you should conserve the
-      =behavior.adjective
-      |<> energy for when you need to
-      =@type.left.how
-    -behavior = (attitude + @type.realms.rotate.second)
-    dt
-      |> don&rsquo;t
-      =behavior.words
-    dd
-      |> you should conserve the
-      =behavior.adjective
-      |<> energy for when you need to
-      =@type.right.how
+  tr
+    td.p you should avoid #{@type.bottom.ip.ing} as you will compulsively hoard #{@type.bottom.adjective} energy causing you to gain unwanted #{@type.bottom.reserves}; when you need to #{@type.bottom.intake}, #{@type.bottom.ij}: you'll feel more satisfied and stop sooner, and thus #{@type.bottom.intake} less.
+    td.p you should avoid #{@type.top.ej.ing} as you will compulsively waste #{@type.top.adjective} energy causing you to lose wanted #{@type.top.reserves}; when you need to #{@type.top.output}, #{@type.top.ep}: you'll feel more satisfied and stop sooner, and thus #{@type.top.output} less.

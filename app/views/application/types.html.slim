@@ -1,28 +1,28 @@
 table
   tr
-    td.bordered colspan = 2
-      p Manic realm
+    td.p colspan = 2
+      center Manic realm
       ul
         -Realm.linear.each do |r|
-          li=render 'manic', r: r
+          li=render 'top', r: r
   tr
-    td.bordered
-      p Energetic realm
+    td.p
+      center Energetic realm
       ul
         -Realm.linear.each do |r|
           li=render 'left', r: r
-    td.bordered
-      p Strong realm
+    td.p
+      center Strong realm
       ul
         -Realm.linear.each do |r|
           li=render 'right', r: r
 
   tr
-    td.bordered colspan = 2
-      p Depressed realm
+    td.p colspan = 2
+      center Depressed realm
       ul
         -Realm.linear.each do |r|
-          li=render 'depressed', r: r
+          li=render 'bottom', r: r
 
 ol
   -Type.with_subtypes(@subtypes).each do |t|

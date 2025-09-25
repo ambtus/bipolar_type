@@ -5,7 +5,7 @@ class TypesController < ApplicationController
     string = params[:format] || ''
     @current = string
     @taken = @current.chars
-    @subtypes = @current.scan(/../).collect{|s| Subtype.find(s)}
+    @subtypes = @current.scan(/../).collect { |s| Subtype.find(s) }
     if @current.length == 6
       type = Type.find_by(subtypes: @subtypes)
       redirect_to type_path(type.path)

@@ -12,6 +12,7 @@ class Realm < Concept
 
   def behaviors = Behavior.all.select { |x| x.realm == self }
   def subtypes = Subtype.all.select { |x| x.realm == self }
+
   def +(other)
     if other.is_a? Attitude
       behaviors.find { |x| x.attitude == other }
@@ -30,8 +31,14 @@ class Realm < Concept
   alias name :adjective
 
   # def reserves = "#{adjective} reserves"
-  def reserves = %w[self-esteem weight net-worth memories][index]
-  def internals = %w[soul body wallet mind][index]
+  def reserves = %w[affect weight net-worth memories][index]
+  def internals = %w[soul body hands mind][index]
   def externals = %w[people places tools ideas][index]
   def output = %w[communicate move spend think][index]
+  def intake = ip.words.first
+
+  def ip = (self + Attitude.ip).words
+  def ep = (self + Attitude.ep).words
+  def ij = (self + Attitude.ij).words
+  def ej = (self + Attitude.ej).words
 end

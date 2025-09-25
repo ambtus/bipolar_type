@@ -1,29 +1,25 @@
 Feature: the type pages
 
-Example: type page lists my advice
+Example: type page lists my goals
 When I am on my type page
-Then my advice should be visible
+Then my goals should be visible
 
-Example: type page describes your episodes
+Example: type page lists your goals
 When I am on your type page
-Then your episodes should be visible
+Then my goals should NOT be visible
+Example: type page describes your hows
+When I am on your type page
+Then your hows should be visible
 
-Example: type page only shows important advice by default
-Given I am on my type page
-Then I should have 10 li elements
+Example: type page describes my hows
+When I am on my type page
+Then your hows should NOT be visible
 
-Example: type page allows you to show all advice
-Given I am on my type page
-When I click the 'Show All' button
-Then I should have 16 li elements
+Example: type page lists my natures
+When I am on my type page
+Then my natures should be visible
 
-Example: showing all does not change words
-Given I am on my type page
-When I click the 'Show All' button
-Then my advices should be visible
+Example: type page lists your natures
+When I am on your type page
+Then my natures should NOT be visible
 
-Example: type page allows you to hide all advice
-Given I am on my type page
-When I click the 'Show All' button
-  And I click the 'Show Important' button
-Then I should have 10 li elements

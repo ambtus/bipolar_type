@@ -9,23 +9,22 @@ class Type < Concept
 
   class << self
     def find_by(hash) = ALL.find { |s| (hash[:subtypes] - s.subtypes).blank? }
-    def with_subtypes(subtypes) = ALL.reject {|s| (subtypes - s.subtypes).present? }
-    def my_path = :FpSiNjTe
+    def with_subtypes(subtypes) = ALL.reject { |s| (subtypes - s.subtypes).present? }
+    def my_path = :FpTeNjSi
     def my_type = Type.find(my_path)
     # for cucumber tests, just needs to be different.
-    def your_path = :NpTiFjSe
+    def your_path = :NpSeTjFi
     def your_type = Type.new(your_path)
     # for visual tests, want to hit all sixteen subtypes
-    def next_path = :TpFiSjNe
-    def other_path = :SpNiTjFe
+    def next_path = :SpNeFjTi
+    def other_path = :TpFeSjNi
   end
 
-  def subtypes = string.scan(/../).collect{|x| Subtype.find(x)}
-  def realms = string.scan(/../).map(&:first).collect{|x| Realm.find(x)}
+  def subtypes = string.scan(/../).collect { |x| Subtype.find(x) }
+  def realms = string.scan(/../).map(&:first).collect { |x| Realm.find(x) }
 
   def left = subtypes.first
-  def manic = subtypes.fourth
+  def top = subtypes.second
   def right = subtypes.third
-  def depressed = subtypes.second
-
+  def bottom = subtypes.fourth
 end
