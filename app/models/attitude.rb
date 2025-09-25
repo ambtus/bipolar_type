@@ -36,7 +36,6 @@ class Attitude < Concept
   def time_of_day = %w[morning midday afternoon evening][index]
   def time = second? ? "at #{time_of_day}" : "in the #{time_of_day}"
   def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
-  def bipolar = top? ? 'mania' : 'depression'
   def seasonal = flop.season
   def episode = [flop.bad, bipolar].to_phrase.titleize
   def stop = [react, goal].and

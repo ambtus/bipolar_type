@@ -25,9 +25,6 @@ class Behavior < Concept
     delegate meth, to: :realm
   end
 
-  def intake = top? ? flip.words.words.first : words.words.first
-
-  def something = [adjective, which].to_phrase
   def do_something = [execute, adjective, which].to_phrase
 
   def bipolar = [adjective, attitude.bipolar].to_phrase
@@ -48,6 +45,4 @@ class Behavior < Concept
 
   def words = File.readlines("app/words/#{tla}", chomp: true).first
   def long = "#{words} #{time}"
-
-  def goal = top? ? realm.output : realm.intake
 end

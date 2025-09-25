@@ -19,7 +19,7 @@ class Subtype < Concept
      ip ep ij ej].each do |meth|
     delegate meth, to: :realm
   end
-  %i[].each do |meth|
+  %i[season].each do |meth|
     delegate meth, to: :mood
   end
 
@@ -31,15 +31,17 @@ class Subtype < Concept
   def nature = [mood.nature, internals].to_phrase
 
   def how
-    case mood.symbol
-    when :e
+    case string.last
+    when 'e'
       "gain wanted #{realm.reserves}"
-    when :i
+    when 'i'
       "lose unwanted #{realm.reserves}"
-    when :p
+    when 'p'
       "flee from #{realm.externals}"
-    when :j
+    when 'j'
       "fight for your #{realm.externals}"
+    else
+      raise "unknown mood for #{self}"
     end
   end
 end

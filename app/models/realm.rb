@@ -14,11 +14,10 @@ class Realm < Concept
   def subtypes = Subtype.all.select { |x| x.realm == self }
 
   def +(other)
-    if other.is_a? Attitude
-      behaviors.find { |x| x.attitude == other }
-    elsif other.is_a? Mood
-      subtypes.find { |x| x.mood == other }
-    end
+    return behaviors.find { |x| x.attitude == other } if other.is_a? Attitude
+    return subtypes.find { |x| x.mood == other } if other.is_a? Mood
+
+    raise "cannot add #{other.class} to realm"
   end
 
   def externalize = behaviors.select(&:top?).map(&:words)
