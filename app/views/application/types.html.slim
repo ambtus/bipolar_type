@@ -1,29 +1,17 @@
 table
   tr
-    td.p colspan = 2
-      center Manic realm
-      ul
-        -Realm.linear.each do |r|
-          li=render 'top', r: r
-  tr
-    td.p
-      center Energetic realm
-      ul
-        -Realm.linear.each do |r|
-          li=render 'left', r: r
-    td.p
-      center Strong realm
-      ul
-        -Realm.linear.each do |r|
-          li=render 'right', r: r
+    td.bordered colspan = 2 =render 'choose', mood: Mood.e
 
   tr
-    td.p colspan = 2
-      center Depressed realm
-      ul
-        -Realm.linear.each do |r|
-          li=render 'bottom', r: r
+    td.p =render 'choose', mood: Mood.p
+    td.p =render 'choose', mood: Mood.j
 
+  tr
+    td.bordered colspan = 2 =render 'choose', mood: Mood.i
+
+center
+  ='remaining' if @subtypes.present?
+  |< BipolarTypes
 ol
   -Type.with_subtypes(@subtypes).each do |t|
     li=link_to t.title, type_path(t)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Subtype < Concept
-  SYMBOLS = Realm.all.collect do |realm|
+  SYMBOLS = Realm.linear.collect do |realm|
     Mood.all.collect do |mood|
       (realm.string + mood.string).to_sym
     end
@@ -12,7 +12,6 @@ class Subtype < Concept
   def realm = Realm.find(string.first)
   def mood = Mood.find(string.second)
 
-  def behaviors = mood.attitudes.add(realm)
   def season = [adjective, mood.season].to_phrase
 
   %i[adjective adverb reserves output intake internals externals
@@ -28,7 +27,7 @@ class Subtype < Concept
   def goal = [adjective, mood.goal].to_phrase
   alias link :goal
 
-  def nature = [mood.nature, internals].to_phrase
+  def balance = [adjective, mood.balance].to_phrase
 
   def how
     case string.last

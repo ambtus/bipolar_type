@@ -52,6 +52,10 @@ Then('all {word} should be listed') do |what|
     Realm.each do |x|
       expect(page).to have_text(x.name)
     end
+  when 'moods'
+    Mood.each do |x|
+      expect(page).to have_text(x.description)
+    end
   else
     raise "need to define action for #{what}"
   end

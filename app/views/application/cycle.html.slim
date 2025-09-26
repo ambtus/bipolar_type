@@ -6,70 +6,18 @@ p
 table
   tr
     td.middle=Attitude.ep.do_something
-    td colspan = 2
-      | up
-      br
-      | active
-      br
-      | stressed
-      br
-      b summer
-      br
-      | output
-      br
-      | high
-      br
-      | mania
-
+    td colspan = 2 =render 'mood', mood: Mood.e
     td.middle=Attitude.ej.do_something
   tr
-    td.middle rowspan = 2
-      | prey
-      br
-      | young
-      br
-      | agile
-      br
-      b spring
-      br
-      | energy
-      br
-      | playful
-      br
-      | freedom
+    td.middle rowspan = 2 =render 'mood', mood: Mood.p
+
     td.bordered=render 'attitude', attitude: Attitude.second
     td.bordered=render 'attitude', attitude: Attitude.third
-    td.middle rowspan = 2
-      | predator
-      br
-      | old
-      br
-      | powerful
-      br
-      b autumn
-      br
-      | strength
-      br
-      | responsible
-      br
-      | control
+    td.middle rowspan = 2 =render 'mood', mood: Mood.j
   tr
     td.bordered=render 'attitude', attitude: Attitude.first
     td.bordered=render 'attitude', attitude: Attitude.fourth
   tr
     td.middle=Attitude.ip.do_something
-    td colspan = 2
-      | down
-      br
-      | receptive
-      br
-      | bored
-      br
-      b winter
-      br
-      | intake
-      br
-      | low
-      br
-      | depression
+    td colspan = 2 =render 'mood', mood: Mood.i
     td.middle=Attitude.ij.do_something

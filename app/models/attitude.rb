@@ -15,12 +15,9 @@ class Attitude < Concept
   def left? = string.ends_with?('p')
   def right? = string.ends_with?('j')
 
-  def execute = top? ? 'use' : 'recover'
+  def execute = top? ? 'use' : 'get'
   def which = left? ? 'energy' : 'strength'
   def do_something = [execute, which].to_phrase
-
-  def self.tops = ALL.select(&:top?)
-  def self.bottoms = ALL.select(&:bottom?)
 
   def first? = index.zero?
   def second? = (index == 1)

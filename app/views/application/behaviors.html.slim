@@ -6,8 +6,8 @@ p
     tr
       td.bordered=render 'behavior', behavior: r + Attitude.second
       td.middle rowspan=2
-        |> the
-        =r.externals
+        | the #{r.externals} <br /> #{r.output.wrap}
+   
         .larger=r.adjective.capitalize
         |> my
         =r.internals

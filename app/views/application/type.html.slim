@@ -17,17 +17,20 @@ table
 br
 table
   tr
-    th early
-    th late
+    th=Mood.p.goal.capitalize
+    th=Mood.j.goal.capitalize
   tr
-    th colspan=2 in the day, week, month, or year
+    td #{Attitude.ip.execute} & #{Attitude.ep.do_something}
+    td #{Attitude.ej.execute} & #{Attitude.ij.do_something}
   tr
-    td.p you can #{@type.left.ip} & #{@type.left.ep} without becoming #{@type.left.adverb} unbalanced (gaining or losing #{@type.left.reserves}), and can continue for a long time as doing so is congruent with your goal of #{@type.left.goal}.
+    td.p you can #{@type.left.ip} & #{@type.left.ep} without becoming #{@type.left.adverb} unbalanced (gaining or losing  #{@type.left.reserves}), and can continue for a long time as doing so is congruent with your goal of #{@type.left.goal}.
     td.p you can #{@type.right.ej} & #{@type.right.ij} without becoming #{@type.right.adverb} unbalanced (gaining or losing #{@type.right.reserves}), and can continue for a long time as doing so is congruent with your goal of #{@type.right.goal}.
 
   tr
-    td.p you can #{@type.right.ip} & #{@type.right.ep} without becoming #{@type.right.adverb} unbalanced, but doing so is not congruent with #{@type.right.goal} and too much will make you feel anxious or afraid.
-    td.p you can #{@type.left.ej} & #{@type.left.ij} without becoming #{@type.left.adverb} unbalanced, but doing so is not congruent with #{@type.left.goal} and too much will make you feel irritable or angry.
+    td.p you can #{@type.right.ip} without becoming #{@type.right.adverb} unbalanced, but #{@type.right.ep.too_much.ing} will make you feel anxious or afraid. Such feelings are a signal that it&rsquo;s time to switch to #{@type.right.goal} &neArr; (fleeing isn&rsquo;t working, it&rsquo;s time to fight).
+
+    td.p you can #{@type.left.ej} without becoming #{@type.left.adverb} unbalanced, but #{@type.left.ij.too_much.ing} will make you feel irritable or angry. Such feelings are a signal that it&rsquo;s time time to switch to #{@type.left.goal} &nwArr; (fighting isn&rsquo;t working, it&rsquo;s time to flee).
+
 
   tr
     td.p you should avoid #{@type.top.ip.too_much.ing} as it can trigger a manic #{@type.top.output.ing} spree causing you to lose wanted #{@type.top.reserves}; if you want to #{@type.top.intake} more, #{@type.top.ij}: it’s not as stimulating.

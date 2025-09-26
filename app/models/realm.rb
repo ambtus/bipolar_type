@@ -31,9 +31,9 @@ class Realm < Concept
 
   # def reserves = "#{adjective} reserves"
   def reserves = %w[affect weight net-worth memories][index]
-  def internals = %w[soul body hands mind][index]
+  def internals = %w[soul body wallet mind][index]
   def externals = %w[people places tools ideas][index]
-  def output = %w[communicate move spend think][index]
+  def output = %w[talk move spend think][index]
   def intake = ip.words.first
 
   def ip = (self + Attitude.ip).words

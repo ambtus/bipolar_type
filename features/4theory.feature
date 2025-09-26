@@ -1,5 +1,5 @@
 Feature: the theory page
 
-Scenario: makes some assertions
+Scenario: describes the moods
 Given I am on the theory page
-Then I should see asserts
+Then all moods should be listed

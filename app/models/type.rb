@@ -13,10 +13,10 @@ class Type < Concept
     def my_path = :FpTeNjSi
     def my_type = Type.find(my_path)
     # for cucumber tests, just needs to be different.
-    def your_path = :NpSeTjFi
+    def your_path = :SpNeFjTi
     def your_type = Type.new(your_path)
     # for visual tests, want to hit all sixteen subtypes
-    def next_path = :SpNeFjTi
+    def next_path = :NpSeTjFi
     def other_path = :TpFeSjNi
   end
 

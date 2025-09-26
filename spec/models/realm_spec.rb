@@ -8,7 +8,7 @@ RSpec.describe Realm, type: :model do
   end
 
   it 'has subtypes' do
-    expect(described_class.first + Mood.first).to be Subtype.first
+    expect(described_class.linear.first + Mood.first).to be Subtype.first
   end
 
   it 'raises on bad addition' do

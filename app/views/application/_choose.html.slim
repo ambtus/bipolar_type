@@ -1,0 +1,11 @@
+center #{mood.name} realm
+ul
+  -mood.subtypes.each do |subtype|
+    li
+      -if ![subtype.mood.string, subtype.realm.string].intersect?(@taken)
+        =link_to subtype.link, types_path("#{@current}#{subtype.string}")
+        =render subtype.mood.string, r: subtype.realm
+      -elsif @current.match subtype.string
+        b=subtype.link
+      -else
+        del=subtype.link
