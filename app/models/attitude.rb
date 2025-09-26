@@ -18,6 +18,7 @@ class Attitude < Concept
   def execute = top? ? 'use' : 'get'
   def which = left? ? 'energy' : 'strength'
   def do_something = [execute, which].to_phrase
+  alias attitudes :do_something
 
   def first? = index.zero?
   def second? = (index == 1)
@@ -25,12 +26,14 @@ class Attitude < Concept
   def last? = (index == 3)
 
   def react = %w[digest flee fight rest][index]
+  alias reactions :react
   def goal = %w[refuel escape win recover][index]
 
   def bad = %w[hungry anxious irritable tired][index]
   def worse = %w[starving afraid angry exhausted][index]
 
   def time_of_day = %w[morning midday afternoon evening][index]
+  alias times :time_of_day
   def time = second? ? "at #{time_of_day}" : "in the #{time_of_day}"
   def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
   def seasonal = flop.season

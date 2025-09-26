@@ -12,10 +12,13 @@ class Subtype < Concept
   def realm = Realm.find(string.first)
   def mood = Mood.find(string.second)
 
+  def better = realm.send(mood.rather)
+  def worse = realm.send(mood.opposite.rather)
+
   def season = [adjective, mood.season].to_phrase
 
   %i[adjective adverb reserves output intake internals externals
-     ip ep ij ej].each do |meth|
+     ip ep ij ej long_output long_intake energy].each do |meth|
     delegate meth, to: :realm
   end
   %i[season].each do |meth|
@@ -28,19 +31,4 @@ class Subtype < Concept
   alias link :goal
 
   def balance = [adjective, mood.balance].to_phrase
-
-  def how
-    case string.last
-    when 'e'
-      "gain wanted #{realm.reserves}"
-    when 'i'
-      "lose unwanted #{realm.reserves}"
-    when 'p'
-      "flee from #{realm.externals}"
-    when 'j'
-      "fight for your #{realm.externals}"
-    else
-      raise "unknown mood for #{self}"
-    end
-  end
 end

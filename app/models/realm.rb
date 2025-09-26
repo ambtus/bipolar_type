@@ -28,13 +28,19 @@ class Realm < Concept
   def adjective = %w[spiritual physical material mental][index]
   def adverb = adjective.ly
   alias name :adjective
+  alias realms :name
 
   # def reserves = "#{adjective} reserves"
   def reserves = %w[affect weight net-worth memories][index]
   def internals = %w[soul body wallet mind][index]
   def externals = %w[people places tools ideas][index]
   def output = %w[talk move spend think][index]
+  def o_prep = %w[to around on about][index]
+  def long_output = [output, o_prep, externals].to_phrase
   def intake = ip.words.first
+  def i_prep = (index.zero? ? 'to' : '')
+  def long_intake = [intake, i_prep, 'things'].to_phrase
+  def energy = %w[emotions calories money information][index]
 
   def ip = (self + Attitude.ip).words
   def ep = (self + Attitude.ep).words

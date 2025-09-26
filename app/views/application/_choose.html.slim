@@ -1,10 +1,10 @@
-center #{mood.name} realm
+center #{mood.good} realm
 ul
   -mood.subtypes.each do |subtype|
     li
       -if ![subtype.mood.string, subtype.realm.string].intersect?(@taken)
         =link_to subtype.link, types_path("#{@current}#{subtype.string}")
-        =render subtype.mood.string, r: subtype.realm
+        | : I would rather #{subtype.better} than have to #{subtype.worse}
       -elsif @current.match subtype.string
         b=subtype.link
       -else

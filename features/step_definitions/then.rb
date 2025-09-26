@@ -24,37 +24,17 @@ Then('all {word} should be listed') do |what|
     Behavior.each do |x|
       expect(page).to have_text(x.words)
     end
-  when 'externals'
+  when 'externals', 'internals', 'realms'
     Realm.each do |x|
-      expect(page).to have_text(x.externals)
+      expect(page).to have_text(x.send(what))
     end
-  when 'internals'
-    Realm.each do |x|
-      expect(page).to have_text(x.internals)
-    end
-  when 'attitudes'
+  when 'attitudes', 'reactions', 'times'
     Attitude.each do |x|
-      expect(page).to have_text(x.do_something)
+      expect(page).to have_text(x.send(what))
     end
-  when 'reactions'
-    Attitude.each do |x|
-      expect(page).to have_text(x.react)
-    end
-  when 'seasons'
+  when 'seasons', 'moods'
     Mood.each do |x|
-      expect(page).to have_text(x.season)
-    end
-  when 'times'
-    Attitude.each do |x|
-      expect(page).to have_text(x.time_of_day)
-    end
-  when 'realms'
-    Realm.each do |x|
-      expect(page).to have_text(x.name)
-    end
-  when 'moods'
-    Mood.each do |x|
-      expect(page).to have_text(x.description)
+      expect(page).to have_text(x.send(what.singularize))
     end
   else
     raise "need to define action for #{what}"

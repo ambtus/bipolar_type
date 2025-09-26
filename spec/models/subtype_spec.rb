@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Subtype, type: :model do
-  it 'raises on bad string' do
-    expect { described_class.new('Fx').how }.to raise_error(RuntimeError)
+  it 'has a link' do
+    expect(described_class.first.link).to be_present
   end
 end

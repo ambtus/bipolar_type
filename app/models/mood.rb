@@ -10,6 +10,8 @@ class Mood < Concept
   def subtypes = Subtype.all.select { |x| x.string.match string }
   def +(other) = subtypes.find { |x| x.string.match other.string }
 
+  def rather = %w[ep output ej intake][index]
+
   def name = %w[prey mania predator depression][index]
 
   def neutral = %w[agile high powerful down][index]
@@ -20,6 +22,7 @@ class Mood < Concept
   def goal = %w[freedom change control acceptance][index]
 
   def description = [good, goal].to_phrase
+  alias mood :description
   def balance = %w[energy output strength intake][index]
 
   def self.names = ALL.map(&:name)
