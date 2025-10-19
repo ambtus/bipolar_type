@@ -24,6 +24,6 @@ ActiveSupport::Inflector.inflections do |inflect|
     inflect.acronym s
   end
   inflect.singular(/([^f])oves$/i, '\1ove')
-  inflect.uncountable %w[amnesia anorexia dementia]
+  inflect.uncountable %w[amnesia anorexia dementia music]
   inflect.irregular 'focus', 'foci'
 end

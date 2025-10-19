@@ -1,23 +1,32 @@
-p
-  |> There is a natural cycle which is repeated every day (circadian), every
-  =link_to 'week', 'https://en.wikipedia.org/wiki/Week', class: 'external'
-  |<> (cultural), every month (lunar), and every year (seasonal). The number of hours during every day is fixed, but the number of hours naturally allocated to each activity changes over the longer cycles. For example, during the summer the days are longer and the nights shorter so you spend more hours fleeing and fighting and fewer resting and digesting.
-
+br
 table
+  caption
+    b The Cycle
   tr
-    td.middle=Attitude.ep.do_something
-    td colspan = 2 =render 'mood', mood: Mood.e
-    td.middle=Attitude.ej.do_something
+    td.center.bottom
+      =link_to_concept Attitude.ep
+      br=Attitude.ep.words.break
+    td.center colspan=3
+      =link_to_concept Mood.e
+      br=Mood.e.words.break
+    td.center.bottom
+      =link_to_concept Attitude.ej
+      br=Attitude.ej.words.break
   tr
-    td.middle rowspan = 2 =render 'mood', mood: Mood.p
-
-    td.bordered=render 'attitude', attitude: Attitude.second
-    td.bordered=render 'attitude', attitude: Attitude.third
-    td.middle rowspan = 2 =render 'mood', mood: Mood.j
+    td.left colspan=2
+      =link_to_concept Mood.p
+      br=Mood.p.words.break
+    th &orarr;
+    td.right colspan=2
+      =link_to_concept Mood.j
+      br=Mood.j.words.break
   tr
-    td.bordered=render 'attitude', attitude: Attitude.first
-    td.bordered=render 'attitude', attitude: Attitude.fourth
-  tr
-    td.middle=Attitude.ip.do_something
-    td colspan = 2 =render 'mood', mood: Mood.i
-    td.middle=Attitude.ij.do_something
+    td.center.top
+      =link_to_concept Attitude.ip
+      br=Attitude.ip.words.break
+    td.center colspan=3
+      =link_to_concept Mood.i
+      br=Mood.i.words.break
+    td.center.top
+      =link_to_concept Attitude.ij
+      br=Attitude.ij.words.break

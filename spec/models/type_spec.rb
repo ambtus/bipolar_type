@@ -11,4 +11,17 @@ RSpec.describe Type, type: :model do
       end
     end
   end
+
+  it 'examples use all sixteen subtypes' do
+    subtypes = %w[my your next other].collect{|x| Type.new(Type.send(x + '_path')).subtypes}.flatten
+    expect(subtypes.uniq.count).to be 16
+  end
+  it 'subtypes cannot have the same realm' do
+    expect { Type.new(Realm.first.subtypes.map(&:string).join('•')) }.to raise_error RuntimeError
+  end
+  it 'subtypes cannot have the same activity' do
+    expect { Type.new(Activity.first.subtypes.map(&:string).join('•')) }.to raise_error RuntimeError
+  end
+
+
 end

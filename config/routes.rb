@@ -2,11 +2,15 @@
 
 Rails.application.routes.draw do
   root 'application#home', as: :introduction
-  %w[realms cycle theory behaviors].each do |thing|
+  %w[cycle theory].each do |thing|
     get "/#{thing}" => "application##{thing}"
   end
-  get '/answer/:id', to: 'application#answer', as: 'answer'
-  resources :questions, only: %i[create index show]
+  resources :realms, only: %i[show index]
+  resources :attitudes, only: %i[show index]
+  resources :behaviors, only: %i[show index]
+  resources :episodes, only: %i[show index]
+  resources :subtypes, only: %i[show index]
+  resources :moods, only: %i[show index]
   resources :types, only: %i[show index]
   get '/me' => 'types#me', as: :my
 end

@@ -6,29 +6,22 @@ class Subtype < Concept
       (realm.string + mood.string).to_sym
     end
   end.flatten
-
   ALL = SYMBOLS.collect { |symbol| new symbol }
+  SYMBOLS.each do |sym|
+    define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
+  end
 
   def realm = Realm.find(string.first)
   def mood = Mood.find(string.second)
 
-  def better = realm.send(mood.rather)
-  def worse = realm.send(mood.opposite.rather)
-
-  def season = [adjective, mood.season].to_phrase
-
-  %i[adjective adverb reserves output intake internals externals
-     ip ep ij ej long_output long_intake energy].each do |meth|
+  %i[adjective adverb reserves].each do |meth|
     delegate meth, to: :realm
   end
   %i[season].each do |meth|
     delegate meth, to: :mood
   end
 
-  def words = File.readlines("app/words/#{string}", chomp: true)
+  def lines = File.readlines("words/#{string}", chomp: true)
+  def link = lines.first
 
-  def goal = [adjective, mood.goal].to_phrase
-  alias link :goal
-
-  def balance = [adjective, mood.balance].to_phrase
 end

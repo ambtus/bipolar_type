@@ -9,9 +9,9 @@ table
   tr
     td.bordered colspan = 2 =render 'choose', mood: Mood.i
 
-center
-  ='remaining' if @subtypes.present?
-  |< BipolarTypes
+='remaining' if @subtypes.present?
+|< BipolarTypes:
 ol
   -Type.with_subtypes(@subtypes).each do |t|
-    li=link_to t.title, type_path(t)
+    li
+      =link_to_concept t

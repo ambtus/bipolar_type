@@ -22,7 +22,7 @@ Then('all {word} should be listed') do |what|
   case what
   when 'behaviors'
     Behavior.each do |x|
-      expect(page).to have_text(x.words)
+      expect(page).to have_text(x.do_something)
     end
   when 'externals', 'internals', 'realms'
     Realm.each do |x|

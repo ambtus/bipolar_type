@@ -13,18 +13,26 @@ class Type < Concept
     def my_path = :FpTeNjSi
     def my_type = Type.find(my_path)
     # for cucumber tests, just needs to be different.
-    def your_path = :NpSeTjFi
+    def your_path = my_type.suicidal_path
     def your_type = Type.new(your_path)
     # for visual tests, want to hit all sixteen subtypes
-    def next_path = :TpFeSjNi
-    def other_path = :SpNeFjTi
+    def next_path = my_type.bipolar_path
+    def other_path = my_type.neurotic_path
   end
 
   def subtypes = string.scan(/../).collect { |x| Subtype.find(x) }
   def realms = string.scan(/../).map(&:first).collect { |x| Realm.find(x) }
 
-  def left = subtypes.first
-  def top = subtypes.second
-  def right = subtypes.third
-  def bottom = subtypes.fourth
+  def bipolar_path =  realms.values_at(3,0,1,2).join_strings(Mood.all).join
+  def neurotic_path =  realms.values_at(1,2,3,0).join_strings(Mood.all).join
+  def suicidal_path = realms.values_at(2,3,0,1).join_strings(Mood.all).join
+
+  def firsts = subtypes.select(&:first?).map(&:mbti)
+  def seconds = subtypes.select(&:second?).map(&:mbti)
+  def possibles = firsts.multiply(seconds).flatten
+  def true_mbtis = possibles.select{|x| x.is_mbti?}
+  def reversed = possibles.map{|x| x.chars.values_at(0,2,1,3).join}
+  def almost_mbtis = reversed.select{|x| x.is_mbti?}.map{|x| "~#{x}"}
+  def mbtis = true_mbtis + almost_mbtis
+  def mbti = mbtis.compact_blank.join('/')
 end

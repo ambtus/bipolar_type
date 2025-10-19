@@ -7,7 +7,7 @@
    quote dquote sqwrap parenthesize deunderscore wrap end_wrap endwrap start_wrap unwrap
    wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine
    make_yours make_theirs and_to_or is_mbti? capitalized? to_noun to_adjective s ed en er
-   ly ing an some a_lot a_lot_of enough enough_of many too_many too_much too_few
+   ly ing an some a_lot a_lot_of enough enough_of many all only too_many too_much too_few
    too_little a_few plural? uncountable? little few more fewer less much as_much many
    as_many not_always that those is are was were them it they able un begins_with? has
    have do does].each do |meth|
@@ -37,7 +37,7 @@ class String
   # 'listen to music' has the preposition to, and gets split as 'listen to' and 'music'
   # 'eat sweet foods' has the adjective sweet', and gets plits as 'eat' and 'sweet foods'
   # articles aren't prepositions, but are split the same
-  PREPS = %w[after at before from for of off on over to with the a an].freeze
+  PREPS = %w[after at before from for of off in on over to with].freeze
   def prep? = PREPS.include?(words[1])
 
   def first_words
@@ -314,7 +314,7 @@ class String
     [' a ', ' the '].each do |connector|
       if match(connector)
         first, second = split(connector, 2)
-        return [first, 'enough of', connector, second].to_phrase
+        return [first, 'enough', second.pluralize].to_phrase
       end
     end
     if match?(' ')
@@ -332,10 +332,24 @@ class String
   end
 
   def some
+    [' a ', ' the '].each do |connector|
+      if match(connector)
+        first, second = split(connector, 2)
+        return [first, 'some', second.pluralize].to_phrase
+      end
+    end
     if match?(' ')
       [first_words, 'some', last_words].join(' ')
     else
       "#{self} some"
+    end
+  end
+
+  def only
+    if match?(' ')
+      [first_words, 'only', last_words].join(' ')
+    else
+      "only #{self}"
     end
   end
 
@@ -363,8 +377,26 @@ class String
     end
   end
 
+  def all
+    if match('(.*) (a|the|an) (.*)')
+      if ::Regexp.last_match(3).uncountable?
+        return [::Regexp.last_match(1), 'all',
+                ::Regexp.last_match(2),
+                ::Regexp.last_match(3)].to_phrase
+      end
+
+      return [::Regexp.last_match(1), 'all the', ::Regexp.last_match(3).pluralize].to_phrase
+
+    end
+    if match?(' ')
+      [first_words, 'all the', last_words].join(' ')
+    else
+      "#{self} everything"
+    end
+  end
+
   def too_much
-    if match('(.*) (a|the) (.*)')
+    if match('(.*) (a|the|an) (.*)')
       if ::Regexp.last_match(3).uncountable?
         return [::Regexp.last_match(1), 'too much',
                 ::Regexp.last_match(3)].to_phrase
@@ -389,7 +421,7 @@ class String
   end
   alias too_many :too_much
   def too_little
-    if match('(.*) (a|the) (.*)')
+    if match('(.*) (a|the|an) (.*)')
       if ::Regexp.last_match(3).uncountable?
         return [::Regexp.last_match(1), 'too little',
                 ::Regexp.last_match(3)].to_phrase
@@ -408,7 +440,7 @@ class String
 
   def more
     if match('(.*) a (.*)')
-      [::Regexp.last_match(1), 'more of a', ::Regexp.last_match(2)].to_phrase
+      [::Regexp.last_match(1), 'more', ::Regexp.last_match(2).pluralize].to_phrase
     elsif match?(' ')
       if last_words.words.first == 'good'
         [first_words, 'better', last_words.delete_prefix('good')].to_phrase
@@ -419,6 +451,22 @@ class String
       "more #{self}"
     else
       "#{self} more"
+    end
+  end
+
+  def even_more
+    if match('(.*) a (.*)')
+      [::Regexp.last_match(1), 'even more', ::Regexp.last_match(2).pluralize].to_phrase
+    elsif match?(' ')
+      if last_words.words.first == 'good'
+        [first_words, 'best', last_words.delete_prefix('good')].to_phrase
+      else
+        [first_words, 'even more', last_words].to_phrase
+      end
+    elsif noun?
+      "even more #{self}"
+    else
+      "#{self} even more"
     end
   end
 
@@ -471,6 +519,7 @@ class String
   def uncountable?
     return unwrap.uncountable? if wrapped?
     return true if self == 'salary'
+    return true if self == 'music'
 
     false
   end

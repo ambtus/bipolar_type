@@ -10,6 +10,7 @@ html lang="en"
       .left { text-align: left;}
       .right {text-align: right;}
       .larger  { font-size: 1.2em;}
+      .smaller { font-size: .9 em;}
 
       a.external:link {color: dimgrey; text-decoration: none;}
       a.external:visited {color: dimgrey; text-decoration: none;}
@@ -17,17 +18,43 @@ html lang="en"
 
       ul { padding: 0; margin: 0; list-style-type: none; }
       ol { margin: 0; padding-left: 1.5em}
+      dt:before { content: ""; display: block; }
+      dt:after { content: ': ' }
+      dt, dd { display: inline;}
+      
       table {margin: auto; border: none; border-collapse: collapse;}
       table.equal {table-layout: fixed; width: 100%; }
-      td {border: none; text-align: center; vertical-align: top; padding: .2em; }
-      .bordered {border: 1px solid grey}
-      .middle {vertical-align: middle}
-      td.p {text-align: left; border: 1px solid grey;}
+      td {border: 1px solid grey; text-align: center; vertical-align: top; padding: .2em; }
+      td.none {border: none}
+      td.middle {vertical-align: middle}
+      td.bottom {vertical-align: bottom}
+      td.top {vertical-align: top}
       .halfish {width: 48%}
 
       .button-wrapper {display: flex; gap: 10px; justify-content: center;}
+
+      .hover-link {
+          position: relative;
+          text-decoration: none;
+          color: green;
+      }
+
+      .popup {
+          display: none; /* Hide the pop-up by default */
+          position: absolute;
+          background-color: white;
+          border: 1px solid #ccc;
+          padding: 10px;
+          z-index: 10;
+      }
+
+      .hover-link:hover .popup {
+          display: block; /* Show the pop-up on hover */
+      }
+
   body
-    .center.larger=display_links %w[introduction cycle behaviors theory types]
+    .center.larger
+      =display_links %w[introduction cycle behaviors theory types]
 
     =yield
 

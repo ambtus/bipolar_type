@@ -7,8 +7,12 @@ class Realm < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.linear = ALL.values_at(1, 3, 2, 0)
+  def self.linear = ALL.values_at(1, 3, 0, 2)
   def self.names = linear.map(&:name)
+  def self.internals = linear.map(&:internals)
+  def self.intakes = linear.map(&:intake)
+  def self.externals = all.map(&:externals)
+  def self.outputs = all.map(&:output)
 
   def behaviors = Behavior.all.select { |x| x.realm == self }
   def subtypes = Subtype.all.select { |x| x.realm == self }
@@ -20,30 +24,29 @@ class Realm < Concept
     raise "cannot add #{other.class} to realm"
   end
 
-  def externalize = behaviors.select(&:top?).map(&:words)
-  def internalize = behaviors.select(&:bottom?).map(&:words)
-  def be_energetic = behaviors.select(&:left?).map(&:words)
-  def be_strong = behaviors.select(&:right?).map(&:words)
-
-  def adjective = %w[spiritual physical material mental][index]
+  def adjective = %w[spiritual physical financial mental][index]
   def adverb = adjective.ly
-  alias name :adjective
-  alias realms :name
+  alias realms :adjective
+  def definition = adjective.capitalize
+  alias name :definition
+  alias link :definition
+
+  def intake = %w[listen eat earn look][index]
+  def output = %w[talk move spend think][index]
+  def energy = %w[affect glycogen currency data][index]
+  def strength = %w[morals muscles credit rules][index]
+  def internals = %w[soul body wallet mind][index]
+  def externals = %w[people places things events][index]
 
   # def reserves = "#{adjective} reserves"
   def reserves = %w[affect weight net-worth memories][index]
-  def internals = %w[soul body wallet mind][index]
-  def externals = %w[people places tools ideas][index]
-  def output = %w[talk move spend think][index]
   def o_prep = %w[to around on about][index]
   def long_output = [output, o_prep, externals].to_phrase
-  def intake = ip.words.first
   def i_prep = (index.zero? ? 'to' : '')
   def long_intake = [intake, i_prep, 'things'].to_phrase
-  def energy = %w[emotions calories money information][index]
 
-  def ip = (self + Attitude.ip).words
-  def ep = (self + Attitude.ep).words
-  def ij = (self + Attitude.ij).words
-  def ej = (self + Attitude.ej).words
+  def ip = (self + Attitude.ip)
+  def ep = (self + Attitude.ep)
+  def ij = (self + Attitude.ij)
+  def ej = (self + Attitude.ej)
 end

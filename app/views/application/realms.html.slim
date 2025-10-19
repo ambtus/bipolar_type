@@ -1,0 +1,11 @@
+br
+table
+  tr
+    th
+    -Realm.each do |realm|
+      th=link_to_concept realm
+  -%w[externals output strength energy intake internals].each do |meth|
+    tr
+      th=meth
+      -Realm.each do |realm|
+        td=realm.send(meth)

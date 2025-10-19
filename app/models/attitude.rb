@@ -7,8 +7,10 @@ class Attitude < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  LINEAR = [3, 0, 1, 2].freeze
-  def self.linear = ALL.values_at(*LINEAR)
+  def self.linear = ALL.values_at(3, 0, 1, 2)
+
+  def behaviors = Behavior.all.select { |x| x.attitude == self }
+  def +(other) = behaviors.find { |x| x.realm == other }
 
   def top? = string.starts_with?('e')
   def bottom? = string.starts_with?('i')
@@ -17,32 +19,20 @@ class Attitude < Concept
 
   def execute = top? ? 'use' : 'get'
   def which = left? ? 'energy' : 'strength'
-  def do_something = [execute, which].to_phrase
-  alias attitudes :do_something
 
-  def first? = index.zero?
-  def second? = (index == 1)
-  def third? = (index == 2)
-  def last? = (index == 3)
+  def phrase = [execute, which].to_phrase
+  alias link :phrase
 
+  def time_of_day = %w[morning forenoon afternoon evening][index]
+  def good = %w[empty energetic productive tired][index]
+  def neutral = %w[hungry anxious irritable sore][index]
+  def bad = %w[starving afraid angry exhausted][index]
   def react = %w[digest flee fight rest][index]
-  alias reactions :react
   def goal = %w[refuel escape win recover][index]
 
-  def bad = %w[hungry anxious irritable tired][index]
-  def worse = %w[starving afraid angry exhausted][index]
+  def words = [neutral, time_of_day, good, bad, react, goal]
 
-  def time_of_day = %w[morning midday afternoon evening][index]
-  alias times :time_of_day
-  def time = second? ? "at #{time_of_day}" : "in the #{time_of_day}"
-  def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
-  def seasonal = flop.season
-  def episode = [flop.bad, bipolar].to_phrase.titleize
-  def stop = [react, goal].and
+  
 
-  def behaviors = Behavior.all.select { |x| x.attitude == self }
-  def +(other) = behaviors.find { |x| x.realm == other }
 
-  def flop = ALL.reverse[index]
-  def flip = ALL.values_at(1, 0, 3, 2)[index]
 end
