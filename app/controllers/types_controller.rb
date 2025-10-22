@@ -5,19 +5,19 @@ class TypesController < ApplicationController
     @current = params[:format] || ''
     @taken = @current.chars
     @subtypes = @current.scan(/../).collect { |s| Subtype.find(s) }
+    @title = "BipolarTypes#{" with #{@current.scan(/../).and}" if @current.present?}"
     if @current.length == 6
-      redirect_to type_path Type.find_by(subtypes: @subtypes)
+      @bp1 = Type.bp1(@subtypes)
+      @bp2 = Type.bp2(@subtypes)
+      render 'bipolar'
     else
-      @title = "BipolarTypes#{" with #{@current.scan(/../).and}" if @current.present?}"
       render 'types'
     end
   end
 
   def show
     @type = Type.new params[:id]
-    @all = params[:format]
     @title = @type.title
-    @energy, @output, @strength, @intake = @type.realms
     render 'type'
   end
 

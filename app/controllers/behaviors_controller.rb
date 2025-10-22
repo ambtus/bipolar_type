@@ -7,8 +7,8 @@ class BehaviorsController < ApplicationController
   end
 
   def show
-    @behavior = Behavior.find params[:id]
-    @title = @behavior.title
-    render 'behavior'
+    @thing = Behavior.find params[:id]
+    @title = @thing.title
+    render 'concept'
   end
 end

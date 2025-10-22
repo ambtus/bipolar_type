@@ -331,6 +331,16 @@ class String
     capitalized? ? "#{first.capitalized} #{downcase}" : "#{first} #{self}"
   end
 
+  def the
+    if match?(' ')
+      [first_words, 'the', last_words].join(' ')
+    elsif noun?
+      "the #{self}"
+    else
+      raise 'oops?'
+    end
+  end
+
   def some
     [' a ', ' the '].each do |connector|
       if match(connector)

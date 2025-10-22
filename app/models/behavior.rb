@@ -9,6 +9,9 @@ class Behavior < Concept
 
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
+  SYMBOLS.each do |sym|
+    define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
+  end
 
   def realm = Realm.find(string.second)
   def attitude = Attitude.find(string.first + string.third)

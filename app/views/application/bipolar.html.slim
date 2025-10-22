@@ -1,0 +1,16 @@
+br
+=render 'nature', type: @bp1
+
+h2 Bipolar 1: #{link_to_concept @bp1}
+dl
+  dt Euphoric #{@bp1.e.realm.name} Mania
+  dd use #{@bp1.e.realm.adjective} energy you don’t have on  #{@bp1.e.realm.externals} you don’t want to avoid
+  dt Mild #{@bp1.i.realm.name} Depression
+  dd get #{@bp1.i.realm.adjective} strength you don’t need for  #{@bp1.i.realm.internals.an} that rarely wants to #{@bp1.i.realm.ej.link}
+
+h2 Bipolar II: #{link_to_concept @bp2}
+dl
+  dt Major #{@bp2.i.realm.name} Depression
+  dd get #{@bp2.i.realm.adjective} energy you don’t need for  #{@bp2.i.realm.internals.an} that rarely wants to #{@bp2.i.realm.ep.link}
+  dt Irritable #{@bp2.e.realm.name} Mania
+  dd use #{@bp2.e.realm.adjective} strength you don’t have on  #{@bp2.e.realm.externals} you don’t want to control

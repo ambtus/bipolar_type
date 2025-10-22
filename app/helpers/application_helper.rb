@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def display(thing)
-    "<a href='#' class='hover-link'>#{thing}<span class='popup'>#{thing.definition}</span></a>".html_safe
+    "<a href='#' class='hover-link'>#{thing}<span class='popup'>#{thing.link}</span></a>".html_safe
   end
 
   def link_to_concept(x)

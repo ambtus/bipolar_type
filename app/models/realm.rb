@@ -24,7 +24,7 @@ class Realm < Concept
     raise "cannot add #{other.class} to realm"
   end
 
-  def adjective = %w[spiritual physical financial mental][index]
+  def adjective = %w[spiritual physical material mental][index]
   def adverb = adjective.ly
   alias realms :adjective
   def definition = adjective.capitalize
@@ -32,7 +32,7 @@ class Realm < Concept
   alias link :definition
 
   def intake = %w[listen eat earn look][index]
-  def output = %w[talk move spend think][index]
+  def output = %w[talk exercise spend think][index]
   def energy = %w[affect glycogen currency data][index]
   def strength = %w[morals muscles credit rules][index]
   def internals = %w[soul body wallet mind][index]

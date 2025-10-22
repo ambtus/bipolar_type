@@ -21,7 +21,7 @@ class Attitude < Concept
   def which = left? ? 'energy' : 'strength'
 
   def phrase = [execute, which].to_phrase
-  alias link :phrase
+  def link = [phrase, time_of_day.wrap].to_phrase
 
   def time_of_day = %w[morning forenoon afternoon evening][index]
   def good = %w[empty energetic productive tired][index]
@@ -32,7 +32,7 @@ class Attitude < Concept
 
   def words = [neutral, time_of_day, good, bad, react, goal]
 
-  
+
 
 
 end
