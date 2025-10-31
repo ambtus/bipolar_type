@@ -123,15 +123,15 @@ class String
                  emotions childhood adolescence adulthood old\ age child
                  adolescent adult elder curiosity agitation appetite laziness
                  anxiety irritation boredom anger fear exhaustion lethargy
-                 hunger freedom control].freeze
+                 hunger freedom control foods places].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative
                   emotional child adolescent adult elder childish
                   adolescent mature wise curious agitated greedy lazy
                   anxious irritable bored angry afraid tired lethargic
-                  hungry free controlled].freeze
+                  hungry free controlled caloric spatial].freeze
 
-  def noun? = NOUNS.include?(self)
+  def noun? = NOUNS.include?(self) || NOUNS.include?(self.singularize)
   def capitalized? = first != first.downcase
 
   def to_noun
@@ -430,6 +430,7 @@ class String
     end
   end
   alias too_many :too_much
+
   def too_little
     if match('(.*) (a|the|an) (.*)')
       if ::Regexp.last_match(3).uncountable?

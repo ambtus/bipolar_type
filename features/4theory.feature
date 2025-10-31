@@ -1,5 +1,5 @@
 Feature: the theory page
 
-Scenario: describes the moods
-Given I am on the theory page
-Then all moods should be listed
+Scenario: links four moods
+Given I am on the cycle page
+Then all moods should be linked

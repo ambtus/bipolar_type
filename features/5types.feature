@@ -14,26 +14,26 @@ Given I am on the types page
 When I follow your links
 Then I should be on your page
 
-Scenario: can get to my type from mbti pairs
+Scenario: can get to my type directly
 Given I am on the types page
 When I follow my path
 Then I should be on my page
 
-Scenario: can get to your type from mbti pairs
+Scenario: can get to your type directly
 Given I am on the types page
 When I follow your path
 Then I should be on your page
 
-Example: list of types starts high
+Example: number of choices starts high
 Given I am on the types page
-Then I should have 40 list items
+Then I should have 16 subtype links
 
-Example: list of types decreases with first choice
+Example: number of choices decreases with first choice
 Given I am on the types page
 When I follow one subtype
-Then I should have 22 list items
+Then I should have 9 subtype links
 
-Example: list of types decreases further with second choice
+Example: number of choices decreases further with second choice
 Given I am on the types page
 When I follow two subtypes
-Then I should have 18 list items
+Then I should have 4 subtype links

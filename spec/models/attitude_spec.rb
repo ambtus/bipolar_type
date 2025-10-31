@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Attitude, type: :model do
-  it 'describes an at time' do
-    expect(described_class.second.time).to eq 'at midday'
+  it 'has a path' do
+    expect(described_class.first.path).to eq 'ip'
   end
 
-  it 'describes an in time' do
-    expect(described_class.first.time).to eq 'in the morning'
+  it 'has a title' do
+    expect(described_class.third.title).to eq 'use strength'
   end
+
 end

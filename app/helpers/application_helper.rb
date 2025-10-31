@@ -11,18 +11,29 @@ module ApplicationHelper
   def behavior_link(realm, action)
     behavior = realm + Attitude.find(action)
     link = link_to behavior.episode, episode_path(behavior.path)
-    safe_join([link, "#{behavior.definition.too_much.s} without #{behavior.flip.definition.enough.ing}"], ': ')
+    safe_join([link, "#{behavior.word.too_much.s} without #{behavior.flip.word.enough.ing}"], ': ')
   end
 
   def display(thing)
-    "<a href='#' class='hover-link'>#{thing}<span class='popup'>#{thing.link}</span></a>".html_safe
+    first = "<a href='#' class='hover-link'>"
+    middle = "<span class='popup'>"
+    last = "</span></a>"
+    safe_join(first, thing, middle, thing.title, last)
   end
 
   def link_to_concept(x)
-    link_to x.link, send("#{x.class.name.downcase}_path", x.path)
+    link_to x.title, send("#{x.class.name.downcase}_path", x.path)
   end
 
   def nbsp(i)
     i.times.collect{'&nbsp;'}.join.html_safe
+  end
+
+  def em_and(ary)
+    safe_join(ary, ' <em>and</em> '.html_safe)
+  end
+
+  def em_or(ary)
+    safe_join(ary, ' <em>or</em> '.html_safe)
   end
 end

@@ -1,17 +1,9 @@
 Feature: the type pages
 
-Example: type page lists my goals
+Example: my type page lists my subtypes
 When I am on my type page
-Then my goals should be visible
+Then my subtypes should be linked
 
-Example: type page lists your goals
+Example: your type page does not list my subtypes
 When I am on your type page
-Then my goals should NOT be visible
-
-Example: type page lists my balances
-When I am on my type page
-Then my balances should be visible
-
-Example: type page lists your balances
-When I am on your type page
-Then my balances should NOT be visible
+Then my subtypes should NOT be linked

@@ -2,8 +2,8 @@
 
 class MoodsController < ApplicationController
   def show
-    @mood = Mood.find params[:id]
-    @title = @mood.title
-    render 'mood'
+    @concept = Mood.find params[:id]
+    @title = @concept.title
+    render 'concept'
   end
 end

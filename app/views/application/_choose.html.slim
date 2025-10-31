@@ -1,18 +1,18 @@
-center #{mood.link}
+center #{mood.title}
 ul
   -mood.subtypes.each do |subtype|
     li
-      -if ![subtype.mood.string, subtype.realm.string].intersect?(@taken)
-        =link_to subtype.link, types_path("#{@current}#{subtype.string}")
+      -if ![subtype.mood.string, subtype.realm.string].intersect?(@current.chars)
+        =link_to subtype.title, types_path("#{@current}#{subtype.string}"), class: 'subtype'
         |> :
         br
         .left
           |> I would rather
-          =subtype.behaviors.map(&:link).and
-          |<> than
-          =subtype.opposite.behaviors.map(&:link).or
+          =em_and subtype.behaviors.map(&:title)
+          |<> than have to
+          =em_or subtype.opposite.behaviors.map(&:title)
 
       -elsif @current.match subtype.string
-        b=subtype.link
+        b=subtype.title
       -else
-        del=subtype.link
+        del=subtype.title

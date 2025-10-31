@@ -54,7 +54,7 @@ html lang="en"
 
   body
     .center.larger
-      =display_links %w[introduction cycle behaviors theory types]
+      =display_links %w[introduction cycle behaviors types theory]
 
     =yield
 
@@ -63,12 +63,16 @@ html lang="en"
       -%w[my your next other].each do |which|
         =link_to_unless_current Type.send("#{which}_path"), type_path(Type.send("#{which}_path"))
         |<>
+      hr
+      a href='types.eTFpNj' my bp choice
+      |<>
+      a href='types.iTFjNp' not my bp choice
 
-      -if @taken
+      -if @current
         hr
         |> taken:
-        =@taken
-        =@taken.count.to_s.wrap
+        =@current.chars
+        =@current.chars.count.to_s.wrap
         br
         |> current:
         =@current

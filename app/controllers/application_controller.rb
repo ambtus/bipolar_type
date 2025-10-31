@@ -3,5 +3,10 @@
 class ApplicationController < ActionController::Base
   def home = (@title = 'Introduction')
   def cycle = (@title = 'The Cycle')
-  def theory = (@title = 'The Theory')
+
+  def theory
+    @title = 'The Theory'
+    @subtype = Subtype.send(params[:format] || 'eS')
+    @realm = @subtype.realm
+  end
 end

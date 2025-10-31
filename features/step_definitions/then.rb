@@ -1,60 +1,43 @@
 # frozen_string_literal: true
 
-Then 'I should see {}' do |string|
+Then 'I should see {string}' do |string|
   expect(page).to have_text(string)
 end
 
-Then 'I should NOT see {}' do |string|
+Then 'I should NOT see {string}' do |string|
   expect(page).to have_no_text(string)
+end
+
+Then('the {string} link should be disabled') do |string|
+  expect(page).to have_no_link(string)
 end
 
 Then('the {string} link should NOT be disabled') do |string|
   expect(page).to have_link(string)
 end
 
-Then('all subtypes should be linked') do
-  Subtype.each do |x|
-    expect(page).to have_link(x.link)
-  end
-end
-
-Then('all {word} should be listed') do |what|
-  case what
-  when 'behaviors'
-    Behavior.each do |x|
-      expect(page).to have_text(x.do_something)
+Then('{word} {word} should be linked') do |whose, what|
+  if whose == 'all'
+    what.singularize.capitalize.constantize.all.each do |x|
+      expect(page).to have_link(x.title)
     end
-  when 'externals', 'internals', 'realms'
-    Realm.each do |x|
-      expect(page).to have_text(x.send(what))
-    end
-  when 'attitudes', 'reactions', 'times'
-    Attitude.each do |x|
-      expect(page).to have_text(x.send(what))
-    end
-  when 'seasons', 'moods'
-    Mood.each do |x|
-      expect(page).to have_text(x.send(what.singularize))
+  elsif what == 'subtypes'
+    who = whose == 'my' ? Type.my_type : Type.your_type
+    who.subtypes.each do |x|
+      expect(page).to have_link(x.title)
     end
   else
-    raise "need to define action for #{what}"
+    raise "#{whose} #{what} doesn't match a test"
   end
 end
 
-Then('{word} {word} should be visible') do |whose, what|
+Then('{word} subtypes should NOT be linked') do |whose|
   who = whose == 'my' ? Type.my_type : Type.your_type
   who.subtypes.each do |x|
-    expect(page).to have_text(x.send(what.singularize))
+    expect(page).to have_no_link(x.title)
   end
 end
 
-Then('{word} {word} should NOT be visible') do |whose, what|
-  who = whose == 'my' ? Type.my_type : Type.your_type
-  who.subtypes.each do |x|
-    expect(page).to have_no_text(x.send(what.singularize))
-  end
-end
-
-Then 'I should have {int} list items' do |int|
-  expect(find_all('li').count).to be int
+Then 'I should have {int} subtype links' do |int|
+  expect(all('a.subtype').count).to be int
 end

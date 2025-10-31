@@ -1,9 +1,9 @@
 # frozen_string_literal: true
-class AttitudesController < ApplicationController
 
+class AttitudesController < ApplicationController
   def show
-    @thing = Attitude.find params[:id]
-    @title = @thing.title
+    @concept = Attitude.find params[:id]
+    @title = @concept.title
     render 'concept'
   end
 end

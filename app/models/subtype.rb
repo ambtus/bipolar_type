@@ -14,34 +14,36 @@ class Subtype < Concept
   def realm = Realm.all.find { |x| string.match x.string }
   def mood = Mood.all.find { |x| string.match x.string }
 
-  %i[adjective adverb reserves name].each do |meth|
-    delegate meth, to: :realm
-  end
-  %i[season goal].each do |meth|
-    delegate meth, to: :mood
-  end
+  def self.bipolars = all.select { |x| x.mood.vertical? }
 
-  %i[intake output externals internals].each do |sym|
-    define_method(sym) {realm.send(sym)}
+  %i[previous next opposite flip flop].each do |sym|
+    define_method(sym) { realm + mood.send(sym) }
   end
 
-  def lines = File.readlines("words/#{string}", chomp: true)
-
-  def title = [adjective, goal].to_phrase
-  alias link :title
-
-  def next = realm + mood.next
-  def previous = realm + mood.previous
-  def opposite = realm + mood.opposite
-
-  def sibling_attitudes =  Attitude.all.select { |x| x.path.match? mood.path }
+  def sibling_attitudes = Attitude.all.select { |x| x.path.match? mood.path }
 
   def behaviors = sibling_attitudes.add(realm)
 
   Attitude.each do |attitude|
-    define_method(attitude.symbol) {realm + attitude}
+    define_method(attitude.symbol) { realm + attitude }
   end
 
-  def seasonal = [season, adjective].to_phrase
+  def manic?
+    case mood
+    when Mood.e
+      true
+    when Mood.i
+      false
+    else
+      raise 'energy and strength aren’t bipolar'
+    end
+  end
 
+  def adjective = realm.word
+
+  def bp1 = manic? ? "euphoric #{adjective} mania" : "mild #{adjective} depression"
+  def bp2 = manic? ? "irritable #{adjective} mania" : "major #{adjective} depression"
+  def sick = manic? ? 'manic' : 'depressed'
+  def drugs = manic? ? 'sedatives' : 'stimulannts'
+  def generic = manic? ? realm.output : realm.intake
 end

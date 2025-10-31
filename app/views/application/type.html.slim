@@ -1,9 +1,7 @@
 p.larger.center=@type.title
 
-=render @type.balance, type: @type, caption: 'Balancing'
+=render @type.balance, type: @type, caption: 'Balancing (do more)'
 br
-=render 'nature', type: @type
+=render 'nature', type: @type, caption: 'Nature (enjoy)'
 br
-=render @type.excess, type: @type, caption: 'Unbalancing'
-
-p Unbalancing behaviors can be nurtured into excess by your environment. So you need to focus on your balancing behaviors, which you also like to do but are healthier for you.
+=render @type.excess, type: @type, caption: 'Unbalancing (do less)'

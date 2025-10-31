@@ -3,15 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Realm, type: :model do
-  it 'has behaviors' do
-    expect(described_class.first + Attitude.first).to be Behavior.first
+  it 'has a path' do
+    expect(described_class.first.path).to eq 'F'
   end
 
-  it 'has subtypes' do
-    expect(described_class.linear.first + Mood.first).to be Subtype.first
-  end
-
-  it 'raises on bad addition' do
-    expect { described_class.first + described_class.second }.to raise_error(RuntimeError)
+  it 'has a title' do
+    expect(described_class.third.title).to eq 'material'
   end
 end

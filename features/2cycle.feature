@@ -1,17 +1,10 @@
 Feature: the cycle page
 
-Scenario: lists four responses
+Scenario: links four moods
 Given I am on the cycle page
-Then all reactions should be listed
+Then all moods should be linked
 
-Scenario: lists four attitudes
+Scenario: links four attitudes
 Given I am on the cycle page
-Then all attitudes should be listed
+Then all attitudes should be linked
 
-Scenario: lists four seasons
-Given I am on the cycle page
-Then all seasons should be listed
-
-Scenario: lists four times
-Given I am on the cycle page
-Then all times should be listed

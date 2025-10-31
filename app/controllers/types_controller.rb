@@ -3,7 +3,6 @@
 class TypesController < ApplicationController
   def index
     @current = params[:format] || ''
-    @taken = @current.chars
     @subtypes = @current.scan(/../).collect { |s| Subtype.find(s) }
     @title = "BipolarTypes#{" with #{@current.scan(/../).and}" if @current.present?}"
     if @current.length == 6

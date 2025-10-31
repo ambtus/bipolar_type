@@ -12,6 +12,12 @@ group :development, :test do
   gem 'fivemat' # rspec formatter
   gem 'launchy' # So you can do save_and_open_page
   gem 'rspec-rails'
+  gem 'rubocop-capybara'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
+  gem 'rubocop-slim'
   gem 'simplecov', require: false
   gem 'slim-rails'
 end

@@ -2,7 +2,7 @@ Feature: the home page
 
 Scenario: gives some background
 Given I am on the homepage
-Then I should see 1980s
+Then I should see '1980s'
 
 Scenario: has a link to wikipedia bipolar
 Given I am on the homepage

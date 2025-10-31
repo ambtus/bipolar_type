@@ -1,17 +1,9 @@
 Feature: the behaviors page
 
-Scenario: lists four realms
+Scenario: links sixteen subtypes
 Given I am on the behaviors page
-Then all realms should be listed
+Then all subtypes should be linked
 
-Scenario: lists four externals
+Scenario: links sixteen behaviors
 Given I am on the behaviors page
-Then all externals should be listed
-
-Scenario: lists four internals
-Given I am on the behaviors page
-Then all internals should be listed
-
-Scenario: lists sixteen behaviors
-Given I am on the behaviors page
-Then all behaviors should be listed
+Then all behaviors should be linked

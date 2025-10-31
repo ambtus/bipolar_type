@@ -1,6 +1,25 @@
-p Your natural personality type has four subtypes: a different realm for each season. That is, everyone wants #{Mood.titles.and}, but I want #{Type.my_type.subtypes.map(&:title).and} whereas someone else might want the opposite: #{Type.other_type.subtypes.map(&:title).and}.
-p Your nurtured <em>bipolar</em> type is either Bipolar I: euphoric mania (use energy you don’t have) and lethargic depression (get strength you don’t need) or Bipolar II: irritable mania (use strength you don’t have) and agitated depression (get energy you don’t need).
-p BipolarType asserts that Bipolar I types have been held back, constantly nurtured to stay in the previous phase of the cycle instead of being allowed to move on. For example, someone who enjoys #{Subtype.eS.title} may have been forced to continue #{Behavior.eSp.link.ing} long after they would have chosen to stop and #{Behavior.eSj.link}.
-p Bipolar II types, on the other hand, have been pushed forward, constantly nurtured to move onto the next phase of the cycle instead of being allowed to hold back. For example, they may have been forced to start #{Behavior.eSj.link.ing} long before they would have chosen to stop #{Behavior.eSp.link.ing}.
-p Both enjoy #{Subtype.eS.title}, and left to their own devices would both #{Subtype.eS.behaviors.map(&:link).and}. But nurture forces one to become Bipolar I with euphoric #{Realm.S.adjective} mania as they are forced to burn more calories than they have and the other becomes Bipolar II with irritable #{Realm.S.adjective} mania as they are forced to use more muscles than they have.
-p Conventional wisdom says they are both #{Realm.S.output.ing} too much, and should take sedatives. BipolarType says the first should <em>move on</em> and start #{Behavior.eSj.link.ing} and the second should <em>hold back</em> and keep #{Behavior.eSp.link.ing}.
+p Unbalancing behaviors can be nurtured into excess by your environment. So you need to focus on your balancing behaviors, which you also like to do but are healthier for you.
+p There are four subtypes, or moods associated with the four seasons. And each one has its own imbalance.
+table
+  caption
+    b The Four Imbalances
+  tr
+    td.center colspan=2
+      |> excess
+      =link_to_concept Mood.e
+      .br Too thin, not fat enough (mania)
+    th
+  tr
+    td.left
+      |> excess
+      =link_to_concept Mood.p
+      br Too afraid, not angry enough (anxious)
+    td.right
+      |> excess
+      =link_to_concept Mood.j
+      br Too angry, not afraid enough (irritable)
+  tr
+    td.center colspan=2
+      |> excess
+      =link_to_concept Mood.i
+      br Too fat, not thin enough (depression)
