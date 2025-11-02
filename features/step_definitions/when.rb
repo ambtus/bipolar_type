@@ -5,31 +5,23 @@ When('I follow the {string} link') do |string|
 end
 
 When('I follow {word} subtype(s)') do |count|
-  click_link Realm.first.subtypes.first.link
-  click_link Realm.second.subtypes.second.link if count == 'two'
+  click_link Realm.first.subtypes.first.title
+  click_link Realm.second.subtypes.second.title if count == 'two'
 end
 
 When('I follow {word} links') do |word|
   who = word == 'my' ? Type.my_type : Type.your_type
   who.subtypes[0, 3].each do |x|
-    click_link(x.link)
+    click_link(x.title)
   end
   click_link who.path
+end
+
+When('I follow {word}') do |word|
+  click_link(word.singularize.capitalize.constantize.title)
 end
 
 When('I follow {word} path') do |word|
   who = word == 'my' ? Type.my_type : Type.your_type
   click_link(who.path)
-end
-
-When('I click the button') do
-  click_button
-end
-
-When('I click the {string} button') do |string|
-  click_button string
-end
-
-When('I click the {string} button {int} times') do |string, int|
-  int.times { click_button string }
 end
