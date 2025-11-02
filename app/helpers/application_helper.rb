@@ -15,8 +15,8 @@ module ApplicationHelper
     safe_join([first, thing, middle, thing.word, last])
   end
 
-  def link_to_concept(concept, display_title = true)
-    link = display_title ? concept.title : concept.link
+  def link_to_concept(concept, full_title: true)
+    link = full_title ? concept.title : concept.link
     link_to link, send("#{concept.class.name.downcase}_path", concept.path)
   end
 

@@ -17,6 +17,15 @@ class Type < Concept
 
   class << self
     def with(subtypes) = ALL.select { |s| (subtypes - s.subtypes).blank? }.sort
+
+    def title(subtypes)
+      if subtypes.present?
+        "#{Type.with(subtypes).count} BipolarTypes with #{subtypes.and}"
+      else
+        "#{all.count} BipolarTypes"
+      end
+    end
+
     def my_path = 'iSFp/eTNj'
     def my_type = find(my_path)
     # for cucumber tests; just needs to be different

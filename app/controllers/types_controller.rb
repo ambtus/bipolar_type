@@ -4,7 +4,7 @@ class TypesController < ApplicationController
   def index
     @current = params[:format] || ''
     @subtypes = @current.scan(/../).collect { |s| Subtype.find(s) }
-    @title = "BipolarTypes#{" with #{@current.scan(/../).and}" if @current.present?}"
+    @title = Type.title(@subtypes)
     if @current.length == 6
       @siblings = Type.with(@subtypes)
       render 'bipolar'

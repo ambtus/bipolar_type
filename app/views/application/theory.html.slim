@@ -6,7 +6,8 @@ p A subtype is one of #{link_to Realm.title, realms_path} plus one of #{link_to 
 
 p A behavior is a realm plus one of #{link_to Attitude.title, attitudes_path}. There are #{link_to '16 Behaviors', behaviors_path}.
 
-p A BipolarType is made up of four subtypes and a presenting behavior.
+p A BipolarType is made up of four subtypes and a presenting behavior. There are #{link_to '96 BipolarTypes', types_path}.
+
 p For example, the four subtypes #{display_and Type.my_type.subtypes} are associated with four BipolarTypes, each of which has a different presenting episode:
 ul
   -Type.my_type.family.each do |type|
