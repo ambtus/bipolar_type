@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
   end
 
   %w[attitude behavior mood realm subtype].each do |x|
-    define_method(x) { @title = x.capitalize.constantize.title; render x.pluralize }
+    define_method(x) do
+      @title = x.capitalize.constantize.title
+      render x.pluralize
+    end
   end
 end

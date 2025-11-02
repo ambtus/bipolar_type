@@ -28,22 +28,9 @@ class Subtype < Concept
     define_method(attitude.symbol) { realm + attitude }
   end
 
-  def manic?
-    case mood
-    when Mood.e
-      true
-    when Mood.i
-      false
-    else
-      raise 'energy and strength aren’t bipolar'
-    end
-  end
+  def manic? = (mood == Mood.e)
 
   def adjective = realm.word
 
-  def bp1 = manic? ? "euphoric #{adjective} mania" : "mild #{adjective} depression"
-  def bp2 = manic? ? "irritable #{adjective} mania" : "major #{adjective} depression"
-  def sick = manic? ? 'manic' : 'depressed'
   def drugs = manic? ? 'sedatives' : 'stimulants'
-  def generic = manic? ? realm.output : realm.intake
 end

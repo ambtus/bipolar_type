@@ -6,10 +6,10 @@ ul
         =link_to subtype.title, types_path("#{@current}#{subtype.string}"), class: 'subtype'
         br
         |> I would rather both
-        =em_and subtype.behaviors.collect{|x| display(x)}
+        =em_and(subtype.behaviors.collect { |x| display(x) })
         br
         |> than have to either
-        =em_or subtype.opposite.behaviors.collect{|x| display(x)}
+        =em_or(subtype.opposite.behaviors.collect { |x| display(x) })
       -elsif @current.match subtype.string
         b=display subtype
       -else

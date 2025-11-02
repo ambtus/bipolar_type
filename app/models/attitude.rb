@@ -13,7 +13,7 @@ class Attitude < Concept
   def +(other) = behaviors.find { |x| x.realm == other }
 
   def episode = ['agitated depression', 'euphoric mania', 'irritable mania', 'lethargic depression'][index]
-    def aka = ['digest too much', 'flee too much', 'fight too much', 'rest too much'][index]
+  def aka = ['digest too much', 'flee too much', 'fight too much', 'rest too much'][index]
   def episode_type = [episode, aka.wrap].to_phrase
 
   def bp1? = index.odd?

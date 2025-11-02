@@ -3,10 +3,10 @@
 class Type < Concept
   SYMBOLS = Realm.strings.permutation(4).collect do |realms|
     [
-     "e#{realms[0, 2].join}p/i#{realms[2, 2].join}j",
-     "e#{realms[2, 2].join}j/i#{realms[0, 2].join}p",
-     "i#{realms[0, 2].join}p/e#{realms[2, 2].join}j",
-     "i#{realms[2, 2].join}j/e#{realms[0, 2].join}p",
+      "e#{realms[0, 2].join}p/i#{realms[2, 2].join}j",
+      "e#{realms[2, 2].join}j/i#{realms[0, 2].join}p",
+      "i#{realms[0, 2].join}p/e#{realms[2, 2].join}j",
+      "i#{realms[2, 2].join}j/e#{realms[0, 2].join}p"
     ]
   end.flatten.map(&:to_sym)
 
@@ -34,7 +34,7 @@ class Type < Concept
 
   def <=>(other) = attitude <=> other.attitude
 
-  def family = Type.select{|x| x.subtypes.sort == self.subtypes.sort}.sort
+  def family = Type.select { |x| x.subtypes.sort == subtypes.sort }.sort
   def siblings = family.without(self)
 
   def attitude = Attitude.send(string.first + string.fourth)
@@ -52,12 +52,11 @@ class Type < Concept
 
   def other_episode = attitude.opposite.episode.insert_word(subtypes.third.realm.word)
 
-  def bp1? = attitude.bp1?
+  delegate :bp1?, to: :attitude
   def balance = bp1? ? 'left' : 'right'
   def excess = bp1? ? 'right' : 'left'
 
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }
   end
-
 end

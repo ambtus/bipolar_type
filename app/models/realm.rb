@@ -14,8 +14,7 @@ class Realm < Concept
 
   def +(other)
     return behaviors.find { |x| x.attitude == other } if other.is_a? Attitude
-    return subtypes.find { |x| x.mood == other } if other.is_a? Mood
 
-    raise "cannot add #{other.class} to realm"
+    subtypes.find { |x| x.mood == other }
   end
 end

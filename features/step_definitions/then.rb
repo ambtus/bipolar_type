@@ -23,7 +23,7 @@ Then('{word} {word} should be linked') do |whose, what|
         expect(page).to have_link(x.title)
       end
     else
-      what.singularize.capitalize.constantize.all.each do |x|
+      what.singularize.capitalize.constantize.each do |x|
         expect(page).to have_link(x.title, exact: true)
       end
     end
@@ -40,9 +40,9 @@ end
 Then('all links should work') do
   current = page.current_path
   links = page.all('a:not(.hover-link)').map(&:text) - %w[Introduction Cycle Theory Types]
-  Rails.logger.debug {"links: #{links}"}
+  Rails.logger.debug { "links: #{links}" }
   links.each do |title|
-    Rails.logger.debug {"following #{title}"}
+    Rails.logger.debug { "following #{title}" }
     click_link(title)
     assert_equal "BipolarType: #{title}", page.title
     visit current
@@ -51,6 +51,7 @@ end
 
 Then('{word} {word} should NOT be linked') do |whose, what|
   raise "#{whose} #{what} doesn't match a test" unless %w[subtypes behaviors].include? what
+
   who = whose == 'my' ? Type.my_type : Type.your_type
   who.send(what).each do |x|
     expect(page).to have_no_link(x.title, exact: true)
