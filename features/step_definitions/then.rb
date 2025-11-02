@@ -19,22 +19,23 @@ end
 Then('{word} {word} should be linked') do |whose, what|
   if whose == 'all'
     what.singularize.capitalize.constantize.all.each do |x|
-      expect(page).to have_link(x.title)
+      expect(page).to have_link(x.link)
     end
-  elsif what == 'subtypes'
+  elsif %w[subtypes behaviors].include? what
     who = whose == 'my' ? Type.my_type : Type.your_type
-    who.subtypes.each do |x|
-      expect(page).to have_link(x.title)
+    who.send(what).each do |x|
+      expect(page).to have_link(x.link)
     end
   else
     raise "#{whose} #{what} doesn't match a test"
   end
 end
 
-Then('{word} subtypes should NOT be linked') do |whose|
+Then('{word} {word} should NOT be linked') do |whose, what|
+  raise "#{whose} #{what} doesn't match a test" unless %w[subtypes behaviors].include? what
   who = whose == 'my' ? Type.my_type : Type.your_type
-  who.subtypes.each do |x|
-    expect(page).to have_no_link(x.title)
+  who.send(what).each do |x|
+    expect(page).to have_no_link(x.link, exact: true)
   end
 end
 

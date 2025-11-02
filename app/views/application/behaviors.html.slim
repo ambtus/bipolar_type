@@ -1,17 +1,22 @@
 p.center
-  b The Four Realms of Behavior
--Realm.each do |r|
+  b The 16 Behaviors
   table
     tr
-      td=link_to_concept r + Attitude.ep
-      td=link_to_concept r + Mood.e
-      td=link_to_concept r + Attitude.ej
+      td
+        ul
+          -Realm.each do |r|
+            li=link_to_concept r + Attitude.ep
+      td
+        ul
+          -Realm.each do |r|
+            li=link_to_concept r + Attitude.ej
     tr
-      td.left=link_to_concept r + Mood.p
-      th=link_to_concept r
-      td.right=link_to_concept r + Mood.j
-    tr
-      td=link_to_concept r + Attitude.ip
-      td=link_to_concept r + Mood.i
-      td=link_to_concept r + Attitude.ij
+      td
+        ul
+          -Realm.each do |r|
+            li=link_to_concept r + Attitude.ip
+      td
+        ul
+          -Realm.each do |r|
+            li=link_to_concept r + Attitude.ij
   br

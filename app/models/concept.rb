@@ -9,6 +9,7 @@ class Concept
   def string = symbol.to_s
   alias to_s :string
   alias path :string
+  alias link :string
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
@@ -21,7 +22,7 @@ class Concept
     def title = [all.count, name.pluralize].to_phrase
     def [](index) = (all * 2).[](index)
     def find(thing) = all.find { |x| x.symbol == thing.to_sym }
-    %i[each each_with_index first second third fourth last without rotate values_at].each do |meth|
+    %i[each each_with_index first second third fourth last without rotate values_at select].each do |meth|
       delegate meth, to: :all
     end
   end
@@ -36,5 +37,6 @@ class Concept
   def flip = ALL.values_at(1, 0, 3, 2)[index]
 
   def words = File.readlines("words/#{string}", chomp: true)
-  def title = words.first
+  def word = words.first
+  def title = [string, word].break
 end

@@ -8,7 +8,6 @@ RSpec.describe Subtype, type: :model do
   end
 
   it 'has a title' do
-    expect(described_class.third.title).to eq 'hunt'
+    expect(described_class.third.title).to eq 'Sj<br />hunt'
   end
-  
 end

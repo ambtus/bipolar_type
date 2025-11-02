@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
     @subtype = Subtype.send(params[:format] || 'eS')
     @realm = @subtype.realm
   end
+
+  %w[attitude behavior mood realm subtype].each do |x|
+    define_method(x) { @title = x.capitalize.constantize.title; render x.pluralize }
+  end
 end

@@ -1,0 +1,24 @@
+
+table
+  caption
+    b The 16 Subtypes
+  tr
+    td.center colspan=2
+      ul
+        -Realm.each do |r|
+          li=link_to_concept Mood.e + r
+    th
+  tr
+    td.left
+      ul
+        -Realm.each do |r|
+          li=link_to_concept Mood.p + r
+    td.right
+      ul
+        -Realm.each do |r|
+          li=link_to_concept Mood.j + r
+  tr
+    td.center colspan=2
+      ul
+        -Realm.each do |r|
+          li=link_to_concept Mood.i + r

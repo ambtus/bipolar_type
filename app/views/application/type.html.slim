@@ -1,7 +1,7 @@
-p.larger.center=@type.title
+p.larger.center=@type.link
 
 =render @type.balance, type: @type, caption: 'Balancing (do more)'
 br
-=render 'nature', type: @type, caption: 'Nature (enjoy)'
+=render 'nature', type: @type, caption: 'Nature<br />(easy and enjoyable)'.html_safe
 br
 =render @type.excess, type: @type, caption: 'Unbalancing (do less)'

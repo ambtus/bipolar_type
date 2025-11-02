@@ -15,14 +15,15 @@ module ApplicationHelper
   end
 
   def display(thing)
-    first = "<a href='#' class='hover-link'>"
-    middle = "<span class='popup'>"
-    last = "</span></a>"
-    safe_join(first, thing, middle, thing.title, last)
+    first = "<a href='#' class='hover-link'>".html_safe
+    middle = "<span class='popup'>".html_safe
+    last = "</span></a>".html_safe
+    safe_join([first, thing, middle, thing.word, last])
   end
 
-  def link_to_concept(x)
-    link_to x.title, send("#{x.class.name.downcase}_path", x.path)
+  def link_to_concept(x, display_title = true)
+    link = display_title ? x.title : x.link
+    link_to link, send("#{x.class.name.downcase}_path", x.path)
   end
 
   def nbsp(i)
@@ -35,5 +36,15 @@ module ApplicationHelper
 
   def em_or(ary)
     safe_join(ary, ' <em>or</em> '.html_safe)
+  end
+
+  def display_and(ary)
+    displays = ary.collect{|x| display x}
+    safe_join(
+      [displays[0], ', ',
+       displays[1], ', ',
+       displays[2], ', and ',
+       displays[3]]
+    )
   end
 end

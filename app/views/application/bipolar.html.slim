@@ -1,22 +1,12 @@
 br
-=render 'nature', type: @bp1, caption: 'Nature'
-
-dl
-  dt Mania
-  dd #{@bp1.e.title.too_many}
-  dt Depression
-  dd #{@bp1.i.title.too_many}
-
-h2 Bipolar 1: #{link_to_concept @bp1}
-dl
-  dt Severe #{@bp1.e.realm.title.capitalize} Mania
-  dd=@bp1.e.ep.title.too_many
-  dt Mild #{@bp1.i.realm.title.capitalize} Depression
-  dd=@bp1.i.ij.title.too_many
-
-h2 Bipolar II: #{link_to_concept @bp2}
-dl
-  dt Major #{@bp2.i.realm.title.capitalize} Depression
-  dd=@bp2.i.ip.title.too_many
-  dt #{@bp2.e.realm.title.capitalize} Hypomania
-  dd=@bp2.e.ej.title.too_many
+=render 'nature', type: @siblings.first, caption: 'Subtypes'
+br
+table
+  caption
+    b Presenting Episode
+  tr
+    td=render 'choice', type: @siblings.second
+    td=render 'choice', type: @siblings.third
+  tr
+    td=render 'choice', type: @siblings.first
+    td=render 'choice', type: @siblings.fourth

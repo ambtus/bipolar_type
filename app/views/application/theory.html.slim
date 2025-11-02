@@ -1,25 +1,21 @@
-p Unbalancing behaviors can be nurtured into excess by your environment. So you need to focus on your balancing behaviors, which you also like to do but are healthier for you.
-p There are four subtypes, or moods associated with the four seasons. And each one has its own imbalance.
-table
-  caption
-    b The Four Imbalances
-  tr
-    td.center colspan=2
-      |> excess
-      =link_to_concept Mood.e
-      .br Too thin, not fat enough (mania)
-    th
-  tr
-    td.left
-      |> excess
-      =link_to_concept Mood.p
-      br Too afraid, not angry enough (anxious)
-    td.right
-      |> excess
-      =link_to_concept Mood.j
-      br Too angry, not afraid enough (irritable)
-  tr
-    td.center colspan=2
-      |> excess
-      =link_to_concept Mood.i
-      br Too fat, not thin enough (depression)
+
+
+
+p A subtype is a #{link_to 'realm', realms_path} plus a #{link_to 'mood', moods_path}. There are #{link_to '16 Subtypes', subtypes_path}.
+
+
+p A behavior is a realm plus an #{link_to 'action', attitudes_path}. There are #{link_to '16 Behaviors', behaviors_path}.
+
+p A BipolarType is made up of four subtypes and a presenting behavior.
+p For example, the four subtypes #{display_and Type.my_type.subtypes} are associated with four BipolarTypes, each of which has a different presenting episode:
+ul
+  -Type.my_type.family.each do |type|
+    li
+      =link_to type.path, type_path(type.path)
+      |<>
+      =display(type.episode_behavior)
+      |<>
+      =type.episode_type
+
+p Conventional wisdom asserts that mania is excessive fight <em>and</em> flight and should be treated with sedatives so you will no longer be manic whereas depression is excessive rest <em>and</em> digest and should be treated with stimulants so you will no longer be depressed.
+p BipolarType asserts that mania is excessive fight <em>or</em> flight and should be treated by doing more of the other so you will no linger be <em>unbalanced</em> whereas depression is excessive rest <em>or</em> digest amd should be treated by doing more of the other so you will no linger be <em>unbalanced</em>. You will still cycle between mania and depression, but the episodes will no longer be as unbalanced and thus not clinically significant enough to require drugs.

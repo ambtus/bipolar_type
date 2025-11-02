@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SubtypesController < ApplicationController
+
   def show
     @concept = Subtype.find params[:id]
     @title = @concept.title

@@ -1,16 +1,17 @@
 table
   tr
-    td.bordered colspan = 2 =render 'choose', mood: Mood.e
+    td colspan = 2 =render 'choose', mood: Mood.e
 
   tr
-    td.p =render 'choose', mood: Mood.p
-    td.p =render 'choose', mood: Mood.j
+    td =render 'choose', mood: Mood.p
+    td =render 'choose', mood: Mood.j
 
   tr
-    td.bordered colspan = 2 =render 'choose', mood: Mood.i
+    td colspan = 2 =render 'choose', mood: Mood.i
 
-=@subtypes.present? ? "Remaining" : "48"
+=Type.with(@subtypes).count
+=' remaining' if @subtypes.present?
 |<> BipolarTypes:
--Type.with(@subtypes).each do |t|
-  =link_to_concept t
-  |<>
+ol
+  -Type.with(@subtypes).each do |t|
+    li=link_to_concept t

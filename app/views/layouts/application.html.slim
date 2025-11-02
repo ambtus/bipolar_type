@@ -21,9 +21,9 @@ html lang="en"
       dt:before { content: ""; display: block; }
       dt:after { content: ': ' }
       dt, dd { display: inline;}
-      
+
       table {margin: auto; border: none; border-collapse: collapse;}
-      table.equal {table-layout: fixed; width: 100%; }
+      table.equal {table-layout: fixed; width: 25em; }
       td {border: 1px solid grey; text-align: center; vertical-align: top; padding: .2em; }
       td.none {border: none}
       td.middle {vertical-align: middle}
@@ -54,7 +54,7 @@ html lang="en"
 
   body
     .center.larger
-      =display_links %w[introduction cycle behaviors types theory]
+      =display_links %w[introduction cycle theory types ]
 
     =yield
 
@@ -64,9 +64,9 @@ html lang="en"
         =link_to_unless_current Type.send("#{which}_path"), type_path(Type.send("#{which}_path"))
         |<>
       hr
-      a href='types.eTFpNj' my bp choice
+      a href='/types.iSeTFp' my bp choice
       |<>
-      a href='types.iTFjNp' not my bp choice
+      a href='/types.iTFjNp' not my bp choice
 
       -if @current
         hr
