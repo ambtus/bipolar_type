@@ -38,5 +38,5 @@ class Concept
 
   def words = File.readlines("words/#{string}", chomp: true)
   def word = words.first
-  def title = [string, word].break
+  def title = [string.colon, word].to_phrase
 end

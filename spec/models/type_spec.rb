@@ -8,7 +8,7 @@ RSpec.describe Type, type: :model do
   end
 
   it 'has a title' do
-    expect(described_class.third.title).to eq "#{described_class.third.path}<br />#{described_class.third.word}"
+    expect(described_class.third.title).to eq described_class.third.path
   end
 
   describe 'find by subtypes in any order' do

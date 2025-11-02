@@ -44,6 +44,6 @@ class Subtype < Concept
   def bp1 = manic? ? "euphoric #{adjective} mania" : "mild #{adjective} depression"
   def bp2 = manic? ? "irritable #{adjective} mania" : "major #{adjective} depression"
   def sick = manic? ? 'manic' : 'depressed'
-  def drugs = manic? ? 'sedatives' : 'stimulannts'
+  def drugs = manic? ? 'sedatives' : 'stimulants'
   def generic = manic? ? realm.output : realm.intake
 end

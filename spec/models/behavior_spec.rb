@@ -8,6 +8,6 @@ RSpec.describe Behavior, type: :model do
   end
 
   it 'has a title' do
-    expect(described_class.third.title).to eq 'eFj<br />preach'
+    expect(described_class.third.title).to eq 'eFj: preach'
   end
 end
