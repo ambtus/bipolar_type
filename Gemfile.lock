@@ -133,6 +133,7 @@ GEM
       cgi (>= 0.3.3)
     error_highlight (0.7.0)
     erubi (1.13.1)
+    ffi (1.17.2)
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
@@ -167,6 +168,7 @@ GEM
     matrix (0.4.3)
     memoist3 (1.0.0)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (5.26.0)
     multi_test (1.1.0)
     net-imap (0.5.12)
@@ -179,6 +181,9 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
+    nokogiri (1.18.10)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-darwin)
@@ -347,6 +352,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-24
+  ruby
   x86_64-darwin-22
   x86_64-linux
 
