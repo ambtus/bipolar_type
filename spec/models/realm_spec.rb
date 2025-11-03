@@ -8,6 +8,6 @@ RSpec.describe Realm, type: :model do
   end
 
   it 'has a title' do
-    expect(described_class.third.title).to eq 'T: material'
+    expect(described_class.third.title).to eq 'T: financial'
   end
 end

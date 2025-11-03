@@ -9,14 +9,16 @@ p A behavior is a realm plus one of #{link_to Attitude.title, attitudes_path}. T
 p A BipolarType is made up of four subtypes and a presenting behavior. There are #{link_to '96 BipolarTypes', types_path}.
 
 p For example, the four subtypes #{display_and Type.my_type.subtypes} are associated with four BipolarTypes, each of which has a different presenting episode:
-ul
+dl
   -Type.my_type.family.each do |type|
-    li
-      =link_to type.path, type_path(type.path)
-      |> :
+    dt=type.episode_type
+    dd
+      |> compulsive
       =display(type.episode_behavior)
-      |<>
-      =type.episode_type
+      |> :
+      =link_to type.path, type_path(type.path)
+
+
 
 p Conventional wisdom asserts that mania is excessive fight <em>and</em> flight and should be treated with sedatives so you will no longer be manic whereas depression is excessive rest <em>and</em> digest and should be treated with stimulants so you will no longer be depressed.
-p BipolarType asserts that mania is excessive fight <em>or</em> flight and should be treated by doing more of the other so you will no linger be <em>unbalanced</em> whereas depression is excessive rest <em>or</em> digest amd should be treated by doing more of the other so you will no linger be <em>unbalanced</em>. You will still cycle between mania and depression, but the episodes will no longer be as unbalanced and thus not clinically significant enough to require drugs.
+p BipolarType asserts that mania is excessive fight <em>or</em> flight and should be treated by doing more of the other so you will no linger be <em>unbalanced</em> whereas depression is excessive rest <em>or</em> digest amd should be treated by doing more of the other so you will no linger be <em>unbalanced</em>. You will still cycle between mania and depression, but the episodes will no longer be as unbalanced and may not require as many drugs.
