@@ -29,12 +29,12 @@ class Type < Concept
     def my_path = 'iSFp/eTNj'
     def my_type = find(my_path)
     # for cucumber tests; just needs to be different
-    def your_path = 'eSFj/iTNp'
+    def your_path = 'eFSp/iNTj'
     def your_type = find(your_path)
     # for visual tests
     def next_type = my_type.siblings.second
     def next_path = next_type.path
-    def other_type = my_type.siblings.third
+    def other_type = your_type.siblings.third
     def other_path = other_type.path
   end
 
@@ -48,6 +48,7 @@ class Type < Concept
 
   def attitude = Attitude.send(string.first + string.fourth)
   def episode_behavior = subtypes.first.realm + attitude
+  def dominant = subtypes.second.realm + attitude
 
   %i[drugs].each do |meth|
     define_method(meth) { subtypes.first.send(meth) }
