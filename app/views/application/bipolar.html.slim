@@ -1,12 +1,16 @@
 br
-=render 'nature', type: @siblings.first, caption: 'Subtypes'
-br
 table
   caption
     b Presenting Episode
   tr
+    td.none colspan=4 #{display @siblings.first.e} (#{display @siblings.first.i.opposite} > #{display @siblings.first.e.opposite})
+  tr
+    td.none.middle rowspan=2 #{display @siblings.first.p} (#{display @siblings.first.j.opposite} > #{display @siblings.first.p.opposite})
     td=render 'choice', type: @siblings.second
     td=render 'choice', type: @siblings.third
+    td.none.middle rowspan= 2 #{display @siblings.first.j} (#{display @siblings.first.p.opposite} > #{display @siblings.first.j.opposite})
   tr
     td=render 'choice', type: @siblings.first
     td=render 'choice', type: @siblings.fourth
+  tr
+    td.none colspan=4 #{display @siblings.first.i} (#{display @siblings.first.e.opposite} > #{display @siblings.first.i.opposite})
