@@ -1,5 +1,5 @@
 h2=@concept.link
-p Words are not my strength. I find it very diffiucult to express meaning using words. The following words are only an aproximation of the meaning of <b>#{@concept.word}</b>.
+p <b>#{@concept.word}</b>:
 ul
   -@concept.words[1..-1].each do |line|
     li=line
