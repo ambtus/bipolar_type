@@ -5,7 +5,7 @@ class TypesController < ApplicationController
     @current = params[:format] || ''
     @subtypes = @current.scan(/../).collect { |s| Subtype.find(s) }
     @title = Type.title(@subtypes)
-    if @current.length == 6
+    if @current.length >= 6
       @siblings = Type.with(@subtypes)
       render 'bipolar'
     else

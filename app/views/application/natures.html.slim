@@ -1,0 +1,8 @@
+p.larger.center The #{Nature.title}
+
+dl
+  -Nature.each do |x|
+    dt=link_to x, types_path(x)
+    dd=x.description
+
+p Every personality type has introverted and extroverted, energetic and strong moods. If you consider yourself to be an introvert or an extrovert, that just means your introversion or extroversion moods are more important to you. Not that you have somehow “omitted” part of the cycle.

@@ -39,7 +39,7 @@ end
 
 Then('all links should work') do
   current = page.current_path
-  links = page.all('a:not(.hover-link)').map(&:text) - %w[Introduction Cycle Theory Types]
+  links = page.all('a:not(.hover-link)').map(&:text) - %w[Introduction Cycle Natures Theory Types]
   Rails.logger.debug { "links: #{links}" }
   links.each do |title|
     Rails.logger.debug { "following #{title}" }
