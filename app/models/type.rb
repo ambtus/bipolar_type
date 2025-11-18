@@ -50,10 +50,6 @@ class Type < Concept
   def episode_behavior = subtypes.first.realm + attitude
   def dominant = subtypes.second.realm + attitude
 
-  %i[drugs].each do |meth|
-    define_method(meth) { subtypes.first.send(meth) }
-  end
-
   %i[aka episode_type].each do |meth|
     delegate meth, to: :attitude
   end

@@ -1,5 +1,5 @@
 h2=@concept.link
 p <b>#{@concept.word}</b>:
 ul
-  -@concept.words[1..-1].each do |line|
+  -@concept.words[1..].each do |line|
     li=line

@@ -31,6 +31,4 @@ class Subtype < Concept
   def manic? = (mood == Mood.e)
 
   def adjective = realm.word
-
-  def drugs = manic? ? 'sedatives' : 'stimulants'
 end
