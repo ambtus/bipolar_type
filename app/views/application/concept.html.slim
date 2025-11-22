@@ -1,5 +1,7 @@
-h2=@concept.link
-p <b>#{@concept.word}</b>:
+h2
+  =@concept.link
+  |> :
+  =@concept.word
 ul
   -@concept.words[1..].each do |line|
-    li=line
+    li=raw line
