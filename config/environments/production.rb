@@ -40,6 +40,7 @@ Rails.application.configure do
   # corresponding to the log level numbers from 0 up to 5 respectively.
   config.log_level = :info
   config.hosts << '.bipolartype.com'
+  config.hosts << '.bt.ambt.us'
   config.hosts << 'bipolar-type.onrender.com'
 
   # Prepend all log lines with the following tags.
