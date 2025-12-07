@@ -54,9 +54,9 @@ class Type < Concept
     delegate meth, to: :attitude
   end
 
-  def episode = attitude.episode.insert_word(subtypes.first.realm.word)
+  def episode = attitude.episode.insert_word(subtypes.first.realm.short_words)
 
-  def other_episode = attitude.opposite.episode.insert_word(subtypes.third.realm.word)
+  def other_episode = attitude.opposite.episode.insert_word(subtypes.third.realm.short)
 
   delegate :bp1?, to: :attitude
   def balance = bp1? ? 'left' : 'right'

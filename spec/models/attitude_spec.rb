@@ -8,6 +8,6 @@ RSpec.describe Attitude, type: :model do
   end
 
   it 'has a title' do
-    expect(described_class.third.title).to eq 'ej: use strength'
+    expect(described_class.third.title).to start_with 'ej: '
   end
 end

@@ -1,7 +1,4 @@
-h2
-  =@concept.link
-  |> :
-  =@concept.word
+h2=@concept.link
 ul
-  -@concept.words[1..].each do |line|
+  -@concept.words.each do |line|
     li=raw line

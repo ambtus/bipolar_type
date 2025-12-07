@@ -29,6 +29,4 @@ class Subtype < Concept
   end
 
   def manic? = (mood == Mood.e)
-
-  def adjective = realm.word
 end

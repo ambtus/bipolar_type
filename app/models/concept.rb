@@ -37,6 +37,18 @@ class Concept
   def flip = ALL.values_at(1, 0, 3, 2)[index]
 
   def words = File.readlines("words/#{string}", chomp: true)
-  def word = words.first
-  def title = [string.colon, word].to_phrase
+
+  def shorts
+    result = []
+    words.each do |word|
+      break if word == ' '
+
+      result << word
+    end
+    result
+  end
+
+  def short_words = shorts.join(' | ')
+  def other_words = words - shorts
+  def title = [string.colon, short_words].to_phrase
 end

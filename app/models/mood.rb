@@ -7,6 +7,8 @@ class Mood < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
+  def self.subtype_order = ALL.rotate(-1)
+
   def attitudes = Attitude.all.select { |x| x.string.match string }
 
   def subtypes = Subtype.all.select { |x| x.string.match string }

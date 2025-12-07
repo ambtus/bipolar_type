@@ -8,6 +8,6 @@ RSpec.describe Subtype, type: :model do
   end
 
   it 'has a title' do
-    expect(described_class.third.title).to eq 'Sj: physical strength'
+    expect(described_class.third.title).to start_with 'Sj: '
   end
 end

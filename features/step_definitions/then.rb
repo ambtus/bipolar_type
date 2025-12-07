@@ -9,7 +9,7 @@ Then 'I should NOT see {string}' do |string|
 end
 
 Then('the {string} link should be disabled') do |string|
-  expect(page).to have_no_link(string)
+  expect(page).to have_no_link(string, exact: true)
 end
 
 Then('the {string} link should NOT be disabled') do |string|

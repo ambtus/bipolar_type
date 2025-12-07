@@ -5,10 +5,16 @@ class ApplicationController < ActionController::Base
   def cycle = (@title = 'The Cycle')
   def theory = (@title = 'The Theory')
 
-  %w[attitude behavior mood realm subtype nature].each do |x|
+  %w[attitude behavior mood realm subtype].each do |x|
     define_method(x) do
       @title = x.capitalize.constantize.title
       render x.pluralize
     end
+  end
+
+  def nature
+    @title = Nature.title
+    @sort_by = params[:format] || 'i'
+    render 'natures'
   end
 end

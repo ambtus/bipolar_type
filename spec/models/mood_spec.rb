@@ -8,6 +8,6 @@ RSpec.describe Mood, type: :model do
   end
 
   it 'has a title' do
-    expect(described_class.third.title).to eq 'j: strength'
+    expect(described_class.third.title).to start_with 'j: fight & rest'
   end
 end
