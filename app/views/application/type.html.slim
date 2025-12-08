@@ -1,11 +1,5 @@
 p.larger.center=@type.link
 
-p.center
-  |> severe
-  =@type.episode
-  |<> with milder
-  =@type.other_episode
-
 =render @type.balance, type: @type, caption: 'Balancing<br />(do more)'.html_safe
 br
 =render 'nature', type: @type, caption: 'Nature<br />(easy and enjoyable)'.html_safe
