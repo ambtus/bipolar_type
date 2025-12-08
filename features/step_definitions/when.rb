@@ -23,5 +23,10 @@ end
 
 When('I follow {word} path') do |word|
   who = word == 'my' ? Type.my_type : Type.your_type
-  click_link(who.path)
+  click_link who.path
+end
+
+When('I follow {word} nature') do |word|
+  who = word == 'my' ? Type.my_type : Type.your_type
+  click_link who.nature.link
 end

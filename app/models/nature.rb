@@ -3,7 +3,7 @@
 class Nature < Concept
   SYMBOLS =
     Realm.strings.permutation(4).map(&:join).collect do |str|
-      "i#{str}j".insert(3, 'pe')
+      "i#{str}j".insert(3, 'pe').to_sym
     end
   ALL = SYMBOLS.collect { |symbol| new symbol }
 
@@ -12,7 +12,8 @@ class Nature < Concept
 
   def description = subtypes.map(&:short_words).and
 
-  alias title :string
+  def title = subtypes.and
+  alias link :title
 
   def types = Type.with(subtypes)
 
@@ -22,4 +23,8 @@ class Nature < Concept
   end
 
   def self.min_by(string) = sort_by(string).first
+
+  def self.find_by(ary)
+    ALL.find{|x| x.subtypes.sort == ary.sort}
+  end
 end

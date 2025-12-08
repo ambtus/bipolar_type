@@ -1,13 +1,13 @@
 p.larger.center The #{Nature.title}
 
-table.equal
+table
   tr
     th
     -Mood.subtype_order.each do |m|
       th=link_to_unless @sort_by == m.string, m, natures_path(m.string)
   -Nature.sort_by(@sort_by).each do |x|
     tr
-      th=link_to x, types_path(x)
+      th=link_to_concept x
       -x.subtypes.each do |s|
         td=s.short_words
 

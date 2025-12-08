@@ -27,10 +27,18 @@ Then('{word} {word} should be linked') do |whose, what|
         expect(page).to have_link(x.title, exact: true)
       end
     end
-  elsif %w[subtypes behaviors family].include? what
+  elsif %w[subtypes behaviors nature family].include? what
     who = whose == 'my' ? Type.my_type : Type.your_type
-    who.send(what).each do |x|
-      expect(page).to have_link(x.title, exact: true)
+    if what == 'nature'
+      expect(page).to have_link(who.nature.link, exact: true)
+    else
+      who.send(what).each do |x|
+        if what == 'behaviors'
+          expect(page).to have_link(x.link, exact: true)
+        else
+          expect(page).to have_link(x.title, exact: true)
+        end
+      end
     end
   else
     raise "#{whose} #{what} doesn't match a test"
@@ -50,14 +58,27 @@ Then('all links should work') do
 end
 
 Then('{word} {word} should NOT be linked') do |whose, what|
-  raise "#{whose} #{what} doesn't match a test" unless %w[subtypes behaviors].include? what
+  raise "#{whose} #{what} doesn't match a test" unless %w[subtypes behaviors nature].include? what
 
   who = whose == 'my' ? Type.my_type : Type.your_type
-  who.send(what).each do |x|
-    expect(page).to have_no_link(x.title, exact: true)
+  if what == 'nature'
+      expect(page).to have_no_link(who.nature.link, exact: true)
+  else
+    who.send(what).each do |x|
+      if what == 'behaviors'
+        expect(page).to have_no_link(x.link, exact: true)
+      else
+        expect(page).to have_no_link(x.title, exact: true)
+      end
+    end
   end
 end
 
 Then 'I should have {int} subtype links' do |int|
   expect(all('a.subtype').count).to be int
+end
+
+Then('I should be on {word} nature page') do |whose|
+  who = whose == 'my' ? Type.my_type : Type.your_type
+  expect(page).to have_title(who.nature.title)
 end

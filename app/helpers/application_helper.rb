@@ -20,6 +20,10 @@ module ApplicationHelper
     link_to text, send("#{concept.class.name.downcase}_path", concept.path)
   end
 
+  def display_and_link_to(concept)
+    safe_join([display(concept), link_to_concept(concept, full_title: false)], ': ')
+  end
+
   def em_and(ary)
     safe_join(ary, ' <em>and</em> '.html_safe)
   end

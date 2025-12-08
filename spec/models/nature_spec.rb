@@ -11,8 +11,12 @@ RSpec.describe Nature, type: :model do
     expect(described_class.title).to eq '24 Natures'
   end
 
+  it 'has an instance link' do
+    expect(described_class.first.link).to eq 'iF, Sp, eT, and Nj'
+  end
+
   it 'has an instance title' do
-    expect(described_class.first.title).to eq 'iFSpeTNj'
+    expect(described_class.first.title).to eq 'iF, Sp, eT, and Nj'
   end
 
   describe 'can be sorted' do

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   %w[cycle theory].each do |thing|
     get "/#{thing}" => "application##{thing}"
   end
-  %w[attitude behavior mood realm subtype nature].each do |x|
+  %w[attitude behavior mood realm subtype].each do |x|
     get "/#{x.pluralize}" => "application##{x}"
   end
   resources :realms, only: %i[show index]
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :episodes, only: %i[show index]
   resources :subtypes, only: %i[show index]
   resources :moods, only: %i[show index]
+  resources :natures, only: %i[show index]
   resources :types, only: %i[show index]
   get '/me' => 'types#me', as: :my
 end

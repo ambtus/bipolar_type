@@ -29,7 +29,7 @@ class Type < Concept
     def my_path = 'iSFp/eTNj'
     def my_type = find(my_path)
     # for cucumber tests; just needs to be different
-    def your_path = 'eFSp/iNTj'
+    def your_path = 'eSFj/iTNp'
     def your_type = find(your_path)
     # for visual tests
     def next_type = my_type.siblings.second
@@ -40,6 +40,8 @@ class Type < Concept
 
   def subtypes = string.delete('/').scan(/../).collect { |x| Subtype.find(x) }
   def behaviors = subtypes.map(&:behaviors).flatten
+
+  def nature = Nature.find_by subtypes
 
   def <=>(other) = attitude <=> other.attitude
 
@@ -56,7 +58,7 @@ class Type < Concept
 
   def episode = attitude.episode.insert_word(subtypes.first.realm.short_words)
 
-  def other_episode = attitude.opposite.episode.insert_word(subtypes.third.realm.short)
+  def other_episode = attitude.opposite.episode.insert_word(subtypes.third.realm.short_words)
 
   delegate :bp1?, to: :attitude
   def balance = bp1? ? 'left' : 'right'

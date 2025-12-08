@@ -12,9 +12,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def nature
-    @title = Nature.title
-    @sort_by = params[:format] || 'i'
-    render 'natures'
-  end
 end

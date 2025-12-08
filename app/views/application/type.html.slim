@@ -1,8 +1,17 @@
 p.larger.center=@type.link
 
+p.center
+  |> severe
+  =@type.episode
+  |<> with milder
+  =@type.other_episode
+
 =render @type.balance, type: @type, caption: 'Balancing<br />(do more)'.html_safe
 br
 =render 'nature', type: @type, caption: 'Nature<br />(easy and enjoyable)'.html_safe
 br
 =render @type.excess, type: @type, caption: 'Unbalancing<br />(do less)'.html_safe
 
+p.center
+  |> Other types with the same nature:
+  =link_to_concept @type.nature

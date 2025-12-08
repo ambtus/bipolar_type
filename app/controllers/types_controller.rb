@@ -7,7 +7,7 @@ class TypesController < ApplicationController
     @title = Type.title(@subtypes)
     if @current.length >= 6
       @siblings = Type.with(@subtypes)
-      render 'bipolar'
+      render 'nature'
     else
       render 'types'
     end
