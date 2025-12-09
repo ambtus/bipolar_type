@@ -30,6 +30,10 @@ class Concept
   def index = self.class::SYMBOLS.index(@symbol)
   def <=>(other) = index <=> other.index
 
+  def ==(other)
+    symbol == other.symbol
+  end
+
   def previous = self.class.rotate(-1)[index]
   def next = self.class.rotate[index]
   def opposite = self.class.rotate(2)[index]

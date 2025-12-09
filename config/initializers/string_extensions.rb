@@ -127,7 +127,7 @@ class String
                  anxiety irritation boredom anger fear exhaustion lethargy
                  hunger freedom control foods places
                  music carbs art cash
-                 words protein rules credit ].freeze
+                 words protein rules credit structure].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative
                   emotional child adolescent adult elder childish

@@ -15,14 +15,14 @@ module ApplicationHelper
     safe_join([first, thing, middle, thing.short_words, last])
   end
 
-  def link_to_concept(concept, full_title: true)
-    text = full_title ? concept.title : concept.link
-    text = concept.title.a_lot if concept.is_a?(Subtype)
-    link_to text, send("#{concept.class.name.downcase}_path", concept.path)
-  end
-
-  def display_and_link_to(concept)
-    safe_join([display(concept), link_to_concept(concept, full_title: false)], ': ')
+  def link_to_concept(concept, a_lot: false)
+    if concept.is_a? Class
+      link_to concept.title, concept.name.downcase.pluralize.to_s
+    else
+      text = concept.title
+      text = concept.title.a_lot if a_lot
+      link_to text, send("#{concept.class.name.downcase}_path", concept.path)
+    end
   end
 
   def display_and(ary)

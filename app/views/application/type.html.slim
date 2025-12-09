@@ -1,4 +1,5 @@
 p.larger.center=@type.link
+p.center=@type.episodes
 
 =render @type.balance, type: @type, caption: 'Balancing<br />(do more)'.html_safe
 br
@@ -7,7 +8,8 @@ br
 =render @type.excess, type: @type, caption: 'Unbalancing<br />(do less)'.html_safe
 
 p.center
-  |> BipolarType with the same nature but skewed
-  =@type.bp1? ? 'clockwise' : 'counterclockwise'
-  |<> :
+  |> BipolarType with the same nature but different episodes:
   =link_to_concept @type.sibling
+  br
+  |> BipolarType with the same episodes but a different nature:
+  =link_to_concept @type.similar

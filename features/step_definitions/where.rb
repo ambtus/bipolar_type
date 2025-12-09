@@ -18,6 +18,11 @@ Then('I should be on {word} page') do |whose|
   assert_equal page.title, "BipolarType: #{type.title}"
 end
 
-Then('I should be on the {word} page') do |where|
-  expect(page).to have_current_path("/#{where}")
+Then('I should be on {word} {word} page') do |whose, what|
+  if whose == 'the'
+    expect(page).to have_current_path("/#{what}")
+  else
+    who = whose == 'my' ? Type.my_type : Type.your_type
+    expect(page).to have_title(who.send(what).title)
+  end
 end

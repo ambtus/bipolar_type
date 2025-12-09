@@ -38,7 +38,7 @@ Then('{word} {word} should be linked') do |whose, what|
     else
       who.send(what).each do |x|
         if what == 'behaviors'
-          expect(page).to have_link(x.link, exact: true)
+          expect(page).to have_link(x.title, exact: true)
         elsif what == 'subtypes'
           expect(page).to have_link(x.title.a_lot, exact: true)
         else
@@ -68,7 +68,7 @@ Then('{word} {word} should NOT be linked') do |whose, what|
 
   who = whose == 'my' ? Type.my_type : Type.your_type
   if what == 'nature'
-      expect(page).to have_no_link(who.nature.link, exact: true)
+    expect(page).to have_no_link(who.nature.link, exact: true)
   else
     who.send(what).each do |x|
       if what == 'behaviors'
@@ -84,7 +84,3 @@ Then 'I should have {int} subtype links' do |int|
   expect(all('a.subtype').count).to be int
 end
 
-Then('I should be on {word} sibling page') do |whose|
-  who = whose == 'my' ? Type.my_type : Type.your_type
-  expect(page).to have_title(who.sibling.title)
-end

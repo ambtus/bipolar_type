@@ -1,19 +1,30 @@
+=render 'nature', type: @bp1, caption: 'Nature'
 br
 table
   caption
-    b Possible Episodes
+    b Bipolar I
+    br
+    | counterclockwise skew: held back
+    br
+    =link_to @bp1.episodes, type_path(@bp1.path)
   tr
-    td.none colspan=4 #{display @siblings.first.e} (#{display @siblings.first.i.opposite} > #{display @siblings.first.e.opposite})
+    td.p I #{@bp1.e.ep.short_words.too_much} because I want to #{@bp1.e.short_words.more} but was not allowed to start #{@bp1.e.ej.short_words.ing}.
+    td.p I #{@bp1.j.ej.short_words.too_much} because I want #{@bp1.j.short_words.more} but was not allowed to start #{@bp1.j.ij.short_words.ing}.
   tr
-    td.none.middle rowspan=2 #{display @siblings.first.p} (#{display @siblings.first.j.opposite} > #{display @siblings.first.p.opposite})
-    td=render 'choice', type: @siblings.first, episode: @siblings.first.mania, behavior: @siblings.first.manic_behavior
-    td=render 'choice', type: @siblings.second, episode: @siblings.second.mania, behavior: @siblings.second.manic_behavior
-    td.none.middle rowspan= 2 #{display @siblings.first.j} (#{display @siblings.first.p.opposite} > #{display @siblings.first.j.opposite})
+    td.p I #{@bp1.p.ip.short_words.too_much} because I want  #{@bp1.p.short_words.more} but was not allowed to start #{@bp1.p.ep.short_words.ing}.
+    td.p I #{@bp1.i.ij.short_words.too_much} because I want to #{@bp1.i.short_words.more} but was not allowed to start #{@bp1.i.ip.short_words.ing}.
+br
+table
+  caption
+    b Bipolar II
+    br
+    | clockwise skew: pushed forward
+    br
+    =link_to @bp2.episodes, type_path(@bp2.path)
   tr
-    td=render 'choice', type: @siblings.second, episode: @siblings.second.depression, behavior: @siblings.second.depressed_behavior
-    td=render 'choice', type: @siblings.first, episode: @siblings.first.depression, behavior: @siblings.first.depressed_behavior
+    td.p I #{@bp1.p.ep.short_words.too_much} because I want #{@bp1.p.short_words.more} but was not allowed to keep #{@bp1.p.ip.short_words.ing}.
+    td.p I #{@bp1.e.ej.short_words.too_much} because I want to #{@bp1.e.short_words.more} but was not allowed to keep #{@bp1.e.ep.short_words.ing}.
   tr
-    td.none colspan=4 #{display @siblings.first.i} (#{display @siblings.first.e.opposite} > #{display @siblings.first.i.opposite})
+    td.p I #{@bp1.i.ip.short_words.too_much} because I want to #{@bp1.i.short_words.more} but was not allowed to keep #{@bp1.i.ij.short_words.ing}.
+    td.p I #{@bp1.j.ij.short_words.too_much} because I want #{@bp1.j.short_words.more} but was not allowed to keep #{@bp1.j.ej.short_words.ing}.
 
-
-p Note: the skew is either clockwise or counterclockwise, but it doesn’t matter whether you choose the manic or the depressed episode, as they take you to the same BipolarType.

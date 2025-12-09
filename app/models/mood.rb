@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Mood < Concept
-  SO = [1,3,0,2]
+  SO = [1, 3, 0, 2].freeze
   SYMBOLS = %i[p e j i].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|

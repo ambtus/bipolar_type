@@ -12,11 +12,11 @@ RSpec.describe Nature, type: :model do
   end
 
   it 'has an instance link' do
-    expect(described_class.first.link).to eq 'iF, Sp, eT, and Nj'
+    expect(described_class.first.link).to eq 'eT•iF•Sp•Nj'
   end
 
   it 'has an instance title' do
-    expect(described_class.first.title).to eq 'iF, Sp, eT, and Nj'
+    expect(described_class.first.title).to eq described_class.first.link
   end
 
   describe 'find by subtypes in any order' do

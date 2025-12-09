@@ -1,16 +1,19 @@
 # frozen_string_literal: true
 
 class NaturesController < ApplicationController
-  def show
-    @concept = Nature.find params[:id]
-    @title = Type.title(@concept.subtypes)
-    @siblings = Type.with(@concept.subtypes)
-    render 'nature'
-  end
-
   def index
     @title = Nature.title
     @sort_by = params[:format] || 'e'
     render 'natures'
+  end
+
+  def show
+    @subtypes = params[:id].scan(/../).collect { |x| Subtype.find(x) }
+    @nature = Nature.find_by @subtypes
+    @title = @nature.title
+    siblings = Type.with(@subtypes)
+    @bp1 = siblings.first
+    @bp2 = siblings.second
+    render 'nature'
   end
 end

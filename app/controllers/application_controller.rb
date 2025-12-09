@@ -11,5 +11,4 @@ class ApplicationController < ActionController::Base
       render x.pluralize
     end
   end
-
 end

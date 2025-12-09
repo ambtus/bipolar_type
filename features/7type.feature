@@ -21,12 +21,8 @@ When I am on my type page
 And I follow my sibling
 Then I should be on my sibling page
 
-Example: your type is counterclockwise
+Example: can get to similar from your type page
 When I am on your type page
-Then I should NOT see 'counterclockwise'
-But I should see 'clockwise'
+And I follow your similar
+Then I should be on your similar page
 
-Example: can get to sibling from your type page
-When I am on your type page
-And I follow your sibling
-Then I should be on your sibling page
