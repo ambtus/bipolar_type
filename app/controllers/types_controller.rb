@@ -14,7 +14,7 @@ class TypesController < ApplicationController
   end
 
   def show
-    @type = Type.new params[:id]
+    @type = Type.find params[:id]
     @title = @type.title
     render 'type'
   end

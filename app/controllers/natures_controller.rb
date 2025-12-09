@@ -10,7 +10,7 @@ class NaturesController < ApplicationController
 
   def index
     @title = Nature.title
-    @sort_by = params[:format] || 'i'
+    @sort_by = params[:format] || 'e'
     render 'natures'
   end
 end

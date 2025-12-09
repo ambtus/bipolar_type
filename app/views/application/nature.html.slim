@@ -1,16 +1,19 @@
 br
 table
   caption
-    b Presenting Episode
+    b Possible Episodes
   tr
     td.none colspan=4 #{display @siblings.first.e} (#{display @siblings.first.i.opposite} > #{display @siblings.first.e.opposite})
   tr
     td.none.middle rowspan=2 #{display @siblings.first.p} (#{display @siblings.first.j.opposite} > #{display @siblings.first.p.opposite})
-    td=render 'choice', type: @siblings.second
-    td=render 'choice', type: @siblings.third
+    td=render 'choice', type: @siblings.first, episode: @siblings.first.mania, behavior: @siblings.first.manic_behavior
+    td=render 'choice', type: @siblings.second, episode: @siblings.second.mania, behavior: @siblings.second.manic_behavior
     td.none.middle rowspan= 2 #{display @siblings.first.j} (#{display @siblings.first.p.opposite} > #{display @siblings.first.j.opposite})
   tr
-    td=render 'choice', type: @siblings.first
-    td=render 'choice', type: @siblings.fourth
+    td=render 'choice', type: @siblings.second, episode: @siblings.second.depression, behavior: @siblings.second.depressed_behavior
+    td=render 'choice', type: @siblings.first, episode: @siblings.first.depression, behavior: @siblings.first.depressed_behavior
   tr
     td.none colspan=4 #{display @siblings.first.i} (#{display @siblings.first.e.opposite} > #{display @siblings.first.i.opposite})
+
+
+p Note: the skew is either clockwise or counterclockwise, but it doesn’t matter whether you choose the manic or the depressed episode, as they take you to the same BipolarType.

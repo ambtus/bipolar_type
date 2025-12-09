@@ -15,7 +15,7 @@ RSpec.describe Type, type: :model do
     4.times do |i|
       it "can find my type by my subtypes rotated by #{i}" do
         expect(described_class
-          .with(described_class.my_type.subtypes.rotate(i)[0, 3]).first)
+          .with(described_class.my_type.subtypes.rotate(i)).second)
           .to eq described_class.my_type
       end
     end

@@ -3,13 +3,7 @@ ul
   -mood.subtypes.each do |subtype|
     li
       -if ![subtype.mood.string, subtype.realm.string].intersect?(@current.chars)
-        =link_to subtype.title, types_path("#{@current}#{subtype.string}"), class: 'subtype'
-        br
-        |> I would rather both
-        =em_and(subtype.behaviors.collect { |x| display(x) })
-        br
-        |> than have to either
-        =em_or(subtype.opposite.behaviors.collect { |x| display(x) })
+        =link_to subtype.title.a_lot, types_path("#{@current}#{subtype.string}"), class: 'subtype'
       -elsif @current.match subtype.string
         b=display subtype
       -else

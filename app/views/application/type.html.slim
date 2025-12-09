@@ -7,5 +7,7 @@ br
 =render @type.excess, type: @type, caption: 'Unbalancing<br />(do less)'.html_safe
 
 p.center
-  |> Other types with the same nature:
-  =link_to_concept @type.nature
+  |> BipolarType with the same nature but skewed
+  =@type.bp1? ? 'clockwise' : 'counterclockwise'
+  |<> :
+  =link_to_concept @type.sibling

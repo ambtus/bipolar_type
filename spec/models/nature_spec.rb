@@ -19,6 +19,16 @@ RSpec.describe Nature, type: :model do
     expect(described_class.first.title).to eq 'iF, Sp, eT, and Nj'
   end
 
+  describe 'find by subtypes in any order' do
+    4.times do |i|
+      it "can find my nature by my subtypes rotated by #{i}" do
+        expect(described_class
+          .find_by(Type.my_type.subtypes.rotate(i)))
+          .to eq Type.my_type.nature
+      end
+    end
+  end
+
   describe 'can be sorted' do
     it 'by i' do
       expect(described_class.min_by('i').subtypes.first).to eq Subtype.iF

@@ -2,7 +2,7 @@
 
 # Restart required even in development mode when you modify this file.
 
-%w[even odd intersect sixth multiply add join_strings duplicates discard replace_with
+%w[even odd intersect sixth seventh eighth multiply add join_strings duplicates discard replace_with
    purge remove_consecutive_dupes check_constraints and or amp lor wbr slash break semi
    to_phrase to_safe_phrase].each do |meth|
   raise "#{meth} is already defined in Array class" if Array.method_defined? meth
@@ -95,6 +95,9 @@ class Array
   end
 
   def sixth = self.[](5)
+  def seventh = self.[](6)
+  def eighth = self.[](7)
+  def ninth = self.[](8)
 
   def and = compact_blank.to_sentence
   def or = compact_blank.to_sentence(last_word_connector: ', or ', two_words_connector: ' or ')

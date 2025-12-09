@@ -4,11 +4,11 @@ table
   tr
     th
     -Mood.subtype_order.each do |m|
-      th=link_to_unless @sort_by == m.string, m, natures_path(m.string)
+      th=link_to_unless @sort_by == m.string, m.episode, natures_path(m.string)
   -Nature.sort_by(@sort_by).each do |x|
     tr
       th=link_to_concept x
-      -x.subtypes.each do |s|
-        td=s.short_words
+      -x.ordered_subtypes.each do |s|
+        td=s.short_words.a_lot
 
 p Every nature has #{display_and Mood.subtype_order} moods. If you consider yourself to “be” an #{display Attitude.ip} that just means your #{display Mood.i} and #{display Mood.p} realms are more important or obvious to you and those around you. Not that you have somehow skipped over part of the cycle and never access your #{display Mood.e} or #{display Mood.j} realms.

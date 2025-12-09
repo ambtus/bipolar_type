@@ -16,15 +16,17 @@ Example: type pages lists your behaviors
 When I am on your type page
 Then my behaviors should NOT be linked
 
-Example: type page links to nature
+Example: can get to sibling from my type page
 When I am on my type page
-Then my nature should be linked
+And I follow my sibling
+Then I should be on my sibling page
 
-Example: type page links to nature
+Example: your type is counterclockwise
 When I am on your type page
-Then my nature should NOT be linked
+Then I should NOT see 'counterclockwise'
+But I should see 'clockwise'
 
-Example: can get to nature from type page
-When I am on my type page
-And I follow my nature
-Then I should be on my nature page
+Example: can get to sibling from your type page
+When I am on your type page
+And I follow your sibling
+Then I should be on your sibling page

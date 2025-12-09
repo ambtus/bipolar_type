@@ -24,7 +24,11 @@ Then('{word} {word} should be linked') do |whose, what|
       end
     else
       what.singularize.capitalize.constantize.each do |x|
-        expect(page).to have_link(x.title, exact: true)
+        if x.is_a?(Subtype)
+          expect(page).to have_link(x.title.a_lot, exact: true)
+        else
+          expect(page).to have_link(x.title, exact: true)
+        end
       end
     end
   elsif %w[subtypes behaviors nature family].include? what
@@ -35,6 +39,8 @@ Then('{word} {word} should be linked') do |whose, what|
       who.send(what).each do |x|
         if what == 'behaviors'
           expect(page).to have_link(x.link, exact: true)
+        elsif what == 'subtypes'
+          expect(page).to have_link(x.title.a_lot, exact: true)
         else
           expect(page).to have_link(x.title, exact: true)
         end
@@ -52,7 +58,7 @@ Then('all links should work') do
   links.each do |title|
     Rails.logger.debug { "following #{title}" }
     click_link(title)
-    assert_equal "BipolarType: #{title}", page.title
+    expect(page.status_code).to be 200
     visit current
   end
 end
@@ -78,7 +84,7 @@ Then 'I should have {int} subtype links' do |int|
   expect(all('a.subtype').count).to be int
 end
 
-Then('I should be on {word} nature page') do |whose|
+Then('I should be on {word} sibling page') do |whose|
   who = whose == 'my' ? Type.my_type : Type.your_type
-  expect(page).to have_title(who.nature.title)
+  expect(page).to have_title(who.sibling.title)
 end

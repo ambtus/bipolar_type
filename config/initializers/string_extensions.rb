@@ -3,7 +3,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w[chip second third fourth words clean to_wbr first_words last_words first_word last_word insert_word
+%w[chip second third fourth fifth sixth seventh eighth ninth words clean to_wbr first_words last_words first_word last_word insert_word
    quote dquote sqwrap parenthesize deunderscore wrap end_wrap endwrap start_wrap unwrap
    wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine
    make_yours make_theirs and_to_or is_mbti? capitalized? to_noun to_adjective s ed en er
@@ -16,9 +16,9 @@ end
 
 class String
   def chip = self.[](1..)
-  delegate :second, to: :chars
-  delegate :third, to: :chars
-  delegate :fourth, to: :chars
+  %i[second third fourth fifth sixth seventh eighth ninth].each do |meth|
+    delegate meth, to: :chars
+  end
   def words = match?(' ') ? split(/\s+/) : split('/')
 
   def clean
@@ -125,7 +125,9 @@ class String
                  emotions childhood adolescence adulthood old\ age child
                  adolescent adult elder curiosity agitation appetite laziness
                  anxiety irritation boredom anger fear exhaustion lethargy
-                 hunger freedom control foods places].freeze
+                 hunger freedom control foods places
+                 music carbs art cash
+                 words protein rules credit ].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative
                   emotional child adolescent adult elder childish
@@ -366,8 +368,13 @@ class String
   end
 
   def a_lot
-    if match?(' ')
+    if match?(': ')
+      first, last = self.split(': ')
+      [first, ': ', last.a_lot].join
+    elsif match?(' ')
       [first_words, last_words.many, last_words].join(' ')
+    elsif noun?
+      "a lot of #{self}"
     else
       "#{self} a lot"
     end

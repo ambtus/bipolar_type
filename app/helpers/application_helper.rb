@@ -17,19 +17,12 @@ module ApplicationHelper
 
   def link_to_concept(concept, full_title: true)
     text = full_title ? concept.title : concept.link
+    text = concept.title.a_lot if concept.is_a?(Subtype)
     link_to text, send("#{concept.class.name.downcase}_path", concept.path)
   end
 
   def display_and_link_to(concept)
     safe_join([display(concept), link_to_concept(concept, full_title: false)], ': ')
-  end
-
-  def em_and(ary)
-    safe_join(ary, ' <em>and</em> '.html_safe)
-  end
-
-  def em_or(ary)
-    safe_join(ary, ' <em>or</em> '.html_safe)
   end
 
   def display_and(ary)

@@ -6,35 +6,15 @@ p A subtype is one of #{link_to Realm.title, realms_path} plus one of #{link_to 
 
 p A behavior is a realm plus one of #{link_to Attitude.title, attitudes_path}. There are #{link_to '16 Behaviors', behaviors_path}.
 
-p A BipolarType is made up of four subtypes and a presenting behavior. There are #{link_to '96 BipolarTypes', types_path}.
+p A BipolarType is made up of four subtypes and a skew. There are #{link_to Type.title, types_path}.
 
-p For example, the four subtypes #{display_and Type.my_type.subtypes} are associated with four BipolarTypes, each of which has a different presenting episode:
+p For example, the four subtypes #{display_and Type.my_type.subtypes} are associated with two BipolarTypes, each of which has a different skew:
 dl
   -Type.my_type.family.each do |type|
-    dt=type.episode_type
-    dd
-      |> excessive
-      =display(type.episode_behavior)
-      |> :
+    dt
       =link_to type.path, type_path(type.path)
-
-
+      =type.bp1? ? ' (Bipolar I)' : ' (Bipolar II)'
+    dd=type.episodes
 
 p Conventional wisdom asserts that mania is excessive fight <em>and</em> flight and should be treated with sedatives so you will no longer be manic whereas depression is excessive rest <em>and</em> digest and should be treated with stimulants so you will no longer be depressed.
 p The BipolarType theory asserts that mania is excessive fight <em>or</em> flight and should be treated by doing more of the other so you will no longer be <em>unbalanced</em> whereas depression is excessive rest <em>or</em> digest and should be treated by doing more of the other so you will no longer be <em>unbalanced</em>.
-p
-  |> In other words, the theory asserts that being in the
-  =display(Mood.e)
-  |<> part of the cycle is perfectly natural, but that focusing purely on
-  =display(Attitude.ep)
-  |<> (too much flight) or
-  =display(Attitude.ej)
-  |< (too much fight) turns it into either euphoric or irritable mania respectively.
-p
-  |> Similarly, being in the
-  =display(Mood.i)
-  |<> part of the cycle is perfectly natural, but that focusing purely on
-  =display(Attitude.ij)
-  |<> (too much rest) or
-  =display(Attitude.ip)
-  |< (too much digest) turns it into either lethargic or insatiable depression respectively.
