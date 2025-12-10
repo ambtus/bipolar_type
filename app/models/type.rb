@@ -38,6 +38,13 @@ class Type < Concept
 
   def subtypes = string.delete('/').scan(/../).collect { |x| Subtype.find(x) }
   def behaviors = subtypes.map(&:behaviors).flatten
+  def skews
+    if bp1?
+      behaviors.values_at(2,0,6,5)
+    else
+      behaviors.values_at(0,3,5,7)
+   end
+   end
 
   def nature = Nature.find_by subtypes
 
@@ -55,6 +62,7 @@ class Type < Concept
 
   def balance = bp1? ? 'left' : 'right'
   def excess = bp1? ? 'right' : 'left'
+  def skew = bp1? ? 'counterclockwise' : 'clockwise'
 
   def manic_type = bp1? ? 'euphoric' : 'irritable'
   def manic_realm = bp1? ? subtypes.first.realm : subtypes.third.realm

@@ -14,7 +14,7 @@ When('I follow the links leading to {word}') do |word|
   who.subtypes[0, 3].each do |x|
     click_link(x.title.a_lot)
   end
-  click_link(who.episodes)
+  click_link(who.link)
 end
 
 When('I follow {word}') do |word|

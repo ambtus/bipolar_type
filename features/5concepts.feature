@@ -15,9 +15,9 @@ Given I am on the theory page
 When I follow subtypes
 Then all links should work
 
-Scenario: links to attitudes work
+Scenario: links to actions work
 Given I am on the theory page
-When I follow attitudes
+When I follow actions
 Then all links should work
 
 Scenario: links to behaviors work

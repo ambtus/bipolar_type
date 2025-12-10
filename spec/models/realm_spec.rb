@@ -19,8 +19,8 @@ RSpec.describe Realm, type: :model do
     expect(described_class.fourth.subtypes).to include Subtype.Nj
   end
 
-  it 'can add an attitude' do
-    expect(described_class.F + Attitude.ej).to eq Behavior.eFj
+  it 'can add an action' do
+    expect(described_class.F + Action.ej).to eq Behavior.eFj
   end
 
   it 'can add a mood' do

@@ -1,30 +1,66 @@
-=render 'nature', type: @bp1, caption: 'Nature'
 br
 table
-  caption
-    b Bipolar I
-    br
-    | counterclockwise skew: held back
-    br
-    =link_to @bp1.episodes, type_path(@bp1.path)
   tr
-    td.p I #{@bp1.e.ep.short_words.too_much} because I want to #{@bp1.e.short_words.more} but was not allowed to start #{@bp1.e.ej.short_words.ing}.
-    td.p I #{@bp1.j.ej.short_words.too_much} because I want #{@bp1.j.short_words.more} but was not allowed to start #{@bp1.j.ij.short_words.ing}.
+    th
+    td=display @bp1.e, a_lot: true
+    th
   tr
-    td.p I #{@bp1.p.ip.short_words.too_much} because I want  #{@bp1.p.short_words.more} but was not allowed to start #{@bp1.p.ep.short_words.ing}.
-    td.p I #{@bp1.i.ij.short_words.too_much} because I want to #{@bp1.i.short_words.more} but was not allowed to start #{@bp1.i.ip.short_words.ing}.
-br
+    td=display @bp1.p, a_lot: true
+    th &orarr;
+    td=display @bp1.j, a_lot: true
+  tr
+    th
+    td=display @bp1.i, a_lot: true
+    th
+
 table
-  caption
-    b Bipolar II
-    br
-    | clockwise skew: pushed forward
-    br
-    =link_to @bp2.episodes, type_path(@bp2.path)
   tr
-    td.p I #{@bp1.p.ep.short_words.too_much} because I want #{@bp1.p.short_words.more} but was not allowed to keep #{@bp1.p.ip.short_words.ing}.
-    td.p I #{@bp1.e.ej.short_words.too_much} because I want to #{@bp1.e.short_words.more} but was not allowed to keep #{@bp1.e.ep.short_words.ing}.
-  tr
-    td.p I #{@bp1.i.ip.short_words.too_much} because I want to #{@bp1.i.short_words.more} but was not allowed to keep #{@bp1.i.ij.short_words.ing}.
-    td.p I #{@bp1.j.ij.short_words.too_much} because I want #{@bp1.j.short_words.more} but was not allowed to keep #{@bp1.j.ej.short_words.ing}.
+    td.none
+      table
+        caption
+          b Bipolar I
+          br
+          | counterclockwise skew
+          br
+          =@bp1.episodes
+          br
+          =link_to_concept  @bp1
+        tr
+          td
+            =display@bp1.e.ep
+            .left I #{@bp1.e.ep.short_words.too_much} because I wanted to #{@bp1.e.short_words.more} but was not allowed to start #{@bp1.e.ej.short_words.ing}.
+          td
+            =display@bp1.j.ej
+            .left I #{@bp1.j.ej.short_words.too_much} because I wanted #{@bp1.j.short_words.more} but was not allowed to start #{@bp1.j.ij.short_words.ing}.
+        tr
+          td
+            =display @bp1.p.ip
+            .left I #{@bp1.p.ip.short_words.too_much} because I wanted  #{@bp1.p.short_words.more} but was not allowed to start #{@bp1.p.ep.short_words.ing}.
+          td
+            =display @bp1.i.ij
+            .left I #{@bp1.i.ij.short_words.too_much} because I wanted to #{@bp1.i.short_words.more} but was not allowed to start #{@bp1.i.ip.short_words.ing}.
+    td.none
+      table
+        caption
+          b Bipolar II
+          br
+          | clockwise skew
+          br
+          =@bp2.episodes
+          br
+          =link_to_concept @bp2
+        tr
+          td
+            =display @bp1.p.ep
+            .left I #{@bp1.p.ep.short_words.too_much} because I wanted #{@bp1.p.short_words.more} but was not allowed to keep #{@bp1.p.ip.short_words.ing}.
+          td
+            =display @bp1.e.ej
+            .left I #{@bp1.e.ej.short_words.too_much} because I wanted to #{@bp1.e.short_words.more} but was not allowed to keep #{@bp1.e.ep.short_words.ing}.
+        tr
+          td
+            =display @bp1.i.ip
+            .left I #{@bp1.i.ip.short_words.too_much} because I wanted to #{@bp1.i.short_words.more} but was not allowed to keep #{@bp1.i.ij.short_words.ing}.
+          td
+            =display @bp1.j.ij
+            .left I #{@bp1.j.ij.short_words.too_much} because I wanted #{@bp1.j.short_words.more} but was not allowed to keep #{@bp1.j.ej.short_words.ing}.
 

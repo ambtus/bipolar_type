@@ -1,5 +1,6 @@
 br
 table
+  caption.left Click on one of the #{'remaining' if @subtypes.present?} moods to #{@current.length == 4 ? 'select a Nature' : 'reduce the choices'}.
   tr
     td colspan = 2 =render 'choose', mood: Mood.e
 

@@ -13,7 +13,7 @@ class Realm < Concept
   def subtypes = Subtype.all.select { |x| x.realm == self }
 
   def +(other)
-    return behaviors.find { |x| x.attitude == other } if other.is_a? Attitude
+    return behaviors.find { |x| x.action == other } if other.is_a? Action
 
     subtypes.find { |x| x.mood == other }
   end

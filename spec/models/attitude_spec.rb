@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Attitude, type: :model do
+RSpec.describe Action, type: :model do
   it 'has a path' do
     expect(described_class.first.path).to eq 'ip'
   end

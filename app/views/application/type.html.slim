@@ -1,15 +1,14 @@
 p.larger.center=@type.link
-p.center=@type.episodes
 
 =render @type.balance, type: @type, caption: 'Balancing<br />(do more)'.html_safe
 br
-=render 'nature', type: @type, caption: 'Nature<br />(easy and enjoyable)'.html_safe
+=render 'nature', type: @type, caption: 'Nature'.html_safe
 br
 =render @type.excess, type: @type, caption: 'Unbalancing<br />(do less)'.html_safe
 
 p.center
-  |> BipolarType with the same nature but different episodes:
+  |> same nature but different episodes:
   =link_to_concept @type.sibling
   br
-  |> BipolarType with the same episodes but a different nature:
+  |> similar episodes but a different nature:
   =link_to_concept @type.similar

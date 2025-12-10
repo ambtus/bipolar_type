@@ -10,7 +10,7 @@ class Mood < Concept
 
   def self.subtype_order = ALL.values_at(*SO)
 
-  def attitudes = Attitude.all.select { |x| x.string.match string }
+  def actions = Action.all.select { |x| x.string.match string }
 
   def subtypes = Subtype.all.select { |x| x.string.match string }
   def +(other) = subtypes.find { |x| x.string.match other.string }

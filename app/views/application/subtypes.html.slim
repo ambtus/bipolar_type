@@ -5,20 +5,20 @@ table
   tr
     td.center colspan=2
       ul
-        -Realm.each do |r|
-          li=link_to_concept Mood.e + r
+        -Realm.linear.each do |r|
+          li=link_to_concept Mood.e + r, a_lot: true
     th
   tr
     td.left
       ul
-        -Realm.each do |r|
-          li=link_to_concept Mood.p + r
+        -Realm.linear.each do |r|
+          li=link_to_concept Mood.p + r, a_lot: true
     td.right
       ul
-        -Realm.each do |r|
-          li=link_to_concept Mood.j + r
+        -Realm.linear.each do |r|
+          li=link_to_concept Mood.j + r, a_lot: true
   tr
     td.center colspan=2
       ul
-        -Realm.each do |r|
-          li=link_to_concept Mood.i + r
+        -Realm.linear.each do |r|
+          li=link_to_concept Mood.i + r, a_lot: true

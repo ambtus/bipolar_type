@@ -8,11 +8,13 @@ module ApplicationHelper
     safe_join(links, ' | ')
   end
 
-  def display(thing)
+  def display(thing, a_lot: false)
     first = "<a href='#' class='hover-link'>".html_safe
     middle = "<span class='popup'>".html_safe
     last = '</span></a>'.html_safe
-    safe_join([first, thing, middle, thing.short_words, last])
+    text = thing.short_words
+    text = text.a_lot if a_lot
+    safe_join([first, thing, middle, text, last])
   end
 
   def link_to_concept(concept, a_lot: false)
@@ -30,7 +32,7 @@ module ApplicationHelper
     safe_join(
       [displays[0], ', ',
        displays[1], ', ',
-       displays[2], ', and ',
+       displays[2], ', ',
        displays[3]]
     )
   end

@@ -127,7 +127,7 @@ class String
                  anxiety irritation boredom anger fear exhaustion lethargy
                  hunger freedom control foods places
                  music carbs art facts cash
-                 words protein rules credit structure].freeze
+                 words protein rules shoulds morals credit hunting gathering structure].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative
                   emotional child adolescent adult elder childish
@@ -135,7 +135,8 @@ class String
                   anxious irritable bored angry afraid tired lethargic
                   hungry free controlled caloric spatial].freeze
 
-  def noun? = NOUNS.include?(self) || NOUNS.include?(self.singularize)
+  def noun? =
+     NOUNS.include?(self) || NOUNS.include?(self.singularize) ||    NOUNS.include?(self.last_word)
   def capitalized? = first != first.downcase
 
   def to_noun
@@ -371,10 +372,11 @@ class String
     if match?(': ')
       first, last = self.split(': ')
       [first, ': ', last.a_lot].join
-    elsif match?(' ')
-      [first_words, last_words.many, last_words].join(' ')
     elsif noun?
       "a lot of #{self}"
+    elsif match?(' ')
+      [first_words, last_words.many, last_words].join(' ')
+
     else
       "#{self} a lot"
     end
@@ -461,14 +463,14 @@ class String
   def more
     if match('(.*) a (.*)')
       [::Regexp.last_match(1), 'more', ::Regexp.last_match(2).pluralize].to_phrase
+    elsif noun?
+      "more #{self}"
     elsif match?(' ')
       if last_words.words.first == 'good'
         [first_words, 'better', last_words.delete_prefix('good')].to_phrase
       else
         [first_words, 'more', last_words].to_phrase
       end
-    elsif noun?
-      "more #{self}"
     else
       "#{self} more"
     end

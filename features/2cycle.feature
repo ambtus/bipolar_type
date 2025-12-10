@@ -4,7 +4,7 @@ Scenario: links four moods
 Given I am on the cycle page
 Then all moods should be linked
 
-Scenario: links four attitudes
+Scenario: links four actions
 Given I am on the cycle page
-Then all attitudes should be linked
+Then all actions should be linked
 

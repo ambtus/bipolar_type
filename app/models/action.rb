@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Attitude < Concept
+class Action < Concept
   SYMBOLS = %i[ip ep ej ij].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
@@ -9,7 +9,7 @@ class Attitude < Concept
 
   def self.linear = ALL.values_at(3, 0, 1, 2)
 
-  def behaviors = Behavior.all.select { |x| x.attitude == self }
+  def behaviors = Behavior.all.select { |x| x.action == self }
   def +(other) = behaviors.find { |x| x.realm == other }
 
 end

@@ -19,7 +19,7 @@ end
 Then('{word} {word} should be linked') do |whose, what|
   if whose == 'all'
     if what == 'concepts'
-      [Realm, Mood, Subtype, Attitude, Behavior].each do |x|
+      [Realm, Mood, Subtype, Action, Behavior].each do |x|
         expect(page).to have_link(x.title)
       end
     else

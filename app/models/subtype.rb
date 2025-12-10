@@ -2,7 +2,7 @@
 
 class Subtype < Concept
   SYMBOLS = Realm.linear.collect do |realm|
-    Mood.all.collect do |mood|
+    Mood.subtype_order.collect do |mood|
       mood.horizontal? ? (realm.string + mood.string) : (mood.string + realm.string)
     end.map(&:to_sym)
   end.flatten
@@ -20,12 +20,12 @@ class Subtype < Concept
     define_method(sym) { realm + mood.send(sym) }
   end
 
-  def sibling_attitudes = Attitude.all.select { |x| x.path.match? mood.path }
+  def sibling_actions = Action.all.select { |x| x.path.match? mood.path }
 
-  def behaviors = sibling_attitudes.add(realm)
+  def behaviors = sibling_actions.add(realm)
 
-  Attitude.each do |attitude|
-    define_method(attitude.symbol) { realm + attitude }
+  Action.each do |action|
+    define_method(action.symbol) { realm + action }
   end
 
   def manic? = (mood == Mood.e)
