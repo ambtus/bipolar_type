@@ -126,7 +126,7 @@ class String
                  adolescent adult elder curiosity agitation appetite laziness
                  anxiety irritation boredom anger fear exhaustion lethargy
                  hunger freedom control foods places
-                 music carbs art cash
+                 music carbs art facts cash
                  words protein rules credit structure].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative
