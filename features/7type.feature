@@ -26,3 +26,7 @@ When I am on your type page
 And I follow your similar
 Then I should be on your similar page
 
+Example: old types give alert
+When I am on a bad type page
+Then I should see an alert
+And I should be on the types page

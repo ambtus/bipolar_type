@@ -25,4 +25,3 @@ When('I follow {word} {word}') do |whose, what|
   who = whose == 'my' ? Type.my_type : Type.your_type
   click_link who.send(what).link
 end
-

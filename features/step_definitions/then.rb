@@ -84,3 +84,6 @@ Then 'I should have {int} subtype links' do |int|
   expect(all('a.subtype').count).to be int
 end
 
+Then('I should see an alert') do
+  expect(page).to have_css("#alert")
+end

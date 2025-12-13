@@ -9,6 +9,10 @@ Given('I am on {word} type page') do |whose|
   visit type_path(type.path)
 end
 
+When('I am on a bad type page') do
+  visit type_path('old/type')
+end
+
 Given('I am on the {word} page') do |url|
   visit("/#{url}")
 end

@@ -14,8 +14,13 @@ class TypesController < ApplicationController
 
   def show
     @type = Type.find params[:id]
-    @title = @type.title
-    render 'type'
+    if @type.nil?
+      redirect_to types_path, alert: "“#{params[:id]}“ is not a valid type path"
+
+    else
+      @title = @type.title
+      render 'type'
+    end
   end
 
   def me

@@ -38,13 +38,14 @@ class Type < Concept
 
   def subtypes = string.delete('/').scan(/../).collect { |x| Subtype.find(x) }
   def behaviors = subtypes.map(&:behaviors).flatten
+
   def skews
     if bp1?
-      behaviors.values_at(2,0,6,5)
+      behaviors.values_at(2, 0, 6, 5)
     else
-      behaviors.values_at(0,3,5,7)
-   end
-   end
+      behaviors.values_at(0, 3, 5, 7)
+    end
+  end
 
   def nature = Nature.find_by subtypes
 
@@ -57,7 +58,7 @@ class Type < Concept
   def family = Type.select { |x| x.subtypes.sort == subtypes.sort }.sort
   def sibling = family.without(self).first
 
-  def similars = Type.select {|x| x.episodes == episodes}
+  def similars = Type.select { |x| x.episodes == episodes }
   def similar = similars.without(self).first
 
   def balance = bp1? ? 'left' : 'right'
@@ -73,7 +74,6 @@ class Type < Concept
   def depression = "#{depressed_type} #{depressed_realm.short_words} depression"
 
   def episodes = bp1? ? [mania, depression].amp : [depression, mania].amp
-
 
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }

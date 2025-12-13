@@ -11,5 +11,4 @@ class Action < Concept
 
   def behaviors = Behavior.all.select { |x| x.action == self }
   def +(other) = behaviors.find { |x| x.realm == other }
-
 end
