@@ -53,17 +53,24 @@ class Type < Concept
 
   def bp1? = string.first == 'e'
   def bp_type = bp1? ? 1 : 2
+  def bp = "bp#{bp_type}"
   def <=>(other) = bp_type <=> other.bp_type
 
   def family = Type.select { |x| x.subtypes.sort == subtypes.sort }.sort
   def sibling = family.without(self).first
 
-  def similars = Type.select { |x| x.episodes == episodes }
+  def similars = Type.select { |x| x.solutions == solutions }
   def similar = similars.without(self).first
 
-  def balance = bp1? ? 'left' : 'right'
-  def excess = bp1? ? 'right' : 'left'
   def skew = bp1? ? 'counterclockwise' : 'clockwise'
+
+  def solutions
+    if bp1?
+      [p.ep, e.ej, i.ip, j.ij]
+    else
+      [e.ep, j.ej, p.ip, i.ij]
+    end
+  end
 
   def manic_type = bp1? ? 'euphoric' : 'irritable'
   def manic_realm = bp1? ? subtypes.first.realm : subtypes.third.realm

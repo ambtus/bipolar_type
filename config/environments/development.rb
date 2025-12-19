@@ -49,7 +49,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.hosts << `hostname`.chomp.downcase
-  config.hosts << "#{`hostname`.chomp.downcase}.local"
-  config.hosts << "#{`hostname`.chomp.downcase}.ambt.us"
+  hostname = `hostname`.chomp.downcase.split('.').first
+
+  config.hosts << "#{hostname}:3000"
+  config.hosts << "#{hostname}.local:3000"
+  config.hosts << "#{hostname}.ambt.us:3000"
 end

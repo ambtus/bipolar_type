@@ -37,13 +37,7 @@ Then('{word} {word} should be linked') do |whose, what|
       expect(page).to have_link(who.nature.link, exact: true)
     else
       who.send(what).each do |x|
-        if what == 'behaviors'
-          expect(page).to have_link(x.title, exact: true)
-        elsif what == 'subtypes'
-          expect(page).to have_link(x.title.a_lot, exact: true)
-        else
-          expect(page).to have_link(x.title, exact: true)
-        end
+        expect(page).to have_link(x.link, exact: true)
       end
     end
   else

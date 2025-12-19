@@ -17,4 +17,6 @@ class Realm < Concept
 
     subtypes.find { |x| x.mood == other }
   end
+
+  def adjective = short_words.first.ly
 end

@@ -1,14 +1,27 @@
-p.larger.center=@type.link
+br
+=render @type.bp, type: @type
 
-=render @type.balance, type: @type, caption: 'Balancing<br />(do more)'.html_safe
-br
-=render 'nature', type: @type, caption: 'Nature'.html_safe
-br
-=render @type.excess, type: @type, caption: 'Unbalancing<br />(do less)'.html_safe
+p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you.
+table
+  tr
+    td
+      .left If you are up, and you are going to be up for a while:
+      =link_to_concept @type.solutions.first
+    td
+      .left If you are up, but you are going to be coming down soon:
+      =link_to_concept @type.solutions.second
+  tr
+    td
+      .left If you are down, but you are going to be going up soon:
+      =link_to_concept @type.solutions.third
+    td
+      .left If you are down, and you are going to be down for a while:
+      =link_to_concept @type.solutions.fourth
+
 
 p.center
-  |> same nature but different episodes:
+  |> same nature; different advice:
   =link_to_concept @type.sibling
   br
-  |> similar episodes but a different nature:
+  |> same advice; different nature:
   =link_to_concept @type.similar
