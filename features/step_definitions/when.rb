@@ -23,5 +23,6 @@ end
 
 When('I follow {word} {word}') do |whose, what|
   who = whose == 'my' ? Type.my_type : Type.your_type
+  what = 'itself' if what == 'type'
   click_link who.send(what).link
 end

@@ -7,15 +7,22 @@ table
     th
   tr
     td.none=green type.p.ep
-    th colspan=3
+    th #{type.quads.first}<br />#{type.mania}
+    th
+    th #{type.j.realm.short_words} cyclothymia
     td.none=red type.j.ej
   tr
     td.none=yellow type.p
-    th colspan=3 &orarr;
+    th colspan=3
+      | &orarr;
+      br
+      =type.bp_name
     td.none=yellow type.j
   tr
     td.none=red type.p.ip
-    th colspan=3
+    th #{type.p.realm.short_words} rapid-cycling
+    th
+    th #{type.quads.second}<br />#{type.depression}
     td.none=green type.j.ij
   tr
     th

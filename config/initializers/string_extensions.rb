@@ -122,11 +122,11 @@ class String
 
   NOUNS =     %w[anorexia depression mania energy strength obesity goals
                  emptiness hyperactivity weakness calories credit information
-                 emotions childhood adolescence adulthood old\ age child
+                 emotions feelings childhood adolescence adulthood old\ age child
                  adolescent adult elder curiosity agitation appetite laziness
                  anxiety irritation boredom anger fear exhaustion lethargy
                  hunger freedom control foods places
-                 music carbs art facts cash
+                 music carbs art facts cash currency procedures
                  words protein rules shoulds morals credit hunting gathering structure].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative

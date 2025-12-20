@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Nature, type: :model do
   it 'has a path' do
-    expect(described_class.first.path).to eq 'iFSpeTNj'
+    expect(described_class.first.path).to eq 'FpeSTjiN'
   end
 
   it 'has a class title' do
@@ -12,7 +12,7 @@ RSpec.describe Nature, type: :model do
   end
 
   it 'has an instance link' do
-    expect(described_class.first.link).to eq 'eT•iF•Sp•Nj'
+    expect(described_class.first.link).to eq 'Fp•eS•Tj•iN'
   end
 
   it 'has an instance title' do
@@ -30,20 +30,20 @@ RSpec.describe Nature, type: :model do
   end
 
   describe 'can be sorted' do
-    it 'by i' do
-      expect(described_class.min_by('i').subtypes.first).to eq Subtype.iF
-    end
-
     it 'by p' do
-      expect(described_class.min_by('p').subtypes.second).to eq Subtype.Fp
+      expect(described_class.sort_by('p').first.subtypes.first).to eq Subtype.Fp
     end
 
     it 'by e' do
-      expect(described_class.min_by('e').subtypes.third).to eq Subtype.eF
+      expect(described_class.sort_by('e').first.subtypes.second).to eq Subtype.eF
     end
 
     it 'by j' do
-      expect(described_class.min_by('j').subtypes.fourth).to eq Subtype.Fj
+      expect(described_class.sort_by('j').first.subtypes.third).to eq Subtype.Fj
+    end
+
+    it 'by i' do
+      expect(described_class.sort_by('i').first.subtypes.last).to eq Subtype.iF
     end
   end
 end

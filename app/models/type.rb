@@ -13,6 +13,8 @@ class Type < Concept
   alias inspect :string
   alias title :string
 
+  def quads = string.split('/')
+
   class << self
     def with(subtypes) = ALL.select { |s| (subtypes - s.subtypes).blank? }.sort
 
@@ -36,51 +38,59 @@ class Type < Concept
     def other_path = other_type.path
   end
 
-  def subtypes = string.delete('/').scan(/../).collect { |x| Subtype.find(x) }
-  def behaviors = subtypes.map(&:behaviors).flatten
-
-  def skews
-    if bp1?
-      behaviors.values_at(2, 0, 6, 5)
-    else
-      behaviors.values_at(0, 3, 5, 7)
-    end
-  end
-
-  def nature = Nature.find_by subtypes
-
-  def type = self
-
   def bp1? = string.first == 'e'
   def bp_type = bp1? ? 1 : 2
   def bp = "bp#{bp_type}"
   def <=>(other) = bp_type <=> other.bp_type
+  def bp_name = "Bipolar #{bp1? ? 'I' : 'II'}"
 
-  def family = Type.select { |x| x.subtypes.sort == subtypes.sort }.sort
-  def sibling = family.without(self).first
+  def subtypes = string.delete('/').scan(/../).collect { |x| Subtype.find(x) }
+  def nature = Nature.find_by subtypes
 
-  def similars = Type.select { |x| x.solutions == solutions }
-  def similar = similars.without(self).first
-
-  def skew = bp1? ? 'counterclockwise' : 'clockwise'
-
-  def solutions
+  def ordered_subtypes
     if bp1?
-      [p.ep, e.ej, i.ip, j.ij]
+      subtypes.values_at(1, 0, 3, 2)
     else
-      [e.ep, j.ej, p.ip, i.ij]
+      subtypes.values_at(1, 2, 3, 0)
     end
   end
 
-  def manic_type = bp1? ? 'euphoric' : 'irritable'
+  def behaviors = subtypes.map(&:behaviors).flatten
+
+  def siblings = Type.select { |x| x.subtypes.sort == subtypes.sort }.sort
+  def sibling = siblings.without(self).first
+
+  def dos
+    if bp1?
+      [p.ep, e.ej, j.ij, i.ip]
+    else
+      [p.ip, e.ep, j.ej, i.ij]
+    end
+  end
+
+  def similars = Type.select { |x| (x.dos - dos).blank? }
+  def similar = similars.without(self).first
+
+  def donts
+    if bp1?
+      [p.ip, e.ep, j.ej, i.ij]
+    else
+      [p.ep, e.ej, j.ij, i.ip]
+    end
+  end
+
+  def differents = Type.select { |x| (x.donts - donts).blank? }
+  def different = differents.without(self).first
+
+  def manic_type = bp1? ? 'mania' : 'hypomania'
   def manic_realm = bp1? ? subtypes.first.realm : subtypes.third.realm
-  def mania = "#{manic_type} #{manic_realm.short_words} mania"
+  def mania = "#{manic_realm.short_words} #{manic_type}"
 
-  def depressed_type = bp1? ? 'lethargic' : 'insatiable'
+  def depressed_prefix = bp1? ? '' : 'major'
   def depressed_realm = bp1? ? subtypes.third.realm : subtypes.first.realm
-  def depression = "#{depressed_type} #{depressed_realm.short_words} depression"
+  def depression = [depressed_prefix, depressed_realm.short_words, 'depression'].to_phrase
 
-  def episodes = bp1? ? [mania, depression].amp : [depression, mania].amp
+  def episodes = bp1? ? [mania, depression] : [depression, mania]
 
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }

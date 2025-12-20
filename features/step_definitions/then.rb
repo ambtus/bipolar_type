@@ -31,7 +31,7 @@ Then('{word} {word} should be linked') do |whose, what|
         end
       end
     end
-  elsif %w[subtypes behaviors nature family].include? what
+  elsif %w[subtypes behaviors nature siblings].include? what
     who = whose == 'my' ? Type.my_type : Type.your_type
     if what == 'nature'
       expect(page).to have_link(who.nature.link, exact: true)
@@ -79,5 +79,5 @@ Then 'I should have {int} subtype links' do |int|
 end
 
 Then('I should see an alert') do
-  expect(page).to have_css("#alert")
+  expect(page).to have_css('#alert')
 end

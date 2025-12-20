@@ -1,4 +1,4 @@
-br
+p.center.larger=@nature.link
 table
   tr
     th
@@ -20,47 +20,52 @@ table
         caption
           b Bipolar I
           br
-          | counterclockwise skew
+          =@bp1.mania
           br
-          =@bp1.episodes
+          | with
+          br
+          =@bp1.depression
           br
           =link_to_concept @bp1
         tr
           td
             =display @bp1.e.ep
-            .left I #{@bp1.e.ep.short_words.too_much} because I wanted to #{@bp1.e.short_words.more} but was not allowed to start #{@bp1.e.ej.short_words.ing}.
+            .left I #{@bp1.e.ep.short_words.too_much}.
           td
             =display @bp1.j.ej
-            .left I #{@bp1.j.ej.short_words.too_much} because I wanted #{@bp1.j.short_words.more} but was not allowed to start #{@bp1.j.ij.short_words.ing}.
+            .left I #{@bp1.j.ej.short_words.too_much}.
         tr
           td
             =display @bp1.p.ip
-            .left I #{@bp1.p.ip.short_words.too_much} because I wanted  #{@bp1.p.short_words.more} but was not allowed to start #{@bp1.p.ep.short_words.ing}.
+            .left I #{@bp1.p.ip.short_words.too_much}.
           td
             =display @bp1.i.ij
-            .left I #{@bp1.i.ij.short_words.too_much} because I wanted to #{@bp1.i.short_words.more} but was not allowed to start #{@bp1.i.ip.short_words.ing}.
+            .left I #{@bp1.i.ij.short_words.too_much}.
     td.none
       table
         caption
           b Bipolar II
           br
-          | clockwise skew
+          =@bp2.depression
           br
-          =@bp2.episodes
+          | with
+          br
+          =@bp2.mania
           br
           =link_to_concept @bp2
         tr
           td
             =display @bp1.p.ep
-            .left I #{@bp1.p.ep.short_words.too_much} because I wanted #{@bp1.p.short_words.more} but was not allowed to keep #{@bp1.p.ip.short_words.ing}.
+            .left I #{@bp1.p.ep.short_words.too_much}.
           td
             =display @bp1.e.ej
-            .left I #{@bp1.e.ej.short_words.too_much} because I wanted to #{@bp1.e.short_words.more} but was not allowed to keep #{@bp1.e.ep.short_words.ing}.
+            .left I #{@bp1.e.ej.short_words.too_much}.
         tr
           td
             =display @bp1.i.ip
-            .left I #{@bp1.i.ip.short_words.too_much} because I wanted to #{@bp1.i.short_words.more} but was not allowed to keep #{@bp1.i.ij.short_words.ing}.
+            .left I #{@bp1.i.ip.short_words.too_much}.
           td
             =display @bp1.j.ij
-            .left I #{@bp1.j.ij.short_words.too_much} because I wanted #{@bp1.j.short_words.more} but was not allowed to keep #{@bp1.j.ej.short_words.ing}.
+            .left I #{@bp1.j.ij.short_words.too_much}.
 
+p The imbalance can start with any behavior, but will eventually skew the whole cycle. For this reason, there are only two BipolarTypes associated with each Nature, not eight. The goal is to get the entire cycle re-centered, which cannot be done by  focusing only on your dominant function.

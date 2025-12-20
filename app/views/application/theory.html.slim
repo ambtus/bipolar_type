@@ -7,28 +7,21 @@ p A behavior is one of the realms plus one of #{link_to_concept Action}. There a
 
 p A nature is a set of four distinct subtypes. There are #{link_to_concept Nature}
 
-p A BipolarType is made up of a nature and a skew (unbalanced behaviors). There are #{link_to_concept Type}.
+p A BipolarType is made up of a nature and a nurture. There are #{link_to_concept Type}.
 
-p For example, the nature #{link_to_concept Type.my_type.nature} is associated with two BipolarTypes, each of which has a different skew:
-
+p For example, the nature #{link_to_concept Type.my_type.nature} will have #{Type.my_type.e.episode} and #{Type.my_type.i.episode} if bipolar, but can potentially be nurtured into two different BipolarTypes.
 table
   tr
-  -Type.my_type.family.each do |type|
-    th=link_to_concept type
-  tr
-  -Type.my_type.family.each do |type|
-    td.none
-      =type.skew
-      |< skew
+  -Type.my_type.siblings.each do |type|
+    td
+      =type.bp_name
       br
-      | (
-      =display_and(type.skews)
-      |> )
+      =type.episodes.first
       br
-      =type.episodes
+      | with
       br
-      =type.bp1? ? 'Bipolar I' : 'Bipolar II'
-
+      =type.episodes.second
+      br
+      =link_to_concept type
 p Conventional wisdom asserts that mania is excessive fight <em>and</em> flight and should be treated with sedatives so you will no longer be manic whereas depression is excessive rest <em>and</em> digest and should be treated with stimulants so you will no longer be depressed.
 p The BipolarType theory asserts that mania is excessive fight <em>or</em> flight and should be treated by doing more of the other so you will no longer be <em>unbalanced</em> whereas depression is excessive rest <em>or</em> digest and should be treated by doing more of the other so you will no longer be <em>unbalanced</em>.
-p The skew can start with any behavior, but will eventually skew the whole cycle. For this reason, there are only two BipolarTypes associated with each Nature, not eight. The goal is to get the entire cycle re-centered, which cannot be done by  focusing on your dominant behavior.

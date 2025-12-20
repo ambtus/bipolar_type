@@ -10,4 +10,4 @@ Then all links should work
 
 Scenario: links four moods
 Given I am on the theory page
-Then my family should be linked
+Then my siblings should be linked
