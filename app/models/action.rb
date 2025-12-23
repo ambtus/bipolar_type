@@ -11,4 +11,9 @@ class Action < Concept
 
   def behaviors = Behavior.all.select { |x| x.action == self }
   def +(other) = behaviors.find { |x| x.realm == other }
+
+  def moods = Mood.select{|x| self.string.chars.include?(x.string)}
+
+  alias verb :short_words
+  def noun = verb.to_noun
 end

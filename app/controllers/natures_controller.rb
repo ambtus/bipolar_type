@@ -8,12 +8,13 @@ class NaturesController < ApplicationController
   end
 
   def show
-    @subtypes = params[:id].scan(/../).collect { |x| Subtype.find(x) }
-    @nature = Nature.find_by @subtypes
+    @nature = Nature.find params[:id]
+    if @nature.nil?
+      redirect_to natures_path, alert: "“#{params[:id]}“ is not a valid nature path" and return
+    end
     @title = @nature.title
-    siblings = Type.with(@subtypes)
-    @bp1 = siblings.first
-    @bp2 = siblings.second
+    @bp1 = @nature.bp1
+    @bp2 = @nature.bp2
     render 'nature'
   end
 end

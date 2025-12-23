@@ -40,7 +40,13 @@ class Concept
   def flop = ALL.reverse[index]
   def flip = ALL.values_at(1, 0, 3, 2)[index]
 
-  def words = File.readlines("words/#{string}", chomp: true)
+  def words
+    begin
+      File.readlines("words/#{string}", chomp: true)
+    rescue
+      []
+    end
+  end
 
   def shorts
     result = []
@@ -54,5 +60,5 @@ class Concept
 
   def short_words = shorts.join(' | ')
   def other_words = words - shorts
-  def title = [string.colon, short_words].to_phrase
+  def title = short_words.blank? ? string : [string.colon, short_words].to_phrase
 end

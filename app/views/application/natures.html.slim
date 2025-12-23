@@ -1,19 +1,8 @@
+-if alert
+  p.center#alert= alert
 
-p Every nature has all #{link_to_concept Mood} If you consider yourself to “be” an IP that just means your #{display Mood.i} and #{display Mood.p} moods are more important or obvious or problematic. Not that you have somehow skipped over part of the cycle and never have #{display Mood.e} or #{display Mood.j} moods.
-
-table
+br
+table.equal
   caption
-    b The #{Nature.title}
-  tr
-    th
-    -Mood.each do |m|
-      th=link_to_unless @sort_by == m.string, m, natures_path(m.string)
-  -Nature.sort_by(@sort_by).each do |x|
-    tr
-      th=link_to_concept x
-      -x.subtypes.each do |s|
-        td
-          =s.realm.symbol
-          |> :
-          =s.short_words
+    b The 24 Natures
 

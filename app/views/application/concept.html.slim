@@ -2,3 +2,10 @@ h2=@concept.link
 ul
   -@concept.words.each do |line|
     li=raw line
+
+-if @concept.is_a? Behavior
+  p #{@concept.link} is a Behavior, which when taken to excess becomes a Symptom.
+  p This Behavior can become a symptom during either of the two associated Moods: #{link_to_concept @concept.moods.first} or #{link_to_concept @concept.moods.second}.
+
+-if @concept.is_a? Subtype
+  p This Subtype can manifest as either of the two associated Behaviors: #{link_to_concept @concept.behaviors.first} or #{link_to_concept @concept.behaviors.second}.

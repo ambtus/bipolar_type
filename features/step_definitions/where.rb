@@ -13,6 +13,10 @@ When('I am on a bad type page') do
   visit type_path('old/type')
 end
 
+When('I am on a bad nature page') do
+  visit nature_path('old_nature')
+end
+
 Given('I am on the {word} page') do |url|
   visit("/#{url}")
 end

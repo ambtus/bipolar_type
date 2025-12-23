@@ -48,6 +48,7 @@ class String
       prep? ? words.first(2).to_phrase : words.first
     end
   end
+
   def first_word = words.first
   def last_words = sub(first_words, '').squish
   def last_word = words.last
@@ -120,23 +121,34 @@ class String
     end
   end
 
-  NOUNS =     %w[anorexia depression mania energy strength obesity goals
-                 emptiness hyperactivity weakness calories credit information
-                 emotions feelings childhood adolescence adulthood old\ age child
-                 adolescent adult elder curiosity agitation appetite laziness
-                 anxiety irritation boredom anger fear exhaustion lethargy
-                 hunger freedom control foods places
-                 music carbs art facts cash currency procedures
-                 words protein rules shoulds morals credit hunting gathering structure].freeze
-  ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
-                  empty hyperactive weak caloric indebted informative
-                  emotional child adolescent adult elder childish
-                  adolescent mature wise curious agitated greedy lazy
+  NOUNS = %w[flight fight rest digestion fueling
+             anorexia depression mania energy strength obesity
+             goals emptiness hyperactivity
+             weakness calories credit information emotions
+             feelings childhood adolescence adulthood old age
+             child adolescent adult elder
+             curiosity agitation appetite laziness
+             anxiety irritation boredom anger fear exhaustion lethargy
+             hunger freedom control
+             foods places music carbs art facts cash plans
+             currency procedures words protein rules shoulds
+             morals credit hunting gathering weights actions
+             structure salary wages marathons pictures].freeze
+  ADJECTIVES = %w[flee fight rest digest refuel
+                  anorexic depressed manic energetic strong obese
+                  goal-oriented empty hyperactive
+                  weak caloric indebted informative emotional
+                  childish adolescent adult mature
+                  curious agitated greedy lazy
                   anxious irritable bored angry afraid tired lethargic
-                  hungry free controlled caloric spatial].freeze
+                  hungry free controlled
+                  caloric spatial musical
+                  wise].freeze
 
-  def noun? =
-     NOUNS.include?(self) || NOUNS.include?(self.singularize) ||    NOUNS.include?(self.last_word)
+  def noun?
+    NOUNS.include?(self) || NOUNS.include?(singularize) || NOUNS.include?(pluralize) || NOUNS.include?(last_word)
+  end
+
   def capitalized? = first != first.downcase
 
   def to_noun
@@ -370,7 +382,7 @@ class String
 
   def a_lot
     if match?(': ')
-      first, last = self.split(': ')
+      first, last = split(': ')
       [first, ': ', last.a_lot].join
     elsif noun?
       "a lot of #{self}"
@@ -417,7 +429,10 @@ class String
   end
 
   def too_much
-    if match('(.*) (a|the|an) (.*)')
+    if match?(': ')
+      first, last = split(': ')
+      return [first, ': ', last.too_much].join
+    elsif match('(.*) (a|the|an) (.*)')
       if ::Regexp.last_match(3).uncountable?
         return [::Regexp.last_match(1), 'too much',
                 ::Regexp.last_match(3)].to_phrase
@@ -427,13 +442,14 @@ class String
 
     end
     [' and ', ' or ', ' / ', ' & '].each do |connector|
-      if match(connector)
-        first, second = split(connector, 2)
-        return [first.too_much, second.too_much].join(connector)
-      end
+      return "#{self} too much" if match(connector)
     end
     if match?(' ')
-      [first_words, 'too', last_words.last.much, last_words].join(' ')
+      if last_words.noun?
+        [first_words, last_words.too_much].join(' ')
+      else
+        [first_words, 'too', last_words.last.much, last_words].join(' ')
+      end
     elsif noun?
       "too #{many} #{self}"
     else

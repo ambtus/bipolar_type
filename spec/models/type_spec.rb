@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Type, type: :model do
   it 'has a path' do
-    expect(described_class.first.path).to eq 'eFSp/iTNj'
+    expect(described_class.first.path).to eq 'FSTN1'
   end
 
   it 'has a title' do

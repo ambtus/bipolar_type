@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   def home = (@title = 'Introduction')
-  def cycle = (@title = 'The Cycle')
-  def theory = (@title = 'The Theory')
+  def bipolar = (@title = 'The Bipolar Cycle')
+  def symptoms = (@title = 'The Symptom Types')
+  def concepts = (@title = 'BipolarType Concepts')
 end

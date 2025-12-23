@@ -58,19 +58,22 @@ html lang="en"
 
   body
     .center.larger
-      =display_links %w[introduction cycle theory types]
+      =display_links %w[introduction bipolar]
+      |<> |
+      =link_to_unless_current 'Type', symptoms_path
+      |<> |
+      =link_to_unless_current 'BipolarTypes', types_path
 
     =yield
 
     -if Rails.env.development?
       hr
       -%w[my your next other].each do |which|
-        =link_to_unless_current Type.send("#{which}_path"), type_path(Type.send("#{which}_path"))
+        =link_to_unless_current "#{which} bp", type_path(Type.send("#{which}_path"))
         |<>
-      hr
-      a href='/types.iSeTFp' my bp choice
-      |<>
-      a href='/types.iTFjNp' not my bp choice
+      -%w[my your].each do |which|
+        =link_to_unless_current "#{which} bp choice", nature_path(Type.send("#{which}_type").nature.path)
+        |<>
 
       -if @current
         hr

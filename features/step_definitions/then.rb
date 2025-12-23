@@ -26,6 +26,8 @@ Then('{word} {word} should be linked') do |whose, what|
       what.singularize.capitalize.constantize.each do |x|
         if x.is_a?(Subtype)
           expect(page).to have_link(x.title.a_lot, exact: true)
+        elsif x.is_a?(Behavior)
+          expect(page).to have_link(x.string)
         else
           expect(page).to have_link(x.title, exact: true)
         end

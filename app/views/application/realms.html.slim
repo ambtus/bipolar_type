@@ -3,9 +3,4 @@ p.center.larger The Four Realms
 
 -Realm.linear.each do |r|
   p.center=link_to_concept r
-  p.center
-    |> moods:
-    =display_and(r.subtypes)
-    br
-    |> behaviors:
-    =display_and(r.behaviors)
+  p.center=link_to_and(r.behaviors)

@@ -8,13 +8,11 @@ module ApplicationHelper
     safe_join(links, ' | ')
   end
 
-  def display(thing, a_lot: false)
+  def display(thing)
     first = "<a href='#' class='hover-link'>".html_safe
     middle = "<span class='popup'>".html_safe
     last = '</span></a>'.html_safe
-    text = thing.short_words
-    text = text.a_lot if a_lot
-    safe_join([first, thing, middle, text, last])
+    safe_join([first, thing, middle, thing.short_words, last])
   end
 
   def link_to_concept(concept, a_lot: false)
@@ -34,6 +32,30 @@ module ApplicationHelper
        displays[1], ', ',
        displays[2], ', ',
        displays[3]]
+    )
+  end
+
+  def short_link_to(concept)
+    link_to concept.short_words, send("#{concept.class.name.downcase}_path", concept.path)
+  end
+
+  def link_to_and(ary)
+    links = ary.collect { |x| short_link_to x}
+    safe_join(
+      [links[0], ', ',
+       links[1], ', ',
+       links[2], ', ',
+       links[3]]
+    )
+  end
+
+  def link_to_or(ary)
+    links = ary.collect { |x| link_to_concept x }
+    safe_join(
+      [links[0], ', ',
+       links[1], ', ',
+       links[2], ', or ',
+       links[3]]
     )
   end
 end

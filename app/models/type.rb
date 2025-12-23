@@ -1,35 +1,29 @@
 # frozen_string_literal: true
 
 class Type < Concept
-  SYMBOLS = Realm.strings.permutation(4).collect do |realms|
-    [
-      "e#{realms[0, 2].join}p/i#{realms[2, 2].join}j",
-      "i#{realms[0, 2].join}p/e#{realms[2, 2].join}j"
-    ]
+  SYMBOLS = Realm.all.permutation(4).collect do |realms|
+    [realms.map(&:string).join + '1', realms.map(&:string).join + '2']
   end.flatten.map(&:to_sym)
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
 
-  alias inspect :string
-  alias title :string
-
-  def quads = string.split('/')
+  def quads = []
 
   class << self
     def with(subtypes) = ALL.select { |s| (subtypes - s.subtypes).blank? }.sort
 
     def title(subtypes = [])
       if subtypes.present?
-        "#{Type.with(subtypes).count} BipolarTypes with #{subtypes.and}"
+        "#{with(subtypes).count} BipolarTypes with #{subtypes.and}"
       else
         "#{all.count} BipolarTypes"
       end
     end
 
-    def my_path = 'iSFp/eTNj'
+    def my_path = 'FTNS2'
     def my_type = find(my_path)
     # for cucumber tests; just needs to be different
-    def your_path = 'eSNp/iTFj'
+    def your_path = 'SNTF1'
     def your_type = find(your_path)
     # for visual tests
     def next_type = my_type.sibling
@@ -38,27 +32,19 @@ class Type < Concept
     def other_path = other_type.path
   end
 
-  def bp1? = string.first == 'e'
-  def bp_type = bp1? ? 1 : 2
+  def bp_type = string.fifth
+  def bp1? = bp_type == '1'
   def bp = "bp#{bp_type}"
   def <=>(other) = bp_type <=> other.bp_type
-  def bp_name = "Bipolar #{bp1? ? 'I' : 'II'}"
 
-  def subtypes = string.delete('/').scan(/../).collect { |x| Subtype.find(x) }
+  def realms = string.chop.chars.collect { |x| Realm.find(x) }
+  def subtypes = realms.add(Mood.all)
   def nature = Nature.find_by subtypes
-
-  def ordered_subtypes
-    if bp1?
-      subtypes.values_at(1, 0, 3, 2)
-    else
-      subtypes.values_at(1, 2, 3, 0)
-    end
-  end
 
   def behaviors = subtypes.map(&:behaviors).flatten
 
-  def siblings = Type.select { |x| x.subtypes.sort == subtypes.sort }.sort
-  def sibling = siblings.without(self).first
+  def sibling_string = bp1? ? string.chop + '2' : string.chop + '1'
+  def sibling = Type.find sibling_string
 
   def dos
     if bp1?
@@ -71,26 +57,16 @@ class Type < Concept
   def similars = Type.select { |x| (x.dos - dos).blank? }
   def similar = similars.without(self).first
 
-  def donts
-    if bp1?
-      [p.ip, e.ep, j.ej, i.ij]
-    else
-      [p.ep, e.ej, j.ij, i.ip]
-    end
-  end
+  def donts = sibling.dos
 
   def differents = Type.select { |x| (x.donts - donts).blank? }
   def different = differents.without(self).first
 
-  def manic_type = bp1? ? 'mania' : 'hypomania'
-  def manic_realm = bp1? ? subtypes.first.realm : subtypes.third.realm
-  def mania = "#{manic_realm.short_words} #{manic_type}"
+  def manic_realms = bp1? ? realms[1,2] : realms[0,2]
+  def mania = "#{manic_realms.map(&:adjective).amp} mania"
 
-  def depressed_prefix = bp1? ? '' : 'major'
-  def depressed_realm = bp1? ? subtypes.third.realm : subtypes.first.realm
-  def depression = [depressed_prefix, depressed_realm.short_words, 'depression'].to_phrase
-
-  def episodes = bp1? ? [mania, depression] : [depression, mania]
+  def depressed_realms = bp1? ? realms.values_at(3,0) : realms[2,2]
+  def depression = "#{depressed_realms.map(&:adjective).amp} depression"
 
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }

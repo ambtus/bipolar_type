@@ -1,16 +1,18 @@
 p.center.larger=@nature.link
 table
+  caption
+    b Moods
   tr
     th
-    td=display @bp1.e, a_lot: true
+    td=@bp1.e.episode
     th
   tr
-    td=display @bp1.p, a_lot: true
+    td=@bp1.p.episode
     th &orarr;
-    td=display @bp1.j, a_lot: true
+    td=@bp1.j.episode
   tr
     th
-    td=display @bp1.i, a_lot: true
+    td=@bp1.i.episode
     th
 
 table
@@ -18,54 +20,46 @@ table
     td.none
       table
         caption
-          b Bipolar I
+          =link_to_concept @bp1
           br
           =@bp1.mania
           br
-          | with
-          br
           =@bp1.depression
-          br
-          =link_to_concept @bp1
         tr
           td
-            =display @bp1.e.ep
+            =@bp1.e.ep.link
             .left I #{@bp1.e.ep.short_words.too_much}.
           td
-            =display @bp1.j.ej
+            =@bp1.j.ej.link
             .left I #{@bp1.j.ej.short_words.too_much}.
         tr
           td
-            =display @bp1.p.ip
+            =@bp1.p.ip.link
             .left I #{@bp1.p.ip.short_words.too_much}.
           td
-            =display @bp1.i.ij
+            =@bp1.i.ij.link
             .left I #{@bp1.i.ij.short_words.too_much}.
     td.none
       table
         caption
-          b Bipolar II
-          br
-          =@bp2.depression
-          br
-          | with
+          =link_to_concept @bp2
           br
           =@bp2.mania
           br
-          =link_to_concept @bp2
+          =@bp2.depression
         tr
           td
-            =display @bp1.p.ep
+            =@bp1.p.ep.link
             .left I #{@bp1.p.ep.short_words.too_much}.
           td
-            =display @bp1.e.ej
+            =@bp1.e.ej.link
             .left I #{@bp1.e.ej.short_words.too_much}.
         tr
           td
-            =display @bp1.i.ip
+            =@bp1.i.ip.link
             .left I #{@bp1.i.ip.short_words.too_much}.
           td
-            =display @bp1.j.ij
+            =@bp1.j.ij.link
             .left I #{@bp1.j.ij.short_words.too_much}.
 
-p The imbalance can start with any behavior, but will eventually skew the whole cycle. For this reason, there are only two BipolarTypes associated with each Nature, not eight. The goal is to get the entire cycle re-centered, which cannot be done by  focusing only on your dominant function.
+p There are only two BipolarTypes associated with these four Moods (one for each skew), not eight (one for each presenting Symptom). This is because the goal of BipolarType is to get the entire cycle re-centered. This cannot be done merely by balancing your worst (presenting) Symptom. Even your minor Symptoms (non-dominant Jungian functions) need to be balanced in order to keep the whole cycle centered.

@@ -30,5 +30,5 @@ class Subtype < Concept
 
   def manic? = (mood == Mood.e)
 
-  def episode = [realm.short_words, mood.episode].to_phrase
+  def episode = [realm.adjective, mood.episode].to_phrase
 end

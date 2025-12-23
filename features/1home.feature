@@ -10,22 +10,17 @@ Then the 'bipolar' link should NOT be disabled
 
 Scenario: has a link to wikipedia jung
 Given I am on the homepage
-Then the 'natures' link should NOT be disabled
+Then the 'personality type' link should NOT be disabled
 
-Scenario: has an imbedded link to the cycle page
+Scenario: has an imbedded link to the bipolar page
 Given I am on the homepage
 When I follow the 'cycle' link
-Then I should be on the cycle page
+Then I should be on the bipolar page
 
-Scenario: has an imbedded link to the natures page
+Scenario: has an imbedded link to the type page
 Given I am on the homepage
-When I follow the 'natures' link
-Then I should be on the natures page
-
-Scenario: has a link to the theory page
-Given I am on the homepage
-When I follow the 'theory' link
-Then I should be on the theory page
+When I follow the 'symptoms' link
+Then I should be on the symptoms page
 
 Scenario: has a link to wikipedia falsifiable
 Given I am on the homepage

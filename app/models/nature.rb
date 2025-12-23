@@ -17,6 +17,9 @@ class Nature < Concept
   alias inspect :title
 
   def types = Type.with(subtypes)
+  def bp1 = types.first
+  def bp2 = types.second
+
 
   def self.sort_by(string)
     mood_index = Mood.all.map(&:string).index(string)

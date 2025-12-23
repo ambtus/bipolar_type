@@ -1,0 +1,19 @@
+p A Behavior is an Action (an intercardinal point on the #{link_to 'Bipolar Cycle', bipolar_path}) in a specific Realm: #{link_to_or Realm.linear}.
+p A Symptom is an excessive, compulsive, obsessive, unhealthy, or unbalancing Behavior. A Behavior which is so bad for you or those around you that you take or are given drugs so that you will <em>stop doing it</em>.
+
+table
+  tr
+    th colspan=2 Manic Symptoms
+  tr
+    td=render 'symptom', action: Action.ep
+    td=render 'symptom', action: Action.ej
+  tr
+    td=render 'symptom', action: Action.ip
+    td=render 'symptom', action: Action.ij
+  tr
+    th colspan=2 Depressed Symptoms
+
+p Conventional wisdom asserts that mania is excessive fight <em>and</em> flight and should be treated with sedatives so you will no longer be manic whereas depression is excessive rest <em>and</em> refuel and should be treated with stimulants so you will no longer be depressed.
+p The BipolarType theory asserts that mania is excessive fight <em>or</em> flight and should be treated by doing more of one of the adjacent behaviors so you will no longer be <em>unbalanced</em>. Similarly, depression is excessive rest <em>or</em> refuel and should be treated by doing more of one of the adjacent behaviors.
+p Which of the adjacent behaviors you can switch to depends on which Mood you are in.
+p If, for example, you are manic and fleeing too much, you may be in either #{link_to_concept Mood.e} or #{link_to_concept Mood.p}. In the first case you can stop fleeing and move on to fighting, in the second you can stop fleeing and go back to refueling. You cannot, however stop fleeing and <em>rest</em> without taking sedatives.

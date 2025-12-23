@@ -3,11 +3,11 @@ br
 p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you.
 dl
   dt Do’s (green light: go)
-  dd=link_and @type.dos
+  dd=link_to_and @type.dos
   dt Moods (yellow light: caution)
-  dd=link_and @type.ordered_subtypes
+  dd=link_to_and @type.subtypes
   dt Don’ts (red light: stop)
-  dd=link_and @type.donts
+  dd=link_to_and @type.donts
 p.center.larger Related BipolarTypes
 dl
   dt same do’s: different moods and don’ts
@@ -16,3 +16,7 @@ dl
   dd=link_to_concept @type.sibling
   dt same don’ts: different moods and do’s
   dd=link_to_concept @type.different
+
+
+ol
+  li id='euthymia' Technically, euthymia is not actually “normal”: it’s mild depression. But compared to mania, hypomania, and major depression, mild depression is a goal worth striving for. It’s not, however, sustainable without drugs to keep you constantly slightly depressed.

@@ -1,0 +1,11 @@
+b=action.short_words
+ul
+  -Realm.each do |r|
+    li=link_to behavior_path(r + action) do
+      =(r+action).link
+      |> :
+      =r.adjective
+      |<>
+      =action.noun
+
+

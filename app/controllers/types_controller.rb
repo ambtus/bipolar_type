@@ -6,7 +6,8 @@ class TypesController < ApplicationController
     @subtypes = @current.scan(/../).collect { |s| Subtype.find(s) }
     @title = Type.title(@subtypes)
     if @current.length >= 6
-      redirect_to nature_path @current
+      @type = Type.with(@subtypes).first
+      redirect_to nature_path @type.nature.path
     else
       render 'types'
     end

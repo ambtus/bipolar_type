@@ -20,4 +20,7 @@ class Behavior < Concept
   %i[previous next opposite flip flop].each do |sym|
     define_method(sym) { realm + action.send(sym) }
   end
+
+  def types = Type.select { |x| x.donts.include?(self) }
+  def moods = action.moods.add(realm)
 end

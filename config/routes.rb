@@ -2,9 +2,9 @@
 
 Rails.application.routes.draw do
   root 'application#home', as: :introduction
-  %w[cycle theory].each do |thing|
-    get "/#{thing}" => "application##{thing}"
-  end
+  get '/bipolar' => 'application#bipolar'
+  get '/symptoms' => 'application#symptoms'
+  get '/concepts' => 'application#concepts'
   resources :realms, only: %i[show index]
   resources :actions, only: %i[show index]
   resources :behaviors, only: %i[show index]
