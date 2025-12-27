@@ -1,0 +1,22 @@
+.center
+  .larger=@behavior.link
+  =render 'generic', behavior: @behavior
+  br
+  -if @good
+    span.green is good for you
+    | ; do it whenever you can
+  -elsif @error
+    | can be good or bad for you depending on your type
+  -else
+    span.red is bad for you
+    | ; don&rsquo;t do it unless you have to
+
+| Examples:
+=render 'specific', behavior: @behavior
+
+dl
+  dt same realm, different action
+  dd=link_to_links(@behavior.siblings)
+  dt same action, different realm
+  dd=link_to_links(@behavior.similars)
+p=link_to 'All 16 Behaviors', behaviors_path

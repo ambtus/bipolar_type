@@ -1,20 +1,11 @@
 # frozen_string_literal: true
 
 class NaturesController < ApplicationController
-  def index
-    @title = Nature.title
-    @sort_by = params[:format] || 'p'
-    render 'natures'
-  end
-
   def show
+    @number = 4
     @nature = Nature.find params[:id]
-    if @nature.nil?
-      redirect_to natures_path, alert: "“#{params[:id]}“ is not a valid nature path" and return
-    end
-    @title = @nature.title
-    @bp1 = @nature.bp1
-    @bp2 = @nature.bp2
+    @title = "#{@nature.title} Nature"
+    @manic_realm = @nature.realms.third
     render 'nature'
   end
 end

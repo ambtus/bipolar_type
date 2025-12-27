@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class Realm < Concept
-  SYMBOLS = %i[F S T N].freeze
+  SYMBOLS = %i[S N F T].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
-
-  def self.linear = ALL.values_at(1, 3, 0, 2)
 
   def behaviors = Behavior.all.select { |x| x.realm == self }
   def subtypes = Subtype.all.select { |x| x.realm == self }
@@ -18,6 +16,9 @@ class Realm < Concept
     subtypes.find { |x| x.mood == other }
   end
 
-  alias adjective :short_words
-  def adverb = adjective.ly
+  def generic = %w[physical mental spiritual material][index]
+  def internal = %w[body mind soul wallet][index]
+  def externals = %w[places ideas people tools][index]
+
+  def self.pp_order = ALL.values_at(2, 0, 3, 1)
 end

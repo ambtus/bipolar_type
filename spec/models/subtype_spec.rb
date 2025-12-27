@@ -3,11 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Subtype, type: :model do
-  it 'has a path' do
-    expect(described_class.Sp.path).to eq 'Sp'
-  end
+  described_class::SYMBOLS.each_with_index do |sym, index|
+    it "can find #{(index + 1).ordinalize} #{described_class.name} by #{sym}" do
+      expect(described_class.find(sym)).to be described_class.all[index]
+    end
 
-  it 'has a title' do
-    expect(described_class.Sj.title).to start_with 'Sj: '
+    it "#{sym} has two behaviors" do
+      expect(described_class.all[index].behaviors.count).to be 2
+    end
   end
 end

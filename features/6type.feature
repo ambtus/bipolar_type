@@ -1,28 +1,41 @@
 Feature: the type pages
 
 Example: type page lists my subtypes
-When I am on my type page
-Then my subtypes should be linked
-
-Example: type page lists your subtypes
-When I am on your type page
-Then my subtypes should NOT be linked
+Given I am on my type page
+Then my moods should be listed
 
 Example: type page lists my behaviors
-When I am on my type page
-Then my behaviors should be linked
+Given I am on my type page
+Then my dos should be linked
+
+Example: type page lists my behaviors
+Given I am on my type page
+Then my donts should be linked
 
 Example: can get to sibling from my type page
-When I am on my type page
-And I follow my sibling
+Given I am on my type page
+When I follow my sibling
 Then I should be on my sibling page
 
-Example: can get to similar from your type page
-When I am on your type page
-And I follow your similar
-Then I should be on your similar page
+Example: can get to similar from my type page
+Given I am on my type page
+When I follow my similar
+Then I should be on my similar page
 
-Example: old types give alert
-When I am on a bad type page
-Then I should see an alert
-And I should be on the types page
+Example: can get to different from my type page
+Given I am on my type page
+When I follow my different
+Then I should be on my different page
+
+Example: can get to mimic from my type page
+Given I am on my type page
+When I follow my mimic
+Then I should be on my mimic page
+
+Scenario: breadcrumbs
+Given I am on my type page
+Then I should see the first breadcrumb
+  And I should see the second breadcrumb
+  And I should see the third breadcrumb
+  And I should see the fourth breadcrumb
+  And I should see the fifth breadcrumb

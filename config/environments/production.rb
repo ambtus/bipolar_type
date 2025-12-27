@@ -43,6 +43,8 @@ Rails.application.configure do
   config.hosts << '.bt.ambt.us'
   config.hosts << 'bipolar-type.onrender.com'
 
+  config.hosts << 'localhost:3000' # for testing production locally
+
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 

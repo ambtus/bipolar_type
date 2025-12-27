@@ -3,27 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe Realm, type: :model do
-  it 'has a path' do
-    expect(described_class.first.path).to eq 'F'
+  described_class::SYMBOLS.each_with_index do |sym, index|
+    it "can find #{(index + 1).ordinalize} #{described_class.name} by #{sym}" do
+      expect(described_class.send(sym)).to be described_class.all[index]
+    end
+  end
+  it 'describes the physical, mental, spiritual, and material' do
+    expect(described_class.all.map(&:generic)).to eq %w[physical mental spiritual material]
   end
 
-  it 'has a title' do
-    expect(described_class.third.title).to start_with 'T: financial'
+  it 'describes people, places, tools, and ideas' do
+    expect(described_class.pp_order.map(&:externals)).to eq %w[people places tools ideas]
   end
 
-  it 'has behaviors' do
-    expect(described_class.second.behaviors).to include Behavior.iSp
-  end
-
-  it 'has subtypes' do
-    expect(described_class.fourth.subtypes).to include Subtype.Nj
-  end
-
-  it 'can add an action' do
-    expect(described_class.F + Action.ej).to eq Behavior.eFj
-  end
-
-  it 'can add a mood' do
-    expect(described_class.S + Mood.i).to eq Subtype.iS
+  it 'describes the body, mind, soul, and wallet' do
+    expect(described_class.all.map(&:internal)).to eq %w[body mind soul wallet]
   end
 end

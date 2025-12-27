@@ -1,18 +1,15 @@
 br
 =render @type.bp, type: @type
 p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you.
-dl
-  dt Do’s (green light: go)
-  dd=link_to_and @type.dos
-  dt Moods (yellow light: caution)
-  dd=link_to_and @type.subtypes
-  dt Don’ts (red light: stop)
-  dd=link_to_and @type.donts
+
 p.center.larger Related BipolarTypes
 dl
-  dt same do’s: different moods and don’ts
+  dt same episodes
+  dd=link_to_concept @type.mimic
+  dt same do’s (green)
   dd=link_to_concept @type.similar
-  dt same moods; different do’s and don’ts
+  dt same nature (yellow)
   dd=link_to_concept @type.sibling
-  dt same don’ts: different moods and do’s
+  dt same don’ts (red)
   dd=link_to_concept @type.different
+

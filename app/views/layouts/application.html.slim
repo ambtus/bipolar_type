@@ -6,86 +6,56 @@ html lang="en"
     meta content="width=device-width,initial-scale=1" name="viewport"
     = yield :head
     css:
-      #alert  { color: red }
       .center  { text-align: center;}
-      .left { text-align: left;}
-      .right {text-align: right;}
       .larger  { font-size: 1.2em;}
-      .smaller { font-size: .9 em;}
+      .red {color: red}
+      .green {color: green}
 
       a.external:link {color: dimgrey; text-decoration: none;}
       a.external:visited {color: dimgrey; text-decoration: none;}
       a.external:hover {text-decoration: underline;}
 
-      ul { padding: 0; margin: 0; list-style-type: none; }
-      ol { margin: 0; padding-left: 1.5em}
-      dt:before { content: ""; display: block; }
+      dl { display: grid; grid-template-columns: max-content auto;}
+      dt { grid-column-start: 1;}
       dt:after { content: ': ' }
-      dt, dd { display: inline;}
+      dd { grid-column-start: 2;}
+
+      ul { padding: 0; margin: 0; list-style-type: none; }
 
       table {margin: auto; border: none; border-collapse: collapse;}
-      table.equal {table-layout: fixed; width: 23em; }
-      table.bordered {border: 1px solid grey;}
-      td {border: 1px solid grey; text-align: center; vertical-align: top; padding: .2em; }
-      td.none {border: none}
-      td.middle {vertical-align: middle}
-      td.bottom {vertical-align: bottom}
-      td.top {vertical-align: top}
-      .halfish {width: 48%}
-      .third {width: 33%}
-      td.p {text-align: left}
-
-      .button-wrapper {display: flex; gap: 10px; justify-content: center;}
-
-      .hover-link {
-          position: relative;
-          text-decoration: none;
-          color: blue;
-      }
-
-      .popup {
-          display: none; /* Hide the pop-up by default */
-          position: absolute;
-          background-color: white;
-          border: 1px solid #ccc;
-          padding: 10px;
-          z-index: 10;
-      }
-
-      .hover-link:hover .popup {
-          display: block; /* Show the pop-up on hover */
-      }
+      td {border: none; text-align: center; vertical-align: top; padding: .2em; }
+      td.behaviors { text-align: left; width: 25%}
 
   body
-    .center.larger
-      =display_links %w[introduction bipolar]
+    -if Rails.env.development?
+      =link_to_unless_current 'home', root_path
       |<> |
-      =link_to_unless_current 'Type', symptoms_path
+      =link_to_unless_current 'depression', depression_path
       |<> |
-      =link_to_unless_current 'BipolarTypes', types_path
+      =link_to_unless_current 'my insomnia', insomnia_path(:S)
+      |<> |
+      =link_to_unless_current 'my mania', mania_path(:SN)
+      |<> |
+      =link_to_unless_current 'my nature', nature_path(Type.my_type.nature.path)
+      |<> |
+      =link_to_unless_current 'my type', type_path(Type.my_type.path)
+      |<> |
+      =link_to_unless_current 'a behavior', behavior_path(Behavior.first.path)
+      |<> |
+      =link_to_unless_current 'all behaviors', behaviors_path
+      hr
+
+    =render 'breadcrumbs', number: @number || 0
+
+    -if alert
+      p.center#alert= alert
 
     =yield
 
     -if Rails.env.development?
       hr
-      -%w[my your next other].each do |which|
-        =link_to_unless_current "#{which} bp", type_path(Type.send("#{which}_path"))
-        |<>
-      -%w[my your].each do |which|
-        =link_to_unless_current "#{which} bp choice", nature_path(Type.send("#{which}_type").nature.path)
-        |<>
-
-      -if @current
-        hr
-        |> taken:
-        =@current.chars
-        =@current.chars.count.to_s.wrap
-        br
-        |> current:
-        =@current
-        =@current.scan(/../).count.to_s.wrap
-
-      hr
       | params: #{params}
       br
       | cookies: #{cookies.to_h}
+      br
+      | realms: #{@depression} #{@possibles} #{@insomnia}; #{@first} #{@second}

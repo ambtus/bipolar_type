@@ -18,8 +18,10 @@ class Concept
 
   class << self
     def all = self::ALL
-    def strings = all.map(&:string)
     def title = [all.count, name.pluralize].to_phrase
+    def strings = all.map(&:string)
+    def titles = all.map(&:title)
+    def generics = all.map(&:generic)
     def [](index) = (all * 2).[](index)
     def find(thing) = all.find { |x| x.symbol == thing.to_sym }
     %i[each each_with_index first second third fourth last without rotate values_at select].each do |meth|
@@ -39,26 +41,4 @@ class Concept
   def opposite = self.class.rotate(2)[index]
   def flop = ALL.reverse[index]
   def flip = ALL.values_at(1, 0, 3, 2)[index]
-
-  def words
-    begin
-      File.readlines("words/#{string}", chomp: true)
-    rescue
-      []
-    end
-  end
-
-  def shorts
-    result = []
-    words.each do |word|
-      break if word == ' '
-
-      result << word
-    end
-    result
-  end
-
-  def short_words = shorts.join(' | ')
-  def other_words = words - shorts
-  def title = short_words.blank? ? string : [string.colon, short_words].to_phrase
 end

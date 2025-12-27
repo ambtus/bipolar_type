@@ -4,33 +4,62 @@ Given 'I am on the homepage' do
   visit('/')
 end
 
-Given('I am on {word} type page') do |whose|
-  type = whose == 'my' ? Type.my_type : Type.your_type
-  visit type_path(type.path)
+Given('I am on the depression page') do
+  visit('/depression')
 end
 
-When('I am on a bad type page') do
-  visit type_path('old/type')
+Given('I am on my insomnia page') do
+  visit('/insomnia.S')
 end
 
-When('I am on a bad nature page') do
-  visit nature_path('old_nature')
+Given('I am on my mania page') do
+  visit('/mania.SN')
 end
 
-Given('I am on the {word} page') do |url|
-  visit("/#{url}")
+Given('I am on my nature page') do
+  visit nature_path(Type.my_type.nature.path)
 end
 
-Then('I should be on {word} page') do |whose|
-  type = whose == 'my' ? Type.my_type : Type.your_type
-  assert_equal page.title, "BipolarType: #{type.title}"
+Given('I am on my type page') do
+  visit '/me'
 end
 
-Then('I should be on {word} {word} page') do |whose, what|
-  if whose == 'the'
-    expect(page).to have_current_path("/#{what}")
-  else
-    who = whose == 'my' ? Type.my_type : Type.your_type
-    expect(page).to have_title(who.send(what).title)
-  end
+Given('I am on a behavior page') do
+  visit behavior_path(Behavior.iSp.path)
+end
+
+Given('I am on another behavior page') do
+  visit behavior_path(Behavior.eNj.path)
+end
+
+Given('I am on the behaviors page') do
+  visit behaviors_path
+end
+
+Then('I should be on the {word} page') do |word|
+  expect(page).to have_current_path(/#{word}/)
+end
+
+Then('I should be on my nature page') do
+  expect(page).to have_current_path nature_path(Type.my_type.nature.path)
+end
+
+Then('I should be on my type page') do
+  expect(page).to have_current_path type_path(Type.my_type.path)
+end
+
+Then('I should be on my sibling page') do
+  expect(page).to have_current_path type_path(Type.my_type.sibling.path)
+end
+
+Then('I should be on my similar page') do
+  expect(page).to have_current_path type_path(Type.my_type.similar.path)
+end
+
+Then('I should be on my different page') do
+  expect(page).to have_current_path type_path(Type.my_type.different.path)
+end
+
+Then('I should be on my mimic page') do
+  expect(page).to have_current_path type_path(Type.my_type.mimic.path)
 end

@@ -3,11 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Mood, type: :model do
-  it 'has a path' do
-    expect(described_class.first.path).to eq 'p'
-  end
-
-  it 'has a title' do
-    expect(described_class.third.title).to start_with 'j: fight & rest'
+  described_class::SYMBOLS.each_with_index do |sym, index|
+    it "can find #{(index + 1).ordinalize} #{described_class.name} by #{sym}" do
+      expect(described_class.send(sym)).to be described_class.all[index]
+    end
   end
 end

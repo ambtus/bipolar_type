@@ -4,25 +4,26 @@ When('I follow the {string} link') do |string|
   click_link(string, match: :prefer_exact)
 end
 
-When('I choose {word} subtype(s)') do |count|
-  click_link Realm.first.subtypes.first.title.a_lot
-  click_link Realm.second.subtypes.second.title if count == 'two'
+When('I follow my sibling') do
+  click_link(Type.my_type.sibling.link)
 end
 
-When('I follow the links leading to {word}') do |word|
-  who = word == 'me' ? Type.my_type : Type.your_type
-  who.subtypes[0, 3].each do |x|
-    click_link(x.title.a_lot)
-  end
-  click_link(who.link)
+When('I follow my similar') do
+  click_link(Type.my_type.similar.link)
 end
 
-When('I follow {word}') do |word|
-  click_link(word.singularize.capitalize.constantize.title)
+When('I follow my different') do
+  click_link(Type.my_type.different.link)
 end
 
-When('I follow {word} {word}') do |whose, what|
-  who = whose == 'my' ? Type.my_type : Type.your_type
-  what = 'itself' if what == 'type'
-  click_link who.send(what).link
+When('I follow my mimic') do
+  click_link(Type.my_type.mimic.link)
+end
+
+When('I follow my first do') do
+  click_link(Type.my_type.dos.first.link)
+end
+
+When('I follow my first dont') do
+  click_link(Type.my_type.donts.first.link)
 end

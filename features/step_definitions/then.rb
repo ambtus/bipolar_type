@@ -4,82 +4,92 @@ Then 'I should see {string}' do |string|
   expect(page).to have_text(string)
 end
 
-Then 'I should NOT see {string}' do |string|
-  expect(page).to have_no_text(string)
+Then('{string} should link to {word}') do |string, word|
+  expect(page).to have_link(string, href: /#{word}/)
 end
 
-Then('the {string} link should be disabled') do |string|
-  expect(page).to have_no_link(string, exact: true)
-end
-
-Then('the {string} link should NOT be disabled') do |string|
-  expect(page).to have_link(string)
-end
-
-Then('{word} {word} should be linked') do |whose, what|
-  if whose == 'all'
-    if what == 'concepts'
-      [Realm, Mood, Subtype, Action, Behavior].each do |x|
-        expect(page).to have_link(x.title)
-      end
-    else
-      what.singularize.capitalize.constantize.each do |x|
-        if x.is_a?(Subtype)
-          expect(page).to have_link(x.title.a_lot, exact: true)
-        elsif x.is_a?(Behavior)
-          expect(page).to have_link(x.string)
-        else
-          expect(page).to have_link(x.title, exact: true)
-        end
-      end
-    end
-  elsif %w[subtypes behaviors nature siblings].include? what
-    who = whose == 'my' ? Type.my_type : Type.your_type
-    if what == 'nature'
-      expect(page).to have_link(who.nature.link, exact: true)
-    else
-      who.send(what).each do |x|
-        expect(page).to have_link(x.link, exact: true)
-      end
-    end
-  else
-    raise "#{whose} #{what} doesn't match a test"
+Then('all internals should be linked') do
+  Realm.all.map(&:internal).each do |x|
+    expect(page).to have_link(x)
   end
 end
 
-Then('all links should work') do
-  current = page.current_path
-  links = page.all('a:not(.hover-link)').map(&:text) - %w[Introduction Cycle Natures Theory Types]
-  Rails.logger.debug { "links: #{links}" }
-  links.each do |title|
-    Rails.logger.debug { "following #{title}" }
-    click_link(title)
-    expect(page.status_code).to be 200
-    visit current
+Then('three internals should be linked') do
+  Realm.without(Realm.S).map(&:internal).each do |x|
+    expect(page).to have_link(x)
   end
 end
 
-Then('{word} {word} should NOT be linked') do |whose, what|
-  raise "#{whose} #{what} doesn't match a test" unless %w[subtypes behaviors nature].include? what
-
-  who = whose == 'my' ? Type.my_type : Type.your_type
-  if what == 'nature'
-    expect(page).to have_no_link(who.nature.link, exact: true)
-  else
-    who.send(what).each do |x|
-      if what == 'behaviors'
-        expect(page).to have_no_link(x.link, exact: true)
-      else
-        expect(page).to have_no_link(x.title, exact: true)
-      end
-    end
+Then('two natures should be linked') do
+  %w[spiritual material].each do |x|
+    expect(page).to have_link(x)
   end
 end
 
-Then 'I should have {int} subtype links' do |int|
-  expect(all('a.subtype').count).to be int
+Then('two types should be linked') do
+  [Type.my_type, Type.my_type.sibling].each do |x|
+    expect(page).to have_link(href: /#{x.path}/)
+  end
 end
 
-Then('I should see an alert') do
-  expect(page).to have_css('#alert')
+Then('my moods should be listed') do
+  Type.my_type.subtypes.each do |x|
+    expect(page).to have_text(x.link)
+  end
+end
+
+Then('my dos should be linked') do
+  Type.my_type.dos.each do |x|
+    expect(page).to have_link(x.link)
+  end
+end
+
+Then('my donts should be linked') do
+  Type.my_type.donts.each do |x|
+    expect(page).to have_link(x.link)
+  end
+end
+
+Then('I should see the first breadcrumb') do
+  expect(page).to have_link('home', href: root_path)
+end
+
+Then('I should see the second breadcrumb') do
+  expect(page).to have_link('depression', href: depression_path)
+end
+
+Then('I should see the third breadcrumb') do
+  expect(page).to have_link('insomnia', href: insomnia_path('S'))
+end
+
+Then('I should see the fourth breadcrumb') do
+  expect(page).to have_link('mania', href: mania_path('SN'))
+end
+
+Then('I should see the fifth breadcrumb') do
+  expect(page).to have_link('nature', href: nature_path(Type.my_type.nature.path))
+end
+
+Then('I should see a generic description') do
+  expect(page).to have_text(Behavior.iSp.generic)
+end
+
+Then('I should see a focus') do
+  expect(page).to have_text(Behavior.iSp.focus)
+end
+
+Then('I should see a technical description') do
+  expect(page).to have_text(Behavior.iSp.technical)
+end
+
+Then('I should see another generic description') do
+  expect(page).to have_text(Behavior.eNj.generic)
+end
+
+Then('I should see another focus') do
+  expect(page).to have_text(Behavior.eNj.focus)
+end
+
+Then('I should see another technical description') do
+  expect(page).to have_text(Behavior.eNj.technical)
 end

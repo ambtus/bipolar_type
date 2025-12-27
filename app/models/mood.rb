@@ -7,8 +7,10 @@ class Mood < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.bp1 = ALL.values_at(1,0,3,2)
-  def self.bp2 = ALL.values_at(1,2,3,0)
+  def self.nature_order = ALL.rotate(-1)
+
+  def self.bp1 = ALL.values_at(1, 0, 3, 2)
+  def self.bp2 = ALL.rotate
 
   def actions = Action.all.select { |x| x.string.match string }
 
@@ -16,8 +18,7 @@ class Mood < Concept
   def +(other) = subtypes.find { |x| x.string.match other.string }
 
   def horizontal? = index.even?
-  def vertical? = index.odd?
 
-  def episode = %w[energy output strength intake][index]
-
+  def adjective = ['short term', 'external', 'long term', 'internal'][index]
+  def generic = [adjective, 'focus'].to_phrase
 end

@@ -1,22 +1,19 @@
-p.center
-  b The 16 Behaviors
-  table
+table
+  caption
+    b Generic Descriptions
+  -Realm.each do |r|
     tr
-      td
-        ul
-          -Realm.each do |r|
-            li=link_to_concept r + Action.ep
-      td
-        ul
-          -Realm.each do |r|
-            li=link_to_concept r + Action.ej
+      -r.behaviors.each do |x|
+        td.behaviors
+          .center=link_to_concept x
+          =render 'generic', behavior: x
+br
+table
+  caption
+    b Specific Examples
+  -Realm.each do |r|
     tr
-      td
-        ul
-          -Realm.each do |r|
-            li=link_to_concept r + Action.ip
-      td
-        ul
-          -Realm.each do |r|
-            li=link_to_concept r + Action.ij
-  br
+      -r.behaviors.each do |x|
+        td.behaviors
+          .center=link_to_concept x
+          =render 'specific', behavior: x

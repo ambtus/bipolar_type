@@ -1,65 +1,16 @@
-p.center.larger=@nature.link
-table
-  caption
-    b Moods
-  tr
-    th
-    td=@bp1.e.episode
-    th
-  tr
-    td=@bp1.p.episode
-    th &orarr;
-    td=@bp1.j.episode
-  tr
-    th
-    td=@bp1.i.episode
-    th
+h2=@title
 
-table
-  tr
-    td.none
-      table
-        caption
-          =link_to_concept @bp1
-          br
-          =@bp1.mania
-          br
-          =@bp1.depression
-        tr
-          td
-            =@bp1.e.ep.link
-            .left I #{@bp1.e.ep.short_words.too_much}.
-          td
-            =@bp1.j.ej.link
-            .left I #{@bp1.j.ej.short_words.too_much}.
-        tr
-          td
-            =@bp1.p.ip.link
-            .left I #{@bp1.p.ip.short_words.too_much}.
-          td
-            =@bp1.i.ij.link
-            .left I #{@bp1.i.ij.short_words.too_much}.
-    td.none
-      table
-        caption
-          =link_to_concept @bp2
-          br
-          =@bp2.mania
-          br
-          =@bp2.depression
-        tr
-          td
-            =@bp1.p.ep.link
-            .left I #{@bp1.p.ep.short_words.too_much}.
-          td
-            =@bp1.e.ej.link
-            .left I #{@bp1.e.ej.short_words.too_much}.
-        tr
-          td
-            =@bp1.i.ip.link
-            .left I #{@bp1.i.ip.short_words.too_much}.
-          td
-            =@bp1.j.ij.link
-            .left I #{@bp1.j.ij.short_words.too_much}.
+p Mania can take two forms: flight (run away from things that scare you in order to escape) and fight (run towards things that enrage you in order to dominate them).
+p On a good day, you fight the battles you can win and flee the ones you can’t. When you are manic, however, you are too stressed to stop and evaluate the danger, so you revert to your default stress response. Even people who are not bipolar may have difficulty evaluating the danger.
+p The BipolarType theory asserts that although you can have more or less difficulty evaluation the danger on different days (Bipolar) your default stress response remains the same (Type).
+p When I am manic, I find it very difficult to stop trying to invest in #{Realm.T.externals} and escape to financial freedom. What is <em>your</em> default stress response?
+hr
+| When I am manic, I find it very difficult to…
+dl
 
-p There are only two BipolarTypes associated with these four Moods (one for each skew), not eight (one for each presenting Symptom). This is because the goal of BipolarType is to get the entire cycle re-centered. This cannot be done merely by balancing your worst (presenting) Symptom. Even your minor Symptoms (non-dominant Jungian functions) need to be balanced in order to keep the whole cycle centered.
+  dt=link_to 'fight', type_path(@nature.bp1)
+  dd stop fleeing from the #{@manic_realm.externals} and fight for domination
+
+
+  dt=link_to 'flee', type_path(@nature.bp2)
+  dd stop fighting with the #{@manic_realm.externals} and escape to freedom

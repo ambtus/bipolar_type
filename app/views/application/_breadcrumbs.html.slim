@@ -1,0 +1,15 @@
+-if number.positive?
+  =link_to 'home', root_path
+-if number > 1
+  |<> |
+  =link_to 'depression', depression_path
+-if number > 2
+  |<> |
+  =link_to 'insomnia', insomnia_path(@depression || @nature.realms.first)
+-if number > 3
+  |<> |
+  =link_to 'mania', mania_path(@nature.realms.first.path + @nature.realms.last.path)
+-if number > 4
+  |<> |
+  =link_to 'nature', nature_path(@type.nature)
+
