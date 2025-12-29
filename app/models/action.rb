@@ -17,6 +17,4 @@ class Action < Concept
 
   def adjective = string.second == 'p' ? 'urgent' : 'important'
   def focus = string.first == 'i' ? 'needs' : 'tasks'
-
-  def technical = ['refuel', 'flee from', 'fight', 'rest'][index]
 end

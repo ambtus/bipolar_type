@@ -19,6 +19,8 @@ class Realm < Concept
   def generic = %w[physical mental spiritual material][index]
   def internal = %w[body mind soul wallet][index]
   def externals = %w[places ideas people tools][index]
+  def refuel = ['eat in', 'learn from', 'listen to', 'earn using'][index]
+  def rest = ['rest in', 'rest with', 'rest with', 'rest using using'][index]
 
   def self.pp_order = ALL.values_at(2, 0, 3, 1)
 end

@@ -33,13 +33,11 @@ class Behavior < Concept
 
   def focus = ['focus on', action.adjective, realm.generic, action.focus].to_phrase
 
-  def technical
-    if string.first == 'e'
-      [action.technical, realm.externals, 'that are a threat to your', realm.internal].to_phrase
-    else
-      [action.technical, 'when the', realm.externals, 'are not a threat to your', realm.internal].to_phrase
-    end
-  end
+  def first = [realm.refuel, 'escape from', 'confront', realm.rest][action.index]
+  def second = ['that do not make your', 'that make your', 'that irritate your', 'that do not irritate your'][action.index]
+  def third = string.ends_with?('p') ? 'feel anxious' : ''
+
+  def technical = [first, realm.externals, second, realm.internal, third].to_phrase
 
   def prefix(green: true)
     case green
