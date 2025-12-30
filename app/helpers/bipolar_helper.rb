@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 
-module TypeHelper
-  def link(concept, color)
-    link_to concept.link, send("#{concept.class.name.downcase}_path", concept.path, format: color)
+module BipolarHelper
+  def link(behavior, color)
+    link_to behavior.link, behavior_path(behavior.path, format: color)
   end
 
-  def green(concept)
+  def green(behavior)
     safe_join(['<span style="background-color:green;font-size:xx-large">'.html_safe,
-               link(concept, 'green'),
+               link(behavior, 'green'),
                '</span>'.html_safe])
   end
 
-  def yellow(concept)
+  def yellow(behavior)
     safe_join(['<span style="background-color:yellow; font-size:x-large">'.html_safe,
-               concept.link,
+               behavior.link,
                '</span>'.html_safe])
   end
 
-  def red(concept)
+  def red(behavior)
     safe_join(['<span style="background-color:red;font-size:large">'.html_safe,
-               link(concept, 'red'),
+               link(behavior, 'red'),
                '</span>'.html_safe])
   end
 end

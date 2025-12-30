@@ -27,23 +27,6 @@ html lang="en"
       td.behaviors { text-align: left; width: 25%}
 
   body
-    -if Rails.env.development?
-      =link_to_unless_current 'home', root_path
-      |<> |
-      =link_to_unless_current 'depression', depression_path
-      |<> |
-      =link_to_unless_current 'my insomnia', insomnia_path(:S)
-      |<> |
-      =link_to_unless_current 'my mania', mania_path(:SN)
-      |<> |
-      =link_to_unless_current 'my nature', nature_path(Type.my_type.nature.path)
-      |<> |
-      =link_to_unless_current 'my type', type_path(Type.my_type.path)
-      |<> |
-      =link_to_unless_current 'a behavior', behavior_path(Behavior.first.path)
-      |<> |
-      =link_to_unless_current 'all behaviors', behaviors_path
-      hr
 
     =render 'breadcrumbs', number: @number || 0
 
@@ -54,8 +37,22 @@ html lang="en"
 
     -if Rails.env.development?
       hr
+      =link_to_unless_current 'home', root_path
+      |<> |
+      =link_to_unless_current 'depression', depression_path
+      |<> |
+      =link_to_unless_current 'my insomnia', insomnia_path(:S)
+      |<> |
+      =link_to_unless_current 'my mania', mania_path(:SN)
+      |<> |
+      =link_to_unless_current 'my type', type_path(Bipolar.mine.type.path)
+      |<> |
+      =link_to_unless_current 'my bipolar type', bipolar_path(Bipolar.mine.path)
+      |<> |
+      =link_to_unless_current 'a behavior', behavior_path(Behavior.first.path)
+      |<> |
+      =link_to_unless_current 'all behaviors', behaviors_path
+      br
       | params: #{params}
       br
       | cookies: #{cookies.to_h}
-      br
-      | realms: #{@depression} #{@possibles} #{@insomnia}; #{@first} #{@second}

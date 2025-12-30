@@ -24,7 +24,7 @@ class Behavior < Concept
     define_method(sym) { realm + action.send(sym) }
   end
 
-  def types = Type.select { |x| x.donts.include?(self) }
+  def types = Bipolar.select { |x| x.donts.include?(self) }
   def moods = action.moods.add(realm)
 
   def examples = File.readlines("examples/#{string}", chomp: true)
@@ -34,7 +34,11 @@ class Behavior < Concept
   def focus = ['focus on', action.adjective, realm.generic, action.focus].to_phrase
 
   def first = [realm.refuel, 'escape from', 'confront', realm.rest][action.index]
-  def second = ['that do not make you feel anxious', 'that make you feel anxious', 'that irritate you', 'that do not irritate you'][action.index]
+
+  def second
+    ['that do not make you feel anxious', 'that make you feel anxious', 'that irritate you',
+     'that do not irritate you'][action.index]
+  end
 
   def technical = [first, realm.externals, second].to_phrase
 

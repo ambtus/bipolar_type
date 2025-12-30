@@ -6,12 +6,12 @@ Then I should see 'I only have one'
 
 Scenario: has a link two internals
 Given I am on my mania page
-Then two natures should be linked
+Then two types should be linked
 
 Scenario: has a link to the third question
 Given I am on my mania page
 When I follow the 'material' link
-Then I should be on my nature page
+Then I should be on my type page
 
 Scenario: breadcrumbs
 Given I am on my mania page

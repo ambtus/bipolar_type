@@ -5,11 +5,11 @@
   =link_to 'depression', depression_path
 -if number > 2
   |<> |
-  =link_to 'insomnia', insomnia_path(@depression || @nature.realms.first)
+  =link_to 'insomnia', insomnia_path(@depression || @type.realms.first)
 -if number > 3
   |<> |
-  =link_to 'mania', mania_path(@nature.realms.first.path + @nature.realms.last.path)
+  =link_to 'mania', mania_path(@type.realms.first.path + @type.realms.last.path)
 -if number > 4
   |<> |
-  =link_to 'nature', nature_path(@type.nature)
+  =link_to 'type', type_path(@bipolar.type)
 

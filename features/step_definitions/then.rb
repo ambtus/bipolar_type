@@ -20,32 +20,32 @@ Then('three internals should be linked') do
   end
 end
 
-Then('two natures should be linked') do
+Then('two types should be linked') do
   %w[spiritual material].each do |x|
     expect(page).to have_link(x)
   end
 end
 
-Then('two types should be linked') do
-  [Type.my_type, Type.my_type.sibling].each do |x|
-    expect(page).to have_link(href: /#{x.path}/)
+Then('two bipolars should be linked') do
+  %w[fight flee].each do |x|
+    expect(page).to have_link(x)
   end
 end
 
 Then('my moods should be listed') do
-  Type.my_type.subtypes.each do |x|
+  Bipolar.mine.subtypes.each do |x|
     expect(page).to have_text(x.link)
   end
 end
 
 Then('my dos should be linked') do
-  Type.my_type.dos.each do |x|
+  Bipolar.mine.dos.each do |x|
     expect(page).to have_link(x.link)
   end
 end
 
 Then('my donts should be linked') do
-  Type.my_type.donts.each do |x|
+  Bipolar.mine.donts.each do |x|
     expect(page).to have_link(x.link)
   end
 end
@@ -67,7 +67,7 @@ Then('I should see the fourth breadcrumb') do
 end
 
 Then('I should see the fifth breadcrumb') do
-  expect(page).to have_link('nature', href: nature_path(Type.my_type.nature.path))
+  expect(page).to have_link('type', href: type_path(Bipolar.mine.type.path))
 end
 
 Then('I should see a generic description') do

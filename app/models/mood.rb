@@ -7,10 +7,10 @@ class Mood < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.nature_order = ALL.rotate(-1)
+  def self.type_order = ALL.rotate(-1)
 
-  def self.bp1 = ALL.values_at(1, 0, 3, 2)
-  def self.bp2 = ALL.rotate
+  def self.left = ALL.values_at(1, 0, 3, 2)
+  def self.right = ALL.rotate
 
   def actions = Action.all.select { |x| x.string.match string }
 

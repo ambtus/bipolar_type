@@ -1,12 +1,12 @@
 Feature: the behavior page
 
 Example: green behavior
-Given I am on my type page
+Given I am on my bipolar page
 When I follow my first do
 Then I should see 'do more'
 
 Example: red behavior
-Given I am on my type page
+Given I am on my bipolar page
 When I follow my first dont
 Then I should see 'do less'
 

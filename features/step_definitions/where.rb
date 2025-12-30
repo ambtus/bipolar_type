@@ -16,11 +16,11 @@ Given('I am on my mania page') do
   visit('/mania.SN')
 end
 
-Given('I am on my nature page') do
-  visit nature_path(Type.my_type.nature.path)
+Given('I am on my type page') do
+  visit type_path(Bipolar.mine.type.path)
 end
 
-Given('I am on my type page') do
+Given('I am on my bipolar page') do
   visit '/me'
 end
 
@@ -40,26 +40,26 @@ Then('I should be on the {word} page') do |word|
   expect(page).to have_current_path(/#{word}/)
 end
 
-Then('I should be on my nature page') do
-  expect(page).to have_current_path nature_path(Type.my_type.nature.path)
+Then('I should be on my type page') do
+  expect(page).to have_current_path type_path(Bipolar.mine.type.path)
 end
 
-Then('I should be on my type page') do
-  expect(page).to have_current_path type_path(Type.my_type.path)
+Then('I should be on my bipolar page') do
+  expect(page).to have_current_path bipolar_path(Bipolar.mine.path)
 end
 
 Then('I should be on my sibling page') do
-  expect(page).to have_current_path type_path(Type.my_type.sibling.path)
+  expect(page).to have_current_path bipolar_path(Bipolar.mine.sibling.path)
 end
 
 Then('I should be on my similar page') do
-  expect(page).to have_current_path type_path(Type.my_type.similar.path)
+  expect(page).to have_current_path bipolar_path(Bipolar.mine.similar.path)
 end
 
 Then('I should be on my different page') do
-  expect(page).to have_current_path type_path(Type.my_type.different.path)
+  expect(page).to have_current_path bipolar_path(Bipolar.mine.different.path)
 end
 
 Then('I should be on my mimic page') do
-  expect(page).to have_current_path type_path(Type.my_type.mimic.path)
+  expect(page).to have_current_path bipolar_path(Bipolar.mine.mimic.path)
 end
