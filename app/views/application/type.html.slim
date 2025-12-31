@@ -1,16 +1,24 @@
 h2=@title
 
-p Mania can take two forms: flight (run away from things that scare you in order to escape) and fight (run towards things that enrage you in order to dominate them).
-p On a good day, you fight the battles you can win and flee the ones you can’t. When you are manic, however, you are too stressed to stop and evaluate the danger, so you revert to your default stress response. Even people who are not bipolar may have difficulty evaluating the danger.
-p The BipolarType theory asserts that although you can have more or less difficulty evaluating the danger on different days (Bipolar) your default stress response remains the same (Type).
-p When I am manic, I find it very difficult to stop trying to invest in #{Realm.T.externals} and escape to financial freedom. What is the form of <em>your</em>mania?
+p This type, if bipolar, will have the following bipolar episodes:
+ol
+  li #{@type.realms.first.generic} depression
+  li  #{@type.realms.second.generic} anxiety
+  li #{@type.realms.third.generic} mania
+  li #{@type.realms.fourth.generic} insomnia
+
+p Some people have more depression and anxiety (bipolar II: harder to wake up in the morning without stimulants), others have more  mania and insomnia (bipolar I: harder to fall asleep at night without sedatives).
+
+p Although I was misdiagnosed as Bipolar II for many years, I  actually have much worse mania and insomnia than depression and anxiety. I will eventually start #{Realm.S.output.ing} in the morning, even when I’m depressed, but I can stay up <em>all night</em> when I am manic.
+
+
 hr
-| When I am manic, I find it very difficult to…
+| I find it more difficult to…
 dl
 
-  dt=link_to 'fight', bipolar_path(@type.left)
-  dd stop fleeing from the #{@manic_realm.externals} and fight for domination
+  dt=link_to 'wake up', bipolar_path(@type.left)
+  dd It’s easier for me to stop #{@type.realms.fourth.intake.ing} in the evening; it takes me longer in the morning to start #{@type.realms.first.output.ing}.
 
 
-  dt=link_to 'flee', bipolar_path(@type.right)
-  dd stop fighting with the #{@manic_realm.externals} and escape to freedom
+  dt=link_to 'fall asleep', bipolar_path(@type.right)
+  dd It’s easier for me to start #{@type.realms.first.output.ing} in the morning;  it takes me longer in the evening to stop #{@type.realms.fourth.intake.ing}.

@@ -8,7 +8,7 @@
   =link_to 'insomnia', insomnia_path(@depression || @type.realms.first)
 -if number > 3
   |<> |
-  =link_to 'mania', mania_path(@type.realms.first.path + @type.realms.last.path)
+  =link_to 'stress', stress_path(@type.realms.first.path + @type.realms.last.path)
 -if number > 4
   |<> |
   =link_to 'type', type_path(@bipolar.type)

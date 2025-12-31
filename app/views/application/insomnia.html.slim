@@ -1,24 +1,13 @@
 h2=@title
 
-p The bipolar cycle ends last thing in the evening.
-p On a good day, you fall asleep easily: willing and able to end the day. When you have insomnia, however, you find it difficult to fall asleep without sedatives. Even people who are not bipolar may have difficulty ending the day without alcohol.
+p The daily cycle ends last thing in the evening.
+p On a good day, you fall asleep easily: willing and able to end the day. The worse your insomnia, the harder it is to fall asleep without drugs such as alcohol, sleeping pills, or sedatives. Even if you do not have insomnia, and do not need sedatives to fall asleep, there are still some things that are harder to stop than others.
 p The BipolarType theory asserts that although you can have more or less insomnia on different days (Bipolar) the form of your insomnia remains the same (Type).
 p When I have insomnia, I find it very difficult to stop feeding my #{Realm.N.internal}: I am unwilling or unable to close my eyes and stop watching. What is the form of <em>your</em> insomnia?
 hr
-| I sometimes have to use sedatives before I can stop feeding my…
+| I sometimes find it difficult to stop…
 dl
-  -Realm.without(@depression).each do |realm|
+  -Realm.each do |realm|
     dt
-      =link_to mania_path(@depression.path + realm.path) do
-        =realm.internal
-    dd
-      -case realm
-      -when Realm.S
-        |< eat and digest
-      -when Realm.N
-        |< watch and learn
-      -when Realm.F
-        |< listen and understand
-      -when Realm.T
-        |< earn and collect
-      | , etc. (#{realm.generic} insomnia)
+      =link_to_unless (@depression == realm), realm.intake.ing, stress_path(@depression.path + realm.path)
+    dd let your #{realm.internal} rest and digest what it has #{realm.intaken} (#{realm.generic} insomnia)

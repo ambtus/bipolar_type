@@ -16,8 +16,11 @@ class Realm < Concept
     subtypes.find { |x| x.mood == other }
   end
 
-  def generic = %w[physical mental spiritual material][index]
-  def internal = %w[body mind soul wallet][index]
+  def generic = %w[physical mental social financial][index]
+  def internal = %w[body mind voice credit][index]
+  def intake = %w[eat watch listen earn][index]
+  def intaken = %w[eaten seen heard collected][index]
+  def output = %w[move think talk spend][index]
   def externals = %w[places ideas people tools][index]
   def refuel = ['eat in', 'learn from', 'listen to', 'earn using'][index]
   def rest = ['rest in', 'rest with', 'rest with', 'rest using using'][index]

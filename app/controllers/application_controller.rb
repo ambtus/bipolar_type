@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
     @number = 2
   end
 
-  def mania
+  def stress
     @number = 3
-    @title = 'Daytime Mania'
+    @title = 'Daily Stress'
     @depression, @insomnia = params[:format].chars.map { |x| Realm.find x }
     @possibles = Realm.all - [@depression, @insomnia]
     @first = [@depression, *@possibles.reverse, @insomnia].join

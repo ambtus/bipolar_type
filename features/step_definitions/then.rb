@@ -14,20 +14,20 @@ Then('all internals should be linked') do
   end
 end
 
-Then('three internals should be linked') do
-  Realm.without(Realm.S).map(&:internal).each do |x|
+Then('three intakes should be linked') do
+  Realm.without(Realm.S).map(&:intake).map(&:ing).each do |x|
     expect(page).to have_link(x)
   end
 end
 
 Then('two types should be linked') do
-  %w[spiritual material].each do |x|
+  %w[social financial].each do |x|
     expect(page).to have_link(x)
   end
 end
 
 Then('two bipolars should be linked') do
-  %w[fight flee].each do |x|
+  ['wake up', 'fall asleep'].each do |x|
     expect(page).to have_link(x)
   end
 end
@@ -63,7 +63,7 @@ Then('I should see the third breadcrumb') do
 end
 
 Then('I should see the fourth breadcrumb') do
-  expect(page).to have_link('mania', href: mania_path('SN'))
+  expect(page).to have_link('stress', href: stress_path('SN'))
 end
 
 Then('I should see the fifth breadcrumb') do

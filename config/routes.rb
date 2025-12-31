@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'application#home'
   get '/depression' => 'application#depression'
   get '/insomnia' => 'application#insomnia'
-  get '/mania' => 'application#mania'
+  get '/stress' => 'application#stress'
   resources :types, only: %i[show]
   resources :bipolars, only: %i[show]
   resources :behaviors, only: %i[show index]

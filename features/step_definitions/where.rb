@@ -12,8 +12,8 @@ Given('I am on my insomnia page') do
   visit('/insomnia.S')
 end
 
-Given('I am on my mania page') do
-  visit('/mania.SN')
+Given('I am on my stress page') do
+  visit('/stress.SN')
 end
 
 Given('I am on my type page') do
