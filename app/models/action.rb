@@ -14,7 +14,9 @@ class Action < Concept
 
   def verb = %w[get burn use rebuild][index]
   def noun = string.second == 'p' ? 'energy' : 'strength'
+  def generic = [verb, noun].to_phrase
 
   def adjective = string.second == 'p' ? 'urgent' : 'important'
-  def focus = string.first == 'i' ? 'needs' : 'tasks'
+  def object = string.first == 'i' ? 'needs' : 'tasks'
+  def focus = [adjective, object].to_phrase
 end

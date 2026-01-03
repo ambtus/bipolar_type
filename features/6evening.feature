@@ -1,0 +1,22 @@
+Feature: the evening page
+
+Scenario: gives some personal info
+Given I am on my evening page
+Then I should see 'close my eyes'
+
+Scenario: has a link one realm
+Given I am on my evening page
+Then one realm should be linked
+
+Scenario: has a link to the fifth question
+Given I am on my evening page
+When I follow the 'N' link
+Then I should be on my type page
+
+Scenario: breadcrumbs
+Given I am on my evening page
+Then I should see the first breadcrumb
+  And I should see the second breadcrumb
+  And I should see the third breadcrumb
+  And I should see the fourth breadcrumb
+  And I should see the fifth breadcrumb

@@ -1,0 +1,14 @@
+h2=@title
+
+p #{Action.ep.generic.ing.capitalize} comes after #{Action.ip.generic.ing} and before #{Action.ej.generic.ing} in the BipolarType cycle.
+p Once they have finished focusing on their #{Action.ep.focus}, Extroverts tend to gravitate towards realms in which #{Action.ep.generic.ing} is more invigorating and will help keep them awake. Introverts tend to gravitate towards realms in which #{Action.ep.generic.ing} is more comforting and will help keep them calm.
+p There are four different realms in which you can #{Action.ep.generic}: #{Realm.generics.and}. Extroverts and Introverts can develop energy deficits in the same realm for different reasons.
+p The BipolarType theory asserts that although you will feel more bored or stressed on any given day (Bipolar), the realm in which you have the largest energy deficit remains stable over time (Type).
+p
+  |> Although sometimes I gain hope and sometimes I lose it, overall, my largest energy deficit is in the #{Realm.F.generic} realm as I have a very low self-esteem and constantly struggle with suicidal feelings.
+hr
+p What is your largest energy deficit?
+dl
+  -Realm.each do |realm|
+    dt=link_to_unless @morning == realm, realm.link, afternoon_path(@breadcrumbs + realm.path)
+    dd I #{realm.burn_energy.too_much} when I am #{@breadcrumbs.first == 'i' ? 'stressed' : 'bored'} (#{realm.generic} energy deficit)

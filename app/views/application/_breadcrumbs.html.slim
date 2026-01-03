@@ -1,15 +1,15 @@
--if number.positive?
-  =link_to 'home', root_path
--if number > 1
+-if @breadcrumbs.length.positive?
   |<> |
-  =link_to 'depression', depression_path
--if number > 2
+  =link_to @breadcrumbs.first, basic_path
+-if @breadcrumbs.length > 1
   |<> |
-  =link_to 'insomnia', insomnia_path(@depression || @type.realms.first)
--if number > 3
+  =link_to @breadcrumbs.second, morning_path(@breadcrumbs.first)
+-if @breadcrumbs.length > 2
   |<> |
-  =link_to 'stress', stress_path(@type.realms.first.path + @type.realms.last.path)
--if number > 4
+  =link_to @breadcrumbs.third, midday_path(@breadcrumbs[0, 2])
+-if @breadcrumbs.length > 3
   |<> |
-  =link_to 'type', type_path(@bipolar.type)
-
+  =link_to @breadcrumbs.fourth, afternoon_path(@breadcrumbs[0, 3])
+-if @breadcrumbs.length > 4
+  |<> |
+  =link_to @breadcrumbs.fifth, evening_path(@breadcrumbs)

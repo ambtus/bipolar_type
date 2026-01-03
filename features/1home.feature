@@ -18,5 +18,5 @@ Then 'falsifiable' should link to wikipedia
 
 Scenario: has a link to the first question
 Given I am on the homepage
-When I follow the 'Morning Depression' link
-Then I should be on the depression page
+When I follow the 'Basic personality' link
+Then I should be on the basic page

@@ -14,7 +14,7 @@ class Subtype < Concept
   def realm = Realm.all.find { |x| string.match x.string }
   def mood = Mood.all.find { |x| string.match x.string }
 
-  def self.bipolars = all.select { |x| x.mood.vertical? }
+  def self.types = all.select { |x| x.mood.vertical? }
 
   %i[previous next opposite flip flop].each do |sym|
     define_method(sym) { realm + mood.send(sym) }
@@ -29,4 +29,8 @@ class Subtype < Concept
   end
 
   def manic? = (mood == Mood.e)
+
+  def generic = mood.generic.words.insert(-2, realm.generic).to_phrase
+
+  def title = [string.colon, generic].to_phrase
 end

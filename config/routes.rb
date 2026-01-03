@@ -2,11 +2,12 @@
 
 Rails.application.routes.draw do
   root 'application#home'
-  get '/depression' => 'application#depression'
-  get '/insomnia' => 'application#insomnia'
-  get '/stress' => 'application#stress'
+  get '/basic' => 'application#basic'
+  get '/morning' => 'application#morning'
+  get '/midday' => 'application#midday'
+  get '/afternoon' => 'application#afternoon'
+  get '/evening' => 'application#evening'
   resources :types, only: %i[show]
-  resources :bipolars, only: %i[show]
   resources :behaviors, only: %i[show index]
-  get '/me' => 'bipolars#me', as: :my
+  get '/me' => 'types#me', as: :my
 end

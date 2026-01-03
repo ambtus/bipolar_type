@@ -1,0 +1,14 @@
+h2=@title
+
+p #{Action.ej.generic.ing.capitalize} comes after #{Action.ep.generic.ing} and before #{Action.ij.generic.ing} in the BipolarType cycle.
+p Once they have finished focusing on their #{Action.ej.focus}, Extroverts tend to gravitate towards realms in which #{Action.ej.generic.ing} is more invigorating and will help keep them awake. Introverts tend to gravitate towards realms in which #{Action.ej.generic.ing} is more comforting and will help keep them calm.
+p There are four different realms in which you can #{Action.ej.generic}: #{Realm.generics.and}. Extroverts and Introverts can overuse strength in the same realm for different reasons.
+p The BipolarType theory asserts that although you will feel more bored or stressed on any given afternoon (Bipolar), the realm in which you overuse the most strength remains stable over time (Type).
+p
+  |> Although sometimes I use more credit and sometimes I use less, overall, my largest strain is in the #{Realm.T.generic} realm and there was a time in my life where I was seriously indebted and unable to meet my financial obligations without help.
+hr
+p What is your largest strain?
+dl
+  -Realm.each do |realm|
+    dt=link_to_unless @realms.include?(realm), realm.link, evening_path(@breadcrumbs + realm.path)
+    dd I #{realm.use_strength.too_much} when I am #{@breadcrumbs.first == 'i' ? 'stressed' : 'bored'} (#{realm.generic} strain)

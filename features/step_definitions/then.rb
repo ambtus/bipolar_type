@@ -8,44 +8,44 @@ Then('{string} should link to {word}') do |string, word|
   expect(page).to have_link(string, href: /#{word}/)
 end
 
-Then('all internals should be linked') do
-  Realm.all.map(&:internal).each do |x|
-    expect(page).to have_link(x)
-  end
-end
-
-Then('three intakes should be linked') do
-  Realm.without(Realm.S).map(&:intake).map(&:ing).each do |x|
-    expect(page).to have_link(x)
-  end
-end
-
 Then('two types should be linked') do
-  %w[social financial].each do |x|
+  %w[i e].each do |x|
     expect(page).to have_link(x)
   end
 end
 
-Then('two bipolars should be linked') do
-  ['wake up', 'fall asleep'].each do |x|
+Then('all realms should be linked') do
+  Realm.each do |x|
+    expect(page).to have_link(x.link)
+  end
+end
+
+Then('three realms should be linked') do
+  Realm.without(Realm.S).each do |x|
+    expect(page).to have_link(x.link)
+  end
+end
+
+Then('two realms should be linked') do
+  ['N', 'T'].each do |x|
     expect(page).to have_link(x)
   end
 end
 
 Then('my moods should be listed') do
-  Bipolar.mine.subtypes.each do |x|
+  Type.mine.subtypes.each do |x|
     expect(page).to have_text(x.link)
   end
 end
 
 Then('my dos should be linked') do
-  Bipolar.mine.dos.each do |x|
+  Type.mine.dos.each do |x|
     expect(page).to have_link(x.link)
   end
 end
 
 Then('my donts should be linked') do
-  Bipolar.mine.donts.each do |x|
+  Type.mine.donts.each do |x|
     expect(page).to have_link(x.link)
   end
 end
@@ -55,19 +55,23 @@ Then('I should see the first breadcrumb') do
 end
 
 Then('I should see the second breadcrumb') do
-  expect(page).to have_link('depression', href: depression_path)
+  expect(page).to have_link('i', href: basic_path)
 end
 
 Then('I should see the third breadcrumb') do
-  expect(page).to have_link('insomnia', href: insomnia_path('S'))
+  expect(page).to have_link('S', href: morning_path('i'))
 end
 
 Then('I should see the fourth breadcrumb') do
-  expect(page).to have_link('stress', href: stress_path('SN'))
+  expect(page).to have_link('F', href: midday_path('iS'))
 end
 
 Then('I should see the fifth breadcrumb') do
-  expect(page).to have_link('type', href: type_path(Bipolar.mine.type.path))
+  expect(page).to have_link('T', href: afternoon_path('iSF'))
+end
+
+Then('I should see the sixth breadcrumb') do
+  expect(page).to have_link('N', href: evening_path('iSFT'))
 end
 
 Then('I should see a generic description') do

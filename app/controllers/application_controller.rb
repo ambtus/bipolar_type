@@ -1,25 +1,21 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :set_breadcrumbs, except: %i[home basic]
+  before_action :set_title, except: %i[home basic]
+
   def home = (@title = 'Introduction')
 
-  def depression
-    (@title = 'Morning Depression'
-     @number = 1)
-  end
+  def basic = (@title = 'Basic personality types')
 
-  def insomnia
-    @title = 'Evening Insomnia'
-    @depression = Realm.find params[:format]
-    @number = 2
-  end
+  def midday = (@morning = Realm.find(@breadcrumbs.second))
 
-  def stress
-    @number = 3
-    @title = 'Daily Stress'
-    @depression, @insomnia = params[:format].chars.map { |x| Realm.find x }
-    @possibles = Realm.all - [@depression, @insomnia]
-    @first = [@depression, *@possibles.reverse, @insomnia].join
-    @second = [@depression, *@possibles, @insomnia].join
-  end
+  def afternoon = (@realms = @breadcrumbs.chip.chars.collect { |x| Realm.find x })
+
+  def evening = (@realms = @breadcrumbs.chip.chars.collect { |x| Realm.find x })
+
+  private
+
+  def set_breadcrumbs = (@breadcrumbs = params[:format])
+  def set_title = (@title = action_name.capitalize)
 end

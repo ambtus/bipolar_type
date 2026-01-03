@@ -4,20 +4,28 @@ Given 'I am on the homepage' do
   visit('/')
 end
 
-Given('I am on the depression page') do
-  visit('/depression')
+Given('I am on the basic page') do
+  visit('/basic')
 end
 
-Given('I am on my insomnia page') do
-  visit('/insomnia.S')
+Given('I am on my morning page') do
+  visit('/morning.i')
 end
 
-Given('I am on my stress page') do
-  visit('/stress.SN')
+Given('I am on my midday page') do
+  visit('/midday.iS')
 end
 
-Given('I am on my type page') do
-  visit type_path(Bipolar.mine.type.path)
+Given('I am on my afternoon page') do
+  expect(page).to have_current_path('/afternoon.iSF')
+end
+
+Then('I should be on my afternoon page') do
+  visit('/afternoon.iSF')
+end
+
+Given('I am on my evening page') do
+  visit('/evening.iSFT')
 end
 
 Given('I am on my bipolar page') do
@@ -41,25 +49,21 @@ Then('I should be on the {word} page') do |word|
 end
 
 Then('I should be on my type page') do
-  expect(page).to have_current_path type_path(Bipolar.mine.type.path)
-end
-
-Then('I should be on my bipolar page') do
-  expect(page).to have_current_path bipolar_path(Bipolar.mine.path)
+  expect(page).to have_current_path type_path(Type.mine.path)
 end
 
 Then('I should be on my sibling page') do
-  expect(page).to have_current_path bipolar_path(Bipolar.mine.sibling.path)
+  expect(page).to have_current_path type_path(Type.mine.sibling.path)
 end
 
 Then('I should be on my similar page') do
-  expect(page).to have_current_path bipolar_path(Bipolar.mine.similar.path)
+  expect(page).to have_current_path type_path(Type.mine.similar.path)
 end
 
 Then('I should be on my different page') do
-  expect(page).to have_current_path bipolar_path(Bipolar.mine.different.path)
+  expect(page).to have_current_path type_path(Type.mine.different.path)
 end
 
 Then('I should be on my mimic page') do
-  expect(page).to have_current_path bipolar_path(Bipolar.mine.mimic.path)
+  expect(page).to have_current_path type_path(Type.mine.mimic.path)
 end

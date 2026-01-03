@@ -133,7 +133,7 @@ class String
              foods places music carbs art facts cash plans
              currency procedures words protein rules shoulds
              morals credit hunting gathering weights actions
-             structure salary wages marathons pictures].freeze
+             structure salary wages marathons pictures logic].freeze
   ADJECTIVES = %w[flee fight rest digest refuel
                   anorexic depressed manic energetic strong obese
                   goal-oriented empty hyperactive
@@ -479,14 +479,14 @@ class String
   def more
     if match('(.*) a (.*)')
       [::Regexp.last_match(1), 'more', ::Regexp.last_match(2).pluralize].to_phrase
-    elsif noun?
-      "more #{self}"
     elsif match?(' ')
       if last_words.words.first == 'good'
         [first_words, 'better', last_words.delete_prefix('good')].to_phrase
       else
-        [first_words, 'more', last_words].to_phrase
+        [first_words, last_words.more].to_phrase
       end
+    elsif noun?
+      "more #{self}"
     else
       "#{self} more"
     end

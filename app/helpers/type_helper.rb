@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module BipolarHelper
+module TypeHelper
   def link(behavior, color)
     link_to behavior.link, behavior_path(behavior.path, format: color)
   end

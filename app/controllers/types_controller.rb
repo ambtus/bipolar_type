@@ -2,10 +2,13 @@
 
 class TypesController < ApplicationController
   def show
-    @number = 4
     @type = Type.find params[:id]
-    @title = "#{@type.title} Type"
-    @manic_realm = @type.realms.third
-    render 'type'
+    @title = @type.title
+    @breadcrumbs = @type.breadcrumbs
+    render @type.basic
+  end
+
+  def me
+    redirect_to action: 'show', id: Type.mine.path
   end
 end

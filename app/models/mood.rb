@@ -19,6 +19,5 @@ class Mood < Concept
 
   def horizontal? = index.even?
 
-  def adjective = ['short term', 'external', 'long term', 'internal'][index]
-  def generic = [adjective, 'focus'].to_phrase
+  def generic = ['urgent, short term focus', 'external tasks', 'important, long term focus', 'internal needs'][index]
 end

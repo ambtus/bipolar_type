@@ -1,0 +1,12 @@
+h2=@title
+
+p #{Action.ij.generic.ing.capitalize} comes after #{Action.ej.generic.ing} and before sleeping in the BipolarType cycle.
+p Once they have finished focusing on their #{Action.ij.focus}, Extroverts tend to gravitate towards realms in which #{Action.ij.generic.ing} is more invigorating and will help keep them awake. Introverts tend to gravitate towards realms in which #{Action.ij.generic.ing} is more comforting and will help keep them fall asleep.
+p There are four different realms in which you can #{Action.ij.generic}: #{Realm.generics.and}. Extroverts and Introverts can consume excess strengtheners in the same realm for different reasons.
+p The BipolarType theory asserts that although you will feel more bored or stressed on any given evening (Bipolar), the realm in which you consime the most strengtheners remains stable over time (Type).
+hr
+p What is your strongest realm?
+dl
+  -Realm.each do |realm|
+    dt=link_to_unless @realms.include?(realm), realm.link, type_path(@breadcrumbs + realm.path)
+    dd I #{realm.rebuild_strength.too_much} when I am #{@breadcrumbs.first == 'i' ? 'stressed' : 'bored'} (#{realm.generic} #{@breadcrumbs.first == 'i' ? 'insomnia' : 'lethargy'} )

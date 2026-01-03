@@ -24,7 +24,7 @@ class Behavior < Concept
     define_method(sym) { realm + action.send(sym) }
   end
 
-  def types = Bipolar.select { |x| x.donts.include?(self) }
+  def types = Type.select { |x| x.donts.include?(self) }
   def moods = action.moods.add(realm)
 
   def examples = File.readlines("examples/#{string}", chomp: true)
@@ -54,4 +54,8 @@ class Behavior < Concept
   end
 
   def title(green: nil) = [string.colon, prefix(green: green), generic].to_phrase
+
+  def underscore = [action.verb, action.noun].join('_')
+
+  def specific = realm.send(underscore)
 end

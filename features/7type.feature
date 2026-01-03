@@ -39,3 +39,4 @@ Then I should see the first breadcrumb
   And I should see the third breadcrumb
   And I should see the fourth breadcrumb
   And I should see the fifth breadcrumb
+  And I should see the sixth breadcrumb

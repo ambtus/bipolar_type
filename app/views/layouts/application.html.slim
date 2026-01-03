@@ -15,9 +15,9 @@ html lang="en"
       a.external:visited {color: dimgrey; text-decoration: none;}
       a.external:hover {text-decoration: underline;}
 
-      dl { display: grid; grid-template-columns: max-content auto;}
-      dt { grid-column-start: 1;}
-      dt:after { content: ': ' }
+      dl { display: grid; grid-template-columns: 1em auto;}
+      dt { grid-column-start: 1; text-align: right}
+      /dt:after { content: ': ' }
       dd { grid-column-start: 2;}
 
       ul { padding: 0; margin: 0; list-style-type: none; }
@@ -27,11 +27,9 @@ html lang="en"
       td.behaviors { text-align: left; width: 25%}
 
   body
-
-    =render 'breadcrumbs', number: @number || 0
-
-    -if alert
-      p.center#alert= alert
+    -unless action_name == 'home'
+      =link_to 'home', root_path
+    =render 'breadcrumbs' if @breadcrumbs
 
     =yield
 
@@ -39,20 +37,18 @@ html lang="en"
       hr
       =link_to_unless_current 'home', root_path
       |<> |
-      =link_to_unless_current 'depression', depression_path
+      =link_to_unless_current 'my type', type_path(Type.mine.path)
       |<> |
-      =link_to_unless_current 'my insomnia', insomnia_path(:S)
+      =link_to_unless_current 'my sibling', type_path('eFTNS')
       |<> |
-      =link_to_unless_current 'my stress', stress_path(:SN)
+      =link_to_unless_current 'my similar', type_path('eTNSF')
       |<> |
-      =link_to_unless_current 'my type', type_path(Bipolar.mine.type.path)
-      |<> |
-      =link_to_unless_current 'my bipolar type', bipolar_path(Bipolar.mine.path)
+      =link_to_unless_current 'my different', type_path('eSFTN')
       |<> |
       =link_to_unless_current 'a behavior', behavior_path(Behavior.first.path)
       |<> |
       =link_to_unless_current 'all behaviors', behaviors_path
       br
-      | params: #{params}
+      | breadcrumbs: #{@breadcrumbs}
       br
-      | cookies: #{cookies.to_h}
+      | params: #{params}
