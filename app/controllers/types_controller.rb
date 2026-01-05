@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class TypesController < ApplicationController
+
+  def index = (@title = Type.title)
+
   def show
     @type = Type.find params[:id]
     @title = @type.title
     @breadcrumbs = @type.breadcrumbs
-    render @type.basic
+    render @type.render
   end
 
   def me

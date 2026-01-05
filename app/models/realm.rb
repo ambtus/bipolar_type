@@ -16,10 +16,12 @@ class Realm < Concept
     subtypes.find { |x| x.mood == other }
   end
 
-  def title = [string.colon, generic].to_phrase
+  def self.measurable = [self.S, self.T]
+  def self.unmeasurable = [self.N, self.F]
 
   def generic = %w[physical mental spiritual material][index]
-  def internal = %w[body mind voice credit][index]
+  def focus = %w[food truth love shelter][index]
+  def internal = %w[body mind soul credit][index]
   def intake = %w[eat watch listen earn][index]
   def intaken = %w[eaten seen heard collected][index]
   def output = %w[move think communicate buy][index]
@@ -28,10 +30,11 @@ class Realm < Concept
   def rest = ['rest in', 'rest with', 'rest with', 'rest using using'][index]
 
   def get_energy = ['eat carbs', 'research facts', 'listen to music', 'collect wages'][index]
-  def burn_energy = ['walk', 'guess', 'cry', 'spend cash'][index]
+  def burn_energy = ['walk', 'think', 'talk', 'spend cash'][index]
   def strength = %w[ muscles logic words credit][index]
   def use_strength = "use #{strength}"
-  def rebuild_strength = ['eat protein', 'watch the results', 'listen to words', 'collect a stable income'][index]
+  def rest_strength = ['eat protein', 'watch the results', 'listen to words', 'collect ROI'][index]
 
   def self.pp_order = ALL.values_at(2, 0, 3, 1)
+  def self.focus_order = ALL.values_at(0, 3, 1, 2)
 end

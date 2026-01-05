@@ -1,12 +1,20 @@
 h2=@title
 
-p #{Action.ij.generic.ing.capitalize} comes after #{Action.ej.generic.ing} and before sleeping in the BipolarType cycle.
-p Once they have finished focusing on their #{Action.ij.focus}, Extroverts tend to gravitate towards realms in which #{Action.ij.generic.ing} is more invigorating and will help keep them awake. Introverts tend to gravitate towards realms in which #{Action.ij.generic.ing} is more comforting and will help keep them fall asleep.
-p There are four different realms in which you can #{Action.ij.generic}: #{Realm.generics.and}. Extroverts and Introverts can consume excess strengtheners in the same realm for different reasons.
-p The BipolarType theory asserts that although you will feel more bored or stressed on any given evening (Bipolar), the realm in which you consime the most strengtheners remains stable over time (Type).
+p #{Action.ij.generic.ing.capitalize} #{Action.ij.link.wrap} is the fourth and last action in the BipolarType cycle. I call it the Evening phase but it is also the weekend, new moon, winter, and elder phase.
+p After the fight is over, assuming you have won, it is time to rest on your laurels and reap your rewards. If you rest too much, however, your strengths will atrophy and become weak and flabby.
+p The BipolarType theory asserts that some evenings you will rest more and some evenings you will rest less (Bipolar) but when you do rest too much, it will always be in the same realm (Type).
+
 hr
-p What is your strongest realm?
+p.center What is your Evening type?
 dl
-  -Realm.each do |realm|
-    dt=link_to_unless @realms.include?(realm), realm.link, type_path(@breadcrumbs + realm.path)
-    dd I #{realm.rebuild_strength.too_much} when I am #{@breadcrumbs.first == 'i' ? 'stressed' : 'bored'} (#{realm.generic} #{@breadcrumbs.first == 'i' ? 'insomnia' : 'lethargy'} )
+  -Realm.without(@realms).each do |realm|
+    dt=link_to "i#{realm.link}j", type_path(@breadcrumbs.join + realm.path)
+    dd
+      |> I become #{realm.generic.ly} weak
+      -if @breadcrumbs.first == 'e'
+        | when I am no longer bored
+      -else
+        | when I am no longer stressed
+
+p
+  |> If this does not seem right, you can try a different answer for one of the breadcrumb links at the top of the page.

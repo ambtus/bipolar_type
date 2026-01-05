@@ -1,16 +1,39 @@
 h2=@title
 
-p BipolarType defines extraverted as days where it is hard to wake up and stay awake. The more extroverted you are, the more difficult it is to be awake during the day without stimulants such as caffeine or risk-seeking behaviors.
-p BipolarType defines introverted as nights where it is hard to fall asleep and stay asleep. The more introverted you are, the more difficult it is to be asleep at night without sedatives such as alcohol or risk-averse behaviors.
+p The more extroverted you are, the more you crave stimulants such as caffeine or risk-seeking behaviors in order to remain alert and not so bored that you sleep all day.
+p The more introverted you are, the more you crave sedatives such as alcohol or risk-averse behaviors in order to remain calm and not so stressed that you stay awake all night.
 p
-  |> The BipolarType theory asserts that although you can be more extroverted or introverted at any given time (Bipolar), your
-  =link_to 'basic personality', 'https://en.wikipedia.org/wiki/Extraversion_and_introversion', class: :external
+  |> The BipolarType theory asserts that although you are more extroverted or introverted on different days (Bipolar), your
+  =link_to 'basic personality type', 'https://en.wikipedia.org/wiki/Extraversion_and_introversion', class: :external
   |< remains stable over time (Type).
-p I am an Introvert: I have more nights where I cannot fall or stay asleep and want sedatives (often) than days where I cannot wake up or stay awake and want stimulants (rarely). On the whole, I am more risk-averse than risk-seeking.
 hr
-p What is your basic personality?
-dl
-  dt=link_to 'e', morning_path('e')
-  dd more risk-seeking; more difficulty waking up in the morning (extroverted)
-  dt=link_to 'i', morning_path('i')
-  dd more risk-averse; more difficulty falling asleep in the evening (introverted)
+p.center What is your basic personality type?
+table
+  tr
+    td.right
+    th=link_to Mood.e.title, morning_path('e')
+    th=link_to Mood.i.title, morning_path('i')
+  tr
+    td.right I want to feel
+    td.bordered stimulated and entertained
+    td.bordered safe and protected
+  tr
+    td.right I am more
+    td.bordered risk-seeking
+    td.bordered risk-averse
+  tr
+    td.right I am more apt to feel
+    td.bordered bored than stressed
+    td.bordered stressed than bored
+  tr
+    td.right I prefer an environment that is
+    td.bordered more interesting
+    td.bordered calmer
+  tr
+    td.right It is easier for me to
+    td.bordered fall asleep
+    td.bordered wake up
+  tr
+    td.right I find it harder to go without my
+    td.bordered morning cuppa<br >(caffeine)
+    td.bordered evening nightcap<br >(alcohol)

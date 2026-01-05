@@ -1,14 +1,21 @@
 h2=@title
 
-p #{Action.ej.generic.ing.capitalize} comes after #{Action.ep.generic.ing} and before #{Action.ij.generic.ing} in the BipolarType cycle.
-p Once they have finished focusing on their #{Action.ej.focus}, Extroverts tend to gravitate towards realms in which #{Action.ej.generic.ing} is more invigorating and will help keep them awake. Introverts tend to gravitate towards realms in which #{Action.ej.generic.ing} is more comforting and will help keep them calm.
-p There are four different realms in which you can #{Action.ej.generic}: #{Realm.generics.and}. Extroverts and Introverts can overuse strength in the same realm for different reasons.
-p The BipolarType theory asserts that although you will feel more bored or stressed on any given afternoon (Bipolar), the realm in which you overuse the most strength remains stable over time (Type).
-p
-  |> Although sometimes I use more credit and sometimes I use less, overall, my largest strain is in the #{Realm.T.generic} realm and there was a time in my life where I was seriously indebted and unable to meet my financial obligations without help.
+p #{Action.ej.generic.ing.capitalize} #{Action.ej.link.wrap} is the third action in the BipolarType cycle. I call it the Afternoon phase but it is also the Friday, waning moon, autumn, and adult phase.
+p It is also the start of the second half of the cycle. By this point the introverts have escaped their stress and the extroverts have escaped their boredom. Or they would not have moved on to the third phase and would still be getting and using energy.
+p The BipolarType theory asserts that some afternoons you will use more strength and some afternoons you will use less (Bipolar) but when you do use too much strength, it will always be in the same realm (Type).
+
 hr
-p What is your largest strain?
+p.center What is your Afternoon type?
 dl
-  -Realm.each do |realm|
-    dt=link_to_unless @realms.include?(realm), realm.link, evening_path(@breadcrumbs + realm.path)
-    dd I #{realm.use_strength.too_much} when I am #{@breadcrumbs.first == 'i' ? 'stressed' : 'bored'} (#{realm.generic} strain)
+  -Realm.without(@realms).each do |realm|
+    dt=link_to "e#{realm.link}j", evening_path(@breadcrumbs.join + realm.path)
+    dd
+      |> I #{realm.use_strength.too_much}
+      -if @breadcrumbs.first == 'e'
+        | when I am no longer bored
+      -else
+        | when I am no longer stressed
+
+p
+  |> If neither of these seem right, you can try a different answer for one of the breadcrumb links at the top of the page.
+

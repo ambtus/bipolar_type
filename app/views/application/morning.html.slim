@@ -1,17 +1,26 @@
 h2=@title
 
-p #{Action.ip.generic.ing.capitalize} comes after sleeping and before #{Action.ep.generic.ing} in the BipolarType cycle.
-p Once they have finished focusing on their #{Action.ip.focus}, Extroverts tend to gravitate towards realms in which #{Action.ip.generic.ing} is more invigorating and will help keep them awake. Introverts tend to gravitate towards realms in which #{Action.ip.generic.ing} is more comforting and will help keep them calm.
-p There are four different realms in which you can #{Action.ip.generic}: #{Realm.generics.and}. Extroverts and Introverts can develop energy surpluses in the same realm for different reasons.
-p The BipolarType theory asserts that although you will feel more bored or stressed on any given morning (Bipolar), the realm in which you have the largest energy surplus remains stable over time (Type).
-p
-  |> Although sometimes I lose weight and sometimes I gain it, overall, my largest energy surplus is in the physical realm as I have a
-  =link_to 'binge eating disorder', 'https://en.wikipedia.org/wiki/Binge_eating_disorder', class: :external
-  |  and constantly struggle with physical obesity.
+p #{Action.ip.generic.ing.capitalize} #{Action.ip.link.wrap} is the first action in the cycle. I call it the Morning phase as the BipolarType behavioral treatments need to be performed daily, but it is also the Monday, waxing, spring, and child phase.
+
+p The BipolarType theory asserts that some mornings you will get more energy and some mornings you will get less (Bipolar) but when you do get too much energy, it will always be in the same realm (Type).
 
 hr
-p What is your largest energy surplus?
+p.center id='question' What is your Morning type?
 dl
   -Realm.each do |realm|
-    dt=link_to realm.link, midday_path(@breadcrumbs + realm.path)
-    dd I #{realm.get_energy.too_much} when I am #{@breadcrumbs == 'i' ? 'stressed' : 'bored'} (#{realm.generic} energy surplus)
+    dt=link_to "i#{realm.link}p", midday_path(@breadcrumbs.join + realm.path)
+    dd
+      |> I #{realm.get_energy.too_much}
+      -if @breadcrumbs.include?('e')
+        | when I am bored
+      -else
+        | when I am stressed
+
+p
+  |> If none of these seem right, you may not be a Bipolartype #{@breadcrumbs.first}: try
+  -if @breadcrumbs.include?('e')
+    =link_to 'i', morning_path('i', anchor: 'question')
+  -else
+    =link_to 'e', morning_path('e', anchor: 'question')
+  | .
+

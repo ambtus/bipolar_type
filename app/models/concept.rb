@@ -36,6 +36,8 @@ class Concept
     symbol == other.symbol
   end
 
+  def title = "#{string}: #{generic}"
+
   def previous = self.class.rotate(-1)[index]
   def next = self.class.rotate[index]
   def opposite = self.class.rotate(2)[index]

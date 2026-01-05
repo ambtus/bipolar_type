@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/midday' => 'application#midday'
   get '/afternoon' => 'application#afternoon'
   get '/evening' => 'application#evening'
-  resources :types, only: %i[show]
+  resources :types, only: %i[show index]
   resources :behaviors, only: %i[show index]
   get '/me' => 'types#me', as: :my
 end

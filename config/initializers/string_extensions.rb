@@ -96,11 +96,22 @@ class String
   def and_to_or = gsub(' and ', ' or ')
   def break_before_wrap = gsub(' (', '<br />(').html_safe
 
+  SYMBOLS = %w[I E S N T F J P]
+
   MBTIS = %w[ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ
              ESTP ESFP ENTP ENFP
              ESTJ ESFJ ENTJ ENFJ].freeze
   def is_mbti? = MBTIS.include?(self)
+
+  def make_mbti
+    first_try = (self.upcase.chars & SYMBOLS).join
+    return first_try if first_try.is_mbti?
+
+    second_try = first_try.chars.values_at(0,2,1,3).join
+
+    first_try.is_mbti? ? first_try : nil
+  end
 
   def dominant
     return chars.values_at(0, 2, 3).join if match(/I..P/) || match(/E..J/)
@@ -133,7 +144,7 @@ class String
              foods places music carbs art facts cash plans
              currency procedures words protein rules shoulds
              morals credit hunting gathering weights actions
-             structure salary wages marathons pictures logic].freeze
+             structure salary wages marathons pictures logic muscles].freeze
   ADJECTIVES = %w[flee fight rest digest refuel
                   anorexic depressed manic energetic strong obese
                   goal-oriented empty hyperactive
@@ -445,7 +456,9 @@ class String
       return "#{self} too much" if match(connector)
     end
     if match?(' ')
-      if last_words.noun?
+      if first_word == 'use'
+        ['overuse and strain my', last_words].to_phrase
+      elsif last_words.noun?
         [first_words, last_words.too_much].join(' ')
       else
         [first_words, 'too', last_words.last.much, last_words].join(' ')

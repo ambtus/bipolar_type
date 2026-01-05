@@ -1,14 +1,21 @@
 h2=@title
 
-p #{Action.ep.generic.ing.capitalize} comes after #{Action.ip.generic.ing} and before #{Action.ej.generic.ing} in the BipolarType cycle.
-p Once they have finished focusing on their #{Action.ep.focus}, Extroverts tend to gravitate towards realms in which #{Action.ep.generic.ing} is more invigorating and will help keep them awake. Introverts tend to gravitate towards realms in which #{Action.ep.generic.ing} is more comforting and will help keep them calm.
-p There are four different realms in which you can #{Action.ep.generic}: #{Realm.generics.and}. Extroverts and Introverts can develop energy deficits in the same realm for different reasons.
-p The BipolarType theory asserts that although you will feel more bored or stressed on any given day (Bipolar), the realm in which you have the largest energy deficit remains stable over time (Type).
-p
-  |> Although sometimes I gain hope and sometimes I lose it, overall, my largest energy deficit is in the #{Realm.F.generic} realm as I have a very low self-esteem and constantly struggle with suicidal feelings.
+p #{Action.ep.generic.ing.capitalize} #{Action.ep.link.wrap} is the second action in the cycle. I call it the Midday phase but it is also the midweek, full moon, summer, and adolescent phase.
+p The BipolarType theory asserts that some days you will burn more energy and some days you will burn less (Bipolar) but when you do burn too much energy, it will always be in the same realm (Type).
+
+
 hr
-p What is your largest energy deficit?
+p.center What is your Midday type?
 dl
-  -Realm.each do |realm|
-    dt=link_to_unless @morning == realm, realm.link, afternoon_path(@breadcrumbs + realm.path)
-    dd I #{realm.burn_energy.too_much} when I am #{@breadcrumbs.first == 'i' ? 'stressed' : 'bored'} (#{realm.generic} energy deficit)
+  -Realm.without(@realms).each do |realm|
+    dt=link_to "e#{realm.link}p", afternoon_path(@breadcrumbs.join + realm.path)
+    dd
+      |> I #{realm.burn_energy.too_much}
+      -if @breadcrumbs.first == 'e'
+        | when I am bored
+      -else
+        | when I am stressed
+
+p
+  |> If none of these seem right, you may not be an i#{@realms.first}p as BipolarType defines it; try
+  =link_to 'again', morning_path(@breadcrumbs.first, anchor: 'question')

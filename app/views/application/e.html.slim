@@ -1,50 +1,44 @@
 table
   tr
     th
-    td
-      =red @type.e.ep
-      br
-      =@type.e.realm.generic.ly
-      br
-      | anorexic
+    td=red @type.e.ep
     td=yellow @type.e
     td=green @type.e.ej
     th
   tr
     td=green @type.p.ep
     th colspan=3
-    td
-      =red @type.j.ej
-      br
-      =@type.j.realm.generic
-      br
-      | skinny
-
+    td=red @type.j.ej
   tr
     td=yellow @type.p
     th colspan=3 &orarr;
     td=yellow @type.j
   tr
-    td
-      =red @type.p.ip
-      br
-      =@type.p.realm.generic.ly
-      br
-      | fat
+    td=red @type.p.ip
     th colspan=3
     td=green @type.j.ij
   tr
     th
     td=green @type.i.ip
     td=yellow @type.i
-    td
-      =red @type.i.ij
-      br
-      =@type.i.realm.generic.ly
-      br
-      | obese
+    td=red @type.i.ij
     th
 
-p.center.larger=@type.title[0,4]
-
-p.center.larger=@type.title[4,4]
+p.center.larger=@type.first
+p.center #{@type.e.realm.generic.ly} anorexic
+ol
+  li Don’t #{@type.e.realm.output} just because it’s midday. Wait until after you have #{@type.e.realm.intake.en} and you have an actual #{@type.e.realm.generic} task.
+  li When you feel bored, #{@type.e.ej.specific}. It will make you feel just as good, but you won’t #{@type.e.realm.output} as much (even if other people would #{@type.e.realm.output.more}).
+p.center #{@type.p.realm.generic.ly} obese
+ol
+  li Do #{@type.p.ep.specific} every day, especially in the spring and during a waxing moon and on Monday and if you are still a child. And after you have #{@type.p.ip.specific.too_much.en} and feel #{@type.p.realm.generic.ly} restless.
+  li As soon as you start to feel bored, flee the #{@type.p.realm.externals}. Don’t wait until you are so bored you start to fall asleep. If you do, start #{@type.p.ep.specific.ing} as soon as you wake up.
+p.center.larger=@type.second
+p.center #{@type.i.realm.generic.ly} weak
+ol
+  li Don’t #{@type.i.realm.intake} just because you’re no longer bored. Wait until after you have #{@type.i.realm.output.en} and you have an actual #{@type.i.realm.generic} need.
+  li When you do #{@type.i.realm.intake}, #{@type.i.ip.specific}. It will make you feel just as good, but you won’t #{@type.i.realm.intake} as much (even if other people would #{@type.i.realm.intake.more}).
+p.center #{@type.j.realm.generic.ly} strained
+ol
+  li Do #{@type.j.ij.specific} every evening, especially in the autumn and during a waning moon and on Friday and after you become an adult. And after you have #{@type.j.realm.output.en.too_much} and feel #{@type.j.realm.generic.ly} tired.
+  li As soon as you start to feel stressed, #{@type.j.ij.specific}. Don’t wait until you are so stressed you start straining your #{@type.j.realm.strength}. If you do, #{@type.j.ij.specific.more} as soon as you stop.

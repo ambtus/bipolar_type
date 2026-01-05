@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Subtype < Concept
-  SYMBOLS = Realm.pp_order.collect do |realm|
+  SYMBOLS = Realm.all.collect do |realm|
     Mood.all.collect do |mood|
       mood.horizontal? ? (realm.string + mood.string) : (mood.string + realm.string)
     end.map(&:to_sym)
@@ -31,6 +31,4 @@ class Subtype < Concept
   def manic? = (mood == Mood.e)
 
   def generic = mood.generic.words.insert(-2, realm.generic).to_phrase
-
-  def title = [string.colon, generic].to_phrase
 end

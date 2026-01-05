@@ -12,7 +12,7 @@ class Action < Concept
 
   def moods = Mood.select { |x| string.chars.include?(x.string) }
 
-  def verb = %w[get burn use rebuild][index]
+  def verb = %w[get burn use rest][index]
   def noun = string.second == 'p' ? 'energy' : 'strength'
   def generic = [verb, noun].to_phrase
 

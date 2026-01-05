@@ -8,14 +8,13 @@ class ApplicationController < ActionController::Base
 
   def basic = (@title = 'Basic personality types')
 
-  def midday = (@morning = Realm.find(@breadcrumbs.second))
-
-  def afternoon = (@realms = @breadcrumbs.chip.chars.collect { |x| Realm.find x })
-
-  def evening = (@realms = @breadcrumbs.chip.chars.collect { |x| Realm.find x })
-
   private
 
-  def set_breadcrumbs = (@breadcrumbs = params[:format])
+  def set_breadcrumbs
+    return unless params[:format].is_a? String
+
+    @realms = params[:format].chip.chars.collect { |x| Realm.find x }
+    @breadcrumbs = [params[:format].first, *@realms]
+  end
   def set_title = (@title = action_name.capitalize)
 end

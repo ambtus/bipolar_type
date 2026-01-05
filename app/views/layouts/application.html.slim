@@ -15,7 +15,7 @@ html lang="en"
       a.external:visited {color: dimgrey; text-decoration: none;}
       a.external:hover {text-decoration: underline;}
 
-      dl { display: grid; grid-template-columns: 1em auto;}
+      dl { display: grid; grid-template-columns: auto auto;}
       dt { grid-column-start: 1; text-align: right}
       /dt:after { content: ': ' }
       dd { grid-column-start: 2;}
@@ -24,12 +24,34 @@ html lang="en"
 
       table {margin: auto; border: none; border-collapse: collapse;}
       td {border: none; text-align: center; vertical-align: top; padding: .2em; }
-      td.behaviors { text-align: left; width: 25%}
+      td.right { text-align: right;}
+      td.bordered { border: 1px solid grey}
 
   body
     -unless action_name == 'home'
-      =link_to 'home', root_path
-    =render 'breadcrumbs' if @breadcrumbs
+      span id='breadcrumbs' =link_to 'home', root_path
+    -if @breadcrumbs
+      -if @breadcrumbs.length.positive?
+        |<> |
+        =link_to @breadcrumbs.first, basic_path
+      -if @breadcrumbs.length > 1
+        |<> |
+        =link_to @breadcrumbs.second, morning_path(@breadcrumbs.first)
+      -if @breadcrumbs.length > 2
+        |<> |
+        =link_to @breadcrumbs.third, midday_path(@breadcrumbs[0, 2].join)
+      -if @breadcrumbs.length > 3
+        |<> |
+        =link_to @breadcrumbs.fourth, afternoon_path(@breadcrumbs[0, 3].join)
+      -if @breadcrumbs.length > 4
+        |<> |
+        =link_to @breadcrumbs.fifth, evening_path(@breadcrumbs[0, 4].join)
+    -unless action_name == 'index' && controller_name == 'types'
+      -unless action_name == 'home'
+        |<> |
+      =link_to Type.title, types_path
+
+
 
     =yield
 

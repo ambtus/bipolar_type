@@ -11,20 +11,13 @@ class Type < Concept
   class << self
     def my_path = "#{BASICS.second}SFTN"
     def mine = find(my_path)
+    def title = 'theory'
   end
 
-  alias link :string
-  alias breadcrumbs :string
   def realms = string.chip.chars.collect { |x| Realm.find x }
-
-
-  def basic = string.first
-  def extroverted? = basic == BASICS.first
-  def i_title = string[0,3] + "pe" + string[3,2] + 'j'
-  def e_title = "e" + string[1,2].reverse + "pi" + string.chip.reverse[0,2] + 'j'
-  def title = extroverted? ? e_title : i_title
-  alias inspect :title
-
+  def render = string.first
+  def extroverted? = render == BASICS.first
+  def breadcrumbs = [render, *realms]
 
   def subtypes
     if extroverted?
@@ -34,12 +27,25 @@ class Type < Concept
     end
   end
 
+  def first = extroverted? ? subtypes.values_at(2,1).join('•') : subtypes[0,2].join('•')
+  def second = extroverted? ? subtypes.values_at(0,3).join('•') : subtypes[2,2].join('•')
+  def title = [first, second].join('/')
+  alias inspect :title
+  alias link :title
+
+  def mbtis = [first, second].map(&:make_mbti).compact_blank
+
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }
   end
 
-  def siblings = self.class.select { |x| (x.subtypes - subtypes).blank? }
-  def sibling = siblings.without(self).first
+  def sibling
+    if extroverted?
+      Type.find ['i', *realms.rotate(-1)].join
+    else
+      Type.find ['e', *realms.rotate].join
+    end
+  end
 
   def behaviors = subtypes.map(&:behaviors).flatten
 
@@ -51,8 +57,13 @@ class Type < Concept
     end
   end
 
-  def similars = self.class.select { |x| (x.dos - dos).blank? }
-  def similar = similars.without(self).first
+  def similar
+    if extroverted?
+      Type.find ['i', *realms.rotate].join
+    else
+      Type.find ['e', *realms.rotate(2)].join
+    end
+  end
 
   def donts
     if extroverted?
@@ -62,6 +73,11 @@ class Type < Concept
     end
   end
 
-  def differents = self.class.select { |x| (x.donts - donts).blank? }
-  def different = differents.without(self).first
+  def different
+    if extroverted?
+      Type.find ['i', *realms].join
+    else
+      Type.find ['e', *realms].join
+    end
+  end
 end
