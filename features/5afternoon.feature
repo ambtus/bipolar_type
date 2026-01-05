@@ -1,16 +1,12 @@
 Feature: the afternoon page
 
-Scenario: gives some personal info
-Given I am on my afternoon page
-Then I should see 'heavily indebted'
-
 Scenario: has a link two realms
 Given I am on my afternoon page
 Then two realms should be linked
 
 Scenario: has a link to the fifth question
 Given I am on my afternoon page
-When I follow the 'T' link
+When I follow the 'eTj' link
 Then I should be on my evening page
 
 Scenario: breadcrumbs

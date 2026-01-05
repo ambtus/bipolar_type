@@ -24,22 +24,31 @@ table
     td=green @type.i.ij
     th
 
+p.center.larger Related BipolarTypes
+dl
+  dt same do’s (green)
+  dd=link_to_concept @type.similar
+  dt same cycle (yellow)
+  dd=link_to_concept @type.sibling
+  dt same don’ts (red)
+  dd=link_to_concept @type.different
+
 p.center.larger=@type.first
 p.center #{@type.i.realm.generic.ly} obese
 ol
-  li Don’t #{@type.i.realm.intake} just because it’s morning. Wait until after you have #{@type.i.realm.output.en} and you have an actual #{@type.i.realm.generic} need.
-  li When you feel stressed, #{@type.i.ij.specific}. It will make you feel just as good, but you won’t #{@type.i.realm.intake} as much (even if other people would #{@type.i.realm.intake.more}).
+  li Don’t #{@type.i.ip.specific} just because it’s morning. Wait until you have an actual #{@type.i.realm.generic} need.
+  li Do #{@type.i.ij.specific} when you #{@type.i.realm.intake}. It will make you feel just as safe, but you won’t #{@type.i.realm.intake} as much (even if other people would #{@type.i.realm.intake.more}).
 p.center #{@type.p.realm.generic.ly} anorexic
 ol
-  li Do #{@type.p.ip.specific} every morning, especially in the summer and during a full moon and midweek and if you are still an adolescent. And after you have #{@type.p.ep.specific.too_much.en} and feel #{@type.p.realm.generic.ly} empty.
-  li As soon as you start to feel stressed, flee the #{@type.p.realm.externals}. Don’t wait until you are so stressed you start bleeding #{@type.p.realm.generic} energy. If you do, start #{@type.p.ip.specific.ing} as soon as you stop.
-ol
+  li Don’t keep #{@type.p.ep.specific.ing} after you have escaped stressful #{@type.p.realm.externals}. Stop #{@type.p.ep.specific.ing} and #{@type.p.realm.intake}.
+  li Do #{@type.p.ip.specific} every morning. Especially while you are an adolescent and in the summer and during a full moon and midweek: you <em>will</em> #{@type.p.ep.specific.more} then.
+
 p.center.larger=@type.second
 p.center #{@type.e.realm.generic.ly} strained
 ol
-  li Don’t #{@type.e.realm.output} just because you’re no longer stressed. Wait until after you have #{@type.e.realm.intake.en} and you have an actual #{@type.e.realm.generic} task.
-  li When you do #{@type.e.realm.output}, #{@type.e.ep.specific}. It will make you feel just as good, but you won’t #{@type.e.realm.output} as much (even if other people would #{@type.e.realm.output.more}).
+  li Don’t #{@type.e.realm.output} just because you’re no longer stressed.  Wait until you have an actual #{@type.e.realm.generic} task.
+  li Do #{@type.e.ep.specific} when you #{@type.e.realm.output}. It will make you feel just as stimulated, but you won’t #{@type.e.realm.output} as much (even if other people would #{@type.e.realm.output.more}).
 p.center #{@type.j.realm.generic.ly} weak
 ol
-  li Do #{@type.j.ej.specific} every afternoon, especially in the winter and during a new moon and on the weekend and after you have retired. And after you have #{@type.j.realm.intaken.too_much} and have an actual #{@type.j.realm.generic} task.
-  li As soon as you start to feel bored, #{@type.j.ej.specific}. Don’t wait until you are so bored you start to fall asleep. If you do, #{@type.j.ej.specific.more} as soon as you wake up.
+  li Don’t keep #{@type.j.ij.specific.ing} after you have won the #{@type.j.realm.generic} battle. Stop #{@type.j.realm.intake.ing} and #{@type.j.realm.output}.
+  li Do use your #{@type.j.realm.strength} every afternoon. Especially after you have retired and in the winter and during a new moon and on the weekend: you <em>will</em> #{@type.j.ij.specific.more} then.

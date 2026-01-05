@@ -492,6 +492,8 @@ class String
   def more
     if match('(.*) a (.*)')
       [::Regexp.last_match(1), 'more', ::Regexp.last_match(2).pluralize].to_phrase
+    elsif match?(' the ')
+      gsub('the', 'more')
     elsif match?(' ')
       if last_words.words.first == 'good'
         [first_words, 'better', last_words.delete_prefix('good')].to_phrase

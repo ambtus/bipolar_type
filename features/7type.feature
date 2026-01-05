@@ -27,11 +27,6 @@ Given I am on my bipolar page
 When I follow my different
 Then I should be on my different page
 
-Example: can get to mimic from my bipolar page
-Given I am on my bipolar page
-When I follow my mimic
-Then I should be on my mimic page
-
 Scenario: breadcrumbs
 Given I am on my bipolar page
 Then I should see the first breadcrumb

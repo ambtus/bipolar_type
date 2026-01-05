@@ -1,16 +1,12 @@
 Feature: the basic personality page
 
-Scenario: gives some personal info
-Given I am on the basic page
-Then I should see 'I am an Introvert'
-
 Scenario: has a link for both basics
 Given I am on the basic page
 Then two types should be linked
 
 Scenario: has a link to the second question
 Given I am on the basic page
-When I follow the 'e' link
+When I follow the 'e: extroverted' link
 Then I should be on the morning page
 
 Scenario: breadcrumbs

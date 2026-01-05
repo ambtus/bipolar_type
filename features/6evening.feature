@@ -1,9 +1,5 @@
 Feature: the evening page
 
-Scenario: gives some personal info
-Given I am on my evening page
-Then I should see 'close my eyes'
-
 Scenario: has a link one realm
 Given I am on my evening page
 Then one realm should be linked

@@ -17,15 +17,19 @@ Given('I am on my midday page') do
 end
 
 Given('I am on my afternoon page') do
-  expect(page).to have_current_path('/afternoon.iSF')
+  visit('/afternoon.iSF')
 end
 
 Then('I should be on my afternoon page') do
-  visit('/afternoon.iSF')
+  expect(page).to have_current_path('/afternoon.iSF')
 end
 
 Given('I am on my evening page') do
   visit('/evening.iSFT')
+end
+
+Then('I should be on my evening page') do
+  expect(page).to have_current_path('/evening.iSFT')
 end
 
 Given('I am on my bipolar page') do

@@ -15,21 +15,26 @@ Then('two types should be linked') do
 end
 
 Then('all realms should be linked') do
-  Realm.each do |x|
+  Action.ip.behaviors.each do |x|
     expect(page).to have_link(x.link)
   end
 end
 
 Then('three realms should be linked') do
-  Realm.without(Realm.S).each do |x|
+  Action.ep.behaviors.each do |x|
+    next if x.realm == Realm.S
     expect(page).to have_link(x.link)
   end
 end
 
 Then('two realms should be linked') do
-  ['N', 'T'].each do |x|
+  ['eNj', 'eTj'].each do |x|
     expect(page).to have_link(x)
   end
+end
+
+Then('one realm should be linked') do
+  expect(page).to have_link('iNj')
 end
 
 Then('my moods should be listed') do

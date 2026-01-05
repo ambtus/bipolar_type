@@ -5,25 +5,21 @@ When('I follow the {string} link') do |string|
 end
 
 When('I follow my sibling') do
-  click_link(Bipolar.mine.sibling.link)
+  click_link(Type.mine.sibling.link)
 end
 
 When('I follow my similar') do
-  click_link(Bipolar.mine.similar.link)
+  click_link(Type.mine.similar.link)
 end
 
 When('I follow my different') do
-  click_link(Bipolar.mine.different.link)
-end
-
-When('I follow my mimic') do
-  click_link(Bipolar.mine.mimic.link)
+  click_link(Type.mine.different.link)
 end
 
 When('I follow my first do') do
-  click_link(Bipolar.mine.dos.first.link)
+  click_link(Type.mine.dos.first.link)
 end
 
 When('I follow my first dont') do
-  click_link(Bipolar.mine.donts.first.link)
+  click_link(Type.mine.donts.first.link)
 end
