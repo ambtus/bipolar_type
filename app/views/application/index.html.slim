@@ -47,11 +47,9 @@ table
       -Realm.each do |realm|
         td.bordered=realm.send(description)
 
-p Only the #{Realm.measurable.map(&:generic).and} realms are <em>measurable</em>. Your weight and credit can be <em>tracked</em> and intervention can occur before they become too unhealthy.
-p Bipolar disorder is a mental/affective disorder and extremely difficult to treat: nobody can actually measure your mind or soul in time to intervene before disaster strikes.
+p Only the #{Realm.measurable.map(&:generic).and} realms are <em>measurable</em>. Your body weight and credit score can be tracked and intervention can occur before they become too unhealthy. But bipolar disorder is a mental/affective disorder and extremely difficult to treat: nobody can actually measure your mind or soul in time to intervene before disaster strikes.
 p
-  =link_to 'Your BipolarType', basic_path
-  |<> <em>implies</em> the health of your #{Realm.unmeasurable.map(&:internal).or}, based on the health of your #{Realm.measurable.map(&:internal).or}.
+  |<> A BipolarType <em>implies</em> the health of your #{Realm.unmeasurable.map(&:internal).or}, based on the health of your #{Realm.measurable.map(&:internal).or}.
   =link_to 'My BipolarType', type_path(Type.my_path)
   |< asserts that if I am gaining weight, I need to feed my soul or I will soon become too suicidal to live. And that if I am going into debt, I need to exercise my mind or I will soon become stupid to live.
 p.center.larger  All 48 BipolarTypes:

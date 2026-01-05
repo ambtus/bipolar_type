@@ -46,9 +46,8 @@ html lang="en"
       -if @breadcrumbs.length > 4
         |<> |
         =link_to @breadcrumbs.fifth, evening_path(@breadcrumbs[0, 4].join)
-    -unless action_name == 'index' && controller_name == 'types'
-      -unless action_name == 'home'
-        |<> |
+    -unless action_name == 'index' && controller_name == 'types' || action_name == 'home'
+      |<> |
       =link_to Type.title, types_path
 
 
@@ -60,12 +59,6 @@ html lang="en"
       =link_to_unless_current 'home', root_path
       |<> |
       =link_to_unless_current 'my type', type_path(Type.mine.path)
-      |<> |
-      =link_to_unless_current 'my sibling', type_path('eFTNS')
-      |<> |
-      =link_to_unless_current 'my similar', type_path('eTNSF')
-      |<> |
-      =link_to_unless_current 'my different', type_path('eSFTN')
       |<> |
       =link_to_unless_current 'a behavior', behavior_path(Behavior.first.path)
       |<> |
