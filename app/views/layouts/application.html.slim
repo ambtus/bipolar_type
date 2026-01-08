@@ -30,10 +30,12 @@ html lang="en"
   body
     span id='breadcrumbs' =link_to_unless_current 'home', root_path
     |<> |
-    -if @breadcrumbs
-      -if @breadcrumbs.length.positive?
-        =link_to @breadcrumbs.first, basic_path
-        |<> |
+    -if @breadcrumbs.blank?
+      =link_to_unless_current 'basic', basic_path
+      |<> |
+    -else
+      =link_to @breadcrumbs.first, basic_path
+      |<> |
       -if @breadcrumbs.length > 1
         =link_to @breadcrumbs.second, ip_path(@breadcrumbs.first)
         |<> |
@@ -54,8 +56,6 @@ html lang="en"
 
     -if Rails.env.development?
       hr
-      =link_to_unless_current 'home', root_path
-      |<> |
       =link_to_unless_current 'my type', type_path(Type.mine.path)
       |<> |
       =link_to_unless_current 'another introvert', type_path('iNTFS')

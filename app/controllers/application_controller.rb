@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
       @realms = params[:format].chip.chars.collect { |x| Realm.find x }
       @breadcrumbs = [basic, *@realms]
       @title = @breadcrumbs.join
-      unhappy = (basic == 'i' ? 'stressed' : 'bored')
-      happy = (basic == 'i' ? 'bored' : 'stressed')
-      @mood = (@action.index < 2 ? unhappy : happy)
+      @distressed = (basic == 'i' ? 'stressed' : 'bored')
+      @eustressed = (basic == 'i' ? 'bored' : 'stressed')
+      @stressed = (@action.index < 2 ? @distressed : @eustressed)
       render 'action'
     end
   end

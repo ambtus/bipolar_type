@@ -1,7 +1,3 @@
-h2=@title
-
-p The more extroverted you are, the more you crave stimulants such as caffeine or interesting environments in order to remain alert and not so bored that you sleep all day.
-p The more introverted you are, the more you crave sedatives such as alcohol or safe environments in order to remain calm and not so stressed that you stay awake all night.
 p
   |> You will be more extroverted at some times and more introverted at others (Bipolar), but your
   =link_to 'central personality trait', 'https://en.wikipedia.org/wiki/Extraversion_and_introversion', class: :external
@@ -18,26 +14,26 @@ table
     td.bordered=Mood.e.generic
     td.bordered=Mood.i.generic
   tr
-    td.right goal
-    td.bordered stimulated
-    td.bordered protected
+    td.right default mood
+    td.bordered bored
+    td.bordered stressed
+  tr
+    td.right prefered state
+    td.bordered interested
+    td.bordered safe
   tr
     td.right risk profile
     td.bordered risk-seeking
     td.bordered risk-averse
   tr
-    td.right default mood
-    td.bordered bored
-    td.bordered stressed
-  tr
-    td.right prefered environment
-    td.bordered interesting
-    td.bordered safe
-  tr
-    td.right easier
-    td.bordered fall asleep
+    td.right harder to
     td.bordered wake up
+    td.bordered fall asleep
   tr
     td.right more necessary
     td.bordered morning cuppa<br >(caffeine)
     td.bordered evening nightcap<br >(alcohol)
+  tr
+    td.right more problematic
+    td.bordered depression
+    td.bordered mania
