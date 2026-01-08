@@ -28,27 +28,25 @@ html lang="en"
       td.bordered { border: 1px solid grey}
 
   body
-    -unless action_name == 'home'
-      span id='breadcrumbs' =link_to 'home', root_path
+    span id='breadcrumbs' =link_to_unless_current 'home', root_path
+    |<> |
     -if @breadcrumbs
       -if @breadcrumbs.length.positive?
-        |<> |
         =link_to @breadcrumbs.first, basic_path
+        |<> |
       -if @breadcrumbs.length > 1
+        =link_to @breadcrumbs.second, ip_path(@breadcrumbs.first)
         |<> |
-        =link_to @breadcrumbs.second, morning_path(@breadcrumbs.first)
       -if @breadcrumbs.length > 2
+        =link_to @breadcrumbs.third, ep_path(@breadcrumbs[0, 2].join)
         |<> |
-        =link_to @breadcrumbs.third, midday_path(@breadcrumbs[0, 2].join)
       -if @breadcrumbs.length > 3
+        =link_to @breadcrumbs.fourth, ej_path(@breadcrumbs[0, 3].join)
         |<> |
-        =link_to @breadcrumbs.fourth, afternoon_path(@breadcrumbs[0, 3].join)
       -if @breadcrumbs.length > 4
+        =link_to @breadcrumbs.fifth, ij_path(@breadcrumbs[0, 4].join)
         |<> |
-        =link_to @breadcrumbs.fifth, evening_path(@breadcrumbs[0, 4].join)
-    -unless action_name == 'index' && controller_name == 'types' || action_name == 'home'
-      |<> |
-      =link_to Type.title, types_path
+    =link_to_unless_current 'theory', theory_path
 
 
 
@@ -60,7 +58,7 @@ html lang="en"
       |<> |
       =link_to_unless_current 'my type', type_path(Type.mine.path)
       |<> |
-      =link_to_unless_current 'a behavior', behavior_path(Behavior.first.path)
+      =link_to_unless_current 'another introvert', type_path('iNTFS')
       |<> |
       =link_to_unless_current 'all behaviors', behaviors_path
       br

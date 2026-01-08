@@ -1,0 +1,36 @@
+p
+  |> #{@action.generic.ing.capitalize} #{@action.link.wrap} is the #{@action.position}
+
+  -if @action == Action.ij
+    | and last action in the cycle. After the fight is over, assuming you have won, it is time to rest on your laurels and reap your rewards. If you rest too much, however, your strengths will atrophy and become weak and flabby.
+  -else
+    | action in the cycle.
+  -if @action == Action.ej
+    |< By this point the introverts have calmed down and the extroverts have woken up. Otherwise they would not be able to start dealing with important tasks.
+
+p You will #{@action.generic.more} at some times and less at others (Bipolar) but when you #{@action.generic.too_much}, it will almost always be in the same realm (Type).
+
+hr
+p.center What is your #{@action.problem.est} realm?
+dl
+  -Realm.without(@realms).each do |realm|
+    -behavior = realm + @action
+    dt=link_to behavior, send(@action.next_path, (@breadcrumbs.join + realm.path))
+    dd I #{behavior.specific.too_much} when I am feeling #{@mood} (#{realm.generic} #{@action.problem.to_noun}).
+
+p
+  |> If you do not
+  -case @breadcrumbs.count
+  -when 1, 2
+    | do any of these
+  -when 3
+    | either of these
+  -when 4
+    | this
+
+  |<> when you are feeling #{@mood}, you may not be an #{@breadcrumbs.join} as BipolarType defines it; try
+  -if @breadcrumbs.one?
+    -other_type = (@breadcrumbs.first == 'i' ? 'e' : 'i')
+    =link_to other_type, ip_path(other_type)
+  -else
+    | a different answer for one of the breadcrumb links at the top of the page.

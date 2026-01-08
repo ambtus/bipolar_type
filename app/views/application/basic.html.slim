@@ -1,39 +1,43 @@
 h2=@title
 
-p The more extroverted you are, the more you crave stimulants such as caffeine or risk-seeking behaviors in order to remain alert and not so bored that you sleep all day.
-p The more introverted you are, the more you crave sedatives such as alcohol or risk-averse behaviors in order to remain calm and not so stressed that you stay awake all night.
+p The more extroverted you are, the more you crave stimulants such as caffeine or interesting environments in order to remain alert and not so bored that you sleep all day.
+p The more introverted you are, the more you crave sedatives such as alcohol or safe environments in order to remain calm and not so stressed that you stay awake all night.
 p
-  |> The BipolarType theory asserts that although you are more extroverted or introverted on different days (Bipolar), your
-  =link_to 'basic personality type', 'https://en.wikipedia.org/wiki/Extraversion_and_introversion', class: :external
+  |> You will be more extroverted at some times and more introverted at others (Bipolar), but your
+  =link_to 'central personality trait', 'https://en.wikipedia.org/wiki/Extraversion_and_introversion', class: :external
   |< remains stable over time (Type).
 hr
-p.center What is your basic personality type?
+p.center What is your basic type?
 table
   tr
     td.right
-    th=link_to Mood.e.title, morning_path('e')
-    th=link_to Mood.i.title, morning_path('i')
+    th=link_to Mood.e.link, ip_path('e')
+    th=link_to Mood.i.link, ip_path('i')
   tr
-    td.right I want to feel
-    td.bordered stimulated and entertained
-    td.bordered safe and protected
+    td.right primary focus
+    td.bordered=Mood.e.generic
+    td.bordered=Mood.i.generic
   tr
-    td.right I am more
+    td.right goal
+    td.bordered stimulated
+    td.bordered protected
+  tr
+    td.right risk profile
     td.bordered risk-seeking
     td.bordered risk-averse
   tr
-    td.right I am more apt to feel
-    td.bordered bored than stressed
-    td.bordered stressed than bored
+    td.right default mood
+    td.bordered bored
+    td.bordered stressed
   tr
-    td.right I prefer an environment that is
-    td.bordered more interesting
-    td.bordered calmer
+    td.right prefered environment
+    td.bordered interesting
+    td.bordered safe
   tr
-    td.right It is easier for me to
+    td.right easier
     td.bordered fall asleep
     td.bordered wake up
   tr
-    td.right I find it harder to go without my
+    td.right more necessary
     td.bordered morning cuppa<br >(caffeine)
     td.bordered evening nightcap<br >(alcohol)

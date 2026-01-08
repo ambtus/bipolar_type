@@ -19,6 +19,7 @@ class Mood < Concept
 
   def horizontal? = index.even?
 
-  def focus = ['short term', 'external', 'long term', 'internal'][index]
-  def generic = ['urgent', 'extroverted', 'important', 'introverted'][index]
+  def location = ['short term', 'external', 'long term', 'internal'][index]
+  def focus = %w[urgent tasks important needs][index]
+  def generic = [location, focus].to_phrase
 end

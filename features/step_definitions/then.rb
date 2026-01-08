@@ -64,19 +64,19 @@ Then('I should see the second breadcrumb') do
 end
 
 Then('I should see the third breadcrumb') do
-  expect(page).to have_link('S', href: morning_path('i'))
+  expect(page).to have_link('S', href: ip_path('i'))
 end
 
 Then('I should see the fourth breadcrumb') do
-  expect(page).to have_link('F', href: midday_path('iS'))
+  expect(page).to have_link('F', href: ep_path('iS'))
 end
 
 Then('I should see the fifth breadcrumb') do
-  expect(page).to have_link('T', href: afternoon_path('iSF'))
+  expect(page).to have_link('T', href: ej_path('iSF'))
 end
 
 Then('I should see the sixth breadcrumb') do
-  expect(page).to have_link('N', href: evening_path('iSFT'))
+  expect(page).to have_link('N', href: ij_path('iSFT'))
 end
 
 Then('I should see a generic description') do

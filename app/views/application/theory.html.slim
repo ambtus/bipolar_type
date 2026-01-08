@@ -1,0 +1,128 @@
+p.center.larger The Cycle
+table
+  tr
+    th
+    td=Action.ep
+    td=Mood.e
+    td=Action.ej
+    th
+  tr
+    td=Action.ep
+    th colspan=3
+    td=Action.ej
+  tr
+    td=Mood.p
+    th colspan=3 &orarr;
+    td=Mood.j
+  tr
+    td=Action.ip
+    th colspan=3
+    td=Action.ij
+  tr
+    th
+    td=Action.ip
+    td=Mood.i
+    td=Action.ij
+    th
+p.center.larger The Moods
+table
+  -Mood.each do |m|
+    th=m.generic
+p.center.larger The Actions
+p A BipolarType cycle is any period of time with four distinct phases: each with its own default action. From shortest to longest:
+table
+  tr
+    th
+    -Action.each do |a|
+      th=a.link
+  -%w[generic focus].each_with_index do |description, index|
+    tr
+      td=%w[action focus][index]
+      -Action.each do |action|
+        td.bordered=action.send(description)
+  tr
+    th 8-hour shift
+    td.bordered beginning of shift
+    td.bordered before break
+    td.bordered after break
+    td.bordered end of shift
+  tr
+    th Day
+    td.bordered morning
+    td.bordered midday
+    td.bordered afternoon
+    td.bordered evening
+  tr
+    th Work week
+    td.bordered Monday
+    td.bordered midweek
+    td.bordered Friday
+    td.bordered weekend
+  tr
+    th Lunar month
+    td.bordered waxing moon
+    td.bordered full moon
+    td.bordered waning moon
+    td.bordered new moon
+  tr
+    th Solar year
+    td.bordered spring
+    td.bordered summer
+    td.bordered autumn
+    td.bordered winter
+  tr
+    th Lifetime
+    td.bordered child
+    td.bordered adolescent
+    td.bordered adult
+    td.bordered elder
+
+p At different times and under different circumstances, the phases can be of different lengths. That is, in the depths of winter, you may spend most of your time resting your strength and less time on the other three actions. On the other hand, during an acute emergency you may spend most of your time burning energy, with very little time allocated for the other three actions.
+p.center.larger The Realms
+p A BipolarType realm is a set of related behaviors around a single focus.
+table
+  tr
+    th
+    -Realm.focus_order.each do |realm|
+      th=realm.link
+  -%i[generic focus externals adverb internal output intake jungian].each_with_index do |description, index|
+    tr
+      td=%w[realm focus noun adverb self output intake jungian][index]
+      -Realm.focus_order.each do |realm|
+        td.bordered=realm.send(description)
+
+
+p Only the #{Realm.measurable.map(&:generic).and} realms are <em>measurable</em>. Your body weight and credit score can be tracked and you can change your behaviors before they become too unhealthy. But bipolar disorder is a mental/affective disorder and extremely difficult to treat: nobody can actually measure the effects of your behavior on your #{Realm.unmeasurable.map(&:internal).or} in time to intervene before disaster strikes.
+p.center.larger the Behaviors
+p A behavior is an action in a specific realm; there are #{link_to '16 Behaviors', behaviors_path}.
+p.center.larger the 48 BipolarTypes
+p A BipolarType is a distribution of realms over the phases, with different BipolarTypes having different default behaviors during each phase.
+p
+  |<> A BipolarType can be used to <em>infer</em> the health of your #{Realm.unmeasurable.map(&:internal).and}, based on the health of your #{Realm.measurable.map(&:internal).or}.
+  =link_to 'My BipolarType', type_path(Type.my_path)
+  |< asserts that if I am gaining weight, I am also losing hope and need to feed my soul or I will soon become too suicidal to live. And that if I am using too much credit, I am also using too little logic and need to exercise my mind or I will soon become too stupid to live.
+p.center.larger Comparative Symbology
+table.equal
+  tr
+    th MBTI
+    th Jungian
+    th BipolarType
+    th Jungian
+    th MBTI
+  tr
+    td ENTP
+    td.bordered NeTiFeSi
+    td.bordered =link_to_concept Type.find('eTNFS')
+    td.bordered SiFeTiNe
+    td ISFJ
+  tr
+    td ISFP
+    td.bordered FiSeNiTe
+    td.bordered =link_to_concept Type.find('iFSTN')
+    td.bordered TeNiSeFi
+    td ENTJ
+  footer
+    td colspan=5 etcetera
+
+p Every MBTI type shares a BipolarType with another MBTI type. Thus, the sixteen MBTI types correspond to eight of the BipolarTypes. The other forty BipolarTypes do not fit the MBTI theoretical framework.
+p My Jungian functions are FiNiTeSi but my BipolarType (#{Type.mine.title}) could just as well be . But since both have the same do’s and don’ts, they aren’t worth differentiating.

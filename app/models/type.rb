@@ -27,13 +27,13 @@ class Type < Concept
     end
   end
 
-  def first = extroverted? ? subtypes.values_at(2,1).join('•') : subtypes[0,2].join('•')
-  def second = extroverted? ? subtypes.values_at(0,3).join('•') : subtypes[2,2].join('•')
+  def first = extroverted? ? subtypes.values_at(2, 1).join : subtypes[0, 2].join
+  def second = extroverted? ? subtypes.values_at(0, 3).join : subtypes[2, 2].join
   def title = [first, second].join('/')
   alias inspect :title
-  alias link :title
+  alias link :string
 
-  def mbtis = [first, second].map(&:make_mbti).compact_blank
+  def mbti = String::MBTIS.find { |m| m.make_bipolar_type == title }
 
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }

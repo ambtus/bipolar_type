@@ -55,7 +55,5 @@ class Behavior < Concept
 
   def title(green: nil) = [string.colon, prefix(green: green), generic].to_phrase
 
-  def underscore = [action.verb, action.noun].join('_')
-
-  def specific = realm.send(underscore)
+  def specific = realm.send(action.symbol)
 end

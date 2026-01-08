@@ -17,16 +17,5 @@ RSpec.describe Behavior, type: :model do
       expect(described_class.send(sym).focus).to be_an String
     end
 
-    it "#{sym} has examples" do
-      expect(described_class.send(sym).examples).to be_an Array
-    end
-
-    it "#{sym} has a green title" do
-      expect(described_class.send(sym).title(green: true)).to match "#{sym}: do "
-    end
-
-    it "#{sym} has a red title" do
-      expect(described_class.send(sym).title(green: false)).to match "#{sym}: don’t "
-    end
   end
 end

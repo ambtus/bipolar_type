@@ -7,7 +7,7 @@ Then two types should be linked
 Scenario: has a link to the second question
 Given I am on the basic page
 When I follow the 'e: extroverted' link
-Then I should be on the morning page
+Then I should be on the ip page
 
 Scenario: breadcrumbs
 Given I am on the basic page

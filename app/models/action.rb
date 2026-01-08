@@ -7,12 +7,19 @@ class Action < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
+  alias render :string
+  def position = %w[first second third fourth][index]
+  def problem = %w[obese anorexic strained weak][index]
+  def next_path = %i[ep_path ej_path ij_path type_path][index]
+
   def behaviors = Behavior.all.select { |x| x.action == self }
   def +(other) = behaviors.find { |x| x.realm == other }
 
   def moods = Mood.select { |x| string.chars.include?(x.string) }
 
-  def verb = %w[get burn use rest][index]
+  def unhappy = string.first == 'i' ? 'stressed' : 'bored'
+
+  def verb = string.first == 'i' ? 'get' : 'use'
   def noun = string.second == 'p' ? 'energy' : 'strength'
   def generic = [verb, noun].to_phrase
 

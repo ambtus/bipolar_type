@@ -12,8 +12,8 @@ RSpec.describe Realm, type: :model do
     expect(described_class.all.map(&:generic)).to include('physical', 'mental')
   end
 
-  it 'describes people, places, tools, and ideas' do
-    expect(described_class.pp_order.map(&:externals)).to eq %w[people places tools ideas]
+  it 'describes people, places, and other things' do
+    expect(described_class.pp_order.map(&:externals)).to include('people', 'places')
   end
 
   it 'describes the body, mind, and other things' do

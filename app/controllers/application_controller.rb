@@ -1,20 +1,25 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :set_breadcrumbs, except: %i[home basic]
-  before_action :set_title, except: %i[home basic]
-
   def home = (@title = 'Introduction')
 
-  def basic = (@title = 'Basic personality types')
+  def basic = (@title = 'Basic Type')
 
-  private
+  def theory = (@title = 'Theory')
 
-  def set_breadcrumbs
-    return unless params[:format].is_a? String
+  def behaviors = (@title = 'The 16 Behaviors')
 
-    @realms = params[:format].chip.chars.collect { |x| Realm.find x }
-    @breadcrumbs = [params[:format].first, *@realms]
+  Action.each do |action|
+    define_method action.render do
+      @action = action
+      basic = params[:format].first
+      @realms = params[:format].chip.chars.collect { |x| Realm.find x }
+      @breadcrumbs = [basic, *@realms]
+      @title = @breadcrumbs.join
+      unhappy = (basic == 'i' ? 'stressed' : 'bored')
+      happy = (basic == 'i' ? 'bored' : 'stressed')
+      @mood = (@action.index < 2 ? unhappy : happy)
+      render 'action'
+    end
   end
-  def set_title = (@title = action_name.capitalize)
 end

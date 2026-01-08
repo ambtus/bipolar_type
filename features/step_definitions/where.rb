@@ -8,28 +8,28 @@ Given('I am on the basic page') do
   visit('/basic')
 end
 
-Given('I am on my morning page') do
-  visit('/morning.i')
+Given('I am on my ip page') do
+  visit('/ip.i')
 end
 
-Given('I am on my midday page') do
-  visit('/midday.iS')
+Given('I am on my ep page') do
+  visit('/ep.iS')
 end
 
-Given('I am on my afternoon page') do
-  visit('/afternoon.iSF')
+Given('I am on my ej page') do
+  visit('/ej.iSF')
 end
 
-Then('I should be on my afternoon page') do
-  expect(page).to have_current_path('/afternoon.iSF')
+Then('I should be on my ej page') do
+  expect(page).to have_current_path('/ej.iSF')
 end
 
-Given('I am on my evening page') do
-  visit('/evening.iSFT')
+Given('I am on my ij page') do
+  visit('/ij.iSFT')
 end
 
-Then('I should be on my evening page') do
-  expect(page).to have_current_path('/evening.iSFT')
+Then('I should be on my ij page') do
+  expect(page).to have_current_path('/ij.iSFT')
 end
 
 Given('I am on my bipolar page') do
@@ -68,6 +68,3 @@ Then('I should be on my different page') do
   expect(page).to have_current_path type_path(Type.mine.different.path)
 end
 
-Then('I should be on my mimic page') do
-  expect(page).to have_current_path type_path(Type.mine.mimic.path)
-end

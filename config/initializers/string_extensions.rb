@@ -7,7 +7,7 @@
    quote dquote sqwrap parenthesize deunderscore wrap end_wrap endwrap start_wrap unwrap
    wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine
    make_yours make_theirs and_to_or is_mbti? capitalized? to_noun to_adjective s ed en er
-   ly ing an some a_lot a_lot_of enough enough_of many all only too_many too_much too_few
+   ly ing est an some a_lot a_lot_of enough enough_of many all only too_many too_much too_few
    too_little a_few plural? uncountable? little few more fewer less much as_much many
    as_many not_always that those is are was were them it they able un begins_with? has
    have do does].each do |meth|
@@ -96,45 +96,36 @@ class String
   def and_to_or = gsub(' and ', ' or ')
   def break_before_wrap = gsub(' (', '<br />(').html_safe
 
-  SYMBOLS = %w[I E S N T F J P]
 
   MBTIS = %w[ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ
              ESTP ESFP ENTP ENFP
              ESTJ ESFJ ENTJ ENFJ].freeze
-  def is_mbti? = MBTIS.include?(self)
 
-  def make_mbti
-    first_try = (self.upcase.chars & SYMBOLS).join
-    return first_try if first_try.is_mbti?
-
-    second_try = first_try.chars.values_at(0,2,1,3).join
-
-    first_try.is_mbti? ? first_try : nil
+  def other_mbti
+    raise 'doesn’t work on non-mbti string' unless MBTIS.include?(self)
+    (%w[E I].without(chars.first) +
+    %w[S N].without(chars.second) +
+    %w[F T].without(chars.third) +
+    %w[P J].without(chars.fourth))
+    .join
   end
 
-  def dominant
-    return chars.values_at(0, 2, 3).join if match(/I..P/) || match(/E..J/)
-
-    chars.values_at(0, 1, 3).join if match(/I..J/) || match(/E..P/)
+  def bp_format
+    "#{first.downcase}#{third}#{second}#{fourth.downcase}"
   end
 
-  def auxiliary
-    case self
-    when /I..P/
-      ['E', chars[1], 'P'].join
-    when /I..J/
-      ['E', chars[2], 'J'].join
-    when /E..P/
-      ['I', chars[2], 'P'].join
-    when /E..J/
-      ['I', chars[1], 'J'].join
-    end
+  def make_bipolar_type
+    if ends_with?('P')
+      [self, self.other_mbti]
+    else
+      [self.other_mbti, self]
+    end.map(&:bp_format).join('/')
   end
 
   NOUNS = %w[flight fight rest digestion fueling
              anorexia depression mania energy strength obesity
-             goals emptiness hyperactivity
+             goals emptiness hyperactivity strain constipation
              weakness calories credit information emotions
              feelings childhood adolescence adulthood old age
              child adolescent adult elder
@@ -147,7 +138,7 @@ class String
              structure salary wages marathons pictures logic muscles].freeze
   ADJECTIVES = %w[flee fight rest digest refuel
                   anorexic depressed manic energetic strong obese
-                  goal-oriented empty hyperactive
+                  goal-oriented empty hyperactive strained constipated
                   weak caloric indebted informative emotional
                   childish adolescent adult mature
                   curious agitated greedy lazy
@@ -298,6 +289,12 @@ class String
     return 'incomprehensible' if self == 'comprehensible'
 
     "un#{self}"
+  end
+
+  def est
+    return 'weakest' if self == 'weak'
+
+    return "most #{self}"
   end
 
   def ing
@@ -456,9 +453,7 @@ class String
       return "#{self} too much" if match(connector)
     end
     if match?(' ')
-      if first_word == 'use'
-        ['overuse and strain my', last_words].to_phrase
-      elsif last_words.noun?
+      if last_words.noun?
         [first_words, last_words.too_much].join(' ')
       else
         [first_words, 'too', last_words.last.much, last_words].join(' ')
@@ -600,6 +595,8 @@ class String
   def them = plural? ? 'them' : 'it'
   alias it :them
   def they = plural? ? 'they' : 'it'
+
+  def they_are = "#{they} #{are.last_word}"
 
   def has = plural? ? 'have' : 'has'
   alias have :has

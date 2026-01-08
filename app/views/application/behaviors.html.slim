@@ -1,19 +1,14 @@
 table
-  caption
-    b Generic Descriptions
   -Realm.each do |r|
     tr
-      -r.behaviors.each do |x|
+      -r.behaviors.each do |behavior|
         td.behaviors
-          .center=link_to_concept x
-          =render 'generic', behavior: x
-br
-table
-  caption
-    b Specific Examples
-  -Realm.each do |r|
-    tr
-      -r.behaviors.each do |x|
-        td.behaviors
-          .center=link_to_concept x
-          =render 'specific', behavior: x
+          b.larger=behavior.link
+          br
+          =behavior.generic
+          br
+          =behavior.focus
+          br
+          =behavior.technical
+          br
+          =behavior.specific
