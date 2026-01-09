@@ -21,9 +21,11 @@ class Action < Concept
 
   def verb = string.first == 'i' ? 'get' : 'use'
   def noun = string.second == 'p' ? 'energy' : 'strength'
-  def generic = [verb, noun].to_phrase
+  def action = [verb, noun].to_phrase
 
   def adjective = string.second == 'p' ? 'urgent' : 'important'
   def object = string.first == 'i' ? 'needs' : 'tasks'
   def focus = [adjective, object].to_phrase
+
+  def episode = index == 2 ? moods.reverse.map(&:mood).to_phrase : moods.map(&:mood).to_phrase
 end

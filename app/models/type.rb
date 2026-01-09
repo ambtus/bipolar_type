@@ -29,7 +29,8 @@ class Type < Concept
 
   def first = extroverted? ? subtypes.values_at(2, 1).join : subtypes[0, 2].join
   def second = extroverted? ? subtypes.values_at(0, 3).join : subtypes[2, 2].join
-  def title = [first, second].join('/')
+  def slash = extroverted? ? '/' : '\\'
+  def title = [first, second].join(slash)
   alias inspect :title
   alias link :string
 

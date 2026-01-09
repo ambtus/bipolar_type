@@ -47,8 +47,10 @@ html lang="en"
         |<> |
       -if @breadcrumbs.length > 4
         =link_to @breadcrumbs.fifth, ij_path(@breadcrumbs[0, 4].join)
-        |<> |
-    =link_to_unless_current 'theory', theory_path
+    /    |<> |
+    /=link_to_unless_current 'theory', theory_path
+    /|<> |
+    /=link_to_unless_current 'definitions', definitions_path
 
 
 
@@ -59,9 +61,7 @@ html lang="en"
       =link_to_unless_current 'my type', type_path(Type.mine.path)
       |<> |
       =link_to_unless_current 'another introvert', type_path('iNTFS')
-      |<> |
-      =link_to_unless_current 'all behaviors', behaviors_path
-      br
-      | breadcrumbs: #{@breadcrumbs}
+      /|<> |
+      /=link_to_unless_current 'all behaviors', behaviors_path
       br
       | params: #{params}

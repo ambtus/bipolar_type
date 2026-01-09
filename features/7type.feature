@@ -6,11 +6,11 @@ Then my moods should be listed
 
 Example: bipolar page lists my behaviors
 Given I am on my bipolar page
-Then my dos should be linked
+Then my dos should be listed
 
 Example: bipolar page lists my behaviors
 Given I am on my bipolar page
-Then my donts should be linked
+Then my donts should be listed
 
 Example: can get to sibling from my bipolar page
 Given I am on my bipolar page

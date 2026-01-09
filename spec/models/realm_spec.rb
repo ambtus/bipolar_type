@@ -9,7 +9,7 @@ RSpec.describe Realm, type: :model do
     end
   end
   it 'describes the physical, mental, and other things' do
-    expect(described_class.all.map(&:generic)).to include('physical', 'mental')
+    expect(described_class.all.map(&:realm)).to include('physical', 'mental')
   end
 
   it 'describes people, places, and other things' do

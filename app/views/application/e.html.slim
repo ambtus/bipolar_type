@@ -24,6 +24,29 @@ table
     td=red @type.i.ij
     th
 p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you.
+
+dl
+  dt if you are low
+  dd
+    =@type.i.realm.ip
+    |<> instead of
+    =@type.i.realm.ij.ing
+  dt if you are going up
+  dd
+    =@type.p.realm.ep
+    |<> instead of
+    =@type.p.realm.ip.ing
+  dt if you are high
+  dd
+    =@type.e.realm.ej
+    |<> instead of
+    =@type.e.realm.ep.ing
+  dt if you are going down
+  dd
+    =@type.j.realm.ij
+    |<> instead of
+    =@type.j.realm.ej.ing
+
 p.center.larger Related BipolarTypes
 dl
   dt same don’ts (red)
@@ -32,27 +55,4 @@ dl
   dd=link_to_concept @type.sibling
   dt same do’s (green)
   dd=link_to_concept @type.similar
-
--realm = @type.i.realm
-p.center #{realm.generic.ly} weak
-ol
-  li Do #{realm.ip}.
-  li Don’t #{realm.ij}.
-
--realm = @type.p.realm
-p.center #{realm.generic.ly} obese
-ol
-  li Do #{realm.ep}.
-  li Don’t #{realm.ip}.
--realm = @type.e.realm
-p.center #{realm.generic.ly} anorexic
-ol
-  li Do #{realm.ej}.
-  li Don’t #{realm.ep}.
-
--realm = @type.j.realm
-p.center #{realm.generic.ly} strained
-ol
-  li Do #{realm.ij}
-  li Don’t #{realm.ej}.
 

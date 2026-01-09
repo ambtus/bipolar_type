@@ -21,7 +21,6 @@ class Concept
     def title = [all.count, name.pluralize].to_phrase
     def strings = all.map(&:string)
     def titles = all.map(&:title)
-    def generics = all.map(&:generic)
     def [](index) = (all * 2).[](index)
     def find(thing) = all.find { |x| x.symbol == thing.to_sym }
     %i[each each_with_index first second third fourth last without rotate values_at select].each do |meth|
@@ -35,8 +34,6 @@ class Concept
   def ==(other)
     symbol == other.symbol
   end
-
-  def title = "#{string}: #{generic}"
 
   def previous = self.class.rotate(-1)[index]
   def next = self.class.rotate[index]

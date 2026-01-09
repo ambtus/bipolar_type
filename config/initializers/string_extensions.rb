@@ -124,25 +124,25 @@ class String
   end
 
   NOUNS = %w[flight fight rest digestion fueling
+             anxiety irritation boredom anger fear exhaustion lethargy
              anorexia depression mania energy strength obesity
              goals emptiness hyperactivity strain constipation
              weakness calories credit information emotions
              feelings childhood adolescence adulthood old age
              child adolescent adult elder
              curiosity agitation appetite laziness
-             anxiety irritation boredom anger fear exhaustion lethargy
              hunger freedom control
              foods places music carbs art facts cash plans
              currency procedures words protein rules shoulds
              morals credit hunting gathering weights actions
              structure salary wages marathons pictures logic muscles].freeze
   ADJECTIVES = %w[flee fight rest digest refuel
+                  anxious irritable bored angry afraid tired lethargic
                   anorexic depressed manic energetic strong obese
                   goal-oriented empty hyperactive strained constipated
                   weak caloric indebted informative emotional
-                  childish adolescent adult mature
+                  emotional childish adolescent adult mature
                   curious agitated greedy lazy
-                  anxious irritable bored angry afraid tired lethargic
                   hungry free controlled
                   caloric spatial musical
                   wise].freeze

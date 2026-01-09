@@ -28,7 +28,5 @@ class Subtype < Concept
     define_method(action.symbol) { realm + action }
   end
 
-  def manic? = (mood == Mood.e)
-
-  def generic = mood.generic.words.insert(-2, realm.generic).to_phrase
+  def subtype = mood.horizontal? ? [realm.realm, mood.mood.to_noun].to_phrase : [realm.realm, mood.mood].to_phrase
 end

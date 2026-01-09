@@ -19,7 +19,7 @@ class Realm < Concept
   def self.measurable = [self.S, self.T]
   def self.unmeasurable = [self.N, self.F]
 
-  def generic = %w[physical mental social financial][index]
+  def realm = %w[physical mental spiritual material][index]
   def jungian = %w[Sensing iNtuition Feeling Thinking][index]
   def focus = %w[food truth love shelter][index]
   def adverb = %w[where how why what][index]

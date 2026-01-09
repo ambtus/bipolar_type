@@ -43,15 +43,15 @@ Then('my moods should be listed') do
   end
 end
 
-Then('my dos should be linked') do
+Then('my dos should be listed') do
   Type.mine.dos.each do |x|
-    expect(page).to have_link(x.link)
+    expect(page).to have_text(x.link)
   end
 end
 
-Then('my donts should be linked') do
+Then('my donts should be listed') do
   Type.mine.donts.each do |x|
-    expect(page).to have_link(x.link)
+    expect(page).to have_text(x.link)
   end
 end
 

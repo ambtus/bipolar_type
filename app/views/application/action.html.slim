@@ -1,4 +1,4 @@
-p You will #{@action.generic.more} at some times and less at others (Bipolar) but when you #{@action.generic.too_much}, it will almost always be in the same realm (Type).
+p You will #{@action.action.more} at some times and less at others (Bipolar) but when you #{@action.action.too_much}, it will almost always be in the same realm (Type).
 
 hr
 p.center What is your #{@action.problem.est} realm?
@@ -7,40 +7,23 @@ dl
     -behavior = realm + @action
     dt=link_to behavior, send(@action.next_path, (@breadcrumbs.join + realm.path))
     dd
-      | I #{behavior.specific.too_much} when I am #{@stressed}
-      -if @breadcrumbs.count == 3
-        | *
-      |< (#{realm.generic} #{@action.problem.to_noun}
-      -if @breadcrumbs.count == 4
-        | *
-      | ).
-
-p
-  |> If you do not
-  -case @breadcrumbs.count
-  -when 1, 2
-    | do any of these
-  -when 3
-    | either of these
-  -when 4
-    | this
-
-  |<> when you are feeling #{@stressed}, you may not be an #{@breadcrumbs.join} as BipolarType defines it. Try
-  -if @breadcrumbs.one?
-    -other_type = (@breadcrumbs.first == 'i' ? 'e' : 'i')
-    =link_to other_type, ip_path(other_type)
-    | .
-  -else
-    | a different answer for one of the breadcrumb links at the top of the page.
-
--if @breadcrumbs.count > 2
-  hr
-  p
-    sup *
-    -if @breadcrumbs.count == 3
-      | By this time introverts have calmed down and extroverts are interested so their motivations switch.
-    -if @breadcrumbs.count == 4
-    -if @action == Action.ij
-      -realm = Realm.without(@realms).first
-      | After the #{realm.generic} fight is over it is time to rest on your laurels and reap your rewards. If you reap rewards that <em>you</em> did not fight for, however, your #{realm.strength} will atrophy and you will become #{realm.generic.ly} weak and flabby as you convert the #{realm.ij.last_word} to #{realm.energy}.
-
+      | I #{behavior.specific.too_much}
+      /when I am #{@unhappy}
+      |< (#{realm.realm} #{@action.problem.to_noun}).
+/hr
+/p
+/  |> If
+/  -case @breadcrumbs.count
+/  -when 1, 2
+/    | none of these
+/  -when 3
+/    | neither of these
+/  -when 4
+/    | this does not
+/  |<> look right, you may not be an #{@breadcrumbs.join} as BipolarType defines it. /Try
+/  -if @breadcrumbs.one?
+/    -other_type = (@breadcrumbs.first == 'i' ? 'e' : 'i')
+/    =link_to other_type, ip_path(other_type)
+/    | .
+/  -else
+/    | a different answer for one of the breadcrumb links at the top of the page.

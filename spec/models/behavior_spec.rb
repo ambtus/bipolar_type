@@ -10,7 +10,7 @@ RSpec.describe Behavior, type: :model do
   end
   %w[iSp eFp eNj iTp].each do |sym|
     it "#{sym} has a generic description" do
-      expect(described_class.send(sym).generic).to be_an String
+      expect(described_class.send(sym).behavior).to be_an String
     end
 
     it "#{sym} has a focus" do

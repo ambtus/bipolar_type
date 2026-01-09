@@ -1,0 +1,109 @@
+p.center.larger The Moods
+table
+  tr
+    th
+    -Mood.each do |mood|
+      th=mood.link
+  -%w[mood state focus].each_with_index do |description, index|
+    tr
+      td=description
+      -Mood.each do |action|
+        td.bordered=action.send(description)
+
+p.center.larger The Cycle
+table
+  tr
+    th
+    -Action.each do |a|
+      th=a.link
+  tr
+    th 8-hour shift
+    td.bordered beginning of shift
+    td.bordered before break
+    td.bordered after break
+    td.bordered end of shift
+  tr
+    th Day
+    td.bordered morning
+    td.bordered midday
+    td.bordered afternoon
+    td.bordered evening
+  tr
+    th Work week
+    td.bordered Monday
+    td.bordered midweek
+    td.bordered Friday
+    td.bordered weekend
+  tr
+    th Lunar month
+    td.bordered waxing moon
+    td.bordered full moon
+    td.bordered waning moon
+    td.bordered new moon
+  tr
+    th Solar year
+    td.bordered spring
+    td.bordered summer
+    td.bordered autumn
+    td.bordered winter
+  tr
+    th Lifetime
+    td.bordered child
+    td.bordered adolescent
+    td.bordered adult
+    td.bordered elder
+
+
+
+p.center.larger The Actions
+table
+  tr
+    th
+    -Action.each do |a|
+      th=a.link
+  -%w[action focus episode].each do |description|
+    tr
+      td=description
+      -Action.each do |action|
+        td.bordered=action.send(description)
+
+
+
+p.center.larger The Realms
+table
+  tr
+    th
+    -Realm.focus_order.each do |realm|
+      th=realm.link
+  -%i[realm focus externals adverb internal output intake strength energy jungian].each_with_index do |description, index|
+    tr
+      td=description
+      -Realm.focus_order.each do |realm|
+        td.bordered=realm.send(description)
+
+p.center.larger the 16 Moods
+table
+  -Realm.each do |r|
+    tr
+      -r.subtypes.each do |subtype|
+        td.behaviors
+          b.larger=subtype.link
+          br
+          =subtype.subtype
+
+
+p.center.larger the 16 Behaviors
+table
+  -Realm.each do |r|
+    tr
+      -r.behaviors.each do |behavior|
+        td.behaviors
+          b.larger=behavior.link
+          br
+          =behavior.behavior
+          br
+          =behavior.focus
+          br
+          =behavior.technical
+          br
+          =behavior.specific

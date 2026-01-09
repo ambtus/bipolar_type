@@ -29,31 +29,17 @@ class Behavior < Concept
 
   def examples = File.readlines("examples/#{string}", chomp: true)
 
-  def generic = [action.verb, realm.generic, action.noun].to_phrase
+  def behavior = [action.verb, realm.realm, action.noun].to_phrase
 
-  def focus = ['focus on', action.adjective, realm.generic, action.focus].to_phrase
+  def focus = ['focus on', action.adjective, realm.realm, action.focus].to_phrase
 
-  def first = [realm.refuel, 'escape from', 'confront', realm.rest][action.index]
+  def first = [realm.ip, 'escape from', 'confront', realm.ij][action.index]
 
   def second
     ['that do not make you feel anxious', 'that make you feel anxious', 'that irritate you',
      'that do not irritate you'][action.index]
   end
 
-  def technical = [first, realm.externals, second].to_phrase
-
-  def prefix(green: true)
-    case green
-    when true
-      'do'
-    when false
-      'don’t'
-    else
-      ''
-    end
-  end
-
-  def title(green: nil) = [string.colon, prefix(green: green), generic].to_phrase
-
+  def technical = [first, realm.realm, second].to_phrase
   def specific = realm.send(action.symbol)
 end

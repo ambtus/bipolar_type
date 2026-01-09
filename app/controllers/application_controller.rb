@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   def theory = (@title = 'Theory')
 
+  def definitions = (@title = 'Definitions')
+
   def behaviors = (@title = 'The 16 Behaviors')
 
   Action.each do |action|
@@ -16,9 +18,7 @@ class ApplicationController < ActionController::Base
       @realms = params[:format].chip.chars.collect { |x| Realm.find x }
       @breadcrumbs = [basic, *@realms]
       @title = @breadcrumbs.join
-      @distressed = (basic == 'i' ? 'stressed' : 'bored')
-      @eustressed = (basic == 'i' ? 'bored' : 'stressed')
-      @stressed = (@action.index < 2 ? @distressed : @eustressed)
+      @unhappy = (basic == 'i' ? 'stressed' : 'bored')
       render 'action'
     end
   end

@@ -19,7 +19,7 @@ class Mood < Concept
 
   def horizontal? = index.even?
 
-  def location = ['short term', 'external', 'long term', 'internal'][index]
+  def state = %w[rising high falling low][index]
   def focus = %w[urgent tasks important needs][index]
-  def generic = [location, focus].to_phrase
+  def mood = %w[anxious mania irritable depression][index]
 end
