@@ -123,7 +123,7 @@ class String
     end.map(&:bp_format).join('/')
   end
 
-  NOUNS = %w[flight fight rest digestion fueling
+  NOUNS = %w[flight fight rest digestion fueling insomnia
              anxiety irritation boredom anger fear exhaustion lethargy
              anorexia depression mania energy strength obesity
              goals emptiness hyperactivity strain constipation
@@ -136,7 +136,7 @@ class String
              currency procedures words protein rules shoulds
              morals credit hunting gathering weights actions
              structure salary wages marathons pictures logic muscles].freeze
-  ADJECTIVES = %w[flee fight rest digest refuel
+  ADJECTIVES = %w[flee fight rest digest refuel insomniac
                   anxious irritable bored angry afraid tired lethargic
                   anorexic depressed manic energetic strong obese
                   goal-oriented empty hyperactive strained constipated

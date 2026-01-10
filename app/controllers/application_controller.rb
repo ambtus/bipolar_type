@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
 
   def definitions = (@title = 'Definitions')
 
-  def behaviors = (@title = 'The 16 Behaviors')
-
   Action.each do |action|
     define_method action.render do
       @action = action

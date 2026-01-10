@@ -23,6 +23,7 @@ html lang="en"
       ul { padding: 0; margin: 0; list-style-type: none; }
 
       table {margin: auto; border: none; border-collapse: collapse;}
+      table.equal { table-layout: fixed; width:100%;}
       td {border: none; text-align: center; vertical-align: top; padding: .2em; }
       td.right { text-align: right;}
       td.bordered { border: 1px solid grey}
@@ -47,10 +48,10 @@ html lang="en"
         |<> |
       -if @breadcrumbs.length > 4
         =link_to @breadcrumbs.fifth, ij_path(@breadcrumbs[0, 4].join)
-    /    |<> |
-    /=link_to_unless_current 'theory', theory_path
-    /|<> |
-    /=link_to_unless_current 'definitions', definitions_path
+        |<> |
+    =link_to_unless_current 'theory', theory_path
+    |<> |
+    =link_to_unless_current 'definitions', definitions_path
 
 
 
@@ -58,10 +59,20 @@ html lang="en"
 
     -if Rails.env.development?
       hr
-      =link_to_unless_current 'my type', type_path(Type.mine.path)
+      =link_to_unless_current 'iSFTN', type_path(Type.mine.path)
       |<> |
-      =link_to_unless_current 'another introvert', type_path('iNTFS')
-      /|<> |
-      /=link_to_unless_current 'all behaviors', behaviors_path
-      br
+      =link_to_unless_current 'iNTFS', type_path('iNTFS')
+      |<> |
+      =link_to_unless_current 'iFSNT', type_path('iFSNT')
+      |<> |
+      =link_to_unless_current 'iTNSF', type_path('iTNSF')
+      hr
+      =link_to_unless_current 'eSFTN', type_path(Type.mine.sibling.path)
+      |<> |
+      =link_to_unless_current 'eNTFS', type_path('eNTFS')
+      |<> |
+      =link_to_unless_current 'eFSNT', type_path('eFSNT')
+      |<> |
+      =link_to_unless_current 'eTNSF', type_path('eTNSF')
+      hr
       | params: #{params}

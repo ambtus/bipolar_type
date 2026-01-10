@@ -20,11 +20,15 @@ class Realm < Concept
   def self.unmeasurable = [self.N, self.F]
 
   def realm = %w[physical mental spiritual material][index]
+  def sense = %w[smell/taste sight hearing touch][index]
+  def signal = %w[scent light sounds heat][index]
   def jungian = %w[Sensing iNtuition Feeling Thinking][index]
   def focus = %w[food truth love shelter][index]
   def adverb = %w[where how why what][index]
-  def internal = %w[body mind soul credit][index]
+  def my = %w[body mind soul credit][index]
   def intake = %w[eat watch listen earn][index]
+  def prep = ['in', '', 'to', 'from'][index]
+  def intake_with = [intake, prep].to_phrase
   def intaken = %w[eaten seen heard collected][index]
   def output = %w[walk think talk buy][index]
   def externals = %w[places ideas people things][index]

@@ -1,7 +1,7 @@
 p You will #{@action.action.more} at some times and less at others (Bipolar) but when you #{@action.action.too_much}, it will almost always be in the same realm (Type).
 
 hr
-p.center What is your #{@action.problem.est} realm?
+p.center What is your #{@action.problem} realm?
 dl
   -Realm.without(@realms).each do |realm|
     -behavior = realm + @action
@@ -9,7 +9,7 @@ dl
     dd
       | I #{behavior.specific.too_much}
       /when I am #{@unhappy}
-      |< (#{realm.realm} #{@action.problem.to_noun}).
+      |< (#{realm.realm} #{@action.problem}).
 /hr
 /p
 /  |> If

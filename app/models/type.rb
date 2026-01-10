@@ -27,11 +27,7 @@ class Type < Concept
     end
   end
 
-  def first = extroverted? ? subtypes.values_at(2, 1).join : subtypes[0, 2].join
-  def second = extroverted? ? subtypes.values_at(0, 3).join : subtypes[2, 2].join
-  def slash = extroverted? ? '/' : '\\'
-  def title = [first, second].join(slash)
-  alias inspect :title
+  alias inspect :string
   alias link :string
 
   def mbti = String::MBTIS.find { |m| m.make_bipolar_type == title }

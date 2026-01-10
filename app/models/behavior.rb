@@ -31,15 +31,17 @@ class Behavior < Concept
 
   def behavior = [action.verb, realm.realm, action.noun].to_phrase
 
-  def focus = ['focus on', action.adjective, realm.realm, action.focus].to_phrase
+  def focus = ['focus on', action.adjective, realm.realm, action.object].to_phrase
 
-  def first = [realm.ip, 'escape from', 'confront', realm.ij][action.index]
+  def first = [realm.intake_with, 'escape from', 'confront', realm.intake][action.index]
 
   def second
-    ['that do not make you feel anxious', 'that make you feel anxious', 'that irritate you',
-     'that do not irritate you'][action.index]
+    ['that energize you', 'that make you feel anxious', 'that irritate you',
+     'that refresh you'][action.index]
   end
 
-  def technical = [first, realm.realm, second].to_phrase
+  def technical = [first, realm.externals, second].to_phrase
   def specific = realm.send(action.symbol)
+
+  def episode = [action.episode.first_word, realm.realm, action.episode.last_word].to_phrase
 end

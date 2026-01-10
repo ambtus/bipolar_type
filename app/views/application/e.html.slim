@@ -24,28 +24,23 @@ table
     td=red @type.i.ij
     th
 p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you.
+ol
+  li #{@type.i.realm.ip.capitalize}, and then <em>keep</em> #{@type.i.realm.ip.ing}. It will <em>eventually</em> make you feel awake and alert.
+  li #{@type.p.realm.ep.capitalize}; don’t #{@type.p.realm.ip}. It’s late in the cycle so switch to flight mode. Don’t keep getting #{@type.p.realm.realm} energy after you have started to interact with #{@type.p.realm.externals}.
+  li #{@type.e.realm.ej.capitalize}, don’t #{@type.e.realm.ep}. It’s late in the cycle so switch to fight mode. Don’t keep #{@type.e.realm.ep.ing} when it’s time to control the #{@type.e.realm.externals}.
+  li #{@type.j.realm.ij.capitalize}; don’t keep #{@type.j.realm.ej.ing} It’s late in the cycle and time for you to reap your rewards and rest.
+  li
+    -case @type.i.realm
+      -when Realm.N
+        em Close your eyes
+      -when Realm.F
+        em Turn off the radio
+      -when Realm.S
+        em Leave the kitchen
+      -when Realm.T
+        em Turn down the heat
+    | . Yes, if you stop #{@type.i.realm.ij.ing} you will fall asleep, but it’s late. So sleep.
 
-dl
-  dt if you are low
-  dd
-    =@type.i.realm.ip
-    |<> instead of
-    =@type.i.realm.ij.ing
-  dt if you are going up
-  dd
-    =@type.p.realm.ep
-    |<> instead of
-    =@type.p.realm.ip.ing
-  dt if you are high
-  dd
-    =@type.e.realm.ej
-    |<> instead of
-    =@type.e.realm.ep.ing
-  dt if you are going down
-  dd
-    =@type.j.realm.ij
-    |<> instead of
-    =@type.j.realm.ej.ing
 
 p.center.larger Related BipolarTypes
 dl

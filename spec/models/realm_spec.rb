@@ -17,7 +17,7 @@ RSpec.describe Realm, type: :model do
   end
 
   it 'describes the body, mind, and other things' do
-    expect(described_class.all.map(&:internal)).to include('body', 'mind')
+    expect(described_class.all.map(&:my)).to include('body', 'mind')
   end
 
   it 'describes food, shelter, and other things' do

@@ -9,15 +9,13 @@ class Action < Concept
 
   alias render :string
   def position = %w[first second third fourth][index]
-  def problem = %w[obese anorexic strained weak][index]
+  def problem = %w[obesity anorexia strain insomnia][index]
   def next_path = %i[ep_path ej_path ij_path type_path][index]
 
   def behaviors = Behavior.all.select { |x| x.action == self }
   def +(other) = behaviors.find { |x| x.realm == other }
 
   def moods = Mood.select { |x| string.chars.include?(x.string) }
-
-  def unhappy = string.first == 'i' ? 'stressed' : 'bored'
 
   def verb = string.first == 'i' ? 'get' : 'use'
   def noun = string.second == 'p' ? 'energy' : 'strength'

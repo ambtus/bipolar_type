@@ -18,10 +18,10 @@ table
       th=a.link
   tr
     th 8-hour shift
-    td.bordered beginning of shift
-    td.bordered before break
-    td.bordered after break
-    td.bordered end of shift
+    td.bordered status update
+    td.bordered urgent tasks
+    td.bordered important tasks
+    td.bordered achievements
   tr
     th Day
     td.bordered morning
@@ -61,7 +61,7 @@ table
     th
     -Action.each do |a|
       th=a.link
-  -%w[action focus episode].each do |description|
+  -%w[ focus action problem episode].each do |description|
     tr
       td=description
       -Action.each do |action|
@@ -75,7 +75,7 @@ table
     th
     -Realm.focus_order.each do |realm|
       th=realm.link
-  -%i[realm focus externals adverb internal output intake strength energy jungian].each_with_index do |description, index|
+  -%i[realm sense signal focus externals adverb my output intake strength energy jungian].each_with_index do |description, index|
     tr
       td=description
       -Realm.focus_order.each do |realm|
@@ -93,7 +93,7 @@ table
 
 
 p.center.larger the 16 Behaviors
-table
+table.equal
   -Realm.each do |r|
     tr
       -r.behaviors.each do |behavior|
@@ -102,8 +102,10 @@ table
           br
           =behavior.behavior
           br
+          =behavior.specific
+          br
           =behavior.focus
           br
           =behavior.technical
           br
-          =behavior.specific
+          =behavior.episode

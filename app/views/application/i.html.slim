@@ -24,27 +24,22 @@ table
     td=green @type.i.ij
     th
 p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you.
-dl
-  dt if you are low
-  dd
-    =@type.i.realm.ij
-    |<> instead of
-    =@type.i.realm.ip.ing
-  dt if you are going up
-  dd
-    =@type.p.realm.ip
-    |<> instead of
-    =@type.p.realm.ep.ing
-  dt if you are high
-  dd
-    =@type.e.realm.ep
-    |<> instead of
-    =@type.e.realm.ej.ing
-  dt if you are going down
-  dd
-    =@type.j.realm.ej
-    |<> instead of
-    =@type.j.realm.ij.ing
+ol
+  li #{@type.p.realm.ip.capitalize}, and then <em>keep</em> #{@type.p.realm.ip.ing}. It’s still early in the cycle so keep getting energy. Don’t start #{@type.p.realm.ep.ing} before you have to interact with #{@type.p.realm.externals}.
+  li #{@type.e.realm.ep.capitalize}, don’t #{@type.e.realm.ej}. It’s still early in the cycle so stay in flight mode. Don’t switch to fight mode before you have to.
+  li #{@type.j.realm.ej.capitalize}, don’t #{@type.j.realm.ij}. It’s still early in the cycle so stay in fight mode. Don’t try to reap your rewards or rest on your laurels before you’ve taken control of the #{@type.j.realm.externals}.
+  li #{@type.i.realm.ij.capitalize} before you sleep; don’t #{@type.i.realm.ip} after you wake up. If you are #{@type.i.realm.realm.ly} tired, it’s because you didn’t get enough #{@type.i.realm.realm} rest, <em>not</em> because you didn’t get enough #{@type.i.realm.realm} energy.
+  li
+    -case @type.j.realm
+      -when Realm.N
+        em Close your eyes
+      -when Realm.F
+        em Turn off the radio
+      -when Realm.S
+        em Leave the kitchen
+      -when Realm.T
+        em Turn down the heat
+    | . Stop #{@type.j.realm.ij.ing} and you will, <em>eventually</em>, fall asleep.
 
 p.center.larger Related BipolarTypes
 dl

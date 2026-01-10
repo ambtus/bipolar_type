@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   Action.each do |action|
     get "/#{action.render}" => "application##{action.render}"
   end
-  #get '/theory' => 'application#theory'
-  #get '/definitions' => 'application#definitions'
-  #get '/behaviors' => 'application#behaviors'
+  get '/theory' => 'application#theory'
+  get '/definitions' => 'application#definitions'
+  get '/behaviors' => 'application#behaviors'
   resources :types, only: %i[show]
   get '/me' => 'types#me', as: :my
 end
