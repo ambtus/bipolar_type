@@ -40,18 +40,8 @@ table
     td.bordered full moon
     td.bordered waning moon
     td.bordered new moon
-  tr
-    th Solar year
-    td.bordered spring
-    td.bordered summer
-    td.bordered autumn
-    td.bordered winter
-  tr
-    th Lifetime
-    td.bordered child
-    td.bordered adolescent
-    td.bordered adult
-    td.bordered elder
+
+
 
 
 
@@ -61,7 +51,7 @@ table
     th
     -Action.each do |a|
       th=a.link
-  -%w[ focus action problem episode].each do |description|
+  -%w[focus action problem episode life_stage solar_year].each do |description|
     tr
       td=description
       -Action.each do |action|
@@ -99,13 +89,6 @@ table.equal
       -r.behaviors.each do |behavior|
         td.behaviors
           b.larger=behavior.link
-          br
-          =behavior.behavior
-          br
-          =behavior.specific
-          br
-          =behavior.focus
-          br
-          =behavior.technical
-          br
-          =behavior.episode
+          ul.dot
+            -%w[behavior specific focus technical episode].each do |x|
+              li=behavior.send(x)

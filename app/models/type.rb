@@ -21,7 +21,7 @@ class Type < Concept
 
   def subtypes
     if extroverted?
-      realms.add(Mood.all).rotate(-1)
+      realms.add(Mood.all.rotate(-1))
     else
       realms.add(Mood.all.rotate(-1))
     end

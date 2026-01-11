@@ -8,8 +8,9 @@ class Action < Concept
   end
 
   alias render :string
-  def position = %w[first second third fourth][index]
-  def problem = %w[obesity anorexia strain insomnia][index]
+  def ordinal = %w[first second third fourth][index]
+  def life_phase = %w[children adolescent adult retired][index]
+  def solar_year = %w[spring summer autumn winter][index]
   def next_path = %i[ep_path ej_path ij_path type_path][index]
 
   def behaviors = Behavior.all.select { |x| x.action == self }
@@ -17,12 +18,16 @@ class Action < Concept
 
   def moods = Mood.select { |x| string.chars.include?(x.string) }
 
-  def verb = string.first == 'i' ? 'get' : 'use'
+  def basic = Basic.find(string.first)
+  delegate :verb, to: :basic
+  %i[object verb].each do |sym|
+    delegate sym, to: :basic
+  end
+
   def noun = string.second == 'p' ? 'energy' : 'strength'
   def action = [verb, noun].to_phrase
 
   def adjective = string.second == 'p' ? 'urgent' : 'important'
-  def object = string.first == 'i' ? 'needs' : 'tasks'
   def focus = [adjective, object].to_phrase
 
   def episode = index == 2 ? moods.reverse.map(&:mood).to_phrase : moods.map(&:mood).to_phrase

@@ -1,7 +1,21 @@
 p Life is a never-ending composite sine wave that rises (p) and falls (j) in an eternal cycle between awake (e) and asleep (i).
+p
+  |> Since humans learned to
+  =link_to 'control fire', 'https://en.wikipedia.org/wiki/Control_of_fire_by_early_humans', class: :external
+  |<> they have been able to provide
+  =Realm.pp_order.map(&:signal).and
+  |< whenever they want them. Today such signals can be turned on and off with the flick of a switch or automatically on a preset schedule.
 
-p An introvert is always ahead of the cycle, as their hypersensitivity to signals means they start earlier. They may not be able to identify the signal whose presence is preventing them from falling asleep in the evening because the signal is weak enough for other people to ignore, so they assume they should be able to ignore it also and don’t turn the signal down or off. They end up either not falling asleep at all (manic) or overdosing on the wrong sedatives and thus unable to wake up in the morning (depressed).
-
-p An extrovert is always behind the cycle, as their obliviousness to signals means they start later. They may not be able to identify the signal whose absence is preventing them from waking up in the morning because the signal is strong enough for other people to perceive, so they assume they should be able to perceive it also and don’t turn the signal on or up. They end up either not waking up at all (depressed) or overdosing on the wrong stimulants and thus unable to fall asleep in the evening (manic).
-
-p You can turn the signals on and off at will with the flick of a switch, or have them turned on and off for you by a timer set to your own preferred schedule. But which signals should you turn on and off when? That depends on your BipolarType.
+p But once you control the signals, you have the potential to completely disrupt the sleep cycle. You can increase the signals until you are not sleeping at night or decrease the signals until you are not awake during the day. Which is great if you need to work night shift but terrible if you don’t know why you are not asleep when everyone else is resting (manic) or awake when everyone else is alert (depressed).
+p If you are Introverted, signals that most people would not even perceive will wake you and keep you awake and you are more prone to mania. If you are extraverted, signals that most people would find impossible to ignore will neither wake you nor keep you awake and you are more prone to depression.
+p The good news is that you <em>do</em> have control of the signals, and so can treat mania by decreasing the signals and depression by increasing the signals. You don’t have to take sedatives until you can no longer perceive them or stimulants until you can.
+p The bad news is that just turning all the signals off in the evening and having a scheduled timer turn them all back on in the morning for you only solves a half the points on the cycle (e: awake and i: asleep). The other two (p: rising and j: falling) are associated with anxiety and irritability. So even after you have solved the manic part of irritable mania, you are still left with the irritable part.
+p
+  =Realm.pp_order.map(&:signal).and.capitalize
+  |<>  are not just
+  =link_to 'zeitgebers', 'https://en.wikipedia.org/wiki/Zeitgeber', class: :external
+  |>  whose presence signal that it is time to wake and whose absence signal that it is time to sleep.
+  -Realm.pp_order.each do |realm|
+    |< #{realm.sense.capitalize.are} associated with #{realm.resources}: should you #{realm.attend} #{realm.them} or #{realm.deal_with} #{realm.them}?
+p That depends on whether the #{Realm.all.map(&:resources).or} things make you anxious or irritable.
+p One of the basic tenets of BipolarType is that everyone has anxiety in one realm, mania in another, irritability in a third, and depression in the fourth.

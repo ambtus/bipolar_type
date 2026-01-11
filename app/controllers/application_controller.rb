@@ -12,11 +12,10 @@ class ApplicationController < ActionController::Base
   Action.each do |action|
     define_method action.render do
       @action = action
-      basic = params[:format].first
+      @basic = Basic.find params[:format].first
       @realms = params[:format].chip.chars.collect { |x| Realm.find x }
-      @breadcrumbs = [basic, *@realms]
+      @breadcrumbs = [@basic, *@realms]
       @title = @breadcrumbs.join
-      @unhappy = (basic == 'i' ? 'stressed' : 'bored')
       render 'action'
     end
   end

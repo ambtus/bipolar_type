@@ -21,9 +21,9 @@ html lang="en"
       dd { grid-column-start: 2;}
 
       ul { padding: 0; margin: 0; list-style-type: none; }
+      ul.dot { padding: 1em; list-style-type: '•'; text-align: left}
 
       table {margin: auto; border: none; border-collapse: collapse;}
-      table.equal { table-layout: fixed; width:100%;}
       td {border: none; text-align: center; vertical-align: top; padding: .2em; }
       td.right { text-align: right;}
       td.bordered { border: 1px solid grey}
@@ -50,8 +50,8 @@ html lang="en"
         =link_to @breadcrumbs.fifth, ij_path(@breadcrumbs[0, 4].join)
         |<> |
     =link_to_unless_current 'theory', theory_path
-    |<> |
-    =link_to_unless_current 'definitions', definitions_path
+    /|<> |
+    /=link_to_unless_current 'definitions', definitions_path
 
 
 
@@ -66,13 +66,13 @@ html lang="en"
       =link_to_unless_current 'iFSNT', type_path('iFSNT')
       |<> |
       =link_to_unless_current 'iTNSF', type_path('iTNSF')
-      hr
-      =link_to_unless_current 'eSFTN', type_path(Type.mine.sibling.path)
+      br
+      =link_to_unless_current 'eSFTN', type_path('eSFTN')
       |<> |
       =link_to_unless_current 'eNTFS', type_path('eNTFS')
       |<> |
       =link_to_unless_current 'eFSNT', type_path('eFSNT')
       |<> |
       =link_to_unless_current 'eTNSF', type_path('eTNSF')
-      hr
+      br
       | params: #{params}

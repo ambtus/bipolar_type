@@ -293,8 +293,10 @@ class String
 
   def est
     return 'weakest' if self == 'weak'
+    return 'skinniest' if self == 'skinny'
+    return 'fattest' if self == 'fat'
 
-    return "most #{self}"
+    "most #{self}"
   end
 
   def ing
