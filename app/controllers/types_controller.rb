@@ -4,8 +4,7 @@ class TypesController < ApplicationController
   def show
     @type = Type.find params[:id]
     @title = @type.string
-    @breadcrumbs = @type.breadcrumbs
-    render @type.render
+    render 'type'
   end
 
   def me

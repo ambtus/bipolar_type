@@ -11,16 +11,4 @@ RSpec.describe Realm, type: :model do
   it 'describes the physical, mental, and other things' do
     expect(described_class.all.map(&:realm)).to include('physical', 'mental')
   end
-
-  it 'describes people, places, and other things' do
-    expect(described_class.pp_order.map(&:externals)).to include('people', 'places')
-  end
-
-  it 'describes the body, mind, and other things' do
-    expect(described_class.all.map(&:my)).to include('body', 'mind')
-  end
-
-  it 'describes food, shelter, and other things' do
-    expect(described_class.focus_order.map(&:focus)).to include('food', 'shelter')
-  end
 end

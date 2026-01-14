@@ -26,53 +26,23 @@ html lang="en"
       table {margin: auto; border: none; border-collapse: collapse;}
       td {border: none; text-align: center; vertical-align: top; padding: .2em; }
       td.right { text-align: right;}
+      td.left { text-align: left;}
       td.bordered { border: 1px solid grey}
+      td.middle {vertical-align: middle;}
 
   body
-    span id='breadcrumbs' =link_to_unless_current 'home', root_path
+    =link_to_unless_current 'home', root_path
     |<> |
-    -if @breadcrumbs.blank?
-      =link_to_unless_current 'basic', basic_path
-      |<> |
-    -else
-      =link_to @breadcrumbs.first, basic_path
-      |<> |
-      -if @breadcrumbs.length > 1
-        =link_to @breadcrumbs.second, ip_path(@breadcrumbs.first)
-        |<> |
-      -if @breadcrumbs.length > 2
-        =link_to @breadcrumbs.third, ep_path(@breadcrumbs[0, 2].join)
-        |<> |
-      -if @breadcrumbs.length > 3
-        =link_to @breadcrumbs.fourth, ej_path(@breadcrumbs[0, 3].join)
-        |<> |
-      -if @breadcrumbs.length > 4
-        =link_to @breadcrumbs.fifth, ij_path(@breadcrumbs[0, 4].join)
-        |<> |
     =link_to_unless_current 'theory', theory_path
-    /|<> |
-    /=link_to_unless_current 'definitions', definitions_path
-
-
-
     =yield
 
     -if Rails.env.development?
       hr
-      =link_to_unless_current 'iSFTN', type_path(Type.mine.path)
-      |<> |
-      =link_to_unless_current 'iNTFS', type_path('iNTFS')
-      |<> |
-      =link_to_unless_current 'iFSNT', type_path('iFSNT')
-      |<> |
-      =link_to_unless_current 'iTNSF', type_path('iTNSF')
-      br
-      =link_to_unless_current 'eSFTN', type_path('eSFTN')
-      |<> |
-      =link_to_unless_current 'eNTFS', type_path('eNTFS')
-      |<> |
-      =link_to_unless_current 'eFSNT', type_path('eFSNT')
-      |<> |
-      =link_to_unless_current 'eTNSF', type_path('eTNSF')
-      br
+      -%w[i e].each do |x|
+        -%w[SFMP FSPM PMFS MPSF].each do |r|
+          =link_to_unless_current x + r, type_path(x + r)
+          |<> |
+        br
       | params: #{params}
+      br
+      | realms: #{@realms}

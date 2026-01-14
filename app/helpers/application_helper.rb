@@ -1,7 +1,21 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def link_to_concept(concept)
-    link_to concept.link, send("#{concept.class.name.downcase}_path", concept.path)
+  def green(behavior)
+    safe_join(['<span style="background-color:green;font-size:xx-large">'.html_safe,
+               behavior.link,
+               '</span>'.html_safe])
+  end
+
+  def yellow(behavior)
+    safe_join(['<span style="background-color:yellow; font-size:x-large">'.html_safe,
+               behavior.link,
+               '</span>'.html_safe])
+  end
+
+  def red(behavior)
+    safe_join(['<span style="background-color:red;font-size:large">'.html_safe,
+               behavior.link,
+               '</span>'.html_safe])
   end
 end

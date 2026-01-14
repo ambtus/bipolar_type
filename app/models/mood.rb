@@ -7,11 +7,6 @@ class Mood < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.type_order = ALL.rotate(-1)
-
-  def self.left = ALL.values_at(1, 0, 3, 2)
-  def self.right = ALL.rotate
-
   def actions = Action.all.select { |x| x.string.match string }
 
   def subtypes = Subtype.all.select { |x| x.string.match string }
@@ -19,7 +14,8 @@ class Mood < Concept
 
   def horizontal? = index.even?
 
-  def state = %w[rising high falling low][index]
-  def focus = %w[urgent tasks important needs][index]
-  def mood = %w[anxious mania irritable depression][index]
+  def mood = %w[anxiety mania irritability depression][index]
+  def normal = %w[urgent awake important asleep][index]
+
+  def bipolar = [string.colon, mood].to_phrase
 end

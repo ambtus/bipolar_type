@@ -1,21 +1,52 @@
-p Life is a never-ending composite sine wave that rises (p) and falls (j) in an eternal cycle between awake (e) and asleep (i).
-p
-  |> Since humans learned to
-  =link_to 'control fire', 'https://en.wikipedia.org/wiki/Control_of_fire_by_early_humans', class: :external
-  |<> they have been able to provide
-  =Realm.pp_order.map(&:signal).and
-  |< whenever they want them. Today such signals can be turned on and off with the flick of a switch or automatically on a preset schedule.
 
-p But once you control the signals, you have the potential to completely disrupt the sleep cycle. You can increase the signals until you are not sleeping at night or decrease the signals until you are not awake during the day. Which is great if you need to work night shift but terrible if you don’t know why you are not asleep when everyone else is resting (manic) or awake when everyone else is alert (depressed).
-p If you are Introverted, signals that most people would not even perceive will wake you and keep you awake and you are more prone to mania. If you are extraverted, signals that most people would find impossible to ignore will neither wake you nor keep you awake and you are more prone to depression.
-p The good news is that you <em>do</em> have control of the signals, and so can treat mania by decreasing the signals and depression by increasing the signals. You don’t have to take sedatives until you can no longer perceive them or stimulants until you can.
-p The bad news is that just turning all the signals off in the evening and having a scheduled timer turn them all back on in the morning for you only solves a half the points on the cycle (e: awake and i: asleep). The other two (p: rising and j: falling) are associated with anxiety and irritability. So even after you have solved the manic part of irritable mania, you are still left with the irritable part.
-p
-  =Realm.pp_order.map(&:signal).and.capitalize
-  |<>  are not just
-  =link_to 'zeitgebers', 'https://en.wikipedia.org/wiki/Zeitgeber', class: :external
-  |>  whose presence signal that it is time to wake and whose absence signal that it is time to sleep.
-  -Realm.pp_order.each do |realm|
-    |< #{realm.sense.capitalize.are} associated with #{realm.resources}: should you #{realm.attend} #{realm.them} or #{realm.deal_with} #{realm.them}?
-p That depends on whether the #{Realm.all.map(&:resources).or} things make you anxious or irritable.
-p One of the basic tenets of BipolarType is that everyone has anxiety in one realm, mania in another, irritability in a third, and depression in the fourth.
+table
+  caption
+    b the Normal cycle
+  tr
+    td
+    td=Mood.second.normal
+    td
+  tr
+    td=Mood.first.normal
+    th &orarr;
+    td=Mood.third.normal
+  tr
+    td
+    td=Mood.fourth.normal
+    td
+
+
+p Some people will hear the thunder and others see the lightning of a storm. And some people will sleep through the storm but will smell the smoke or feel the heat of a fire. Which signals wake you up, which keep you awake, and which you find easy to ignore depends on your type.
+
+table
+  caption
+    b the Type cycle
+  tr
+    td
+    td.left you sense something which is <em>both</em> urgent and important (cannot be ignored)
+    td
+  tr
+    td.left you sense something which is <em>urgent</em> (but not particularly important, you <em>could</em> ignore it and go back to sleep…)
+    th &orarr;
+    td.left you sense something which is <em>important</em> (but not particularly urgent, you <em>could</em> ignore it for now and go to sleep…)
+  tr
+    td
+    td.left you sense something which is <em>neither</em> urgent nor important (can be ignored)
+    td
+
+p A bipolar cycle is exactly the same as a normal cycle except that you do not know <em>why</em> you are where you are in the cycle, and thus cannot effectively decrease the signals (mania) or increase them (depresion)
+table
+  caption
+    b the Bipolar cycle
+  tr
+    td
+    td=Mood.second.bipolar
+    td
+  tr
+    td=Mood.first.bipolar
+    th &orarr;
+    td=Mood.third.bipolar
+  tr
+    td
+    td=Mood.fourth.bipolar
+    td

@@ -3,8 +3,8 @@
 class Subtype < Concept
   SYMBOLS = Realm.all.collect do |realm|
     Mood.all.collect do |mood|
-      mood.horizontal? ? (realm.string + mood.string) : (mood.string + realm.string)
-    end.map(&:to_sym)
+      (realm.string + mood.string).to_sym
+    end
   end.flatten
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
@@ -28,5 +28,6 @@ class Subtype < Concept
     define_method(action.symbol) { realm + action }
   end
 
-  def subtype = mood.horizontal? ? [realm.realm, mood.mood.to_noun].to_phrase : [realm.realm, mood.mood].to_phrase
+  def episode = [realm.realm, mood.mood].to_phrase
+  def title = [string.colon, episode].to_phrase
 end

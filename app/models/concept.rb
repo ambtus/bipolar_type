@@ -18,9 +18,6 @@ class Concept
 
   class << self
     def all = self::ALL
-    def title = [all.count, name.pluralize].to_phrase
-    def strings = all.map(&:string)
-    def titles = all.map(&:title)
     def [](index) = (all * 2).[](index)
     def find(thing) = all.find { |x| x.symbol == thing.to_sym }
     %i[each each_with_index first second third fourth last without rotate values_at select].each do |meth|
@@ -35,9 +32,4 @@ class Concept
     symbol == other.symbol
   end
 
-  def previous = self.class.rotate(-1)[index]
-  def next = self.class.rotate[index]
-  def opposite = self.class.rotate(2)[index]
-  def flop = ALL.reverse[index]
-  def flip = ALL.values_at(1, 0, 3, 2)[index]
 end

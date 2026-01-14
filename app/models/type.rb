@@ -1,80 +1,62 @@
 # frozen_string_literal: true
 
 class Type < Concept
-  BASICS = %w[e i].freeze
   SYMBOLS = Realm.all.permutation(4).collect do |realms|
-    ["#{BASICS.first}#{realms.join}", "#{BASICS.second}#{realms.join}"]
-  end.flatten.map(&:to_sym)
+    Basic.all.collect do |basic|
+      :"#{basic}#{realms.join}"
+    end
+  end.flatten
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
 
   class << self
-    def my_path = "#{BASICS.second}SFTN"
+    def my_path = [Basic.mine, *Realm.my_order].join
     def mine = find(my_path)
     def title = 'theory'
   end
 
-  def realms = string.chip.chars.collect { |x| Realm.find x }
-  def render = string.first
-  def extroverted? = render == BASICS.first
-  def breadcrumbs = [render, *realms]
+  def basic = Basic.find string.first
+  delegate :extroverted?, :first_color, :second_color, to: :basic
 
-  def subtypes
-    if extroverted?
-      realms.add(Mood.all.rotate(-1))
-    else
-      realms.add(Mood.all.rotate(-1))
-    end
-  end
+  def realms = string.chip.chars.collect { |x| Realm.find x }
+
+  def subtypes = realms.add(Mood.all)
 
   alias inspect :string
   alias link :string
-
-  def mbti = String::MBTIS.find { |m| m.make_bipolar_type == title }
 
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }
   end
 
-  def sibling
-    if extroverted?
-      Type.find ['i', *realms.rotate(-1)].join
-    else
-      Type.find ['e', *realms.rotate].join
-    end
-  end
+  def other_skew = basic.other
+  def sibling = Type.find [other_skew, *realms].join
 
-  def behaviors = subtypes.map(&:behaviors).flatten
+  def behaviors = subtypes[0, 3].map(&:behaviors) + [subtypes.last.behaviors.reverse]
 
   def dos
     if extroverted?
-      behaviors.values_at(0, 3, 5, 7)
+      behaviors.map(&:second)
     else
-      behaviors.values_at(2, 4, 6, 1)
+      behaviors.map(&:first)
     end
   end
+
+  def donts = sibling.dos
 
   def similar
     if extroverted?
-      Type.find ['i', *realms.rotate].join
+      Type.find [other_skew, *realms.rotate(-1)].join
     else
-      Type.find ['e', *realms.rotate(2)].join
-    end
-  end
-
-  def donts
-    if extroverted?
-      behaviors.values_at(2, 4, 6, 1)
-    else
-      behaviors.values_at(0, 3, 5, 7)
+      Type.find [other_skew, *realms.rotate(1)].join
     end
   end
 
   def different
     if extroverted?
-      Type.find ['i', *realms].join
+      Type.find [other_skew, *realms.rotate(1)].join
     else
-      Type.find ['e', *realms].join
+      Type.find [other_skew, *realms.rotate(-1)].join
     end
   end
 end
