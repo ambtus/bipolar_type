@@ -11,6 +11,8 @@ class Action < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
+  def self.mine = Action.ip
+
   def behaviors = Behavior.all.select { |x| x.action == self }
   def +(other) = behaviors.find { |x| x.realm == other }
 

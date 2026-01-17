@@ -1,0 +1,54 @@
+table
+  caption
+    b Your cycle
+  tr
+    td.none.middle.third
+    -realm = @realms.third
+    td.third e#{realm}: #{realm.change} #{realm.change_prep} bad #{realm.things}<br />#{realm.name.ly} brave
+    td.none.middle.third
+  tr
+    -realm = @realms.second
+    td.middle #{realm}p: #{realm.accept_things} until they #{realm.appear} bad<br />#{realm.name.ly} wise
+    th &orarr;
+    -realm = @realms.fourth
+    td.middle #{realm}j: #{realm.change_things} until they #{realm.appear} good<br />#{realm.name.ly} wise
+  tr
+    td.none.middle
+    -realm = @realms.first
+    td.bottom i#{realm}: #{realm.accept} #{realm.accept_prep} good #{realm.things}<br />#{realm.name.ly} serene
+    td.none.middle
+
+p The BipolarType theory asserts that bipolar episodes (#{Mood.all.map(&:episode).and}) are caused by a persistent skew in the cycle, either clockwise or counterclockwise.
+
+table.none
+  tr
+    td.half.none
+      table
+        tr
+          td e#{@realms.second}p: #{@realms.second.name} #{Mood.second.episode}
+          th #{@realms[1,2].map(&:name).map(&:ly).and} skinny
+          td e#{@realms.third}j: #{@realms.third.name} #{Mood.third.episode}
+        tr
+          th
+          th =link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
+          th
+        tr
+          td i#{@realms.first}p: #{@realms.first.name} #{Mood.first.episode}
+          th #{@realms.values_at(3,0).map(&:name).map(&:ly).and} fat
+          td i#{@realms.fourth}j: #{@realms.fourth.name} #{Mood.fourth.episode}
+
+    td.half.none
+      table
+        tr
+          td e#{@realms.third}p: #{@realms.third.name} #{Mood.third.episode}
+          th #{@realms[2,2].map(&:name).map(&:ly).and} skinny
+          td e#{@realms.fourth}j: #{@realms.fourth.name} #{Mood.fourth.episode}
+        tr
+          th
+          th =link_to Skew.second, type_path("#{@realms.join}#{Skew.second}")
+          th
+        tr
+          td i#{@realms.second}p: #{@realms.second.name} #{Mood.second.episode}
+          th #{@realms[0,2].map(&:name).map(&:ly).and} fat
+          td i#{@realms.first}j: #{@realms.first.name} #{Mood.first.episode}
+p And that the solution is to recenter the cycle by embracing the other skew.

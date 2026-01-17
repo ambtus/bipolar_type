@@ -20,6 +20,24 @@ Then('I should see the four bipolars') do
   end
 end
 
+Then('I should see the four realms') do
+  Realm.each do |x|
+    expect(page).to have_text(x.title)
+  end
+end
+
+Then('I should see the {word} four subtypes') do |ordinal|
+  Mood.send(ordinal).subtypes.each do |x|
+    expect(page).to have_text(x.link)
+  end
+end
+
+Then('I should see the two skews') do
+  Skew.each do |x|
+    expect(page).to have_text(x.link)
+  end
+end
+
 Then('my moods should be listed') do
   Type.mine.subtypes.each do |x|
     expect(page).to have_text(x.link)

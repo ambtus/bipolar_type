@@ -3,8 +3,8 @@
 class Subtype < Concept
   SYMBOLS = Realm.all.collect do |realm|
     Mood.all.collect do |mood|
-      (realm.string + mood.string).to_sym
-    end
+      mood.horizontal? ? (realm.string + mood.string) : (mood.string + realm.string)
+    end.map(&:to_sym)
   end.flatten
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
@@ -16,18 +16,15 @@ class Subtype < Concept
 
   def self.types = all.select { |x| x.mood.vertical? }
 
-  %i[previous next opposite flip flop].each do |sym|
-    define_method(sym) { realm + mood.send(sym) }
-  end
-
-  def sibling_actions = Action.all.select { |x| x.path.match? mood.path }
-
-  def behaviors = sibling_actions.add(realm)
+  def behaviors = mood.sibling_actions.add(realm)
 
   Action.each do |action|
     define_method(action.symbol) { realm + action }
   end
 
-  def episode = [realm.realm, mood.mood].to_phrase
-  def title = [string.colon, episode].to_phrase
+  def normal = [realm.name, mood.normal].to_phrase
+  def episode = [realm.name.ly, mood.episode].to_phrase
+
+  def state = [string.colon, name].to_phrase
+  def bipolar = [string.colon, state].to_phrase
 end

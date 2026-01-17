@@ -135,7 +135,8 @@ class String
              foods places music carbs art facts cash plans
              currency procedures words protein rules shoulds
              morals credit hunting gathering weights actions
-             structure salary wages marathons pictures logic muscles].freeze
+             structure salary wages marathons pictures logic muscles
+             people tools ideas].freeze
   ADJECTIVES = %w[flee fight rest digest refuel insomniac
                   anxious irritable bored angry afraid tired lethargic
                   anorexic depressed manic energetic strong obese
@@ -455,10 +456,10 @@ class String
       return "#{self} too much" if match(connector)
     end
     if match?(' ')
-      if last_words.noun?
-        [first_words, last_words.too_much].join(' ')
+      if last_word.noun?
+        [first_words, last_word.too_much].join(' ')
       else
-        [first_words, 'too', last_words.last.much, last_words].join(' ')
+        [first_words, 'too', last_word.last.much, last_word].join(' ')
       end
     elsif noun?
       "too #{many} #{self}"

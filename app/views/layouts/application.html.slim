@@ -7,6 +7,8 @@ html lang="en"
     = yield :head
     css:
       .center  { text-align: center;}
+      .right { text-align: right;}
+      .left { text-align: left;}
       .larger  { font-size: 1.2em;}
       .red {color: red}
       .green {color: green}
@@ -24,25 +26,23 @@ html lang="en"
       ul.dot { padding: 1em; list-style-type: '•'; text-align: left}
 
       table {margin: auto; border: none; border-collapse: collapse;}
-      td {border: none; text-align: center; vertical-align: top; padding: .2em; }
-      td.right { text-align: right;}
-      td.left { text-align: left;}
-      td.bordered { border: 1px solid grey}
+      td {border: 1px solid grey; text-align: center; vertical-align: top; padding: .2em; }
+      td.none { border: none;}
       td.middle {vertical-align: middle;}
+      td.bottom {vertical-align: bottom;}
+      td.third { width: 33% }
+      td.half { width: 50% }
+
+      tr.true { color: green}
+      tr.false { color: red}
 
   body
-    =link_to_unless_current 'home', root_path
+    =link_to_unless_current 'Home', root_path
     |<> |
-    =link_to_unless_current 'theory', theory_path
-    =yield
+    =link_to_unless_current 'Bipolar', cycle_path
+    |<> |
+    =link_to_unless_current 'Type', signals_path
+    |<> |
+    =link_to_unless_current 'BipolarTypes', types_path
 
-    -if Rails.env.development?
-      hr
-      -%w[i e].each do |x|
-        -%w[SFMP FSPM PMFS MPSF].each do |r|
-          =link_to_unless_current x + r, type_path(x + r)
-          |<> |
-        br
-      | params: #{params}
-      br
-      | realms: #{@realms}
+    =yield

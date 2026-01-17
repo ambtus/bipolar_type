@@ -16,11 +16,6 @@ Scenario: has a link to wikipedia falsifiable
 Given I am on the homepage
 Then 'falsifiable' should link to wikipedia
 
-Scenario: has a link to the theory page
-Given I am on the homepage
-When I follow the 'theory' link
-Then I should be on the theory page
-
 Scenario: has a link to my page
 Given I am on the homepage
 When I follow the 'me' link

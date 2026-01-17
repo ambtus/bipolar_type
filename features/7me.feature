@@ -27,12 +27,7 @@ Given I am on my page
 When I follow my different
 Then I should be on my different page
 
-Scenario: has a link to the theory page
-Given I am on the homepage
-When I follow the 'theory' link
-Then I should be on the theory page
-
 Scenario: has a link to the home page
-Given I am on the theory page
-When I follow the 'home' link
+Given I am on my page
+When I follow the 'Home' link
 Then I should be on the homepage

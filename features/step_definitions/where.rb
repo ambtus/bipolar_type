@@ -8,8 +8,16 @@ Given('I am on my page') do
   visit '/me'
 end
 
-Given('I am on the theory page') do
-  visit '/theory'
+Given('I am on the bipolar page') do
+  visit '/cycle'
+end
+
+Given('I am on the type page') do
+  visit '/signals'
+end
+
+Given('I am on the types page') do
+  visit '/types'
 end
 
 Then('I should be on the homepage') do

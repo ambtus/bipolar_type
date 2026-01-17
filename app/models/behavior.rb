@@ -3,7 +3,7 @@
 class Behavior < Concept
   SYMBOLS = Realm.all.collect do |realm|
     Action.all.collect do |action|
-      (action.string.second + realm.string + action.string.first).to_sym
+      (action.string.first + realm.string + action.string.second).to_sym
     end
   end.flatten
 
@@ -13,7 +13,7 @@ class Behavior < Concept
   end
 
   def realm = Realm.find(string.second)
-  def action = Action.find(string.third + string.first)
+  def action = Action.find(string.first + string.third)
 
   def types = Type.select { |x| x.donts.include?(self) }
   def moods = action.moods.add(realm)

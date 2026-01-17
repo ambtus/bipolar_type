@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   def home = (@title = 'Introduction')
 
-  def basic = (@title = 'Basic Type')
+  def cycle = (@title = 'Cycle')
 
-  def theory = (@title = 'Theory')
+  def signals = (@title = 'Signals')
 end

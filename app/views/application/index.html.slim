@@ -1,0 +1,23 @@
+p.center.larger #{@mood.normal.capitalize} Realm
+dl
+  -Realm.each do |realm|
+    -subtype = realm + @mood
+    dt=link_to_unless @realms.include?(realm), subtype, types_path("#{@realms.join}#{realm}")
+    dd
+      -case @mood
+      -when Mood.p
+        | I #{realm.accept_things} until they start to #{realm.appear} bad
+      -when Mood.e
+        | I #{realm.change_things} until I have calmed down
+      -when Mood.j
+        | I #{realm.change_things} until they #{realm.appear} good
+      -when Mood.i
+        | I #{realm.accept_things} until I have revved up
+      br
+      | (#{realm.name} #{@mood.episode})
+    dt &nbsp;
+
+
+-if Rails.env.development?
+  hr
+  | realms: #{@realms}

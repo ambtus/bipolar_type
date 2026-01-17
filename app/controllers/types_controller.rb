@@ -1,10 +1,20 @@
 # frozen_string_literal: true
 
 class TypesController < ApplicationController
+  def index
+    @answers = params[:format] || ''
+    index = @answers.length
+    ordinal = (index + 1).ordinalize
+    @mood = Mood.all[index]
+    @title = "#{ordinal} question" + (@answers.blank? ? '' : " for #{@answers}")
+    @realms = index.zero? ? [] : @answers.chars.collect{|x| Realm.find(x)}
+    render 'skew' and return if index == 4
+  end
+
   def show
     @type = Type.find params[:id]
     @title = @type.string
-    render 'type'
+    @realms = @type.realms
   end
 
   def me

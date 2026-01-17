@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+
   def green(behavior)
     safe_join(['<span style="background-color:green;font-size:xx-large">'.html_safe,
                behavior.link,
