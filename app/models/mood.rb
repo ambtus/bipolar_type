@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Mood < Concept
-  SYMBOLS = %i[i p e j].freeze
+  SYMBOLS = %i[p e j i].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }

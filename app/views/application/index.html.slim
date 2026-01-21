@@ -6,14 +6,15 @@ dl
     dd
       -case Mood.all[@answers.length]
       -when Mood.p
-        | I #{realm.accept_things} until they #{realm.appear} bad and then I #{realm.change_them}
+        | i#{realm}p & e#{realm}p
       -when Mood.e
-        | I start #{realm.change_things.ing} when they #{realm.appear} bad and stop #{realm.change_them.ing} when they #{realm.appear} good
+        | e#{realm}p & e#{realm}j
       -when Mood.j
-        | I #{realm.change_things} until they #{realm.appear} good and then I #{realm.accept_them}
+        | e#{realm}j & i#{realm}j
       -when Mood.i
-        | I start #{realm.accept_things.ing} when they #{realm.appear} good and stop #{realm.accept_them.ing} when they #{realm.appear} bad
-      |< (#{realm.name} #{Mood.all[@answers.length].normality})
+        | i#{realm}j & i#{realm}p
+      br
+      | (#{realm.name.ly} #{Mood.all[@answers.length].normal})
     dt &nbsp;
 
 
