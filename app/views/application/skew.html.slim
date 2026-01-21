@@ -4,7 +4,7 @@ table
   tr
     td.none.middle.third
     -realm = @realms.third
-    td.third e#{realm}: #{realm.change} #{realm.change_prep} bad #{realm.things}<br />#{realm.name.ly} brave
+    td.third e#{realm}: #{realm.change} #{realm.change_prep} bad #{realm.things}<br />#{realm.name.ly} #{Mood.e.normal}
     td.none.middle.third
   tr
     -realm = @realms.second
@@ -15,7 +15,7 @@ table
   tr
     td.none.middle
     -realm = @realms.first
-    td.bottom i#{realm}: #{realm.accept} #{realm.accept_prep} good #{realm.things}<br />#{realm.name.ly} serene
+    td.bottom i#{realm}: #{realm.accept} #{realm.accept_prep} good #{realm.things}<br />#{realm.name.ly} #{Mood.i.normal}
     td.none.middle
 
 p The BipolarType theory asserts that bipolar episodes (#{Mood.all.map(&:episode).and}) are caused by a persistent skew in the cycle, either clockwise or counterclockwise.

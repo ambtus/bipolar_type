@@ -16,10 +16,14 @@ When('I follow my different') do
   click_link('red')
 end
 
-When('I click on my {word} subtype') do |ordinal|
-  click_link(Type.mine.subtypes.send(ordinal))
+When('I click on my subtype') do
+  Type.mine.subtypes.each do |x|
+    if page.has_link?(x.link)
+      click_link(x.link) and break
+    end
+  end
 end
 
 When('I click on my skew') do
-  click_link(Type.mine.skew)
+  click_link(Type.mine.skew.link)
 end
