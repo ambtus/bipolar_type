@@ -19,36 +19,39 @@ table
     td.none.middle
 
 p The BipolarType theory asserts that bipolar episodes (#{Mood.all.map(&:episode).and}) are caused by a persistent skew in the cycle, either clockwise or counterclockwise.
-
 table.none
   tr
     td.half.none
       table
         tr
-          td e#{@realms.second}p: #{@realms.second.name} #{Mood.second.episode}
-          th #{@realms[1, 2].map { |x| x.name.ly }.and} skinny
-          td e#{@realms.third}j: #{@realms.third.name} #{Mood.third.episode}
+          td anxious #{@realms.second.name}  mania
+          th
+            / #{@realms[1, 2].map(&:things).and}
+          td irritable #{@realms.third.name}  mania
         tr
           th
-          th =link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
+          th=link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
           th
         tr
-          td i#{@realms.first}p: #{@realms.first.name} #{Mood.first.episode}
-          th #{@realms.values_at(3, 0).map { |x| x.name.ly }.and} fat
-          td i#{@realms.fourth}j: #{@realms.fourth.name} #{Mood.fourth.episode}
+          td anxious #{@realms.first.name}  depression
+          th
+            / #{@realms.values_at(3, 0).map(&:things).and}
+          td irritable #{@realms.fourth.name}  depression
 
     td.half.none
       table
         tr
-          td e#{@realms.third}p: #{@realms.third.name} #{Mood.third.episode}
-          th #{@realms[2, 2].map { |x| x.name.ly }.and} skinny
-          td e#{@realms.fourth}j: #{@realms.fourth.name} #{Mood.fourth.episode}
+          td anxious #{@realms.third.name} mania
+          th
+            / #{@realms[2, 2].map(&:things).and}
+          td irritable #{@realms.fourth.name} mania
         tr
           th
-          th =link_to Skew.second, type_path("#{@realms.join}#{Skew.second}")
+          th=link_to Skew.second, type_path("#{@realms.join}#{Skew.second}")
           th
         tr
-          td i#{@realms.second}p: #{@realms.second.name} #{Mood.second.episode}
-          th #{@realms[0, 2].map { |x| x.name.ly }.and} fat
-          td i#{@realms.first}j: #{@realms.first.name} #{Mood.first.episode}
+          td anxious #{@realms.second.name} depression
+          th
+            / #{@realms[0, 2].map(&:things).and}
+          td irritable #{@realms.first.name} depression
 p And that the solution is to recenter the cycle by embracing the other skew.
