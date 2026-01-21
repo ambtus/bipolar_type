@@ -17,24 +17,15 @@ class Type < Concept
   def skew = Skew.find string.last
   delegate :clockwise?, :first_color, :second_color, :other, to: :skew
 
-
-  def realms = string[0,4].chars.collect { |x| Realm.find x }
-
+  def realms = string[0, 4].chars.collect { |x| Realm.find x }
   def subtypes = realms.add(Mood.all)
-  def behaviors = subtypes[0, 3].map(&:behaviors) + [subtypes.last.behaviors.reverse]
-
-  def title = [string.colon, ].to_phrase
-
-  alias inspect :string
-  alias link :string
+  def behaviors = subtypes.map(&:behaviors)
 
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }
   end
 
   def sibling = Type.find [*realms, other].join
-
-  def behaviors = subtypes.map(&:behaviors)
 
   def dos
     if clockwise?

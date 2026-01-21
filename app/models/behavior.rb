@@ -17,5 +17,4 @@ class Behavior < Concept
 
   def types = Type.select { |x| x.donts.include?(self) }
   def moods = action.moods.add(realm)
-
- end
+end

@@ -3,12 +3,9 @@
 class TypesController < ApplicationController
   def index
     @answers = params[:format] || ''
-    index = @answers.length
-    ordinal = (index + 1).ordinalize
-    @mood = Mood.all[index]
-    @title = "#{ordinal} question" + (@answers.blank? ? '' : " for #{@answers}")
-    @realms = index.zero? ? [] : @answers.chars.collect{|x| Realm.find(x)}
-    render 'skew' and return if index == 4
+    @title = "#{(@answers.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
+    @realms = @answers.empty? ? [] : @answers.chars.collect { |x| Realm.find(x) }
+    render 'skew' and return if @answers.length == 4
   end
 
   def show

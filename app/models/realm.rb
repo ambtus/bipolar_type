@@ -27,5 +27,4 @@ class Realm < Concept
   def accept_prep = { F: :to, N: :at }[symbol].to_s
   def accept_things = [accept, accept_prep, things].to_phrase
   def accept_them = [accept, accept_prep, 'them'].to_phrase
-
 end

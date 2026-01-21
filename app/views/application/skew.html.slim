@@ -26,7 +26,7 @@ table.none
       table
         tr
           td e#{@realms.second}p: #{@realms.second.name} #{Mood.second.episode}
-          th #{@realms[1,2].map(&:name).map(&:ly).and} skinny
+          th #{@realms[1, 2].map { |x| x.name.ly }.and} skinny
           td e#{@realms.third}j: #{@realms.third.name} #{Mood.third.episode}
         tr
           th
@@ -34,14 +34,14 @@ table.none
           th
         tr
           td i#{@realms.first}p: #{@realms.first.name} #{Mood.first.episode}
-          th #{@realms.values_at(3,0).map(&:name).map(&:ly).and} fat
+          th #{@realms.values_at(3, 0).map { |x| x.name.ly }.and} fat
           td i#{@realms.fourth}j: #{@realms.fourth.name} #{Mood.fourth.episode}
 
     td.half.none
       table
         tr
           td e#{@realms.third}p: #{@realms.third.name} #{Mood.third.episode}
-          th #{@realms[2,2].map(&:name).map(&:ly).and} skinny
+          th #{@realms[2, 2].map { |x| x.name.ly }.and} skinny
           td e#{@realms.fourth}j: #{@realms.fourth.name} #{Mood.fourth.episode}
         tr
           th
@@ -49,6 +49,6 @@ table.none
           th
         tr
           td i#{@realms.second}p: #{@realms.second.name} #{Mood.second.episode}
-          th #{@realms[0,2].map(&:name).map(&:ly).and} fat
+          th #{@realms[0, 2].map { |x| x.name.ly }.and} fat
           td i#{@realms.first}j: #{@realms.first.name} #{Mood.first.episode}
 p And that the solution is to recenter the cycle by embracing the other skew.

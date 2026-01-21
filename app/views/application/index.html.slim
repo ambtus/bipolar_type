@@ -1,10 +1,10 @@
-p.center.larger #{@mood.normal.capitalize} Realm
+p.center.larger #{Mood.all[@answers.length].normal.capitalize} Realm
 dl
   -Realm.each do |realm|
-    -subtype = realm + @mood
+    -subtype = realm + Mood.all[@answers.length]
     dt=link_to_unless @realms.include?(realm), subtype, types_path("#{@realms.join}#{realm}")
     dd
-      -case @mood
+      -case Mood.all[@answers.length]
       -when Mood.p
         | I #{realm.accept_things} until they start to #{realm.appear} bad
       -when Mood.e
@@ -14,7 +14,7 @@ dl
       -when Mood.i
         | I #{realm.accept_things} until I have revved up
       br
-      | (#{realm.name} #{@mood.episode})
+      | (#{realm.name} #{Mood.all[@answers.length].episode})
     dt &nbsp;
 
 

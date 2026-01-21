@@ -8,5 +8,4 @@ RSpec.describe Behavior, type: :model do
       expect(described_class.send(sym)).to be described_class.all[index]
     end
   end
-
 end

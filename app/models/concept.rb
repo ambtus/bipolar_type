@@ -31,5 +31,4 @@ class Concept
   def ==(other)
     symbol == other.symbol
   end
-
 end
