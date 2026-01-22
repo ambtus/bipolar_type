@@ -22,5 +22,4 @@ class Mood < Concept
 
   def wise = { p: :perceptive, e: :brave, j: :judicious, i: :serene }[symbol].to_s
   def wisdom = { p: :perception, e: :courage, j: :judgement, i: :serenity }[symbol].to_s
-
 end

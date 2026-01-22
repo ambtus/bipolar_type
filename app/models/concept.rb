@@ -32,7 +32,7 @@ class Concept
     symbol == other.symbol
   end
 
-  def wise = string # for now. make it a hash later in the model
+  # for now. make it a hash later in the model
+  def wise = string
   def title = [string.colon, wise].to_phrase
-
 end

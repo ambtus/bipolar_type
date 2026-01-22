@@ -18,5 +18,4 @@ class Behavior < Concept
   def <=>(other) = action.index <=> other.action.index
 
   def moods = action.moods.add(realm)
-
 end

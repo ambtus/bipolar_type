@@ -13,5 +13,4 @@ class Realm < Concept
   def measurable? = %i[S T].include? symbol
 
   def wise = { F: :spiritual, T: :material, S: :physical, N: :mental }[symbol].to_s
-
 end

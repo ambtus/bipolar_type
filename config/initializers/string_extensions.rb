@@ -96,7 +96,6 @@ class String
   def and_to_or = gsub(' and ', ' or ')
   def break_before_wrap = gsub(' (', '<br />(').html_safe
 
-
   MBTIS = %w[ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ
              ESTP ESFP ENTP ENFP
@@ -104,11 +103,12 @@ class String
 
   def other_mbti
     raise 'doesn’t work on non-mbti string' unless MBTIS.include?(self)
+
     (%w[E I].without(chars.first) +
     %w[S N].without(chars.second) +
     %w[F T].without(chars.third) +
     %w[P J].without(chars.fourth))
-    .join
+      .join
   end
 
   def bp_format
@@ -117,9 +117,9 @@ class String
 
   def make_bipolar_type
     if ends_with?('P')
-      [self, self.other_mbti]
+      [self, other_mbti]
     else
-      [self.other_mbti, self]
+      [other_mbti, self]
     end.map(&:bp_format).join('/')
   end
 
