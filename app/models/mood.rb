@@ -17,12 +17,10 @@ class Mood < Concept
 
   def horizontal? = %i[p j].include?(symbol)
 
-  def normal = { p: :reactive, e: :brave, j: :proactive, i: :serene }[symbol].to_s
   def episode = { p: :anxiety, e: :mania, j: :irritability, i: :depression }[symbol].to_s
-
-  def title = [string.colon, normal].to_phrase
   def bipolar = [string.colon, episode].to_phrase
 
-  def normality = { p: :perception, e: :courage, j: :control, i: :serenity }[symbol].to_s
+  def wise = { p: :perceptive, e: :brave, j: :judicious, i: :serene }[symbol].to_s
+  def wisdom = { p: :perception, e: :courage, j: :judgement, i: :serenity }[symbol].to_s
 
 end

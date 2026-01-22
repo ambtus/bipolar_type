@@ -22,8 +22,8 @@ class Subtype < Concept
     define_method(action.symbol) { realm + action }
   end
 
-  def normal = [realm.name, mood.normal].to_phrase
-  def episode = [realm.name.ly, mood.episode].to_phrase
+  def wise = [realm.wise.ly, mood.wise].to_phrase
+  def episode = [realm.wise.ly, mood.episode].to_phrase
 
   def state = [string.colon, name].to_phrase
   def bipolar = [string.colon, state].to_phrase

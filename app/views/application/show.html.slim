@@ -30,4 +30,25 @@ table
     td.none=send @type.first_color, @type.i.behaviors.first
     th
 
-p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you.
+p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you. Green behaviors will recenter you; red behaviors will unbalance you.
+dl
+  dt morning
+  dd
+    | do #{@type.dos.sort.first}; it will make you happy and help you wake up
+    br
+    | don&rsquo;t #{@type.donts.sort.first}; it will throw your whole day off balance
+  dt forenoon
+  dd
+    | do #{@type.dos.sort.second}; it will keep you happy and balanced
+    br
+    | don&rsquo;t #{@type.donts.sort.second}; it will unbalance your day even if you started off right
+  dt afternoon
+  dd
+    | do #{@type.dos.sort.third}; it will make you healthy and keep you balanced
+    br
+    | don&rsquo;t #{@type.donts.sort.third}; it will unbalance your day even if you started off right
+  dt evening
+  dd
+    | do #{@type.dos.sort.fourth}; it will keep you healthy and allow you to sleep well
+    br
+    | don&rsquo;t #{@type.donts.sort.fourth}; it will end your day unbalanced and make it harder to fall asleep

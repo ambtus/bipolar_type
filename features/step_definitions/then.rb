@@ -8,15 +8,15 @@ Then('{string} should link to {word}') do |string, word|
   expect(page).to have_link(string, href: /#{word}/)
 end
 
-Then('I should see the four normals') do
+Then('I should see the four wisdoms') do
   Mood.each do |x|
-    expect(page).to have_text(x.normal)
+    expect(page).to have_text(x.wise)
   end
 end
 
-Then('I should see the four bipolars') do
+Then('I should see the four episodes') do
   Mood.each do |x|
-    expect(page).to have_text(x.bipolar)
+    expect(page).to have_text(x.episode)
   end
 end
 

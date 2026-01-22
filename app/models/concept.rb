@@ -31,4 +31,8 @@ class Concept
   def ==(other)
     symbol == other.symbol
   end
+
+  def wise = string # for now. make it a hash later in the model
+  def title = [string.colon, wise].to_phrase
+
 end

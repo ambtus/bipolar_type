@@ -1,6 +1,6 @@
 table
   caption
-    b the Normal cycle
+    b the Wise cycle
   tr
     td.none.middle.third
     td.top.third
@@ -11,11 +11,11 @@ table
   tr
     td.middle
       b=Mood.p.title
-      .left accept things until they are bad, then change them.
+      .left accept things that appear good to me; change things that appear bad to me
     th &orarr;
     td.middle
       b=Mood.j.title
-      .left change things until they are good, then accept them.
+      .left change things that are bad for me; accept things that are good for me
   tr
     td.none.middle
     td.bottom
@@ -24,31 +24,35 @@ table
       | accept good things
     td.none.middle
 
-p
+p Someone who is bipolar has all the #{Mood.all.map(&:wisdom).and} they need; they just apply them <em>at the wrong time</em>.
 table
   caption
     b the Bipolar cycle
   tr
     td.none.third
     td.third
-      b=Mood.e.bipolar
-      .left changing things that are <em>not</em> bad!
-      | (too much courage;<br />not enough serenity)
+      b=Mood.e.episode
+      .left I am changing things that are <em>not bad!</em>
+      | (too much #{Mood.e.wisdom};<br />not enough #{Mood.i.wisdom})
     td.none.third
   tr
     td
-      b=Mood.p.bipolar
-      .left I do not <em>know</em> whether they are bad enough to change!
-      | (not enough wisdom)
+      b=Mood.p.episode
+      br
+      | I cannot <em>choose!</em>
+      br
+      | (too much #{Mood.j.wisdom};<br />not enough #{Mood.p.wisdom})
     th &orarr;
     td
-      b=Mood.j.bipolar
-      .left I do not <em>know</em> whether they are good enough to accept!
-      | (not enough wisdom)
+      b=Mood.j.episode
+      br
+      | I cannot <em>decide!</em>
+      br
+      | (too much #{Mood.p.wisdom};<br />not enough #{Mood.j.wisdom})
   tr
+    th
     td
-    td
-      b=Mood.i.bipolar
-      .left accepting things that are <em>not</em> good!
-      | (too much serenity;<br />not enough courage)
-    td
+      b=Mood.i.episode
+      .left I am accepting things that are <em>not good!</em>
+      | (too much #{Mood.i.wisdom};<br />not enough #{Mood.e.wisdom})
+    th

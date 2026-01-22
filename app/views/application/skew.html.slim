@@ -1,55 +1,55 @@
 table
   caption
-    b Your cycle
+    b your Wise cycle
   tr
     td.none.middle.third
     -realm = @realms.second
-    td.third e#{realm}: e#{realm}p & e#{realm}j<br />#{realm.name.ly} #{Mood.e.normal}
+    td.third #{realm.title.ly} #{Mood.e.wise}
     td.none.middle.third
   tr
     -realm = @realms.first
-    td.middle #{realm}p: i#{realm}p & e#{realm}p<br />#{realm.name.ly} wise
+    td.middle #{realm.title.ly} #{Mood.p.wise}
     th &orarr;
     -realm = @realms.third
-    td.middle #{realm}j: e#{realm}j & i#{realm}j<br />#{realm.name.ly} wise
+    td.middle #{realm.title.ly} #{Mood.j.wise}
   tr
     td.none.middle
     -realm = @realms.fourth
-    td.bottom i#{realm}: i#{realm}j & i#{realm}p<br />#{realm.name.ly} #{Mood.i.normal}
+    td.bottom #{realm.title.ly} #{Mood.i.wise}
     td.none.middle
 
-p The BipolarType theory asserts that bipolar episodes (#{Mood.all.map(&:episode).and}) are caused by a persistent skew in the cycle, either clockwise or counterclockwise…
+p The BipolarType theory asserts that bipolar episodes (#{Mood.all.map(&:episode).and}) are caused by a persistent skew in the cycle, either clockwise or counterclockwise.
 table.none
   tr
     td.half.none
       table
         caption clockwise skew
         tr
-          td anxious #{@realms.first.name}  mania
+          td anxious #{@realms.first.wise}  mania
           th
-          td irritable #{@realms.second.name}  mania
+          td irritable #{@realms.second.wise}  mania
         tr
           th
           th=link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
           th
         tr
-          td anxious #{@realms.fourth.name}  depression
+          td anxious #{@realms.fourth.wise}  depression
           th
-          td irritable #{@realms.third.name}  depression
+          td irritable #{@realms.third.wise}  depression
 
     td.half.none
       table
         caption counterclockwise skew
         tr
-          td anxious #{@realms.second.name} mania
+          td anxious #{@realms.second.wise} mania
           th
-          td irritable #{@realms.third.name} mania
+          td irritable #{@realms.third.wise} mania
         tr
           th
           th=link_to Skew.second, type_path("#{@realms.join}#{Skew.second}")
           th
         tr
-          td anxious #{@realms.first.name} depression
+          td anxious #{@realms.first.wise} depression
           th
-          td irritable #{@realms.fourth.name} depression
-p …and that the solution is to recenter the cycle by embracing the other skew.
+          td irritable #{@realms.fourth.wise} depression
+

@@ -15,6 +15,8 @@ class Behavior < Concept
   def realm = Realm.find(string.second)
   def action = Action.find(string.first + string.third)
 
-  def types = Type.select { |x| x.donts.include?(self) }
+  def <=>(other) = action.index <=> other.action.index
+
   def moods = action.moods.add(realm)
+
 end
