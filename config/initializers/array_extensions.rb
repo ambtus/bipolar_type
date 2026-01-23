@@ -3,7 +3,7 @@
 # Restart required even in development mode when you modify this file.
 
 %w[even odd intersect sixth seventh eighth multiply add join_strings duplicates discard replace_with
-   purge remove_consecutive_dupes check_constraints and or amp lor wbr slash break semi
+   purge remove_consecutive_dupes check_constraints and or nor amp lor wbr slash break semi
    to_phrase to_safe_phrase].each do |meth|
   raise "#{meth} is already defined in Array class" if Array.method_defined? meth
 end
@@ -101,6 +101,7 @@ class Array
 
   def and = compact_blank.to_sentence
   def or = compact_blank.to_sentence(last_word_connector: ', or ', two_words_connector: ' or ')
+  def nor = compact_blank.to_sentence(last_word_connector: ', nor ', two_words_connector: ' nor ')
   def amp = join(' & ')
   def lor = join(' | ')
   def semi = join('; ')

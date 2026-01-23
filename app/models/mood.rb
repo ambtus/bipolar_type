@@ -7,6 +7,8 @@ class Mood < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
+  def opposite = (ALL+ALL)[index + 2]
+
   def actions = Action.all.select { |x| x.string.match string }
 
   def reverse? = symbol == :i
@@ -17,9 +19,10 @@ class Mood < Concept
 
   def horizontal? = %i[p j].include?(symbol)
 
-  def episode = { p: :anxiety, e: :mania, j: :irritability, i: :depression }[symbol].to_s
-  def bipolar = [string.colon, episode].to_phrase
+  def foolish = { p: :ashamed, e: :manic, j: :miserable, i: :depressed }[symbol].to_s
+  def foolishness = { p: :shame, e: :mania, j: :misery, i: :depression }[symbol].to_s
+  def bipolar = [string.colon, foolish].to_phrase
 
-  def wise = { p: :perceptive, e: :brave, j: :judicious, i: :serene }[symbol].to_s
-  def wisdom = { p: :perception, e: :courage, j: :judgement, i: :serenity }[symbol].to_s
+  def wise = { p: :happy, e: :brave, j: :proud, i: :serene }[symbol].to_s
+  def wisdom = { p: :happiness, e: :courage, j: :pride, i: :serenity }[symbol].to_s
 end

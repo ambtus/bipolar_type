@@ -18,38 +18,54 @@ table
     td.bottom #{realm.title.ly} #{Mood.i.wise}
     td.none.middle
 
-p The BipolarType theory asserts that bipolar episodes (#{Mood.all.map(&:episode).and}) are caused by a persistent skew in the cycle, either clockwise or counterclockwise.
+p The BipolarType theory asserts that bipolar episodes are caused by a persistent skew in the cycle, either clockwise or counterclockwise.
 table.none
   tr
     td.half.none
       table
         caption clockwise skew
         tr
-          td anxious #{@realms.first.wise}  mania
+          td
+            b #{@realms.first.wise} #{Mood.j.foolishness}
+            .left I feel #{Mood.j.foolish} when I cannot #{(@realms.first + Action.ep).wise}
           th
-          td irritable #{@realms.second.wise}  mania
+          td
+            b #{@realms.second.wise} #{Mood.e.foolishness}
+            .left I stop #{(@realms.second + Action.ep).wise.ing} and only #{(@realms.second + Action.ej).wise} when I feel #{Mood.p.foolish}
         tr
           th
           th=link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
           th
         tr
-          td anxious #{@realms.fourth.wise}  depression
+          td
+            b #{@realms.fourth.wise}  #{Mood.i.foolishness}
+            .left I stop #{(@realms.fourth + Action.ij).wise.ing} and only #{(@realms.fourth + Action.ip).wise} when I feel #{Mood.j.foolish}
           th
-          td irritable #{@realms.third.wise}  depression
+          td
+            b #{@realms.third.wise} #{Mood.p.foolishness}
+            .left I feel #{Mood.p.foolish} when I cannot #{(@realms.third + Action.ij).wise}
 
     td.half.none
       table
         caption counterclockwise skew
         tr
-          td anxious #{@realms.second.wise} mania
+          td
+            b #{@realms.second.wise} #{Mood.e.foolishness}
+            .left I stop #{(@realms.second + Action.ej).wise.ing} and only #{(@realms.second + Action.ep).wise} when I feel #{Mood.j.foolish}
           th
-          td irritable #{@realms.third.wise} mania
+          td
+            b #{@realms.third.wise} #{Mood.p.foolishness}
+            .left I feel #{Mood.p.foolish} when I cannot #{(@realms.third + Action.ej).wise}
         tr
           th
           th=link_to Skew.second, type_path("#{@realms.join}#{Skew.second}")
           th
         tr
-          td anxious #{@realms.first.wise} depression
+          td
+            b #{@realms.first.wise} #{Mood.j.foolishness}
+            .left I feel #{Mood.j.foolish} when I cannot #{(@realms.first + Action.ip).wise}
           th
-          td irritable #{@realms.fourth.wise} depression
+          td
+            b #{@realms.fourth.wise} #{Mood.i.foolishness}
+            .left I stop #{(@realms.fourth + Action.ip).wise.ing} and only #{(@realms.fourth + Action.ij).wise} when I feel #{Mood.p.foolish}
 

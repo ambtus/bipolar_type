@@ -14,9 +14,9 @@ Then('I should see the four wisdoms') do
   end
 end
 
-Then('I should see the four episodes') do
+Then('I should see the four fools') do
   Mood.each do |x|
-    expect(page).to have_text(x.episode)
+    expect(page).to have_text(x.foolish)
   end
 end
 

@@ -6,9 +6,22 @@ dl
     dt=link_to_unless @realms.include?(realm), subtype, types_path("#{@realms.join}#{realm}")
     dd
       |> I
-      =subtype.behaviors.map(&:wise).amp.period
+      =subtype.behaviors.map(&:wise).amp
+      br
+      |> I don’t enjoy
+      =subtype.opposite.behaviors.map{|x| x.wise.ing}.or
+      -case subtype.mood
+        -when Mood.i
+          |< unless they allow me to #{subtype.realm.accept} more
+        -when Mood.e
+          |< unless they allow me to #{subtype.realm.change} more
+        -when Mood.p
+          |< unless they also #{subtype.realm.appear} good
+        -when Mood.j
+          |< unless they are also #{subtype.realm.healthy}
       br
       =subtype.wise.wrap
+
     dt &nbsp;
 
 

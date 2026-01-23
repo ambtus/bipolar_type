@@ -4,55 +4,53 @@ table
   tr
     td.none.middle.third
     td.top.third
-      b=Mood.e.title
+      b=Mood.e.wise
       br
-      | change bad things
+      | I create good things
     td.none.middle.third
   tr
     td.middle
-      b=Mood.p.title
-      .left accept things that appear good to me; change things that appear bad to me
+      b=Mood.p.wise
+      .left I choose things that appear good
     th &orarr;
     td.middle
-      b=Mood.j.title
-      .left change things that are bad for me; accept things that are good for me
+      b=Mood.j.wise
+      .left I decide on things that are good
   tr
     td.none.middle
     td.bottom
-      b=Mood.i.title
+      b=Mood.i.wise
       br
-      | accept good things
+      | I accept good things
     td.none.middle
 
-p Someone who is bipolar has all the #{Mood.all.map(&:wisdom).and} they need; they just apply them <em>at the wrong time</em>.
+
+p The Bipolar cycle is the exact same cycle, except the focus is on all the negatives of being where you are in the cycle, instead of the positives.
+
 table
   caption
     b the Bipolar cycle
   tr
-    td.none.third
-    td.third
-      b=Mood.e.episode
-      .left I am changing things that are <em>not bad!</em>
-      | (too much #{Mood.e.wisdom};<br />not enough #{Mood.i.wisdom})
-    td.none.third
+    td.none.middle.third
+    td.top.third
+      b=Mood.e.foolish
+      br
+      | (no #{Mood.i.wisdom})
+    td.none.middle.third
   tr
-    td
-      b=Mood.p.episode
+    td.middle
+      b=Mood.p.foolish
       br
-      | I cannot <em>choose!</em>
-      br
-      | (too much #{Mood.j.wisdom};<br />not enough #{Mood.p.wisdom})
+      | (no #{Mood.j.wisdom})
     th &orarr;
-    td
-      b=Mood.j.episode
+    td.middle
+      b=Mood.j.foolish
       br
-      | I cannot <em>decide!</em>
-      br
-      | (too much #{Mood.p.wisdom};<br />not enough #{Mood.j.wisdom})
+      | (no #{Mood.p.wisdom})
   tr
-    th
-    td
-      b=Mood.i.episode
-      .left I am accepting things that are <em>not good!</em>
-      | (too much #{Mood.i.wisdom};<br />not enough #{Mood.e.wisdom})
-    th
+    td.none.middle
+    td.bottom
+      b=Mood.i.foolish
+      br
+      | (no #{Mood.e.wisdom})
+    td.none.middle

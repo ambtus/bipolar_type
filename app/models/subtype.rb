@@ -14,6 +14,11 @@ class Subtype < Concept
   def realm = Realm.all.find { |x| string.match x.string }
   def mood = Mood.all.find { |x| string.match x.string }
 
+  delegate :horizontal?, to: :mood
+
+
+  def opposite = realm + mood.opposite
+
   def self.types = all.select { |x| x.mood.vertical? }
 
   def behaviors = mood.sibling_actions.add(realm)
@@ -23,8 +28,8 @@ class Subtype < Concept
   end
 
   def wise = [realm.wise.ly, mood.wise].to_phrase
-  def episode = [realm.wise.ly, mood.episode].to_phrase
+  def foolish = [realm.wise.ly, mood.foolish].to_phrase
 
   def state = [string.colon, name].to_phrase
-  def bipolar = [string.colon, state].to_phrase
+  def bipolar = [string.colon, foolish].to_phrase
 end

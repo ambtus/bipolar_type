@@ -6,7 +6,7 @@ Then I should see the four wisdoms
 
 Scenario: talks about the bipolar cycle
 Given I am on the bipolar page
-Then I should see the four episodes
+Then I should see the four fools
 
 Scenario: has a link to the home page
 Given I am on the bipolar page
