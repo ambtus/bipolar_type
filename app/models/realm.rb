@@ -24,7 +24,7 @@ class Realm < Concept
 
   def accept = { F: :listen, T: :sell, S: :eat, N: :learn }[symbol].to_s
   def prep = { F: :to }[symbol].to_s
-  def change = { F: :tell, T: :buy, S: :move, N: :show}[symbol].to_s
+  def change = { F: :express, T: :buy, S: :move, N: :show}[symbol].to_s
 
   def appear = { F: :sound, T: :feel, S: 'smell/taste', N: :look }[symbol].to_s
   def healthy = { F: :moral, T: :useful, S: :nutritious, N: :true }[symbol].to_s

@@ -31,7 +31,7 @@ table.none
           th
           td
             b #{@realms.second.wise} #{Mood.e.foolishness}
-            .left I stop #{(@realms.second + Action.ep).wise.ing} and only #{(@realms.second + Action.ej).wise} when I feel #{Mood.p.foolish}
+            .left I start #{(@realms.second + Action.ej).wise.ing} when I feel #{Mood.p.foolish} which doesn’t actually make me feel #{Mood.j.wise} enough, so I <em>keep doing it</em>, and then I cannot #{(@realms.second + Action.ep).wise} later so I don’t feel #{Mood.p.wise} either.
         tr
           th
           th=link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
@@ -39,7 +39,7 @@ table.none
         tr
           td
             b #{@realms.fourth.wise}  #{Mood.i.foolishness}
-            .left I stop #{(@realms.fourth + Action.ij).wise.ing} and only #{(@realms.fourth + Action.ip).wise} when I feel #{Mood.j.foolish}
+            .left I start #{(@realms.fourth + Action.ip).wise.ing} when I feel #{Mood.j.foolish} which doesn’t actually make me feel #{Mood.p.wise} enough, so I <em>keep doing it</em>, and then I cannot #{(@realms.fourth + Action.ij).wise} later so I don’t feel #{Mood.j.wise} either.
           th
           td
             b #{@realms.third.wise} #{Mood.p.foolishness}
@@ -51,7 +51,7 @@ table.none
         tr
           td
             b #{@realms.second.wise} #{Mood.e.foolishness}
-            .left I stop #{(@realms.second + Action.ej).wise.ing} and only #{(@realms.second + Action.ep).wise} when I feel #{Mood.j.foolish}
+            .left I start #{(@realms.second + Action.ep).wise.ing} when I feel #{Mood.j.foolish} which doesn’t actually make me feel #{Mood.p.wise} enough, so I <em>keep doing it</em>, and then I cannot #{(@realms.second + Action.ej).wise} later so I don’t feel #{Mood.j.wise} either.
           th
           td
             b #{@realms.third.wise} #{Mood.p.foolishness}
@@ -67,5 +67,4 @@ table.none
           th
           td
             b #{@realms.fourth.wise} #{Mood.i.foolishness}
-            .left I stop #{(@realms.fourth + Action.ip).wise.ing} and only #{(@realms.fourth + Action.ij).wise} when I feel #{Mood.p.foolish}
-
+            .left I start #{(@realms.fourth + Action.ij).wise.ing} when I feel #{Mood.p.foolish} which doesn’t actually make me feel #{Mood.p.wise} enough, so I <em>keep doing it</em>, and then I cannot I  #{(@realms.fourth + Action.ip).wise} later so I don’t feel #{Mood.p.wise} either.
