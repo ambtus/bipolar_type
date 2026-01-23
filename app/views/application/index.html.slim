@@ -9,7 +9,7 @@ dl
       =subtype.behaviors.map(&:wise).amp
       br
       |> I don’t enjoy
-      =subtype.opposite.behaviors.map{|x| x.wise.ing}.or
+      =subtype.opposite.behaviors.map { |x| x.wise.ing }.or
       -case subtype.mood
         -when Mood.i
           |< unless they allow me to #{subtype.realm.accept} more

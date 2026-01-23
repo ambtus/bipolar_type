@@ -19,7 +19,7 @@ class Behavior < Concept
 
   def moods = action.moods.add(realm)
 
-  def wise
+  WORDS =
     { iSp: 'eat things that taste good',
       eSp: 'cook things that smell good',
       eSj: 'cook meals that are nutritious',
@@ -35,8 +35,6 @@ class Behavior < Concept
       iFp: 'listen to things that sound good',
       eFp: 'say things that sound good',
       eFj: 'tell stories that are moral',
-      iFj: 'listen to stories that are moral',
-    }[symbol] || super
-  end
-
+      iFj: 'listen to stories that are moral' }.freeze
+  def wise = WORDS[symbol] || super
 end

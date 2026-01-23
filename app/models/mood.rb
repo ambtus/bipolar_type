@@ -7,7 +7,7 @@ class Mood < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def opposite = (ALL+ALL)[index + 2]
+  def opposite = (ALL + ALL)[index + 2]
 
   def actions = Action.all.select { |x| x.string.match string }
 

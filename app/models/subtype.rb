@@ -16,7 +16,6 @@ class Subtype < Concept
 
   delegate :horizontal?, to: :mood
 
-
   def opposite = realm + mood.opposite
 
   def self.types = all.select { |x| x.mood.vertical? }

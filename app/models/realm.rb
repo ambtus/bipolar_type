@@ -9,10 +9,11 @@ class Realm < Concept
 
   def subtypes = Subtype.all.select { |x| x.realm == self }
   def behaviors = Behavior.all.select { |x| x.realm == self }
+
   def +(other)
     return subtypes.find { |x| x.mood == other } if other.is_a?(Mood)
 
-    behaviors.find{ |x| x.action == other }
+    behaviors.find { |x| x.action == other }
   end
 
   def measurable? = %i[S T].include? symbol
@@ -24,10 +25,10 @@ class Realm < Concept
 
   def accept = { F: :listen, T: :sell, S: :eat, N: :learn }[symbol].to_s
   def prep = { F: :to }[symbol].to_s
-  def change = { F: :express, T: :buy, S: :move, N: :show}[symbol].to_s
+  def change = { F: :express, T: :buy, S: :move, N: :show }[symbol].to_s
 
   def appear = { F: :sound, T: :feel, S: 'smell/taste', N: :look }[symbol].to_s
-  def healthy = { F: :moral, T: :useful, S: :nutritious, N: :true }[symbol].to_s
+  def healthy = { F: :moral, T: :useful, S: :nutritious, N: true }[symbol].to_s
 
   def first_half = [accept.ing.capitalize, 'so your', persona, 'has enough', energy, 'to', change].to_phrase
   def second_half = [change.ing, 'so there are enough', resources, 'to', accept, prep].to_phrase
