@@ -1,17 +1,57 @@
--mood = Mood.all[@answers.length]
-dl
-  -Realm.each do |realm|
-    -subtype = realm + mood
-    dt=link_to_unless @realms.include?(realm), subtype, types_path("#{@realms.join}#{realm}")
-    dd
-      |> I
-      =subtype.behaviors.map(&:wise).amp
-      br
-      =subtype.wise.wrap
+table
+  tr
 
-    dt &nbsp;
+    td colspan=2
+      dl
+        -Mood.e.subtypes.each do |subtype|
+          dt=link_to_unless @chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
+          dd
+            -if @subtypes.include?(subtype)
+              b=subtype.behaviors.map(&:wise).amp
+            -else
+              =subtype.behaviors.map(&:wise).amp
+            br
+            | (#{subtype.realm.change} too much when manic)
+
+  tr
+    td
+      dl
+        -Mood.p.subtypes.each do |subtype|
+          dt=link_to_unless @chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
+          dd
+            -if @subtypes.include?(subtype)
+              b=subtype.behaviors.map(&:wise).amp
+            -else
+              =subtype.behaviors.map(&:wise).amp
+            br
+            | (#{subtype.realm.wise} misery when bipolar)
+    td
+      dl
+        -Mood.j.subtypes.each do |subtype|
+          dt=link_to_unless @chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
+          dd
+            -if @subtypes.include?(subtype)
+              b=subtype.behaviors.map(&:wise).amp
+            -else
+              =subtype.behaviors.map(&:wise).amp
+            br
+            | (#{subtype.realm.wise} illness when bipolar)
+
+  tr
+
+    td colspan=2
+      dl
+        -Mood.i.subtypes.each do |subtype|
+          dt=link_to_unless @chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
+          dd
+            -if @subtypes.include?(subtype)
+              b=subtype.behaviors.map(&:wise).amp
+            -else
+              =subtype.behaviors.map(&:wise).amp
+            br
+            | (#{subtype.realm.accept} too much when depressed)
 
 
 -if Rails.env.development?
   hr
-  | realms: #{@realms}
+  | subtypes: #{@subtypes} chosen and #{@chosen} unavailable

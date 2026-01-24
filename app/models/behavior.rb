@@ -54,6 +54,6 @@ class Behavior < Concept
     end
   end
 
-  def long_others = [string.colon, wise, others.wrap].to_phrase
+  def long_others = [string.colon, wise, others].to_phrase
   def long_myself = long_others.gsub('others', 'myself')
 end

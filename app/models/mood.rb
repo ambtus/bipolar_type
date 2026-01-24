@@ -23,6 +23,6 @@ class Mood < Concept
   def foolishness = { p: :illness, e: :mania, j: :misery, i: :depression }[symbol].to_s
   def bipolar = [string.colon, foolish].to_phrase
 
-  def wise = { p: :happy, e: :brave, j: :healthy, i: :serene }[symbol].to_s
+  def wise = { p: :happy, e: :active, j: :healthy, i: :serene }[symbol].to_s
   def wisdom = { p: :happiness, e: :courage, j: :health, i: :serenity }[symbol].to_s
 end

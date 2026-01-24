@@ -14,10 +14,14 @@ class Subtype < Concept
   def realm = Realm.all.find { |x| string.match x.string }
   def mood = Mood.all.find { |x| string.match x.string }
 
+  def <=>(other) = mood.index <=> other.mood.index
+
   delegate :horizontal?, to: :mood
   delegate :change, :accept, :appears, :resources, :healthy, to: :realm
 
   def opposite = realm + mood.opposite
+
+  def siblings = Mood.all.add(realm) + Realm.all.add(mood)
 
   def self.types = all.select { |x| x.mood.vertical? }
 
@@ -33,12 +37,5 @@ class Subtype < Concept
 
   def state = [string.colon, wise].to_phrase
   def bipolar = [string.colon, foolish].to_phrase
-
-  TIMES =
-    { p: 'spring',
-      e: 'summer',
-      j: 'autumn',
-      i: 'winter' }.freeze
-  def time = TIMES[mood.symbol]
 
 end

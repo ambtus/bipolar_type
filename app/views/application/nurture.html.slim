@@ -1,8 +1,8 @@
 p.larger.center My Nurture (what I learned to do as a child)
 
 
--first = Type.find "#{@realms.join}#{Skew.first}"
--second = Type.find "#{@realms.join}#{Skew.second}"
+-first = Type.find "#{@subtypes.sort.map(&:realm).join}#{Skew.first}"
+-second = Type.find "#{@subtypes.sort.map(&:realm).join}#{Skew.second}"
 table
   tr
     th.half=link_to Skew.first.string + ' clockwise skew', type_path(first.path)

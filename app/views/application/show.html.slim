@@ -55,7 +55,7 @@ dl
     dt=subtype.foolish
     dd
       -if index.even?
-        | not enough #{@type.sorted_advice[index]}
+        | not enough #{@type.sorted_advice[index].gsub(': ', ' (')})
       -else
-        | too much #{@type.sorted_nurtures[index]}
+        | too much #{@type.sorted_nurtures[index].gsub(': ', ' (')})
 

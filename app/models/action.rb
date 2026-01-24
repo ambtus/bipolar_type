@@ -15,10 +15,10 @@ class Action < Concept
   def moods = Mood.select { |x| string.chars.include?(x.string) }
 
   TIMES =
-    { ip: 'morning',
-      ep: 'forenoon',
-      ej: 'afternoon',
-      ij: 'evening' }.freeze
+    { ip: 'spring morning',
+      ep: 'summer forenoon',
+      ej: 'autumn afternoon',
+      ij: 'winter evening' }.freeze
 
   def time = TIMES[symbol]
 end

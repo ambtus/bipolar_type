@@ -3,9 +3,10 @@
 class TypesController < ApplicationController
   def index
     @answers = params[:format] || ''
-    @title = "#{(@answers.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
-    @realms = @answers.empty? ? [] : @answers.chars.collect { |x| Realm.find(x) }
-    render 'nurture' and return if @answers.length == 4
+    @subtypes = @answers.empty? ? [] : @answers.scan(/../).collect { |x| Subtype.find(x) }
+    @title = "#{(@subtypes.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
+    @chosen = @subtypes.map(&:siblings).flatten
+    render 'nurture' and return if @answers.length == 8
   end
 
   def show
