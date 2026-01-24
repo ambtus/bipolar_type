@@ -7,8 +7,9 @@ module ApplicationHelper
                '</span>'.html_safe])
   end
 
+  # style="background-color:yellow;
   def yellow(behavior)
-    safe_join(['<span style="background-color:yellow; font-size:x-large">'.html_safe,
+    safe_join(['<span font-size:x-large">'.html_safe,
                behavior.link,
                '</span>'.html_safe])
   end

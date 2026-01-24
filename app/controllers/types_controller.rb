@@ -5,7 +5,7 @@ class TypesController < ApplicationController
     @answers = params[:format] || ''
     @title = "#{(@answers.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
     @realms = @answers.empty? ? [] : @answers.chars.collect { |x| Realm.find(x) }
-    render 'skew' and return if @answers.length == 4
+    render 'nurture' and return if @answers.length == 4
   end
 
   def show

@@ -15,6 +15,7 @@ class Subtype < Concept
   def mood = Mood.all.find { |x| string.match x.string }
 
   delegate :horizontal?, to: :mood
+  delegate :change, :accept, :appears, :resources, :healthy, to: :realm
 
   def opposite = realm + mood.opposite
 
@@ -27,8 +28,17 @@ class Subtype < Concept
   end
 
   def wise = [realm.wise.ly, mood.wise].to_phrase
-  def foolish = [realm.wise.ly, mood.foolish].to_phrase
 
-  def state = [string.colon, name].to_phrase
+  def foolish = [realm.wise.ly, horizontal? ? mood.opposite.foolish : mood.foolish].to_phrase
+
+  def state = [string.colon, wise].to_phrase
   def bipolar = [string.colon, foolish].to_phrase
+
+  TIMES =
+    { p: 'spring',
+      e: 'summer',
+      j: 'autumn',
+      i: 'winter' }.freeze
+  def time = TIMES[mood.symbol]
+
 end

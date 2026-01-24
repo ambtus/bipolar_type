@@ -13,4 +13,12 @@ class Action < Concept
   def +(other) = behaviors.find { |x| x.realm == other }
 
   def moods = Mood.select { |x| string.chars.include?(x.string) }
+
+  TIMES =
+    { ip: 'morning',
+      ep: 'forenoon',
+      ej: 'afternoon',
+      ij: 'evening' }.freeze
+
+  def time = TIMES[symbol]
 end

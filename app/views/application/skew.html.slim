@@ -1,70 +1,27 @@
 table
   caption
-    b your Wise cycle
+    b your Bipolar cycle
   tr
     td.none.middle.third
-    -realm = @realms.second
-    td.third #{realm.title.ly} #{Mood.e.wise}
+    -subtype = @realms.second + Mood.e
+    td.third #{subtype.foolish}<br />(cannot #{subtype.accept})
     td.none.middle.third
   tr
-    -realm = @realms.first
-    td.middle #{realm.title.ly} #{Mood.p.wise}
+    -subtype = @realms.third + Mood.p
+    td.middle #{subtype.foolish}<br />(none of my #{subtype.resources} are #{subtype.healthy})
     th &orarr;
-    -realm = @realms.third
-    td.middle #{realm.title.ly} #{Mood.j.wise}
+    -subtype = @realms.first + Mood.j
+    td.middle #{subtype.foolish}<br />(everything #{subtype.appears} bad)
   tr
     td.none.middle
-    -realm = @realms.fourth
-    td.bottom #{realm.title.ly} #{Mood.i.wise}
+    -subtype = @realms.fourth + Mood.i
+    td.bottom #{subtype.foolish}<br />(cannot #{subtype.change})
     td.none.middle
 
-p The BipolarType theory asserts that bipolar episodes are caused by a persistent skew in the cycle, either clockwise or counterclockwise.
-table.none
+table
   tr
-    td.half.none
-      table
-        caption clockwise skew
-        tr
-          td
-            b #{@realms.first.wise} #{Mood.j.foolishness}
-            .left I feel #{Mood.j.foolish} when I cannot #{(@realms.first + Action.ep).wise}
-          th
-          td
-            b #{@realms.second.wise} #{Mood.e.foolishness}
-            .left I start #{(@realms.second + Action.ej).wise.ing} when I feel #{Mood.p.foolish} which doesn’t actually make me feel #{Mood.j.wise} enough, so I <em>keep doing it</em>, and then I cannot #{(@realms.second + Action.ep).wise} later so I don’t feel #{Mood.p.wise} either.
-        tr
-          th
-          th=link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
-          th
-        tr
-          td
-            b #{@realms.fourth.wise}  #{Mood.i.foolishness}
-            .left I start #{(@realms.fourth + Action.ip).wise.ing} when I feel #{Mood.j.foolish} which doesn’t actually make me feel #{Mood.p.wise} enough, so I <em>keep doing it</em>, and then I cannot #{(@realms.fourth + Action.ij).wise} later so I don’t feel #{Mood.j.wise} either.
-          th
-          td
-            b #{@realms.third.wise} #{Mood.p.foolishness}
-            .left I feel #{Mood.p.foolish} when I cannot #{(@realms.third + Action.ij).wise}
-
-    td.half.none
-      table
-        caption counterclockwise skew
-        tr
-          td
-            b #{@realms.second.wise} #{Mood.e.foolishness}
-            .left I start #{(@realms.second + Action.ep).wise.ing} when I feel #{Mood.j.foolish} which doesn’t actually make me feel #{Mood.p.wise} enough, so I <em>keep doing it</em>, and then I cannot #{(@realms.second + Action.ej).wise} later so I don’t feel #{Mood.j.wise} either.
-          th
-          td
-            b #{@realms.third.wise} #{Mood.p.foolishness}
-            .left I feel #{Mood.p.foolish} when I cannot #{(@realms.third + Action.ej).wise}
-        tr
-          th
-          th=link_to Skew.second, type_path("#{@realms.join}#{Skew.second}")
-          th
-        tr
-          td
-            b #{@realms.first.wise} #{Mood.j.foolishness}
-            .left I feel #{Mood.j.foolish} when I cannot #{(@realms.first + Action.ip).wise}
-          th
-          td
-            b #{@realms.fourth.wise} #{Mood.i.foolishness}
-            .left I start #{(@realms.fourth + Action.ij).wise.ing} when I feel #{Mood.p.foolish} which doesn’t actually make me feel #{Mood.p.wise} enough, so I <em>keep doing it</em>, and then I cannot I  #{(@realms.fourth + Action.ip).wise} later so I don’t feel #{Mood.p.wise} either.
+    th.half=link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
+    th.half=link_to Skew.second, type_path("#{@realms.join}#{Skew.second}")
+  tr
+    td.left
+    td.left

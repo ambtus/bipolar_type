@@ -27,29 +27,46 @@ class Type < Concept
 
   def sibling = Type.find [*realms, other].join
 
-  def dos
+  def greens
     if clockwise?
       behaviors.map(&:second)
     else
       behaviors.map(&:first)
-    end
+    end.sort
   end
 
-  def donts = sibling.dos
-
-  def similar
+  def friend
     if clockwise?
       Type.find [*realms.rotate(-1), other].join
     else
-      Type.find [*realms.rotate(1), other].join
+      Type.find [*realms.rotate, other].join
     end
   end
 
-  def different
+  def advice
+    [greens.first.long_others, greens.second.long_myself, greens.third.long_myself, greens.fourth.long_others]
+  end
+
+  def nurtured_dependent = clockwise? ? sibling.greens.even : sibling.greens.odd
+  def nurtured_independent = clockwise? ? sibling.greens.odd : sibling.greens.even
+
+  def nurtures
+    (nurtured_dependent.map(&:long_others) + nurtured_independent.map(&:long_myself))
+  end
+
+  def sorted_nurtures
     if clockwise?
-      Type.find [*realms.rotate(1), other].join
+      nurtures.values_at(0,2,1,3)
     else
-      Type.find [*realms.rotate(-1), other].join
+      nurtures.values_at(0,3,1,2)
+    end
+  end
+
+  def sorted_advice
+    if clockwise?
+      advice.rotate
+    else
+      advice
     end
   end
 end

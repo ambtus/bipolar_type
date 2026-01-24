@@ -5,23 +5,19 @@ When('I follow the {string} link') do |string|
 end
 
 When('I follow my sibling') do
-  click_link('yellow')
+  click_link('same nature')
 end
 
-When('I follow my similar') do
-  click_link('green')
+When('I follow my friend') do
+  click_link('same advice')
 end
 
-When('I follow my different') do
-  click_link('red')
-end
-
-When('I click on my subtype') do
+When('I choose my subtype') do
   Type.mine.subtypes.each do |x|
     click_link(x.link) and break if page.has_link?(x.link)
   end
 end
 
-When('I click on my skew') do
+When('I choose my skew') do
   click_link(Type.mine.skew.link)
 end

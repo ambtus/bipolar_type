@@ -30,8 +30,8 @@ html lang="en"
       td.none { border: none;}
       td.middle {vertical-align: middle;}
       td.bottom {vertical-align: bottom;}
-      td.third { width: 33% }
-      td.half { width: 50% }
+      .third { width: 33% }
+      .half { width: 50% }
 
       tr.true { color: green}
       tr.false { color: red}
@@ -46,3 +46,9 @@ html lang="en"
     =link_to_unless_current 'BipolarTypes', types_path
 
     =yield
+
+    -if Rails.env.development?
+      hr
+      =link_to_unless_current 'my choice', types_path('FTNS')
+      br
+      =link_to_unless_current 'my type', type_path(Type.my_path)

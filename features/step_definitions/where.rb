@@ -36,10 +36,6 @@ Then('I should be on my sibling page') do
   expect(page).to have_current_path type_path(Type.mine.sibling.path)
 end
 
-Then('I should be on my similar page') do
-  expect(page).to have_current_path type_path(Type.mine.similar.path)
-end
-
-Then('I should be on my different page') do
-  expect(page).to have_current_path type_path(Type.mine.different.path)
+Then('I should be on my friend page') do
+  expect(page).to have_current_path type_path(Type.mine.friend.path)
 end

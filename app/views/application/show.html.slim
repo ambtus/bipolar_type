@@ -1,83 +1,61 @@
+p.center.larger My Balance (what I need to learn to do as an adult)
+
+dl
+  -Action.each_with_index do |action, index|
+    dt=action.time
+    dd=@type.advice[index]
+
 table
   tr
     th
-    td.none=send @type.first_color, @type.e.behaviors.first
-    td.none=yellow @type.e
-    td.none=send @type.second_color, @type.e.behaviors.second
+    td.none.middle=send @type.first_color, @type.e.behaviors.first
+    td.none.middle=yellow @type.e
+    td.none.middle=send @type.second_color, @type.e.behaviors.second
     th
   tr
-    td.none=send @type.second_color, @type.p.behaviors.second
-    td.none.middle colspan=3 rowspan=3
-      | Related:
+    td.none.middle=send @type.second_color, @type.p.behaviors.second
+    td.none.middle colspan=3 rowspan=3 =@type.skew
+    td.none.middle=send @type.first_color, @type.j.behaviors.first
+  tr
+    td.none.middle=yellow @type.p
+    td.none.middle=yellow @type.j
+  tr
+    td.none.middle=send @type.first_color, @type.p.behaviors.first
+    td.none.middle=send @type.second_color, @type.j.behaviors.second
+  tr
+    th
+    td.none.middle=send @type.second_color, @type.i.behaviors.second
+    td.none.middle=yellow @type.i
+    td.none.middle=send @type.first_color, @type.i.behaviors.first
+    th
+  tr
+    td.none colspan=5
+      =link_to 'same nature but different nurture', type_path(@type.sibling.path)
       br
-      =link_to 'same don’ts (red)', type_path(@type.different)
-      br
-      =link_to 'same cycle (yellow)', type_path(@type.sibling)
-      br
-      =link_to 'same do’s (green)', type_path(@type.similar)
+      =link_to 'same advice but different nature', type_path(@type.friend.path)
 
-    td.none=send @type.first_color, @type.j.behaviors.first
-  tr
-    td.none=yellow @type.p
-    td.none=yellow @type.j
-  tr
-    td.none=send @type.first_color, @type.p.behaviors.first
-    td.none=send @type.second_color, @type.j.behaviors.second
-  tr
-    th
-    td.none=send @type.second_color, @type.i.behaviors.second
-    td.none=yellow @type.i
-    td.none=send @type.first_color, @type.i.behaviors.first
-    th
-
-p Where you are in the cycle is largely out of your control; what you do while you are there is mostly up to you.
+p.center.larger my Nature (who I am when I am centered)
 dl
-  dt morning
-  dd
-    =@type.dos.min.wise
-    -if @type.clockwise?
-      |< as well as being #{@type.realms.fourth.healthy}
-      br
-      | so you will feel #{Mood.p.wise.er} now
+  -@type.subtypes.each do |subtype|
+    dt=subtype.title
+    dd=subtype.behaviors.map(&:wise).amp
 
-    -else @type.clockwise?
-      br
-      |> so that you will be able to
-      =@type.donts.sort.second.wise
-      |< and not feel so  #{Mood.j.foolish} later
-  dt forenoon
-  dd
-    =@type.dos.sort.second.wise
-    -if @type.clockwise?
-      br
-      |> so that you will be able to
-      =@type.donts.min.wise
-      |< and not feel so #{Mood.j.foolish} later
-    -else
-      |< as well as being #{@type.realms.second.healthy}
-      br
-      | so you will feel #{Mood.p.wise.er} now
-  dt afternoon
-  dd
-    =@type.dos.sort.third.wise
-    -if @type.clockwise?
-      |< as well as #{@type.realms.second.appear.ing} good
-      br
-      | so you will feel #{Mood.j.wise.er} now
-    -else
-      br
-      |> so that you will be able to
-      =@type.donts.sort.fourth.wise
-      |< and not feel so #{Mood.p.foolish} later
-  dt evening
-  dd
-    =@type.dos.sort.fourth.wise
-    -if @type.clockwise?
-      br
-      |> so that you will be able to
-      =@type.donts.sort.third.wise
-      |< and not feel so #{Mood.p.foolish} later
-    -else
-      |< as well as #{@type.realms.fourth.appear.ing} good
-      br
-      | so you will feel #{Mood.j.wise.er} now
+
+p.center.larger My Nurture (what I was taught to do as a child)
+
+ol
+  -@type.nurtures.each do |x|
+    li=x
+
+
+p.center.larger My Bipolar cycle (who I am when I am unbalanced)
+
+dl
+  -@type.subtypes.each_with_index do |subtype, index|
+    dt=subtype.foolish
+    dd
+      -if index.even?
+        | not enough #{@type.sorted_advice[index]}
+      -else
+        | too much #{@type.sorted_nurtures[index]}
+

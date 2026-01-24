@@ -26,31 +26,18 @@ RSpec.describe Type, type: :model do
     expect(bipolar.sibling.subtypes).to eq described_class.mine.subtypes
   end
 
-  it 'I have a similar' do
-    expect(described_class.mine.similar).to be_a described_class
+  it 'I have a friend' do
+    expect(described_class.mine.friend).to be_a described_class
   end
 
-  it 'which is also not my bipolar type' do
+  it 'which is not my bipolar type' do
     bipolar = described_class.mine
-    expect(bipolar.similar).not_to eq described_class.mine
+    expect(bipolar.friend).not_to eq described_class.mine
   end
 
-  it 'but has the same dos' do
+  it 'but has the same greens' do
     bipolar = described_class.mine
-    expect(bipolar.similar.dos.map(&:string).sort).to eq described_class.mine.dos.map(&:string).sort
+    expect(bipolar.friend.greens).to eq described_class.mine.greens
   end
 
-  it 'I have a different' do
-    expect(described_class.mine.different).to be_a described_class
-  end
-
-  it 'which is still not my bipolar type' do
-    bipolar = described_class.mine
-    expect(bipolar.different).not_to eq described_class.mine
-  end
-
-  it 'but has the same donts' do
-    bipolar = described_class.mine
-    expect(bipolar.different.donts.map(&:string).sort).to eq described_class.mine.donts.map(&:string).sort
-  end
 end

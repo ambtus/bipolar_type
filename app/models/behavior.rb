@@ -20,21 +20,40 @@ class Behavior < Concept
   def moods = action.moods.add(realm)
 
   WORDS =
-    { iSp: 'eat things that taste good',
-      eSp: 'cook things that smell good',
-      eSj: 'cook meals that are nutritious',
-      iSj: 'eat meals that are nutritious',
-      iNp: 'remember things that look good',
-      eNp: 'create things that look good',
-      eNj: 'create theories that are true',
-      iNj: 'remember theories that are true',
-      iTp: 'sell things that feel good',
-      eTp: 'buy things that feel good',
-      eTj: 'buy tools that are useful',
-      iTj: 'sell tools that are useful',
-      iFp: 'listen to things that sound good',
-      eFp: 'say things that sound good',
-      eFj: 'tell stories that are moral',
-      iFj: 'listen to stories that are moral' }.freeze
+    { iFp: 'listen to songs',
+      eFp: 'sing',
+      eFj: 'create moral stories',
+      iFj: 'listen to moral stories',
+      iSp: 'eat sweets',
+      eSp: 'gather/bake sweets',
+      eSj: 'create nutritious meals',
+      iSj: 'eat nutritious meals',
+      iNp: 'remember colorful pictures',
+      eNp: 'paint colorful pictures',
+      eNj: 'create scientific theories',
+      iNj: 'remember scientific theories',
+      iTp: 'sell toys',
+      eTp: 'buy toys',
+      eTj: 'buy useful tools',
+      iTj: 'sell useful tools' }.freeze
   def wise = WORDS[symbol] || super
+
+  OTHERS =
+    { iFp: 'sung by others',
+      iSp: 'gathered/baked by others',
+      iNp: 'painted by others',
+      iTp: 'bought by others' }.freeze
+  def others
+    case action
+    when Action.ep, Action.ej
+      'for others'
+    when Action.ij
+      'created by others'
+    else
+      OTHERS[symbol]
+    end
+  end
+
+  def long_others = [string.colon, wise, others.wrap].to_phrase
+  def long_myself = long_others.gsub('others', 'myself')
 end
