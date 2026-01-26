@@ -18,6 +18,6 @@ When('I choose my subtype') do
   end
 end
 
-When('I choose my skew') do
-  click_link(Type.mine.skew.link)
+When('I choose my episode') do
+  click_link('major depression')
 end

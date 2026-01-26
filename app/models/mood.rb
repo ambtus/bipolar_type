@@ -22,10 +22,12 @@ class Mood < Concept
   def horizontal? = %i[p j].include?(symbol)
 
   STATES = { p: :afraid, e: :brave, j: :pleased, i: :serene }.freeze
-  EPISODES = { p: :anxious, e: :manic, j: :tired, i: :depressed }.freeze
+  EMOTIONS = { p: :anxious, e: :manic, j: :irritable, i: :depressed }.freeze
+  EPISODES = { p: :anxiety, e: :mania, j: :irritability, i: :depression }.freeze
 
   def wise = STATES[symbol].to_s
-  def foolish = EPISODES[symbol].to_s
+  def foolish = EMOTIONS[symbol].to_s
+  def episode = EPISODES[symbol].to_s
 
   def bipolar = "#{string}: #{foolish}"
 end

@@ -28,7 +28,7 @@ When I choose my subtype
   And I choose my subtype
   And I choose my subtype
   And I choose my subtype
-Then I should see the two skews
+Then I should see the four episodes
 
 Scenario: then me
 Given I am on the types page
@@ -36,5 +36,5 @@ When I choose my subtype
   And I choose my subtype
   And I choose my subtype
   And I choose my subtype
-  And I choose my skew
+  And I choose my episode
 Then I should be on my page

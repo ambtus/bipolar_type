@@ -32,9 +32,9 @@ Then('I should see the {word} four subtypes') do |ordinal|
   end
 end
 
-Then('I should see the two skews') do
-  Skew.each do |x|
-    expect(page).to have_text(x.link)
+Then('I should see the four episodes') do
+  ['euphoric mania', 'irritable mania', 'major depression', 'dysphoria'].each do |x|
+    expect(page).to have_text(x)
   end
 end
 
@@ -46,12 +46,6 @@ end
 
 Then('my greens should be listed') do
   Type.mine.greens.each do |x|
-    expect(page).to have_text(x.link)
-  end
-end
-
-Then('my reds should be listed') do
-  Type.mine.reds.each do |x|
     expect(page).to have_text(x.link)
   end
 end

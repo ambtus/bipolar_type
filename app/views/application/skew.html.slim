@@ -1,15 +1,26 @@
-p
+p You can binge and/or splurge without being bipolar. If you are bipolar, then euphoric mania with dysphoria is Bipolar I and major depression with irritable mania is Bipolar II.
 
 -first = Type.find "#{@subtypes.map(&:realm).join}#{Skew.first}"
 -second = Type.find "#{@subtypes.map(&:realm).join}#{Skew.second}"
 table
   tr
-    th.half=link_to "#{Skew.first.string} clockwise skew", type_path(first.path)
-    th.half=link_to "#{Skew.second.string} counterclockwise skew", type_path(second.path)
+    td
+      b=link_to 'euphoric mania', type_path(second.path)
+      .left I splurge by #{@subtypes.second.behaviors.first.wise.ing.too_many}: #{@subtypes.second}p
+    td=@subtypes.second.bipolar
+    td
+      b=link_to 'irritable mania', type_path(first.path)
+      .left I splurge by #{@subtypes.second.behaviors.second.wise.ing.too_many}: #{@subtypes.second}j
   tr
-    td.left
-      p I binge by #{@subtypes.fourth.behaviors.second.wise.ing.too_many}
-      p I splurge by #{@subtypes.second.behaviors.second.wise.ing.too_many}
-    td.left
-      p I binge by #{@subtypes.fourth.behaviors.first.wise.ing.too_many}
-      p I splurge by #{@subtypes.second.behaviors.first.wise.ing.too_many}
+    td.left.middle=@subtypes.first.bipolar
+    th
+    td.right.middle=@subtypes.third.bipolar
+  tr
+    td
+      b=link_to 'major depression', type_path(first.path)
+      .left I binge by #{@subtypes.fourth.behaviors.second.wise.ing.too_many}: #{@subtypes.fourth}p
+    td.bottom=@subtypes.fourth.bipolar
+    td
+      b=link_to 'dysphoria', type_path(second.path)
+      .left I binge by #{@subtypes.fourth.behaviors.first.wise.ing.too_many}: #{@subtypes.fourth}j
+

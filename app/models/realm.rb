@@ -15,7 +15,9 @@ class Realm < Concept
     define_method(sym) { Behavior.all.find { |x| x.action.symbol == sym && x.realm.symbol == symbol } }
   end
 
-  def wise = { F: :spiritual, T: :material, S: :physical, N: :mental }[symbol].to_s
-  def accept = { F: :hear, T: :work, S: :eat, N: :see }[symbol].to_s
+  def wise = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
+  def accept = { F: :listen, T: :work, S: :eat, N: :see }[symbol].to_s
+  def change = { F: :talk, T: :spend, S: :move, N: :think }[symbol].to_s
   def appear = { F: :sound, T: :feel, S: 'smell/taste', N: :look }[symbol].to_s
+  def energy = { F: :hope, T: :money, S: :calories, N: :information }[symbol].to_s
 end

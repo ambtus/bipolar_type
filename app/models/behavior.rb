@@ -15,6 +15,8 @@ class Behavior < Concept
   def realm = Realm.find(string.second)
   def action = Action.find(string.first + string.third)
 
+  def foolish = Mood.find(string.first).foolish
+
   def <=>(other) = action.index <=> other.action.index
 
   def moods = action.moods.add(realm)
@@ -31,13 +33,15 @@ class Behavior < Concept
       eSp: 'run marathons',
       eSj: 'lift weights',
       iSj: 'eat protein',
-      iNp: 'see details',
+      iNp: 'watch the news',
       eNp: 'paint pictures',
       eNj: 'use outlines',
-      iNj: 'see outlines',
+      iNj: 'watch the results',
       iTp: 'earn cash',
       eTp: 'pay cash upfront',
       eTj: 'use credit',
       iTj: 'earn repayments' }.freeze
   def wise = WORDS[symbol] || super
+
+  def wrapped = "#{string} #{wise.wrap}"
 end

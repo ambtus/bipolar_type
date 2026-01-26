@@ -1,10 +1,25 @@
-p.larger.center=@type.title
 dl
-  -Action.each_with_index do |action, index|
-    dt=@type.greens[index].title
-    dd you are #{@type.reds[index].wise.too_much.ing}: #{@type.reds[index]}
+  -4.times do |index|
+    dt=%w[morning forenoon afternoon evening][index]
+    dd=@type.greens[index].title
 
 p.center
   =link_to 'same nature but different advice', type_path(@type.sibling.path)
   br
   =link_to 'same advice but different nature', type_path(@type.friend.path)
+
+-if @type.skew.clockwise?
+  dl
+    dt euphoric mania<br />#{@type.greens.second} with #{@type.realms.second}
+    dd You will be stuck in #{Action.ep.wise} mode (ep) until you have #{@type.greens.second.wise.enough.en} (#{@type.greens.second}). #{@type.greens.third.wise.capitalize} (#{@type.greens.third}) instead of #{@type.realms.second.ep.wise.ing} (#{@type.realms.second.ep}) so you can #{@type.realms.second.ij.wise} (#{@type.realms.second.ij}) later instead of having to #{@type.realms.second.ip.wise.so_many} (#{@type.realms.second.ip}). Do <em>not</em> #{@type.realms.third.ep.wise} (#{@type.realms.third.ep}) as it will trigger depression; #{@type.greens.fourth.wise} (#{@type.greens.fourth}) as much as possible to stave off depression.
+    dt  
+    dt dysphoria<br />#{@type.greens.fourth} with #{@type.realms.fourth}
+    dd You will be stuck in #{Action.ij.wise} mode (ij) until you have #{@type.greens.fourth.wise.enough.en} (#{@type.greens.fourth}). #{@type.greens.first.wise.capitalize} (#{@type.greens.first}) instead of #{@type.realms.fourth.ij.wise.ing} (#{@type.realms.fourth.ij}) so you can #{@type.realms.fourth.ep.wise} (#{@type.realms.fourth.ep}) later instead of having to #{@type.realms.fourth.ej.wise.so_many} (#{@type.realms.fourth.ej}). Do <em>not</em> #{@type.realms.first.ij.wise} (#{@type.realms.first.ij}) as it will trigger mania; #{@type.greens.second.wise} (#{@type.greens.second}) as much as possible to stave off mania.
+-else
+  dl
+    dt major depression<br />#{@type.greens.first} with #{@type.realms.fourth}
+    dd You will be stuck in #{Action.ip.wise} mode (ip) until you have #{@type.greens.first.wise.enough.en} (#{@type.greens.first}). #{@type.greens.fourth.wise.capitalize} (#{@type.greens.fourth}) instead of #{@type.realms.fourth.ip.wise.ing} (#{@type.realms.fourth.ip}) so you can #{@type.realms.fourth.ej.wise} (#{@type.realms.fourth.ej}) later instead of having to #{@type.realms.fourth.ep.wise.so_many} (#{@type.realms.fourth.ep}). Do <em>not</em> #{@type.realms.third.ip.wise} (#{@type.realms.third.ip}) as it will trigger mania; #{@type.greens.third.wise} (#{@type.greens.third}) as much as possible to stave off mania.
+
+    dt  
+    dt irritable mania<br />#{@type.greens.third} with #{@type.realms.second}
+    dd You will be stuck in #{Action.ej.wise} mode (ej) until you have #{@type.greens.third.wise.enough.en} (#{@type.greens.third}). #{@type.greens.second.wise.capitalize} (#{@type.greens.second}) instead of #{@type.realms.second.ej.wise.ing} (#{@type.realms.second.ej}) so you can #{@type.realms.second.ip.wise} (#{@type.realms.second.ip}) later instead of having to #{@type.realms.second.ij.wise.so_many} (#{@type.realms.second.ij}). Do <em>not</em> #{@type.realms.first.ej.wise} (#{@type.realms.first.ej}) as doing so will trigger depression; #{@type.greens.first.wise} (#{@type.greens.first}) as much as possible to stave off depression.

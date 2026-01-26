@@ -137,7 +137,7 @@ class String
              currency procedures words protein rules shoulds
              morals credit hunting gathering weights actions
              structure salary wages marathons pictures logic muscles
-             people tools ideas].freeze
+             people tools ideas intonation outlines].freeze
   ADJECTIVES = %w[flee fight rest digest refuel insomniac
                   anxious irritable bored angry afraid tired lethargic
                   anorexic depressed manic energetic strong obese
@@ -453,12 +453,20 @@ class String
       return [::Regexp.last_match(1), 'too many', ::Regexp.last_match(3).pluralize].to_phrase
 
     end
+    if match('(.*)\((.*)\)')
+      first, wrapped = [::Regexp.last_match(1), ::Regexp.last_match(2)]
+      return [first, '(', wrapped.too_much, ')'].join
+    end
     [' and ', ' or ', ' / ', ' & '].each do |connector|
       return "#{self} too much" if match(connector)
     end
     if match?(' ')
       if last_word.noun?
         [first_words, last_word.too_much].join(' ')
+      elsif last_words.words.first.noun?
+        [first_word, last_words.too_much].join(' ')
+      elsif first_word.noun?
+        [first_word.too_much, last_words].join(' ')
       else
         [first_words, 'too', last_word.much, last_word].join(' ')
       end
@@ -489,6 +497,10 @@ class String
   alias too_few :too_little
 
   def more
+    if match('(.*)\((.*)\)')
+      first, wrapped = [::Regexp.last_match(1), ::Regexp.last_match(2)]
+      return [first, '(', wrapped.more, ')'].join
+    end
     if match('(.*) a (.*)')
       [::Regexp.last_match(1), 'more', ::Regexp.last_match(2).pluralize].to_phrase
     elsif match?(' the ')
@@ -584,7 +596,7 @@ class String
     if match?(' ')
       [first_words, last_words.fewer, last_words].join(' ')
     else
-      "#{self} less"
+      "#{fewer} #{self}"
     end
   end
 

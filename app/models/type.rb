@@ -19,7 +19,6 @@ class Type < Concept
 
   def realms = string[0, 4].chars.collect { |x| Realm.find x }
   def subtypes = realms.add(Mood.all)
-  def wise = subtypes.join('•')
   def behaviors = subtypes.map(&:behaviors)
 
   Mood::SYMBOLS.each do |sym|
@@ -35,11 +34,6 @@ class Type < Concept
       behaviors.map(&:first)
     end.sort
   end
-
-  def flop_first = greens.each_with_index.map { |x, i| i.even? ? x.flop : x.opposite }
-  def flop_second = greens.each_with_index.map { |x, i| i.even? ? x.opposite : x.flop }
-
-  def reds = clockwise? ? flop_first : flop_second
 
   def friend
     if clockwise?

@@ -35,7 +35,9 @@ class Subtype < Concept
   end
 
   def state = [string.colon, wise].to_phrase
-  def bipolar = [string.colon, foolish].to_phrase
+  def foolish = "#{realm.wise.ly} #{mood.foolish}"
+  def episode = "#{realm.wise} #{mood.episode}"
+  def bipolar = [string.colon, episode].to_phrase
 
   def description = [realm.adverb, mood.wise].to_phrase
 
