@@ -12,7 +12,4 @@ class Skew < Concept
   def clockwise? = symbol == :↺
 
   def other = Skew.without(self).first
-
-  def first_color = clockwise? ? 'red' : 'green'
-  def second_color = other.first_color
 end

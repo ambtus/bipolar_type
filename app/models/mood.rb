@@ -9,6 +9,8 @@ class Mood < Concept
 
   def opposite = (ALL + ALL)[index + 2]
 
+  def siblings = ALL - [self, opposite]
+
   def actions = Action.all.select { |x| x.string.match string }
 
   def reverse? = symbol == :i
@@ -19,10 +21,11 @@ class Mood < Concept
 
   def horizontal? = %i[p j].include?(symbol)
 
-  def foolish = { p: :unhealthy, e: :manic, j: :miserable, i: :depressed }[symbol].to_s
-  def foolishness = { p: :illness, e: :mania, j: :misery, i: :depression }[symbol].to_s
-  def bipolar = [string.colon, foolish].to_phrase
+  STATES = { p: :afraid, e: :brave, j: :pleased, i: :serene }.freeze
+  EPISODES = { p: :anxious, e: :manic, j: :tired, i: :depressed }.freeze
 
-  def wise = { p: :happy, e: :active, j: :healthy, i: :serene }[symbol].to_s
-  def wisdom = { p: :happiness, e: :courage, j: :health, i: :serenity }[symbol].to_s
+  def wise = STATES[symbol].to_s
+  def foolish = EPISODES[symbol].to_s
+
+  def bipolar = "#{string}: #{foolish}"
 end

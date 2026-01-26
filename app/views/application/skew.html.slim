@@ -1,27 +1,15 @@
-table
-  caption
-    b your Bipolar cycle
-  tr
-    td.none.middle.third
-    -subtype = @realms.second + Mood.e
-    td.third #{subtype.foolish}<br />(cannot #{subtype.accept})
-    td.none.middle.third
-  tr
-    -subtype = @realms.third + Mood.p
-    td.middle #{subtype.foolish}<br />(none of my #{subtype.resources} are #{subtype.healthy})
-    th &orarr;
-    -subtype = @realms.first + Mood.j
-    td.middle #{subtype.foolish}<br />(everything #{subtype.appears} bad)
-  tr
-    td.none.middle
-    -subtype = @realms.fourth + Mood.i
-    td.bottom #{subtype.foolish}<br />(cannot #{subtype.change})
-    td.none.middle
+p
 
+-first = Type.find "#{@subtypes.map(&:realm).join}#{Skew.first}"
+-second = Type.find "#{@subtypes.map(&:realm).join}#{Skew.second}"
 table
   tr
-    th.half=link_to Skew.first, type_path("#{@realms.join}#{Skew.first}")
-    th.half=link_to Skew.second, type_path("#{@realms.join}#{Skew.second}")
+    th.half=link_to "#{Skew.first.string} clockwise skew", type_path(first.path)
+    th.half=link_to "#{Skew.second.string} counterclockwise skew", type_path(second.path)
   tr
     td.left
+      p I binge by #{@subtypes.fourth.behaviors.second.wise.ing.too_many}
+      p I splurge by #{@subtypes.second.behaviors.second.wise.ing.too_many}
     td.left
+      p I binge by #{@subtypes.fourth.behaviors.first.wise.ing.too_many}
+      p I splurge by #{@subtypes.second.behaviors.first.wise.ing.too_many}

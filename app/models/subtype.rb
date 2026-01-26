@@ -17,7 +17,8 @@ class Subtype < Concept
   def <=>(other) = mood.index <=> other.mood.index
 
   delegate :horizontal?, to: :mood
-  delegate :change, :accept, :appears, :resources, :healthy, to: :realm
+  delegate :change, :accept, :appear, :appears, :resources, :good, :bad, :organs, :persona, :adjective, :adverb,
+:energy, to: :realm
 
   def opposite = realm + mood.opposite
 
@@ -27,15 +28,33 @@ class Subtype < Concept
 
   def behaviors = mood.sibling_actions.add(realm)
 
+  def wings = mood.siblings.add(realm)
+
   Action.each do |action|
     define_method(action.symbol) { realm + action }
   end
 
-  def wise = [realm.wise.ly, mood.wise].to_phrase
-
-  def foolish = [realm.wise.ly, horizontal? ? mood.opposite.foolish : mood.foolish].to_phrase
-
   def state = [string.colon, wise].to_phrase
   def bipolar = [string.colon, foolish].to_phrase
 
+  def description = [realm.adverb, mood.wise].to_phrase
+
+  WORDS =
+    { Fp: 'musical',
+      eF: 'tell',
+      Fj: 'verbal',
+      iF: 'listen',
+      Tp: 'labor',
+      eT: 'spend',
+      Tj: 'capital',
+      iT: 'earn',
+      Np: 'artistic',
+      eN: 'show',
+      Nj: 'theoretical',
+      iN: 'see',
+      Sp: 'aerobic',
+      eS: 'exercise',
+      Sj: 'anaerobic',
+      iS: 'eat' }.freeze
+  def wise = WORDS[symbol] || super
 end

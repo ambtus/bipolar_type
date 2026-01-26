@@ -19,6 +19,7 @@ class Type < Concept
 
   def realms = string[0, 4].chars.collect { |x| Realm.find x }
   def subtypes = realms.add(Mood.all)
+  def wise = subtypes.join('•')
   def behaviors = subtypes.map(&:behaviors)
 
   Mood::SYMBOLS.each do |sym|
@@ -35,38 +36,16 @@ class Type < Concept
     end.sort
   end
 
+  def flop_first = greens.each_with_index.map { |x, i| i.even? ? x.flop : x.opposite }
+  def flop_second = greens.each_with_index.map { |x, i| i.even? ? x.opposite : x.flop }
+
+  def reds = clockwise? ? flop_first : flop_second
+
   def friend
     if clockwise?
       Type.find [*realms.rotate(-1), other].join
     else
       Type.find [*realms.rotate, other].join
-    end
-  end
-
-  def advice
-    [greens.first.long_others, greens.second.long_myself, greens.third.long_myself, greens.fourth.long_others]
-  end
-
-  def nurtured_dependent = clockwise? ? sibling.greens.even : sibling.greens.odd
-  def nurtured_independent = clockwise? ? sibling.greens.odd : sibling.greens.even
-
-  def nurtures
-    (nurtured_dependent.map(&:long_others) + nurtured_independent.map(&:long_myself))
-  end
-
-  def sorted_nurtures
-    if clockwise?
-      nurtures.values_at(0,2,1,3)
-    else
-      nurtures.values_at(0,3,1,2)
-    end
-  end
-
-  def sorted_advice
-    if clockwise?
-      advice.rotate
-    else
-      advice
     end
   end
 end

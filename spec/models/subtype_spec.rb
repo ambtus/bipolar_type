@@ -13,6 +13,12 @@ RSpec.describe Subtype, type: :model do
     end
   end
 
+  it 'sorts correctly' do
+    expect([described_class.eT, described_class.iS, described_class.Nj,
+            described_class.Fp].sort).to eq [described_class.Fp, described_class.eT, described_class.Nj,
+                                             described_class.iS]
+  end
+
   it 'has the right behaviors for iS' do
     expect(described_class.iS.behaviors).to eq [Behavior.iSj, Behavior.iSp]
   end

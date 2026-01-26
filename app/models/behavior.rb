@@ -19,41 +19,25 @@ class Behavior < Concept
 
   def moods = action.moods.add(realm)
 
+  def opposite = action.opposite + realm
+  def flop = action.flop + realm
+
   WORDS =
-    { iFp: 'listen to songs',
-      eFp: 'sing',
-      eFj: 'create moral stories',
-      iFj: 'listen to moral stories',
-      iSp: 'eat sweets',
-      eSp: 'gather/bake sweets',
-      eSj: 'create nutritious meals',
-      iSj: 'eat nutritious meals',
-      iNp: 'remember colorful pictures',
-      eNp: 'paint colorful pictures',
-      eNj: 'create scientific theories',
-      iNj: 'remember scientific theories',
-      iTp: 'sell toys',
-      eTp: 'buy toys',
-      eTj: 'buy useful tools',
-      iTj: 'sell useful tools' }.freeze
+    { iFp: 'listen to music',
+      eFp: 'use intonation',
+      eFj: 'use words',
+      iFj: 'listen to words',
+      iSp: 'eat carbs',
+      eSp: 'run marathons',
+      eSj: 'lift weights',
+      iSj: 'eat protein',
+      iNp: 'see details',
+      eNp: 'paint pictures',
+      eNj: 'use outlines',
+      iNj: 'see outlines',
+      iTp: 'earn cash',
+      eTp: 'pay cash upfront',
+      eTj: 'use credit',
+      iTj: 'earn repayments' }.freeze
   def wise = WORDS[symbol] || super
-
-  OTHERS =
-    { iFp: 'sung by others',
-      iSp: 'gathered/baked by others',
-      iNp: 'painted by others',
-      iTp: 'bought by others' }.freeze
-  def others
-    case action
-    when Action.ep, Action.ej
-      'for others'
-    when Action.ij
-      'created by others'
-    else
-      OTHERS[symbol]
-    end
-  end
-
-  def long_others = [string.colon, wise, others].to_phrase
-  def long_myself = long_others.gsub('others', 'myself')
 end

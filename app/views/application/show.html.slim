@@ -1,61 +1,10 @@
-p.center.larger My Balance (what I need to learn to do as an adult)
-
+p.larger.center=@type.title
 dl
   -Action.each_with_index do |action, index|
-    dt=action.time
-    dd=@type.advice[index]
+    dt=@type.greens[index].title
+    dd you are #{@type.reds[index].wise.too_much.ing}: #{@type.reds[index]}
 
-table
-  tr
-    th
-    td.none.middle=send @type.first_color, @type.e.behaviors.first
-    td.none.middle=yellow @type.e
-    td.none.middle=send @type.second_color, @type.e.behaviors.second
-    th
-  tr
-    td.none.middle=send @type.second_color, @type.p.behaviors.second
-    td.none.middle colspan=3 rowspan=3 =@type.skew
-    td.none.middle=send @type.first_color, @type.j.behaviors.first
-  tr
-    td.none.middle=yellow @type.p
-    td.none.middle=yellow @type.j
-  tr
-    td.none.middle=send @type.first_color, @type.p.behaviors.first
-    td.none.middle=send @type.second_color, @type.j.behaviors.second
-  tr
-    th
-    td.none.middle=send @type.second_color, @type.i.behaviors.second
-    td.none.middle=yellow @type.i
-    td.none.middle=send @type.first_color, @type.i.behaviors.first
-    th
-  tr
-    td.none colspan=5
-      =link_to 'same nature but different nurture', type_path(@type.sibling.path)
-      br
-      =link_to 'same advice but different nature', type_path(@type.friend.path)
-
-p.center.larger my Nature (who I am when I am centered)
-dl
-  -@type.subtypes.each do |subtype|
-    dt=subtype.title
-    dd=subtype.behaviors.map(&:wise).amp
-
-
-p.center.larger My Nurture (what I was taught to do as a child)
-
-ol
-  -@type.nurtures.each do |x|
-    li=x
-
-
-p.center.larger My Bipolar cycle (who I am when I am unbalanced)
-
-dl
-  -@type.subtypes.each_with_index do |subtype, index|
-    dt=subtype.foolish
-    dd
-      -if index.even?
-        | not enough #{@type.sorted_advice[index].gsub(': ', ' (')})
-      -else
-        | too much #{@type.sorted_nurtures[index].gsub(': ', ' (')})
-
+p.center
+  =link_to 'same nature but different advice', type_path(@type.sibling.path)
+  br
+  =link_to 'same advice but different nature', type_path(@type.friend.path)

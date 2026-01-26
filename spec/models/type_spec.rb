@@ -30,7 +30,7 @@ RSpec.describe Type, type: :model do
     expect(described_class.mine.friend).to be_a described_class
   end
 
-  it 'which is not my bipolar type' do
+  it 'which is also not my bipolar type' do
     bipolar = described_class.mine
     expect(bipolar.friend).not_to eq described_class.mine
   end
@@ -39,5 +39,4 @@ RSpec.describe Type, type: :model do
     bipolar = described_class.mine
     expect(bipolar.friend.greens).to eq described_class.mine.greens
   end
-
 end

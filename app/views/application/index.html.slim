@@ -1,57 +1,35 @@
+-chosen = @subtypes.map(&:siblings).flatten
+
 table
   tr
 
-    td colspan=2
+    td.left colspan=2
       dl
         -Mood.e.subtypes.each do |subtype|
-          dt=link_to_unless @chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
-          dd
-            -if @subtypes.include?(subtype)
-              b=subtype.behaviors.map(&:wise).amp
-            -else
-              =subtype.behaviors.map(&:wise).amp
-            br
-            | (#{subtype.realm.change} too much when manic)
+          dt=link_to_unless chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
+          dd class=(@subtypes.include?(subtype) ? 'bold' : chosen.include?(subtype) ? 'strikethrough' : 'normal') =subtype.behaviors.map(&:wise).amp
+
 
   tr
-    td
+    td.left
       dl
         -Mood.p.subtypes.each do |subtype|
-          dt=link_to_unless @chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
-          dd
-            -if @subtypes.include?(subtype)
-              b=subtype.behaviors.map(&:wise).amp
-            -else
-              =subtype.behaviors.map(&:wise).amp
-            br
-            | (#{subtype.realm.wise} misery when bipolar)
-    td
+          dt=link_to_unless chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
+          dd class=(@subtypes.include?(subtype) ? 'bold' : chosen.include?(subtype) ? 'strikethrough' : 'normal') =subtype.behaviors.map(&:wise).amp
+    td.left
       dl
         -Mood.j.subtypes.each do |subtype|
-          dt=link_to_unless @chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
-          dd
-            -if @subtypes.include?(subtype)
-              b=subtype.behaviors.map(&:wise).amp
-            -else
-              =subtype.behaviors.map(&:wise).amp
-            br
-            | (#{subtype.realm.wise} illness when bipolar)
+          dt=link_to_unless chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
+          dd class=(@subtypes.include?(subtype) ? 'bold' : chosen.include?(subtype) ? 'strikethrough' : 'normal') =subtype.behaviors.map(&:wise).amp
 
   tr
 
-    td colspan=2
+    td.left colspan=2
       dl
         -Mood.i.subtypes.each do |subtype|
-          dt=link_to_unless @chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
-          dd
-            -if @subtypes.include?(subtype)
-              b=subtype.behaviors.map(&:wise).amp
-            -else
-              =subtype.behaviors.map(&:wise).amp
-            br
-            | (#{subtype.realm.accept} too much when depressed)
-
+          dt=link_to_unless chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
+          dd class=(@subtypes.include?(subtype) ? 'bold' : chosen.include?(subtype) ? 'strikethrough' : 'normal') =subtype.behaviors.map(&:wise).amp
 
 -if Rails.env.development?
   hr
-  | subtypes: #{@subtypes} chosen and #{@chosen} unavailable
+  | subtypes: #{@subtypes} chosen and #{chosen} unavailable

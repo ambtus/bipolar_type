@@ -95,6 +95,7 @@ class String
 
   def and_to_or = gsub(' and ', ' or ')
   def break_before_wrap = gsub(' (', '<br />(').html_safe
+  def break_on_slash = gsub('/', '/<wbr>').html_safe
 
   MBTIS = %w[ISTP ISFP INTP INFP
              ISTJ ISFJ INTJ INFJ
@@ -315,7 +316,7 @@ class String
     return 'gardening' if self == 'garden'
     return [first_words, last_words.ing].to_phrase if starts_with?('not ')
 
-    [' and ', ' or ', '/', ' & '].each do |connector|
+    [' and ', ' or ', '/<wbr>', '/', ' & '].each do |connector|
       if match(connector)
         first, second = split(connector, 2)
         return [first.ing, second.ing].join(connector)
@@ -459,7 +460,7 @@ class String
       if last_word.noun?
         [first_words, last_word.too_much].join(' ')
       else
-        [first_words, 'too', last_word.last.much, last_word].join(' ')
+        [first_words, 'too', last_word.much, last_word].join(' ')
       end
     elsif noun?
       "too #{many} #{self}"

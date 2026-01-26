@@ -3,10 +3,9 @@
 class TypesController < ApplicationController
   def index
     @answers = params[:format] || ''
-    @subtypes = @answers.empty? ? [] : @answers.scan(/../).collect { |x| Subtype.find(x) }
+    @subtypes = @answers.empty? ? [] : @answers.scan(/../).collect { |x| Subtype.find(x) }.sort
     @title = "#{(@subtypes.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
-    @chosen = @subtypes.map(&:siblings).flatten
-    render 'nurture' and return if @answers.length == 8
+    render 'skew' and return if @answers.length == 8
   end
 
   def show

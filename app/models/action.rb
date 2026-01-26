@@ -7,18 +7,17 @@ class Action < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.mine = Action.ip
-
   def behaviors = Behavior.all.select { |x| x.action == self }
   def +(other) = behaviors.find { |x| x.realm == other }
 
+  def opposite = (ALL + ALL)[index + 2]
+
+  def flop = ALL.values_at(3, 2, 1, 0)[index]
+
   def moods = Mood.select { |x| string.chars.include?(x.string) }
 
-  TIMES =
-    { ip: 'spring morning',
-      ep: 'summer forenoon',
-      ej: 'autumn afternoon',
-      ij: 'winter evening' }.freeze
-
-  def time = TIMES[symbol]
+  ACTIONS = { ip: :refuel, ep: :flee, ej: :fight, ij: :rest }.freeze
+  def wise = ACTIONS[symbol].to_s
+  def foolish = "#{wise} the wrong things"
+  def bipolar = "#{string}: #{foolish}"
 end
