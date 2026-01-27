@@ -20,6 +20,10 @@ Given('I am on the types page') do
   visit '/types'
 end
 
+Given('I am on the {word} concept page') do |word|
+  visit concept_path(word)
+end
+
 Then('I should be on the homepage') do
   expect(page).to have_current_path('/')
 end

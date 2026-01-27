@@ -7,8 +7,7 @@ module ApplicationHelper
     methods.each do |meth|
       thing = thing.send(meth)
     end
-    text = "#{thing} (#{concept})"
-    link_to text, concept_path(concept.path), class: 'popup', target: '_blank'
+    link_to "#{thing} (#{concept})", concept_path(concept.path), class: 'popup'
   end
 
 end
