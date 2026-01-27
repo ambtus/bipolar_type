@@ -24,5 +24,4 @@ class Action < Concept
 
   EPISODES = { ip: 'major depression', ep: 'euphoric mania', ej: 'irritable mania', ij: :dysthymia }.freeze
   def episode = EPISODES[symbol].to_s
-
 end

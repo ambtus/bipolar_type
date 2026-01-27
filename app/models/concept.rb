@@ -20,7 +20,7 @@ class Concept
     def all = self::ALL
     def [](index) = (all * 2).[](index)
     def find(thing) = all.find { |x| x.symbol == thing.to_sym }
-    %i[each each_with_index first second third fourth last without rotate values_at select].each do |meth|
+    %i[each each_with_index first second third fourth last without with rotate values_at select].each do |meth|
       delegate meth, to: :all
     end
   end

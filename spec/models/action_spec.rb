@@ -12,9 +12,11 @@ RSpec.describe Action, type: :model do
   it 'has a flip' do
     expect(described_class.ip.flip).to eq described_class.ep
   end
+
   it 'has a flop' do
     expect(described_class.ip.flop).to eq described_class.ij
   end
+
   it 'has an opposite' do
     expect(described_class.ip.opposite).to eq described_class.ej
   end

@@ -10,7 +10,7 @@ class TypesController < ApplicationController
 
   def show
     @type = Type.find params[:id]
-    @title = @type.string
+    @title = @type.title
     @realms = @type.realms
   end
 

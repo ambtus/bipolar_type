@@ -23,8 +23,10 @@ class Type < Concept
 
   def manic_realm = clockwise? ? subtypes.first : subtypes.third
   def depressed_realm = clockwise? ? subtypes.third : subtypes.first
-  def mania = "e#{manic_realm} with #{realms.second}"
-  def depression = "i#{depressed_realm} with #{realms.fourth}"
+  def mania = "e#{manic_realm}/#{realms.second}"
+  def depression = "i#{depressed_realm}/#{realms.fourth}"
+  def both = [mania, depression]
+  def wise = clockwise? ? both.amp : both.reverse.amp
 
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }

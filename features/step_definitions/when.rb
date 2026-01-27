@@ -14,7 +14,7 @@ end
 
 When('I choose my subtype') do
   Type.mine.subtypes.each do |x|
-    click_link(x.link) and break if page.has_link?(x.link)
+    click_link(x.wise) and break if page.has_link?(x.wise)
   end
 end
 

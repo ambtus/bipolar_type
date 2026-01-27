@@ -47,5 +47,4 @@ class Behavior < Concept
   def wrapped = "#{string} #{wise.wrap}"
 
   def episode = action.episode.words.insert(-2, realm.wise).to_phrase
-
 end

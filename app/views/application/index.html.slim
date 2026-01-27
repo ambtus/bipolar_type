@@ -30,6 +30,17 @@ table
           dt=link_to_unless chosen.include?(subtype), subtype.title, types_path("#{@subtypes.join}#{subtype}")
           dd class=(@subtypes.include?(subtype) ? 'bold' : chosen.include?(subtype) ? 'strikethrough' : 'normal') =subtype.behaviors.map(&:wise).amp
 
+p.center.larger
+  =@subtypes.none? ? 'All ' : 'Remaining '
+  = Type.all.count { |x| (x.subtypes - @subtypes).count == (4 - @subtypes.count) }
+  |< BipolarTypes
+dl
+  -Type.all.select { |x| (x.subtypes - @subtypes).count == (4 - @subtypes.count) }.each do |type|
+    dt=link_to type.wise, type_path(type.path)
+    dd=type.subtypes.map(&:wise).values_at(0, 2, 1, 3).amp
+
 -if Rails.env.development?
   hr
   | subtypes: #{@subtypes} chosen and #{chosen} unavailable
+
+
