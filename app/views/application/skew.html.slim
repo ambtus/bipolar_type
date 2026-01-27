@@ -1,26 +1,41 @@
-p You can binge and/or splurge without being bipolar. If you are bipolar, then euphoric mania with dysphoria is Bipolar I and major depression with irritable mania is Bipolar II.
+p You can binge and/or splurge without doing it so such an extent that you are diagnosed bipolar. The BipolarType advice should still be helpful for minimizing your non-clinically significant excesses.
 
 -first = Type.find "#{@subtypes.map(&:realm).join}#{Skew.first}"
 -second = Type.find "#{@subtypes.map(&:realm).join}#{Skew.second}"
 table
   tr
     td
-      b=link_to 'euphoric mania', type_path(second.path)
-      .left I splurge by #{@subtypes.second.behaviors.first.wise.ing.too_many}: #{@subtypes.second}p
-    td=@subtypes.second.bipolar
+      b=link_to second.mania, type_path(second.path)
+      br
+      | I #{@subtypes.second.behaviors.first.wise.too_many}
+      br
+      =Action.ep.episode.wrap
     td
-      b=link_to 'irritable mania', type_path(first.path)
-      .left I splurge by #{@subtypes.second.behaviors.second.wise.ing.too_many}: #{@subtypes.second}j
+      | #{@subtypes.second.realm.wise} splurge
+      br
+      =Mood.e.episode.wrap
+    td
+      b=link_to first.mania, type_path(first.path)
+      br
+      | I #{@subtypes.second.behaviors.second.wise.too_many}
+      br
+      =Action.ej.episode.wrap
   tr
-    td.left.middle=@subtypes.first.bipolar
-    th
-    td.right.middle=@subtypes.third.bipolar
-  tr
     td
-      b=link_to 'major depression', type_path(first.path)
-      .left I binge by #{@subtypes.fourth.behaviors.second.wise.ing.too_many}: #{@subtypes.fourth}p
-    td.bottom=@subtypes.fourth.bipolar
+      b=link_to first.depression, type_path(first.path)
+      br
+      | I #{@subtypes.fourth.behaviors.second.wise.too_many}
+      br
+      =Action.ip.episode.wrap
+    td.bottom
+      =Mood.i.episode.wrap
+      br
+      | #{@subtypes.fourth.realm.wise} binge
     td
-      b=link_to 'dysphoria', type_path(second.path)
-      .left I binge by #{@subtypes.fourth.behaviors.first.wise.ing.too_many}: #{@subtypes.fourth}j
+      b=link_to second.depression, type_path(second.path)
+      br
+      | I #{@subtypes.fourth.behaviors.first.wise.too_many}
+      br
+      =Action.ij.episode.wrap
 
+p Bipolar I: #{Action.ep.episode} with #{Action.ij.episode}.<br />Bipolar II: #{Action.ip.episode} with #{Action.ej.episode}.

@@ -33,8 +33,8 @@ Then('I should see the {word} four subtypes') do |ordinal|
 end
 
 Then('I should see the four episodes') do
-  ['euphoric mania', 'irritable mania', 'major depression', 'dysphoria'].each do |x|
-    expect(page).to have_text(x)
+  Action.each do |x|
+    expect(page).to have_text(x.episode)
   end
 end
 

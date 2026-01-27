@@ -19,5 +19,5 @@ When('I choose my subtype') do
 end
 
 When('I choose my episode') do
-  click_link('major depression')
+  click_link(Type.mine.depression)
 end

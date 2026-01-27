@@ -13,6 +13,7 @@ class Action < Concept
   def opposite = (ALL + ALL)[index + 2]
 
   def flop = ALL.values_at(3, 2, 1, 0)[index]
+  def flip = ALL.values_at(1, 0, 3, 2)[index]
 
   def moods = Mood.select { |x| string.chars.include?(x.string) }
 
@@ -20,4 +21,8 @@ class Action < Concept
   def wise = ACTIONS[symbol].to_s
   def foolish = "#{wise} the wrong things"
   def bipolar = "#{string}: #{foolish}"
+
+  EPISODES = { ip: 'major depression', ep: 'euphoric mania', ej: 'irritable mania', ij: :dysthymia }.freeze
+  def episode = EPISODES[symbol].to_s
+
 end

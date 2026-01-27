@@ -23,6 +23,7 @@ class Behavior < Concept
 
   def opposite = action.opposite + realm
   def flop = action.flop + realm
+  def flip = action.flip + realm
 
   WORDS =
     { iFp: 'listen to music',
@@ -44,4 +45,7 @@ class Behavior < Concept
   def wise = WORDS[symbol] || super
 
   def wrapped = "#{string} #{wise.wrap}"
+
+  def episode = action.episode.words.insert(-2, realm.wise).to_phrase
+
 end

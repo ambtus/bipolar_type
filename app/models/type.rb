@@ -21,6 +21,11 @@ class Type < Concept
   def subtypes = realms.add(Mood.all)
   def behaviors = subtypes.map(&:behaviors)
 
+  def manic_realm = clockwise? ? subtypes.first : subtypes.third
+  def depressed_realm = clockwise? ? subtypes.third : subtypes.first
+  def mania = "e#{manic_realm} with #{realms.second}"
+  def depression = "i#{depressed_realm} with #{realms.fourth}"
+
   Mood::SYMBOLS.each do |sym|
     define_method(sym) { subtypes.find { |x| x.mood.symbol == sym } }
   end

@@ -553,6 +553,15 @@ class String
   end
   alias as_many :as_much
   def so_much
+    if match('(.*) (a|the|an) (.*)')
+      if ::Regexp.last_match(3).uncountable?
+        return [::Regexp.last_match(1), 'so much',
+                ::Regexp.last_match(3)].to_phrase
+      end
+
+      return [::Regexp.last_match(1), 'so many', ::Regexp.last_match(3).pluralize].to_phrase
+
+    end
     if match?(' ')
       [first_words, 'so', last_words.much, last_words].join(' ')
     elsif noun?
@@ -574,6 +583,7 @@ class String
   def plural?
     return unwrap.plural? if wrapped?
     return true if self == 'people'
+    return false if self == 'news'
     return true if first_words[-1] == 's'
     return true if /. things/.match?(self)
 
@@ -584,6 +594,7 @@ class String
     return unwrap.uncountable? if wrapped?
     return true if self == 'salary'
     return true if self == 'music'
+    return true if self == 'news'
 
     false
   end
