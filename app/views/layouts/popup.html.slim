@@ -1,0 +1,21 @@
+doctype html
+html lang="en"
+  head
+    -raise 'no @title set' unless @title
+    title="#{Rails.application.class.module_parent_name}: #{@title}"
+    meta content="width=device-width,initial-scale=1" name="viewport"
+    = yield :head
+    css:
+      .center  { text-align: center;}
+      .larger  { font-size: 1.2em;}
+      .bold {font-weight: bold}
+
+  body
+
+    =yield
+
+    -if Rails.env.development?
+      hr
+      =link_to_unless_current 'my choice', types_path(Type.mine.subtypes.join)
+      br
+      =link_to_unless_current 'my type', type_path(Type.my_path)
