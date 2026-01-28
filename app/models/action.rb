@@ -15,7 +15,9 @@ class Action < Concept
   def flop = ALL.values_at(3, 2, 1, 0)[index]
   def flip = ALL.values_at(1, 0, 3, 2)[index]
 
-  def moods = Mood.select { |x| string.chars.include?(x.string) }
+  def siblings = [flop, self, flip]
+
+  def moods = string.chars.collect{|x| Mood.find(x)}
 
   ACTIONS = { ip: :refuel, ep: :flee, ej: :fight, ij: :rest }.freeze
   def wise = ACTIONS[symbol].to_s

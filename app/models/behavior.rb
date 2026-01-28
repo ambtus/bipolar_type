@@ -15,6 +15,7 @@ class Behavior < Concept
   def realm = Realm.find(string.second)
   def action = Action.find(string.first + string.third)
 
+
   def foolish = Mood.find(string.first).foolish
 
   def <=>(other) = action.index <=> other.action.index
@@ -25,10 +26,12 @@ class Behavior < Concept
   def flop = action.flop + realm
   def flip = action.flip + realm
 
+  def siblings = [flip, self, flop]
+
   WORDS =
     { iFp: 'listen to music',
-      eFp: 'use intonation',
-      eFj: 'use words',
+      eFp: 'sing',
+      eFj: 'tell stories',
       iFj: 'listen to words',
       iSp: 'eat carbs',
       eSp: 'run marathons',
@@ -36,7 +39,7 @@ class Behavior < Concept
       iSj: 'eat protein',
       iNp: 'watch the news',
       eNp: 'paint pictures',
-      eNj: 'use outlines',
+      eNj: 'create outlines',
       iNj: 'watch the results',
       iTp: 'earn cash',
       eTp: 'pay cash upfront',

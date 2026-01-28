@@ -2,12 +2,12 @@
 
 module ApplicationHelper
 
-  def popup(concept, *methods)
+  def definition(concept, *methods)
     thing = concept
     methods.each do |meth|
       thing = thing.send(meth)
     end
-    link_to "#{thing} (#{concept})", concept_path(concept.path), class: 'popup'
+    link_to "#{thing} (#{concept})", concept_path(concept.path), class: 'definition'
   end
 
 end

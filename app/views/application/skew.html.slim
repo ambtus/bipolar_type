@@ -1,4 +1,4 @@
-p You can binge and/or splurge without doing it so such an extent that you are diagnosed bipolar. The BipolarType advice should still be helpful for minimizing your non-clinically significant excesses.
+p You can binge and/or splurge without doing it to such an extent that you are diagnosed bipolar. The BipolarType advice should still be helpful for minimizing your non-clinically significant excesses.
 
 -first = Type.find "#{@subtypes.map(&:realm).join}#{Skew.first}"
 -second = Type.find "#{@subtypes.map(&:realm).join}#{Skew.second}"
@@ -28,9 +28,10 @@ table
       br
       =Action.ip.episode.wrap
     td.bottom
-      =Mood.i.episode.wrap
-      br
       | #{@subtypes.fourth.realm.wise} binge
+      br
+      =Mood.i.episode.wrap
+      
     td
       b=link_to second.depression, type_path(second.path)
       br

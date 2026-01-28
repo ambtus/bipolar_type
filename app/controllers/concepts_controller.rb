@@ -2,11 +2,11 @@
 
 class ConceptsController < ApplicationController
   def show
-    klass = [Action, Behavior, Mood, Realm, Subtype].find do |klass|
+    klass = [Action, Behavior].find do |klass|
       klass.find(params[:id])
     end
     @concept = klass.send(params[:id])
     @title = @concept.title
-    render 'concept', layout: 'popup'
+    render klass.name.downcase, layout: 'definition'
   end
 end

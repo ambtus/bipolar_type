@@ -19,14 +19,16 @@ html lang="en"
       a.external:visited {color: dimgrey; text-decoration: none;}
       a.external:hover {text-decoration: underline;}
 
-      a.popup:link {color: darkslategray; text-decoration: none;}
-      a.popup:visited {color: darkslategray; text-decoration: none;}
-      a.popup:hover {text-decoration: underline;}
+      a.definition:link {color: darkslategray; text-decoration: none;}
+      a.definition:visited {color: darkslategray; text-decoration: none;}
+      a.definition:hover {text-decoration: underline;}
 
       dl { display: grid; grid-template-columns: auto auto;}
-      dt { grid-column-start: 1; text-align: right}
+      dt { grid-column-start: 1; text-align: right; }
       /dt:after { content: ': ' }
       dd { grid-column-start: 2;}
+      dd,dt {margin-top: .25em;}
+
 
       ul { padding: 0; margin: 0; list-style-type: none; }
       ul.dot { padding: 1em; list-style-type: '•'; text-align: left}

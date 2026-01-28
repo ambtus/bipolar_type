@@ -7,6 +7,8 @@ class Realm < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
+  def behaviors = Behavior.all.select { |x| x.realm == self }
+
   def subtypes = Subtype.all.select { |x| x.realm == self }
 
   def +(other) =subtypes.find { |x| x.mood == other }
@@ -20,4 +22,8 @@ class Realm < Concept
   def change = { F: :talk, T: :spend, S: :move, N: :think }[symbol].to_s
   def appear = { F: :sound, T: :feel, S: 'smell/taste', N: :look }[symbol].to_s
   def energy = { F: :hope, T: :money, S: :calories, N: :information }[symbol].to_s
+
+  def focus = { F: :love, T: :shelter, S: :food, N: :truth }[symbol].to_s
+
+  def title = [super, focus.wrap].to_phrase
 end

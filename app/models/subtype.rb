@@ -43,20 +43,20 @@ class Subtype < Concept
 
   WORDS =
     { Fp: 'musical',
-      eF: 'tell',
+      eF: 'communicate',
       Fj: 'verbal',
       iF: 'listen',
-      Tp: 'labor',
+      Tp: 'industrious',
       eT: 'spend',
-      Tj: 'capital',
+      Tj: 'creditworthy',
       iT: 'earn',
       Np: 'artistic',
       eN: 'show',
       Nj: 'theoretical',
       iN: 'see',
-      Sp: 'aerobic',
-      eS: 'exercise',
-      Sj: 'anaerobic',
+      Sp: 'active',
+      eS: 'move',
+      Sj: 'strong',
       iS: 'eat' }.freeze
   def wise = WORDS[symbol] || super
 end
