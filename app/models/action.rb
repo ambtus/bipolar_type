@@ -21,9 +21,9 @@ class Action < Concept
 
   ACTIONS = { ip: :refuel, ep: :flee, ej: :fight, ij: :rest }.freeze
   def wise = ACTIONS[symbol].to_s
-  def foolish = "#{wise} the wrong things"
-  def bipolar = "#{string}: #{foolish}"
+  def episode = "#{wise} when you should be #{flop.wise.ing}"
 
-  EPISODES = { ip: 'major depression', ep: 'euphoric mania', ej: 'irritable mania', ij: :dysthymia }.freeze
-  def episode = EPISODES[symbol].to_s
+  EPISODES = { ip: :depression, ep: :mania, ej: :hypomania, ij: :dysthymia }.freeze
+  def skew = EPISODES[symbol].to_s
+  def bipolar = "#{string}: #{skew}"
 end

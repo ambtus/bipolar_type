@@ -42,21 +42,23 @@ class Subtype < Concept
   def description = [realm.adverb, mood.wise].to_phrase
 
   WORDS =
-    { Fp: 'musical',
-      eF: 'communicate',
-      Fj: 'verbal',
-      iF: 'listen',
-      Tp: 'industrious',
-      eT: 'spend',
-      Tj: 'creditworthy',
+    { Fp: 'music',
+      eF: 'tell via',
+      Fj: 'words',
+      iF: 'listen to',
+      Tp: 'cash',
+      eT: 'pay via',
+      Tj: 'credit',
       iT: 'earn',
-      Np: 'artistic',
-      eN: 'show',
-      Nj: 'theoretical',
+      Np: 'colorful details',
+      eN: 'show via',
+      Nj: 'general shapes',
       iN: 'see',
-      Sp: 'active',
-      eS: 'move',
-      Sj: 'strong',
+      Sp: 'carbs',
+      eS: 'provide',
+      Sj: 'protein',
       iS: 'eat' }.freeze
   def wise = WORDS[symbol] || super
+  def short = horizontal? ? wise.last_word : wise.first_word
+  def title = "#{string}: #{short}"
 end

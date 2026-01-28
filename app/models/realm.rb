@@ -17,6 +17,10 @@ class Realm < Concept
     define_method(sym) { Behavior.all.find { |x| x.action.symbol == sym && x.realm.symbol == symbol } }
   end
 
+  Mood::SYMBOLS.each do |sym|
+    define_method(sym) { Subtype.all.find { |x| x.mood.symbol == sym && x.realm.symbol == symbol } }
+  end
+
   def wise = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
   def accept = { F: :listen, T: :work, S: :eat, N: :see }[symbol].to_s
   def change = { F: :talk, T: :spend, S: :move, N: :think }[symbol].to_s
@@ -26,4 +30,12 @@ class Realm < Concept
   def focus = { F: :love, T: :shelter, S: :food, N: :truth }[symbol].to_s
 
   def title = [super, focus.wrap].to_phrase
+
+  ZEITGEBERS  = {
+    N: 'The sunrise in the morning; the sunset at night. The full moon or new moon.<p>It’s time for <em>me</em> to change'
+  }
+
+  def zeitgebers = ZEITGEBERS[symbol].html_safe
+  def signal = { F: :decibels, T: :temperature, S: :ppm, N: :lux }[symbol].to_s
+
 end

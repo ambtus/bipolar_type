@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ConceptsController < ApplicationController
+  def index
+    @title = 'Words'
+  end
   def show
     klass = [Action, Behavior].find do |klass|
       klass.find(params[:id])

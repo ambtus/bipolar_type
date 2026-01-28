@@ -3,32 +3,35 @@ table
     b the Wise cycle
   tr
     td.third=Action.ep.title
-    td=Mood.e.title
+    td.third=Mood.e.title
     td.third=Action.ej.title
   tr
     td=Mood.p.title
     th &orarr;
     td=Mood.j.title
   tr
-    td.third=Action.ip.title
+    td=Action.ip.title
     td=Mood.i.title
-    td.third=Action.ij.title
-
-
-p The Bipolar cycle is the exact same cycle, except your focus is on all the wrong things.
-
+    td=Action.ij.title
+p
 table
   caption
     b the Bipolar cycle
   tr
-    td.third=Action.ep.bipolar
+    td #{Action.ep.bipolar}<br />#{Action.ep.episode}
     td=Mood.e.bipolar
-    td.third=Action.ej.bipolar
+    td #{Action.ej.bipolar}<br />#{Action.ej.episode}
   tr
     td=Mood.p.bipolar
     th &orarr;
     td=Mood.j.bipolar
   tr
-    td.third=Action.ip.bipolar
+    td #{Action.ip.bipolar}<br />#{Action.ip.episode}
     td=Mood.i.bipolar
-    td.third=Action.ij.bipolar
+    td #{Action.ij.bipolar}<br />#{Action.ij.episode}
+
+dl
+  dt Bipolar I<br />Not “allowed” to be #{Mood.e.wise}
+  dd #{Action.ep.skew} & #{Action.ij.skew}<br />#{Action.ep.wise.capitalize} when stressed despite being strong enough to #{Action.ej.wise}. Then crash and #{Action.ij.wise} despite never having #{Action.ej.wise.en} and needing to #{Action.ip.wise} after #{Action.ep.wise.ing}.
+  dt Bipolar II<br />Not “allowed” to be #{Mood.p.wise}
+  dd #{Action.ej.skew} & #{Action.ip.skew}<br />#{Action.ej.wise.capitalize} when stressed despite being fast enough to #{Action.ep.wise}. Then crash and #{Action.ip.wise} despite never having #{Action.ep.wise.en} and needing to #{Action.ij.wise} after #{Action.ej.wise.ing}.

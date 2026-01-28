@@ -18,5 +18,5 @@ Then I should be on the concept page
 
 Scenario: behavior
 Given I am on my page
-When I follow the 'lift weights (eSj)' link
+When I follow the 'hunt (eSj)' link
 Then I should be on the concept page

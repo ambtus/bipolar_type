@@ -34,5 +34,5 @@ class Concept
 
   # for now. make it a hash later in the model
   def wise = string
-  def title = [string.colon, wise].to_phrase
+  def title = (wise == string ? string : [string.colon, wise].to_phrase)
 end

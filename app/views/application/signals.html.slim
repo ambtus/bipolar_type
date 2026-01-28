@@ -8,10 +8,7 @@ table
     th
     th accept things
     th change things
-  tr
-    th=Realm.N.title
-    td.left The sunrise in the morning; the sunset at night. The full moon or new moon.<p>It’s time for <em>me</em> to change: I #{Realm.N.accept} more or less.
-    td.left Depending on where you are in your cycle things can #{Realm.N.appear} dark or bright regardless of their lux.<p>It’s time for <em>it</em> to change: I turn the lights up or down.
+  =render 'row', realm: Realm.N
   tr
     th=Realm.S.title
     td.left Breakfast in the morning; supper at night. Thanksgiving feasts and Lenten fasts.<p>It’s time for <em>me</em> to change: I #{Realm.S.accept} more or less.

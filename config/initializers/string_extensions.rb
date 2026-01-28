@@ -22,7 +22,7 @@ class String
   def words = match?(' ') ? split(/\s+/) : split('/')
 
   def clean
-    tr('_', ' ').gsub('<wbr>', '').gsub('your self', 'yourself')
+    tr('_', ' ').gsub('<wbr>', '').gsub('<br />', '').gsub('your self', 'yourself')
                 .gsub(/^do not/, 'don’t').gsub('not not', '').gsub(' to do ', ' to ')
                 .gsub(' to don’t ', ' to not ')
                 .gsub('not do ', 'don’t ')

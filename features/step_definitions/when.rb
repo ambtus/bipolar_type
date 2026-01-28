@@ -12,10 +12,8 @@ When('I follow my friend') do
   click_link('same advice')
 end
 
-When('I choose my subtype') do
-  Type.mine.subtypes.each do |x|
-    click_link(x.wise) and break if page.has_link?(x.wise)
-  end
+When('I choose my {word} subtype') do |word|
+  click_link(Type.mine.subtypes.send(word).short)
 end
 
 When('I choose my episode') do

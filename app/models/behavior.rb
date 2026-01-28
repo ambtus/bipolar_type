@@ -31,23 +31,21 @@ class Behavior < Concept
   WORDS =
     { iFp: 'listen to music',
       eFp: 'sing',
-      eFj: 'tell stories',
+      eFj: 'make speaches',
       iFj: 'listen to words',
-      iSp: 'eat carbs',
-      eSp: 'run marathons',
-      eSj: 'lift weights',
-      iSj: 'eat protein',
+      iSp: 'breakfast',
+      eSp: 'gather',
+      eSj: 'hunt',
+      iSj: 'dine',
       iNp: 'watch the news',
       eNp: 'paint pictures',
       eNj: 'create outlines',
       iNj: 'watch the results',
       iTp: 'earn cash',
-      eTp: 'pay cash upfront',
-      eTj: 'use credit',
+      eTp: 'buy tools',
+      eTj: 'invest',
       iTj: 'earn repayments' }.freeze
   def wise = WORDS[symbol] || super
-
-  def wrapped = "#{string} #{wise.wrap}"
 
   def episode = action.episode.words.insert(-2, realm.wise).to_phrase
 end
