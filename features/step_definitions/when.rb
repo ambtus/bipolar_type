@@ -5,7 +5,7 @@ When('I follow the {string} link') do |string|
 end
 
 When('I follow my sibling') do
-  click_link('same nature')
+  click_link('same cycle')
 end
 
 When('I follow my friend') do
@@ -13,7 +13,7 @@ When('I follow my friend') do
 end
 
 When('I choose my {word} subtype') do |word|
-  click_link(Type.mine.subtypes.send(word).short)
+  click_link(Type.mine.subtypes.send(word).wise)
 end
 
 When('I choose my episode') do

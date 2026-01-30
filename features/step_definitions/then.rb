@@ -4,6 +4,10 @@ Then 'I should see {string}' do |string|
   expect(page).to have_text(string)
 end
 
+Then('there should be a {string} link') do |string|
+  expect(page).to have_link(string)
+end
+
 Then('{string} should link to {word}') do |string, word|
   expect(page).to have_link(string, href: /#{word}/)
 end
@@ -22,7 +26,7 @@ end
 
 Then('I should see the four realms') do
   Realm.each do |x|
-    expect(page).to have_text(x.title)
+    expect(page).to have_text(x.wise)
   end
 end
 

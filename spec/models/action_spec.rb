@@ -20,4 +20,8 @@ RSpec.describe Action, type: :model do
   it 'has an opposite' do
     expect(described_class.ip.opposite).to eq described_class.ej
   end
+
+  it 'has siblings' do
+    expect(described_class.ip.siblings).to eq [described_class.ij, described_class.ep]
+  end
 end

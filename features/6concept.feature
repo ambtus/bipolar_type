@@ -3,8 +3,7 @@ Feature: the concept page
 Scenario: with back button
 Given I am on my page
 When I follow the 'refuel (ip)' link
-  And I follow the 'Back' link
-Then I should be on my page
+Then there should be a 'Back' link
 
 Scenario: with home button
 Given I am on the ip concept page
@@ -18,5 +17,5 @@ Then I should be on the concept page
 
 Scenario: behavior
 Given I am on my page
-When I follow the 'hunt (eSj)' link
+When I follow the 'music (iFp)' link
 Then I should be on the concept page

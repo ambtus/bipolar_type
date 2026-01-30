@@ -1,12 +1,15 @@
-ul
-  -@concept.moods.each do |x|
-    li=x.title
+p.center #{definition @concept.realm} #{definition @concept.action}
 
-ul
-  -@concept.siblings.each do |x|
-    li=x.title
 
-ul
-  -@concept.action.behaviors.each do |x|
-    li=x.title
+p.center #{definition @concept.moods.first} => #{@concept.wise} => #{definition @concept.moods.second}
 
+p.center after #{definition @concept.siblings.first}; before #{definition @concept.siblings.second}
+
+
+p BipolarTypes with this advice:
+dl
+  -Type.all.select { |x| x.greens.include? @concept}.sort_by(&:skew).each do |type|
+    dt=link_to type.link, type_path(type.path)
+    dd=type.wise
+
+p

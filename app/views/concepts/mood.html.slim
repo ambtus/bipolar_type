@@ -1,9 +1,9 @@
-p.center after #{definition @concept.moods.first}; before #{definition @concept.moods.second}
+p.center after #{definition @concept.actions.first}; before #{definition @concept.actions.second}
 
 p.center after #{definition @concept.siblings.first}; before #{definition @concept.siblings.second}
 
 dl
-  -@concept.behaviors.each do |x|
+  -@concept.subtypes.each do |x|
     dt=definition x.realm
     dd=definition x
 

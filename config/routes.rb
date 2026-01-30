@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get '/signals' => 'application#signals'
   get '/cycle' => 'application#cycle'
   resources :types, only: %i[index show]
-  resources :concepts, only: %i[index show]
+  resources :concepts, only: %i[show]
   get '/me' => 'types#me', as: :my
 end

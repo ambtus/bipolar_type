@@ -4,10 +4,6 @@ Scenario: talks about the wise cycle
 Given I am on the bipolar page
 Then I should see the four wisdoms
 
-Scenario: talks about the bipolar cycle
-Given I am on the bipolar page
-Then I should see the four fools
-
 Scenario: has a link to the home page
 Given I am on the bipolar page
 When I follow the 'Home' link

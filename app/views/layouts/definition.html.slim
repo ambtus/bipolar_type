@@ -5,19 +5,18 @@ html lang="en"
     title="#{Rails.application.class.module_parent_name}: #{@title}"
     meta content="width=device-width,initial-scale=1" name="viewport"
     = yield :head
-    css:
-      .center  { text-align: center;}
-      .larger  { font-size: 1.2em;}
-      .bold {font-weight: bold}
+    =render 'layouts/css'
+
 
   body
+    =link_to_unless_current 'Home', root_path
+    |<> |
+    = link_to 'Back', 'javascript:history.back()'
+
     p.larger.center=@title
 
     =yield
 
-    =link_to_unless_current 'Home', root_path
-    |<> |
-    = link_to 'Back', :back
 
 
     -if Rails.env.development?

@@ -1,0 +1,7 @@
+p BipolarTypes with this subtype:
+dl
+  -Type.all.select { |x| x.subtypes.include? @concept}.sort_by(&:skew).each do |type|
+    dt=link_to type.link, type_path(type.path)
+    dd=type.wise
+
+p

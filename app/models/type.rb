@@ -10,7 +10,7 @@ class Type < Concept
   ALL = SYMBOLS.collect { |symbol| new symbol }
 
   class << self
-    def my_path = [*Realm.all, Skew.mine].join
+    def my_path = [*Realm.mine, Skew.mine].join
     def mine = find(my_path)
   end
 

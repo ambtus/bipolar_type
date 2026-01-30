@@ -1,23 +1,14 @@
 p
   |> A
   =link_to 'zeitgeber', 'https://en.wikipedia.org/wiki/Zeitgeber', class: 'external', target: '_blank', rel: 'noopener'
-  |< is a signal that tells you what time it is. Some signals you notice and respond to as zeitgebers: it’s time for me to change and accept things. Some signals you notice and respond to as <em>problems</em>: it’s time for <em>them</em> to change.
+  |< is a signal that tells you what time it is. Some signals you notice and respond to as zeitgebers: it’s time to accept things. Some signals you notice and respond to as problems: it’s time to change things. Whether you accept it (and change yourself) or you change it (and accept yourself) depends on your personality type.
 
 table
   tr
     th
+    th zeitgebers
     th accept things
+    th problems
     th change things
-  =render 'row', realm: Realm.N
-  tr
-    th=Realm.S.title
-    td.left Breakfast in the morning; supper at night. Thanksgiving feasts and Lenten fasts.<p>It’s time for <em>me</em> to change: I #{Realm.S.accept} more or less.
-    td.left Depending on where you are in your cycle things can #{Realm.S.appear} subtle or strong regardless of their ppm.<p>It’s time for <em>it</em> to change: I turn the seasonings up or down.
-  tr
-    th=Realm.F.title
-    td.left Reveille in the morning; taps in the evening. Sunday morning services; three minutes of silence.<p>It’s time for <em>me</em> to change: I #{Realm.F.accept} more or less.
-    td.left Depending on where you are in your cycle things can #{Realm.F.appear} quiet or loud regardless of their decibels.<p>It’s time for <em>it</em> to change: I turn the radio up or down.
-  tr
-    th=Realm.T.title
-    td.left The warmth of day; the cold of night. Cold days in winter; warm nights in summer.<p> It’s time for <em>me</em> to change: I #{Realm.T.accept} more or less.
-    td.left Depending on where you are in your cycle things can #{Realm.T.appear} cold or hot regardless of their temperature.<p>It’s time for <em>it</em> to change: I turn the heat up or down.
+  -Realm.each do |realm|
+    =render 'row', realm: realm

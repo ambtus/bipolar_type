@@ -2,36 +2,14 @@ table
   caption
     b the Wise cycle
   tr
-    td.third=Action.ep.title
-    td.third=Mood.e.title
-    td.third=Action.ej.title
+    td.third=definition Action.ep
+    td.third=definition Mood.e
+    td.third=definition Action.ej
   tr
-    td=Mood.p.title
+    td=definition Mood.p
     th &orarr;
-    td=Mood.j.title
+    td=definition Mood.j
   tr
-    td=Action.ip.title
-    td=Mood.i.title
-    td=Action.ij.title
-p
-table
-  caption
-    b the Bipolar cycle
-  tr
-    td #{Action.ep.bipolar}<br />#{Action.ep.episode}
-    td=Mood.e.bipolar
-    td #{Action.ej.bipolar}<br />#{Action.ej.episode}
-  tr
-    td=Mood.p.bipolar
-    th &orarr;
-    td=Mood.j.bipolar
-  tr
-    td #{Action.ip.bipolar}<br />#{Action.ip.episode}
-    td=Mood.i.bipolar
-    td #{Action.ij.bipolar}<br />#{Action.ij.episode}
-
-dl
-  dt Bipolar I<br />Not “allowed” to be #{Mood.e.wise}
-  dd #{Action.ep.skew} & #{Action.ij.skew}<br />#{Action.ep.wise.capitalize} when stressed despite being strong enough to #{Action.ej.wise}. Then crash and #{Action.ij.wise} despite never having #{Action.ej.wise.en} and needing to #{Action.ip.wise} after #{Action.ep.wise.ing}.
-  dt Bipolar II<br />Not “allowed” to be #{Mood.p.wise}
-  dd #{Action.ej.skew} & #{Action.ip.skew}<br />#{Action.ej.wise.capitalize} when stressed despite being fast enough to #{Action.ep.wise}. Then crash and #{Action.ip.wise} despite never having #{Action.ep.wise.en} and needing to #{Action.ij.wise} after #{Action.ej.wise.ing}.
+    td=definition Action.ip
+    td=definition Mood.i
+    td=definition Action.ij

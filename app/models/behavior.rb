@@ -25,27 +25,29 @@ class Behavior < Concept
   def opposite = action.opposite + realm
   def flop = action.flop + realm
   def flip = action.flip + realm
-
-  def siblings = [flip, self, flop]
+  def siblings = action.siblings.add(realm)
 
   WORDS =
     { iFp: 'listen to music',
-      eFp: 'sing',
-      eFj: 'make speaches',
-      iFj: 'listen to words',
-      iSp: 'breakfast',
-      eSp: 'gather',
-      eSj: 'hunt',
-      iSj: 'dine',
+      eFp: 'make new friends',
+      eFj: 'influence people',
+      iFj: 'listen to feedback',
+      iSp: 'eat breakfast',
+      eSp: 'visit new places',
+      eSj: 'hunt and cook foods',
+      iSj: 'eat dinner',
       iNp: 'watch the news',
-      eNp: 'paint pictures',
-      eNj: 'create outlines',
+      eNp: 'create new plans',
+      eNj: 'organize knowledge',
       iNj: 'watch the results',
-      iTp: 'earn cash',
-      eTp: 'buy tools',
-      eTj: 'invest',
+      iTp: 'earn spending money',
+      eTp: 'buy new tools',
+      eTj: 'upgrade shelters',
       iTj: 'earn repayments' }.freeze
   def wise = WORDS[symbol] || super
 
   def episode = action.episode.words.insert(-2, realm.wise).to_phrase
+
+  def aka_verb = [action.wise, realm.adverb].to_phrase
+  def aka_noun = [realm.wise, action.wise.to_noun].to_phrase
 end

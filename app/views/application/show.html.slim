@@ -1,16 +1,29 @@
-dl
-  -4.times do |index|
-    dt=%w[morning forenoon afternoon evening][index]
-    dd=@type.greens[index].title
+p.center=@type.title
+table
+  tr
+    td=definition @type.greens.second
+    th=definition @type.subtypes.second
+    td=definition @type.greens.third
+  tr
+    th=definition @type.subtypes.first
+    th &orarr;
+    th=definition @type.subtypes.third
+  tr
+    td=definition @type.greens.first
+    th=definition @type.subtypes.fourth
+    td=definition @type.greens.fourth
+
+
 
 p.center
-  =link_to 'same nature but different advice', type_path(@type.sibling.path)
+  =link_to 'same cycle but different advice', type_path(@type.sibling.path)
   br
-  =link_to 'same advice but different nature', type_path(@type.friend.path)
+  =link_to 'same advice but different cycle', type_path(@type.friend.path)
 
 -if @type.skew.clockwise?
-  =render 'advice', action: Action.ep, need: @type.greens.second, symptom: @type.greens.third, trigger: @type.realms.third.ep
-  =render 'advice', action: Action.ij, need: @type.greens.fourth, symptom: @type.greens.first, trigger: @type.realms.first.ij
+  =render 'advice', action: Action.ep, need: @type.greens.second, symptom: @type.greens.third.flop, trigger: @type.greens.fourth.opposite, balance: @type.greens.first.flip
+  =render 'advice', action: Action.ij, need: @type.greens.fourth, symptom: @type.greens.first.flop, trigger: @type.greens.second.opposite, balance: @type.greens.third.flip
 -else
-  =render 'advice', action: Action.ip, need: @type.greens.first, symptom: @type.greens.fourth, trigger: @type.realms.third.ip
-  =render 'advice', action: Action.ej, need: @type.greens.third, symptom: @type.greens.second, trigger: @type.realms.first.ej
+  =render 'advice', action: Action.ip, need: @type.greens.first, symptom: @type.greens.fourth.flop, trigger: @type.greens.third.opposite, balance: @type.greens.second.flip
+  =render 'advice', action: Action.ej, need: @type.greens.third, symptom: @type.greens.second.flop, trigger: @type.greens.first.opposite,
+balance: @type.greens.fourth.flip

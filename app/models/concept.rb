@@ -32,7 +32,13 @@ class Concept
     symbol == other.symbol
   end
 
-  # for now. make it a hash later in the model
-  def wise = string
-  def title = (wise == string ? string : [string.colon, wise].to_phrase)
+  def flop = self.class.values_at(3, 2, 1, 0)[index]
+  def flip = self.class.values_at(1, 0, 3, 2)[index]
+  def base_siblings = [flip, flop]
+  def siblings = index.even? ? base_siblings.reverse : base_siblings
+
+  def opposite = (self.class.all + self.class.all)[index + 2]
+
+  # need to define wise in the model
+  def title = [string.colon, wise].to_phrase
 end

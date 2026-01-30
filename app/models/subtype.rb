@@ -17,12 +17,12 @@ class Subtype < Concept
   def <=>(other) = mood.index <=> other.mood.index
 
   delegate :horizontal?, to: :mood
-  delegate :change, :accept, :appear, :appears, :resources, :good, :bad, :organs, :persona, :adjective, :adverb,
-:energy, to: :realm
+  delegate :accept, :change, :appear, :energy, to: :realm
 
-  def opposite = realm + mood.opposite
+  def similars = realm.subtypes + mood.subtypes
 
-  def siblings = Mood.all.add(realm) + Realm.all.add(mood)
+  def opposite = mood.opposite + realm
+  def siblings = mood.siblings.add(realm)
 
   def self.types = all.select { |x| x.mood.vertical? }
 
@@ -41,24 +41,16 @@ class Subtype < Concept
 
   def description = [realm.adverb, mood.wise].to_phrase
 
-  WORDS =
-    { Fp: 'music',
-      eF: 'tell via',
-      Fj: 'words',
-      iF: 'listen to',
-      Tp: 'cash',
-      eT: 'pay via',
-      Tj: 'credit',
-      iT: 'earn',
-      Np: 'colorful details',
-      eN: 'show via',
-      Nj: 'general shapes',
-      iN: 'see',
-      Sp: 'carbs',
-      eS: 'provide',
-      Sj: 'protein',
-      iS: 'eat' }.freeze
-  def wise = WORDS[symbol] || super
-  def short = horizontal? ? wise.last_word : wise.first_word
-  def title = "#{string}: #{short}"
+  WORDS = {
+     Fp: 'expressive music',
+      Fj: 'meaningful words',
+      Tp: 'liquid cash',
+      Tj: 'secured credit',
+      Np: 'changing colors ',
+      Nj: 'stable outlines',
+      Sp: 'sweet carbs',
+      Sj: 'savory proteins'
+  }.freeze
+
+  def wise = horizontal? ? WORDS[symbol] : (mood.reverse? ? realm.accept : realm.change)
 end

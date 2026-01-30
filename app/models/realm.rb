@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class Realm < Concept
-  SYMBOLS = %i[F T N S].freeze
+  SYMBOLS = %i[S T F N].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
+
+  def self.mine = all.values_at(2,1,3,0)
 
   def behaviors = Behavior.all.select { |x| x.realm == self }
 
@@ -22,20 +24,24 @@ class Realm < Concept
   end
 
   def wise = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
-  def accept = { F: :listen, T: :work, S: :eat, N: :see }[symbol].to_s
+  def adverb = wise.ly
+  def accept = { F: :listen, T: :earn, S: :eat, N: :learn }[symbol].to_s
   def change = { F: :talk, T: :spend, S: :move, N: :think }[symbol].to_s
   def appear = { F: :sound, T: :feel, S: 'smell/taste', N: :look }[symbol].to_s
   def energy = { F: :hope, T: :money, S: :calories, N: :information }[symbol].to_s
 
-  def focus = { F: :love, T: :shelter, S: :food, N: :truth }[symbol].to_s
-
-  def title = [super, focus.wrap].to_phrase
-
   ZEITGEBERS  = {
-    N: 'The sunrise in the morning; the sunset at night. The full moon or new moon.<p>It’s time for <em>me</em> to change'
+    N: 'The sunrise in the morning; the sunset at night. The full moon or new moon.',
+    S: 'Breakfast in the morning; supper at night. Thanksgiving feasts and Lenten fasts.',
+    F: 'Reveille in the morning; taps in the evening. Sunday morning services; three minutes of silence.',
+    T: 'The warmth of day; the cold of night. Cold days in winter; warm nights in summer.'
   }
 
   def zeitgebers = ZEITGEBERS[symbol].html_safe
   def signal = { F: :decibels, T: :temperature, S: :ppm, N: :lux }[symbol].to_s
+  def geber = { F: :sound, T: :heat, S: :seasonings, N: :lights }[symbol].to_s
+
+  def weak = { F: :soft, T: :cold, S: :mild, N: :dim }[symbol].to_s
+  def strong = { F: :loud, T: :hot, S: :spicy, N: :bright }[symbol].to_s
 
 end
