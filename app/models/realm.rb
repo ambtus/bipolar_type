@@ -25,7 +25,7 @@ class Realm < Concept
 
   def wise = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
   def adverb = wise.ly
-  def accept = { F: :listen, T: :earn, S: :eat, N: :learn }[symbol].to_s
+  def accept = { F: :listen, T: :earn, S: :eat, N: :watch }[symbol].to_s
   def change = { F: :talk, T: :spend, S: :move, N: :think }[symbol].to_s
   def appear = { F: :sound, T: :feel, S: 'smell/taste', N: :look }[symbol].to_s
   def energy = { F: :hope, T: :money, S: :calories, N: :information }[symbol].to_s

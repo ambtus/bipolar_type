@@ -17,14 +17,8 @@ class Mood < Concept
 
   def horizontal? = %i[p j].include?(symbol)
 
-  FEELINGS = { p: :afraid, e: :angry, j: 'in control', i: 'low on fuel' }.freeze
-  def wise = FEELINGS[symbol].to_s
+  def wise = { p: :afraid, e: :angry, j: :tired, i: 'low on fuel' }[symbol].to_s
 
-  EPISODES = { p: :anxiety, e: :mania, j: :irritability, i: :depression }.freeze
-  def episode = EPISODES[symbol].to_s
+  def foolish = { p: :anxiety, e: :mania, j: :irritability, i: :depression }[symbol].to_s
 
-  EMOTIONS = { p: 'anxious<br />(learned fear)', e: 'irritable<br />(learned anger)', j: 'out of energy', i: 'out of strength' }.freeze
-  def foolish = EMOTIONS[symbol].to_s
-
-  def bipolar = "#{string}: #{foolish}".html_safe
 end

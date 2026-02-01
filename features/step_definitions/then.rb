@@ -36,9 +36,9 @@ Then('I should see the {word} four subtypes') do |ordinal|
   end
 end
 
-Then('I should see the four episodes') do
+Then('I should see the four foolishnesses') do
   Action.each do |x|
-    expect(page).to have_text(x.episode)
+    expect(page).to have_text(x.foolish)
   end
 end
 

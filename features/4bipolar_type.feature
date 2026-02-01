@@ -28,7 +28,7 @@ When I choose my first subtype
   And I choose my second subtype
   And I choose my third subtype
   And I choose my fourth subtype
-Then I should see the four episodes
+Then I should see the four foolishnesses
 
 Scenario: then me
 Given I am on the types page
@@ -36,5 +36,5 @@ When I choose my first subtype
   And I choose my second subtype
   And I choose my third subtype
   And I choose my fourth subtype
-  And I choose my episode
+  And I choose my foolish
 Then I should be on my page

@@ -1,29 +1,24 @@
 p.center=@type.title
 table
   tr
-    td=definition @type.greens.second
-    th=definition @type.subtypes.second
-    td=definition @type.greens.third
+    td.middle=definition @type.greens.second
+    td
+      b High (manic)
+      p.left #{definition @type.greens.first} and #{definition @type.greens.fourth}
+    td.middle=definition @type.greens.third
   tr
-    th=definition @type.subtypes.first
-    th &orarr;
-    th=definition @type.subtypes.third
+    td
+      b Rising
+      p.left #{definition @type.greens.third} and #{definition @type.greens.fourth}
+
+    td.middle &orarr;
+
+    td
+      b Falling
+      p.left #{definition @type.greens.first} and #{definition @type.greens.second}
   tr
-    td=definition @type.greens.first
-    th=definition @type.subtypes.fourth
-    td=definition @type.greens.fourth
-
-
-
-p.center
-  =link_to 'same cycle but different advice', type_path(@type.sibling.path)
-  br
-  =link_to 'same advice but different cycle', type_path(@type.friend.path)
-
--if @type.skew.clockwise?
-  =render 'advice', action: Action.ep, need: @type.greens.second, symptom: @type.greens.third.flop, trigger: @type.greens.fourth.opposite, balance: @type.greens.first.flip
-  =render 'advice', action: Action.ij, need: @type.greens.fourth, symptom: @type.greens.first.flop, trigger: @type.greens.second.opposite, balance: @type.greens.third.flip
--else
-  =render 'advice', action: Action.ip, need: @type.greens.first, symptom: @type.greens.fourth.flop, trigger: @type.greens.third.opposite, balance: @type.greens.second.flip
-  =render 'advice', action: Action.ej, need: @type.greens.third, symptom: @type.greens.second.flop, trigger: @type.greens.first.opposite,
-balance: @type.greens.fourth.flip
+    td.middle=definition @type.greens.first
+    td
+      b Low (depressed)
+      p.left #{definition @type.greens.second} and #{definition @type.greens.third}
+    td.middle=definition @type.greens.fourth

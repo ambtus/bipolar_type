@@ -36,18 +36,18 @@ class Subtype < Concept
 
   def state = [string.colon, wise].to_phrase
   def foolish = "#{realm.wise.ly} #{mood.foolish}"
-  def episode = "#{realm.wise} #{mood.episode}"
-  def bipolar = [string.colon, episode].to_phrase
+  def foolish = "#{realm.wise} #{mood.foolish}"
+  def bipolar = [string.colon, foolish].to_phrase
 
   def description = [realm.adverb, mood.wise].to_phrase
 
   WORDS = {
-     Fp: 'expressive music',
+     Fp: 'expressive intonation',
       Fj: 'meaningful words',
       Tp: 'liquid cash',
       Tj: 'secured credit',
-      Np: 'changing colors ',
-      Nj: 'stable outlines',
+      Np: 'changing foreground colors',
+      Nj: 'stable background shapes',
       Sp: 'sweet carbs',
       Sj: 'savory proteins'
   }.freeze

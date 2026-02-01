@@ -26,6 +26,10 @@ RSpec.describe Type, type: :model do
     expect(bipolar.sibling.subtypes).to eq described_class.mine.subtypes
   end
 
+  it 'siblings are reciprocal' do
+    expect(described_class.mine.sibling.sibling).to eq described_class.mine
+  end
+
   it 'I have a friend' do
     expect(described_class.mine.friend).to be_a described_class
   end
@@ -38,5 +42,9 @@ RSpec.describe Type, type: :model do
   it 'but has the same greens' do
     bipolar = described_class.mine
     expect(bipolar.friend.greens).to eq described_class.mine.greens
+  end
+
+  it 'friends are reciprocal' do
+    expect(described_class.mine.friend.friend).to eq described_class.mine
   end
 end

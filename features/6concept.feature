@@ -1,7 +1,7 @@
 Feature: the concept page
 
 Scenario: with back button
-Given I am on my page
+Given I am on the bipolar page
 When I follow the 'refuel (ip)' link
 Then there should be a 'Back' link
 
@@ -11,7 +11,7 @@ When I follow the 'Home' link
 Then I should be on the homepage
 
 Scenario: action
-Given I am on my page
+Given I am on the bipolar page
 When I follow the 'refuel (ip)' link
 Then I should be on the concept page
 

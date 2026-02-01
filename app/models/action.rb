@@ -13,11 +13,7 @@ class Action < Concept
 
   def moods = string.chars.collect{|x| Mood.find(x)}.sort
 
-  ACTIONS = { ip: :refuel, ep: :flee, ej: :fight, ij: :rest }.freeze
-  def wise = ACTIONS[symbol].to_s
-  def episode = "#{wise} when you should be #{flop.wise.ing}"
+  def wise = { ip: :refuel, ep: :flee, ej: :fight, ij: :rest }[symbol].to_s
 
-  EPISODES = { ip: :depression, ep: :mania, ej: :hypomania, ij: :dysthymia }.freeze
-  def foolish = EPISODES[symbol].to_s
-  def bipolar = "#{string}: #{foolish}"
+  def foolish = { ip: 'major depression', ep: 'anxious mania', ej: 'irritable mania', ij: 'lethargic depression' }[symbol]
 end

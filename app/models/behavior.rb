@@ -31,22 +31,22 @@ class Behavior < Concept
     { iFp: 'listen to music',
       eFp: 'make new friends',
       eFj: 'influence people',
-      iFj: 'listen to feedback',
+      iFj: 'listen to stories',
       iSp: 'eat breakfast',
       eSp: 'visit new places',
       eSj: 'hunt and cook foods',
       iSj: 'eat dinner',
       iNp: 'watch the news',
-      eNp: 'create new plans',
-      eNj: 'organize knowledge',
+      eNp: 'make new plans',
+      eNj: 'work on theories',
       iNj: 'watch the results',
       iTp: 'earn spending money',
       eTp: 'buy new tools',
-      eTj: 'upgrade shelters',
+      eTj: 'invest in shelters',
       iTj: 'earn repayments' }.freeze
   def wise = WORDS[symbol] || super
 
-  def episode = action.episode.words.insert(-2, realm.wise).to_phrase
+  def foolish = action.foolish.words.insert(-2, realm.wise).to_phrase
 
   def aka_verb = [action.wise, realm.adverb].to_phrase
   def aka_noun = [realm.wise, action.wise.to_noun].to_phrase

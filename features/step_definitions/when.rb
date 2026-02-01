@@ -16,6 +16,6 @@ When('I choose my {word} subtype') do |word|
   click_link(Type.mine.subtypes.send(word).wise)
 end
 
-When('I choose my episode') do
+When('I choose my foolish') do
   click_link(Type.mine.depression)
 end

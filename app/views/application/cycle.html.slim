@@ -1,6 +1,5 @@
 table
-  caption
-    b the Wise cycle
+  caption the Normal cycle
   tr
     td.third=definition Action.ep
     td.third=definition Mood.e
@@ -13,3 +12,19 @@ table
     td=definition Action.ip
     td=definition Mood.i
     td=definition Action.ij
+
+p
+table
+  caption the Bipolar cycle
+  tr
+    td #{Action.ep.foolish}<br />#{Action.ep.wise} the wrong things
+    td #{Action.ej.foolish}<br />#{Action.ej.wise} the wrong things
+  tr
+    td #{Action.ip.foolish}<br />#{Action.ip.wise} the wrong things
+    td #{Action.ij.foolish}<br />#{Action.ij.wise} the wrong things
+
+dl
+  dt Bipolar I
+  dd #{Action.ep.foolish} & #{Action.ij.foolish}
+  dt Bipolar II
+  dd #{Action.ej.foolish} & #{Action.ip.foolish}
