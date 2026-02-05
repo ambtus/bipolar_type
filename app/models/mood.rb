@@ -17,8 +17,8 @@ class Mood < Concept
 
   def horizontal? = %i[p j].include?(symbol)
 
-  def wise = { p: :afraid, e: :angry, j: :tired, i: 'low on fuel' }[symbol].to_s
+  def wise = { p: 'rev up', e: 'change things', j: 'calm down', i: 'accept things' }[symbol]
 
-  def foolish = { p: :anxiety, e: :mania, j: :irritability, i: :depression }[symbol].to_s
+  def foolish = { p: :unhealthy, e: :mania, j: :unhappy, i: :depression }[symbol].to_s
 
 end

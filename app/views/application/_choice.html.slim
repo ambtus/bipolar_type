@@ -1,0 +1,6 @@
+ul.left
+  -action.behaviors.each do |x|
+    li class=(@greens.include?(x) ? 'bold' : @chosen.include?(x) ? 'strikethrough' : 'normal')
+      |> I <em>hate</em> having to
+      =link_to_unless @chosen.include?(x), x.opposite.wise, types_path("#{@greens.join}#{x}")
+      | , but I love being allowed to #{x.wise}.

@@ -25,8 +25,13 @@ class Realm < Concept
 
   def wise = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
   def adverb = wise.ly
-  def accept = { F: :listen, T: :earn, S: :eat, N: :watch }[symbol].to_s
+
+  def accept = { F: :hear, T: :earn, S: :eat, N: :watch }[symbol].to_s
+  def given = { F: :told, T: :paid, S: :fed, N: :shown }[symbol].to_s
+
   def change = { F: :talk, T: :spend, S: :move, N: :think }[symbol].to_s
+  def targets = { F: :people, T: :tools, S: :foods, N: :ideas}[symbol].to_s
+
   def appear = { F: :sound, T: :feel, S: 'smell/taste', N: :look }[symbol].to_s
   def energy = { F: :hope, T: :money, S: :calories, N: :information }[symbol].to_s
 
@@ -34,14 +39,14 @@ class Realm < Concept
     N: 'The sunrise in the morning; the sunset at night. The full moon or new moon.',
     S: 'Breakfast in the morning; supper at night. Thanksgiving feasts and Lenten fasts.',
     F: 'Reveille in the morning; taps in the evening. Sunday morning services; three minutes of silence.',
-    T: 'The warmth of day; the cold of night. Cold days in winter; warm nights in summer.'
+    T: 'The warmth of day; the cold of night. Long weeks; short weekends.'
   }
 
   def zeitgebers = ZEITGEBERS[symbol].html_safe
   def signal = { F: :decibels, T: :temperature, S: :ppm, N: :lux }[symbol].to_s
   def geber = { F: :sound, T: :heat, S: :seasonings, N: :lights }[symbol].to_s
 
-  def weak = { F: :soft, T: :cold, S: :mild, N: :dim }[symbol].to_s
-  def strong = { F: :loud, T: :hot, S: :spicy, N: :bright }[symbol].to_s
+  def weak = { F: :soft, T: :cold, S: :bland, N: :dim }[symbol].to_s
+  def strong = { F: :loud, T: :hot, S: :pungent, N: :bright }[symbol].to_s
 
 end

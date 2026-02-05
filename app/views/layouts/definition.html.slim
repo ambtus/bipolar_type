@@ -21,6 +21,5 @@ html lang="en"
 
     -if Rails.env.development?
       hr
-      =link_to_unless_current 'my choice', types_path(Type.mine.subtypes.join)
-      br
+
       =link_to_unless_current 'my type', type_path(Type.my_path)

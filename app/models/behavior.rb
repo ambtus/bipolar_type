@@ -22,6 +22,8 @@ class Behavior < Concept
 
   def moods = action.moods.add(realm)
 
+  def similars = realm.behaviors + action.behaviors
+
   def opposite = action.opposite + realm
   def flop = action.flop + realm
   def flip = action.flip + realm
@@ -32,17 +34,17 @@ class Behavior < Concept
       eFp: 'make new friends',
       eFj: 'influence people',
       iFj: 'listen to stories',
-      iSp: 'eat breakfast',
+      iSp: 'eat breakfast carbs',
       eSp: 'visit new places',
-      eSj: 'hunt and cook foods',
-      iSj: 'eat dinner',
+      eSj: 'cook or clean homes',
+      iSj: 'eat dinner proteins',
       iNp: 'watch the news',
       eNp: 'make new plans',
-      eNj: 'work on theories',
+      eNj: 'improve theories',
       iNj: 'watch the results',
       iTp: 'earn spending money',
       eTp: 'buy new tools',
-      eTj: 'invest in shelters',
+      eTj: 'upgrade shelters',
       iTj: 'earn repayments' }.freeze
   def wise = WORDS[symbol] || super
 

@@ -30,9 +30,9 @@ Then('I should see the four realms') do
   end
 end
 
-Then('I should see the {word} four subtypes') do |ordinal|
-  Mood.send(ordinal).subtypes.each do |x|
-    expect(page).to have_text(x.link)
+Then('I should see the {word} four reds') do |ordinal|
+  Action.send(ordinal).behaviors.each do |x|
+    expect(page).to have_text(x.wise)
   end
 end
 

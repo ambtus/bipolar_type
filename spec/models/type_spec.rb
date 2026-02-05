@@ -12,39 +12,4 @@ RSpec.describe Type, type: :model do
     expect(described_class.mine.path).to eq described_class.my_path
   end
 
-  it 'I have a sibling' do
-    expect(described_class.mine.sibling).to be_a described_class
-  end
-
-  it 'which is not my bipolar type' do
-    bipolar = described_class.mine
-    expect(bipolar.sibling).not_to eq described_class.mine
-  end
-
-  it 'but has the same subtypes' do
-    bipolar = described_class.mine
-    expect(bipolar.sibling.subtypes).to eq described_class.mine.subtypes
-  end
-
-  it 'siblings are reciprocal' do
-    expect(described_class.mine.sibling.sibling).to eq described_class.mine
-  end
-
-  it 'I have a friend' do
-    expect(described_class.mine.friend).to be_a described_class
-  end
-
-  it 'which is also not my bipolar type' do
-    bipolar = described_class.mine
-    expect(bipolar.friend).not_to eq described_class.mine
-  end
-
-  it 'but has the same greens' do
-    bipolar = described_class.mine
-    expect(bipolar.friend.greens).to eq described_class.mine.greens
-  end
-
-  it 'friends are reciprocal' do
-    expect(described_class.mine.friend.friend).to eq described_class.mine
-  end
 end

@@ -3,9 +3,15 @@
 class TypesController < ApplicationController
   def index
     @answers = params[:format] || ''
-    @subtypes = @answers.empty? ? [] : @answers.scan(/../).collect { |x| Subtype.find(x) }.sort
-    @title = "#{(@subtypes.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
-    render 'skew' and return if @answers.length == 8
+    @greens = @answers.empty? ? [] : @answers.scan(/.../).collect { |x| Behavior.find(x) }.sort
+    @chosen = @greens.map(&:similars).flatten
+
+    @title = "#{(@greens.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
+
+    if @answers.length == 12
+      type = Type.find_by_greens(@greens)
+      redirect_to action: 'show', id: type.path
+    end
   end
 
   def show

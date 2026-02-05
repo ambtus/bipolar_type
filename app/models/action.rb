@@ -11,9 +11,9 @@ class Action < Concept
   def +(other) = behaviors.find { |x| x.realm == other }
 
 
-  def moods = string.chars.collect{|x| Mood.find(x)}.sort
+  def moods = string.chars.collect{|x| Mood.find(x)}
 
-  def wise = { ip: :refuel, ep: :flee, ej: :fight, ij: :rest }[symbol].to_s
+  def wise = { ip: :refuel, ep: 'flee (find new things)', ej: 'fight (improve familiar things)', ij: :rest }[symbol].to_s
 
-  def foolish = { ip: 'major depression', ep: 'anxious mania', ej: 'irritable mania', ij: 'lethargic depression' }[symbol]
+  def foolish = moods.reverse.map(&:foolish).to_phrase
 end

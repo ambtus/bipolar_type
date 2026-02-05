@@ -1,40 +1,31 @@
 Feature: the types page
 
-Scenario: starts with the first mood
+Scenario: starts with the first hate
 Given I am on the types page
-Then I should see the first four subtypes
+Then I should see the first four reds
 
-Scenario: then the second mood
+Scenario: then the second hate
 Given I am on the types page
-When I choose my first subtype
-Then I should see the second four subtypes
+When I choose my first red
+Then I should see the second four reds
 
-Scenario: then the third mood
+Scenario: then the third hate
 Given I am on the types page
-When I choose my first subtype
-  And I choose my second subtype
-Then I should see the third four subtypes
+When I choose my first red
+  And I choose my second red
+Then I should see the third four reds
 
-Scenario: then the fourth mood
+Scenario: then the fourth hate
 Given I am on the types page
-When I choose my first subtype
-  And I choose my second subtype
-  And I choose my third subtype
-Then I should see the fourth four subtypes
-
-Scenario: then the skew
-Given I am on the types page
-When I choose my first subtype
-  And I choose my second subtype
-  And I choose my third subtype
-  And I choose my fourth subtype
-Then I should see the four foolishnesses
+When I choose my first red
+  And I choose my second red
+  And I choose my third red
+Then I should see the fourth four reds
 
 Scenario: then me
 Given I am on the types page
-When I choose my first subtype
-  And I choose my second subtype
-  And I choose my third subtype
-  And I choose my fourth subtype
-  And I choose my foolish
+When I choose my first red
+  And I choose my second red
+  And I choose my third red
+  And I choose my fourth red
 Then I should be on my page

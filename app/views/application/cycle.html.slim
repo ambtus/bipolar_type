@@ -12,16 +12,45 @@ table
     td=definition Action.ip
     td=definition Mood.i
     td=definition Action.ij
-
 p
 table
   caption the Bipolar cycle
   tr
-    td #{Action.ep.foolish}<br />#{Action.ep.wise} the wrong things
-    td #{Action.ej.foolish}<br />#{Action.ej.wise} the wrong things
+    td.third
+      / b=Action.ep.foolish
+      .left unable to stop #{Action.ep.wise.ing}
+      / and #{Action.ej.wise}
+    td.third
+      b=Mood.e.foolish
+      br
+      =link_to 'fight-or-flight', 'https://en.wikipedia.org/wiki/Fight-or-flight_response', class: 'external', target: '_blank', rel: 'noopener'
+      br
+      | require sedatives (e.g. alcohol) to calm down
+    td
+      / b=Action.ej.foolish
+      .right unable to stop #{Action.ej.wise.ing}
+      / and #{Action.ij.wise}
   tr
-    td #{Action.ip.foolish}<br />#{Action.ip.wise} the wrong things
-    td #{Action.ij.foolish}<br />#{Action.ij.wise} the wrong things
+    td
+      b=Mood.p.foolish
+    th &orarr;
+    td
+      b=Mood.j.foolish
+  tr
+    td.bottom
+      .left unable to stop #{Action.ip.wise.ing}
+      / and #{Action.ep.wise}
+      / b=Action.ip.foolish
+    td.bottom
+      | require stimulants (e.g. caffeine) to rev up
+      br
+      =link_to 'rest-and-digest', 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external', target: '_blank', rel: 'noopener'
+      br
+      b=Mood.i.foolish
+    td.bottom
+      .right unable to stop #{Action.ij.wise.ing}
+      / and #{Action.ip.wise}
+      / b=Action.ij.foolish
 
 dl
   dt Bipolar I

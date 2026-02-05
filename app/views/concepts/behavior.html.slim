@@ -6,10 +6,13 @@ p.center #{definition @concept.moods.first} => #{@concept.wise} => #{definition 
 p.center after #{definition @concept.siblings.first}; before #{definition @concept.siblings.second}
 
 
-p BipolarTypes with this advice:
+p BipolarTypes with this love:
 dl
-  -Type.all.select { |x| x.greens.include? @concept}.sort_by(&:skew).each do |type|
-    dt=link_to type.link, type_path(type.path)
-    dd=type.wise
-
-p
+  -Type.all.select { |x| x.greens.include? @concept}.each do |type|
+    dt=link_to type.title, type_path(type.path)
+    dd=type.greens.map(&:wise).amp
+p BipolarTypes with this hate:
+dl
+  -Type.all.select { |x| x.reds.include? @concept}.each do |type|
+    dt=link_to type.title, type_path(type.path)
+    dd=type.greens.map(&:wise).amp

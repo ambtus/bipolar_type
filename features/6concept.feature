@@ -19,3 +19,13 @@ Scenario: behavior
 Given I am on my page
 When I follow the 'music (iFp)' link
 Then I should be on the concept page
+
+Scenario: subtype vertical
+Given I am on the bipolar page
+When I follow the 'change things (e)' link
+Then I should be on the concept page
+
+Scenario: subtype horizontal
+Given I am on the bipolar page
+When I follow the 'rev up (p)' link
+Then I should be on the concept page
