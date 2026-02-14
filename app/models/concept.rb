@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Concept
-  SYMBOLS = %i[X Y Z].freeze
 
   def initialize(symbol) = @symbol = symbol
   attr_reader :symbol
@@ -10,11 +9,6 @@ class Concept
   alias to_s :string
   alias path :string
   alias link :string
-
-  ALL = SYMBOLS.collect { |symbol| new symbol }
-  SYMBOLS.each do |sym|
-    define_singleton_method(sym) { ALL.find { |thing| thing.symbol == sym } }
-  end
 
   class << self
     def all = self::ALL
@@ -40,5 +34,5 @@ class Concept
   def opposite = (self.class.all + self.class.all)[index + 2]
 
   # need to define wise in the model
-  def title = [string.colon, wise].to_phrase
+  def title = [string.colon, name].to_phrase
 end

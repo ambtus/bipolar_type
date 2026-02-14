@@ -3,13 +3,12 @@
 class TypesController < ApplicationController
   def index
     @answers = params[:format] || ''
-    @greens = @answers.empty? ? [] : @answers.scan(/.../).collect { |x| Behavior.find(x) }.sort
-    @chosen = @greens.map(&:similars).flatten
+    @chosen = @answers.empty? ? [] : @answers.scan(/../).collect { |x| [Realm.find(x.first), Compass.find(x.second)] }
 
-    @title = "#{(@greens.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
+    @title = "#{(@chosen.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
 
-    if @answers.length == 12
-      type = Type.find_by_greens(@greens)
+    if @chosen.length == 4
+      type = Type.find_by_chosen(@chosen)
       redirect_to action: 'show', id: type.path
     end
   end

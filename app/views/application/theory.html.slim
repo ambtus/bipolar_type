@@ -1,0 +1,37 @@
+table
+  caption The Natural Cycle
+  tr
+    td.none colspan=3 =link_to 'fight-or-flight', 'https://en.wikipedia.org/wiki/Fight-or-flight_response', class: 'external', target: '_blank', rel: 'noopener'
+
+  tr
+    td.third=definition Compass[3]
+    td.third=definition Compass[4]
+    td.third=definition Compass[5]
+  tr
+    td.third=definition Compass[2]
+    th &orarr;
+    td.third=definition Compass[6]
+  tr
+    td.third=definition Compass[1]
+    td.third=definition Compass[0]
+    td.third=definition Compass[7]
+  tr
+    td.none colspan=3 =link_to 'rest-and-digest', 'https://en.wikipedia.org/wiki/Parasympathetic_nervous_system', class: 'external', target: '_blank', rel: 'noopener'
+table
+  caption <b>Bipolar</b> Episodes
+  tr
+    td.none colspan=2 mania
+  tr
+    td.half.left exploring things you neither want nor need to explore (excessive flight: anxious mania)
+    td.half.left controlling things you neither want nor need to control (excessive fight: irritable mania)
+  tr
+    td.half.left fueling things you neither want nor need to fuel (excessive digest: dysphoric depression)
+    td.half.left resting things you neither want nor need to rest (excessive rest: bored depression)
+  tr
+    td.none colspan=2 depression
+table
+  caption Expisode <b>Types</b>
+  tr
+    -Realm.each do |x|
+      td=definition x
+  tr

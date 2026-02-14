@@ -3,7 +3,7 @@
 # Restart required even in development mode when you modify this file.
 
 # A list of all the methods defined here to prevent breaking rails by overwriting something in use
-%w[chip second third fourth fifth sixth seventh eighth ninth words clean to_wbr first_words last_words first_word last_word insert_word
+%w[noop chip second third fourth fifth sixth seventh eighth ninth words clean to_wbr first_words last_words first_word last_word insert_word
    quote dquote sqwrap parenthesize deunderscore wrap end_wrap endwrap start_wrap unwrap
    wrapped? comma period semi colon bang break punctuated? unpunctuate make_mine
    make_yours make_theirs and_to_or is_mbti? capitalized? to_noun to_adjective s ed en er
@@ -15,6 +15,9 @@
 end
 
 class String
+
+  def noop = self
+
   def chip = self.[](1..)
   %i[second third fourth fifth sixth seventh eighth ninth].each do |meth|
     delegate meth, to: :chars
@@ -462,7 +465,7 @@ class String
     end
     if match?(' ')
       if last_word.noun?
-        [first_words, last_word.too_much].join(' ')
+        [first_words, 'too', last_word.much, last_words].join(' ')
       elsif last_words.words.first.noun?
         [first_word, last_words.too_much].join(' ')
       elsif first_word.noun?

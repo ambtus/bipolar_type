@@ -2,8 +2,17 @@
 
 module ApplicationHelper
 
-  def definition(concept)
-    link_to "#{concept.wise} (#{concept})", concept_path(concept.path), class: 'definition'
+  def definition(concept, meth = :noop)
+    link_to "#{concept.name.send(meth)}", concept_path(concept.path), class: 'definition'
   end
 
+  def find_class(chosen, realm, action)
+    if chosen.include? [realm, action]
+      'bold'
+    elsif chosen.flatten.include?(realm) || chosen.flatten.include?(action)
+      'strikethrough'
+    else
+      'normal'
+    end
+  end
 end

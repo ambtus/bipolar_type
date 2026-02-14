@@ -11,7 +11,7 @@ css:
   a.external:link {color: dimgrey; text-decoration: none;}
   a.external:visited {color: dimgrey; text-decoration: none;}
   a.external:hover {text-decoration: underline;}
-  / a.external:after { content: '↗️'}
+  a.external:after { content: '⇗'}
 
   a.definition:link {color: slategray; text-decoration: none;}
   a.definition:visited {color: slategray; text-decoration: none;}
@@ -19,21 +19,22 @@ css:
 
   dl { display: grid; grid-template-columns: auto auto;}
   dt { grid-column-start: 1; text-align: right; }
-  /dt:after { content: ': ' }
+  dt:after { content: ': ' }
   dd { grid-column-start: 2;}
   dd,dt {margin-top: .25em;}
 
 
   ul { padding: 0; margin: 0; list-style-type: none; }
-  ul.dot { padding: 1em; list-style-type: '•'; text-align: left}
+  ul.dot { padding: 0; margin: .5em; list-style-type: '•'; text-align: left}
 
-  table {margin: auto; border: none; border-collapse: collapse;}
+  table {margin: 1em auto; border: none; border-collapse: collapse;}
   td {border: 1px solid grey; text-align: center; vertical-align: top; padding: .2em; }
   td.none { border: none;}
   td.middle {vertical-align: middle;}
   td.bottom {vertical-align: bottom;}
   .third { width: 33% }
   .half { width: 50% }
+  .halfish { width: 45% }
 
   tr.true { color: green}
   tr.false { color: red}

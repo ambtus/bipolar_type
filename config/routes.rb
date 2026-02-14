@@ -2,8 +2,7 @@
 
 Rails.application.routes.draw do
   root 'application#home'
-  get '/signals' => 'application#signals'
-  get '/cycle' => 'application#cycle'
+  get '/theory' => 'application#theory'
   resources :types, only: %i[index show]
   resources :concepts, only: %i[show]
   get '/me' => 'types#me', as: :my

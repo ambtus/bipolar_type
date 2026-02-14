@@ -1,26 +1,17 @@
+p There are 24 (4 factorial) BipolarTypes.
 
 table
   tr
 
-    td.half=render 'choice', action: Action.ep
-    td.half=render 'choice', action: Action.ej
+    td.half=render 'choice', action: Compass.x
+    td.half=render 'choice', action: Compass.c
 
   tr
 
-    td.half=render 'choice', action: Action.ip
-    td.half=render 'choice', action: Action.ij
-
-p.center.larger
-  =@greens.none? ? 'All ' : 'Remaining '
-  = Type.all.count { |x| (x.greens - @greens).count == (4 - @greens.count) }
-  |< BipolarTypes
-dl
-  -Type.all.select { |x| (x.greens - @greens).count == (4 - @greens.count) }.each do |type|
-    dt=link_to type.title, type_path(type.path)
-    dd=type.greens.map(&:wise).amp
+    td.half=render 'choice', action: Compass.f
+    td.half=render 'choice', action: Compass.r
 
 -if Rails.env.development?
   hr
-  | greens: #{@greens} chosen and #{@chosen} unavailable
-
+  | chosen: #{@chosen} are unavailable
 

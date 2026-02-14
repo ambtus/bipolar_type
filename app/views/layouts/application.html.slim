@@ -9,11 +9,13 @@ html lang="en"
 
 
   body
+    / -unless current_page?(root_path)
     =link_to_unless_current 'Home', root_path
     |<> |
-    =link_to_unless_current 'Bipolar', cycle_path
-    |<> |
-    =link_to_unless_current 'Type', signals_path
+    =link_to_unless_current 'Theory', theory_path
+    / =link_to_unless_current 'Bipolar', cycle_path
+    / |<> |
+    / =link_to_unless_current 'Type', signals_path
     |<> |
     =link_to_unless_current 'BipolarTypes', types_path
 

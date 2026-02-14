@@ -3,7 +3,5 @@
 class ApplicationController < ActionController::Base
   def home = (@title = 'Introduction')
 
-  def cycle = (@title = 'Cycle')
-
-  def signals = (@title = 'Signals')
+  def theory = (@title = 'Theory')
 end

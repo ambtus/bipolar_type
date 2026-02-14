@@ -1,52 +1,40 @@
 # frozen_string_literal: true
 
 class Realm < Concept
-  SYMBOLS = %i[S T F N].freeze
+  SYMBOLS = %i[ S N F T ].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.mine = all.values_at(2,1,3,0)
+  def self.mine = [Realm.F, Realm.T, Realm.N, Realm.S]
 
-  def behaviors = Behavior.all.select { |x| x.realm == self }
 
-  def subtypes = Subtype.all.select { |x| x.realm == self }
+  def name = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
+  def adverb = name.ly
 
-  def +(other) =subtypes.find { |x| x.mood == other }
+  def aspect = { F: :soul, T: :hands, S: :body, N: :mind}[symbol].to_s
+  alias_method :i, :aspect
 
-  Action::SYMBOLS.each do |sym|
-    define_method(sym) { Behavior.all.find { |x| x.action.symbol == sym && x.realm.symbol == symbol } }
-  end
+  def targets = { F: :opinions, T: :tools, S: :foods, N: :ideas}[symbol].to_s
+  alias_method :e, :targets
 
-  Mood::SYMBOLS.each do |sym|
-    define_method(sym) { Subtype.all.find { |x| x.mood.symbol == sym && x.realm.symbol == symbol } }
-  end
+  def energy = { F: :emotions, T: :cash, S: :calories, N: :specifics}[symbol].to_s
+  alias_method :p, :energy
 
-  def wise = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
-  def adverb = wise.ly
+  def strength = { F: :words, T: :credit, S: :muscles, N: :rules}[symbol].to_s
+  alias_method :j, :strength
 
-  def accept = { F: :hear, T: :earn, S: :eat, N: :watch }[symbol].to_s
-  def given = { F: :told, T: :paid, S: :fed, N: :shown }[symbol].to_s
+  def fuel = { F: 'listen to music', S: 'eat breakfast carbs', N: 'analyze the news', T: 'earn spending money'}[symbol]
+  alias_method :f, :fuel
 
-  def change = { F: :talk, T: :spend, S: :move, N: :think }[symbol].to_s
-  def targets = { F: :people, T: :tools, S: :foods, N: :ideas}[symbol].to_s
+  def explore = { F: 'tell new people', S: 'go new places', N: 'make new plans', T: 'buy new tools'}[symbol]
+  alias_method :x, :explore
 
-  def appear = { F: :sound, T: :feel, S: 'smell/taste', N: :look }[symbol].to_s
-  def energy = { F: :hope, T: :money, S: :calories, N: :information }[symbol].to_s
+  def control = { F: 'teach or preach', S: 'cook or clean', N: 'theorize or hypothesize', T: 'build or invest'}[symbol]
+  alias_method :c, :control
 
-  ZEITGEBERS  = {
-    N: 'The sunrise in the morning; the sunset at night. The full moon or new moon.',
-    S: 'Breakfast in the morning; supper at night. Thanksgiving feasts and Lenten fasts.',
-    F: 'Reveille in the morning; taps in the evening. Sunday morning services; three minutes of silence.',
-    T: 'The warmth of day; the cold of night. Long weeks; short weekends.'
-  }
-
-  def zeitgebers = ZEITGEBERS[symbol].html_safe
-  def signal = { F: :decibels, T: :temperature, S: :ppm, N: :lux }[symbol].to_s
-  def geber = { F: :sound, T: :heat, S: :seasonings, N: :lights }[symbol].to_s
-
-  def weak = { F: :soft, T: :cold, S: :bland, N: :dim }[symbol].to_s
-  def strong = { F: :loud, T: :hot, S: :pungent, N: :bright }[symbol].to_s
+  def rest = { F: 'listen to stories', S: 'eat dinner proteins', N: 'analyze the results', T: 'earn repayments'}[symbol]
+  alias_method :r, :rest
 
 end
