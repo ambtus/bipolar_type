@@ -10,7 +10,7 @@ class Compass < Concept
 
   def self.behaviors = ALL.select{|x| x.index.odd?}
 
-  def name = { f: 'fuel the self', x: 'explore the other', c: 'control the other', r: 'rest the self', i: 'the self', p: 'energy', e: 'the other', j: 'strength'}[symbol]
+  def name = { f: 'fuel the self', x: 'explore the other', c: 'control the other', r: 'rest the self', i: 'the self', p: 'play', e: 'the other', j: 'work'}[symbol]
   def short = name.words.first
 
   def adjective = { f: :dysphoric, r: :bored, x: :anxious, c: :irritable}[symbol].to_s

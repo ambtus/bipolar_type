@@ -10,7 +10,7 @@ class Realm < Concept
   def self.mine = [Realm.F, Realm.T, Realm.N, Realm.S]
 
 
-  def name = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
+  def name = { F: :social, T: :financial, S: :physical, N: :cognitive }[symbol].to_s
   def adverb = name.ly
 
   def aspect = { F: :soul, T: :hands, S: :body, N: :mind}[symbol].to_s
