@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   root 'application#home'
   get '/theory' => 'application#theory'
+  resources :realms, only: %i[index show]
   resources :types, only: %i[index show]
   resources :concepts, only: %i[show]
   get '/me' => 'types#me', as: :my
