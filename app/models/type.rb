@@ -2,19 +2,21 @@
 
 class Type < Concept
   SYMBOLS = Realm.all.permutation(4).collect do |realms|
-      realms.join.to_sym
-  end
+    Compass.permutations.collect do |behaviors|
+       realms.add(behaviors).map(&:string).join('•').to_sym
+    end
+  end.flatten
 
   ALL = SYMBOLS.collect { |symbol| new symbol }
 
   class << self
-    def my_path = Realm.mine.join
+    def my_path = Realm.mine.add(Compass.mine).map(&:symbol).join('•')
     def mine = find(my_path)
     def find_by_chosen(ary) = Type.find ary.sort_by(&:second).map(&:first).rotate.join
   end
 
-  def realms = string.chars.collect { |x| Realm.find x }
-  def title = realms.map(&:name).join(' • ')
+  def subtypes = string.split('•').collect { |x| Subtype.find x }
+
 
   def e = "explore the #{realms.second.targets}"
   def i = "rest your #{realms.fourth.aspect}"

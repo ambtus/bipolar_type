@@ -7,8 +7,9 @@ class Realm < Concept
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
-  def self.mine = [Realm.F, Realm.T, Realm.N, Realm.S]
+  def self.mine = [Realm.F, Realm.T, Realm.S, Realm.N]
 
+  def +(behavior) = Subtype.all.find {|s| s.realm == self && s.behavior == behavior}
 
   def name = { F: :social, T: :financial, S: :physical, N: :cognitive }[symbol].to_s
   def adverb = name.ly

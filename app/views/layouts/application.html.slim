@@ -11,9 +11,9 @@ html lang="en"
   body
     =link_to_unless_current 'Home', root_path
     |<> |
-    =link_to_unless_current 'Bipolar', theory_path
+    =link_to_unless_current 'Bipolar', compasses_path
     |<> |
-    =link_to_unless controller_name == 'realms', 'Types', realms_path
+    =link_to_unless_current 'Types', realms_path
     |<> |
     =link_to_unless_current 'BipolarTypes', types_path
 

@@ -9,6 +9,13 @@ class Compass < Concept
   end
 
   def self.behaviors = ALL.select{|x| x.index.odd?}
+  def self.permutations = [
+    [Compass.f, Compass.x, Compass.r, Compass.c],
+    [Compass.x, Compass.f, Compass.c, Compass.r],
+    [Compass.r, Compass.c, Compass.f, Compass.x],
+    [Compass.c, Compass.r, Compass.x, Compass.f]
+  ]
+  def self.mine = [Compass.f, Compass.x, Compass.r, Compass.c]
 
   def name = { f: 'fuel the self', x: 'explore the other', c: 'control the other', r: 'rest the self', i: 'the self', p: 'play', e: 'the other', j: 'work'}[symbol]
   def short = name.words.first

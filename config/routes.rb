@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root 'application#home'
-  get '/theory' => 'application#theory'
+  resources :compasses, only: %i[index show]
   resources :realms, only: %i[index show]
   resources :types, only: %i[index show]
   resources :concepts, only: %i[show]
