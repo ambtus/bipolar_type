@@ -3,13 +3,13 @@ p There are 24 (4 factorial) BipolarTypes.
 table
   tr
 
-    td.half=render 'choice', action: Compass.x
-    td.half=render 'choice', action: Compass.c
+    td.half=render 'choice', action: Attitude.x
+    td.half=render 'choice', action: Attitude.c
 
   tr
 
-    td.half=render 'choice', action: Compass.f
-    td.half=render 'choice', action: Compass.r
+    td.half=render 'choice', action: Attitude.f
+    td.half=render 'choice', action: Attitude.r
 
 -if Rails.env.development?
   hr

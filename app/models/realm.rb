@@ -11,16 +11,16 @@ class Realm < Concept
 
   def +(behavior) = Subtype.all.find {|s| s.realm == self && s.behavior == behavior}
 
-  def name = { F: :social, T: :financial, S: :physical, N: :cognitive }[symbol].to_s
-  def adverb = name.ly
+  def adjective = { F: :social, T: :financial, S: :physical, N: :mental }[symbol].to_s
+  def adverb = adjective.ly
 
-  def aspect = { F: :heart, T: :hands, S: :body, N: :mind}[symbol].to_s
-  alias_method :i, :aspect
+  def name = { F: :soul, T: :wallet, S: :body, N: :mind}[symbol].to_s
+  alias_method :i, :name
 
   def targets = { F: :opinions, T: :tools, S: :foods, N: :ideas}[symbol].to_s
   alias_method :e, :targets
 
-  def energy = { F: :emotions, T: :cash, S: :calories, N: :specifics}[symbol].to_s
+  def energy = { F: :vaues, T: :money, S: :calories, N: :memories}[symbol].to_s
   alias_method :p, :energy
 
   def strength = { F: :words, T: :credit, S: :muscles, N: :logic}[symbol].to_s

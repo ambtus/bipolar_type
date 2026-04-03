@@ -3,7 +3,7 @@
 class TypesController < ApplicationController
   def index
     @answers = params[:format] || ''
-    @chosen = @answers.empty? ? [] : @answers.scan(/../).collect { |x| [Realm.find(x.first), Compass.find(x.second)] }
+    @chosen = @answers.empty? ? [] : @answers.scan(/../).collect { |x| [Realm.find(x.first), Attitude.find(x.second)] }
 
     @title = "#{(@chosen.length + 1).ordinalize} question" + (@answers.blank? ? '' : " for #{@answers}")
 

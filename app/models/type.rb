@@ -2,7 +2,7 @@
 
 class Type < Concept
   SYMBOLS = Realm.all.permutation(4).collect do |realms|
-    Compass.permutations.collect do |behaviors|
+    Attitude.permutations.collect do |behaviors|
        realms.add(behaviors).map(&:string).join('•').to_sym
     end
   end.flatten
@@ -10,7 +10,7 @@ class Type < Concept
   ALL = SYMBOLS.collect { |symbol| new symbol }
 
   class << self
-    def my_path = Realm.mine.add(Compass.mine).map(&:symbol).join('•')
+    def my_path = Realm.mine.add(Attitude.mine).map(&:symbol).join('•')
     def mine = find(my_path)
     def find_by_chosen(ary) = Type.find ary.sort_by(&:second).map(&:first).rotate.join
   end

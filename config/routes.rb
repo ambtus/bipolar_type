@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root 'application#home'
-  resources :compasses, only: %i[index show]
+  resources :attitudes, only: %i[index show]
   resources :realms, only: %i[index show]
   resources :types, only: %i[index show]
   resources :concepts, only: %i[show]

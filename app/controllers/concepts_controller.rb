@@ -2,7 +2,7 @@
 
 class ConceptsController < ApplicationController
   def show
-    klass = [Realm, Compass].find do |klass|
+    klass = [Realm, Attitude].find do |klass|
       klass.find(params[:id])
     end
     @concept = klass.send(params[:id])

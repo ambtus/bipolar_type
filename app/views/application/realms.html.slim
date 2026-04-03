@@ -1,0 +1,15 @@
+table
+  tr
+    th
+    -Realm.each do |realm|
+      td=definition realm
+  tr
+    th.right waste your…
+    -Realm.each do |realm|
+      td=realm.energy
+    th.left …on games (play)
+  tr
+    th.right fulfill your…
+    -Realm.each do |realm|
+      td=realm.adjective
+    th.left …obligations (work)

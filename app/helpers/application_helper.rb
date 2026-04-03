@@ -3,7 +3,7 @@
 module ApplicationHelper
 
   def definition(concept, meth = :noop)
-    link_to "#{concept.name.send(meth)}", concept_path(concept.path), class: 'definition'
+    link_to concept.name.send(meth).capitalize, concept_path(concept.path), class: 'definition'
   end
 
   def find_class(chosen, realm, action)
