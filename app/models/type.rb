@@ -4,7 +4,7 @@ class Type
   def initialize(string)
     @behaviors = string.split('-').collect { |s| Behavior.find_by(tla: s) }
     @behaviors.map(&:realm).uniq.check_constraints(Realm, 4, 4)
-    @behaviors.map(&:attitude).uniq.check_constraints(Attitude, 4, 4)
+    #@behaviors.map(&:attitude).uniq.check_constraints(Attitude, 4, 4)
   end
   attr_reader :behaviors
 
@@ -14,7 +14,7 @@ class Type
   alias path :title
 
   class << self
-    def my_path = 'dfp-dnj-atp-asj'
+    def my_path = 'ie-op-ef-fm'
     def my_type = Type.new(my_path)
     # for cucumber tests, just needs to be different.
     def your_path = my_type.behaviors.reverse.map { |x| x.opposite.tla }.join('-')

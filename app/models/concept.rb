@@ -40,4 +40,9 @@ class Concept
   def next = self.class.rotate[index]
   def previous = self.class.rotate(-1)[index]
   def opposite = self.class.rotate(2)[index]
+
+  def first? = index.zero?
+  def second? = (index == 1)
+  def third? = (index == 2)
+  def last? = (index == 3)
 end

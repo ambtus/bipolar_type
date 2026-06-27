@@ -1,41 +1,29 @@
 # frozen_string_literal: true
 
 class Attitude < Concept
-  SYMBOLS = %i[dp ap dj aj].freeze
+  SYMBOLS = %i[i e f o].freeze
   ALL = SYMBOLS.collect { |symbol| new symbol }
   SYMBOLS.each do |sym|
     define_singleton_method(sym) { ALL.find { |s| s.symbol == sym } }
   end
 
+  def self.linear = ALL.values_at(0, 1, 3, 2)
+
+  def mild = %w[sick thin anxious fat][index]
+  def severe = %w[ill emaciated afraid obese][index]
+
+  def result = %w[illness emaciation fear obesity][index]
+  def name = mild.capitalize
+
   def top? = %i[ap dj].include?(symbol)
   def bottom? = %i[dp aj].include?(symbol)
   def left? = string.ends_with?('p')
 
-  def self.tops = ALL.select(&:top?)
-  def self.bottoms = ALL.select(&:bottom?)
-
-  def first? = index.zero?
-  def second? = (index == 1)
-  def third? = (index == 2)
-  def last? = (index == 3)
-
-  def react = %w[feed flee fight rest][index]
-  def goal = %w[fuel escape attack rebuild][index]
-
-  def bad = %w[drained anxious irritated tired][index]
-  def worse = %w[empty afraid angry exhausted][index]
-
-  def time_of_day = %w[morning midday afternoon evening][index]
-  def time = second? ? "at #{time_of_day}" : "in the #{time_of_day}"
-  def season = %w[winter/spring spring/summer summer/autumn autumn/winter][index]
-  def bipolar = top? ? 'mania' : 'depression'
-  def seasonal = flop.season
-  def episode = [flop.bad, bipolar].to_phrase.titleize
-  def stop = [react, goal].and
 
   def behaviors = Behavior.all.select { |x| x.attitude == self }
   def +(other) = behaviors.find { |x| x.realm == other }
 
   def flop = ALL.reverse[index]
   def flip = ALL.values_at(1, 0, 3, 2)[index]
+
 end

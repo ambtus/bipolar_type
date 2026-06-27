@@ -3,7 +3,7 @@
 class Behavior < Concept
   SYMBOLS = Realm.all.collect do |realm|
     Attitude.all.collect do |attitude|
-      (attitude.string.first + realm.string + attitude.string.second).to_sym
+      (attitude.string + realm.string).to_sym
     end
   end.flatten
 
@@ -16,7 +16,8 @@ class Behavior < Concept
   end
 
   def realm = Realm.find(string.second)
-  def attitude = Attitude.find(string.first + string.third)
+  def attitude = Attitude.find(string.first)
+  def name = [realm.adverb.capitalize, attitude.name].to_phrase
 
   def self.without(array)
     behaviors = array.collect { |tla| find_by(tla: tla) }

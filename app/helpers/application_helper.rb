@@ -9,9 +9,9 @@ module ApplicationHelper
   end
 
   def function(index)
-    return 'dominant' if index.zero?
-    return 'auxiliary' if index == 1
+    return 'inferior' if index.zero?
+    return 'tertiary' if index == 1
 
-    'tertiary'
+    'auxiliary'
   end
 end

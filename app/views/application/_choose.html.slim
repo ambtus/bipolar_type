@@ -1,8 +1,9 @@
--if @free.include?(b)
-  =link_to b.link, types_path((@current + [b.tla]).join('-'))
+-if @free_realms.include?(b.realm)
+  b=link_to b.name, types_path([@string, b.tla].join('-'))
+  p.left=render 'problem', attitude: b.attitude, realm: b.realm
+
 -elsif @chosen.include?(b)
-  b=b.link
+  b=b.name
+  p.left=render 'problem', attitude: b.attitude, realm: b.realm
 -else
-  =b.link
-br
-=b.my_goal
+  =b.name

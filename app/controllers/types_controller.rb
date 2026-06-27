@@ -2,12 +2,11 @@
 
 class TypesController < ApplicationController
   def index
-    string = params[:format] || ''
-    @current = string.split('-')
-    @free = Behavior.without(@current)
-    @chosen = Behavior.all.select{|b| @current.include?(b.tla)}
-    if @free.size == 1
-      redirect_to answer_path [string, Behavior.without(@current).map(&:tla).first].join('-')
+    @string = params[:format] || ''
+    @chosen = @string.split('-').collect{|s| Behavior.find(s)}
+    @free_realms = Realm.without(@chosen.map(&:realm))
+    if @free_realms.size == 0
+      redirect_to type_path @string
     else
       @title = "BipolarTypes#{" with #{@current.and}" if @current.present?}"
       render 'types'

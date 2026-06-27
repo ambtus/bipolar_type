@@ -1,16 +1,7 @@
--if @current.none?
-  p A BipolarType has one of the sixteen subtypes as its dominant, one of the nine remaining as its auxiliary, one of the four remaining as its tertiary, and the one remaining  as its inferior: 16x9x4x1=576.
-  p
-    |> Since there are 576 BipolarTypes, determining yours may be difficult. You can try answering some
-    =link_to 'questions', questions_path
-    | .
-
--if @current.none?
-  p Or, if you know which of the sixteen behaviors is your dominant, you can try starting with one the following links.
+p There are 256 BipolarTypes: one nature for each realm of behavior. There are 24 “pure” Bipolartypes: a <em>different</em> nature for each realm of behavior. As far as I know, there is no theoretical reason why everyone must have a “pure” BipolarType, so your choices are not constrained.
 
 table
-  caption #{function(@current.count)}
-  -Realm.each do |r|
+  -Attitude.each do |a|
     tr
-      -Attitude.each do |a|
+      -Realm.each do |r|
         td.bordered=render 'choose', b: (a + r)
