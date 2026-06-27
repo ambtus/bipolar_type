@@ -9,7 +9,9 @@ class Realm < Concept
 
   def self.mine = ALL.values_at(0, 2, 1, 3)
 
-  def self.adjectives = ALL.map(&:adjective)
+  def self.linear = ALL.values_at(1, 3, 0, 2)
+
+  def self.adjectives = linear.map(&:adjective)
 
   def behaviors = Behavior.all.select { |x| x.realm == self }
   def +(other) = behaviors.find { |x| x.attitude == other }
@@ -18,13 +20,16 @@ class Realm < Concept
   def adverb = adjective.ly
   def name = adjective.capitalize
   def intake = %w[listen eat earn watch][index]
-  def output = %w[communicate do spend think][index]
+  def output = %w[communicate move spend think][index]
 
-  def fast_out = %w[talk/sing walk/run pay\ cash intuit/guess][index]
-  def slow_out = %w[use\ words do\ regular\ chores use\ credit use\ logic/symmetry][index]
+  def fast_out = %w[talk/sing play\ games pay\ cash intuit/guess][index]
+  def slow_out = %w[use\ words do\ chores use\ credit use\ logic/symmetry][index]
 
-  def easy_in = %w[to\ music carbs rewards news][index]
-  def hard_in = %w[to\ sermons/moral\ stories protein repayments results][index]
+  def easy = %w[to\ music carbs rewards the\ news][index]
+  def hard = %w[to\ sermons protein repayments results][index]
+
+  def easy_intake = [intake, easy].to_phrase
+  def hard_intake = [intake, hard].to_phrase
 
   def process = %w[understand digest collect memorize][index]
 

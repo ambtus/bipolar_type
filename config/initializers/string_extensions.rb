@@ -123,13 +123,13 @@ class String
              emotions childhood adolescence adulthood old age child
              adolescent adult elder curiosity agitation appetite lazy
              anxiety irritation boredom anger fear exhaustion lethargy
-             hunger].freeze
+             hunger symmetry stories].freeze
   ADJECTIVES = %w[anorexic depressed manic energetic strong obese goal-oriented
                   empty hyperactive weak caloric indebted informative
                   emotional child adolescent adult elder childish
                   adolescent mature wise curious agitated ?? ??
                   anxious irritable bored angry afraid tired lethargic
-                  hungry ].freeze
+                  hungry symmetric].freeze
 
   def noun? = NOUNS.include?(self)
   def capitalized? = first != first.downcase
@@ -291,7 +291,11 @@ class String
     [' and ', ' or ', '/', ' & '].each do |connector|
       if match(connector)
         first, second = split(connector, 2)
-        return [first.ing, second.ing].join(connector)
+        if second.noun?
+          return self
+        else
+          return [first.ing, second.ing].join(connector)
+        end
       end
     end
     return chop.ing + last if punctuated?
@@ -381,7 +385,7 @@ class String
       end
     end
     if match?(' ')
-      [first_words, 'too', last_words.last.much, last_words].join(' ')
+      [first_words, 'too', last_word.much, last_words].join(' ')
     elsif noun?
       "too #{many} #{self}"
     else
@@ -463,6 +467,7 @@ class String
   def plural?
     return unwrap.plural? if wrapped?
     return true if self == 'people'
+    return true if self == 'news'
     return true if first_words[-1] == 's'
     return true if /. things/.match?(self)
 
@@ -472,6 +477,7 @@ class String
   def uncountable?
     return unwrap.uncountable? if wrapped?
     return true if self == 'salary'
+    return true if self == 'news'
 
     false
   end

@@ -1,1 +1,4 @@
-
+-@type.behaviors.each do |b|
+  h2=b.name
+  p=render 'problem', attitude: b.attitude, realm: b.realm
+  p=render 'solution', attitude: b.attitude, realm: b.realm

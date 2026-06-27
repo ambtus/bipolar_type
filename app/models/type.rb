@@ -2,30 +2,27 @@
 
 class Type
   def initialize(string)
-    @behaviors = string.split('-').collect { |s| Behavior.find_by(tla: s) }
-    @behaviors.map(&:realm).uniq.check_constraints(Realm, 4, 4)
-    #@behaviors.map(&:attitude).uniq.check_constraints(Attitude, 4, 4)
+    @attitudes = string.chars.collect { |s| Attitude.find(s.downcase) }
+    @attitudes.check_constraints(Attitude, 4, 4)
   end
-  attr_reader :behaviors
+  attr_reader :attitudes
 
-  def tlas = behaviors.map(&:tla)
-  def title = tlas.join('-')
+  def path = attitudes.map(&:string).join
+  def title = path.upcase
   alias inspect :title
-  alias path :title
+
+  def behaviors = attitudes.add(Realm.linear)
 
   class << self
-    def my_path = 'ie-op-ef-fm'
+    def my_path = 'ofie'
     def my_type = Type.new(my_path)
     # for cucumber tests, just needs to be different.
-    def your_path = my_type.behaviors.reverse.map { |x| x.opposite.tla }.join('-')
+    def your_path = my_path.reverse
     def your_type = Type.new(your_path)
     # for visual tests, want to hit all sixteen subtypes
-    def next_path = my_type.behaviors.rotate.map { |x| x.flip.tla }.join('-')
-    def other_path = my_type.behaviors.reverse.rotate.map { |x| x.flop.tla }.join('-')
+    def next_path = my_path.chars.rotate.join
+    def other_path = next_path.reverse
   end
 
-  def subtypes = behaviors.each_with_index.collect { |b, i| Subtype.new(b.tla + i.to_s) }
 
-  def tops = [subtypes.find(&:second?), subtypes.find(&:third?)]
-  def bottoms = [subtypes.find(&:first?), subtypes.find(&:last?)]
 end

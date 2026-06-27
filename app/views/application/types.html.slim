@@ -1,7 +1,10 @@
-p There are 256 BipolarTypes: one nature for each realm of behavior. There are 24 “pure” Bipolartypes: a <em>different</em> nature for each realm of behavior. As far as I know, there is no theoretical reason why everyone must have a “pure” BipolarType, so your choices are not constrained.
+p There are 256 BipolarTypes: one problem for each realm of behavior: #{Realm.adjectives.and}.
 
 table
+  caption Your #{@realm.adjective} problem
   -Attitude.each do |a|
     tr
-      -Realm.each do |r|
-        td.bordered=render 'choose', b: (a + r)
+      td.bordered
+        =render 'choose', b: (a + @realm)
+        br
+        =render 'problem', attitude: a, realm: @realm
