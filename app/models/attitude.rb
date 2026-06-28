@@ -11,19 +11,10 @@ class Attitude < Concept
 
   def mild = %w[sick thin anxious fat][index]
   def severe = %w[ill emaciated afraid obese][index]
-
   def result = %w[illness emaciation fear obesity][index]
   def name = result.capitalize
 
-  def top? = %i[ap dj].include?(symbol)
-  def bottom? = %i[dp aj].include?(symbol)
-  def left? = string.ends_with?('p')
-
-
   def behaviors = Behavior.all.select { |x| x.attitude == self }
   def +(other) = behaviors.find { |x| x.realm == other }
-
-  def flop = ALL.reverse[index]
-  def flip = ALL.values_at(1, 0, 3, 2)[index]
 
 end

@@ -17,7 +17,7 @@ class Realm < Concept
   def +(other) = behaviors.find { |x| x.attitude == other }
 
   def adjective = %w[emotional physical financial mental][index]
-  def adverb = adjective.ly
+  def adverb = %w[spiritually physically materially cognitively][index]
   def name = adjective.capitalize
   def intake = %w[listen eat earn watch][index]
   def output = %w[communicate move spend think][index]
@@ -40,16 +40,8 @@ class Realm < Concept
   def foci = focus.pluralize
   alias top :foci
 
-  def unfamiliar = %w[friends land machines procedures][index]
-  def familiar = %w[family farms hardware software][index]
-  def externals = %w[why food shelter how][index]
   def sense = %w[hear smell/taste touch see][index]
-  def take =%w[ears nose/mouth wallet eyes][index]
-  def basic = %w[stories meals tools signs][index]
-  def internals = %w[morals calories value information][index]
   def neuro = %w[oxytocin serotonin dopamine glutamate][index]
   def organ = %w[heart body wallet mind][index]
-  alias bottom :organ
-  def left = %w[expressive gather labor tactics][index]
-  def right = %w[lexical hunt capital logistics][index]
+
 end

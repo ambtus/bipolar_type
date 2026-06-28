@@ -8,7 +8,7 @@ class TypesController < ApplicationController
     if @chosen.length == 4
       redirect_to type_path @string
     else
-      @title = "BipolarTypes#{" with #{@current.and}" if @current.present?}"
+      @title = "BipolarTypes#{" with #{@chosen.and}" if @chosen.present?}"
       render 'types'
     end
   end

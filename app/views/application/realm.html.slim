@@ -1,6 +1,0 @@
-p.center There are four #{@realm.name} natures
-dl
-  -Attitude.linear.each do |a|
-    dt #{@realm.adverb.capitalize} #{a.mild.capitalize}
-    dd=render 'problem', attitude: a, realm: @realm
-
