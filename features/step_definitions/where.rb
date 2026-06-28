@@ -17,3 +17,7 @@ Then('I should be on {word} page') do |whose|
   type = whose == 'my' ? Type.my_type : Type.your_type
   assert_equal page.title, "BipolarType: #{type.title}"
 end
+
+Then('I should be on the types page') do
+  assert_equal page.title, "BipolarType: BipolarTypes"
+end

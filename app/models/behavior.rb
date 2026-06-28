@@ -17,7 +17,7 @@ class Behavior < Concept
 
   def realm = Realm.find(string.second)
   def attitude = Attitude.find(string.first)
-  def name = [realm.adverb.capitalize, attitude.name].to_phrase
+  def name = [realm.name, attitude.name].to_phrase
 
   def self.without(array)
     behaviors = array.collect { |tla| find_by(tla: tla) }

@@ -9,6 +9,11 @@ Given I am on the homepage
 When I follow the 'me' link
 Then I should be on my page
 
+Scenario: has a link to the types page
+Given I am on the homepage
+When I follow the 'you' link
+Then I should be on the types page
+
 Scenario: has a link to wikipedia bipolar
 Given I am on the homepage
 Then the 'bipolar' link should NOT be disabled

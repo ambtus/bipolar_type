@@ -48,7 +48,7 @@ class Realm < Concept
   def basic = %w[stories meals tools signs][index]
   def internals = %w[morals calories value information][index]
   def neuro = %w[oxytocin serotonin dopamine glutamate][index]
-  def organ = %w[soul body wallet mind][index]
+  def organ = %w[heart body wallet mind][index]
   alias bottom :organ
   def left = %w[expressive gather labor tactics][index]
   def right = %w[lexical hunt capital logistics][index]

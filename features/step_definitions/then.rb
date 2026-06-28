@@ -12,9 +12,10 @@ Then('the {string} link should NOT be disabled') do |string|
   assert page.has_link?(string)
 end
 
-Then('all behaviors should be linked') do
-  Behavior.each do |x|
-    assert page.has_link?(x.link)
+Then('all {word} behaviors should be linked') do |realm|
+  realm = Realm.find(realm.first)
+  realm.behaviors.each do |x|
+    assert page.has_link?(x.name)
   end
 end
 
@@ -26,15 +27,15 @@ end
 
 Then('{word} {word} should be visible') do |whose, what|
   who = whose == 'my' ? Type.my_type : Type.your_type
-  who.subtypes.each do |x|
-    assert page.has_text?(x.send(what.singularize))
+  who.send(what).each do |x|
+    assert page.has_text?(x.name)
   end
 end
 
 Then('{word} {word} should NOT be visible') do |whose, what|
   who = whose == 'my' ? Type.my_type : Type.your_type
-  who.behaviors.each do |x|
-    assert page.has_no_text?(x.send(what.singularize))
+  who.send(what).each do |x|
+    assert page.has_no_text?(x.name)
   end
 end
 
