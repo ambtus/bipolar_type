@@ -17,11 +17,11 @@ class Type
     def my_path = 'ofie'
     def my_type = Type.new(my_path)
     # for cucumber tests, just needs to be different.
-    def your_path = my_path.reverse
+    def your_path = my_path.chars.rotate.join
     def your_type = Type.new(your_path)
     # for visual tests, want to hit all sixteen subtypes
-    def next_path = my_path.chars.rotate.join
-    def other_path = next_path.reverse
+    def next_path = your_path.chars.rotate.join
+    def other_path = next_path.chars.rotate.join
   end
 
 

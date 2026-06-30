@@ -20,10 +20,10 @@ class Realm < Concept
   def adverb = %w[spiritually physically materially cognitively][index]
   def name = adjective.capitalize
   def intake = %w[listen eat earn watch][index]
-  def output = %w[communicate move spend think][index]
+  def output = %w[talk move spend plan][index]
 
-  def fast_out = %w[talk/sing play\ games pay\ cash intuit/guess][index]
-  def slow_out = %w[use\ words do\ chores use\ credit use\ logic/symmetry][index]
+  def fast_out = %w[emote\ or\ sing walk\ or\ run pay\ cash intuit\ or\ guess][index]
+  def slow_out = %w[use\ words do\ chores use\ credit use\ logic\ or\ symmetry][index]
 
   def easy = %w[to\ music carbs rewards the\ news][index]
   def hard = %w[to\ sermons protein repayments results][index]
@@ -33,15 +33,19 @@ class Realm < Concept
 
   def process = %w[understand digest collect memorize][index]
 
-  def stimulus = %w[sounds smells/tastes texture/heat lights/colors][index]
+  def resources = %w[stories foods rewards facts][index]
+
+  def stimulus = %w[sounds smells\ or\ tastes textures colors\ or\ shapes][index]
 
   def change = %w[tell go build show][index]
-  def focus = %w[person place thing idea][index]
+  def focus = %w[person place tool idea][index]
   def foci = focus.pluralize
   alias top :foci
 
   def sense = %w[hear smell/taste touch see][index]
   def neuro = %w[oxytocin serotonin dopamine glutamate][index]
   def organ = %w[heart body wallet mind][index]
+
+  def energy = %w[emotions calories money information][index]
 
 end

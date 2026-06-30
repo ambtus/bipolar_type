@@ -12,10 +12,10 @@ Then('the {string} link should NOT be disabled') do |string|
   assert page.has_link?(string)
 end
 
-Then('all {word} behaviors should be linked') do |realm|
-  realm = Realm.find(realm.first)
-  realm.behaviors.each do |x|
-    assert page.has_link?(x.name)
+
+Then('all attitudes should be linked') do
+  Attitude.each do |x|
+    assert page.has_text?(x.name)
   end
 end
 

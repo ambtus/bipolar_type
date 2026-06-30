@@ -1,10 +1,9 @@
 p There are 256 BipolarTypes: one problem for each realm of behavior: #{Realm.adjectives.and}.
 
 table
-  caption Your #{@realm.adjective} problem
+  Caption=@realm.name
   -Attitude.each do |a|
     tr
       td.bordered
-        =render 'choose', b: (a + @realm)
-        br
-        =render 'problem', attitude: a, realm: @realm
+        .center=render 'choose', attitude: a
+        =render 'problem1', attitude: a, realm: @realm

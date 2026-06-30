@@ -2,7 +2,7 @@ Feature: the types pages
 
 Example: has 4 physical behaviors
 Given I am on the types page
-Then all physical behaviors should be linked
+Then all attitudes should be linked
 
 Scenario: can select my type
 Given I am on the types page

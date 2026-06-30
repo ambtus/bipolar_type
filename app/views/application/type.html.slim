@@ -1,5 +1,19 @@
--@type.behaviors.each do |b|
-  h2=b.name
-  p=render 'nature', attitude: b.attitude, realm: b.realm
-  p=render 'problem', attitude: b.attitude, realm: b.realm
-  p=render 'solution', attitude: b.attitude, realm: b.realm
+table.equal
+  tr
+    -@type.behaviors.each do |b|
+      th=b.name
+  tr
+    -Realm.linear.each_with_index do |r, i|
+      td=render 'problem1', attitude: @type.attitudes[i], realm: r
+  tr
+    -Realm.linear.each_with_index do |r, i|
+      td=render 'solution1', attitude: @type.attitudes[i], realm: r
+  tr
+    -Realm.linear.each_with_index do |r, i|
+      td=render 'problem2', attitude: @type.attitudes[i], realm: r
+  tr
+    -Realm.linear.each_with_index do |r, i|
+      td=render 'solution2', attitude: @type.attitudes[i], realm: r
+  tr
+    -Realm.linear.each_with_index do |r, i|
+      td=render 'nature', attitude: @type.attitudes[i], realm: r

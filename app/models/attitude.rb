@@ -9,9 +9,9 @@ class Attitude < Concept
 
   def self.linear = ALL.values_at(0, 1, 3, 2)
 
-  def mild = %w[sick thin anxious fat][index]
-  def severe = %w[ill emaciated afraid obese][index]
-  def result = %w[illness emaciation fear obesity][index]
+  def mild = %w[unwell stressed restless fat][index]
+  def severe = %w[ill strained anxious obese][index]
+  def result = %w[illness strain insomnia obesity][index]
   def name = result.capitalize
 
   def behaviors = Behavior.all.select { |x| x.attitude == self }
